@@ -9,7 +9,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private int SizeY;
     [SerializeField] private SpriteRenderer HeroToken;
     
-    private bool[,] map;
+    private bool[,] map; // true - Tile is occupied, false - Tile is free  (apres, ce sera une struct qui prend si le hero est dessus, si un ennemi est dessus, si a cote il peut marcher etc)
     
     private void InitializeMap()
     {
@@ -31,6 +31,7 @@ public class MapManager : MonoBehaviour
         int posY = Random.Range(0, SizeY);
         spawnMap.SetTile(new Vector3Int(0, posY), TileType.Start);
         HeroToken.transform.position = new Vector3(0, posY);
+        map[0, posY] = true;
     }
 
     // Update is called once per frame
