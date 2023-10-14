@@ -9,7 +9,7 @@ public class UnusedSlot : MonoBehaviour
     public void AddSlot(SlotHandManager slot)
     {
         slot.transform.SetParent(transform);
-        //unusedSlots.Add(slot);
+        unusedSlots.Add(slot);
     }
     
     public SlotHandManager GetSlot()

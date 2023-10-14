@@ -51,7 +51,7 @@ public class DeckManager : MonoBehaviour
     {
         yield return new WaitForSeconds(TimerDrawCard);
         DrawCard();
-        if (Hand.Count < slotsHand.Count && deck.Count > 0)
+        if (unusedSlotManager.transform.childCount > 0 && deck.Count > 0)
             StartCoroutine(CheckDrawCard());
     }
 
@@ -88,7 +88,8 @@ public class DeckManager : MonoBehaviour
                 deck.Add(card);
             }
         }
-        //slotsHand.ForEach(t => unusedSlotManager.AddSlot(t));
+        slotsHand.ForEach(t => unusedSlotManager.AddSlot(t));
+        slotsHand.Clear();
     }
 
     private void ShuffleDeck()
@@ -104,7 +105,6 @@ public class DeckManager : MonoBehaviour
 
     private void DrawCard()
     {
-        return;
         Card card = deck[0];
         if (deck.Count > 0)
         {
@@ -119,7 +119,7 @@ public class DeckManager : MonoBehaviour
         if (slot != null)
         {
             slot.GetImage().sprite = card.img;
-            //slot.transform.SetParent(trHand.transform);
+            slot.transform.SetParent(trHand.transform);
             slotsHand.Add(slot);
         }
 
