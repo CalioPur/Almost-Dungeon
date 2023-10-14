@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+    
     [SerializeField] private SpawnMap spawnMap;
     [SerializeField] private int SizeX;
     [SerializeField] private int SizeY;
@@ -22,8 +26,30 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public bool IsTileOccupied(Vector3Int position)
+    {
+        return map[position.x, position.y];
+    }
     
+    public void SetTileOccupied(Vector3Int position)
+    {
+        map[position.x, position.y] = true;
+    }
     
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+    
+    public void SpawnTile(Vector3Int position, TileType tileType)
+    {
+        spawnMap.SetTile(position, tileType);
+    }
+
     void Start()
     {
         spawnMap.SpawnMapTile(SizeX, SizeY);

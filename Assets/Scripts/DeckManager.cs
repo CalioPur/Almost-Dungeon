@@ -6,6 +6,14 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
+[Serializable]
+public struct Card
+{
+    public Sprite img;
+    public int nbToBuild;
+    public TileType type;
+}
+
 public class DeckManager : MonoBehaviour
 {
     public static DeckManager Instance;
@@ -22,12 +30,7 @@ public class DeckManager : MonoBehaviour
     private List<Card> Hand = new();
     private SlotHandManager selectedCard = null;
 
-    [Serializable]
-    private struct Card
-    {
-        public Sprite img;
-        public int nbToBuild;
-    }
+
 
     private void Awake()
     {
@@ -103,6 +106,14 @@ public class DeckManager : MonoBehaviour
             deck[randomIndex] = temp;
         }
     }
+    
+    public void DiscardCurrentCard()
+    {
+        if (selectedCard == null) return;
+        Hand.Remove(selectedCard.card);
+        unusedSlotManager.AddSlot(selectedCard);
+        selectedCard = null;
+    }
 
     private void DrawCard()
     {
@@ -122,6 +133,7 @@ public class DeckManager : MonoBehaviour
             slot.GetImage().sprite = card.img;
             slot.transform.SetParent(trHand.transform);
             slotsHand.Add(slot);
+            slot.card = card;
         }
 
         // for (int i = 0; i < slotsHand.Count; i++)
@@ -143,6 +155,7 @@ public class DeckManager : MonoBehaviour
         if (selectedCard != null)
         {
             selectedCard.transform.Rotate(0, 0, 90);
+            selectedCard.addRotation();
         }
     }
 
@@ -155,4 +168,15 @@ public class DeckManager : MonoBehaviour
     }
 
 
+    public TileType getTypeSelectedCard()
+    {
+        if (selectedCard == null) return TileType.ERROR;
+        return selectedCard.card.type;
+    }
+    
+    public Vector3 GetRotationSelectedCard()
+    {
+        if (selectedCard == null) return Vector3.zero;
+        return selectedCard.GetRotation();
+    }
 }

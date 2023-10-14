@@ -16,6 +16,7 @@ public enum TileType
     TLine,
     XLine,
     FaceDeck,
+    ERROR = -1,
 }
 
 
