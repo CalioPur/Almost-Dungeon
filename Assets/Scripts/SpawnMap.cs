@@ -11,6 +11,10 @@ public enum TileType
     Hole,
     Start,
     End,
+    SimpleLine,
+    LLine,
+    TLine,
+    XLine,
 }
 
 
