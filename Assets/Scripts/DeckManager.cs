@@ -72,9 +72,10 @@ public class DeckManager : MonoBehaviour
                 }
 
                 t.ChangeSelection(true);
+                selectedCard = t;
             }
 
-            selectedCard = t;
+
         }
     }
 

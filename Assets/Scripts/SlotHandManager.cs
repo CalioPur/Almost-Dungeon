@@ -15,7 +15,6 @@ public class SlotHandManager : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Enter");
         if (!isSelected) img.color = HoverColor;
     }
 
