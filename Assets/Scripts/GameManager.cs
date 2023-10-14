@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField] private SpawnMap spawnMap;
     [SerializeField] private int SizeX;
@@ -32,11 +32,5 @@ public class MapManager : MonoBehaviour
         spawnMap.SetTile(new Vector3Int(0, posY), TileType.Start);
         HeroToken.transform.position = new Vector3(0, posY);
         map[0, posY] = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

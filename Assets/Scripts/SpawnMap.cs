@@ -15,6 +15,7 @@ public enum TileType
     LLine,
     TLine,
     XLine,
+    FaceDeck,
 }
 
 
@@ -43,7 +44,7 @@ public class SpawnMap : MonoBehaviour
 
     public void SpawnMapTile(int SizeX, int SizeY)
     {
-        tilemap.ClearAllTiles();
+        //tilemap.ClearAllTiles();
         Tile[] tiles = new Tile[tileDictionary.Count];
         tileDictionary.Values.CopyTo(tiles, 0);
 
@@ -72,5 +73,10 @@ public class SpawnMap : MonoBehaviour
     public void SetTile(Vector3Int position, TileType type)
     {
         tilemap.SetTile(position, tileDictionary[type]);
+    }
+    
+    public void SetTile(Vector3Int position, Tile type)
+    {
+        tilemap.SetTile(position, type);
     }
 }
