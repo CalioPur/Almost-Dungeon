@@ -22,7 +22,6 @@ public enum TileType
 public class SpawnMap : MonoBehaviour
 {
     [SerializeField] private Tilemap tilemap;
-
     [SerializeField] private MapStruct[] maps;
     
     [Serializable]
