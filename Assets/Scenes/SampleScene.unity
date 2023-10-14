@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 11421838}
   - component: {fileID: 11421839}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DeckManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,15 +168,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck:
-  - tile: {fileID: 11400000, guid: 6d1b10a647c3d0c45b5bfe52c8319b51, type: 2}
-    nbOfCard: 4
-  - tile: {fileID: 11400000, guid: 3235f12dfc24af54e896c0f451f7e48d, type: 2}
-    nbOfCard: 6
-  - tile: {fileID: 11400000, guid: 4c6e7d84fa6a5c64ea63e8b3959b19bd, type: 2}
-    nbOfCard: 3
-  - tile: {fileID: 11400000, guid: b74b60dfdcfa3e148ba7b4878e83dd53, type: 2}
-    nbOfCard: 1
-  tileFaceDeck: {fileID: 11400000, guid: ad4035e9696728645802441b405c6d29, type: 2}
+  - tile: {fileID: 21300000, guid: 624a8e05f33f69649a39acc5c63f506f, type: 3}
+  - tile: {fileID: 21300000, guid: 86705981c7bbc1440bf4174cc989e011, type: 3}
+  - tile: {fileID: 21300000, guid: 10a412d7f78658d47a1f5e9b7fc7489c, type: 3}
+  - tile: {fileID: 21300000, guid: 199b6c1876596cb47a630256cef49150, type: 3}
+  slotsHand:
+  - {fileID: 1031861031}
+  - {fileID: 907478801}
+  - {fileID: 1630771888}
+  - {fileID: 67388242}
+  - {fileID: 47946577}
+  TimerDrawCard: 1
 --- !u!1 &47946575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,7 +1510,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
+  - {fileID: 2084738675}
   - {fileID: 230388317}
   - {fileID: 1125913019}
-  - {fileID: 2084738675}
   - {fileID: 1906788923}
