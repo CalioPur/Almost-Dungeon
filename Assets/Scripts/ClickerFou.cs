@@ -24,25 +24,36 @@ public class ClickerFou : MonoBehaviour
                 Debug.Log("Tile is occupied");
                 return;
             }
-            GameManager.Instance.SetTileOccupied(tpos);
-            TileType type = DeckManager.Instance.getTypeSelectedCard();
-            GameManager.Instance.SpawnTile(tpos, type);
-            tileFound = tileMap.GetTile(tpos);
-
-            Matrix4x4 tileTransform =
-                Matrix4x4.Translate(new Vector3(0, 0)) *
-                Matrix4x4.Rotate(Quaternion.Euler(0, 0, DeckManager.Instance.GetRotationSelectedCard().y));
-            TileChangeData tilechangedata = new TileChangeData()
+            
+            try
             {
-                position = tpos,
-                tile = tileFound,
-                color = Color.white,
-                transform = tileTransform
-            };
-            tileMap.SetTile(tilechangedata, false);
-            ///A CHANGER
-            DeckManager.Instance.DiscardCurrentCard();
-            /// 
+                
+                TileType type = DeckManager.Instance.getTypeSelectedCard();
+                GameManager.Instance.SpawnTile(tpos, type);
+                tileFound = tileMap.GetTile(tpos);
+
+                Matrix4x4 tileTransform =
+                    Matrix4x4.Translate(new Vector3(0, 0)) *
+                    Matrix4x4.Rotate(Quaternion.Euler(0, 0, DeckManager.Instance.GetRotationSelectedCard().y));
+                TileChangeData tilechangedata = new TileChangeData()
+                {
+                    position = tpos,
+                    tile = tileFound,
+                    color = Color.white,
+                    transform = tileTransform
+                };
+                tileMap.SetTile(tilechangedata, false);
+                ///A CHANGER
+                DeckManager.Instance.DiscardCurrentCard();
+                /// 
+                GameManager.Instance.SetTileOccupied(tpos);
+
+            }
+            catch 
+            {
+                Debug.LogWarning("No card Selected");
+            }
+
         }
     }
 }
