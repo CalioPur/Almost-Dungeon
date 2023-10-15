@@ -178,16 +178,32 @@ MonoBehaviour:
   - img: {fileID: 21300000, guid: 624a8e05f33f69649a39acc5c63f506f, type: 3}
     nbToBuild: 4
     type: 5
+    DoorOnTop: 0
+    DoorOnBottom: 0
+    DoorOnLeft: 1
+    DoorOnRight: 1
   - img: {fileID: 21300000, guid: 86705981c7bbc1440bf4174cc989e011, type: 3}
     nbToBuild: 6
     type: 6
+    DoorOnTop: 0
+    DoorOnBottom: 1
+    DoorOnLeft: 1
+    DoorOnRight: 0
   - img: {fileID: 21300000, guid: 10a412d7f78658d47a1f5e9b7fc7489c, type: 3}
     nbToBuild: 3
     type: 7
+    DoorOnTop: 1
+    DoorOnBottom: 0
+    DoorOnLeft: 1
+    DoorOnRight: 1
   - img: {fileID: 21300000, guid: 199b6c1876596cb47a630256cef49150, type: 3}
     nbToBuild: 1
     type: 8
-  TimerDrawCard: 1
+    DoorOnTop: 1
+    DoorOnBottom: 1
+    DoorOnLeft: 1
+    DoorOnRight: 1
+  TimerDrawCard: 2
   unusedSlotManager: {fileID: 766527354}
   trHand: {fileID: 461089492}
 --- !u!1 &47946575
@@ -282,7 +298,12 @@ MonoBehaviour:
     img: {fileID: 0}
     nbToBuild: 0
     type: 0
+    DoorOnTop: 0
+    DoorOnBottom: 0
+    DoorOnLeft: 0
+    DoorOnRight: 0
   img: {fileID: 47946577}
+  rt: {fileID: 47946576}
 --- !u!1 &67388240
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +396,12 @@ MonoBehaviour:
     img: {fileID: 0}
     nbToBuild: 0
     type: 0
+    DoorOnTop: 0
+    DoorOnBottom: 0
+    DoorOnLeft: 0
+    DoorOnRight: 0
   img: {fileID: 67388242}
+  rt: {fileID: 67388241}
 --- !u!1 &230388315
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +459,7 @@ GameObject:
   - component: {fileID: 368879769}
   - component: {fileID: 368879770}
   m_Layer: 0
-  m_Name: MapManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -970,7 +996,12 @@ MonoBehaviour:
     img: {fileID: 0}
     nbToBuild: 0
     type: 0
+    DoorOnTop: 0
+    DoorOnBottom: 0
+    DoorOnLeft: 0
+    DoorOnRight: 0
   img: {fileID: 907478801}
+  rt: {fileID: 907478800}
 --- !u!1 &1031861029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,7 +1094,12 @@ MonoBehaviour:
     img: {fileID: 0}
     nbToBuild: 0
     type: 0
+    DoorOnTop: 0
+    DoorOnBottom: 0
+    DoorOnLeft: 0
+    DoorOnRight: 0
   img: {fileID: 1031861031}
+  rt: {fileID: 1031861030}
 --- !u!1 &1094906516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,6 +1229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1165117511}
   - component: {fileID: 1165117512}
+  - component: {fileID: 1165117513}
   m_Layer: 0
   m_Name: HeroToken
   m_TagString: Untagged
@@ -1267,6 +1304,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1165117513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165117510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5890e1925f6d74999f6857cd0728c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beginMovementDelay: 5
+  timerUnderMovement: 3
 --- !u!1 &1252378816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,7 +1472,12 @@ MonoBehaviour:
     img: {fileID: 0}
     nbToBuild: 0
     type: 0
+    DoorOnTop: 0
+    DoorOnBottom: 0
+    DoorOnLeft: 0
+    DoorOnRight: 0
   img: {fileID: 1630771888}
+  rt: {fileID: 1630771887}
 --- !u!1 &1836689992
 GameObject:
   m_ObjectHideFlags: 0

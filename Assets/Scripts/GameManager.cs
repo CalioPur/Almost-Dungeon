@@ -84,14 +84,45 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    public List<bool> GetDoorAtPosition(Vector2Int position)
+    {
+        if (position.x < 0 || position.x >= SizeX || position.y < 0 || position.y >= SizeY) return null;
+        return new List<bool>()
+        {
+            map[position.x, position.y].DoorOnTop,
+            map[position.x, position.y].DoorOnBottom,
+            map[position.x, position.y].DoorOnLeft,
+            map[position.x, position.y].DoorOnRight
+        };
+    }
+    
     void Start()
     {
         spawnMap.SpawnMapTile(SizeX, SizeY);
         InitializeMap();
         int posY = Random.Range(0, SizeY);
         spawnMap.SetTile(new Vector3Int(0, posY), TileType.Start);
-        HeroToken.transform.position = new Vector3(0, posY);
+        HeroMovement.Instance.SetPosition(new Vector2Int(0, posY));
         map[0, posY].isOccupied = true;
         map[0, posY].DoorOnRight = true;
+        SetHeroPosition(new Vector2Int(0, posY));
+    }
+
+
+    public void SetHeroPosition(Vector2Int position)
+    {
+        HeroToken.transform.position = new Vector3(position.x, position.y);
+        if (position.x < 0 || position.x >= SizeX || position.y < 0 || position.y >= SizeY)
+        {
+            Debug.Log("Hero is out of the map");
+            Time.timeScale = 0;
+            return;
+        }
+        if (!map[position.x, position.y].isOccupied)
+        {
+            Debug.Log("Hero is not on a tile");
+            Time.timeScale = 0;
+            return;
+        }
     }
 }
