@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,6 +13,7 @@ public class HeroMovement : MonoBehaviour
 
     [SerializeField] private float beginMovementDelay;
     [SerializeField] private float timerUnderMovement;
+    [SerializeField] private TMP_Text text;
 
     private Vector2Int position;
     private List<bool> DoorsAtHeroPos;
@@ -38,6 +40,7 @@ public class HeroMovement : MonoBehaviour
         while (timer > 0)
         {
             timer -= Time.deltaTime;
+            text.text = "Hero moves on " + timer.ToString("0.00");
             yield return null;
         }
 

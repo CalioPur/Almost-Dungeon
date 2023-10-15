@@ -29,12 +29,12 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private float TimerDrawCard;
     [SerializeField] private UnusedSlot unusedSlotManager;
     [SerializeField] private RectTransform trHand;
+    [SerializeField] private int nbCardToDrawOnStart = 3;
 
     private List<Card> deck;
     private List<Card> Hand = new();
     private SlotHandManager selectedCard = null;
     private Coroutine drawCardCoroutine;
-
 
 
     private void Awake()
@@ -47,6 +47,10 @@ public class DeckManager : MonoBehaviour
         OnCardSelectedEvent += OnCartSelected;
         InitDeck();
         ShuffleDeck();
+        for (int i = 0; i < nbCardToDrawOnStart; i++)
+        {
+            DrawCard();
+        }
         drawCardCoroutine = StartCoroutine(CheckDrawCard());
     }
 
@@ -67,7 +71,7 @@ public class DeckManager : MonoBehaviour
             drawCardCoroutine = null;
         }
     }
-    
+
     public List<bool> GetDoorsSelectedCard()
     {
         if (selectedCard == null) return null;
@@ -99,8 +103,6 @@ public class DeckManager : MonoBehaviour
                 t.ChangeSelection(true);
                 selectedCard = t;
             }
-
-
         }
     }
 
@@ -114,6 +116,7 @@ public class DeckManager : MonoBehaviour
                 deck.Add(card);
             }
         }
+
         slotsHand.ForEach(t => unusedSlotManager.AddSlot(t));
         slotsHand.Clear();
     }
@@ -128,7 +131,7 @@ public class DeckManager : MonoBehaviour
             deck[randomIndex] = temp;
         }
     }
-    
+
     public void DiscardCurrentCard()
     {
         if (selectedCard == null) return;
@@ -152,7 +155,7 @@ public class DeckManager : MonoBehaviour
 
         if (deck.Count == 0)
             DeckObject.gameObject.SetActive(false);
-        
+
         SlotHandManager slot = unusedSlotManager.GetSlot();
         if (slot != null)
         {
@@ -186,7 +189,7 @@ public class DeckManager : MonoBehaviour
         if (selectedCard == null) return TileType.ERROR;
         return selectedCard.card.type;
     }
-    
+
     public Vector3 GetRotationSelectedCard()
     {
         if (selectedCard == null) return Vector3.zero;

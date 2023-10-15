@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int SizeX;
     [SerializeField] private int SizeY;
     [SerializeField] private SpriteRenderer HeroToken;
+    [SerializeField] private GameObject EndGamePanel;
     
     private MapDataCell[,] map; // true - Tile is occupied, false - Tile is free  (apres, ce sera une struct qui prend si le hero est dessus, si un ennemi est dessus, si a cote il peut marcher etc)
 
@@ -37,6 +39,12 @@ public class GameManager : MonoBehaviour
     private void InitializeMap()
     {
         map = new MapDataCell[SizeX, SizeY];
+    }
+
+    public void RetryGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public bool IsTileCanBeOccupied(Vector3Int position, List<bool> doorsOpenAndClose)
@@ -116,12 +124,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Hero is out of the map");
             Time.timeScale = 0;
+            EndGamePanel.SetActive(true);
             return;
         }
         if (!map[position.x, position.y].isOccupied)
         {
             Debug.Log("Hero is not on a tile");
             Time.timeScale = 0;
+            EndGamePanel.SetActive(true);
             return;
         }
     }
