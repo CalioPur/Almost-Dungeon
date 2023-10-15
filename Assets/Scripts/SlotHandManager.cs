@@ -9,6 +9,7 @@ public class SlotHandManager : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public Card card;
     
     [SerializeField] private Image img;
+    [SerializeField] private RectTransform rt;
 
     private bool isSelected = false;
     private Color HoverColor = Color.gray;
@@ -35,6 +36,7 @@ public class SlotHandManager : MonoBehaviour, IPointerEnterHandler, IPointerExit
     
     public void InitCard(Card _card)
     {
+        rt.rotation = Quaternion.Euler(0, 0, 0);
         card = _card;
         img.sprite = card.img;
         img.color = NormalColor;

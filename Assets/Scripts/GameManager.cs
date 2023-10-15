@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsTileCanBeOccupied(Vector3Int position, List<bool> doorsOpenAndClose)
     {
+        if (position.x < 0 || position.x >= SizeX || position.y < 0 || position.y >= SizeY) return false;
         if (map[position.x, position.y].isOccupied) return false;
         
         //Check if your door is open and the door of the tile you want to go is open or it's a void

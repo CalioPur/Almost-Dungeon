@@ -142,6 +142,7 @@ public class DeckManager : MonoBehaviour
 
     private void DrawCard()
     {
+        if (deck.Count == 0) return;
         Card card = deck[0];
         if (deck.Count > 0)
         {
