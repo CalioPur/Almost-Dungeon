@@ -26,6 +26,22 @@ public class SlotHandManager : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (!isSelected) img.color = NormalColor;
     }
     
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        DeckManager.Instance.CartSelected(this);
+        //DeckManager.OnCardSelectedEvent?.Invoke(img);
+
+    }
+    
+    public void InitCard(Card _card)
+    {
+        card = _card;
+        img.sprite = card.img;
+        img.color = NormalColor;
+        Rotation = 0;
+        isSelected = false;
+    }
+    
     public Vector3 GetRotation()
     {
         return new Vector3(0, Rotation);
@@ -53,12 +69,5 @@ public class SlotHandManager : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             img.color = NormalColor;
         }
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        DeckManager.Instance.CartSelected(this);
-        //DeckManager.OnCardSelectedEvent?.Invoke(img);
-
     }
 }

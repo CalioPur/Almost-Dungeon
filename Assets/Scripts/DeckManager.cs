@@ -29,6 +29,7 @@ public class DeckManager : MonoBehaviour
     private List<Card> deck;
     private List<Card> Hand = new();
     private SlotHandManager selectedCard = null;
+    private Coroutine drawCardCoroutine;
 
 
 
@@ -42,7 +43,7 @@ public class DeckManager : MonoBehaviour
         OnCardSelectedEvent += OnCartSelected;
         InitDeck();
         ShuffleDeck();
-        StartCoroutine(CheckDrawCard());
+        drawCardCoroutine = StartCoroutine(CheckDrawCard());
     }
 
     private void OnCartSelected(Image obj)
@@ -55,7 +56,12 @@ public class DeckManager : MonoBehaviour
         yield return new WaitForSeconds(TimerDrawCard);
         DrawCard();
         if (unusedSlotManager.transform.childCount > 0 && deck.Count > 0)
-            StartCoroutine(CheckDrawCard());
+            drawCardCoroutine = StartCoroutine(CheckDrawCard());
+        else
+        {
+            StopCoroutine(drawCardCoroutine);
+            drawCardCoroutine = null;
+        }
     }
 
     public void CartSelected(SlotHandManager imgSelected)
@@ -111,8 +117,11 @@ public class DeckManager : MonoBehaviour
     {
         if (selectedCard == null) return;
         Hand.Remove(selectedCard.card);
+        slotsHand.Remove(selectedCard);
         unusedSlotManager.AddSlot(selectedCard);
         selectedCard = null;
+        if (drawCardCoroutine == null)
+            drawCardCoroutine = StartCoroutine(CheckDrawCard());
     }
 
     private void DrawCard()
@@ -133,21 +142,8 @@ public class DeckManager : MonoBehaviour
             slot.GetImage().sprite = card.img;
             slot.transform.SetParent(trHand.transform);
             slotsHand.Add(slot);
-            slot.card = card;
+            slot.InitCard(card);
         }
-
-        // for (int i = 0; i < slotsHand.Count; i++)
-        // {
-        //     if (Hand.Count > i)
-        //     {
-        //         slotsHand[i].gameObject.SetActive(true);
-        //         slotsHand[i].GetImage().sprite = Hand[i].img;
-        //     }
-        //     else
-        //     {
-        //         slotsHand[i].gameObject.SetActive(false);
-        //     }
-        // }
     }
 
     private void RotateSelection()
