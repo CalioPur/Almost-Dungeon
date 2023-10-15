@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class ClickerFou : MonoBehaviour
+public class CardToMapManager : MonoBehaviour
 {
     [SerializeField] private Tilemap tileMap;
 
@@ -19,7 +19,7 @@ public class ClickerFou : MonoBehaviour
 
             TileBase tileFound = tileMap.GetTile(tpos);
             if (!tileFound) return;
-            if (GameManager.Instance.IsTileOccupied(tpos))
+            if (!GameManager.Instance.IsTileCanBeOccupied(tpos, DeckManager.Instance.GetDoorsSelectedCard()))
             {
                 Debug.Log("Tile is occupied");
                 return;
@@ -35,6 +35,7 @@ public class ClickerFou : MonoBehaviour
                 Matrix4x4 tileTransform =
                     Matrix4x4.Translate(new Vector3(0, 0)) *
                     Matrix4x4.Rotate(Quaternion.Euler(0, 0, DeckManager.Instance.GetRotationSelectedCard().y));
+                
                 TileChangeData tilechangedata = new TileChangeData()
                 {
                     position = tpos,
@@ -43,11 +44,9 @@ public class ClickerFou : MonoBehaviour
                     transform = tileTransform
                 };
                 tileMap.SetTile(tilechangedata, false);
-                ///A CHANGER
+                
+                GameManager.Instance.OccupiedTile(tpos, DeckManager.Instance.GetDoorsSelectedCard());
                 DeckManager.Instance.DiscardCurrentCard();
-                /// 
-                GameManager.Instance.SetTileOccupied(tpos);
-
             }
             catch 
             {

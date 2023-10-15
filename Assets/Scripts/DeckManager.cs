@@ -12,6 +12,10 @@ public struct Card
     public Sprite img;
     public int nbToBuild;
     public TileType type;
+    public bool DoorOnTop;
+    public bool DoorOnBottom;
+    public bool DoorOnLeft;
+    public bool DoorOnRight;
 }
 
 public class DeckManager : MonoBehaviour
@@ -62,6 +66,18 @@ public class DeckManager : MonoBehaviour
             StopCoroutine(drawCardCoroutine);
             drawCardCoroutine = null;
         }
+    }
+    
+    public List<bool> GetDoorsSelectedCard()
+    {
+        if (selectedCard == null) return null;
+        return new List<bool>()
+        {
+            selectedCard.card.DoorOnTop,
+            selectedCard.card.DoorOnBottom,
+            selectedCard.card.DoorOnLeft,
+            selectedCard.card.DoorOnRight
+        };
     }
 
     public void CartSelected(SlotHandManager imgSelected)

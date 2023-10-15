@@ -51,6 +51,14 @@ public class SlotHandManager : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         Rotation += 90;
         if (Rotation >= 360) Rotation = 0;
+        
+        bool Tmp = card.DoorOnTop; // clockwise rotation
+        
+        card.DoorOnTop = card.DoorOnRight;
+        card.DoorOnRight = card.DoorOnBottom;
+        card.DoorOnBottom = card.DoorOnLeft;
+        card.DoorOnLeft = Tmp;
+        
     }
     
     public Image GetImage()
