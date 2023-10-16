@@ -72,3 +72,11 @@ Unreal/Binaries/
 Unreal/Intermediate/
 
 Unreal/Saved/
+
+Unity/Library/
+
+Unity/Logs/
+
+Unity/obj/
+
+Unity/Temp/
