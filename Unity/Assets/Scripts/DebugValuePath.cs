@@ -37,7 +37,7 @@ public class DebugValuePath : MonoBehaviour
         {
             for (int j = 0; j <sizeX; j++)
             {
-                textValue += GameManager.Instance.GetValueForExploration(i,j) + " ";
+                textValue += GameManager.Instance.GetValueForExploration(j,i) + " ";
             }
             textValue += "\n";
         }

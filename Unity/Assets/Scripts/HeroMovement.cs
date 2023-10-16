@@ -14,6 +14,11 @@ public class HeroMovement : MonoBehaviour
     [SerializeField] private float beginMovementDelay;
     [SerializeField] private float timerUnderMovement;
     [SerializeField] private TMP_Text text;
+    
+    [SerializeField] private TMP_Text probaTop;
+    [SerializeField] private TMP_Text probaBottom;
+    [SerializeField] private TMP_Text probaLeft;
+    [SerializeField] private TMP_Text probaRight;
 
     private Vector2Int position;
     private List<bool> DoorsAtHeroPos;
@@ -64,7 +69,9 @@ public class HeroMovement : MonoBehaviour
     private Direction ChooseDirection()
     {
         int index;
+        int weight = 5;
         List<float> probabilities = new List<float>();
+        float proba;
         foreach (var directions in doorsOpenAndClose)
         {
             int valueOfCellInDirection = directions switch
@@ -75,8 +82,8 @@ public class HeroMovement : MonoBehaviour
                 Direction.Right => GameManager.Instance.GetValueForExploration(position.x + 1, position.y),
                 _ => 0
             };
-            
-            probabilities.Add(100f/(valueOfCellInDirection+1));
+            proba = 100f / (valueOfCellInDirection*weight + 1);
+            probabilities.Add(proba);
         }
         float sum = 0;
         foreach (var probability in probabilities)
@@ -87,15 +94,41 @@ public class HeroMovement : MonoBehaviour
         {
             probabilities[i] = probabilities[i] / sum * 100;
         }
-
+        bool changedTop = false;
+        bool changedBottom = false;
+        bool changedLeft = false;
+        bool changedRight = false;
         foreach (var VARIABLE in probabilities)
         {
-            //debug for each probability where the hero can go
-            Debug.Log("the hero has " + VARIABLE + "% chance to go in this direction " + doorsOpenAndClose[probabilities.IndexOf(VARIABLE)]);
+            switch (doorsOpenAndClose[probabilities.IndexOf(VARIABLE)])
+            {
+                case Direction.Top:
+                    probaTop.text = "Top : " + VARIABLE + "%";
+                    changedTop = true;
+                    break;
+                case Direction.Bottom:
+                    probaBottom.text = "Bottom : " + VARIABLE + "%";
+                    changedBottom = true;
+                    break;
+                case Direction.Left:
+                    probaLeft.text = "Left : " + VARIABLE + "%";
+                    changedLeft = true;
+                    break;
+                case Direction.Right:
+                    probaRight.text = "Right : " + VARIABLE + "%";
+                    changedRight = true;
+                    break;
+                default:
+                    break;
+            }
         }
+        if (!changedTop) probaTop.text = "Top : 0%";
+        if (!changedBottom) probaBottom.text = "Bottom : 0%";
+        if (!changedLeft) probaLeft.text = "Left : 0%";
+        if (!changedRight) probaRight.text = "Right : 0%";
         
         index = Random.Range(0, probabilities.Count);
-        
+        Debug.Log("Direction : " + doorsOpenAndClose[index]);
         return doorsOpenAndClose[index];
     }
 
