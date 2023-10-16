@@ -19,7 +19,9 @@ public class HeroMovement : MonoBehaviour
     private List<bool> DoorsAtHeroPos;
     private List<Direction> doorsOpenAndClose;
     
-    private enum Direction
+    private GameManager gameManager;
+
+    public enum Direction
     {
         Top,
         Bottom,
@@ -52,11 +54,49 @@ public class HeroMovement : MonoBehaviour
         FoundDoor();
 
         // A Changer car pour l'instant deplacement aleatoire
-        Direction direction = doorsOpenAndClose[Random.Range(0, doorsOpenAndClose.Count)];
+        Direction direction = ChooseDirection();
         //
         MoveHero(direction);
 
         StartCoroutine(movementCoroutine(timerUnderMovement));
+    }
+
+    private Direction ChooseDirection()
+    {
+        int index;
+        List<float> probabilities = new List<float>();
+        foreach (var directions in doorsOpenAndClose)
+        {
+            int valueOfCellInDirection = directions switch
+            {
+                Direction.Top => GameManager.Instance.GetValueForExploration(position.x, position.y + 1),
+                Direction.Bottom => GameManager.Instance.GetValueForExploration(position.x, position.y - 1),
+                Direction.Left => GameManager.Instance.GetValueForExploration(position.x - 1, position.y),
+                Direction.Right => GameManager.Instance.GetValueForExploration(position.x + 1, position.y),
+                _ => 0
+            };
+            
+            probabilities.Add(100f/(valueOfCellInDirection+1));
+        }
+        float sum = 0;
+        foreach (var probability in probabilities)
+        {
+            sum += probability;
+        }
+        for (int i = 0; i < probabilities.Count; i++)
+        {
+            probabilities[i] = probabilities[i] / sum * 100;
+        }
+
+        foreach (var VARIABLE in probabilities)
+        {
+            //debug for each probability where the hero can go
+            Debug.Log("the hero has " + VARIABLE + "% chance to go in this direction " + doorsOpenAndClose[probabilities.IndexOf(VARIABLE)]);
+        }
+        
+        index = Random.Range(0, probabilities.Count);
+        
+        return doorsOpenAndClose[index];
     }
 
     private void MoveHero(Direction direction)
@@ -91,6 +131,12 @@ public class HeroMovement : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameManager.Instance;
         StartCoroutine(movementCoroutine(beginMovementDelay));
+    }
+
+    public Vector2 GetPosition()
+    {
+        return new Vector2(position.x, position.y);
     }
 }
