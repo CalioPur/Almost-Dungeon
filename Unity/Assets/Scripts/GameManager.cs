@@ -149,6 +149,6 @@ public class GameManager : MonoBehaviour
     public int GetValueForExploration(int val1, int val2)
     {
         if (val1 < 0 || val1 >= SizeX || val2 < 0 || val2 >= SizeY) return 0;
-        return map[val2, val1].valueForExploration;
+        return map[val1, val2].valueForExploration;
     }
 }
