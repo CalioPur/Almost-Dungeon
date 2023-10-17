@@ -13,9 +13,21 @@ public enum TileType
     Start,
     End,
     SimpleLine,
+    SimpleLine1,
+    SimpleLine2,
+    SimpleLine3,
     LLine,
+    LLine1,
+    LLine2,
+    LLine3,
     TLine,
+    TLine1,
+    TLine2,
+    TLine3,
     XLine,
+    XLine1,
+    XLine2,
+    XLine3,
     FaceDeck,
     ERROR = -1,
 }
@@ -74,6 +86,7 @@ public class SpawnMap : MonoBehaviour
     
     public void SetTile(Vector3Int position, TileType type)
     {
+        Debug.Log(type);
         tilemap.SetTile(position, tileDictionary[type]);
     }
     

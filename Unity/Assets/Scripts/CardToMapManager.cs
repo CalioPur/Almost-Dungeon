@@ -33,6 +33,7 @@ public class CardToMapManager : MonoBehaviour
             {
                 
                 TileType type = DeckManager.Instance.getTypeSelectedCard();
+                Debug.Log(type);
                 GameManager.Instance.SpawnTile(tpos, type);
                 tileFound = tileMap.GetTile(tpos);
 
@@ -49,7 +50,7 @@ public class CardToMapManager : MonoBehaviour
                 };
                 tileMap.SetTile(tilechangedata, false);
                 
-                GameManager.Instance.OccupiedTile(tpos, DeckManager.Instance.GetDoorsSelectedCard());
+                GameManager.Instance.OccupiedTile(tpos, DeckManager.Instance.GetDoorsSelectedCard(), DeckManager.Instance.getTypeSelectedCard());
                 DeckManager.Instance.DiscardCurrentCard();
             }
             catch 

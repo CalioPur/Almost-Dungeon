@@ -51,7 +51,6 @@ public class HeroMovement : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Movement begin");
 
         DoorsAtHeroPos = GameManager.Instance.GetDoorAtPosition(position);
         doorsOpenAndClose = new List<Direction>();
@@ -62,7 +61,16 @@ public class HeroMovement : MonoBehaviour
         Direction direction = ChooseDirection();
         //
         MoveHero(direction);
-
+        int numberOfEnemies = GameManager.Instance.GetNumberOfEnemiesAtPosition(position);
+        if (numberOfEnemies > 0)
+        {
+            for (int i = 0; i < numberOfEnemies; i++)
+            {
+                yield return new WaitForSeconds(timerUnderMovement/4);
+                HeroStatus.Instance.LooseHp(1);
+                GameManager.Instance.DecreaseNumberOfEnemiesAtPosition(position);
+            }
+        }
         StartCoroutine(movementCoroutine(timerUnderMovement));
     }
 
@@ -93,6 +101,7 @@ public class HeroMovement : MonoBehaviour
         for (int i = 0; i < probabilities.Count; i++)
         {
             probabilities[i] = probabilities[i] / sum * 100;
+            Debug.Log("proba : " + probabilities[i]);
         }
         bool changedTop = false;
         bool changedBottom = false;
@@ -103,32 +112,58 @@ public class HeroMovement : MonoBehaviour
             switch (doorsOpenAndClose[probabilities.IndexOf(VARIABLE)])
             {
                 case Direction.Top:
-                    probaTop.text = "Top : " + VARIABLE + "%";
+                    // probaTop.text = "Top : " + VARIABLE + "%";
+                    probaTop.text = "\u2191 : " + Math.Round(VARIABLE, 2) + "%";
                     changedTop = true;
                     break;
                 case Direction.Bottom:
-                    probaBottom.text = "Bottom : " + VARIABLE + "%";
+                    // probaBottom.text = "Bottom : " + VARIABLE + "%";
+                    probaBottom.text = "\u2193 : " + Math.Round(VARIABLE, 2) + "%";
                     changedBottom = true;
                     break;
                 case Direction.Left:
-                    probaLeft.text = "Left : " + VARIABLE + "%";
+                    // probaLeft.text = "Left : " + VARIABLE + "%";
+                    probaLeft.text = "\u2190 : " + Math.Round(VARIABLE, 2) + "%";
                     changedLeft = true;
                     break;
                 case Direction.Right:
-                    probaRight.text = "Right : " + VARIABLE + "%";
+                    // probaRight.text = "Right : " + VARIABLE + "%";
+                    probaRight.text = "\u2192 : " + Math.Round(VARIABLE, 2) + "%";
                     changedRight = true;
                     break;
                 default:
                     break;
             }
         }
-        if (!changedTop) probaTop.text = "Top : 0%";
-        if (!changedBottom) probaBottom.text = "Bottom : 0%";
-        if (!changedLeft) probaLeft.text = "Left : 0%";
-        if (!changedRight) probaRight.text = "Right : 0%";
+        if (!changedTop) probaTop.text = "\u2191 : 0%";
+        if (!changedBottom) probaBottom.text = "\u2193 : 0%";
+        if (!changedLeft) probaLeft.text = "\u2190 : 0%";
+        if (!changedRight) probaRight.text = "\u2192 : 0%";
         
-        index = Random.Range(0, probabilities.Count);
-        Debug.Log("Direction : " + doorsOpenAndClose[index]);
+        //if a probability is > 70% then we take it
+        for (int i = 0; i < probabilities.Count; i++)
+        {
+            if (probabilities[i] > 70)
+            {
+                Debug.Log("Direction : " + doorsOpenAndClose[i] + "this move had a probability of " + probabilities[i] + "%");
+                return doorsOpenAndClose[i];
+            }
+        }
+        
+        float random = Random.Range(0, 100);
+        float sumProba = 0;
+        index = 0;
+        foreach (var probability in probabilities)
+        {
+            sumProba += probability;
+            if (random < sumProba)
+            {
+                break;
+            }
+            index++;
+        }
+        
+        Debug.Log("Direction : " + doorsOpenAndClose[index] + "this move had a probability of " + probabilities[index] + "%");
         return doorsOpenAndClose[index];
     }
 
