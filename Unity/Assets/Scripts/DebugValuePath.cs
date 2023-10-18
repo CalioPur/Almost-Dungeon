@@ -23,7 +23,6 @@ public class DebugValuePath : MonoBehaviour
             {
                 textValue += 0 + " ";
             }
-            textValue += "\n";
         }
         text.text = textValue;
 
@@ -41,7 +40,12 @@ public class DebugValuePath : MonoBehaviour
             }
             textValue += "\n";
         }
-        
+        string[] lines = textValue.Split('\n');
+        for (int i = 0; i < lines.Length / 2; i++)
+        {
+            (lines[i], lines[lines.Length - i - 2]) = (lines[lines.Length - i - 2], lines[i]);
+        }
+        textValue = string.Join("\n", lines);
         text.text = textValue;
     }
 }
