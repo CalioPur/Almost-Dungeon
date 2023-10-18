@@ -32,6 +32,7 @@ public class HeroMovement : MonoBehaviour
         Bottom,
         Left,
         Right,
+        None
     }
     
     private void FoundDoor()
@@ -42,6 +43,7 @@ public class HeroMovement : MonoBehaviour
         if (DoorsAtHeroPos[3]) doorsOpenAndClose.Add(Direction.Right);
     }
 
+    private Direction nextDirection = Direction.None;
     private IEnumerator movementCoroutine(float timer)
     {
         while (timer > 0)
@@ -58,9 +60,18 @@ public class HeroMovement : MonoBehaviour
         FoundDoor();
 
         // A Changer car pour l'instant deplacement aleatoire
-        Direction direction = ChooseDirection();
-        //
-        MoveHero(direction);
+        if (nextDirection == Direction.None)
+        {
+            Direction direction = ChooseDirection();
+            MoveHero(direction);
+        }
+        else
+        {
+            MoveHero(nextDirection);
+            nextDirection = ChooseDirection();
+        }
+        
+
         int numberOfEnemies = GameManager.Instance.GetNumberOfEnemiesAtPosition(position);
         if (numberOfEnemies > 0)
         {
@@ -71,6 +82,7 @@ public class HeroMovement : MonoBehaviour
                 GameManager.Instance.DecreaseNumberOfEnemiesAtPosition(position);
             }
         }
+
         StartCoroutine(movementCoroutine(timerUnderMovement));
     }
 
@@ -140,10 +152,9 @@ public class HeroMovement : MonoBehaviour
         if (!changedLeft) probaLeft.text = "\u2190 : 0%";
         if (!changedRight) probaRight.text = "\u2192 : 0%";
         
-        //if a probability is > 70% then we take it
         for (int i = 0; i < probabilities.Count; i++)
         {
-            if (probabilities[i] > 70)
+            if (probabilities[i] > 90)
             {
                 Debug.Log("Direction : " + doorsOpenAndClose[i] + "this move had a probability of " + probabilities[i] + "%");
                 return doorsOpenAndClose[i];
