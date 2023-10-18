@@ -7,6 +7,7 @@ public class HeroStatus : MonoBehaviour
 {
     [SerializeField] private int hp;
     [SerializeField] private TMP_Text hpText;
+    [SerializeField] private TMP_Text endGamePanelText;
     // Start is called before the first frame update
     public static HeroStatus Instance;
     private void Awake()
@@ -29,6 +30,7 @@ public class HeroStatus : MonoBehaviour
         if (hp > 0) return;
         Debug.Log("Hero is dead");
         Time.timeScale = 0;
+        endGamePanelText.text = "You won, Hero is dead !";
         GameManager.Instance.EndGamePanel.SetActive(true);
     }
 }
