@@ -53,23 +53,8 @@ public class HeroMovement : MonoBehaviour
             yield return null;
         }
 
-
-        DoorsAtHeroPos = GameManager.Instance.GetDoorAtPosition(position);
-        doorsOpenAndClose = new List<Direction>();
-
-        FoundDoor();
-
         // A Changer car pour l'instant deplacement aleatoire
-        if (nextDirection == Direction.None)
-        {
-            Direction direction = ChooseDirection();
-            MoveHero(direction);
-        }
-        else
-        {
-            MoveHero(nextDirection);
-            nextDirection = ChooseDirection();
-        }
+        MoveHero(nextDirection);
         
 
         int numberOfEnemies = GameManager.Instance.GetNumberOfEnemiesAtPosition(position);
@@ -82,6 +67,11 @@ public class HeroMovement : MonoBehaviour
                 GameManager.Instance.DecreaseNumberOfEnemiesAtPosition(position);
             }
         }
+        DoorsAtHeroPos = GameManager.Instance.GetDoorAtPosition(position);
+        doorsOpenAndClose = new List<Direction>();
+
+        FoundDoor();
+        nextDirection = ChooseDirection();
 
         StartCoroutine(movementCoroutine(timerUnderMovement));
     }
@@ -113,7 +103,7 @@ public class HeroMovement : MonoBehaviour
         for (int i = 0; i < probabilities.Count; i++)
         {
             probabilities[i] = probabilities[i] / sum * 100;
-            Debug.Log("proba : " + probabilities[i]);
+            // Debug.Log("proba : " + probabilities[i]);
         }
         bool changedTop = false;
         bool changedBottom = false;
@@ -124,25 +114,50 @@ public class HeroMovement : MonoBehaviour
             switch (doorsOpenAndClose[probabilities.IndexOf(VARIABLE)])
             {
                 case Direction.Top:
+                    if (changedTop)
+                    {
+                        probaBottom.text = "\u2193 : " + Math.Round(VARIABLE, 2) + "%";
+                        changedBottom = true;
+                    }
                     // probaTop.text = "Top : " + VARIABLE + "%";
                     probaTop.text = "\u2191 : " + Math.Round(VARIABLE, 2) + "%";
+                    Debug.Log("Top : " + VARIABLE + "%");
                     changedTop = true;
                     break;
                 case Direction.Bottom:
+                    if (changedBottom)
+                    {
+                        probaTop.text = "\u2191 : " + Math.Round(VARIABLE, 2) + "%";
+                        changedTop = true;
+                    }
                     // probaBottom.text = "Bottom : " + VARIABLE + "%";
                     probaBottom.text = "\u2193 : " + Math.Round(VARIABLE, 2) + "%";
+                    Debug.Log("Bottom : " + VARIABLE + "%");
                     changedBottom = true;
                     break;
                 case Direction.Left:
+                    if (changedLeft)
+                    {
+                        probaRight.text = "\u2192 : " + Math.Round(VARIABLE, 2) + "%";
+                        changedRight = true;
+                    }
                     // probaLeft.text = "Left : " + VARIABLE + "%";
                     probaLeft.text = "\u2190 : " + Math.Round(VARIABLE, 2) + "%";
+                    Debug.Log("Left : " + VARIABLE + "%");
                     changedLeft = true;
                     break;
                 case Direction.Right:
+                    if (changedRight)
+                    {
+                        probaLeft.text = "\u2190 : " + Math.Round(VARIABLE, 2) + "%";
+                        changedLeft = true;
+                    }
                     // probaRight.text = "Right : " + VARIABLE + "%";
                     probaRight.text = "\u2192 : " + Math.Round(VARIABLE, 2) + "%";
+                    Debug.Log("Right : " + VARIABLE + "%");
                     changedRight = true;
                     break;
+                case Direction.None:
                 default:
                     break;
             }
@@ -211,6 +226,10 @@ public class HeroMovement : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+        DoorsAtHeroPos = GameManager.Instance.GetDoorAtPosition(position);
+        doorsOpenAndClose = new List<Direction>();
+        FoundDoor();
+        nextDirection = ChooseDirection();
         StartCoroutine(movementCoroutine(beginMovementDelay));
     }
 
