@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class CardToMapManager : MonoBehaviour
 {
     [SerializeField] private Tilemap tileMap;
+    [SerializeField] private Canvas canvas;
+    private List<GameObject> textsValueForExploration = new();
 
+    private GameObject text;
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +33,7 @@ public class CardToMapManager : MonoBehaviour
             {
                 
                 TileType type = DeckManager.Instance.getTypeSelectedCard();
+                Debug.Log(type);
                 GameManager.Instance.SpawnTile(tpos, type);
                 tileFound = tileMap.GetTile(tpos);
 
@@ -45,7 +50,7 @@ public class CardToMapManager : MonoBehaviour
                 };
                 tileMap.SetTile(tilechangedata, false);
                 
-                GameManager.Instance.OccupiedTile(tpos, DeckManager.Instance.GetDoorsSelectedCard());
+                GameManager.Instance.OccupiedTile(tpos, DeckManager.Instance.GetDoorsSelectedCard(), DeckManager.Instance.getTypeSelectedCard());
                 DeckManager.Instance.DiscardCurrentCard();
             }
             catch 
@@ -54,5 +59,6 @@ public class CardToMapManager : MonoBehaviour
             }
 
         }
+        
     }
 }

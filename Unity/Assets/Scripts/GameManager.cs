@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -11,10 +12,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     
     [SerializeField] private SpawnMap spawnMap;
-    [SerializeField] private int SizeX;
-    [SerializeField] private int SizeY;
+    [SerializeField] public int SizeX;
+    [SerializeField] public int SizeY;
     [SerializeField] private SpriteRenderer HeroToken;
-    [SerializeField] private GameObject EndGamePanel;
+    [SerializeField] public GameObject EndGamePanel;
     
     private MapDataCell[,] map; // true - Tile is occupied, false - Tile is free  (apres, ce sera une struct qui prend si le hero est dessus, si un ennemi est dessus, si a cote il peut marcher etc)
 
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
         public bool DoorOnBottom;
         public bool DoorOnLeft;
         public bool DoorOnRight;
+        public int valueForExploration;
+        public int numberOfEnemies;
 
         public MapDataCell(bool _ = false)
         {
@@ -33,9 +36,10 @@ public class GameManager : MonoBehaviour
             DoorOnLeft = false;
             DoorOnRight = false;
             isOccupied = false;
+            valueForExploration = 0;
+            numberOfEnemies = 0;
         }
     }
-    
     private void InitializeMap()
     {
         map = new MapDataCell[SizeX, SizeY];
@@ -69,14 +73,17 @@ public class GameManager : MonoBehaviour
         return true;
     }
     
-    public void OccupiedTile(Vector3Int position, List<bool> doorsOpenAndClose)
+    public void OccupiedTile(Vector3Int position, List<bool> doorsOpenAndClose, TileType getTypeSelectedCard)
     {
         map[position.x, position.y].isOccupied = true;
         map[position.x, position.y].DoorOnTop = doorsOpenAndClose[0];
         map[position.x, position.y].DoorOnBottom = doorsOpenAndClose[1];
         map[position.x, position.y].DoorOnLeft = doorsOpenAndClose[2];
         map[position.x, position.y].DoorOnRight = doorsOpenAndClose[3];
-        
+        string name = getTypeSelectedCard.ToString();
+        int number = 0;
+        int.TryParse(new string(name.Where(char.IsDigit).ToArray()), out number);
+        map[position.x, position.y].numberOfEnemies = number;
     }
     
     public void SpawnTile(Vector3Int position, TileType tileType)
@@ -120,6 +127,7 @@ public class GameManager : MonoBehaviour
     public void SetHeroPosition(Vector2Int position)
     {
         HeroToken.transform.position = new Vector3(position.x, position.y);
+        SetValueForExploration(position.x, position.y, 1);
         if (position.x < 0 || position.x >= SizeX || position.y < 0 || position.y >= SizeY)
         {
             Debug.Log("Hero is out of the map");
@@ -134,5 +142,30 @@ public class GameManager : MonoBehaviour
             EndGamePanel.SetActive(true);
             return;
         }
+    }
+
+    private void SetValueForExploration(int positionX, int positionY, int i)
+    {
+        if (positionX < 0 || positionX >= SizeX || positionY < 0 || positionY >= SizeY) return;
+        map[positionX, positionY].valueForExploration += i;
+        Debug.Log("Value for exploration : " + map[positionX, positionY].valueForExploration);
+    }
+
+    public int GetValueForExploration(int val1, int val2)
+    {
+        if (val1 < 0 || val1 >= SizeX || val2 < 0 || val2 >= SizeY) return 0;
+        return map[val1, val2].valueForExploration;
+    }
+
+    public int GetNumberOfEnemiesAtPosition(Vector2Int position)
+    {
+        if (position.x < 0 || position.x >= SizeX || position.y < 0 || position.y >= SizeY) return 0;
+        return map[position.x, position.y].numberOfEnemies;
+    }
+
+    public void DecreaseNumberOfEnemiesAtPosition(Vector2Int position)
+    {
+        if (position.x < 0 || position.x >= SizeX || position.y < 0 || position.y >= SizeY) return;
+        map[position.x, position.y].numberOfEnemies--;
     }
 }
