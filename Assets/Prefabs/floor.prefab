@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4915790244869136418}
   - component: {fileID: 7685324131272427853}
+  - component: {fileID: 7142599336517423327}
   m_Layer: 0
   m_Name: floor
   m_TagString: Untagged
@@ -84,3 +85,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7142599336517423327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744462414812450706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f08e831344649348aa7962ef1235a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasDoorUp: 1
+  hasDoorRight: 1
+  hasDoorDown: 1
+  hasDoorLeft: 1
+  isPlayerhere: 0
+  lilMinion: 0
+  bigMinion: 0
+  archerMinion: 0
