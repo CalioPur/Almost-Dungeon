@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class TickManager : MonoBehaviour
 {
-    public float BPM = 120f;
+    [Range(60, 300)]
+    public int BPM = 120;
+    [Range(1, 8)]
     public int divisions = 4;
 
     private float beatInterval;
@@ -18,7 +20,11 @@ public class TickManager : MonoBehaviour
     void Initialize(float bpm, int divisions)
     {
         beatInterval = 60f / bpm;
-        nextTickTime = Time.time + beatInterval;
+
+        if (IsInvoking("Tick"))
+        {
+            CancelInvoke("Tick");
+        }
         InvokeRepeating("Tick", 0f, beatInterval);
     }
 
@@ -26,5 +32,11 @@ public class TickManager : MonoBehaviour
     {
         int currentDivision = (int)((Time.time - nextTickTime + beatInterval) / beatInterval) % divisions;
         OnTick?.Invoke(currentDivision);
+        
+        if (beatInterval != 60f / BPM || divisions != divisions)
+        {
+            CancelInvoke();
+            Initialize(BPM, divisions);
+        }
     }
 }

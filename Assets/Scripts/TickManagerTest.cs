@@ -11,8 +11,8 @@ public class TickManagerTest : MonoBehaviour
         if (tickManager != null)
         {
             tickManager.OnTick += HandleTick;
-            tickManager.BPM = 120f; // Modifiez le BPM au besoin
-            tickManager.divisions = 4; // Modifiez le nombre de divisions au besoin
+            // tickManager.BPM = 120; // Modifiez le BPM au besoin
+            // tickManager.divisions = 4; // Modifiez le nombre de divisions au besoin
         }
         else
         {
@@ -29,6 +29,11 @@ public class TickManagerTest : MonoBehaviour
             1 => Color.blue,
             2 => Color.green,
             3 => Color.yellow,
+            4 => Color.magenta,
+            5 => Color.cyan,
+            6 => Color.white,
+            7 => Color.black,
+            8 => Color.gray,
             _ => cubeBpm.GetComponent<Renderer>().material.color
         };
     }
