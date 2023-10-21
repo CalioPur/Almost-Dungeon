@@ -23,21 +23,13 @@ public class TickManagerTest : MonoBehaviour
     void HandleTick(int division)
     {
         Debug.Log($"Tick - Division: {division} - Time: {Time.time}");
-        //change the color of the cube for each division
-        switch (division)
+        cubeBpm.GetComponent<Renderer>().material.color = division switch
         {
-            case 0:
-                cubeBpm.GetComponent<Renderer>().material.color = Color.red;
-                break;
-            case 1:
-                cubeBpm.GetComponent<Renderer>().material.color = Color.blue;
-                break;
-            case 2:
-                cubeBpm.GetComponent<Renderer>().material.color = Color.green;
-                break;
-            case 3:
-                cubeBpm.GetComponent<Renderer>().material.color = Color.yellow;
-                break;
-        }
+            0 => Color.red,
+            1 => Color.blue,
+            2 => Color.green,
+            3 => Color.yellow,
+            _ => cubeBpm.GetComponent<Renderer>().material.color
+        };
     }
 }   
