@@ -33,7 +33,7 @@ public class TickManager : MonoBehaviour
         int currentDivision = (int)((Time.time - nextTickTime + beatInterval) / beatInterval) % divisions;
         OnTick?.Invoke(currentDivision);
         
-        if (beatInterval != 60f / BPM || divisions != divisions)
+        if (beatInterval != 60f / BPM)
         {
             CancelInvoke();
             Initialize(BPM, divisions);
