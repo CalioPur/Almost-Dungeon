@@ -22,7 +22,7 @@ public class TickManagerTest : MonoBehaviour
 
     void HandleTick(int division)
     {
-        Debug.Log($"Tick - Division: {division} - Time: {Time.time}");
+        //Debug.Log($"Tick - Division: {division} - Time: {Time.time}");
         cubeBpm.GetComponent<Renderer>().material.color = division switch
         {
             0 => Color.red,
