@@ -10,11 +10,13 @@ public class DragAndDropManager : MonoBehaviour
     
     private void Start()
     {
-        DeckManager.OnCardTryToPlaceEvent += PlaceCard;
+        CreateMap.OnCardTryToPlaceEvent += PlaceCard;
     }
-
-    private void PlaceCard(TileData data, CardHand card)
+    
+    private void PlaceCard(TileData data, CardHand card, bool canBePlaced)
     {
+        if (!canBePlaced) return;
+        
         data.PiecePlaced = true;
         data.img.sprite = card.Card.img;
         data.transform.Rotate(Vector3.forward * card.GetRotation().y);

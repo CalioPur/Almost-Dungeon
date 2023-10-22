@@ -26,19 +26,28 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private Transform DeckTr;
 
     private List<CardInfo> deckCreate = new();
-    private Coroutine drawCardCoroutine;
     private List<CardInfo> Hand = new();
     private CardHand selectedCard;
+    private int cptCardsObtained = 0;
 
     void Start()
     {
         CardHand.OnCardSelectedEvent += CartSelected;
         DragAndDropManager.OnTileSelectedEvent += PlaceSolution;
+        CreateMap.OnCardTryToPlaceEvent += RemoveCard;
 
         InitDeck();
         InitSlots();
         ShuffleDeck();
         StartCoroutine(DrawStartedCard());
+    }
+
+    private void RemoveCard(TileData tileData, CardHand cardHand, bool canBePlaced)
+    {
+        if (!canBePlaced) return;
+        cptCardsObtained--;
+        StartCoroutine(CheckDrawCard());
+        selectedCard = null;
     }
 
     private void PlaceSolution(TileData obj)
@@ -47,7 +56,6 @@ public class DeckManager : MonoBehaviour
 
         if (obj.PiecePlaced) return;
         OnCardTryToPlaceEvent?.Invoke(obj, selectedCard);
-        selectedCard = null;
     }
 
     IEnumerator DrawStartedCard()
@@ -59,7 +67,7 @@ public class DeckManager : MonoBehaviour
             yield return new WaitForSeconds(TimerAnimationDrawCard);
         }
 
-        drawCardCoroutine = StartCoroutine(CheckDrawCard());
+        StartCoroutine(CheckDrawCard());
     }
 
     private void InitSlots()
@@ -83,14 +91,17 @@ public class DeckManager : MonoBehaviour
 
     private IEnumerator CheckDrawCard()
     {
-        yield return new WaitForSeconds(TimerBeforeDrawCard);
-        DrawCard();
-        if (deckCreate.Count > 0 && CheckHandFull() == false)
-            drawCardCoroutine = StartCoroutine(CheckDrawCard());
-        else
+        if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
         {
-            StopCoroutine(drawCardCoroutine);
-            drawCardCoroutine = null;
+            yield return new WaitForSeconds(TimerBeforeDrawCard);
+            if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
+            {
+                DrawCard();
+                StartCoroutine(CheckDrawCard());
+            }
+            else
+            {
+            }
         }
     }
 
@@ -100,13 +111,16 @@ public class DeckManager : MonoBehaviour
         Slot.GetImage().transform.position = DeckTr.position;
         Slot.GetImage().transform.DOMove(Slot.transform.position, TimerAnimationDrawCard);
         yield return new WaitForSeconds(TimerAnimationDrawCard);
-
-        DrawCard();
     }
 
     private void DrawCard()
     {
-        if (deckCreate.Count == 0 || CheckHandFull()) return;
+        if (deckCreate.Count == 0 || cptCardsObtained >= slotsHand.Count)
+        {
+            return;
+        }
+
+        cptCardsObtained++;
         CardInfo card = deckCreate[0];
         if (deckCreate.Count > 0)
         {
