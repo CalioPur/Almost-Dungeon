@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
   m_Name: TLine
   m_EditorClassIdentifier: 
-  img: {fileID: -1209889190, guid: a7a669ec7e8c63947b7c9375001f35f2, type: 3}
+  img: {fileID: 21300000, guid: db09bd28bb99f4640ad52c1d7ac0e707, type: 3}
   nbToBuild: 4
-  type: 6
-  DoorOnTop: 0
+  DoorOnTop: 1
   DoorOnBottom: 1
   DoorOnLeft: 1
-  DoorOnRight: 1
+  DoorOnRight: 0
   description: T pain

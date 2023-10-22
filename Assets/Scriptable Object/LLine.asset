@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
   m_Name: LLine
   m_EditorClassIdentifier: 
-  img: {fileID: 1951484118, guid: a7a669ec7e8c63947b7c9375001f35f2, type: 3}
+  img: {fileID: 21300000, guid: e6ac792fc04b75445a16af7d09b600d0, type: 3}
   nbToBuild: 6
-  type: 5
-  DoorOnTop: 1
-  DoorOnBottom: 0
-  DoorOnLeft: 0
-  DoorOnRight: 1
+  DoorOnTop: 0
+  DoorOnBottom: 1
+  DoorOnLeft: 1
+  DoorOnRight: 0
   description: L for Loser

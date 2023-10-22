@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -8,6 +9,8 @@ using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
+    
+    
     [Header("Deck builder")]
     [SerializeField] private List<CardInfo> deckToBuild = new ();
     
@@ -22,9 +25,12 @@ public class DeckManager : MonoBehaviour
     private List<CardInfo> deckCreate = new ();
     private Coroutine drawCardCoroutine;
     private List<CardInfo> Hand = new();
+    private CardHand selectedCard;
 
     void Start()
     {
+        CardHand.OnCardSelectedEvent += CartSelected;
+        
         InitDeck();
         InitSlots();
         ShuffleDeck();
@@ -114,6 +120,45 @@ public class DeckManager : MonoBehaviour
                 deckCreate[i] = deckCreate[randomIndex];
                 deckCreate[randomIndex] = temp;
             }
+        }
+    }
+    
+    public void CartSelected(CardHand imgSelected)
+    {
+        foreach (var t in slotsHand.Where(t => t == imgSelected))
+        {
+            if (t == selectedCard)
+            {
+                selectedCard.ChangeSelection(false);
+                selectedCard = null;
+            }
+            else
+            {
+                if (selectedCard != null)
+                {
+                    selectedCard.ChangeSelection(false);
+                }
+
+                t.ChangeSelection(true);
+                selectedCard = t;
+            }
+        }
+    }
+    
+    private void RotateSelection()
+    {
+        if (selectedCard != null)
+        {
+            selectedCard.transform.Rotate(0, 0, 90);
+            selectedCard.addRotation();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            RotateSelection();
         }
     }
 }

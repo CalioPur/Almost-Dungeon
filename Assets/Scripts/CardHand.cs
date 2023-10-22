@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,22 +8,26 @@ using UnityEngine.UI;
 
 public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    public static event Action<CardHand> OnCardSelectedEvent;
+
     public bool Occupied { get; set; } = false;
     public CardInfo Card;
-    
-    
+
+
     [SerializeField] private Image img;
-    
-    [Header("Color settings")]
-    [SerializeField] private Color HoverColor = Color.gray;
+
+    [Header("Color settings")] [SerializeField]
+    private Color HoverColor = Color.gray;
+
     [SerializeField] private Color NormalColor = Color.white;
     [SerializeField] private Color SelectedColor = Color.yellow;
     [SerializeField] private Color EmptyColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-    
-    [Header("Description")]
-    [SerializeField] private Transform BackgroundDescription;
+
+    [Header("Description")] [SerializeField]
+    private Transform BackgroundDescription;
+
     [SerializeField] private TMP_Text DescriptionText;
-    
+
     private bool isSelected = false;
     private int Rotation;
 
@@ -40,15 +45,14 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!isSelected) img.color = NormalColor;
         BackgroundDescription.gameObject.SetActive(false);
     }
-    
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!Occupied) return;
-        //DeckManager.Instance.CartSelected(this);
-        //DeckManager.OnCardSelectedEvent?.Invoke(img);
+        OnCardSelectedEvent?.Invoke(this);
         BackgroundDescription.gameObject.SetActive(false);
     }
-    
+
     public void EmptyCard()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -58,7 +62,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Rotation = 0;
         isSelected = false;
     }
-    
+
     public void InitCard(CardInfo _card)
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -69,26 +73,25 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         isSelected = false;
         DescriptionText.text = Card.description;
     }
-    
+
     public Vector3 GetRotation()
     {
         return new Vector3(0, Rotation);
     }
-    
+
     public void addRotation()
     {
         Rotation += 90;
         if (Rotation >= 360) Rotation = 0;
-        
+
         bool Tmp = Card.DoorOnTop; // clockwise rotation
-        
+
         Card.DoorOnTop = Card.DoorOnRight;
         Card.DoorOnRight = Card.DoorOnBottom;
         Card.DoorOnBottom = Card.DoorOnLeft;
         Card.DoorOnLeft = Tmp;
-        
     }
-    
+
     public Image GetImage()
     {
         return img;
