@@ -67,6 +67,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         img.color = NormalColor;
         Rotation = 0;
         isSelected = false;
+        DescriptionText.text = Card.description;
     }
     
     public Vector3 GetRotation()
