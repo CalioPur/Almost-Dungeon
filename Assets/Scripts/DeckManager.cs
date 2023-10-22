@@ -8,6 +8,9 @@ using UnityEngine;
 [Serializable]
 public class DeckManager : MonoBehaviour
 {
+    public static event Action<TileData, CardHand> OnCardTryToPlaceEvent;
+
+
     [Header("Deck builder")] [SerializeField]
     private List<CardInfo> deckToBuild = new();
 
@@ -30,11 +33,21 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         CardHand.OnCardSelectedEvent += CartSelected;
+        DragAndDropManager.OnTileSelectedEvent += PlaceSolution;
 
         InitDeck();
         InitSlots();
         ShuffleDeck();
         StartCoroutine(DrawStartedCard());
+    }
+
+    private void PlaceSolution(TileData obj)
+    {
+        if (selectedCard == null) return;
+
+        if (obj.PiecePlaced) return;
+        OnCardTryToPlaceEvent?.Invoke(obj, selectedCard);
+        selectedCard = null;
     }
 
     IEnumerator DrawStartedCard()

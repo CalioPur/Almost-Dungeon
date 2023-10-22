@@ -61,6 +61,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         img.gameObject.SetActive(false);
         Rotation = 0;
         isSelected = false;
+        Occupied = false;
     }
 
     public void InitCard(CardInfo _card)
@@ -77,6 +78,11 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Vector3 GetRotation()
     {
         return new Vector3(0, Rotation);
+    }
+    
+    public int GetNbRotation()
+    {
+        return Rotation / 90;
     }
 
     public void addRotation()

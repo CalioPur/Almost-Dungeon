@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TileData : MonoBehaviour
 {
@@ -10,13 +9,20 @@ public class TileData : MonoBehaviour
     public bool hasDoorDown;
     public bool hasDoorLeft;
 
-    [Header("Player")]
-    public bool isPlayerhere;
+    [Header("Occupation")]
+    public bool isPlayerhere = false;
+    public bool isMonsterhere = false;
+    public bool isChesthere = false;
+    public bool isTrapHere = false;
+    public bool PiecePlaced = false;
 
     [Header("Monsters")]
     public int lilMinion;
     public int bigMinion;
     public int archerMinion;
+    
+    [Header("Image")]
+    public SpriteRenderer img;
 
     public void RotateDoors90()
     {

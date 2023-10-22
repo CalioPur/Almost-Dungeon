@@ -5,13 +5,17 @@ using UnityEngine.Networking;
 
 public class CreateMap : MonoBehaviour
 {
-    public int width, height;
-    public GameObject walls, floor;
-    public Transform map;
+    public static CreateMap Instance;
+    
+    [SerializeField] private int width, height;
+    [SerializeField] private GameObject walls, floor;
+    [SerializeField] private Transform map;
 
-    public TileData[,] mapArray;
+    private TileData[,] mapArray;
     void Start()
     {
+        Instance = this;
+        
         mapArray = new TileData[width-2, height-2];
         for(int i =0; i< width; i++)
         {
@@ -33,5 +37,9 @@ public class CreateMap : MonoBehaviour
         }
     }
 
+    public TileData GetTileData(int x, int y)
+    {
+        return mapArray[x, y];
+    }
     
 }
