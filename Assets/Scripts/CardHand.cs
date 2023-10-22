@@ -66,7 +66,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void InitCard(CardInfo _card)
     {
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        img.transform.rotation = Quaternion.Euler(0, 0, 0);
         Card = _card;
         img.sprite = Card.img;
         img.color = NormalColor;

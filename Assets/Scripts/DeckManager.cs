@@ -115,10 +115,7 @@ public class DeckManager : MonoBehaviour
 
     private void DrawCard()
     {
-        if (deckCreate.Count == 0 || cptCardsObtained >= slotsHand.Count)
-        {
-            return;
-        }
+        if (deckCreate.Count == 0 || cptCardsObtained >= slotsHand.Count) return;
 
         cptCardsObtained++;
         CardInfo card = deckCreate[0];

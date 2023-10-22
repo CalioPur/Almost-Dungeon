@@ -48,15 +48,17 @@ public class CreateMap : MonoBehaviour
                 if (mapArray[i, j] == data)
                 {
                     if (mapArray[i, j].PiecePlaced) canBePlaced = false;
+                    // check if there is another card door was not blocked by the card
                     else if (i > 0 && mapArray[i - 1, j].PiecePlaced && mapArray[i - 1, j].hasDoorRight && !card.Card.DoorOnLeft) canBePlaced = false;
-                    else if (i < width && mapArray[i + 1, j].PiecePlaced && mapArray[i + 1, j].hasDoorLeft && !card.Card.DoorOnRight) canBePlaced = false;
+                    else if (i < width - 3 && mapArray[i + 1, j].PiecePlaced && mapArray[i + 1, j].hasDoorLeft && !card.Card.DoorOnRight) canBePlaced = false;
                     else if (j > 0 && mapArray[i, j - 1].PiecePlaced && mapArray[i, j - 1].hasDoorUp && !card.Card.DoorOnBottom) canBePlaced = false;
-                    else if (j < height && mapArray[i, j + 1].PiecePlaced && mapArray[i, j + 1].hasDoorDown && !card.Card.DoorOnTop) canBePlaced = false;
-                    
-                    else if (i > 0 && mapArray[i, j].hasDoorLeft && mapArray[i - 1, j].PiecePlaced && !mapArray[i - 1, j].hasDoorRight) canBePlaced = false;
-                    else if (i < width && mapArray[i, j].hasDoorRight && mapArray[i + 1, j].PiecePlaced && !mapArray[i + 1, j].hasDoorLeft) canBePlaced = false;
-                    else if (j > 0 && mapArray[i, j].hasDoorUp && mapArray[i, j - 1].PiecePlaced && !mapArray[i, j - 1].hasDoorDown) canBePlaced = false;
-                    else if (j < height && mapArray[i, j].hasDoorDown && mapArray[i, j + 1].PiecePlaced && !mapArray[i, j + 1].hasDoorUp) canBePlaced = false;
+                    else if (j < height - 3 && mapArray[i, j + 1].PiecePlaced && mapArray[i, j + 1].hasDoorDown && !card.Card.DoorOnTop) canBePlaced = false;
+                    // check if door will be connected
+                    else if (i > 0 && mapArray[i - 1, j].PiecePlaced && !mapArray[i - 1, j].hasDoorRight && card.Card.DoorOnLeft) canBePlaced = false;
+                    else if (i < width - 3 && mapArray[i + 1, j].PiecePlaced && !mapArray[i + 1, j].hasDoorLeft && card.Card.DoorOnRight) canBePlaced = false;
+                    else if (j > 0 && mapArray[i, j - 1].PiecePlaced && !mapArray[i, j - 1].hasDoorUp && card.Card.DoorOnBottom) canBePlaced = false;
+                    else if (j < height - 3 && mapArray[i, j + 1].PiecePlaced && !mapArray[i, j + 1].hasDoorDown && card.Card.DoorOnTop) canBePlaced = false;
+
                     break;
                 }
             }
