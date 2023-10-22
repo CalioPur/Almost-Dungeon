@@ -162,6 +162,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd, type: 2}
   nbCardOnStartToDraw: 3
   TimerBeforeDrawCard: 2
+  TimerAnimationDrawCard: 0.2
   slotsHand:
   - {fileID: 4802876969633447130}
   - {fileID: 9052175172789201558}
@@ -520,6 +521,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434321703968173450, guid: 957f6ff13df90ac4a8a4b7162ed47762,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

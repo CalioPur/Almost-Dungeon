@@ -11,7 +11,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public static event Action<CardHand> OnCardSelectedEvent;
 
     public bool Occupied { get; set; } = false;
-    public CardInfo Card;
+    [HideInInspector] public CardInfo Card;
 
 
     [SerializeField] private Image img;
@@ -21,7 +21,6 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     [SerializeField] private Color NormalColor = Color.white;
     [SerializeField] private Color SelectedColor = Color.yellow;
-    [SerializeField] private Color EmptyColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
 
     [Header("Description")] [SerializeField]
     private Transform BackgroundDescription;
@@ -48,6 +47,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (eventData.button == PointerEventData.InputButton.Right) return; // right click used for rotation
         if (!Occupied) return;
         OnCardSelectedEvent?.Invoke(this);
         BackgroundDescription.gameObject.SetActive(false);
@@ -56,9 +56,9 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void EmptyCard()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        Card = new CardInfo();
+        Card = null;
         img.sprite = null;
-        img.color = EmptyColor;
+        img.gameObject.SetActive(false);
         Rotation = 0;
         isSelected = false;
     }
