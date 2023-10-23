@@ -15,8 +15,10 @@ public class CreateMap : MonoBehaviour
     private TileData[,] mapArray;
     void Start()
     {
-       
-        mapArray = new TileData[width-2, height-2];
+        
+        mapArray = new TileData[width, height];
+        width+=2;
+        height+=2;
         for(int i =0; i< width; i++)
         {
             for (int j = 0; j < height; j++)
