@@ -41,29 +41,30 @@ public class CreateMap : MonoBehaviour
     private void CheckPos(TileData data, CardHand card)
     {
         bool canBePlaced = true;
-        for(int i =1; i < width - 2; i++)
+        for(int i =0; i < width - 2; i++)
         {
-            for (int j = 1; j < height - 2; j++)
+            for (int j = 0; j < height - 2; j++)
             {
                 if (mapArray[i, j] == data)
                 {
                     if (mapArray[i, j].PiecePlaced) canBePlaced = false;
                     // check if there is another card door was not blocked by the card
                     else if (i > 0 && mapArray[i - 1, j].PiecePlaced && mapArray[i - 1, j].hasDoorRight && !card.Card.DoorOnLeft) canBePlaced = false;
-                    else if (i < width - 3 && mapArray[i + 1, j].PiecePlaced && mapArray[i + 1, j].hasDoorLeft && !card.Card.DoorOnRight) canBePlaced = false;
+                    else if (i < width - 1 && mapArray[i + 1, j].PiecePlaced && mapArray[i + 1, j].hasDoorLeft && !card.Card.DoorOnRight) canBePlaced = false;
                     else if (j > 0 && mapArray[i, j - 1].PiecePlaced && mapArray[i, j - 1].hasDoorUp && !card.Card.DoorOnBottom) canBePlaced = false;
-                    else if (j < height - 3 && mapArray[i, j + 1].PiecePlaced && mapArray[i, j + 1].hasDoorDown && !card.Card.DoorOnTop) canBePlaced = false;
+                    else if (j < height - 1 && mapArray[i, j + 1].PiecePlaced && mapArray[i, j + 1].hasDoorDown && !card.Card.DoorOnTop) canBePlaced = false;
                     // check if door will be connected
                     else if (i > 0 && mapArray[i - 1, j].PiecePlaced && !mapArray[i - 1, j].hasDoorRight && card.Card.DoorOnLeft) canBePlaced = false;
-                    else if (i < width - 3 && mapArray[i + 1, j].PiecePlaced && !mapArray[i + 1, j].hasDoorLeft && card.Card.DoorOnRight) canBePlaced = false;
+                    else if (i < width - 1 && mapArray[i + 1, j].PiecePlaced && !mapArray[i + 1, j].hasDoorLeft && card.Card.DoorOnRight) canBePlaced = false;
                     else if (j > 0 && mapArray[i, j - 1].PiecePlaced && !mapArray[i, j - 1].hasDoorUp && card.Card.DoorOnBottom) canBePlaced = false;
-                    else if (j < height - 3 && mapArray[i, j + 1].PiecePlaced && !mapArray[i, j + 1].hasDoorDown && card.Card.DoorOnTop) canBePlaced = false;
+                    else if (j < height - 1 && mapArray[i, j + 1].PiecePlaced && !mapArray[i, j + 1].hasDoorDown && card.Card.DoorOnTop) canBePlaced = false;
 
-                    break;
+                    OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
+                    return;
                 }
             }
         }
-        OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
+        OnCardTryToPlaceEvent?.Invoke(data, card, false);
     }
 
     public TileData GetTileData(int x, int y)
