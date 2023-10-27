@@ -147,7 +147,9 @@ public class DeckManager : MonoBehaviour
         {
             for (int i = 0; i < card.nbToBuild; i++)
             {
-                deckCreate.Add(card);
+                CardInfo instance = ScriptableObject.CreateInstance(card.GetType()) as CardInfo;
+                instance.init (card.img, card.nbToBuild, card.DoorOnTop, card.DoorOnBottom, card.DoorOnLeft, card.DoorOnRight, card.description);
+                deckCreate.Add(instance);
             }
         }
     }
