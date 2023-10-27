@@ -50,9 +50,9 @@ public class CreateMap : MonoBehaviour
                 if (mapArray[i, j] != data) continue;
                 if (mapArray[i, j].PiecePlaced) canBePlaced = false;
                 else if (i > 0 && mapArray[i - 1, j].PiecePlaced && ((mapArray[i - 1, j].hasDoorRight && !card.Card.DoorOnLeft) || (!mapArray[i - 1, j].hasDoorRight && card.Card.DoorOnLeft))) canBePlaced = false;
-                else if (i < width - 1 && mapArray[i + 1, j].PiecePlaced &&  ((mapArray[i + 1, j].hasDoorLeft && !card.Card.DoorOnRight) || (!mapArray[i + 1, j].hasDoorLeft && card.Card.DoorOnRight))) canBePlaced = false;
+                else if (i < width - 3 && mapArray[i + 1, j].PiecePlaced &&  ((mapArray[i + 1, j].hasDoorLeft && !card.Card.DoorOnRight) || (!mapArray[i + 1, j].hasDoorLeft && card.Card.DoorOnRight))) canBePlaced = false;
                 else if (j > 0 && mapArray[i, j - 1].PiecePlaced &&  ((mapArray[i, j - 1].hasDoorUp && !card.Card.DoorOnBottom) || (!mapArray[i, j - 1].hasDoorUp && card.Card.DoorOnBottom))) canBePlaced = false;
-                else if (j < height - 1 && mapArray[i, j + 1].PiecePlaced &&  ((mapArray[i, j + 1].hasDoorDown && !card.Card.DoorOnTop) || (!mapArray[i, j + 1].hasDoorDown && card.Card.DoorOnTop))) canBePlaced = false;
+                else if (j < height - 3 && mapArray[i, j + 1].PiecePlaced &&  ((mapArray[i, j + 1].hasDoorDown && !card.Card.DoorOnTop) || (!mapArray[i, j + 1].hasDoorDown && card.Card.DoorOnTop))) canBePlaced = false;
 
                 OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
                 return;
