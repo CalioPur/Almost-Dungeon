@@ -11,7 +11,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public static event Action<CardHand> OnCardSelectedEvent;
 
     public bool Occupied { get; set; } = false;
-    public CardInfo Card;
+    public CardInfoInstance Card;
 
 
     [SerializeField] private Image img;
@@ -69,15 +69,14 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Occupied = false;
     }
 
-    public void InitCard(CardInfo _card)
+    public void InitCard(CardInfoInstance _card)
     {
         img.transform.rotation = Quaternion.Euler(0, 0, 0);
         Card = _card;
-        img.sprite = Card.img;
+        img.sprite = Card.So.img;
         img.color = NormalColor;
-        Card.Rotation = 0;
         isSelected = false;
-        DescriptionText.text = Card.description;
+        DescriptionText.text = Card.So.description;
     }
 
     public Vector3 GetRotation()

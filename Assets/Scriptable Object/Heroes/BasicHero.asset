@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0c0899738f3ba47b772f3f4785c1d3, type: 3}
+  m_Name: BasicHero
+  m_EditorClassIdentifier: 
+  <Img>k__BackingField: {fileID: 0}
+  <HealthPoint>k__BackingField: 0
+  <AttackPoint>k__BackingField: 0
+  <IsAOE>k__BackingField: 0
+  <Range>k__BackingField: 0
+  <Armor>k__BackingField: 0

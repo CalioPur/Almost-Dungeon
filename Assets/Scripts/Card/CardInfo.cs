@@ -13,20 +13,34 @@ public class CardInfo : ScriptableObject
     public bool DoorOnRight;
     public string description;
     public int Rotation;
-
-    public void init(CardInfo info)
+    
+    public CardInfoInstance CreateInstance()
     {
-        img = info.img;
-        nbToBuild = info.nbToBuild;
+        return new CardInfoInstance(this);
+    }
+}
+
+
+public class CardInfoInstance
+{
+    public CardInfo So { get;}
+    public int Rotation;
+    public bool DoorOnTop { get; private set; }
+    public bool DoorOnBottom { get; private set; }
+    public bool DoorOnLeft { get; private set; }
+    public bool DoorOnRight { get; private set; }
+    
+    public CardInfoInstance(CardInfo info)
+    {
+        So = info;
+        Rotation = info.Rotation;
         DoorOnTop = info.DoorOnTop;
         DoorOnBottom = info.DoorOnBottom;
         DoorOnLeft = info.DoorOnLeft;
         DoorOnRight = info.DoorOnRight;
-        description = info.description;
-        Rotation = info.Rotation;
     }
     
-    public void addRotation(int direction)
+    public void AddRotation(int direction)
     {
         Rotation += 90 * direction;
         if (Rotation < 0) Rotation = 270;

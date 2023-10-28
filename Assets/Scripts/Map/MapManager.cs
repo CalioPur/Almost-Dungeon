@@ -11,7 +11,6 @@ public class MapManager : MonoBehaviour
     
     [SerializeField] private int width, height;
     [SerializeField] private GameObject walls, floor;
-    [SerializeField] private Sprite enterDungeon;
     [SerializeField] private Transform map;
     [SerializeField] private CardInfo[] cards;
 
@@ -26,8 +25,9 @@ public class MapManager : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                
-                Vector3 pos = new Vector3(i-((float)(width-1)/2),0,j- (float)(height-1)/2); //pour centrer le tout
+
+                Vector3 pos;
+                GetWorldPosFromTilePos(i, j, out pos);//pour centrer le tout
                 if(i == 0 || j == 0 || i == width - 1 || j == height - 1)
                 { 
                     Instantiate( walls, pos, walls.transform.rotation, map); //verifie si on est sur un bord
@@ -47,12 +47,11 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             CardInfo card = cards[Random.Range(0, cards.Length)];
-            CardInfo cardInstance = ScriptableObject.CreateInstance(card.GetType()) as CardInfo;
-            cardInstance.init(card);
+            CardInfoInstance cardInstance = card.CreateInstance();
             int nbRot = Random.Range(0, 3);
             for (int j = 0; j < nbRot; j++)
             {
-                cardInstance.addRotation(1);
+                cardInstance.AddRotation(1);
             }
 
             int x = 0;
@@ -75,13 +74,15 @@ public class MapManager : MonoBehaviour
         OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
     }
     
-    public Vector3 InitEnterDungeon(CardInfo card)
+    public void InitEnterDungeon(CardInfoInstance card, out Vector3 pos, out int _x, out int _y)
     {
-        int y = UnityEngine.Random.Range(0, height - 2);
+        int y = Random.Range(0, height - 2);
         
         SetTileAtPosition(card, 0, y);
         
-        return new Vector3(1 - ((float)(width - 1) / 2), 0.1f, 1 + y- (float)(height - 1) / 2);
+        GetWorldPosFromTilePos(0, y, out pos);
+        _x = 0;
+        _y = y;
     }
 
     private bool CheckPosWithData(TileData data, CardHand card)
@@ -97,7 +98,7 @@ public class MapManager : MonoBehaviour
         return true;
     }
 
-    private bool CheckPosWithPosition(int x, int y, CardInfo card)
+    private bool CheckPosWithPosition(int x, int y, CardInfoInstance card)
     {
         if (mapArray[x, y].PiecePlaced) return false;
         if (x > 0 && mapArray[x - 1, y].PiecePlaced && ((mapArray[x - 1, y].hasDoorRight && !card.DoorOnLeft) || (!mapArray[x - 1, y].hasDoorRight && card.DoorOnLeft))) return false;
@@ -113,14 +114,19 @@ public class MapManager : MonoBehaviour
         return mapArray[x, y];
     }
 
-    void SetTileAtPosition(CardInfo card, int posX, int posY)
+    void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
     {
         mapArray[posX, posY].PiecePlaced = true;
         mapArray[posX, posY].hasDoorRight = card.DoorOnRight;
         mapArray[posX, posY].hasDoorLeft = card.DoorOnLeft;
         mapArray[posX, posY].hasDoorUp = card.DoorOnTop;
         mapArray[posX, posY].hasDoorDown = card.DoorOnBottom;
-        mapArray[posX, posY].GetComponent<TileData>().img.sprite = card.img;
+        mapArray[posX, posY].img.sprite = card.So.img;
+    }
+    
+    public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos)
+    {
+        pos = new Vector3(x-((float)(width-1)/2),0,y- (float)(height-1)/2);
     }
     
 }

@@ -122,6 +122,11 @@ PrefabInstance:
       propertyPath: createMap
       value: 
       objectReference: {fileID: 6807861319483125049}
+    - target: {fileID: 21429389857971658, guid: 10f3169620a63c14d8822c939be6d745,
+        type: 3}
+      propertyPath: mapManager
+      value: 
+      objectReference: {fileID: 6807861319483125049}
     - target: {fileID: 3705529355466225583, guid: 10f3169620a63c14d8822c939be6d745,
         type: 3}
       propertyPath: m_Name

@@ -25,8 +25,8 @@ public class CardsManager : MonoBehaviour
 
     [SerializeField] private Transform DeckTr;
 
-    private List<CardInfo> deckCreate = new();
-    private List<CardInfo> Hand = new();
+    private List<CardInfoInstance> deckCreate = new();
+    private List<CardInfoInstance> Hand = new();
     private CardHand selectedCard;
     private int cptCardsObtained = 0;
 
@@ -115,7 +115,7 @@ public class CardsManager : MonoBehaviour
         if (deckCreate.Count == 0 || cptCardsObtained >= slotsHand.Count) return;
 
         cptCardsObtained++;
-        CardInfo card = deckCreate[0];
+        CardInfoInstance card = deckCreate[0];
         if (deckCreate.Count > 0)
         {
             Hand.Add(deckCreate[0]);
@@ -139,13 +139,12 @@ public class CardsManager : MonoBehaviour
 
     private void InitDeck()
     {
-        deckCreate = new List<CardInfo>();
+        deckCreate = new List<CardInfoInstance>();
         foreach (var card in deckToBuild)
         {
             for (int i = 0; i < card.nbToBuild; i++)
             {
-                CardInfo instance = ScriptableObject.CreateInstance(card.GetType()) as CardInfo;
-                instance.init(card);
+                CardInfoInstance instance = card.CreateInstance();
                 deckCreate.Add(instance);
             }
         }
@@ -157,7 +156,7 @@ public class CardsManager : MonoBehaviour
         {
             for (int i = 0; i < deckCreate.Count; i++)
             {
-                CardInfo temp = deckCreate[i];
+                CardInfoInstance temp = deckCreate[i];
                 int randomIndex = UnityEngine.Random.Range(i, deckCreate.Count);
                 deckCreate[i] = deckCreate[randomIndex];
                 deckCreate[randomIndex] = temp;
@@ -203,7 +202,7 @@ public class CardsManager : MonoBehaviour
         if (selectedCard != null)
         {
             selectedCard.GetImage().transform.Rotate(0, 0, 90 * direction);
-            selectedCard.Card.addRotation(direction);
+            selectedCard.Card.AddRotation(direction);
         }
     }
 
