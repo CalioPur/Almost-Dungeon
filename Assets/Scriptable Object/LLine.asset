@@ -19,3 +19,4 @@ MonoBehaviour:
   DoorOnLeft: 1
   DoorOnRight: 0
   description: L for Loser
+  Rotation: 0

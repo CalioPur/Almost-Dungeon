@@ -19,3 +19,4 @@ MonoBehaviour:
   DoorOnLeft: 1
   DoorOnRight: 1
   description: it's a simple line ahah
+  Rotation: 0
