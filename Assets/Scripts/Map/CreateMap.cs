@@ -63,7 +63,7 @@ public class CreateMap : MonoBehaviour
             {
                 y = Random.Range(1, height - 3);
                 x = Random.Range(1, width - 3);
-            } while (mapArray[x, y].PiecePlaced && !CheckPosWithPosition(x, y, cardInstance));
+            } while (mapArray[x, y].PiecePlaced && !CheckPosWithPosition(x, y, cardInstance)); // ATTEENTION A LA BOUCLE INFINIE :)
             
             SetTileAtPosition(cardInstance, x, y);
         }
