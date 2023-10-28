@@ -19,3 +19,4 @@ MonoBehaviour:
   DoorOnLeft: 1
   DoorOnRight: 1
   description: Sus
+  Rotation: 0
