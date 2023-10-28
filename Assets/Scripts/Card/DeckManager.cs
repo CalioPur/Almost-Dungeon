@@ -99,9 +99,6 @@ public class DeckManager : MonoBehaviour
                 DrawCard();
                 StartCoroutine(CheckDrawCard());
             }
-            else
-            {
-            }
         }
     }
 
@@ -148,7 +145,7 @@ public class DeckManager : MonoBehaviour
             for (int i = 0; i < card.nbToBuild; i++)
             {
                 CardInfo instance = ScriptableObject.CreateInstance(card.GetType()) as CardInfo;
-                instance.init (card.img, card.nbToBuild, card.DoorOnTop, card.DoorOnBottom, card.DoorOnLeft, card.DoorOnRight, card.description);
+                instance.init(card);
                 deckCreate.Add(instance);
             }
         }
@@ -195,7 +192,7 @@ public class DeckManager : MonoBehaviour
         if (selectedCard != null)
         {
             selectedCard.GetImage().transform.Rotate(0, 0, 90);
-            selectedCard.addRotation();
+            selectedCard.Card.addRotation();
         }
     }
 

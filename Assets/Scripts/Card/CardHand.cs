@@ -11,7 +11,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public static event Action<CardHand> OnCardSelectedEvent;
 
     public bool Occupied { get; set; } = false;
-    [HideInInspector] public CardInfo Card;
+    public CardInfo Card;
 
 
     [SerializeField] private Image img;
@@ -28,7 +28,6 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private TMP_Text DescriptionText;
 
     private bool isSelected = false;
-    private int Rotation;
 
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -59,7 +58,6 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Card = null;
         img.sprite = null;
         img.gameObject.SetActive(false);
-        Rotation = 0;
         isSelected = false;
         Occupied = false;
     }
@@ -70,33 +68,22 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Card = _card;
         img.sprite = Card.img;
         img.color = NormalColor;
-        Rotation = 0;
+        Card.Rotation = 0;
         isSelected = false;
         DescriptionText.text = Card.description;
     }
 
     public Vector3 GetRotation()
     {
-        return new Vector3(0, Rotation);
+        return new Vector3(0, Card.Rotation);
     }
     
     public int GetNbRotation()
     {
-        return Rotation / 90;
+        return Card.Rotation / 90;
     }
 
-    public void addRotation()
-    {
-        Rotation += 90;
-        if (Rotation >= 360) Rotation = 0;
-
-        bool Tmp = Card.DoorOnTop; // clockwise rotation
-
-        Card.DoorOnTop = Card.DoorOnRight;
-        Card.DoorOnRight = Card.DoorOnBottom;
-        Card.DoorOnBottom = Card.DoorOnLeft;
-        Card.DoorOnLeft = Tmp;
-    }
+    
 
     public Image GetImage()
     {

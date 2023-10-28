@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Random = UnityEngine.Random;
 
 public class CreateMap : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CreateMap : MonoBehaviour
     [SerializeField] private GameObject walls, floor;
     [SerializeField] private Sprite enterDungeon;
     [SerializeField] private Transform map;
+    [SerializeField] private CardInfo[] cards;
 
     private TileData[,] mapArray;
     public void InitMap()
@@ -39,6 +41,23 @@ public class CreateMap : MonoBehaviour
             }
         }
         DeckManager.OnCardTryToPlaceEvent += CheckPos;
+        
+        
+        
+        for (int i = 0; i < 5; i++)
+        {
+            CardInfo card = cards[Random.Range(0, cards.Length)];
+            CardInfo cardInstance = ScriptableObject.CreateInstance(card.GetType()) as CardInfo;
+            cardInstance.init(card);
+            int nbRot = Random.Range(0, 3);
+            for (int j = 0; j < nbRot; j++)
+            {
+                cardInstance.addRotation();
+                print("iii");
+            }
+        
+            //CheckPos(mapArray[Random.Range(0,width-2), Random.Range(0, height-2)], );
+        }
     }
     
     public Vector3 InitEnterDungeon(CardInfo card)

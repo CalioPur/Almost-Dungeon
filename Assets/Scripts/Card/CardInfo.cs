@@ -12,15 +12,30 @@ public class CardInfo : ScriptableObject
     public bool DoorOnLeft;
     public bool DoorOnRight;
     public string description;
+    public int Rotation;
 
-    public void init(Sprite _img, int _nbToBuild, bool _DoorOnTop, bool _DoorOnBottom, bool _DoorOnLeft, bool _DoorOnRight, string _description)
+    public void init(CardInfo info)
     {
-        img = _img;
-        nbToBuild = _nbToBuild;
-        DoorOnTop = _DoorOnTop;
-        DoorOnBottom = _DoorOnBottom;
-        DoorOnLeft = _DoorOnLeft;
-        DoorOnRight = _DoorOnRight;
-        description = _description;
+        img = info.img;
+        nbToBuild = info.nbToBuild;
+        DoorOnTop = info.DoorOnTop;
+        DoorOnBottom = info.DoorOnBottom;
+        DoorOnLeft = info.DoorOnLeft;
+        DoorOnRight = info.DoorOnRight;
+        description = info.description;
+        Rotation = info.Rotation;
+    }
+    
+    public void addRotation()
+    {
+        Rotation += 90;
+        if (Rotation >= 360) Rotation = 0;
+
+        bool Tmp = DoorOnTop; // counter-clockwise rotation
+
+        DoorOnTop = DoorOnRight;
+        DoorOnRight = DoorOnBottom;
+        DoorOnBottom = DoorOnLeft;
+        DoorOnLeft = Tmp;
     }
 }
