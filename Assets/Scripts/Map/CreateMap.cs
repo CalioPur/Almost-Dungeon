@@ -52,8 +52,7 @@ public class CreateMap : MonoBehaviour
             int nbRot = Random.Range(0, 3);
             for (int j = 0; j < nbRot; j++)
             {
-                cardInstance.addRotation();
-                print("iii");
+                cardInstance.addRotation(1);
             }
 
             int x = 0;

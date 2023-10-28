@@ -26,9 +26,10 @@ public class CardInfo : ScriptableObject
         Rotation = info.Rotation;
     }
     
-    public void addRotation()
+    public void addRotation(int direction)
     {
-        Rotation += 90;
+        Rotation += 90 * direction;
+        if (Rotation < 0) Rotation = 270;
         if (Rotation >= 360) Rotation = 0;
 
         bool Tmp = DoorOnTop; // counter-clockwise rotation

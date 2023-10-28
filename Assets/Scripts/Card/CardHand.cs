@@ -46,7 +46,14 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Right) return; // right click used for rotation
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            //enleve la selection de la carte 
+            if (!isSelected) return;
+            isSelected = false;
+            img.color = NormalColor;
+            OnCardSelectedEvent?.Invoke(null);
+        }// right click used for rotation
         if (!Occupied) return;
         OnCardSelectedEvent?.Invoke(this);
         BackgroundDescription.gameObject.SetActive(false);

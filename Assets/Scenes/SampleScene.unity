@@ -949,16 +949,6 @@ PrefabInstance:
       objectReference: {fileID: 1922002201}
     - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
-      propertyPath: width
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: height
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
       propertyPath: testCard
       value: 
       objectReference: {fileID: 0}

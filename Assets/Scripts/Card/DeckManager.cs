@@ -167,6 +167,17 @@ public class DeckManager : MonoBehaviour
 
     public void CartSelected(CardHand imgSelected)
     {
+        if (imgSelected == null)
+        {
+            if (selectedCard != null)
+            {
+                selectedCard.ChangeSelection(false);
+                selectedCard = null;
+            }
+
+            return;
+        }
+        
         foreach (var t in slotsHand.Where(t => t == imgSelected))
         {
             if (t == selectedCard)
@@ -187,20 +198,24 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    private void RotateSelection()
+    private void RotateSelection(int direction)
     {
         if (selectedCard != null)
         {
-            selectedCard.GetImage().transform.Rotate(0, 0, 90);
-            selectedCard.Card.addRotation();
+            selectedCard.GetImage().transform.Rotate(0, 0, 90 * direction);
+            selectedCard.Card.addRotation(direction);
         }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            RotateSelection();
+            RotateSelection(1);
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            RotateSelection(-1);
         }
     }
 }
