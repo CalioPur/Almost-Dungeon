@@ -53,7 +53,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             isSelected = false;
             img.color = NormalColor;
             OnCardSelectedEvent?.Invoke(null);
-        }// right click used for rotation
+        }
         if (!Occupied) return;
         OnCardSelectedEvent?.Invoke(this);
         BackgroundDescription.gameObject.SetActive(false);
@@ -84,13 +84,6 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         return new Vector3(0, Card.Rotation);
     }
-    
-    public int GetNbRotation()
-    {
-        return Card.Rotation / 90;
-    }
-
-    
 
     public Image GetImage()
     {

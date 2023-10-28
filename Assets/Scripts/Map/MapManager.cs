@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Random = UnityEngine.Random;
 
-public class CreateMap : MonoBehaviour
+public class MapManager : MonoBehaviour
 {
     public static event Action<TileData, CardHand, bool> OnCardTryToPlaceEvent;
     
@@ -40,7 +40,7 @@ public class CreateMap : MonoBehaviour
 
             }
         }
-        DeckManager.OnCardTryToPlaceEvent += CheckCardPos;
+        CardsManager.OnCardTryToPlaceEvent += CheckCardPos;
         
         
         
@@ -86,7 +86,6 @@ public class CreateMap : MonoBehaviour
 
     private bool CheckPosWithData(TileData data, CardHand card)
     {
-        bool canBePlaced = true;
         for(int i =0; i < width - 2; i++)
         {
             for (int j = 0; j < height - 2; j++)

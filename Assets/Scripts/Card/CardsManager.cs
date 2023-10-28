@@ -6,7 +6,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [Serializable]
-public class DeckManager : MonoBehaviour
+public class CardsManager : MonoBehaviour
 {
     public static event Action<TileData, CardHand> OnCardTryToPlaceEvent;
 
@@ -34,7 +34,7 @@ public class DeckManager : MonoBehaviour
     {
         CardHand.OnCardSelectedEvent += CartSelected;
         DragAndDropManager.OnTileSelectedEvent += PlaceSolution;
-        CreateMap.OnCardTryToPlaceEvent += RemoveCard;
+        MapManager.OnCardTryToPlaceEvent += RemoveCard;
 
         InitDeck();
         InitSlots();

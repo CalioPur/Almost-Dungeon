@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.WSA;
 
 public class DragAndDropManager : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class DragAndDropManager : MonoBehaviour
     
     private void Start()
     {
-        CreateMap.OnCardTryToPlaceEvent += PlaceCard;
+        MapManager.OnCardTryToPlaceEvent += PlaceCard;
     }
     
     private void PlaceCard(TileData data, CardHand card, bool canBePlaced)
@@ -30,19 +29,13 @@ public class DragAndDropManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-               if (hit.collider.gameObject.CompareTag("Floor"))
-               {
-                      TileData tile = hit.collider.gameObject.GetComponent<TileData>();
-                      if (tile.PiecePlaced) return;
-                      OnTileSelectedEvent?.Invoke(tile);
-               }
-            }
-        }
+        if (!Input.GetKeyDown(KeyCode.Mouse0)) return;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (!Physics.Raycast(ray, out hit)) return;
+        if (!hit.collider.gameObject.CompareTag("Floor")) return;
+        TileData tile = hit.collider.gameObject.GetComponent<TileData>();
+        if (tile.PiecePlaced) return;
+        OnTileSelectedEvent?.Invoke(tile);
     }
 }

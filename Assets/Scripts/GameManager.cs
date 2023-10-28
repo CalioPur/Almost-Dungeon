@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Sprite imgPlayer;
-    [SerializeField] private CreateMap createMap;
+    [FormerlySerializedAs("createMap")] [SerializeField] private MapManager mapManager;
     [SerializeField] private CardInfo enterDungeonInfo;
     [SerializeField] private SpriteRenderer heroRenderer;
     
@@ -14,15 +15,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        createMap.InitMap();
-        Vector3 pos = createMap.InitEnterDungeon(enterDungeonInfo);
+        mapManager.InitMap();
+        Vector3 pos = mapManager.InitEnterDungeon(enterDungeonInfo);
         heroTr = Instantiate(heroRenderer.gameObject, pos, heroRenderer.transform.rotation).transform;
         heroTr.GetComponent<SpriteRenderer>().sprite = imgPlayer;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
