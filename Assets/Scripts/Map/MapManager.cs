@@ -42,8 +42,11 @@ public class MapManager : MonoBehaviour
         }
         CardsManager.OnCardTryToPlaceEvent += CheckCardPos;
         
-        
-        
+        AddRandomCard();
+    }
+    
+    private void AddRandomCard()
+    {
         for (int i = 0; i < 5; i++)
         {
             CardInfo card = cards[Random.Range(0, cards.Length)];
@@ -64,6 +67,7 @@ public class MapManager : MonoBehaviour
             } while (mapArray[x, y].PiecePlaced && !CheckPosWithPosition(x, y, cardInstance)); // ATTEENTION A LA BOUCLE INFINIE :)
             
             SetTileAtPosition(cardInstance, x, y);
+            int RandomCard = Random.Range(0, cards.Length);
         }
     }
 
@@ -116,12 +120,7 @@ public class MapManager : MonoBehaviour
 
     void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
     {
-        mapArray[posX, posY].PiecePlaced = true;
-        mapArray[posX, posY].hasDoorRight = card.DoorOnRight;
-        mapArray[posX, posY].hasDoorLeft = card.DoorOnLeft;
-        mapArray[posX, posY].hasDoorUp = card.DoorOnTop;
-        mapArray[posX, posY].hasDoorDown = card.DoorOnBottom;
-        mapArray[posX, posY].img.sprite = card.So.img;
+        mapArray[posX, posY].SetInstance(card);
     }
     
     public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos)

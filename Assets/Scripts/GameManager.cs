@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
         
         int randomHero = Random.Range(0, heroesInfos.Count);
         HeroInstance current = heroesInfos[randomHero].CreateInstance();
-        //current.init(heroesInfos[randomHero]);
         
         Instantiate(heroRenderer, pos, heroRenderer.transform.rotation).Init(current, indexHeroX, indexHeroY, mapManager);
     }

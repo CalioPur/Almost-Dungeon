@@ -16,14 +16,7 @@ public class DragAndDropManager : MonoBehaviour
     {
         if (!canBePlaced) return;
         
-        data.PiecePlaced = true;
-        data.img.sprite = card.Card.So.img;
-        data.transform.Rotate(Vector3.forward * card.GetRotation().y);
-        data.hasDoorDown = card.Card.DoorOnBottom;
-        data.hasDoorUp = card.Card.DoorOnTop;
-        data.hasDoorLeft = card.Card.DoorOnLeft;
-        data.hasDoorRight = card.Card.DoorOnRight;
-        
+        data.SetInstance(card.Card);
         card.EmptyCard();
     }
 

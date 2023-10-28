@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CardInfo", menuName = "ScriptableObjects/CardInfo", order = 1)]
@@ -20,7 +22,7 @@ public class CardInfo : ScriptableObject
     }
 }
 
-
+//[Serializable]
 public class CardInfoInstance
 {
     public CardInfo So { get;}
@@ -29,6 +31,9 @@ public class CardInfoInstance
     public bool DoorOnBottom { get; private set; }
     public bool DoorOnLeft { get; private set; }
     public bool DoorOnRight { get; private set; }
+    
+    
+    public event Action OnRotationChangedEvent; 
     
     public CardInfoInstance(CardInfo info)
     {
@@ -48,9 +53,23 @@ public class CardInfoInstance
 
         bool Tmp = DoorOnTop; // counter-clockwise rotation
 
-        DoorOnTop = DoorOnRight;
-        DoorOnRight = DoorOnBottom;
-        DoorOnBottom = DoorOnLeft;
-        DoorOnLeft = Tmp;
+        if (direction > 0)
+        {
+            DoorOnTop = DoorOnRight;
+            DoorOnRight = DoorOnBottom;
+            DoorOnBottom = DoorOnLeft;
+            DoorOnLeft = Tmp;
+        }
+        else
+        {
+            DoorOnTop = DoorOnLeft;
+            DoorOnLeft = DoorOnBottom;
+            DoorOnBottom = DoorOnRight;
+            DoorOnRight = Tmp;
+        }
+        
+        OnRotationChangedEvent?.Invoke();
+        
+        
     }
 }

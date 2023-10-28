@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -963,35 +963,6 @@ PrefabInstance:
       propertyPath: testCard
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: cards.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: cards.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b,
-        type: 2}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: cards.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d,
-        type: 2}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: cards.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f,
-        type: 2}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: cards.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd,
-        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
