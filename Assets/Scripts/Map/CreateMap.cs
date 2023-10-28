@@ -10,10 +10,11 @@ public class CreateMap : MonoBehaviour
     
     [SerializeField] private int width, height;
     [SerializeField] private GameObject walls, floor;
+    [SerializeField] private Sprite enterDungeon;
     [SerializeField] private Transform map;
 
     private TileData[,] mapArray;
-    void Start()
+    public void InitMap()
     {
         
         mapArray = new TileData[width, height];
@@ -38,6 +39,20 @@ public class CreateMap : MonoBehaviour
             }
         }
         DeckManager.OnCardTryToPlaceEvent += CheckPos;
+    }
+    
+    public Vector3 InitEnterDungeon(CardInfo card)
+    {
+        int y = UnityEngine.Random.Range(0, height - 2);
+        
+        mapArray[0, y].PiecePlaced = true;
+        mapArray[0, y].hasDoorRight = card.DoorOnRight;
+        mapArray[0, y].hasDoorLeft = card.DoorOnLeft;
+        mapArray[0, y].hasDoorUp = card.DoorOnTop;
+        mapArray[0, y].hasDoorDown = card.DoorOnBottom;
+        mapArray[0, y].GetComponent<TileData>().img.sprite = card.img;
+        
+        return new Vector3(1 - ((float)(width - 1) / 2), 0.1f, 1 + y- (float)(height - 1) / 2);
     }
 
     private void CheckPos(TileData data, CardHand card)
