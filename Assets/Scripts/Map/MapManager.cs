@@ -137,4 +137,9 @@ public class MapManager : MonoBehaviour
     {
         pos = new Vector3(x - ((float)(width - 1) / 2), 0, y - (float)(height - 1) / 2);
     }
+    
+    public bool CheckIfTileIsFree(int x, int y)
+    {
+        return mapArray[x, y].PiecePlaced;
+    }
 }
