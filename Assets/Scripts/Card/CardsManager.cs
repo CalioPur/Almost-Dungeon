@@ -197,11 +197,11 @@ public class CardsManager : MonoBehaviour
         }
     }
 
-    private void RotateSelection(int direction)
+    private void RotateSelection(bool direction)
     {
         if (selectedCard != null)
         {
-            selectedCard.GetImage().transform.Rotate(0, 0, 90 * direction);
+            selectedCard.GetImage().transform.Rotate(0, 0, 90 * (direction ? 1 : -1) );
             selectedCard.Card.AddRotation(direction);
         }
     }
@@ -210,11 +210,11 @@ public class CardsManager : MonoBehaviour
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            RotateSelection(1);
+            RotateSelection(true);
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            RotateSelection(-1);
+            RotateSelection(false);
         }
     }
 }
