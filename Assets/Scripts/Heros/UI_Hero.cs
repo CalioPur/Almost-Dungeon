@@ -15,6 +15,7 @@ public class UI_Hero : MonoBehaviour
     public GameObject ItemBar;
     public GameObject itemsPrefab;
     public GameObject endGamePanel;
+    public TMP_Text endGameText;
     List<UI_HeroItem> items = new();
     public string[] itemNamesChoices;
     
@@ -143,11 +144,15 @@ public class UI_Hero : MonoBehaviour
 
     void EndGame(bool win)
     {
+        Time.timeScale = 0;
+        endGameText.text = win ? "You Win !" : "You Lose !";
+        endGamePanel.SetActive(true);
         
     }
 
     void LoseGame()
     {
+        OnEndGameEvent?.Invoke(false);
     }
     
 
@@ -155,7 +160,8 @@ public class UI_Hero : MonoBehaviour
     {
         DrawHearts();
         DrawItems();
-        Hero.OnMovedOnEmptyCardEventEvent += () => EndGame(false);
+        Hero.OnMovedOnEmptyCardEvent += LoseGame;
+        OnEndGameEvent+= EndGame;
         
         //test hero data
         HeroData heroData = new HeroData();

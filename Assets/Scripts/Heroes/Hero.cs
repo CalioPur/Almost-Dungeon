@@ -4,13 +4,11 @@ using DG.Tweening;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
-{
-    public static event Action OnMovedOnEmptyCardEventEvent;
-    
+{    
     public int indexHeroX { get; private set; }
     public int indexHeroY { get; private set; }
     public MapManager mapManager { get; private set; }
-    
+    public static event Action OnMovedOnEmptyCardEvent;
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private SimpleHeroBT bt;
