@@ -5,41 +5,51 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    
     public static event Action OnMovedOnEmptyCardEventEvent;
+    
+    public int indexHeroX { get; private set; }
+    public int indexHeroY { get; private set; }
+    public MapManager mapManager { get; private set; }
+    
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
-    
-    public int indexHeroX;
-    public int indexHeroY;
-    private MapManager mapManager;
+    [SerializeField] private SimpleHeroBT bt;
+
     private HeroInstance info;
-    
-    IEnumerator Move()
+
+    public void Move(DirectionToMove directionToMove)
     {
-        yield return new WaitForSeconds(5f);
+        Vector3 pos = Vector3.zero;
+        switch (directionToMove)
+        {
+            case DirectionToMove.Up:
+                mapManager.GetWorldPosFromTilePos(indexHeroX, indexHeroY + 1, out pos);
+                indexHeroY++;
+                break;
+            case DirectionToMove.Down:
+                mapManager.GetWorldPosFromTilePos(indexHeroX, indexHeroY - 1, out pos);
+                indexHeroY--;
+                break;
+            case DirectionToMove.Left:
+                mapManager.GetWorldPosFromTilePos(indexHeroX - 1, indexHeroY, out pos);
+                indexHeroX--;
+                break;
+            case DirectionToMove.Right:
+                mapManager.GetWorldPosFromTilePos(indexHeroX + 1, indexHeroY, out pos);
+                indexHeroX++;
+                break;
+        }
+
+        heroTr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
         
-        
-        StartCoroutine(Move());
     }
-    
+
     void OnTick(int currentDivision)
     {
         if (currentDivision == 0)
         {
-            Vector3 pos;
-
-            if (mapManager.CheckIfTileIsFree(indexHeroX + 1, indexHeroY))
-            {
-                indexHeroX++;
-                mapManager.GetWorldPosFromTilePos(indexHeroX, indexHeroY, out pos);
-                heroTr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
-            }
-            else
-            {
-                
-                OnMovedOnEmptyCardEventEvent?.Invoke();
-            }
+            if (!bt) return;
+            bt.getOrigin().Evaluate(bt.getOrigin());
         }
     }
 
@@ -51,6 +61,10 @@ public class Hero : MonoBehaviour
         info = instance;
         Sprite.sprite = info.So.Img;
         TickManager.OnTick += OnTick;
-        //StartCoroutine(Move());
+    }
+
+    public void OutOfMap()
+    {
+        OnMovedOnEmptyCardEventEvent?.Invoke();
     }
 }

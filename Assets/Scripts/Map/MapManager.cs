@@ -8,8 +8,9 @@ using Random = UnityEngine.Random;
 public class MapManager : MonoBehaviour
 {
     public static event Action<TileData, CardHand, bool> OnCardTryToPlaceEvent;
+    public int width;
+    public int height;
 
-    [SerializeField] private int width, height;
     [SerializeField] private GameObject walls, floor;
     [SerializeField] private Transform map;
     [SerializeField] private CardInfo[] cards;
@@ -118,7 +119,7 @@ public class MapManager : MonoBehaviour
         return true;
     }
 
-    public TileData GetTileData(int x, int y)
+    public TileData GetTileDataAtPosition(int x, int y)
     {
         return mapArray[x, y];
     }
@@ -137,4 +138,5 @@ public class MapManager : MonoBehaviour
     {
         return mapArray[x, y].PiecePlaced;
     }
+    
 }
