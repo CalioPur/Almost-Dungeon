@@ -6,7 +6,7 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     
-    public static event Action OnMovedOnEmptyCardEventEvent;
+    public static event Action OnMovedOnEmptyCardEvent;
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     
