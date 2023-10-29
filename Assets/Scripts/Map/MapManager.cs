@@ -42,10 +42,9 @@ public class MapManager : MonoBehaviour
 
         CardsManager.OnCardTryToPlaceEvent += CheckCardPos;
 
-        AddRandomCard();
     }
 
-    private void AddRandomCard()
+    public void AddRandomCard()
     {
         for (int i = 0; i < 5; i++)
         {
@@ -56,10 +55,6 @@ public class MapManager : MonoBehaviour
             {
                 cardInstance.AddRotation(true);
             }
-
-            //Oui(cardInstance , i + 1, 2);
-            //Oui(cardInstance , 5 - i, 2);
-            //Oui(cardInstance , 4, i);
             Oui(cardInstance);
         }
     }
