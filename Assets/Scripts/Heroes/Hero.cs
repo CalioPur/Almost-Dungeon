@@ -63,6 +63,6 @@ public class Hero : MonoBehaviour
 
     public void OutOfMap()
     {
-        OnMovedOnEmptyCardEventEvent?.Invoke();
+        OnMovedOnEmptyCardEvent?.Invoke();
     }
 }
