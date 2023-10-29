@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class TickManager : MonoBehaviour
 {
+    public static event Action<int> OnTick;
+    
     [Range(60, 300)]
     public int BPM = 120;
     [Range(1, 8)]
@@ -10,7 +12,6 @@ public class TickManager : MonoBehaviour
 
     private float beatInterval;
     private float nextTickTime;
-    public event Action<int> OnTick;
 
     void Start()
     {

@@ -19,15 +19,28 @@ public class Hero : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         
-        Vector3 pos;
-        indexHeroX++;
-        mapManager.GetWorldPosFromTilePos(indexHeroX, indexHeroY, out pos);
-        heroTr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
-        if (mapManager.CheckIfTileIsFree(indexHeroX, indexHeroY))
-        {
-            OnMovedOnEmptyCardEventEvent?.Invoke();
-        }
+        
         StartCoroutine(Move());
+    }
+    
+    void OnTick(int currentDivision)
+    {
+        if (currentDivision == 0)
+        {
+            Vector3 pos;
+
+            if (mapManager.CheckIfTileIsFree(indexHeroX + 1, indexHeroY))
+            {
+                indexHeroX++;
+                mapManager.GetWorldPosFromTilePos(indexHeroX, indexHeroY, out pos);
+                heroTr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
+            }
+            else
+            {
+                
+                OnMovedOnEmptyCardEventEvent?.Invoke();
+            }
+        }
     }
 
     public void Init(HeroInstance instance, int _indexHeroX, int _indexHeroY, MapManager manager)
@@ -37,6 +50,7 @@ public class Hero : MonoBehaviour
         mapManager = manager;
         info = instance;
         Sprite.sprite = info.So.Img;
-        StartCoroutine(Move());
+        TickManager.OnTick += OnTick;
+        //StartCoroutine(Move());
     }
 }

@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private List<HeroesInfo> heroesInfos;
-
+    [Header("Managers")]
     [SerializeField] private MapManager mapManager;
-
+    [SerializeField] private TickManager tick;
+    
+    [Header("Data")]
+    [SerializeField] private List<HeroesInfo> heroesInfos;
     [SerializeField] private CardInfo enterDungeonInfo;
     [SerializeField] private Hero heroRenderer;
 
