@@ -38,7 +38,7 @@ public class Hero : MonoBehaviour
             else
             {
                 
-                OnMovedOnEmptyCardEventEvent?.Invoke();
+                OnMovedOnEmptyCardEvent?.Invoke();
             }
         }
     }
