@@ -42,10 +42,10 @@ public class MapManager : MonoBehaviour
         }
         CardsManager.OnCardTryToPlaceEvent += CheckCardPos;
         
-        AddRandomCard();
+        //AddRandomCard();
     }
     
-    private void AddRandomCard()
+    public void AddRandomCard()
     {
         for (int i = 0; i < 5; i++)
         {
@@ -128,4 +128,8 @@ public class MapManager : MonoBehaviour
         pos = new Vector3(x-((float)(width-1)/2),0,y- (float)(height-1)/2);
     }
     
+    public bool CheckIfTileIsFree(int x, int y)
+    {
+        return !mapArray[x, y].PiecePlaced;
+    }
 }
