@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 
 public class UI_Hero : MonoBehaviour
 {
+    public static event Action<bool> OnEndGameEvent;
+    
     public GameObject healthBar;
     public GameObject heartPrefab;
     List<UI_HeroHeart> hearts = new();
 
     public GameObject ItemBar;
     public GameObject itemsPrefab;
+    public GameObject endGamePanel;
     List<UI_HeroItem> items = new();
     public string[] itemNamesChoices;
     
@@ -27,11 +31,19 @@ public class UI_Hero : MonoBehaviour
     private float timeLeft = 0f;
 
     #region Health
+    
+    
 
     public void DrawHearts()
     {
         DestroyAllHearts();
 
+        if (currentHealth <= 0)
+        {
+            OnEndGameEvent?.Invoke(true);
+        }
+            
+        
         float maxHealthRemainder = playerHealth % 2;
         int maxHealth = (int)((playerHealth / 2) + maxHealthRemainder);
         for (int i = 0; i < maxHealth; i++)
@@ -128,12 +140,22 @@ public class UI_Hero : MonoBehaviour
     {
         timeLeftBeforeNextMove.text = time.ToString("0.0");
     }
+
+    void EndGame(bool win)
+    {
+        
+    }
+
+    void LoseGame()
+    {
+    }
     
+
     private void Start()
     {
         DrawHearts();
         DrawItems();
-        
+        Hero.OnMovedOnEmptyCardEventEvent += () => EndGame(false);
         
         //test hero data
         HeroData heroData = new HeroData();

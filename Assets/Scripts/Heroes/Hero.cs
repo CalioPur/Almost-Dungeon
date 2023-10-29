@@ -1,24 +1,32 @@
 using System.Collections;
-using System.Collections.Generic;
+using System;
 using DG.Tweening;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
+    
+    public static event Action OnMovedOnEmptyCardEventEvent;
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     
-    private int indexHeroX;
-    private int indexHeroY;
+    public int indexHeroX;
+    public int indexHeroY;
     private MapManager mapManager;
     private HeroInstance info;
     
     IEnumerator Move()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(5f);
+        
         Vector3 pos;
-        mapManager.GetWorldPosFromTilePos(indexHeroX + 1, indexHeroY, out pos);
+        indexHeroX++;
+        mapManager.GetWorldPosFromTilePos(indexHeroX, indexHeroY, out pos);
         heroTr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
+        if (mapManager.CheckIfTileIsFree(indexHeroX, indexHeroY))
+        {
+            OnMovedOnEmptyCardEventEvent?.Invoke();
+        }
         StartCoroutine(Move());
     }
 

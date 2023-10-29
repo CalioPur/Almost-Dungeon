@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         int indexHeroY;
         mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), out pos, out indexHeroX, _y: out indexHeroY);
         pos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
-        
+        mapManager.AddRandomCard();
         int randomHero = Random.Range(0, heroesInfos.Count);
         HeroInstance current = heroesInfos[randomHero].CreateInstance();
         
