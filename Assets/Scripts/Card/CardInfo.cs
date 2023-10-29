@@ -45,15 +45,16 @@ public class CardInfoInstance
         DoorOnRight = info.DoorOnRight;
     }
     
-    public void AddRotation(int direction)
+    public void AddRotation(bool NotClockwise)
     {
-        Rotation += 90 * direction;
+        Rotation += 90 * (NotClockwise ? 1 : -1);
         if (Rotation < 0) Rotation = 270;
         if (Rotation >= 360) Rotation = 0;
 
         bool Tmp = DoorOnTop; // counter-clockwise rotation
 
-        if (direction > 0)
+        
+        if (NotClockwise)
         {
             DoorOnTop = DoorOnRight;
             DoorOnRight = DoorOnBottom;

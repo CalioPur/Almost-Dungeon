@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,4 +40,14 @@ public class TileData : MonoBehaviour
         img.sprite = _instance.So.img;
         transform.rotation = Quaternion.Euler(90, 0, _instance.Rotation);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        if (hasDoorUp) Gizmos.DrawLine(transform.position, transform.position + Vector3.forward * 0.3f);
+        if (hasDoorRight) Gizmos.DrawLine(transform.position, transform.position + Vector3.right* 0.3f);
+        if (hasDoorDown) Gizmos.DrawLine(transform.position, transform.position + Vector3.back* 0.3f);
+        if (hasDoorLeft) Gizmos.DrawLine(transform.position, transform.position + Vector3.left* 0.3f);
+    }
 }
+
