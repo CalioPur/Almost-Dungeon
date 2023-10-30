@@ -4,9 +4,10 @@ using DG.Tweening;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
-{    
+{
     public int indexHeroX { get; private set; }
     public int indexHeroY { get; private set; }
+    private int entityId;
     public MapManager mapManager { get; private set; }
     public static event Action OnMovedOnEmptyCardEvent;
     [SerializeField] private Transform heroTr;
@@ -39,36 +40,39 @@ public class Hero : MonoBehaviour
         }
 
         heroTr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
-        
     }
 
-    void OnTick(int currentDivision)
+    void OnTick()
     {
-        if (currentDivision == 0)
-        {
-            if (!bt) return;
-            bt.getOrigin().Evaluate(bt.getOrigin());
-        }
+        if (!bt) return;
+        bt.getOrigin().Evaluate(bt.getOrigin());
     }
+    
 
     public void Init(HeroInstance instance, int _indexHeroX, int _indexHeroY, MapManager manager)
     {
         indexHeroX = _indexHeroX;
         indexHeroY = _indexHeroY;
         mapManager = manager;
+        entityId = GetHashCode();
         info = instance;
         Sprite.sprite = info.So.Img;
         StartCoroutine(WaitForBeginToMove());
     }
-    
+
     private IEnumerator WaitForBeginToMove()
     {
         yield return new WaitForSeconds(info.So.delayBeginToMove);
-        TickManager.OnTick += OnTick;
+        TickManager.SubscribeToMovementEvent(MovementType.Hero, OnTick, entityId);
     }
 
     public void OutOfMap()
     {
         OnMovedOnEmptyCardEvent?.Invoke();
+    }
+    
+    private void OnDestroy()
+    {
+        TickManager.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
     }
 }
