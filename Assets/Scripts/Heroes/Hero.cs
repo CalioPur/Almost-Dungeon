@@ -58,6 +58,12 @@ public class Hero : MonoBehaviour
         mapManager = manager;
         info = instance;
         Sprite.sprite = info.So.Img;
+        StartCoroutine(WaitForBeginToMove());
+    }
+    
+    private IEnumerator WaitForBeginToMove()
+    {
+        yield return new WaitForSeconds(info.So.delayBeginToMove);
         TickManager.OnTick += OnTick;
     }
 
