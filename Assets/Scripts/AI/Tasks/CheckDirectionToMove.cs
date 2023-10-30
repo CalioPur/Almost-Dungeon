@@ -105,7 +105,9 @@ public class CheckDirectionToMove : Node
                 possibleDirections.Remove(oldDirectionToMove);
             }
             
+            
             blackboard.directionToMove = possibleDirections[Random.Range(0, possibleDirections.Count)];
+            oldDirectionToMove = blackboard.directionToMove;
             return NodeState.Success;
         }
     }
