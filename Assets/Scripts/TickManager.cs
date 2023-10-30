@@ -86,19 +86,22 @@ public class TickManager : MonoBehaviour
     }
 
 
+    int tickCount = 0;
+
     MovementType GetMovementTypeFromDivision()
     {
-        int currentDivision = (int)((Time.time - nextTickTime + beatInterval) / beatInterval) % 3;
-        switch (currentDivision)
+        tickCount++;
+
+        switch (tickCount % 3)
         {
-            case 0:
-                return MovementType.Trap;
             case 1:
-                return MovementType.Hero;
+                return MovementType.Trap;
             case 2:
+                return MovementType.Hero;
+            case 0:
                 return MovementType.Monster;
             default:
-                return MovementType.Trap; 
+                throw new InvalidOperationException("Invalid tick count.");
         }
     }
 }
