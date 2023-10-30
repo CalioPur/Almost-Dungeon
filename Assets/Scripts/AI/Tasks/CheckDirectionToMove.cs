@@ -14,16 +14,32 @@ public class CheckDirectionToMove : Node
     {
         blackboard = _blackboard;
     }
+    
+    private DirectionToMove ReverseDirection(DirectionToMove direction)
+    {
+        switch (direction)
+        {
+            case DirectionToMove.Up:
+                return DirectionToMove.Down;
+            case DirectionToMove.Down:
+                return DirectionToMove.Up;
+            case DirectionToMove.Left:
+                return DirectionToMove.Right;
+            case DirectionToMove.Right:
+                return DirectionToMove.Left;
+            default:
+                return DirectionToMove.None;
+        }
+    }
 
     public override NodeState Evaluate(Node root)
     {
         blackboard.directionToMove = DirectionToMove.None;
         
         List<DirectionToMove> possibleDirections = new List<DirectionToMove>();
-        //check dans quelle direction le joueur peut aller
-        
         TileData currentTile = blackboard.hero.mapManager.GetTileDataAtPosition(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY);
         TileData NextData = null;
+        
         if (currentTile == null)
         {
             blackboard.hero.OutOfMap();
@@ -100,11 +116,18 @@ public class CheckDirectionToMove : Node
         }
         else
         {// il prend une direction au hasard MAIS il ne peut pas prendre la direction inverse de celle qu'il a pris avant si il y a d'autres directions possibles
-            if (possibleDirections.Contains(oldDirectionToMove) && possibleDirections.Count > 1)
+            if (possibleDirections.Contains(ReverseDirection(oldDirectionToMove)) && possibleDirections.Count > 1)
             {
                 possibleDirections.Remove(oldDirectionToMove);
             }
             
+            
+            string s = "";
+            foreach (DirectionToMove direction in possibleDirections)
+            {
+                s += direction + " ";
+            }
+            Debug.Log(s);
             
             blackboard.directionToMove = possibleDirections[Random.Range(0, possibleDirections.Count)];
             oldDirectionToMove = blackboard.directionToMove;
