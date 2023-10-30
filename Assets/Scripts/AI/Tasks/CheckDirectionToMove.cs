@@ -43,7 +43,7 @@ public class CheckDirectionToMove : Node
         if (currentTile == null)
         {
             blackboard.hero.OutOfMap();
-            return NodeState.Failure;
+            return NodeState.Success;
         }
         
         if (currentTile.hasDoorRight && blackboard.hero.indexHeroX + 1 < blackboard.hero.mapManager.width - 2)
@@ -62,7 +62,7 @@ public class CheckDirectionToMove : Node
                 possibleDirections.Add(DirectionToMove.Right);
             }
         }
-        if (currentTile.hasDoorLeft && blackboard.hero.indexHeroX - 1 > 0)
+        if (currentTile.hasDoorLeft && blackboard.hero.indexHeroX - 1 >= 0)
         {
             NextData =
                 blackboard.hero.mapManager.GetTileDataAtPosition(blackboard.hero.indexHeroX - 1,
@@ -93,7 +93,7 @@ public class CheckDirectionToMove : Node
                 possibleDirections.Add(DirectionToMove.Up);
             }
         }
-        if (currentTile.hasDoorDown && blackboard.hero.indexHeroY - 1 > 0)
+        if (currentTile.hasDoorDown && blackboard.hero.indexHeroY - 1 >= 0)
         {
             NextData =
                 blackboard.hero.mapManager.GetTileDataAtPosition(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY - 1);
@@ -112,13 +112,13 @@ public class CheckDirectionToMove : Node
         if (possibleDirections.Count == 0)
         {
             blackboard.hero.OutOfMap();
-            return NodeState.Failure;
+            return NodeState.Success;
         }
         else
         {// il prend une direction au hasard MAIS il ne peut pas prendre la direction inverse de celle qu'il a pris avant si il y a d'autres directions possibles
             if (possibleDirections.Contains(ReverseDirection(oldDirectionToMove)) && possibleDirections.Count > 1)
             {
-                possibleDirections.Remove(oldDirectionToMove);
+                possibleDirections.Remove(ReverseDirection(oldDirectionToMove));
             }
             
             
