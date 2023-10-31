@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0c0899738f3ba47b772f3f4785c1d3, type: 3}
   m_Name: BasicHero
   m_EditorClassIdentifier: 
-  <Img>k__BackingField: {fileID: 21300000, guid: baab805eb58d5d247be73519363de10c,
+  <Img>k__BackingField: {fileID: 21300000, guid: 183aabf4ecefaf14c8aadd30cce0cabe,
     type: 3}
   <HealthPoint>k__BackingField: 0
   <AttackPoint>k__BackingField: 0
