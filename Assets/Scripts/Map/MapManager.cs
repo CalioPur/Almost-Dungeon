@@ -56,16 +56,16 @@ public class MapManager : MonoBehaviour
             {
                 cardInstance.AddRotation(true);
             }
-            Oui(cardInstance);
+            checkTileToManipulateRandomPosition(cardInstance);
         }
     }
 
-    private void Oui(CardInfoInstance cardInstance)
+    private void checkTileToManipulateRandomPosition(CardInfoInstance cardInstance)
     {
         int x = Random.Range(1, width - 3);
         int y = Random.Range(1, height - 3);
 
-        if (!CheckPosWithPosition(x, y, cardInstance)) Oui(cardInstance);
+        if (!CheckPosWithPosition(x, y, cardInstance)) checkTileToManipulateRandomPosition(cardInstance);
         else SetTileAtPosition(cardInstance, x, y);
     }
 
