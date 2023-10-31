@@ -121,14 +121,6 @@ public class CheckDirectionToMove : Node
                 possibleDirections.Remove(ReverseDirection(oldDirectionToMove));
             }
             
-            
-            string s = "";
-            foreach (DirectionToMove direction in possibleDirections)
-            {
-                s += direction + " ";
-            }
-            Debug.Log(s);
-            
             blackboard.directionToMove = possibleDirections[Random.Range(0, possibleDirections.Count)];
             oldDirectionToMove = blackboard.directionToMove;
             return NodeState.Success;
