@@ -11,6 +11,8 @@ public class TileData : MonoBehaviour
     public bool hasDoorRight => _instance?.DoorOnRight ?? false;
     public bool hasDoorDown => _instance?.DoorOnBottom ?? false;
     public bool hasDoorLeft => _instance?.DoorOnLeft ?? false;
+    
+    public bool isConnectedToPath = false;
 
     [Header("Occupation")]
     public bool isPlayerhere = false;
@@ -50,5 +52,6 @@ public class TileData : MonoBehaviour
         if (hasDoorDown) Gizmos.DrawLine(transform.position, transform.position + Vector3.back* 0.3f);
         if (hasDoorLeft) Gizmos.DrawLine(transform.position, transform.position + Vector3.left* 0.3f);
     }
+
 }
 

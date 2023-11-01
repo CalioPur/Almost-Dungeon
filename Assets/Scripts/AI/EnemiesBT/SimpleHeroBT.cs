@@ -11,6 +11,11 @@ public class SimpleHeroBT : BehaviourTree.Tree
         if (!BB) Debug.LogError("Blackboard is null");
         
         origin = new Selector(
+            /*,
+            new Sequence(
+                new CanAttack(),
+                new AttackCaC()
+            ),*/
             new Sequence(
                 new FindMinionInCaC(BB),
                 new ChooseTargetToHitOnCaC(BB),

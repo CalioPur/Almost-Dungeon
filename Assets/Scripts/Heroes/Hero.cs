@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
+    public static event Action<Vector2Int> OnGivePosBackEvent;
+    public static event Action OnMovedOnEmptyCardEvent;
     public int indexHeroX { get; set; }
     public int indexHeroY { get; set; }
     private int entityId;
     public MapManager mapManager { get; private set; }
     public bool isDead { get; set; }
     public HeroInstance info{ get; private set; }
-
     public static event Action OnMovedOnEmptyCardEvent;
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
@@ -37,13 +38,17 @@ public class Hero : MonoBehaviour
         mapManager = manager;
         entityId = GetHashCode();
         info = instance;
+
+        MinionData.OnHeroMoved += SendPos;
         Sprite.sprite = info.So.Img;
-        StartCoroutine(WaitForBeginToMove());
+    }
+    private void SendPos()
+    {
+        OnGivePosBackEvent?.Invoke(new Vector2Int(indexHeroX, indexHeroY));
     }
 
-    private IEnumerator WaitForBeginToMove()
+    private void OnBeginToMove()
     {
-        yield return new WaitForSeconds(info.So.delayBeginToMove);
         TickManager.SubscribeToMovementEvent(MovementType.Hero, OnTick, entityId);
     }
 
@@ -55,6 +60,7 @@ public class Hero : MonoBehaviour
     private void OnDestroy()
     {
         TickManager.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
+        GameManager.OnBeginToMoveEvent -= OnBeginToMove;
     }
 
     public void TakeDamage(int soAttackPoint)
@@ -65,5 +71,10 @@ public class Hero : MonoBehaviour
             isDead = true;
             //TODO: t'as gagne bg :*
         }
+    }
+
+    private void Start()
+    {
+        GameManager.OnBeginToMoveEvent += OnBeginToMove;
     }
 }

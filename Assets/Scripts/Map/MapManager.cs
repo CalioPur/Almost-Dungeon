@@ -42,7 +42,6 @@ public class MapManager : MonoBehaviour
         }
 
         CardsManager.OnCardTryToPlaceEvent += CheckCardPos;
-
     }
 
     public void AddRandomCard()
@@ -56,6 +55,7 @@ public class MapManager : MonoBehaviour
             {
                 cardInstance.AddRotation(true);
             }
+
             checkTileToManipulateRandomPosition(cardInstance);
         }
     }
@@ -74,6 +74,21 @@ public class MapManager : MonoBehaviour
         bool canBePlaced = true;
         canBePlaced = CheckPosWithData(data, card);
         OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
+        for (int i = 0; i < width - 2; i++)
+        {
+            for (int j = 0; j < height - 2; j++)
+            {
+                if (mapArray[i, j].isConnectedToPath) continue;
+                if (i > 0 && mapArray[i - 1, j].isConnectedToPath && mapArray[i, j].hasDoorLeft)
+                    mapArray[i, j].isConnectedToPath = true;
+                if (i < width - 3 && mapArray[i + 1, j].isConnectedToPath && mapArray[i, j].hasDoorRight)
+                    mapArray[i, j].isConnectedToPath = true;
+                if (j > 0 && mapArray[i, j - 1].isConnectedToPath && mapArray[i, j].hasDoorDown)
+                    mapArray[i, j].isConnectedToPath = true;
+                if (j < height - 3 && mapArray[i, j + 1].isConnectedToPath && mapArray[i, j].hasDoorUp)
+                    mapArray[i, j].isConnectedToPath = true;
+            }
+        }
     }
 
     public void InitEnterDungeon(CardInfoInstance card, out Vector3 pos, out int _x, out int _y)
@@ -81,6 +96,7 @@ public class MapManager : MonoBehaviour
         int y = Random.Range(0, height - 2);
 
         SetTileAtPosition(card, 0, y);
+        mapArray[0, y].isConnectedToPath = true;
 
         GetWorldPosFromTilePos(0, y, out pos);
         _x = 0;
@@ -134,10 +150,26 @@ public class MapManager : MonoBehaviour
     {
         pos = new Vector3(x - ((float)(width - 1) / 2), 0, y - (float)(height - 1) / 2);
     }
-    
+
     public bool CheckIfTileIsFree(int x, int y)
     {
         return mapArray[x, y].PiecePlaced;
+    }
+
+    void Update()
+    {
+        //debug the tile that are connected to the path with a red line that goes up
+        for (int i = 0; i < width - 2; i++)
+        {
+            for (int j = 0; j < height - 2; j++)
+            {
+                if (mapArray[i, j].isConnectedToPath)
+                {
+                    Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+                        Color.red);
+                }
+            }
+        }
     }
     
     public void GetNbMonstersOnPos(Vector2Int pos, out List<Hero> nbLil, out List<Hero> nbBig, out List<Hero> nbArcher)
@@ -149,3 +181,15 @@ public class MapManager : MonoBehaviour
     }
     
 }
+
+// for (int i = 0; i < width - 2; i++)
+// {
+//     for (int j = 0; j < height - 2; j++)
+//     {
+//         if (mapArray[i, j].isConnectedToPath) continue;
+//         if (i > 0 && mapArray[i - 1, j].isConnectedToPath && mapArray[i, j].hasDoorLeft) mapArray[i, j].isConnectedToPath = true;
+//         if (i < width - 3 && mapArray[i + 1, j].isConnectedToPath && mapArray[i, j].hasDoorRight) mapArray[i, j].isConnectedToPath = true;
+//         if (j > 0 && mapArray[i, j - 1].isConnectedToPath && mapArray[i, j].hasDoorDown) mapArray[i, j].isConnectedToPath = true;
+//         if (j < height - 3 && mapArray[i, j + 1].isConnectedToPath && mapArray[i, j].hasDoorUp) mapArray[i, j].isConnectedToPath = true;
+//     }
+// }
