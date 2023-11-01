@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
+    public static event Action<Vector2Int> OnGivePosBackEvent;
+    public static event Action OnMovedOnEmptyCardEvent;
+
     public int indexHeroX { get; private set; }
     public int indexHeroY { get; private set; }
+    
     private int entityId;
     public MapManager mapManager { get; private set; }
-    public static event Action OnMovedOnEmptyCardEvent;
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private SimpleHeroBT bt;
@@ -56,7 +59,12 @@ public class Hero : MonoBehaviour
         mapManager = manager;
         entityId = GetHashCode();
         info = instance;
-        Sprite.sprite = info.So.Img;
+
+        MinionData.OnHeroMoved += SendPos;
+    }
+    private void SendPos()
+    {
+        OnGivePosBackEvent?.Invoke(new Vector2Int(indexHeroX, indexHeroY));
     }
 
     private void OnBeginToMove()
