@@ -20,7 +20,7 @@ public class CheckDeplacement : Node
         switch (d)
         {
             case DirectionToMove.Up:
-                while(y<=blackboard.heroPosition.y && map.GetTileDataAtPosition(x,y).hasDoorUp)
+                while(y<=blackboard.heroPosition.y && map.GetTileDataAtPosition(x,y).hasDoorUp && map.GetTileDataAtPosition(x,y).PiecePlaced)
                 {
                     y++;
                     if(blackboard.heroPosition.y == y)
@@ -30,7 +30,7 @@ public class CheckDeplacement : Node
                 }
                 break;
             case DirectionToMove.Right:
-                while(x<=blackboard.heroPosition.x && map.GetTileDataAtPosition(x,y).hasDoorRight)
+                while(x<=blackboard.heroPosition.x && map.GetTileDataAtPosition(x,y).hasDoorRight && map.GetTileDataAtPosition(x,y).PiecePlaced)
                 {
                     x++;
                     if(blackboard.heroPosition.x == x)
@@ -40,7 +40,7 @@ public class CheckDeplacement : Node
                 }
                 break;
             case DirectionToMove.Down:
-                while(y>=blackboard.heroPosition.y && map.GetTileDataAtPosition(x,y).hasDoorDown)
+                while(y>=blackboard.heroPosition.y && map.GetTileDataAtPosition(x,y).hasDoorDown && map.GetTileDataAtPosition(x,y).PiecePlaced)
                 {
                     y--;
                     if(blackboard.heroPosition.y == y)
@@ -50,7 +50,7 @@ public class CheckDeplacement : Node
                 }
                 break;
             case DirectionToMove.Left:
-                while (x >= blackboard.heroPosition.x && map.GetTileDataAtPosition(x, y).hasDoorLeft)
+                while (x >= blackboard.heroPosition.x && map.GetTileDataAtPosition(x, y).hasDoorLeft && map.GetTileDataAtPosition(x,y).PiecePlaced)
                 {
                     x--;
                     if(blackboard.heroPosition.x == x)
