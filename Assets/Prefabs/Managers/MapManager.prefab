@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745eaeaf008ed954cb88c107330f4aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 8
-  height: 6
+  width: 7
+  height: 5
   walls: {fileID: 1939014474319430147, guid: ee719a99b03afff4f9514a6ef204cf63, type: 3}
   floor: {fileID: 8744462414812450706, guid: 7299b39184eadc94eafb4cf0320a193c, type: 3}
   map: {fileID: 0}

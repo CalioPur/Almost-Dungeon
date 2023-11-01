@@ -1,24 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using BehaviourTree;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public class GetHeroPos : Node
+public class MoveToHero : Node
 {
-    
     private MinionBlackboard blackboard;
-    
-    
-    public GetHeroPos(MinionBlackboard blackboard)
+    public MoveToHero(MinionBlackboard blackboard)
     {
         this.blackboard = blackboard;
     }
     
     public override NodeState Evaluate(Node root)
     {
-        blackboard.GetHeroPos();
+        if (blackboard.dir == DirectionToMove.None)
+            return NodeState.Success;
+        
+        blackboard.minionData.Move(blackboard.dir);
         return NodeState.Success;
     }
-
 }

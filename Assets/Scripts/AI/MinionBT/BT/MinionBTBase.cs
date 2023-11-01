@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class MinionBTBase : BehaviourTree.Tree
 {
-    [SerializeField] protected MinionBlackboard blackboard;
+    public MinionBlackboard blackboard;
     
 }
