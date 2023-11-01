@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 5242026796885018233}
   - component: {fileID: 3666571859102276325}
   - component: {fileID: 4773831233471019254}
-  - component: {fileID: 3710681369475904476}
+  - component: {fileID: 1636573392929660682}
+  - component: {fileID: -4941691768216947425}
   m_Layer: 0
   m_Name: minion
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3487245091449332422}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 500.34, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -98,10 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa3cbecc97385e4ca0fc914c29ac63d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionTransform: {fileID: 5242026796885018233}
-  Sprite: {fileID: 3666571859102276325}
-  bt: {fileID: 3710681369475904476}
---- !u!114 &3710681369475904476
+  tr: {fileID: 5242026796885018233}
+  sprite: {fileID: 3666571859102276325}
+  bt: {fileID: 1636573392929660682}
+  minionSO: {fileID: 11400000, guid: 5b7ab11a861869b4f904b7f28cdb8747, type: 2}
+--- !u!114 &1636573392929660682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,6 +112,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 3487245091449332422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ab13e4066407264ca2dc8204ff814a9, type: 3}
+  m_Script: {fileID: 11500000, guid: bd39a81849f0c194199bf4af61631784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blackboard: {fileID: -4941691768216947425}
+--- !u!114 &-4941691768216947425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487245091449332422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611e99f6f8751734f8992e7d3e675755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minionData: {fileID: 4773831233471019254}
+  heroPosition: {x: 0, y: 0}
