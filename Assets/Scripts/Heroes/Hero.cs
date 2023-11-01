@@ -13,7 +13,6 @@ public class Hero : MonoBehaviour
     public MapManager mapManager { get; private set; }
     public bool isDead { get; set; }
     public HeroInstance info{ get; private set; }
-    public static event Action OnMovedOnEmptyCardEvent;
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private SimpleHeroBT bt;

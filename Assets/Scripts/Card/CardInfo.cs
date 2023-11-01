@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "CardInfo", menuName = "ScriptableObjects/CardInfo", order = 1)]
 public class CardInfo : ScriptableObject
 {
-    public Sprite img;
+    [FormerlySerializedAs("img")] public Sprite imgOnHand;
+    [FormerlySerializedAs("img")] public Sprite imgOnMap;
     public int nbToBuild;
+    public int nbMinionOnCard;
     public bool DoorOnTop;
     public bool DoorOnBottom;
     public bool DoorOnLeft;

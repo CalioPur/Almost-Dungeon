@@ -172,14 +172,23 @@ public class MapManager : MonoBehaviour
         }
     }
     
-    public void GetNbMonstersOnPos(Vector2Int pos, out List<Hero> nbLil, out List<Hero> nbBig, out List<Hero> nbArcher)
+    public void GetNbMonstersOnPos(Vector2Int pos, out List<MinionData> minions)
     {
         TileData data = GetTileDataAtPosition(pos.x, pos.y);
-        nbLil = data.lilMinions;
-        nbBig = data.bigMinion;
-        nbArcher = data.archerMinion;
+        minions = data.minions;
     }
-    
+
+    public void RemoveMinionOnTile(Vector2Int vector2Int, MinionData minionData)
+    {
+        TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
+        data.minions.Remove(minionData);
+    }
+
+    public void AddMinionOnTile(Vector2Int vector2Int, MinionData minionData)
+    {
+        TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
+        data.minions.Add(minionData);
+    }
 }
 
 // for (int i = 0; i < width - 2; i++)
