@@ -12,14 +12,16 @@ public class SimpleHeroBT : BehaviourTree.Tree
         
         origin = new Selector(
             new Sequence(
+                new FindMinionInCaC(BB),
+                new ChooseTargetToHitOnCaC(BB),
+                new AttackMinionOnCaC(BB),
+                new CheckTargetIsAlive(BB)
+            ),
+            new Sequence(
                 new CheckDirectionToMove(BB),
                 new MoveToDestination(BB),
                 new CheckPlayerOutOfMap(BB)
-            )/*,
-            new Sequence(
-                new CanAttack(),
-                new AttackCaC()
-            )*/
+            )
         );
         return origin;
     }

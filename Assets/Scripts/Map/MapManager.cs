@@ -121,6 +121,7 @@ public class MapManager : MonoBehaviour
 
     public TileData GetTileDataAtPosition(int x, int y)
     {
+        if (x >= width - 2 || y >= height - 2 || x < 0 || y < 0) return null;
         return mapArray[x, y];
     }
 
@@ -137,6 +138,14 @@ public class MapManager : MonoBehaviour
     public bool CheckIfTileIsFree(int x, int y)
     {
         return mapArray[x, y].PiecePlaced;
+    }
+    
+    public void GetNbMonstersOnPos(Vector2Int pos, out List<Hero> nbLil, out List<Hero> nbBig, out List<Hero> nbArcher)
+    {
+        TileData data = GetTileDataAtPosition(pos.x, pos.y);
+        nbLil = data.lilMinions;
+        nbBig = data.bigMinion;
+        nbArcher = data.archerMinion;
     }
     
 }

@@ -7,4 +7,6 @@ public class HeroBlackboard : MonoBehaviour
 {
     public Hero hero;
     public DirectionToMove directionToMove = DirectionToMove.None;
+    public List<Hero> Targets = new ();
+    public Hero ChosenTarget;
 }
