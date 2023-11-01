@@ -1283,31 +1283,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6282009500607578702, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: cubeBpm
-      value: 
-      objectReference: {fileID: 1460226117}
     - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: map
       value: 
       objectReference: {fileID: 1922002201}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: width
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: height
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: testCard
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
   m_Name: LLine1Min
   m_EditorClassIdentifier: 
-  img: {fileID: 21300000, guid: bccbff68f952d5b4d92a99d6ea76355d, type: 3}
+  imgOnHand: {fileID: 21300000, guid: bccbff68f952d5b4d92a99d6ea76355d, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 3701ea7b8b9dcbb4aafd5e288181f6bc, type: 3}
   nbToBuild: 1
   nbMinionOnCard: 1
   DoorOnTop: 0
