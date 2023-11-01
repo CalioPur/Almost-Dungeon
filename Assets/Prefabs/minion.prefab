@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f6fcc72e377ac28419348d7401ddda56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,6 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa3cbecc97385e4ca0fc914c29ac63d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indexMinionX: 2
+  indexMinionY: 2
+  mapManager: {fileID: 0}
   tr: {fileID: 5242026796885018233}
   sprite: {fileID: 3666571859102276325}
   bt: {fileID: 1636573392929660682}
@@ -130,3 +133,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionData: {fileID: 4773831233471019254}
   heroPosition: {x: 0, y: 0}
+  dir: 4
