@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,18 +47,20 @@ public class MapManager : MonoBehaviour
 
     public void AddRandomCard()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            CardInfo card = cards[Random.Range(0, cards.Length)];
-            CardInfoInstance cardInstance = card.CreateInstance();
-            int nbRot = Random.Range(0, 3);
-            for (int j = 0; j < nbRot; j++)
-            {
-                cardInstance.AddRotation(true);
-            }
-
-            checkTileToManipulateRandomPosition(cardInstance);
-        }
+        // for (int i = 0; i < 5; i++)
+        // {
+        //     CardInfo card = cards[Random.Range(0, cards.Length)];
+        //     CardInfoInstance cardInstance = card.CreateInstance();
+        //     int nbRot = Random.Range(0, 3);
+        //     for (int j = 0; j < nbRot; j++)
+        //     {
+        //         cardInstance.AddRotation(true);
+        //     }
+        //
+        //     checkTileToManipulateRandomPosition(cardInstance);
+        // }
+        SetConnectedToPath();
+        SetExits();
     }
 
     private void checkTileToManipulateRandomPosition(CardInfoInstance cardInstance)
@@ -74,6 +77,55 @@ public class MapManager : MonoBehaviour
         bool canBePlaced = true;
         canBePlaced = CheckPosWithData(data, card);
         OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
+        SetConnectedToPath();
+        SetExits();
+    }
+
+    private void SetExits()
+    {
+        for (int i = 0; i < width - 2; i++)
+        {
+            for (int j = 0; j < height - 2; j++)
+            {
+                if (mapArray[i, j].isConnectedToPath)
+                {
+                    mapArray[i, j].isExit = false;
+                    if (j == 0 && mapArray[i, j].hasDoorDown)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+                    else if (mapArray[i, j].hasDoorDown && !mapArray[i, j - 1].PiecePlaced)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+                    if (j == height - 1 && mapArray[i, j].hasDoorUp)
+                    {
+                        mapArray[i, j].isExit = true;
+                    } else if (mapArray[i, j].hasDoorUp && !mapArray[i, j + 1].PiecePlaced)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+                    if (i == 0 && mapArray[i, j].hasDoorLeft)
+                    {
+                        mapArray[i, j].isExit = true;
+                    } else if (mapArray[i, j].hasDoorLeft && !mapArray[i - 1, j].PiecePlaced)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+                    if (i == width - 1 && mapArray[i, j].hasDoorRight)
+                    {
+                        mapArray[i, j].isExit = true;
+                    } else if (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+                }
+            }
+        }
+    }
+
+    private void SetConnectedToPath()
+    {
         for (int i = 0; i < width - 2; i++)
         {
             for (int j = 0; j < height - 2; j++)
@@ -92,94 +144,94 @@ public class MapManager : MonoBehaviour
     }
 
     public void InitEnterDungeon(CardInfoInstance card, out Vector3 pos, out int _x, out int _y)
-    {
-        int y = Random.Range(0, height - 2);
+{
+    int y = Random.Range(0, height - 2);
 
-        SetTileAtPosition(card, 0, y);
-        mapArray[0, y].isConnectedToPath = true;
-
-        GetWorldPosFromTilePos(0, y, out pos);
-        _x = 0;
-        _y = y;
-    }
-
-    private bool CheckPosWithData(TileData data, CardHand card)
-    {
-        for (int i = 0; i < width - 2; i++)
-        {
-            for (int j = 0; j < height - 2; j++)
-            {
-                if (mapArray[i, j] != data) continue;
-                return CheckPosWithPosition(i, j, card.Card);
-            }
-        }
-
-        return true;
-    }
-
-
-    private bool CheckPosWithPosition(int x, int y, CardInfoInstance card)
-    {
-        if (mapArray[x, y].PiecePlaced) return false;
-        bool West = x > 0 && mapArray[x - 1, y].PiecePlaced;
-        bool East = x < width - 3 && mapArray[x + 1, y].PiecePlaced;
-        bool South = y > 0 && mapArray[x, y - 1].PiecePlaced;
-        bool North = y < height - 3 && mapArray[x, y + 1].PiecePlaced;
-
-
-        if (West && mapArray[x - 1, y].hasDoorRight != card.DoorOnLeft) return false;
-        if (East && mapArray[x + 1, y].hasDoorLeft != card.DoorOnRight) return false;
-        if (South && mapArray[x, y - 1].hasDoorUp != card.DoorOnBottom) return false;
-        if (North && mapArray[x, y + 1].hasDoorDown != card.DoorOnTop) return false;
-
-        return true;
-    }
-
-    public TileData GetTileDataAtPosition(int x, int y)
-    {
-        return mapArray[x, y];
-    }
-
-    void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
-    {
-        mapArray[posX, posY].SetInstance(card);
-    }
-
-    public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos)
-    {
-        pos = new Vector3(x - ((float)(width - 1) / 2), 0, y - (float)(height - 1) / 2);
-    }
-
-    public bool CheckIfTileIsFree(int x, int y)
-    {
-        return mapArray[x, y].PiecePlaced;
-    }
-
-    void Update()
-    {
-        //debug the tile that are connected to the path with a red line that goes up
-        for (int i = 0; i < width - 2; i++)
-        {
-            for (int j = 0; j < height - 2; j++)
-            {
-                if (mapArray[i, j].isConnectedToPath)
-                {
-                    Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-                        Color.red);
-                }
-            }
-        }
-    }
+    SetTileAtPosition(card, 0, y);
+    mapArray[0, y].isConnectedToPath = true;
+    SetConnectedToPath();
+    SetExits();
+    GetWorldPosFromTilePos(0, y, out pos);
+    _x = 0;
+    _y = y;
 }
 
-// for (int i = 0; i < width - 2; i++)
+private bool CheckPosWithData(TileData data, CardHand card)
+{
+    for (int i = 0; i < width - 2; i++)
+    {
+        for (int j = 0; j < height - 2; j++)
+        {
+            if (mapArray[i, j] != data) continue;
+            return CheckPosWithPosition(i, j, card.Card);
+        }
+    }
+
+    return true;
+}
+
+
+private bool CheckPosWithPosition(int x, int y, CardInfoInstance card)
+{
+    if (mapArray[x, y].PiecePlaced) return false;
+    bool West = x > 0 && mapArray[x - 1, y].PiecePlaced;
+    bool East = x < width - 3 && mapArray[x + 1, y].PiecePlaced;
+    bool South = y > 0 && mapArray[x, y - 1].PiecePlaced;
+    bool North = y < height - 3 && mapArray[x, y + 1].PiecePlaced;
+
+
+    if (West && mapArray[x - 1, y].hasDoorRight != card.DoorOnLeft) return false;
+    if (East && mapArray[x + 1, y].hasDoorLeft != card.DoorOnRight) return false;
+    if (South && mapArray[x, y - 1].hasDoorUp != card.DoorOnBottom) return false;
+    if (North && mapArray[x, y + 1].hasDoorDown != card.DoorOnTop) return false;
+
+    return true;
+}
+
+public TileData GetTileDataAtPosition(int x, int y)
+{
+    return mapArray[x, y];
+}
+
+void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
+{
+    mapArray[posX, posY].SetInstance(card);
+}
+
+public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos)
+{
+    pos = new Vector3(x - ((float)(width - 1) / 2), 0, y - (float)(height - 1) / 2);
+}
+
+public bool CheckIfTileIsFree(int x, int y)
+{
+    return mapArray[x, y].PiecePlaced;
+}
+
+// void Update()
 // {
-//     for (int j = 0; j < height - 2; j++)
+//     //debug the tile that are connected to the path with a red line that goes up
+//     for (int i = 0; i < width - 2; i++)
 //     {
-//         if (mapArray[i, j].isConnectedToPath) continue;
-//         if (i > 0 && mapArray[i - 1, j].isConnectedToPath && mapArray[i, j].hasDoorLeft) mapArray[i, j].isConnectedToPath = true;
-//         if (i < width - 3 && mapArray[i + 1, j].isConnectedToPath && mapArray[i, j].hasDoorRight) mapArray[i, j].isConnectedToPath = true;
-//         if (j > 0 && mapArray[i, j - 1].isConnectedToPath && mapArray[i, j].hasDoorDown) mapArray[i, j].isConnectedToPath = true;
-//         if (j < height - 3 && mapArray[i, j + 1].isConnectedToPath && mapArray[i, j].hasDoorUp) mapArray[i, j].isConnectedToPath = true;
+//         for (int j = 0; j < height - 2; j++)
+//         {
+//             if (mapArray[i, j].isConnectedToPath)
+//             {
+//                 Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+//                     Color.red, 1f);
+//             }
+//     
+//             if (mapArray[i, j].isExit)
+//             {
+//                 Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+//                     Color.magenta, 1f);
+//             }
+//         }
 //     }
 // }
+
+public TileData[,] getMapArray()
+{
+    return mapArray;
+}
+}
