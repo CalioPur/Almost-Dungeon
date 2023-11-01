@@ -59,17 +59,16 @@ public class Hero : MonoBehaviour
         mapManager = manager;
         entityId = GetHashCode();
         info = instance;
-        Sprite.sprite = info.So.Img;
-        StartCoroutine(WaitForBeginToMove());
+
         MinionData.OnHeroMoved += SendPos;
     }
     private void SendPos()
     {
         OnGivePosBackEvent?.Invoke(new Vector2Int(indexHeroX, indexHeroY));
     }
-    private IEnumerator WaitForBeginToMove()
+
+    private void OnBeginToMove()
     {
-        yield return new WaitForSeconds(info.So.delayBeginToMove);
         TickManager.SubscribeToMovementEvent(MovementType.Hero, OnTick, entityId);
     }
 
@@ -81,5 +80,11 @@ public class Hero : MonoBehaviour
     private void OnDestroy()
     {
         TickManager.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
+        GameManager.OnBeginToMoveEvent -= OnBeginToMove;
+    }
+
+    private void Start()
+    {
+        GameManager.OnBeginToMoveEvent += OnBeginToMove;
     }
 }

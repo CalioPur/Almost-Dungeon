@@ -1,8 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public static Action OnBeginToMoveEvent;
+    
     [Header("Managers")]
     [SerializeField] private MapManager mapManager;
     [SerializeField] private TickManager tick;
@@ -12,9 +16,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CardInfo enterDungeonInfo;
     [SerializeField] private Hero heroRenderer;
 
+    private bool WaitForBeginToMove = true;
+
 
     void Start()
     {
+        MapManager.OnCardTryToPlaceEvent += CheckIsFirstMove; 
+        
         mapManager.InitMap();
         Vector3 pos;
         int indexHeroX;
@@ -26,5 +34,12 @@ public class GameManager : MonoBehaviour
         HeroInstance current = heroesInfos[randomHero].CreateInstance();
         
         Instantiate(heroRenderer, pos, heroRenderer.transform.rotation).Init(current, indexHeroX, indexHeroY, mapManager);
+    }
+
+    private void CheckIsFirstMove(TileData _, CardHand __, bool ___)
+    {
+        WaitForBeginToMove = false;
+        MapManager.OnCardTryToPlaceEvent -= CheckIsFirstMove;
+        OnBeginToMoveEvent?.Invoke();
     }
 }
