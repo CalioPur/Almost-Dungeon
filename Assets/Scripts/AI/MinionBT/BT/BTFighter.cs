@@ -11,9 +11,9 @@ public class BTFighter : MinionBTBase
 
         origin = new Sequence(
             new GetHeroPos(blackboard),
-            new CheckDeplacement(blackboard)
+            new CheckDeplacement(blackboard),
+            new MoveToHero(blackboard)
         );
-        print(blackboard.dir);
         return origin;
     }
 }
