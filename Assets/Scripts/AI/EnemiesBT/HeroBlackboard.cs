@@ -5,8 +5,8 @@ using UnityEngine.Serialization;
 
 public class HeroBlackboard : MonoBehaviour
 {
-    public Hero hero;
-    public DirectionToMove directionToMove = DirectionToMove.None;
-    public List<Hero> Targets = new ();
-    public Hero ChosenTarget;
+    [HideInInspector] public Hero hero;
+    [HideInInspector] public DirectionToMove directionToMove = DirectionToMove.None;
+    [HideInInspector] public List<Hero> Targets = new ();
+    [HideInInspector] public Hero ChosenTarget;
 }
