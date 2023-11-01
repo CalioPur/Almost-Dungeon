@@ -61,6 +61,7 @@ public class Hero : MonoBehaviour
         info = instance;
 
         MinionData.OnHeroMoved += SendPos;
+        Sprite.sprite = info.So.Img;
     }
     private void SendPos()
     {
