@@ -9,14 +9,19 @@ public class minionFighter : MinionData
 
     void Start()
     {
-        TickManager.SubscribeToMovementEvent(MovementType.Monster, OnTick, entityId);
+        GameManager.OnBeginToMoveEvent += StartListenTick;
         Hero.OnGivePosBackEvent += GetHeroPos;
     }
 
     private void GetHeroPos(Vector2Int pos)
     {
         bt.blackboard.heroPosition = pos;
-    }    
+    }
+
+    void StartListenTick()
+    {
+        TickManager.SubscribeToMovementEvent(MovementType.Monster, OnTick, entityId);
+    }
 
     void OnTick()
     {
