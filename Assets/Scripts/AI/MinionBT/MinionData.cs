@@ -5,12 +5,20 @@ using UnityEngine;
 
 public abstract class MinionData : MonoBehaviour
 {
-    public int indexMinionX { get; private set; }
-    public int indexMinionY { get; private set; }
-    private int entityId;
-    public MapManager mapManager { get; private set; }
-    [SerializeField] private Transform tr;
-    [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private MinionBTBase bt;
+    public static event Action OnHeroMoved;
+
+    public int indexMinionX;
+    public int indexMinionY;
+    protected int entityId;
+    public MapManager mapManager;
+   
+    [SerializeField] protected Transform tr;
+    [SerializeField] protected SpriteRenderer sprite;
+    [SerializeField] protected MinionBTBase bt;
+    
+    public void GetHeroPos()
+    {
+        OnHeroMoved?.Invoke();
+    }
     
 }

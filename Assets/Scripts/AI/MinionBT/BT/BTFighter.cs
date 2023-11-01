@@ -8,9 +8,12 @@ public class BTFighter : MinionBTBase
     protected override Node InitTree()
     {
         if (!blackboard) Debug.LogError("Blackboard is null");
-        print("test ?");
-        origin = new Selector(
+
+        origin = new Sequence(
+            new GetHeroPos(blackboard),
+            new CheckDeplacement(blackboard)
         );
+        print(blackboard.dir);
         return origin;
     }
 }
