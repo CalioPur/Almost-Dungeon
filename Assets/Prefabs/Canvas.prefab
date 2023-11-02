@@ -1962,7 +1962,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
   - {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
   - {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
-  - {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd, type: 2}
   - {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936, type: 2}
   nbCardOnStartToDraw: 3
   TimerBeforeDrawCard: 2

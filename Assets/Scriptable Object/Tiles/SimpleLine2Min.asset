@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
-  m_Name: TLine
+  m_Name: SimpleLine2Min
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: db09bd28bb99f4640ad52c1d7ac0e707, type: 3}
-  imgOnMap: {fileID: 21300000, guid: db09bd28bb99f4640ad52c1d7ac0e707, type: 3}
-  nbToBuild: 2
-  nbMinionOnCard: 0
-  DoorOnTop: 1
-  DoorOnBottom: 1
+  imgOnHand: {fileID: 21300000, guid: f11c88d0da2125b4fa2a1380d4fcb5fe, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 332bc19586933134b9c0997c4606f147, type: 3}
+  nbToBuild: 1
+  nbMinionOnCard: 2
+  DoorOnTop: 0
+  DoorOnBottom: 0
   DoorOnLeft: 1
-  DoorOnRight: 0
-  description: T pain
+  DoorOnRight: 1
+  description: line with 2 enemies :)
   Rotation: 0

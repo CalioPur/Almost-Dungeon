@@ -10,8 +10,6 @@ public class HeroesInfo : ScriptableObject
   [field:SerializeField] public int AttackPoint { get; private set; }
   [field:SerializeField] public bool IsAOE { get; private set; }
   [field:SerializeField] public int Range { get; private set; }
-  [field:SerializeField] public int Armor { get; private set; }
-  [field:SerializeField] public float delayBeginToMove { get; private set; }
   
   public HeroInstance CreateInstance()
   {
