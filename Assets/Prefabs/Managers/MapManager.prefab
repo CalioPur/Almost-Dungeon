@@ -48,7 +48,7 @@ MonoBehaviour:
   height: 5
   walls: {fileID: 1939014474319430147, guid: ee719a99b03afff4f9514a6ef204cf63, type: 3}
   floor: {fileID: 8744462414812450706, guid: 7299b39184eadc94eafb4cf0320a193c, type: 3}
-  map: {fileID: 0}
+  map: {fileID: 8817438707714538889}
   cards:
   - {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
   - {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
