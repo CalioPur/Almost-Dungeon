@@ -48,7 +48,7 @@ public class TileData : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.red;
         if (hasDoorUp) Gizmos.DrawLine(transform.position, transform.position + Vector3.forward * 0.2f);
         if (hasDoorRight) Gizmos.DrawLine(transform.position, transform.position + Vector3.right* 0.2f);
         if (hasDoorDown) Gizmos.DrawLine(transform.position, transform.position + Vector3.back* 0.2f);

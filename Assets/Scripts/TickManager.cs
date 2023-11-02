@@ -15,7 +15,7 @@ public class TickManager : MonoBehaviour
     private static Dictionary<MovementType, int> entityIds = new();
     public static event Action OnTick;
 
-    [Range(1, 300)]
+    [Range(0f, 1000f)]
     public int BPM = 120;
 
     [Range(0.1f, 5f)] 
@@ -31,7 +31,7 @@ public class TickManager : MonoBehaviour
 
     void Initialize(int bpm)
     {
-        beatInterval = 60f / bpm * MovementType.GetValues(typeof(MovementType)).Length;
+        beatInterval = 60f / bpm;
         if (IsInvoking("Tick"))
         {
             CancelInvoke("Tick");
@@ -112,7 +112,7 @@ public class TickManager : MonoBehaviour
     private void OnValidate()
     {
         //change the BPM when the slider for actions time is changed so the bpm is equivalent to the actions time for exemple we have 3 type of actions and the actions time is 3s so each actions take 1s so the bpm is 60
-        BPM = Mathf.RoundToInt(60 / actionsTime * MovementType.GetValues(typeof(MovementType)).Length);
+        BPM = Mathf.RoundToInt(60 / actionsTime );
     }
     
     

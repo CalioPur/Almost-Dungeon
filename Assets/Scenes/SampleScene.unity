@@ -1213,7 +1213,7 @@ PrefabInstance:
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPM
-      value: 180
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
