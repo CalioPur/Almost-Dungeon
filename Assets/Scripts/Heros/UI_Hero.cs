@@ -23,10 +23,7 @@ public class UI_Hero : MonoBehaviour
     public TMP_Text heroPersonality;
     public TMP_Text heroLevel;
     public TMP_Text heroName;
-
-
-    public float currentHealth = 6;
-
+    
     public int itemSlotsCount = 3;
     private float timeLeft = 0f;
 
@@ -34,18 +31,20 @@ public class UI_Hero : MonoBehaviour
     
     
 
-    private void DrawHearts()
+    private void DrawHearts(int _currentHealth)
     {
         DestroyAllHearts();
+        
+        
 
-        if (currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             OnEndGameEvent?.Invoke(true);
         }
             
         
-        float maxHealthRemainder = currentHealth % 2;
-        int maxHealth = (int)((currentHealth / 2) + maxHealthRemainder);
+        float maxHealthRemainder = _currentHealth % 2;
+        int maxHealth = (int)((_currentHealth / 2) + maxHealthRemainder);
         for (int i = 0; i < maxHealth; i++)
         {
             CreateEmptyHeart();
@@ -53,7 +52,7 @@ public class UI_Hero : MonoBehaviour
 
         for (int i = 0; i < hearts.Count; i++)
         {
-            int heartState = (int)Mathf.Clamp(currentHealth - i * 2, 0, 2);
+            int heartState = (int)Mathf.Clamp(_currentHealth - i * 2, 0, 2);
             hearts[i].SetHeartState((HeartState)heartState);
         }
     }
@@ -154,6 +153,11 @@ public class UI_Hero : MonoBehaviour
         OnEndGameEvent?.Invoke(false);
     }
 
+    private void SetupValues(int currentHealth)
+    {
+        DrawHearts(currentHealth);
+    }
+
 
     private void Awake()
     {
@@ -162,7 +166,6 @@ public class UI_Hero : MonoBehaviour
 
     private void Start()
     {
-        DrawHearts();
         DrawItems();
         Hero.OnMovedOnEmptyCardEvent += LoseGame;
         Hero.OnTakeDamageEvent += DrawHearts;
@@ -176,40 +179,6 @@ public class UI_Hero : MonoBehaviour
         heroData.heroLevel = 1;
         heroData.heroPersonality = "Hero's Personality";
         SetHeroData(heroData);
-    }
-
-    private void SetupValues(int nbUwUHearts)
-    {
-        currentHealth = nbUwUHearts;
-        DrawHearts();
-    }
-
-
-    //test update will be deleted later
-    private void Update()
-    {
-        //test health
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            currentHealth--;
-            DrawHearts();
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            currentHealth++;
-            DrawHearts();
-        }
-        
-        //test time
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            timeLeft = 10f;
-        }
-        if (timeLeft > 0)
-        {
-            timeLeft -= Time.deltaTime;
-            UpdateTimeLeftBeforeNextMove(timeLeft);
-        }
     }
 }
 

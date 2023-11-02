@@ -6,7 +6,7 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     public static event Action<Vector2Int> OnGivePosBackEvent;
-    public static event Action OnTakeDamageEvent;
+    public static event Action<int> OnTakeDamageEvent;
     public static event Action<int> OnPopUpEvent;
     
     
@@ -75,7 +75,7 @@ public class Hero : MonoBehaviour
     public void TakeDamage(int soAttackPoint)
     {
         info.CurrentHealthPoint -= soAttackPoint;
-        OnTakeDamageEvent?.Invoke();
+        OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint);
         if (info.CurrentHealthPoint <= 0)
         {
             IsDead();

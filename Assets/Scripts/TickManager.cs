@@ -26,7 +26,7 @@ public class TickManager : MonoBehaviour
 
     void Start()
     {
-        Initialize(BPM);
+        GameManager.OnGameStartEvent += () => Initialize(BPM);
     }
 
     void Initialize(int bpm)

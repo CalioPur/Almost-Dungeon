@@ -46,6 +46,8 @@ public class CardsManager : MonoBehaviour
         CardHand.OnCardSelectedEvent += CartSelected;
         DragAndDropManager.OnTileSelectedEvent += PlaceSolution;
         MapManager.OnCardTryToPlaceEvent += RemoveCard;
+        cptCardsObtained = 0;
+        nbStackingCard = nbCardOnStartToDraw;
 
         InitDeck();
         InitSlots();
