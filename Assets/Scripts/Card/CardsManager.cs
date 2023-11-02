@@ -29,6 +29,7 @@ public class CardsManager : MonoBehaviour
     private List<CardInfoInstance> Hand = new();
     private CardHand selectedCard;
     private int cptCardsObtained = 0;
+    private int nbStackingCard = 0;
 
     void Start()
     {
@@ -46,6 +47,7 @@ public class CardsManager : MonoBehaviour
     {
         if (!canBePlaced) return;
         cptCardsObtained--;
+        DrawAllCards();
         StartCoroutine(CheckDrawCard());
         selectedCard = null;
     }
@@ -88,12 +90,24 @@ public class CardsManager : MonoBehaviour
 
         return true;
     }
+    
+    private void DrawAllCards()
+    {
+        for (int i = 0; i < nbStackingCard; i++)
+        {
+            if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
+            {
+                DrawCard();
+            }
+        }
+    }
 
     private IEnumerator CheckDrawCard()
     {
         if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
         {
             yield return new WaitForSeconds(TimerBeforeDrawCard);
+            nbStackingCard++;
             if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
             {
                 DrawCard();
@@ -115,6 +129,7 @@ public class CardsManager : MonoBehaviour
         if (deckCreate.Count == 0 || cptCardsObtained >= slotsHand.Count) return;
 
         cptCardsObtained++;
+        nbStackingCard--;
         CardInfoInstance card = deckCreate[0];
         if (deckCreate.Count > 0)
         {

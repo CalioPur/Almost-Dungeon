@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -98,24 +97,30 @@ public class MapManager : MonoBehaviour
                     {
                         mapArray[i, j].isExit = true;
                     }
+
                     if (j == height - 1 && mapArray[i, j].hasDoorUp)
                     {
                         mapArray[i, j].isExit = true;
-                    } else if (mapArray[i, j].hasDoorUp && !mapArray[i, j + 1].PiecePlaced)
+                    }
+                    else if (mapArray[i, j].hasDoorUp && !mapArray[i, j + 1].PiecePlaced)
                     {
                         mapArray[i, j].isExit = true;
                     }
+
                     if (i == 0 && mapArray[i, j].hasDoorLeft)
                     {
                         mapArray[i, j].isExit = true;
-                    } else if (mapArray[i, j].hasDoorLeft && !mapArray[i - 1, j].PiecePlaced)
+                    }
+                    else if (mapArray[i, j].hasDoorLeft && !mapArray[i - 1, j].PiecePlaced)
                     {
                         mapArray[i, j].isExit = true;
                     }
+
                     if (i == width - 1 && mapArray[i, j].hasDoorRight)
                     {
                         mapArray[i, j].isExit = true;
-                    } else if (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced)
+                    }
+                    else if (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced)
                     {
                         mapArray[i, j].isExit = true;
                     }
@@ -144,46 +149,50 @@ public class MapManager : MonoBehaviour
     }
 
     public void InitEnterDungeon(CardInfoInstance card, out Vector3 pos, out int _x, out int _y)
-{
-    int y = Random.Range(0, height - 2);
-
-    SetTileAtPosition(card, 0, y);
-    mapArray[0, y].isConnectedToPath = true;
-    SetConnectedToPath();
-    SetExits();
-    GetWorldPosFromTilePos(0, y, out pos);
-    _x = 0;
-    _y = y;
-}
-
-private bool CheckPosWithData(TileData data, CardHand card)
-{
-    for (int i = 0; i < width - 2; i++)
     {
-        for (int j = 0; j < height - 2; j++)
-        {
-            if (mapArray[i, j] != data) continue;
-            return CheckPosWithPosition(i, j, card.Card);
-        }
+        int y = Random.Range(0, height - 2);
+
+        SetTileAtPosition(card, 0, y);
+        mapArray[0, y].isConnectedToPath = true;
+        SetConnectedToPath();
+        SetExits();
+        GetWorldPosFromTilePos(0, y, out pos);
+        _x = 0;
+        _y = y;
     }
 
-    return true;
-}
+    private bool CheckPosWithData(TileData data, CardHand card)
+    {
+        for (int i = 0; i < width - 2; i++)
+        {
+            for (int j = 0; j < height - 2; j++)
+            {
+                if (mapArray[i, j] != data) continue;
+                return CheckPosWithPosition(i, j, card.Card);
+            }
+        }
+
+        return true;
+    }
 
 
-private bool CheckPosWithPosition(int x, int y, CardInfoInstance card)
-{
-    if (mapArray[x, y].PiecePlaced) return false;
-    bool West = x > 0 && mapArray[x - 1, y].PiecePlaced;
-    bool East = x < width - 3 && mapArray[x + 1, y].PiecePlaced;
-    bool South = y > 0 && mapArray[x, y - 1].PiecePlaced;
-    bool North = y < height - 3 && mapArray[x, y + 1].PiecePlaced;
+    private bool CheckPosWithPosition(int x, int y, CardInfoInstance card)
+    {
+        if (mapArray[x, y].PiecePlaced) return false;
+        bool West = x > 0 && mapArray[x - 1, y].PiecePlaced;
+        bool East = x < width - 3 && mapArray[x + 1, y].PiecePlaced;
+        bool South = y > 0 && mapArray[x, y - 1].PiecePlaced;
+        bool North = y < height - 3 && mapArray[x, y + 1].PiecePlaced;
 
 
-    if (West && mapArray[x - 1, y].hasDoorRight != card.DoorOnLeft) return false;
-    if (East && mapArray[x + 1, y].hasDoorLeft != card.DoorOnRight) return false;
-    if (South && mapArray[x, y - 1].hasDoorUp != card.DoorOnBottom) return false;
-    if (North && mapArray[x, y + 1].hasDoorDown != card.DoorOnTop) return false;
+        if (West && mapArray[x - 1, y].hasDoorRight != card.DoorOnLeft) return false;
+        if (East && mapArray[x + 1, y].hasDoorLeft != card.DoorOnRight) return false;
+        if (South && mapArray[x, y - 1].hasDoorUp != card.DoorOnBottom) return false;
+        if (North && mapArray[x, y + 1].hasDoorDown != card.DoorOnTop) return false;
+
+
+        return true;
+    }
 
     public TileData GetTileDataAtPosition(int x, int y)
     {
@@ -191,26 +200,21 @@ private bool CheckPosWithPosition(int x, int y, CardInfoInstance card)
         return mapArray[x, y];
     }
 
-public TileData GetTileDataAtPosition(int x, int y)
-{
-    return mapArray[x, y];
-}
+    void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
+    {
+        mapArray[posX, posY].SetInstance(card);
+    }
 
-void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
-{
-    mapArray[posX, posY].SetInstance(card);
-}
+    public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos)
+    {
+        pos = new Vector3(x - ((float)(width - 1) / 2), 0, y - (float)(height - 1) / 2);
+    }
 
-public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos)
-{
-    pos = new Vector3(x - ((float)(width - 1) / 2), 0, y - (float)(height - 1) / 2);
-}
+    public bool CheckIfTileIsFree(int x, int y)
+    {
+        return mapArray[x, y].PiecePlaced;
+    }
 
-public bool CheckIfTileIsFree(int x, int y)
-{
-    return mapArray[x, y].PiecePlaced;
- 
-    
     public void GetNbMonstersOnPos(Vector2Int pos, out List<MinionData> minions)
     {
         TileData data = GetTileDataAtPosition(pos.x, pos.y);
@@ -228,7 +232,6 @@ public bool CheckIfTileIsFree(int x, int y)
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         data.minions.Add(minionData);
     }
-}
 
 // void Update()
 // {
@@ -252,8 +255,8 @@ public bool CheckIfTileIsFree(int x, int y)
 //     }
 // }
 
-public TileData[,] getMapArray()
-{
-    return mapArray;
-}
+    public TileData[,] getMapArray()
+    {
+        return mapArray;
+    }
 }
