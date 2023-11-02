@@ -35,7 +35,11 @@ public class MoveToDestination : Node
         }
         Vector3 pos = Vector3.zero;
         blackboard.hero.mapManager.GetWorldPosFromTilePos(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY, out pos);
-
+        TileData tile;
+        if (blackboard.hero.mapManager.GetTile(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY, out tile))
+        {
+            tile.isVisited = true;
+        }
         blackboard.hero.Move(pos);
         return NodeState.Success;
     }

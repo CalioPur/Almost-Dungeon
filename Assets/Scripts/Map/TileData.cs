@@ -15,6 +15,8 @@ public class TileData : MonoBehaviour
     public bool isConnectedToPath = false;
     
     public bool isExit = false;
+    
+    public bool isVisited = false;
 
     [Header("Occupation")]
     public bool isPlayerhere = false;
@@ -22,6 +24,7 @@ public class TileData : MonoBehaviour
     public bool isChesthere = false;
     public bool isTrapHere = false;
     public bool PiecePlaced => _instance != null;
+    
 
     [Header("Monsters")]
     public List<MinionData> minions = new ();
