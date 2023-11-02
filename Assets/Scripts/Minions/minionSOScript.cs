@@ -18,11 +18,12 @@ public class MinionInstance
     public minionSOScript So { get; }
 
     public int CurrentHealthPoint;
-
+    public int damagePoint;
     public MinionInstance(minionSOScript info)
     {
         So = info;
         CurrentHealthPoint = info.health;
+        damagePoint = info.damage;
     }
 }
 
