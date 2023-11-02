@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Hero heroRenderer;
     [SerializeField] private Vector2Int startPosHero;
 
-    private bool WaitForBeginToMove = true;
     private Vector3 pos;
 
     void Start()
@@ -37,9 +36,9 @@ public class GameManager : MonoBehaviour
             .Init(current, startPosHero.x, startPosHero.y, mapManager);
     }
 
-    private void CheckIsFirstMove(TileData _, CardHand __, bool ___)
+    private void CheckIsFirstMove(TileData _, CardHand __, bool canBePlaced)
     {
-        WaitForBeginToMove = false;
+        if (!canBePlaced) return;
         MapManager.OnCardTryToPlaceEvent -= CheckIsFirstMove;
         SpawnHero();
         OnGameStartEvent?.Invoke();

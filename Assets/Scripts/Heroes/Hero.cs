@@ -70,12 +70,12 @@ public class Hero : MonoBehaviour
     {
         isDead = true;
         //TODO: t'as gagne bg :*
-        OnTakeDamageEvent?.Invoke();
     }
 
     public void TakeDamage(int soAttackPoint)
     {
         info.CurrentHealthPoint -= soAttackPoint;
+        OnTakeDamageEvent?.Invoke();
         if (info.CurrentHealthPoint <= 0)
         {
             IsDead();
