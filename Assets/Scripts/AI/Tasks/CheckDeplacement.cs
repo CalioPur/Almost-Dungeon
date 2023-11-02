@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BehaviourTree;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class CheckDeplacement : Node
@@ -10,11 +11,13 @@ public class CheckDeplacement : Node
     public CheckDeplacement(MinionBlackboard blackboard)
     {
         this.blackboard = blackboard;
+        
     }
 
 
     private bool IsInSight(DirectionToMove d, MapManager map)
     {
+        
         int x = blackboard.minionData.indexMinionX;
         int y = blackboard.minionData.indexMinionY;
         switch (d)
@@ -60,11 +63,12 @@ public class CheckDeplacement : Node
                 }
                 break;
         }
-
+        
         return false;
     }
     public override NodeState Evaluate(Node root)
     {
+
         if (blackboard.heroPosition.x == blackboard.minionData.indexMinionX)
         {
             if (blackboard.heroPosition.y == blackboard.minionData.indexMinionY)
@@ -90,7 +94,7 @@ public class CheckDeplacement : Node
                 }
             }
         }
-        else if (blackboard.heroPosition.y == blackboard.minionData.indexMinionX)
+        else if (blackboard.heroPosition.y == blackboard.minionData.indexMinionY)
         {
             if(blackboard.heroPosition.x>blackboard.minionData.indexMinionX)
             {
