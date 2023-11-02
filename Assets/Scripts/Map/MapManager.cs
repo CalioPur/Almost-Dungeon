@@ -150,6 +150,12 @@ public class MapManager : MonoBehaviour
     {
         pos = new Vector3(x - ((float)(width - 1) / 2), 0, y - (float)(height - 1) / 2);
     }
+    
+    public void GetTilePosFromWorldPos(Vector3 pos, out int x, out int y)
+    {
+        x = Mathf.RoundToInt(pos.x + ((float)(width - 1) / 2))-1;
+        y = Mathf.RoundToInt(pos.z + ((float)(height - 1) / 2))-1;
+    }
 
     public bool CheckIfTileIsFree(int x, int y)
     {
