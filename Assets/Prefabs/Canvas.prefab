@@ -791,7 +791,6 @@ MonoBehaviour:
   heroPersonality: {fileID: 188938373574315654}
   heroLevel: {fileID: 9111250111806840992}
   heroName: {fileID: 8078323865673353684}
-  playerHealth: 10
   currentHealth: 6
   itemSlotsCount: 2
 --- !u!1 &4950115969021024781
@@ -890,7 +889,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
+  m_CellSize: {x: 48, y: 48}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -2040,7 +2039,6 @@ MonoBehaviour:
   heroPersonality: {fileID: 8868584943725064982}
   heroLevel: {fileID: 4007966496990547212}
   heroName: {fileID: 99862511467698714}
-  playerHealth: 10
   currentHealth: 6
   itemSlotsCount: 2
 --- !u!1 &9174949583514896819

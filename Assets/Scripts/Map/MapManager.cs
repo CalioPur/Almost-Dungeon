@@ -46,18 +46,20 @@ public class MapManager : MonoBehaviour
 
     public void AddRandomCard()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            CardInfo card = cards[Random.Range(0, cards.Length)];
-            CardInfoInstance cardInstance = card.CreateInstance();
-            int nbRot = Random.Range(0, 3);
-            for (int j = 0; j < nbRot; j++)
-            {
-                cardInstance.AddRotation(true);
-            }
-
-            checkTileToManipulateRandomPosition(cardInstance);
-        }
+        // for (int i = 0; i < 5; i++)
+        // {
+        //     CardInfo card = cards[Random.Range(0, cards.Length)];
+        //     CardInfoInstance cardInstance = card.CreateInstance();
+        //     int nbRot = Random.Range(0, 3);
+        //     for (int j = 0; j < nbRot; j++)
+        //     {
+        //         cardInstance.AddRotation(true);
+        //     }
+        //
+        //     checkTileToManipulateRandomPosition(cardInstance);
+        // }
+        SetConnectedToPath();
+        SetExits();
     }
 
     private void checkTileToManipulateRandomPosition(CardInfoInstance cardInstance)
@@ -74,6 +76,61 @@ public class MapManager : MonoBehaviour
         bool canBePlaced = true;
         canBePlaced = CheckPosWithData(data, card);
         OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
+        SetConnectedToPath();
+        SetExits();
+    }
+
+    private void SetExits()
+    {
+        for (int i = 0; i < width - 2; i++)
+        {
+            for (int j = 0; j < height - 2; j++)
+            {
+                if (mapArray[i, j].isConnectedToPath)
+                {
+                    mapArray[i, j].isExit = false;
+                    if (j == 0 && mapArray[i, j].hasDoorDown)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+                    else if (mapArray[i, j].hasDoorDown && !mapArray[i, j - 1].PiecePlaced)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+
+                    if (j == height - 1 && mapArray[i, j].hasDoorUp)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+                    else if (mapArray[i, j].hasDoorUp && !mapArray[i, j + 1].PiecePlaced)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+
+                    if (i == 0 && mapArray[i, j].hasDoorLeft)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+                    else if (mapArray[i, j].hasDoorLeft && !mapArray[i - 1, j].PiecePlaced)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+
+                    if (i == width - 1 && mapArray[i, j].hasDoorRight)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+                    else if (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced)
+                    {
+                        mapArray[i, j].isExit = true;
+                    }
+                }
+            }
+        }
+    }
+
+    private void SetConnectedToPath()
+    {
         for (int i = 0; i < width - 2; i++)
         {
             for (int j = 0; j < height - 2; j++)
@@ -97,7 +154,8 @@ public class MapManager : MonoBehaviour
 
         SetTileAtPosition(card, 0, y);
         mapArray[0, y].isConnectedToPath = true;
-
+        SetConnectedToPath();
+        SetExits();
         GetWorldPosFromTilePos(0, y, out pos);
         _x = 0;
         _y = y;
@@ -132,6 +190,7 @@ public class MapManager : MonoBehaviour
         if (South && mapArray[x, y - 1].hasDoorUp != card.DoorOnBottom) return false;
         if (North && mapArray[x, y + 1].hasDoorDown != card.DoorOnTop) return false;
 
+
         return true;
     }
 
@@ -162,22 +221,6 @@ public class MapManager : MonoBehaviour
         return mapArray[x, y].PiecePlaced;
     }
 
-    void Update()
-    {
-        //debug the tile that are connected to the path with a red line that goes up
-        for (int i = 0; i < width - 2; i++)
-        {
-            for (int j = 0; j < height - 2; j++)
-            {
-                if (mapArray[i, j].isConnectedToPath)
-                {
-                    Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-                        Color.red);
-                }
-            }
-        }
-    }
-    
     public void GetNbMonstersOnPos(Vector2Int pos, out List<MinionData> minions)
     {
         TileData data = GetTileDataAtPosition(pos.x, pos.y);
@@ -195,16 +238,31 @@ public class MapManager : MonoBehaviour
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         data.minions.Add(minionData);
     }
-}
 
-// for (int i = 0; i < width - 2; i++)
+// void Update()
 // {
-//     for (int j = 0; j < height - 2; j++)
+//     //debug the tile that are connected to the path with a red line that goes up
+//     for (int i = 0; i < width - 2; i++)
 //     {
-//         if (mapArray[i, j].isConnectedToPath) continue;
-//         if (i > 0 && mapArray[i - 1, j].isConnectedToPath && mapArray[i, j].hasDoorLeft) mapArray[i, j].isConnectedToPath = true;
-//         if (i < width - 3 && mapArray[i + 1, j].isConnectedToPath && mapArray[i, j].hasDoorRight) mapArray[i, j].isConnectedToPath = true;
-//         if (j > 0 && mapArray[i, j - 1].isConnectedToPath && mapArray[i, j].hasDoorDown) mapArray[i, j].isConnectedToPath = true;
-//         if (j < height - 3 && mapArray[i, j + 1].isConnectedToPath && mapArray[i, j].hasDoorUp) mapArray[i, j].isConnectedToPath = true;
+//         for (int j = 0; j < height - 2; j++)
+//         {
+//             if (mapArray[i, j].isConnectedToPath)
+//             {
+//                 Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+//                     Color.red, 1f);
+//             }
+//     
+//             if (mapArray[i, j].isExit)
+//             {
+//                 Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+//                     Color.magenta, 1f);
+//             }
+//         }
 //     }
 // }
+
+    public TileData[,] getMapArray()
+    {
+        return mapArray;
+    }
+}

@@ -6,13 +6,17 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     public static event Action<Vector2Int> OnGivePosBackEvent;
+    public static event Action OnTakeDamageEvent;
+    public static event Action<int> OnPopUpEvent;
+    
+    
     public static event Action OnMovedOnEmptyCardEvent;
     public int indexHeroX { get; set; }
     public int indexHeroY { get; set; }
     private int entityId;
     public MapManager mapManager { get; private set; }
     public bool isDead { get; set; }
-    public HeroInstance info{ get; private set; }
+    public HeroInstance info { get; private set; }
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private SimpleHeroBT bt;
@@ -29,7 +33,6 @@ public class Hero : MonoBehaviour
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
     
-
     public void Init(HeroInstance instance, int _indexHeroX, int _indexHeroY, MapManager manager)
     {
         indexHeroX = _indexHeroX;
@@ -40,7 +43,9 @@ public class Hero : MonoBehaviour
 
         MinionData.OnHeroMoved += SendPos;
         Sprite.sprite = info.So.Img;
+        OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
     }
+
     private void SendPos()
     {
         OnGivePosBackEvent?.Invoke(new Vector2Int(indexHeroX, indexHeroY));
@@ -55,11 +60,18 @@ public class Hero : MonoBehaviour
     {
         OnMovedOnEmptyCardEvent?.Invoke();
     }
-    
+
     private void OnDestroy()
     {
         TickManager.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
         GameManager.OnBeginToMoveEvent -= OnBeginToMove;
+    }
+
+    private void IsDead()
+    {
+        isDead = true;
+        //TODO: t'as gagne bg :*
+        OnTakeDamageEvent?.Invoke();
     }
 
     public void TakeDamage(int soAttackPoint)
@@ -67,8 +79,7 @@ public class Hero : MonoBehaviour
         info.CurrentHealthPoint -= soAttackPoint;
         if (info.CurrentHealthPoint <= 0)
         {
-            isDead = true;
-            //TODO: t'as gagne bg :*
+            IsDead();
         }
     }
 

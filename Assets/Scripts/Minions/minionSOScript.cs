@@ -1,12 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "minionSO", menuName = "ScriptableObjects/minionSO")]
+[CreateAssetMenu(fileName = "minionSO", menuName = "ScriptableObjects/minionSO", order = 1)]
 public class minionSOScript : ScriptableObject
 {
-    public int health { get; private set; }
-    public int damage { get; private set; }
-    public int range { get; private set; }
+    [field:SerializeField] public int health { get; private set; }
+    [field:SerializeField]public int damage { get; private set; }
+    [field:SerializeField]public int range { get; private set; }
     
     public MinionInstance CreateInstance()
     {

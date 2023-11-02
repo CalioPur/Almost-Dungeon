@@ -25,7 +25,6 @@ public class UI_Hero : MonoBehaviour
     public TMP_Text heroName;
 
 
-    [Header("Test Value to delete")] public float playerHealth = 6;
     public float currentHealth = 6;
 
     public int itemSlotsCount = 3;
@@ -35,7 +34,7 @@ public class UI_Hero : MonoBehaviour
     
     
 
-    public void DrawHearts()
+    private void DrawHearts()
     {
         DestroyAllHearts();
 
@@ -45,8 +44,8 @@ public class UI_Hero : MonoBehaviour
         }
             
         
-        float maxHealthRemainder = playerHealth % 2;
-        int maxHealth = (int)((playerHealth / 2) + maxHealthRemainder);
+        float maxHealthRemainder = currentHealth % 2;
+        int maxHealth = (int)((currentHealth / 2) + maxHealthRemainder);
         for (int i = 0; i < maxHealth; i++)
         {
             CreateEmptyHeart();
@@ -154,14 +153,22 @@ public class UI_Hero : MonoBehaviour
     {
         OnEndGameEvent?.Invoke(false);
     }
-    
+
+
+    private void Awake()
+    {
+        Hero.OnPopUpEvent += SetupValues;
+    }
 
     private void Start()
     {
         DrawHearts();
         DrawItems();
         Hero.OnMovedOnEmptyCardEvent += LoseGame;
+        Hero.OnTakeDamageEvent += DrawHearts;
+        //Hero.OnPopUpEvent += SetupValues;
         OnEndGameEvent+= EndGame;
+        
         
         //test hero data
         HeroData heroData = new HeroData();
@@ -169,6 +176,12 @@ public class UI_Hero : MonoBehaviour
         heroData.heroLevel = 1;
         heroData.heroPersonality = "Hero's Personality";
         SetHeroData(heroData);
+    }
+
+    private void SetupValues(int nbUwUHearts)
+    {
+        currentHealth = nbUwUHearts;
+        DrawHearts();
     }
 
 
