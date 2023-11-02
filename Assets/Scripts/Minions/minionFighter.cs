@@ -17,7 +17,7 @@ public class minionFighter : MinionData
     void Start()
     {
         Init();
-        GameManager.OnBeginToMoveEvent += StartListenTick;
+        GameManager.OnGameStartEvent += StartListenTick;
         Hero.OnGivePosBackEvent += GetHeroPos;
     }
 

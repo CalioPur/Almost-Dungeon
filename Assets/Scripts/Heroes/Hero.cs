@@ -64,7 +64,6 @@ public class Hero : MonoBehaviour
     private void OnDestroy()
     {
         TickManager.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
-        GameManager.OnBeginToMoveEvent -= OnBeginToMove;
     }
 
     private void IsDead()
@@ -85,6 +84,6 @@ public class Hero : MonoBehaviour
 
     private void Start()
     {
-        GameManager.OnBeginToMoveEvent += OnBeginToMove;
+        OnBeginToMove();
     }
 }

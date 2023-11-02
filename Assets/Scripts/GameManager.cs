@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    public static Action OnBeginToMoveEvent;
+    public static Action OnGameStartEvent;
 
     [Header("Managers")] [SerializeField] private MapManager mapManager;
     [SerializeField] private TickManager tick;
@@ -42,6 +42,6 @@ public class GameManager : MonoBehaviour
         WaitForBeginToMove = false;
         MapManager.OnCardTryToPlaceEvent -= CheckIsFirstMove;
         SpawnHero();
-        OnBeginToMoveEvent?.Invoke();
+        OnGameStartEvent?.Invoke();
     }
 }
