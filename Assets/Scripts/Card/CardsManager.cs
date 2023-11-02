@@ -31,6 +31,16 @@ public class CardsManager : MonoBehaviour
     private int cptCardsObtained = 0;
     private int nbStackingCard = 0;
 
+    private void Awake()
+    {
+        GameManager.OnGameStartEvent += BeginToDraw;
+    }
+    
+    private void BeginToDraw()
+    {
+        StartCoroutine(CheckDrawCard());
+    }
+
     void Start()
     {
         CardHand.OnCardSelectedEvent += CartSelected;
@@ -68,8 +78,6 @@ public class CardsManager : MonoBehaviour
             DrawCard();
             yield return new WaitForSeconds(TimerAnimationDrawCard);
         }
-
-        StartCoroutine(CheckDrawCard());
     }
 
     private void InitSlots()

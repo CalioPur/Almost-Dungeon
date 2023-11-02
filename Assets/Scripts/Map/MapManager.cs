@@ -148,17 +148,14 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public void InitEnterDungeon(CardInfoInstance card, out Vector3 pos, out int _x, out int _y)
+    public void InitEnterDungeon(CardInfoInstance card, out Vector3 pos, Vector2Int startPos)
     {
-        int y = Random.Range(0, height - 2);
 
-        SetTileAtPosition(card, 0, y);
-        mapArray[0, y].isConnectedToPath = true;
+        SetTileAtPosition(card, startPos.x, startPos.y);
+        mapArray[startPos.x, startPos.y].isConnectedToPath = true;
         SetConnectedToPath();
         SetExits();
-        GetWorldPosFromTilePos(0, y, out pos);
-        _x = 0;
-        _y = y;
+        GetWorldPosFromTilePos(startPos.x, startPos.y, out pos);
     }
 
     private bool CheckPosWithData(TileData data, CardHand card)
