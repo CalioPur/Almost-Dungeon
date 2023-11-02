@@ -6,6 +6,7 @@ using UnityEngine;
 public class DragAndDropManager : MonoBehaviour
 {
     public static event Action<TileData> OnTileSelectedEvent;
+    public static event Action<TileData, CardInfoInstance> OnTilePosedEvent;
     
     private void Start()
     {
@@ -17,6 +18,7 @@ public class DragAndDropManager : MonoBehaviour
         if (!canBePlaced) return;
         
         data.SetInstance(card.Card);
+        OnTilePosedEvent?.Invoke(data, card.Card);
         card.EmptyCard();
     }
 

@@ -23,6 +23,7 @@ public abstract class MinionData : MonoBehaviour
     private MinionInstance minionInstance;
     
     protected abstract void MinionDie();
+    protected abstract void OnTick();
     
     public void GetHeroPos()
     {
@@ -58,5 +59,9 @@ public abstract class MinionData : MonoBehaviour
     protected void Init()
     {
         minionInstance = minionSO.CreateInstance();
+    }
+    public void StartListenTick()
+    {
+        TickManager.SubscribeToMovementEvent(MovementType.Monster, OnTick, entityId);
     }
 }

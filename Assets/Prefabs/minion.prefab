@@ -99,8 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa3cbecc97385e4ca0fc914c29ac63d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexMinionX: 2
-  indexMinionY: 2
+  isDead: 0
+  indexMinionX: 0
+  indexMinionY: 0
   mapManager: {fileID: 0}
   tr: {fileID: 5242026796885018233}
   sprite: {fileID: 3666571859102276325}

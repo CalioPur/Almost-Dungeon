@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f443fed8f8f8cd4a8979307885fd5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minionPrefab: {fileID: 3487245091449332422, guid: 2af210a844fca524094453ef5f573e22,
+    type: 3}
+  mapManager: {fileID: 0}

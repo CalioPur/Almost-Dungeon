@@ -35,7 +35,6 @@ public class CardInfoInstance
     public bool DoorOnLeft { get; private set; }
     public bool DoorOnRight { get; private set; }
     
-    
     public event Action OnRotationChangedEvent; 
     
     public CardInfoInstance(CardInfo info)

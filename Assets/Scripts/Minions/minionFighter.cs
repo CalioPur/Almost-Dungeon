@@ -26,12 +26,8 @@ public class minionFighter : MinionData
         bt.blackboard.heroPosition = pos;
     }
 
-    void StartListenTick()
-    {
-        TickManager.SubscribeToMovementEvent(MovementType.Monster, OnTick, entityId);
-    }
 
-    void OnTick()
+    protected override void OnTick()
     {
         if (!bt) return;
         bt.getOrigin().Evaluate(bt.getOrigin());
