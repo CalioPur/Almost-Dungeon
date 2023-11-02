@@ -42,6 +42,7 @@ public class Hero : MonoBehaviour
         info = instance;
 
         MinionData.OnHeroMoved += SendPos;
+        AttackHero.OnMonsterAttackEvent += TakeDamage;
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
     }
@@ -74,6 +75,7 @@ public class Hero : MonoBehaviour
 
     public void TakeDamage(int soAttackPoint)
     {
+        Debug.Log(soAttackPoint);
         info.CurrentHealthPoint -= soAttackPoint;
         OnTakeDamageEvent?.Invoke();
         if (info.CurrentHealthPoint <= 0)

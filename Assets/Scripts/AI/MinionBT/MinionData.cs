@@ -20,7 +20,7 @@ public abstract class MinionData : MonoBehaviour
     [SerializeField] protected MinionBTBase bt;
     [SerializeField] private minionSOScript minionSO;
     
-    private MinionInstance minionInstance;
+    public MinionInstance minionInstance;
     
     protected abstract void MinionDie();
     protected abstract void OnTick();
