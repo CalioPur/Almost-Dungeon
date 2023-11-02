@@ -1303,21 +1303,6 @@ PrefabInstance:
       propertyPath: map
       value: 
       objectReference: {fileID: 1922002201}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: width
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: height
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6807861319483125049, guid: 12ff17c0dd4ece349b85926f11787a6a,
-        type: 3}
-      propertyPath: testCard
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

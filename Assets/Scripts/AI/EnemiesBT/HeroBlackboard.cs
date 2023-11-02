@@ -5,6 +5,8 @@ using UnityEngine.Serialization;
 
 public class HeroBlackboard : MonoBehaviour
 {
-    public Hero hero;
-    public DirectionToMove directionToMove = DirectionToMove.None;
+    [HideInInspector] public Hero hero;
+    [HideInInspector] public DirectionToMove directionToMove = DirectionToMove.None;
+    [HideInInspector] public List<MinionData> Targets = new ();
+    [HideInInspector] public MinionData ChosenTarget;
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,9 +24,9 @@ public class TileData : MonoBehaviour
     public bool PiecePlaced => _instance != null;
 
     [Header("Monsters")]
-    public int lilMinion;
-    public int bigMinion;
-    public int archerMinion;
+    public List<MinionData> minions = new ();
+    /*public List<Hero> bigMinion = new ();
+    public List<Hero> archerMinion = new ();*/
     
     [Header("Image")]
     public SpriteRenderer img;
@@ -41,7 +42,7 @@ public class TileData : MonoBehaviour
     private void UpdateAppearance()
     {
         if (_instance == null) return;
-        img.sprite = _instance.So.img;
+        img.sprite = _instance.So.imgOnMap;
         transform.rotation = Quaternion.Euler(90, 0, _instance.Rotation);
     }
 

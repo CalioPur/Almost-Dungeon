@@ -185,8 +185,11 @@ private bool CheckPosWithPosition(int x, int y, CardInfoInstance card)
     if (South && mapArray[x, y - 1].hasDoorUp != card.DoorOnBottom) return false;
     if (North && mapArray[x, y + 1].hasDoorDown != card.DoorOnTop) return false;
 
-    return true;
-}
+    public TileData GetTileDataAtPosition(int x, int y)
+    {
+        if (x >= width - 2 || y >= height - 2 || x < 0 || y < 0) return null;
+        return mapArray[x, y];
+    }
 
 public TileData GetTileDataAtPosition(int x, int y)
 {
@@ -206,6 +209,25 @@ public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos)
 public bool CheckIfTileIsFree(int x, int y)
 {
     return mapArray[x, y].PiecePlaced;
+ 
+    
+    public void GetNbMonstersOnPos(Vector2Int pos, out List<MinionData> minions)
+    {
+        TileData data = GetTileDataAtPosition(pos.x, pos.y);
+        minions = data.minions;
+    }
+
+    public void RemoveMinionOnTile(Vector2Int vector2Int, MinionData minionData)
+    {
+        TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
+        data.minions.Remove(minionData);
+    }
+
+    public void AddMinionOnTile(Vector2Int vector2Int, MinionData minionData)
+    {
+        TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
+        data.minions.Add(minionData);
+    }
 }
 
 // void Update()
