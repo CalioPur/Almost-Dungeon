@@ -7,41 +7,19 @@ public class Hero : MonoBehaviour
 {
     public static event Action<Vector2Int> OnGivePosBackEvent;
     public static event Action OnMovedOnEmptyCardEvent;
-
-    public int indexHeroX { get; private set; }
-    public int indexHeroY { get; private set; }
-    
+    public int indexHeroX { get; set; }
+    public int indexHeroY { get; set; }
     private int entityId;
     public MapManager mapManager { get; private set; }
+    public bool isDead { get; set; }
+    public HeroInstance info{ get; private set; }
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private SimpleHeroBT bt;
 
-    private HeroInstance info;
 
-    public void Move(DirectionToMove directionToMove)
+    public void Move(Vector3 pos)
     {
-        Vector3 pos = Vector3.zero;
-        switch (directionToMove)
-        {
-            case DirectionToMove.Up:
-                mapManager.GetWorldPosFromTilePos(indexHeroX, indexHeroY + 1, out pos);
-                indexHeroY++;
-                break;
-            case DirectionToMove.Down:
-                mapManager.GetWorldPosFromTilePos(indexHeroX, indexHeroY - 1, out pos);
-                indexHeroY--;
-                break;
-            case DirectionToMove.Left:
-                mapManager.GetWorldPosFromTilePos(indexHeroX - 1, indexHeroY, out pos);
-                indexHeroX--;
-                break;
-            case DirectionToMove.Right:
-                mapManager.GetWorldPosFromTilePos(indexHeroX + 1, indexHeroY, out pos);
-                indexHeroX++;
-                break;
-        }
-
         heroTr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
     }
 
@@ -82,6 +60,16 @@ public class Hero : MonoBehaviour
     {
         TickManager.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
         GameManager.OnBeginToMoveEvent -= OnBeginToMove;
+    }
+
+    public void TakeDamage(int soAttackPoint)
+    {
+        info.CurrentHealthPoint -= soAttackPoint;
+        if (info.CurrentHealthPoint <= 0)
+        {
+            isDead = true;
+            //TODO: t'as gagne bg :*
+        }
     }
 
     private void Start()

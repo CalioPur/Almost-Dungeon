@@ -8,43 +8,60 @@ public abstract class MinionData : MonoBehaviour
 {
     public static event Action OnHeroMoved;
 
+    public bool isDead;
     public int indexMinionX;
     public int indexMinionY;
     protected int entityId;
     public MapManager mapManager;
+    
    
     [SerializeField] protected Transform tr;
     [SerializeField] protected SpriteRenderer sprite;
     [SerializeField] protected MinionBTBase bt;
+    [SerializeField] private minionSOScript minionSO;
+    
+    private MinionInstance minionInstance;
+    
+    protected abstract void MinionDie();
+    protected abstract void OnTick();
     
     public void GetHeroPos()
     {
         OnHeroMoved?.Invoke();
     }
 
-    public void Move(DirectionToMove directionToMove)
+    public void Move(Vector3 pos)
     {
-        Vector3 pos = Vector3.zero;
-        switch (directionToMove)
-        {
-            case DirectionToMove.Up:
-                mapManager.GetWorldPosFromTilePos(indexMinionX, indexMinionY + 1, out pos);
-                indexMinionY++;
-                break;
-            case DirectionToMove.Down:
-                mapManager.GetWorldPosFromTilePos(indexMinionX, indexMinionY - 1, out pos);
-                indexMinionY--;
-                break;
-            case DirectionToMove.Left:
-                mapManager.GetWorldPosFromTilePos(indexMinionX - 1, indexMinionY, out pos);
-                indexMinionX--;
-                break;
-            case DirectionToMove.Right:
-                mapManager.GetWorldPosFromTilePos(indexMinionX + 1, indexMinionY, out pos);
-                indexMinionX++;
-                break;
-        }
-
+        
         tr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
+    }
+
+    public void TakeDamage(int soAttackPoint)
+    {
+        if (isDead) return;
+        
+        Debug.Log("ENNEMI TAKE DAMAGE");
+        minionInstance.CurrentHealthPoint-=soAttackPoint;
+        if(minionInstance.CurrentHealthPoint<=0)
+        {
+            isDead = true;
+            MinionDie();
+        }
+        // bt.blackboard.health -= soAttackPoint;
+        // if (bt.blackboard.health <= 0)
+        // {
+        //     isDead = true;
+        //     sprite.color = Color.red;
+        //     bt.blackboard.health = 0;
+        // }
+    }
+
+    protected void Init()
+    {
+        minionInstance = minionSO.CreateInstance();
+    }
+    public void StartListenTick()
+    {
+        TickManager.SubscribeToMovementEvent(MovementType.Monster, OnTick, entityId);
     }
 }

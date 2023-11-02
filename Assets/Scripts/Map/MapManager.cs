@@ -137,6 +137,7 @@ public class MapManager : MonoBehaviour
 
     public TileData GetTileDataAtPosition(int x, int y)
     {
+        if (x >= width - 2 || y >= height - 2 || x < 0 || y < 0) return null;
         return mapArray[x, y];
     }
 
@@ -148,6 +149,12 @@ public class MapManager : MonoBehaviour
     public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos)
     {
         pos = new Vector3(x - ((float)(width - 1) / 2), 0, y - (float)(height - 1) / 2);
+    }
+    
+    public void GetTilePosFromWorldPos(Vector3 pos, out int x, out int y)
+    {
+        x = Mathf.RoundToInt(pos.x + ((float)(width - 1) / 2))-1;
+        y = Mathf.RoundToInt(pos.z + ((float)(height - 1) / 2))-1;
     }
 
     public bool CheckIfTileIsFree(int x, int y)
@@ -169,6 +176,24 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+    }
+    
+    public void GetNbMonstersOnPos(Vector2Int pos, out List<MinionData> minions)
+    {
+        TileData data = GetTileDataAtPosition(pos.x, pos.y);
+        minions = data.minions;
+    }
+
+    public void RemoveMinionOnTile(Vector2Int vector2Int, MinionData minionData)
+    {
+        TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
+        data.minions.Remove(minionData);
+    }
+
+    public void AddMinionOnTile(Vector2Int vector2Int, MinionData minionData)
+    {
+        TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
+        data.minions.Add(minionData);
     }
 }
 

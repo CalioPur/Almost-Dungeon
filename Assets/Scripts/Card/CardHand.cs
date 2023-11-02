@@ -73,7 +73,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         img.transform.rotation = Quaternion.Euler(0, 0, 0);
         Card = _card;
-        img.sprite = Card.So.img;
+        img.sprite = Card.So.imgOnHand;
         img.color = NormalColor;
         isSelected = false;
         DescriptionText.text = Card.So.description;

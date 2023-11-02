@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class minionFighter : MinionData
 {
-    [SerializeField] private minionSOScript minionSO;
+    protected override void MinionDie()
+    {
+        Debug.Log("i'm ded");
+        mapManager.RemoveMinionOnTile(new Vector2Int(indexMinionX, indexMinionY), this);
+        Destroy(gameObject);
+    }
 
     void Start()
     {
+        Init();
         GameManager.OnBeginToMoveEvent += StartListenTick;
         Hero.OnGivePosBackEvent += GetHeroPos;
     }
@@ -18,12 +26,8 @@ public class minionFighter : MinionData
         bt.blackboard.heroPosition = pos;
     }
 
-    void StartListenTick()
-    {
-        TickManager.SubscribeToMovementEvent(MovementType.Monster, OnTick, entityId);
-    }
 
-    void OnTick()
+    protected override void OnTick()
     {
         if (!bt) return;
         bt.getOrigin().Evaluate(bt.getOrigin());

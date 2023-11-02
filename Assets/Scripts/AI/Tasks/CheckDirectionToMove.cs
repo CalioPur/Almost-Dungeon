@@ -46,12 +46,12 @@ public class CheckDirectionToMove : Node
             return NodeState.Success;
         }
         
-        if (currentTile.hasDoorRight && blackboard.hero.indexHeroX + 1 < blackboard.hero.mapManager.width - 2)
+        if (currentTile.hasDoorRight)
         {
             NextData =
                 blackboard.hero.mapManager.GetTileDataAtPosition(blackboard.hero.indexHeroX + 1,
                     blackboard.hero.indexHeroY);
-            if (!NextData.PiecePlaced)
+            if (NextData == null || !NextData.PiecePlaced)
             {
                 blackboard.directionToMove = DirectionToMove.Right;
                 return NodeState.Success;
@@ -62,12 +62,12 @@ public class CheckDirectionToMove : Node
                 possibleDirections.Add(DirectionToMove.Right);
             }
         }
-        if (currentTile.hasDoorLeft && blackboard.hero.indexHeroX - 1 >= 0)
+        if (currentTile.hasDoorLeft)
         {
             NextData =
                 blackboard.hero.mapManager.GetTileDataAtPosition(blackboard.hero.indexHeroX - 1,
                     blackboard.hero.indexHeroY);
-            if (!NextData.PiecePlaced)
+            if (NextData == null || !NextData.PiecePlaced)
             {
                 blackboard.directionToMove = DirectionToMove.Left;
                 return NodeState.Success;
@@ -78,11 +78,11 @@ public class CheckDirectionToMove : Node
                 possibleDirections.Add(DirectionToMove.Left);
             }
         }
-        if (currentTile.hasDoorUp && blackboard.hero.indexHeroY + 1 < blackboard.hero.mapManager.height - 2)
+        if (currentTile.hasDoorUp)
         {
             NextData =
                 blackboard.hero.mapManager.GetTileDataAtPosition(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY + 1);
-            if (!NextData.PiecePlaced)
+            if (NextData == null || !NextData.PiecePlaced)
             {
                 blackboard.directionToMove = DirectionToMove.Up;
                 return NodeState.Success;
@@ -93,11 +93,11 @@ public class CheckDirectionToMove : Node
                 possibleDirections.Add(DirectionToMove.Up);
             }
         }
-        if (currentTile.hasDoorDown && blackboard.hero.indexHeroY - 1 >= 0)
+        if (currentTile.hasDoorDown)
         {
             NextData =
                 blackboard.hero.mapManager.GetTileDataAtPosition(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY - 1);
-            if (!NextData.PiecePlaced)
+            if (NextData == null || !NextData.PiecePlaced)
             {
                 blackboard.directionToMove = DirectionToMove.Down;
                 return NodeState.Success;

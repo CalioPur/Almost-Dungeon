@@ -17,6 +17,12 @@ public class SimpleHeroBT : BehaviourTree.Tree
                 new AttackCaC()
             ),*/
             new Sequence(
+                new FindMinionInCaC(BB),
+                new ChooseTargetToHitOnCaC(BB),
+                new AttackMinionOnCaC(BB),
+                new CheckTargetIsAlive(BB)
+            ),
+            new Sequence(
                 new CheckDirectionToMove(BB),
                 new MoveToDestination(BB),
                 new CheckPlayerOutOfMap(BB)
