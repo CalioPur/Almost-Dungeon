@@ -42,7 +42,7 @@ public class MinionManagerScript : MonoBehaviour
 
             GameObject minion = Instantiate(minionPrefab, posToSpawn, minionPrefab.transform.rotation, transform);
             MinionData minionData = minion.GetComponent<MinionData>();
-            mapManager.GetTilePosFromWorldPos(posToSpawn, out minionData.indexMinionX, out minionData.indexMinionY);
+            mapManager.GetTilePosFromWorldPos(posToSpawn, out minionData.indexX, out minionData.indexY);
             minionData.mapManager = mapManager;
             tile.enemies.Add(minionData);
             minionData.StartListenTick(MovementType.Monster);
@@ -54,7 +54,7 @@ public class MinionManagerScript : MonoBehaviour
             GameObject webPrefab = TrapsPrefab.Find(x => x.name == "web").prefab;
             GameObject minion = Instantiate(webPrefab, posToSpawn, webPrefab.transform.rotation, transform);
             TrapData trapData = minion.GetComponent<TrapData>();
-            mapManager.GetTilePosFromWorldPos(posToSpawn, out trapData.indexMinionX, out trapData.indexMinionY);
+            mapManager.GetTilePosFromWorldPos(posToSpawn, out trapData.indexX, out trapData.indexY);
             trapData.mapManager = mapManager;
             tile.enemies.Add(trapData);
             trapData.StartListenTick(MovementType.Trap);
