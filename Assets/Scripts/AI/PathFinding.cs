@@ -54,9 +54,9 @@ public class PathFinding
             dbgInt++;
         }
         
-        if (personality == Personnalities.HurryForTheExit)
+        switch (personality)
         {
-            if (exits.Count > 0)
+            case Personnalities.HurryForTheExit when exits.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
                 if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
@@ -65,10 +65,14 @@ public class PathFinding
                 }
                 return GetDirectionToMove(startPos, nextPos);
             }
-        }
-        else if (personality == Personnalities.TheExplorer)
-        {
-            if (unvisitedTiles.Count > 0)
+            case Personnalities.HurryForTheExit when exits.Count == 0:
+            {
+                BreakFreeFromNoExit(startPos, map);
+                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                MapManager.Instance.CheckAllTilesTypeAndRotation();
+                return DirectionToMove.None;
+            }
+            case Personnalities.TheExplorer when unvisitedTiles.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, unvisitedTiles);
                 if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
@@ -77,7 +81,7 @@ public class PathFinding
                 }
                 return GetDirectionToMove(startPos, nextPos);
             }
-            else if (exits.Count > 0)
+            case Personnalities.TheExplorer when exits.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
                 if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
@@ -86,10 +90,64 @@ public class PathFinding
                 }
                 return GetDirectionToMove(startPos, nextPos);
             }
+            default:
+                Debug.Log("No valid path found because no exit or unvisited tiles found");
+                return GoThroughDoorWithNoTile(startPos, map);
+        }
+    }
+
+    private static void BreakFreeFromNoExit(Vector2Int startPos, TileData[,] map)
+    {
+        TileData tileWallBreaker = map[startPos.x, startPos.y];
+        int[] possibleDirectionsToBreak = new int[4];
+        if (!tileWallBreaker.hasDoorDown)
+        {
+            possibleDirectionsToBreak[0] = 1;
+        }
+        if (!tileWallBreaker.hasDoorUp)
+        {
+            possibleDirectionsToBreak[1] = 1;
+        }
+        if (!tileWallBreaker.hasDoorLeft)
+        {
+            possibleDirectionsToBreak[2] = 1;
+        }
+        if (!tileWallBreaker.hasDoorRight)
+        {
+            possibleDirectionsToBreak[3] = 1;
+        }
+        
+        int randomIndex = Random.Range(0, possibleDirectionsToBreak.Length);
+        int security = 0;
+        while (possibleDirectionsToBreak[randomIndex] == 0 && security < 100)
+        {
+            randomIndex = Random.Range(0, possibleDirectionsToBreak.Length);
+            security++;
         }
 
-        Debug.Log("No valid path found because no exit or unvisited tiles found");
-        return GoThroughDoorWithNoTile(startPos, map);
+        switch (randomIndex)
+        {
+            case 0:
+                //down
+                tileWallBreaker.hasDoorDown = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker);
+                break;
+            case 1:
+                //up
+                tileWallBreaker.hasDoorUp = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker);
+                break;
+            case 2:
+                //left
+                tileWallBreaker.hasDoorLeft = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker);
+                break;
+            case 3:
+                //right
+                tileWallBreaker.hasDoorRight = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker);
+                break;
+        }
     }
 
     private static Vector2Int GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap, List<Vector2Int> positions)

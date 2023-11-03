@@ -17,6 +17,13 @@ public class MapManager : MonoBehaviour
     [SerializeField] private CardInfo[] cards;
 
     private TileData[,] mapArray;
+    
+    public static MapManager Instance { get; private set; }
+    
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     struct pp
     {
@@ -134,8 +141,6 @@ public class MapManager : MonoBehaviour
                     if (i == width - 3 && mapArray[i, j].hasDoorRight)
                     {
                         mapArray[i, j].isExit = true;
-                        Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-                            Color.magenta, 1f);
                     }
                     else if (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced)
                     {
@@ -214,6 +219,12 @@ public class MapManager : MonoBehaviour
         if (x >= width - 2 || y >= height - 2 || x < 0 || y < 0) return null;
         return mapArray[x, y];
     }
+    
+    public void ChangeTileDataAtPosition(int x, int y, TileData data)
+    {
+        if (x >= width - 2 || y >= height - 2 || x < 0 || y < 0) return;
+        mapArray[x, y] = data;
+    }
 
     void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
     {
@@ -254,6 +265,124 @@ public class MapManager : MonoBehaviour
         data.minions.Add(minionData);
     }
 
+    public void CheckAllTilesTypeAndRotation()
+    {
+        for (int i = 0; i < width - 2; i++)
+        {
+            for (int j = 0; j < height - 2; j++)
+            {
+                CheckTileTypeAndRotation(mapArray[i, j]);
+            }
+        }
+        SetConnectedToPath();
+        SetExits();
+    }
+
+    private void CheckTileTypeAndRotation(TileData tileData)
+    {
+        if (isLTile(tileData))
+        {
+            tileData.img.sprite = cards[0].imgOnMap;
+            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromLTile(tileData), 0);
+        }
+        else if (isStraightTile(tileData))
+        {
+            tileData.img.sprite = cards[1].imgOnMap;
+            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromStraightTile(tileData),0);
+        }
+        else if (isTTile(tileData))
+        {
+            tileData.img.sprite = cards[2].imgOnMap;
+            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromTTile(tileData),0);
+        }
+        else if (isCrossTile(tileData))
+        {
+            tileData.img.sprite = cards[3].imgOnMap;
+        }
+        else if (isDeadEndTile(tileData))
+        {
+            tileData.img.sprite = cards[4].imgOnMap;
+            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromDeadEndTile(tileData),0);
+        }
+    }
+
+    private bool isLTile(TileData data)
+    {
+        return data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp ||
+               data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
+               !data.hasDoorDown && data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
+               !data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp;
+    }
+    private float GetRotationFromLTile(TileData data)
+    {
+        return data.hasDoorDown switch
+        {
+            true when data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp => 0,
+            true when !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 270,
+            false when data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 180,
+            false when data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp => 90,
+            _ => 0
+        };
+    }
+    
+    private bool isStraightTile(TileData data)
+    {
+        return data.hasDoorDown && !data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp ||
+               !data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp;
+    }
+    private float GetRotationFromStraightTile(TileData data)
+    {
+        return data.hasDoorDown switch
+        {
+            true when !data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp => 90,
+            false when !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 0,
+            _ => 0
+        };
+    }
+    
+    private bool isTTile(TileData data)
+    {
+        return data.hasDoorDown && data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
+               !data.hasDoorDown && data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp ||
+               data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp ||
+               data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp;
+    }
+    private float GetRotationFromTTile(TileData data)
+    {
+        return data.hasDoorDown switch
+        {
+            true when data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 270,
+            false when data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp => 90,
+            true when !data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp => 180,
+            true when data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp => 0,
+            _ => 0
+        };
+    }
+    
+    private bool isCrossTile(TileData data)
+    {
+        return data.hasDoorDown && data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp;
+    }
+    
+    private bool isDeadEndTile(TileData data)
+    {
+        return data.hasDoorDown && !data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp ||
+               !data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp ||
+               !data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
+               !data.hasDoorDown && !data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp;
+    }
+    private float GetRotationFromDeadEndTile(TileData data)
+    {
+        return data.hasDoorDown switch
+        {
+            true when !data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp => 270,
+            false when data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp => 0,
+            false when !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 180,
+            false when !data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp => 90,
+            _ => 0
+        };
+    }
+
 void Update()
 {
     //debug the tile that are connected to the path with a red line that goes up
@@ -272,11 +401,11 @@ void Update()
             //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
             //         Color.magenta, 1f);
             // }
-            if (mapArray[i, j].isVisited)
-            {
-                Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-                    Color.green, 1f);
-            }
+            // if (mapArray[i, j].isVisited)
+            // {
+            //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+            //         Color.green, 1f);
+            // }
         }
     }
 }
