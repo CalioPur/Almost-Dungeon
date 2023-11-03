@@ -31,6 +31,8 @@ public class CardsManager : MonoBehaviour
     private int cptCardsObtained = 0;
     private int nbStackingCard = 0;
 
+    private Coroutine currentlyDrawing;
+
     private void Awake()
     {
         GameManager.OnGameStartEvent += BeginToDraw;
@@ -59,8 +61,10 @@ public class CardsManager : MonoBehaviour
     {
         if (!canBePlaced) return;
         cptCardsObtained--;
-        DrawAllCards();
-        StartCoroutine(CheckDrawCard());
+        Debug.Log("On remove cptCardsObtained : " + cptCardsObtained);
+        // DrawAllCards();
+        // if (currentlyDrawing == null)
+        //     StartCoroutine(CheckDrawCard());
         selectedCard = null;
     }
 
@@ -103,26 +107,26 @@ public class CardsManager : MonoBehaviour
 
     private void DrawAllCards()
     {
-        return;
-        for (int i = 0; i < nbStackingCard; i++)
-        {
-            if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
-            {
-                DrawCard();
-            }
-        }
     }
 
     private IEnumerator CheckDrawCard()
     {
-        if (deckCreate.Count <= 0 || cptCardsObtained >= slotsHand.Count) yield break;
         yield return new WaitForSeconds(TimerBeforeDrawCard);
         nbStackingCard++;
-        if (deckCreate.Count <= 0 || cptCardsObtained >= slotsHand.Count) yield break;
-        Debug.Log("stack: " +nbStackingCard);
-        if (nbStackingCard > 0)
-            DrawCard();
-        StartCoroutine(CheckDrawCard());
+        if (deckCreate.Count <= 0) yield break;
+        //Debug.Log("cptCardsObtained : " + cptCardsObtained + " slotsHand.Count : " + slotsHand.Count);
+        if (nbStackingCard > 0 && cptCardsObtained < slotsHand.Count)
+            for (int i = 0; i < nbStackingCard; i++)
+            {
+                if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
+                {
+                    DrawCard();
+                }
+            }
+
+        if (currentlyDrawing != null)
+            StopCoroutine(currentlyDrawing);
+        currentlyDrawing = StartCoroutine(CheckDrawCard());
     }
 
     IEnumerator AnimationDrawCard(CardHand Slot)
@@ -138,6 +142,7 @@ public class CardsManager : MonoBehaviour
         if (deckCreate.Count == 0 || cptCardsObtained >= slotsHand.Count) return;
 
         cptCardsObtained++;
+        Debug.Log("On draw cptCardsObtained : " + cptCardsObtained);
         nbStackingCard--;
         CardInfoInstance card = deckCreate[0];
         if (deckCreate.Count > 0)

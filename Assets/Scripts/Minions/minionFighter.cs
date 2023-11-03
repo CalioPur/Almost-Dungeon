@@ -9,7 +9,6 @@ public class minionFighter : MinionData
 {
     protected override void MinionDie()
     {
-        Debug.Log("i'm ded");
         mapManager.RemoveMinionOnTile(new Vector2Int(indexMinionX, indexMinionY), this);
         Destroy(gameObject);
     }

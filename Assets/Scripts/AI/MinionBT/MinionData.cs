@@ -40,7 +40,6 @@ public abstract class MinionData : TrapData
     {
         if (isDead) return;
         
-        Debug.Log("ENNEMI TAKE DAMAGE");
         minionInstance.CurrentHealthPoint -= damage;
         if(minionInstance.CurrentHealthPoint<=0)
         {
