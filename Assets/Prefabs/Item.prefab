@@ -90,6 +90,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSpritesDictionary:
   - itemName: Test1
-    itemSprite: {fileID: 1647974455, guid: a7a669ec7e8c63947b7c9375001f35f2, type: 3}
+    itemSprite: {fileID: 232383147, guid: a7a669ec7e8c63947b7c9375001f35f2, type: 3}
   - itemName: Test2
-    itemSprite: {fileID: -991424438, guid: a7a669ec7e8c63947b7c9375001f35f2, type: 3}
+    itemSprite: {fileID: -668490625, guid: a7a669ec7e8c63947b7c9375001f35f2, type: 3}

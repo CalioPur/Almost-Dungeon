@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
+  m_Name: CardInfo 1
+  m_EditorClassIdentifier: 
+  imgOnHand: {fileID: 0}
+  imgOnMap: {fileID: 0}
+  nbToBuild: 0
+  nbMinionOnCard: 0
+  DoorOnTop: 0
+  DoorOnBottom: 0
+  DoorOnLeft: 0
+  DoorOnRight: 0
+  description: 
+  Rotation: 0

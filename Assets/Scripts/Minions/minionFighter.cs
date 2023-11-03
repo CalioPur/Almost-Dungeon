@@ -9,7 +9,6 @@ public class minionFighter : MinionData
 {
     protected override void MinionDie()
     {
-        Debug.Log("i'm ded");
         mapManager.RemoveMinionOnTile(new Vector2Int(indexMinionX, indexMinionY), this);
         Destroy(gameObject);
     }
@@ -31,5 +30,10 @@ public class minionFighter : MinionData
     {
         if (!bt) return;
         bt.getOrigin().Evaluate(bt.getOrigin());
+    }
+
+    public override T GetSO<T>()
+    {
+        return (T) (object) minionSO;
     }
 }

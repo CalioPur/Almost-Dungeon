@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169dba6f91655af4c99cb09a8d03f947, type: 3}
   m_Name: minionBait
   m_EditorClassIdentifier: 
-  health: 3
-  damage: 1
-  range: 0
+  <health>k__BackingField: 0
+  <damage>k__BackingField: 0
+  <range>k__BackingField: 0
+  <targetPriority>k__BackingField: 10

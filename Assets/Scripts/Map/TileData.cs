@@ -27,7 +27,7 @@ public class TileData : MonoBehaviour
     
 
     [Header("Monsters")]
-    public List<MinionData> minions = new ();
+    public List<TrapData> minions = new ();
     /*public List<Hero> bigMinion = new ();
     public List<Hero> archerMinion = new ();*/
     

@@ -25,7 +25,6 @@ public class UI_Hero : MonoBehaviour
     public TMP_Text heroName;
     
     public int itemSlotsCount = 3;
-    private float timeLeft = 0f;
 
     #region Health
     
@@ -166,7 +165,7 @@ public class UI_Hero : MonoBehaviour
 
     private void Start()
     {
-        DrawItems();
+        if (ItemBar.activeSelf) DrawItems();
         Hero.OnMovedOnEmptyCardEvent += LoseGame;
         Hero.OnTakeDamageEvent += DrawHearts;
         //Hero.OnPopUpEvent += SetupValues;

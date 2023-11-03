@@ -7,6 +7,6 @@ public class HeroBlackboard : MonoBehaviour
 {
     [HideInInspector] public Hero hero;
     [HideInInspector] public DirectionToMove directionToMove = DirectionToMove.None;
-    [HideInInspector] public List<MinionData> Targets = new ();
-    [HideInInspector] public MinionData ChosenTarget;
+    [HideInInspector] public List<TrapData> Targets = new ();
+    [HideInInspector] public TrapData ChosenTarget;
 }
