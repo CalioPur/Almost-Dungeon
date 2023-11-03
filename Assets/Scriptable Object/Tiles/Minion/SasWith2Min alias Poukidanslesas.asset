@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
-  m_Name: SasWith1Min alias Poukidanslesas 1
+  m_Name: SasWith2Min alias Poukidanslesas
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: d0163bf9a79f9e24a80c789efb7bd875, type: 3}
   imgOnMap: {fileID: 21300000, guid: 1f80038e01d0d9648a560fe5c57739b4, type: 3}
   nbToBuild: 1
-  nbMinionOnCard: 2
+  nbMinionOnCard: 0
+  Web: 0
+  Pyke: 0
   DoorOnTop: 0
   DoorOnBottom: 0
   DoorOnLeft: 1
