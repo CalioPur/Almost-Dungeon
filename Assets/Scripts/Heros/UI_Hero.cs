@@ -33,14 +33,11 @@ public class UI_Hero : MonoBehaviour
     private void DrawHearts(int _currentHealth)
     {
         DestroyAllHearts();
-        
-        
 
         if (_currentHealth <= 0)
         {
             OnEndGameEvent?.Invoke(true);
         }
-            
         
         float maxHealthRemainder = _currentHealth % 2;
         int maxHealth = (int)((_currentHealth / 2) + maxHealthRemainder);

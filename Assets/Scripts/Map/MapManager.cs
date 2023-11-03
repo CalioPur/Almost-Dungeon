@@ -239,19 +239,19 @@ public class MapManager : MonoBehaviour
     public void GetNbMonstersOnPos(Vector2Int pos, out List<TrapData> minions)
     {
         TileData data = GetTileDataAtPosition(pos.x, pos.y);
-        minions = new List<TrapData>(data.minions.OrderBy(x => x.GetSO<TrapSO>().targetPriority));
+        minions = new List<TrapData>(data.enemies.OrderBy(x => x.GetSO().targetPriority));
     }
 
-    public void RemoveMinionOnTile(Vector2Int vector2Int, MinionData minionData)
+    public void RemoveEnemyOnTile(Vector2Int vector2Int, TrapData minionData)
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
-        data.minions.Remove(minionData);
+        data.enemies.Remove(minionData);
     }
 
-    public void AddMinionOnTile(Vector2Int vector2Int, MinionData minionData)
+    public void AddMinionOnTile(Vector2Int vector2Int, TrapData minionData)
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
-        data.minions.Add(minionData);
+        data.enemies.Add(minionData);
     }
 
 void Update()

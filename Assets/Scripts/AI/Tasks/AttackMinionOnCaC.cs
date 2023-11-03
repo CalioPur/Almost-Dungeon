@@ -20,6 +20,7 @@ public class AttackMinionOnCaC : Node
             blackboard.ChosenTarget = null;
             return NodeState.Failure;
         }
+        Debug.Log("Attack enemy : " + blackboard.ChosenTarget.name + " with " + blackboard.hero.info.So.AttackPoint + " damage");
         blackboard.ChosenTarget.TakeDamage(blackboard.hero.info.So.AttackPoint);
         return NodeState.Success;
     }

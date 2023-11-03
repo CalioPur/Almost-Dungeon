@@ -3,27 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class MinionData : TrapData
 {
     public static event Action OnHeroMoved;
-
-    
-    public int indexMinionX;
-    public int indexMinionY;
-    protected int entityId;
-    public MapManager mapManager;
-    
    
     [SerializeField] protected Transform tr;
     [SerializeField] protected SpriteRenderer sprite;
     [SerializeField] protected MinionBTBase bt;
-    [SerializeField] protected minionSOScript minionSO;
     
-    public MinionInstance minionInstance;
-    
-    protected abstract void MinionDie();
-    protected abstract void OnTick();
+    public EnemyInstance minionInstance;
     
     public void GetHeroPos()
     {
@@ -44,13 +34,15 @@ public abstract class MinionData : TrapData
         if(minionInstance.CurrentHealthPoint<=0)
         {
             isDead = true;
-            MinionDie();
+            OnDead();
         }
     }
 
-    protected void Init()
+    protected override void Init()
     {
-        minionInstance = minionSO.CreateInstance();
+        minionInstance = SO.CreateInstance();
+        GameManager.OnGameStartEvent += StartListenTick;
+       
     }
     public void StartListenTick()
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class TileData : MonoBehaviour
@@ -26,8 +27,8 @@ public class TileData : MonoBehaviour
     public bool PiecePlaced => _instance != null;
     
 
-    [Header("Monsters")]
-    public List<TrapData> minions = new ();
+    [FormerlySerializedAs("minions")] [Header("Monsters")]
+    public List<TrapData> enemies = new ();
     /*public List<Hero> bigMinion = new ();
     public List<Hero> archerMinion = new ();*/
     

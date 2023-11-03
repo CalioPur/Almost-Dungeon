@@ -18,7 +18,7 @@ public class MoveToHero : Node
         
         
         Vector3 pos = Vector3.zero;
-        blackboard.minionData.mapManager.RemoveMinionOnTile(new Vector2Int(blackboard.minionData.indexMinionX, blackboard.minionData.indexMinionY), blackboard.minionData);
+        blackboard.minionData.mapManager.RemoveEnemyOnTile(new Vector2Int(blackboard.minionData.indexMinionX, blackboard.minionData.indexMinionY), blackboard.minionData);
         switch (blackboard.dir)
         {
             case DirectionToMove.Up:

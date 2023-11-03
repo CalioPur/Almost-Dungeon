@@ -1,32 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[CreateAssetMenu(fileName = "Trap", menuName = "ScriptableObjects/TrapSO", order = 1)]
-public class TrapSO : ScriptableObject
+[CreateAssetMenu(fileName = "minionSO", menuName = "ScriptableObjects/minionSO", order = 1)]
+public class EnemySo : ScriptableObject
 {
     [field:SerializeField] public int health { get; private set; }
     [field:SerializeField]public int damage { get; private set; }
     [field:SerializeField]public int range { get; private set; }
     [field:SerializeField]public byte targetPriority { get; private set; }
     
-    public TrapInstance CreateInstance()
+    public EnemyInstance CreateInstance()
     {
-        return new TrapInstance(this);
+        return new EnemyInstance(this);
     }
 }
 
 
-public class TrapInstance
+public class EnemyInstance
 {
-    public TrapSO So { get; }
+    public EnemySo So { get; }
 
     public int CurrentHealthPoint;
     public int damagePoint;
-    public TrapInstance(TrapSO info)
+    public EnemyInstance(EnemySo info)
     {
         So = info;
         CurrentHealthPoint = info.health;
         damagePoint = info.damage;
     }
 }
+

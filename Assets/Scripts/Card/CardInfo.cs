@@ -12,6 +12,7 @@ public class CardInfo : ScriptableObject
     [FormerlySerializedAs("img")] public Sprite imgOnMap;
     public int nbToBuild;
     public int nbMinionOnCard;
+    public bool Web;
     public bool DoorOnTop;
     public bool DoorOnBottom;
     public bool DoorOnLeft;

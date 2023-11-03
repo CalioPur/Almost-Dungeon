@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
-  m_Name: CardInfo 1
+  m_Name: LLineWeb
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 0}
-  imgOnMap: {fileID: 0}
-  nbToBuild: 0
+  imgOnHand: {fileID: 21300000, guid: 283ab8d5c38ac724dafa73bf541972ea, type: 3}
+  imgOnMap: {fileID: 21300000, guid: e6ac792fc04b75445a16af7d09b600d0, type: 3}
+  nbToBuild: 1
   nbMinionOnCard: 0
+  Web: 1
   DoorOnTop: 0
-  DoorOnBottom: 0
-  DoorOnLeft: 0
+  DoorOnBottom: 1
+  DoorOnLeft: 1
   DoorOnRight: 0
-  description: 
+  description: beware of spider
   Rotation: 0

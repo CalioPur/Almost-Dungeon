@@ -7,18 +7,6 @@ using Debug = UnityEngine.Debug;
 
 public class minionFighter : MinionData
 {
-    protected override void MinionDie()
-    {
-        mapManager.RemoveMinionOnTile(new Vector2Int(indexMinionX, indexMinionY), this);
-        Destroy(gameObject);
-    }
-
-    void Start()
-    {
-        Init();
-        GameManager.OnGameStartEvent += StartListenTick;
-        Hero.OnGivePosBackEvent += GetHeroPos;
-    }
 
     private void GetHeroPos(Vector2Int pos)
     {
@@ -26,14 +14,27 @@ public class minionFighter : MinionData
     }
 
 
+    public override void TakeDamage(int damage)
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override void OnTick()
     {
         if (!bt) return;
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
+     
 
-    public override T GetSO<T>()
+     protected override void Init()
+     {
+         base.Init();
+         Hero.OnGivePosBackEvent += GetHeroPos;
+     }
+
+    protected override void OnDead()
     {
-        return (T) (object) minionSO;
+        mapManager.RemoveEnemyOnTile(new Vector2Int(indexMinionX, indexMinionY), this);
+        Destroy(gameObject);
     }
 }
