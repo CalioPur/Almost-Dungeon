@@ -53,9 +53,7 @@ public class PathFinding
 
             dbgInt++;
         }
-
-        Debug.Log("BFS iterations: " + dbgInt);
-
+        
         if (personality == Personnalities.HurryForTheExit)
         {
             if (exits.Count > 0)

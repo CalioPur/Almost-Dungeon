@@ -75,7 +75,6 @@ public class Hero : MonoBehaviour
 
     public void TakeDamage(int soAttackPoint)
     {
-        Debug.Log(soAttackPoint);
         info.CurrentHealthPoint -= soAttackPoint;
         OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint);
         if (info.CurrentHealthPoint <= 0)

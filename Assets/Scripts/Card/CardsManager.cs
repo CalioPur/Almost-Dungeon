@@ -31,11 +31,13 @@ public class CardsManager : MonoBehaviour
     private int cptCardsObtained = 0;
     private int nbStackingCard = 0;
 
+    private Coroutine currentlyDrawing;
+
     private void Awake()
     {
         GameManager.OnGameStartEvent += BeginToDraw;
     }
-    
+
     private void BeginToDraw()
     {
         StartCoroutine(CheckDrawCard());
@@ -59,8 +61,6 @@ public class CardsManager : MonoBehaviour
     {
         if (!canBePlaced) return;
         cptCardsObtained--;
-        DrawAllCards();
-        StartCoroutine(CheckDrawCard());
         selectedCard = null;
     }
 
@@ -100,30 +100,24 @@ public class CardsManager : MonoBehaviour
 
         return true;
     }
-    
-    private void DrawAllCards()
-    {
-        for (int i = 0; i < nbStackingCard; i++)
-        {
-            if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
-            {
-                DrawCard();
-            }
-        }
-    }
 
     private IEnumerator CheckDrawCard()
     {
-        if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
-        {
-            yield return new WaitForSeconds(TimerBeforeDrawCard);
-            nbStackingCard++;
-            if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
+        yield return new WaitForSeconds(TimerBeforeDrawCard);
+        nbStackingCard++;
+        if (deckCreate.Count <= 0) yield break;
+        if (nbStackingCard > 0 && cptCardsObtained < slotsHand.Count)
+            for (int i = 0; i < nbStackingCard; i++)
             {
-                DrawCard();
-                StartCoroutine(CheckDrawCard());
+                if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
+                {
+                    DrawCard();
+                }
             }
-        }
+
+        if (currentlyDrawing != null)
+            StopCoroutine(currentlyDrawing);
+        currentlyDrawing = StartCoroutine(CheckDrawCard());
     }
 
     IEnumerator AnimationDrawCard(CardHand Slot)
@@ -150,15 +144,12 @@ public class CardsManager : MonoBehaviour
         if (deckCreate.Count == 0)
             DeckTr.gameObject.SetActive(false);
 
-        for (int i = 0; i < slotsHand.Count; i++)
+        foreach (var t in slotsHand.Where(t => t.Occupied == false))
         {
-            if (slotsHand[i].Occupied == false)
-            {
-                StartCoroutine(AnimationDrawCard(slotsHand[i]));
-                slotsHand[i].InitCard(card);
-                slotsHand[i].Occupied = true;
-                break;
-            }
+            StartCoroutine(AnimationDrawCard(t));
+            t.InitCard(card);
+            t.Occupied = true;
+            break;
         }
     }
 
@@ -201,7 +192,7 @@ public class CardsManager : MonoBehaviour
 
             return;
         }
-        
+
         foreach (var t in slotsHand.Where(t => t == imgSelected))
         {
             if (t == selectedCard)
@@ -226,7 +217,7 @@ public class CardsManager : MonoBehaviour
     {
         if (selectedCard != null)
         {
-            selectedCard.GetImage().transform.Rotate(0, 0, 90 * (direction ? 1 : -1) );
+            selectedCard.GetImage().transform.Rotate(0, 0, 90 * (direction ? 1 : -1));
             selectedCard.Card.AddRotation(direction);
         }
     }

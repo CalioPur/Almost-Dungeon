@@ -62,7 +62,7 @@ public class TickManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No subscribers found for movement type: {movementType}");
+            //Debug.LogWarning($"No subscribers found for movement type: {movementType}");
         }
     }
 
@@ -84,7 +84,7 @@ public class TickManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No subscribers found for movement type: {currentMovementType}");
+            //Debug.LogWarning($"No subscribers found for movement type: {currentMovementType}");
         }
     }
 
