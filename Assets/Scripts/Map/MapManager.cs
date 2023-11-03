@@ -310,8 +310,8 @@ public class MapManager : MonoBehaviour
     {
         return data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp ||
                data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
-               !data.hasDoorDown && data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
-               !data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp;
+               !data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp ||
+               !data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp;
     }
     private float GetRotationFromLTile(TileData data)
     {
@@ -319,7 +319,7 @@ public class MapManager : MonoBehaviour
         {
             true when data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp => 0,
             true when !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 270,
-            false when data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 180,
+            false when !data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp => 180,
             false when data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp => 90,
             _ => 0
         };
