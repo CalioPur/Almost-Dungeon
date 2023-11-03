@@ -1881,6 +1881,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
   - {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
   - {fileID: 11400000, guid: 04d799a52176ab249a17e82201cee279, type: 2}
+  - {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
   nbCardOnStartToDraw: 3
   TimerBeforeDrawCard: 2
   TimerAnimationDrawCard: 0.2

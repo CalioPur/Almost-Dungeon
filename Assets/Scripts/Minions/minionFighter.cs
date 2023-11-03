@@ -13,9 +13,6 @@ public class minionFighter : MinionData
         bt.blackboard.heroPosition = pos;
     }
 
-
-    
-
     protected override void OnTick()
     {
         if (!bt) return;
@@ -31,7 +28,7 @@ public class minionFighter : MinionData
 
     protected override void OnDead()
     {
-        mapManager.RemoveEnemyOnTile(new Vector2Int(indexMinionX, indexMinionY), this);
+        mapManager.RemoveEnemyOnTile(new Vector2Int(indexX, indexY), this);
         Destroy(gameObject);
     }
 }

@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 803f4c98478733d4d82eba15d65ffe36, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,6 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SO: {fileID: 11400000, guid: f3b6051f60b04e7439dcc03376198dba, type: 2}
   isDead: 0
-  indexMinionX: 0
-  indexMinionY: 0
+  indexX: 0
+  indexY: 0
   mapManager: {fileID: 0}

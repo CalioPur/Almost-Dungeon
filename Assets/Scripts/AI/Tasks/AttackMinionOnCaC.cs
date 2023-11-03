@@ -21,7 +21,6 @@ public class AttackMinionOnCaC : Node
             blackboard.ChosenTarget = null;
             return NodeState.Failure;
         }
-        Debug.Log("Attack enemy : " + blackboard.ChosenTarget.name + " with " + blackboard.hero.info.So.AttackPoint + " damage");
         blackboard.ChosenTarget.TakeDamage(blackboard.hero.info.So.AttackPoint);
         blackboard.hero.animQueue.Enqueue(new AnimToQueue(blackboard.hero.transform, blackboard.ChosenTarget.transform.position, 0.3f, Ease.InBack, 2));
         blackboard.hero.StartCoroutine(blackboard.hero.doAnim());

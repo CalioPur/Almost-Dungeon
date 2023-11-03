@@ -20,31 +20,31 @@ public class MoveToHero : Node
         
         Vector3 pos = Vector3.zero;
         Vector3 tmp = Vector3.zero;
-        blackboard.minionData.mapManager.RemoveEnemyOnTile(new Vector2Int(blackboard.minionData.indexMinionX, blackboard.minionData.indexMinionY), blackboard.minionData);
+        blackboard.minionData.mapManager.RemoveEnemyOnTile(new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), blackboard.minionData);
         var localPosition = blackboard.minionData.transform.localPosition;
         switch (blackboard.dir)
         {
             case DirectionToMove.Up:
-                blackboard.minionData.mapManager.GetWorldPosFromTilePos(blackboard.minionData.indexMinionX, blackboard.minionData.indexMinionY + 1, out pos);
-                blackboard.minionData.indexMinionY++;
+                blackboard.minionData.mapManager.GetWorldPosFromTilePos(blackboard.minionData.indexX, blackboard.minionData.indexY + 1, out pos);
+                blackboard.minionData.indexY++;
                 tmp.z = localPosition.z%1;
                 tmp.x = localPosition.x%1;
                 break;
             case DirectionToMove.Down:
-                blackboard.minionData.mapManager.GetWorldPosFromTilePos(blackboard.minionData.indexMinionX, blackboard.minionData.indexMinionY - 1, out pos);
-                blackboard.minionData.indexMinionY--;
+                blackboard.minionData.mapManager.GetWorldPosFromTilePos(blackboard.minionData.indexX, blackboard.minionData.indexY - 1, out pos);
+                blackboard.minionData.indexY--;
                 tmp.z = localPosition.z%1;
                 tmp.x = localPosition.x%1;
                 break;
             case DirectionToMove.Left:
-                blackboard.minionData.mapManager.GetWorldPosFromTilePos(blackboard.minionData.indexMinionX - 1, blackboard.minionData.indexMinionY, out pos);
-                blackboard.minionData.indexMinionX--;
+                blackboard.minionData.mapManager.GetWorldPosFromTilePos(blackboard.minionData.indexX - 1, blackboard.minionData.indexY, out pos);
+                blackboard.minionData.indexX--;
                 tmp.z = localPosition.z%1;
                 tmp.x = localPosition.x%1;
                 break;
             case DirectionToMove.Right:
-                blackboard.minionData.mapManager.GetWorldPosFromTilePos(blackboard.minionData.indexMinionX + 1, blackboard.minionData.indexMinionY, out pos);
-                blackboard.minionData.indexMinionX++;
+                blackboard.minionData.mapManager.GetWorldPosFromTilePos(blackboard.minionData.indexX + 1, blackboard.minionData.indexY, out pos);
+                blackboard.minionData.indexX++;
                 tmp.z = localPosition.z%1;
                 tmp.x = localPosition.x%1;
                 break;
@@ -54,7 +54,7 @@ public class MoveToHero : Node
         tmp.z-=0.5f;
         Debug.Log(tmp);
         pos += tmp;
-        blackboard.minionData.mapManager.AddMinionOnTile(new Vector2Int(blackboard.minionData.indexMinionX, blackboard.minionData.indexMinionY), blackboard.minionData);
+        blackboard.minionData.mapManager.AddMinionOnTile(new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), blackboard.minionData);
         blackboard.minionData.Move(pos);
         return NodeState.Success;
     }

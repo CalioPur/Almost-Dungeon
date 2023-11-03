@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5242026796885018233}
   - component: {fileID: 3666571859102276325}
-  - component: {fileID: -8707804463132227556}
+  - component: {fileID: 2011339117868378926}
   m_Layer: 0
   m_Name: Pyke
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-8707804463132227556
+--- !u!114 &2011339117868378926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,11 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3487245091449332422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251c1d9030440f84ba11737d3c8472aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 27bfe35f387ef6149953fa3e2b4edf8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SO: {fileID: 11400000, guid: 46860a4b78d6a4a49a319a474c7d7e1e, type: 2}
   isDead: 0
-  indexMinionX: 0
-  indexMinionY: 0
+  indexX: 0
+  indexY: 0
   mapManager: {fileID: 0}

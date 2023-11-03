@@ -8,11 +8,30 @@ public class TileData : MonoBehaviour
 {
     
     [SerializeField] private CardInfoInstance _instance;
-    public bool hasDoorUp => _instance?.DoorOnTop ?? false;
-    public bool hasDoorRight => _instance?.DoorOnRight ?? false;
-    public bool hasDoorDown => _instance?.DoorOnBottom ?? false;
-    public bool hasDoorLeft => _instance?.DoorOnLeft ?? false;
-    
+    public bool hasDoorUp
+    {
+        get => _instance?.DoorOnTop ?? false;
+        set => _instance.DoorOnTop = value;
+    }
+
+    public bool hasDoorRight
+    {
+        get => _instance?.DoorOnRight ?? false;
+        set => _instance.DoorOnRight = value;
+    }
+
+    public bool hasDoorDown
+    {
+        get => _instance?.DoorOnBottom ?? false;
+        set => _instance.DoorOnBottom = value;
+    }
+
+    public bool hasDoorLeft
+    {
+        get => _instance?.DoorOnLeft ?? false;
+        set => _instance.DoorOnLeft = value;
+    }
+
     public bool isConnectedToPath = false;
     
     public bool isExit = false;
@@ -52,11 +71,11 @@ public class TileData : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        if (hasDoorUp) Gizmos.DrawLine(transform.position, transform.position + Vector3.forward * 0.2f);
-        if (hasDoorRight) Gizmos.DrawLine(transform.position, transform.position + Vector3.right* 0.2f);
-        if (hasDoorDown) Gizmos.DrawLine(transform.position, transform.position + Vector3.back* 0.2f);
-        if (hasDoorLeft) Gizmos.DrawLine(transform.position, transform.position + Vector3.left* 0.2f);
+        Gizmos.color = Color.yellow;
+        if (hasDoorUp) Gizmos.DrawSphere(transform.position + Vector3.forward * 0.5f, 0.1f);
+        if (hasDoorRight) Gizmos.DrawSphere(transform.position + Vector3.right * 0.5f, 0.1f);
+        if (hasDoorDown) Gizmos.DrawSphere(transform.position + Vector3.back * 0.5f, 0.1f);
+        if (hasDoorLeft) Gizmos.DrawSphere(transform.position + Vector3.left * 0.5f, 0.1f);
     }
 
 }

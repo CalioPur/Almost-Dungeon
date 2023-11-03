@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6478207352120983098}
   - component: {fileID: 1629374874559397796}
   m_Layer: 0
-  m_Name: MinionManager
+  m_Name: EnemyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,5 +50,8 @@ MonoBehaviour:
       type: 3}
   - name: web
     prefab: {fileID: 3487245091449332422, guid: 8dae85895e2cc55408536bcca08f72a8,
+      type: 3}
+  - name: pyke
+    prefab: {fileID: 3487245091449332422, guid: c8c34374694204043a8e90937b2029f6,
       type: 3}
   mapManager: {fileID: 0}

@@ -10,7 +10,7 @@ public struct ListOfTraps
     public GameObject prefab;
 }
 
-public class MinionManagerScript : MonoBehaviour
+public class SpawnEnemyManager : MonoBehaviour
 {
     [SerializeField] private List<ListOfTraps> TrapsPrefab;
     [SerializeField] private MapManager mapManager;
@@ -25,24 +25,19 @@ public class MinionManagerScript : MonoBehaviour
         for (int i = 0; i < card.So.nbMinionOnCard; i++)
         {
             //display in circle around the tile
-            
+
             var angle = i * Mathf.PI * 2 / card.So.nbMinionOnCard;
             if (card.So.nbMinionOnCard != 1)
             {
                 angle -= Mathf.PI / 4;
             }
-            
-            
+
             GameObject minionPrefab = TrapsPrefab.Find(x => x.name == "basicMinion").prefab;
-
-            
-            var pos = new Vector3 (Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f;
-            
-            Vector3 posToSpawn = tile.transform.position+ pos;
-
+            Vector3 posToSpawn = tile.transform.position + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f;
+            ;
             GameObject minion = Instantiate(minionPrefab, posToSpawn, minionPrefab.transform.rotation, transform);
             MinionData minionData = minion.GetComponent<MinionData>();
-            mapManager.GetTilePosFromWorldPos(posToSpawn, out minionData.indexMinionX, out minionData.indexMinionY);
+            mapManager.GetTilePosFromWorldPos(posToSpawn, out minionData.indexX, out minionData.indexY);
             minionData.mapManager = mapManager;
             tile.enemies.Add(minionData);
             minionData.StartListenTick(MovementType.Monster);
@@ -50,15 +45,24 @@ public class MinionManagerScript : MonoBehaviour
 
         if (card.So.Web)
         {
-            Vector3 posToSpawn = tile.transform.position;
-            GameObject webPrefab = TrapsPrefab.Find(x => x.name == "web").prefab;
-            GameObject minion = Instantiate(webPrefab, posToSpawn, webPrefab.transform.rotation, transform);
-            TrapData trapData = minion.GetComponent<TrapData>();
-            mapManager.GetTilePosFromWorldPos(posToSpawn, out trapData.indexMinionX, out trapData.indexMinionY);
-            trapData.mapManager = mapManager;
-            tile.enemies.Add(trapData);
-            trapData.StartListenTick(MovementType.Trap);
+            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.name == "web").prefab, tile, true);
         }
-        
+
+        if (card.So.Pyke)
+        {
+            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.name == "pyke").prefab, tile, false);
+
+        }
+    }
+
+    public void SpawnEnemy<T>(GameObject prefab, TileData tile, bool addEnemyOnTile) where T : TrapData
+    {
+        Vector3 position = tile.transform.position;
+        GameObject minion = Instantiate(prefab, position, prefab.transform.rotation, transform);
+        T script = minion.GetComponent<T>();
+        mapManager.GetTilePosFromWorldPos(position, out script.indexX, out script.indexY);
+        script.mapManager = mapManager;
+        if (addEnemyOnTile)
+            tile.enemies.Add(script);
     }
 }
