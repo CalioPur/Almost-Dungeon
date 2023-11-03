@@ -23,6 +23,7 @@ public abstract class MinionData : TrapData
     public void Move(Vector3 pos)
     {
         
+        
         tr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
     }
     

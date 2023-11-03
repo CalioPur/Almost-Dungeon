@@ -24,9 +24,21 @@ public class MinionManagerScript : MonoBehaviour
     {
         for (int i = 0; i < card.So.nbMinionOnCard; i++)
         {
+            //display in circle around the tile
+            
+            var angle = i * Mathf.PI * 2 / card.So.nbMinionOnCard;
+            if (card.So.nbMinionOnCard != 1)
+            {
+                angle -= Mathf.PI / 4;
+            }
             Vector3 posToSpawn = tile.transform.position;
             
             GameObject minionPrefab = TrapsPrefab.Find(x => x.name == "basicMinion").prefab;
+
+            
+            var pos = new Vector3 (Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f;
+            
+            Vector3 posToSpawn = tile.transform.position+ pos;
 
             GameObject minion = Instantiate(minionPrefab, posToSpawn, minionPrefab.transform.rotation, transform);
             MinionData minionData = minion.GetComponent<MinionData>();
