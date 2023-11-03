@@ -25,6 +25,7 @@ public class Hero : MonoBehaviour
     public void Move(Vector3 pos)
     {
         heroTr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
+        OnGivePosBackEvent?.Invoke(new Vector2Int(indexHeroX, indexHeroY));
     }
 
     void OnTick()
@@ -41,15 +42,9 @@ public class Hero : MonoBehaviour
         entityId = GetHashCode();
         info = instance;
 
-        MinionData.OnHeroMoved += SendPos;
         TrapData.OnTrapAttackEvent += TakeDamage;
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
-    }
-
-    private void SendPos()
-    {
-        OnGivePosBackEvent?.Invoke(new Vector2Int(indexHeroX, indexHeroY));
     }
 
     private void OnBeginToMove()
