@@ -218,7 +218,7 @@ public class MapManager : MonoBehaviour
         return mapArray[x, y].PiecePlaced;
     }
 
-    public void GetNbMonstersOnPos(Vector2Int pos, out List<MinionData> minions)
+    public void GetNbMonstersOnPos(Vector2Int pos, out List<TrapData> minions)
     {
         TileData data = GetTileDataAtPosition(pos.x, pos.y);
         minions = data.minions;

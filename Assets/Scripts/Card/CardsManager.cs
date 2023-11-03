@@ -35,7 +35,7 @@ public class CardsManager : MonoBehaviour
     {
         GameManager.OnGameStartEvent += BeginToDraw;
     }
-    
+
     private void BeginToDraw()
     {
         StartCoroutine(CheckDrawCard());
@@ -100,9 +100,10 @@ public class CardsManager : MonoBehaviour
 
         return true;
     }
-    
+
     private void DrawAllCards()
     {
+        return;
         for (int i = 0; i < nbStackingCard; i++)
         {
             if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
@@ -114,16 +115,14 @@ public class CardsManager : MonoBehaviour
 
     private IEnumerator CheckDrawCard()
     {
-        if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
-        {
-            yield return new WaitForSeconds(TimerBeforeDrawCard);
-            nbStackingCard++;
-            if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
-            {
-                DrawCard();
-                StartCoroutine(CheckDrawCard());
-            }
-        }
+        if (deckCreate.Count <= 0 || cptCardsObtained >= slotsHand.Count) yield break;
+        yield return new WaitForSeconds(TimerBeforeDrawCard);
+        nbStackingCard++;
+        if (deckCreate.Count <= 0 || cptCardsObtained >= slotsHand.Count) yield break;
+        Debug.Log("stack: " +nbStackingCard);
+        if (nbStackingCard > 0)
+            DrawCard();
+        StartCoroutine(CheckDrawCard());
     }
 
     IEnumerator AnimationDrawCard(CardHand Slot)
@@ -150,15 +149,12 @@ public class CardsManager : MonoBehaviour
         if (deckCreate.Count == 0)
             DeckTr.gameObject.SetActive(false);
 
-        for (int i = 0; i < slotsHand.Count; i++)
+        foreach (var t in slotsHand.Where(t => t.Occupied == false))
         {
-            if (slotsHand[i].Occupied == false)
-            {
-                StartCoroutine(AnimationDrawCard(slotsHand[i]));
-                slotsHand[i].InitCard(card);
-                slotsHand[i].Occupied = true;
-                break;
-            }
+            StartCoroutine(AnimationDrawCard(t));
+            t.InitCard(card);
+            t.Occupied = true;
+            break;
         }
     }
 
@@ -201,7 +197,7 @@ public class CardsManager : MonoBehaviour
 
             return;
         }
-        
+
         foreach (var t in slotsHand.Where(t => t == imgSelected))
         {
             if (t == selectedCard)
@@ -226,7 +222,7 @@ public class CardsManager : MonoBehaviour
     {
         if (selectedCard != null)
         {
-            selectedCard.GetImage().transform.Rotate(0, 0, 90 * (direction ? 1 : -1) );
+            selectedCard.GetImage().transform.Rotate(0, 0, 90 * (direction ? 1 : -1));
             selectedCard.Card.AddRotation(direction);
         }
     }

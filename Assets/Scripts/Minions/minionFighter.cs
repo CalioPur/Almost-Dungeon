@@ -32,4 +32,9 @@ public class minionFighter : MinionData
         if (!bt) return;
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
+
+    public override T GetSO<T>()
+    {
+        return (T) (object) minionSO;
+    }
 }

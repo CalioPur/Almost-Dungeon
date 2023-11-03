@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169dba6f91655af4c99cb09a8d03f947, type: 3}
-  m_Name: minionBait
+  m_Script: {fileID: 11500000, guid: 751682b04fb74e241890c06791a71ecd, type: 3}
+  m_Name: Web
   m_EditorClassIdentifier: 
   <health>k__BackingField: 0
   <damage>k__BackingField: 0
   <range>k__BackingField: 0
-  <targetPriority>k__BackingField: 10
+  <targetPriority>k__BackingField: 1

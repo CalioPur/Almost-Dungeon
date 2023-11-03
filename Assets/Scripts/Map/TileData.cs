@@ -24,7 +24,7 @@ public class TileData : MonoBehaviour
     public bool PiecePlaced => _instance != null;
 
     [Header("Monsters")]
-    public List<MinionData> minions = new ();
+    public List<TrapData> minions = new ();
     /*public List<Hero> bigMinion = new ();
     public List<Hero> archerMinion = new ();*/
     

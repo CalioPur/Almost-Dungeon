@@ -17,7 +17,7 @@ public class AttackHero : Node
     {
         if(blackboard.heroPosition.x == blackboard.minionData.indexMinionX && blackboard.heroPosition.y == blackboard.minionData.indexMinionY)
         {
-            OnMonsterAttackEvent?.Invoke(blackboard.minionData.minionInstance.damagePoint);
+            OnMonsterAttackEvent?.Invoke(blackboard.minionData.minionInstance.So.damage);
             return NodeState.Success;
         }
         return NodeState.Failure;

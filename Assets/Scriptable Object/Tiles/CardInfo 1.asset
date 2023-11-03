@@ -9,10 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169dba6f91655af4c99cb09a8d03f947, type: 3}
-  m_Name: minionBait
+  m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
+  m_Name: CardInfo 1
   m_EditorClassIdentifier: 
-  <health>k__BackingField: 0
-  <damage>k__BackingField: 0
-  <range>k__BackingField: 0
-  <targetPriority>k__BackingField: 10
+  imgOnHand: {fileID: 0}
+  imgOnMap: {fileID: 0}
+  nbToBuild: 0
+  nbMinionOnCard: 0
+  DoorOnTop: 0
+  DoorOnBottom: 0
+  DoorOnLeft: 0
+  DoorOnRight: 0
+  description: 
+  Rotation: 0
