@@ -1510,6 +1510,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3212174651047275594}
   - component: {fileID: 4111822094305253052}
+  - component: {fileID: 4035820903503387054}
+  - component: {fileID: 3207606627677985718}
   m_Layer: 5
   m_Name: Dragon
   m_TagString: Untagged
@@ -1563,6 +1565,37 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4035820903503387054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130919900055546884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed39442c608b5447a35d1c2e2318b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullHeart: {fileID: -1745846870, guid: c54e8f4efbf480344bc0e3f699ea9c39, type: 3}
+  halfHeart: {fileID: 1300124364, guid: c54e8f4efbf480344bc0e3f699ea9c39, type: 3}
+  emptyHeart: {fileID: -1090137915, guid: c54e8f4efbf480344bc0e3f699ea9c39, type: 3}
+--- !u!114 &3207606627677985718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130919900055546884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63255f37cf98174f8c0c5c6391754e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 2093564348930732538}
+  heartPrefab: {fileID: 4618448264207241317, guid: 721f4ecc1d804a544a45b64b1ac5e591,
+    type: 3}
+  currentHealth: 10
 --- !u!1 &6202709732188957442
 GameObject:
   m_ObjectHideFlags: 0

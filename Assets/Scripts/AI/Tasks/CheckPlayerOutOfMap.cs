@@ -16,6 +16,8 @@ public class CheckPlayerOutOfMap : Node
     {
         if (blackboard.hero.mapManager.CheckIfTileIsFree(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY))
             return NodeState.Failure;
+        if (blackboard.hero.mapManager.CheckDragonHP(blackboard.hero))
+            return NodeState.Failure;
 
         blackboard.hero.OutOfMap();
         return NodeState.Success;

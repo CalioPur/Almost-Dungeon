@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class UI_HeroHeart : MonoBehaviour
+public class UI_Heart : MonoBehaviour
 {
     public Sprite fullHeart, halfHeart, emptyHeart;
     private Image heartImage;
@@ -16,18 +16,13 @@ public class UI_HeroHeart : MonoBehaviour
     
     public void SetHeartState(HeartState state)
     {
-        switch (state)
+        heartImage.sprite = state switch
         {
-            case HeartState.Full:
-                heartImage.sprite = fullHeart;
-                break;
-            case HeartState.Half:
-                heartImage.sprite = halfHeart;
-                break;
-            case HeartState.Empty:
-                heartImage.sprite = emptyHeart;
-                break;
-        }
+            HeartState.Full => fullHeart,
+            HeartState.Half => halfHeart,
+            HeartState.Empty => emptyHeart,
+            _ => heartImage.sprite
+        };
     }
 }
 public enum HeartState

@@ -10,7 +10,7 @@ public class UI_Hero : MonoBehaviour
     
     public GameObject healthBar;
     public GameObject heartPrefab;
-    List<UI_HeroHeart> hearts = new();
+    List<UI_Heart> hearts = new();
 
     public GameObject ItemBar;
     public GameObject itemsPrefab;
@@ -53,18 +53,18 @@ public class UI_Hero : MonoBehaviour
         }
     }
 
-    private void CreateFullHeart()
+    public void CreateFullHeart()
     {
         GameObject heart = Instantiate(heartPrefab, healthBar.transform);
-        UI_HeroHeart heartScript = heart.GetComponent<UI_HeroHeart>();
+        UI_Heart heartScript = heart.GetComponent<UI_Heart>();
         heartScript.SetHeartState(HeartState.Full);
         hearts.Add(heartScript);
     }
 
-    private void CreateHalfHeart()
+    public void CreateHalfHeart()
     {
         GameObject heart = Instantiate(heartPrefab, healthBar.transform);
-        UI_HeroHeart heartScript = heart.GetComponent<UI_HeroHeart>();
+        UI_Heart heartScript = heart.GetComponent<UI_Heart>();
         heartScript.SetHeartState(HeartState.Half);
         hearts.Add(heartScript);
     }
@@ -72,14 +72,14 @@ public class UI_Hero : MonoBehaviour
     public void CreateEmptyHeart()
     {
         GameObject heart = Instantiate(heartPrefab, healthBar.transform);
-        UI_HeroHeart heartScript = heart.GetComponent<UI_HeroHeart>();
+        UI_Heart heartScript = heart.GetComponent<UI_Heart>();
         heartScript.SetHeartState(HeartState.Empty);
         hearts.Add(heartScript);
     }
 
     public void DestroyAllHearts()
     {
-        foreach (UI_HeroHeart heart in hearts)
+        foreach (UI_Heart heart in hearts)
         {
             Destroy(heart.gameObject);
         }
@@ -170,11 +170,11 @@ public class UI_Hero : MonoBehaviour
         
         
         //test hero data
-        HeroData heroData = new HeroData();
-        heroData.heroName = "Hero's Name";
-        heroData.heroLevel = 1;
-        heroData.heroPersonality = "Hero's Personality";
-        SetHeroData(heroData);
+        // HeroData heroData = new HeroData();
+        // heroData.heroName = "Hero's Name";
+        // heroData.heroLevel = 1;
+        // heroData.heroPersonality = "Hero's Personality";
+        // SetHeroData(heroData);
     }
 }
 
