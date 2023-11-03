@@ -20,7 +20,7 @@ public class MoveToHero : Node
         
         Vector3 pos = Vector3.zero;
         Vector3 tmp = Vector3.zero;
-        blackboard.minionData.mapManager.RemoveMinionOnTile(new Vector2Int(blackboard.minionData.indexMinionX, blackboard.minionData.indexMinionY), blackboard.minionData);
+        blackboard.minionData.mapManager.RemoveEnemyOnTile(new Vector2Int(blackboard.minionData.indexMinionX, blackboard.minionData.indexMinionY), blackboard.minionData);
         var localPosition = blackboard.minionData.transform.localPosition;
         switch (blackboard.dir)
         {

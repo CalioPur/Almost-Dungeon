@@ -31,7 +31,7 @@ public class MinionManagerScript : MonoBehaviour
             {
                 angle -= Mathf.PI / 4;
             }
-            Vector3 posToSpawn = tile.transform.position;
+            
             
             GameObject minionPrefab = TrapsPrefab.Find(x => x.name == "basicMinion").prefab;
 
