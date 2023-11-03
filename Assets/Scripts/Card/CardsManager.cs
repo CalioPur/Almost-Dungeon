@@ -61,10 +61,6 @@ public class CardsManager : MonoBehaviour
     {
         if (!canBePlaced) return;
         cptCardsObtained--;
-        Debug.Log("On remove cptCardsObtained : " + cptCardsObtained);
-        // DrawAllCards();
-        // if (currentlyDrawing == null)
-        //     StartCoroutine(CheckDrawCard());
         selectedCard = null;
     }
 
@@ -105,16 +101,11 @@ public class CardsManager : MonoBehaviour
         return true;
     }
 
-    private void DrawAllCards()
-    {
-    }
-
     private IEnumerator CheckDrawCard()
     {
         yield return new WaitForSeconds(TimerBeforeDrawCard);
         nbStackingCard++;
         if (deckCreate.Count <= 0) yield break;
-        //Debug.Log("cptCardsObtained : " + cptCardsObtained + " slotsHand.Count : " + slotsHand.Count);
         if (nbStackingCard > 0 && cptCardsObtained < slotsHand.Count)
             for (int i = 0; i < nbStackingCard; i++)
             {
@@ -142,7 +133,6 @@ public class CardsManager : MonoBehaviour
         if (deckCreate.Count == 0 || cptCardsObtained >= slotsHand.Count) return;
 
         cptCardsObtained++;
-        Debug.Log("On draw cptCardsObtained : " + cptCardsObtained);
         nbStackingCard--;
         CardInfoInstance card = deckCreate[0];
         if (deckCreate.Count > 0)

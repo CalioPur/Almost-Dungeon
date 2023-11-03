@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "minionSO", menuName = "ScriptableObjects/minionSO", order = 1)]
 public class minionSOScript : TrapSO
 {
-    public MinionInstance CreateInstance()
+    public new MinionInstance CreateInstance()
     {
         return new MinionInstance(this);
     }

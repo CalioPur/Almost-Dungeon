@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 using Random = UnityEngine.Random;
@@ -17,8 +18,22 @@ public class MapManager : MonoBehaviour
 
     private TileData[,] mapArray;
 
+    struct pp
+    {
+        public string name;
+        public int y;
+    }
+    
+    private void TEST()
+    {
+    }
+    
+    
     public void InitMap()
     {
+        TEST();
+        
+        
         mapArray = new TileData[width, height];
         width += 2;
         height += 2;
@@ -224,7 +239,7 @@ public class MapManager : MonoBehaviour
     public void GetNbMonstersOnPos(Vector2Int pos, out List<TrapData> minions)
     {
         TileData data = GetTileDataAtPosition(pos.x, pos.y);
-        minions = data.minions;
+        minions = new List<TrapData>(data.minions.OrderBy(x => x.GetSO<TrapSO>().targetPriority));
     }
 
     public void RemoveMinionOnTile(Vector2Int vector2Int, MinionData minionData)

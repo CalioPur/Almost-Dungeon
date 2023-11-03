@@ -25,7 +25,6 @@ public class UI_Hero : MonoBehaviour
     public TMP_Text heroName;
     
     public int itemSlotsCount = 3;
-    private float timeLeft = 0f;
 
     #region Health
     

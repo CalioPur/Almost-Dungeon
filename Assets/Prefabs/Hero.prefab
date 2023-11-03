@@ -129,3 +129,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hero: {fileID: 2382212582554433649}
   directionToMove: 4
+  Targets: []
+  ChosenTarget: {fileID: 0}
