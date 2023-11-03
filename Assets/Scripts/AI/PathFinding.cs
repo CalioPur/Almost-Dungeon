@@ -68,7 +68,6 @@ public class PathFinding
             case Personnalities.HurryForTheExit when exits.Count == 0:
             {
                 BreakFreeFromNoExit(startPos, map);
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 MapManager.Instance.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
             }
@@ -130,22 +129,22 @@ public class PathFinding
             case 0:
                 //down
                 tileWallBreaker.hasDoorDown = true;
-                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker);
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,0);
                 break;
             case 1:
                 //up
                 tileWallBreaker.hasDoorUp = true;
-                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker);
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,2);
                 break;
             case 2:
                 //left
                 tileWallBreaker.hasDoorLeft = true;
-                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker);
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,1);
                 break;
             case 3:
                 //right
                 tileWallBreaker.hasDoorRight = true;
-                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker);
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,3);
                 break;
         }
     }

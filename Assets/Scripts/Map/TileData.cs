@@ -72,10 +72,10 @@ public class TileData : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        if (hasDoorUp) Gizmos.DrawSphere(transform.position + Vector3.forward * 0.5f, 0.1f);
-        if (hasDoorRight) Gizmos.DrawSphere(transform.position + Vector3.right * 0.5f, 0.1f);
-        if (hasDoorDown) Gizmos.DrawSphere(transform.position + Vector3.back * 0.5f, 0.1f);
-        if (hasDoorLeft) Gizmos.DrawSphere(transform.position + Vector3.left * 0.5f, 0.1f);
+        if (hasDoorUp) Gizmos.DrawSphere(transform.position + Vector3.forward * 0.4f, 0.1f);
+        if (hasDoorRight) Gizmos.DrawSphere(transform.position + Vector3.right * 0.4f, 0.1f);
+        if (hasDoorDown) Gizmos.DrawSphere(transform.position + Vector3.back * 0.4f, 0.1f);
+        if (hasDoorLeft) Gizmos.DrawSphere(transform.position + Vector3.left * 0.4f, 0.1f);
     }
 
 }

@@ -220,10 +220,31 @@ public class MapManager : MonoBehaviour
         return mapArray[x, y];
     }
     
-    public void ChangeTileDataAtPosition(int x, int y, TileData data)
+    public void ChangeTileDataAtPosition(int x, int y, TileData data, int doorChanged)
     {
-        if (x >= width - 2 || y >= height - 2 || x < 0 || y < 0) return;
+        if (x > width - 2 || y > height - 2 || x < 0 || y < 0) return;
         mapArray[x, y] = data;
+        switch (doorChanged)
+        {
+            case 0:
+                mapArray[x, y - 1].hasDoorUp = true;
+                Debug.Log("door down");
+                break;
+            case 1:
+                mapArray[x - 1, y].hasDoorRight = true;
+                Debug.Log("door left");
+                break;
+            case 2:
+                mapArray[x, y + 1].hasDoorDown = true;
+                Debug.Log("door up");
+                break;
+            case 3:
+                mapArray[x + 1, y].hasDoorLeft = true;
+                Debug.Log("door right");
+                break;
+        }
+        Debug.Log("door changed");
+        CheckAllTilesTypeAndRotation();
     }
 
     void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
