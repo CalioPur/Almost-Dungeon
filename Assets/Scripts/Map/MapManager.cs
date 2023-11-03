@@ -98,7 +98,7 @@ public class MapManager : MonoBehaviour
                         mapArray[i, j].isExit = true;
                     }
 
-                    if (j == height - 1 && mapArray[i, j].hasDoorUp)
+                    if (j == height - 3 && mapArray[i, j].hasDoorUp)
                     {
                         mapArray[i, j].isExit = true;
                     }
@@ -116,9 +116,11 @@ public class MapManager : MonoBehaviour
                         mapArray[i, j].isExit = true;
                     }
 
-                    if (i == width - 1 && mapArray[i, j].hasDoorRight)
+                    if (i == width - 3 && mapArray[i, j].hasDoorRight)
                     {
                         mapArray[i, j].isExit = true;
+                        Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+                            Color.magenta, 1f);
                     }
                     else if (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced)
                     {
@@ -153,6 +155,7 @@ public class MapManager : MonoBehaviour
 
         SetTileAtPosition(card, startPos.x, startPos.y);
         mapArray[startPos.x, startPos.y].isConnectedToPath = true;
+        mapArray[startPos.x, startPos.y].isVisited = true;
         SetConnectedToPath();
         SetExits();
         GetWorldPosFromTilePos(startPos.x, startPos.y, out pos);
@@ -236,30 +239,41 @@ public class MapManager : MonoBehaviour
         data.minions.Add(minionData);
     }
 
-// void Update()
-// {
-//     //debug the tile that are connected to the path with a red line that goes up
-//     for (int i = 0; i < width - 2; i++)
-//     {
-//         for (int j = 0; j < height - 2; j++)
-//         {
-//             if (mapArray[i, j].isConnectedToPath)
-//             {
-//                 Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-//                     Color.red, 1f);
-//             }
-//     
-//             if (mapArray[i, j].isExit)
-//             {
-//                 Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-//                     Color.magenta, 1f);
-//             }
-//         }
-//     }
-// }
+void Update()
+{
+    //debug the tile that are connected to the path with a red line that goes up
+    for (int i = 0; i < width - 2; i++)
+    {
+        for (int j = 0; j < height - 2; j++)
+        {
+            // if (mapArray[i, j].isConnectedToPath)
+            // {
+            //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+            //         Color.red, 1f);
+            // }
+            //
+            // if (mapArray[i, j].isExit)
+            // {
+            //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+            //         Color.magenta, 1f);
+            // }
+            if (mapArray[i, j].isVisited)
+            {
+                Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+                    Color.green, 1f);
+            }
+        }
+    }
+}
 
     public TileData[,] getMapArray()
     {
         return mapArray;
+    }
+
+    public bool GetTile(int heroIndexHeroX, int heroIndexHeroY, out TileData tile)
+    {
+        tile = GetTileDataAtPosition(heroIndexHeroX, heroIndexHeroY);
+        return tile != null;
     }
 }
