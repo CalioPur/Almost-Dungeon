@@ -7,7 +7,7 @@ public class Pyke : TrapData
 {
     
     private EnemyInstance pykeInstance;
-    private Vector2Int heroPos;
+    private Vector2Int heroPos = new Vector2Int(-9999, -9999);
     
     public override void TakeDamage(int damage)
     {

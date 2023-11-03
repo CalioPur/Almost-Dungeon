@@ -1870,18 +1870,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
   - {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936, type: 2}
   - {fileID: 11400000, guid: fc452d8cc30791a40b65d71caa08f5b1, type: 2}
+  - {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
+  - {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
   - {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
   - {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
   - {fileID: 11400000, guid: 7f25b0a51e86e1346975d374f86b7dbd, type: 2}
+  - {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
+  - {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
   - {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
   - {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
   - {fileID: 11400000, guid: f71ad4b17d00e264bafedabcaf487fa8, type: 2}
-  - {fileID: 11400000, guid: 22f750f2ecd15de4eaa83fcd82dabbac, type: 2}
-  - {fileID: 11400000, guid: 246ccb82261b7ca4d9f57f0068f0fa22, type: 2}
-  - {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
-  - {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
   - {fileID: 11400000, guid: 04d799a52176ab249a17e82201cee279, type: 2}
-  - {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
+  - {fileID: 11400000, guid: 22f750f2ecd15de4eaa83fcd82dabbac, type: 2}
+  - {fileID: 11400000, guid: be0c7f9793aaafa4fa212e0dc84e3558, type: 2}
+  - {fileID: 11400000, guid: 246ccb82261b7ca4d9f57f0068f0fa22, type: 2}
   nbCardOnStartToDraw: 3
   TimerBeforeDrawCard: 2
   TimerAnimationDrawCard: 0.2
