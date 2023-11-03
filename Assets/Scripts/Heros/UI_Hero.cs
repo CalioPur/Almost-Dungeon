@@ -165,7 +165,7 @@ public class UI_Hero : MonoBehaviour
 
     private void Start()
     {
-        DrawItems();
+        if (ItemBar.activeSelf) DrawItems();
         Hero.OnMovedOnEmptyCardEvent += LoseGame;
         Hero.OnTakeDamageEvent += DrawHearts;
         //Hero.OnPopUpEvent += SetupValues;
