@@ -244,6 +244,7 @@ public class MapManager : MonoBehaviour
 
     public bool CheckIfTileIsFree(int x, int y)
     {
+        if (x >= width - 2 || y >= height - 2 || x < 0 || y < 0) return false;
         return mapArray[x, y].PiecePlaced;
     }
 
