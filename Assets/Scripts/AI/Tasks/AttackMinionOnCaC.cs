@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BehaviourTree;
+using DG.Tweening;
 using UnityEngine;
 
 public class AttackMinionOnCaC : Node
@@ -21,6 +22,10 @@ public class AttackMinionOnCaC : Node
             return NodeState.Failure;
         }
         blackboard.ChosenTarget.TakeDamage(blackboard.hero.info.So.AttackPoint);
+        blackboard.hero.animQueue.Enqueue(new AnimToQueue(blackboard.hero.transform, blackboard.ChosenTarget.transform.position, 0.3f, Ease.InBack, 2));
+        blackboard.hero.StartCoroutine(blackboard.hero.doAnim());
+        
+
         return NodeState.Success;
     }
 }
