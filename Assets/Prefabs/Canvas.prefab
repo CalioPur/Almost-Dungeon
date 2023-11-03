@@ -2796,8 +2796,8 @@ MonoBehaviour:
   ItemBar: {fileID: 6651510497352859865}
   itemsPrefab: {fileID: 7965164348803930515, guid: bb21cdebda0a6ad44aa75ec0f099425e,
     type: 3}
-  endGamePanel: {fileID: 2089386332170213111}
-  endGameText: {fileID: 1943413513974272756}
+  endGamePanel: {fileID: 5588112277290890042}
+  endGameText: {fileID: 8769656149661145474}
   itemNamesChoices:
   - Test1
   - Test2
