@@ -872,6 +872,11 @@ PrefabInstance:
       propertyPath: m_CellSize.y
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 2089386332170213111, guid: 7b949d41056dac2409cd030208692f50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2616904072922678211, guid: 7b949d41056dac2409cd030208692f50,
         type: 3}
       propertyPath: m_AnchorMax.y
