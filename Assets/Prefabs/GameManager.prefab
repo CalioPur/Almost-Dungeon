@@ -51,4 +51,4 @@ MonoBehaviour:
   enterDungeonInfo: {fileID: 11400000, guid: f27eb5bc441e6be49abd14eac8f114b8, type: 2}
   heroRenderer: {fileID: 2382212582554433649, guid: e2de5e62e34e56d44a8e820e57cdfbdf,
     type: 3}
-  startPosHero: {x: 3, y: 2}
+  startPosHero: {x: 1, y: 2}
