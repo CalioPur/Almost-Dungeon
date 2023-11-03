@@ -8,15 +8,23 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "CardInfo", menuName = "ScriptableObjects/CardInfo", order = 1)]
 public class CardInfo : ScriptableObject
 {
-    [FormerlySerializedAs("img")] public Sprite imgOnHand;
-    [FormerlySerializedAs("img")] public Sprite imgOnMap;
+    [Header("Visual")]
+    public Sprite imgOnHand;
+    public Sprite imgOnMap;
+    
+    [Header("spawn parameters")]
     public int nbToBuild;
     public int nbMinionOnCard;
     public bool Web;
+    public bool Pyke;
+    
+    [Header("Doors")]
     public bool DoorOnTop;
     public bool DoorOnBottom;
     public bool DoorOnLeft;
     public bool DoorOnRight;
+    
+    [Header("Others")]
     public string description;
     public int Rotation;
     

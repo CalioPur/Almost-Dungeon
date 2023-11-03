@@ -7,7 +7,6 @@ using UnityEngine;
 public class AttackHero : Node
 {
     MinionBlackboard blackboard;
-    public static event Action<int> OnMonsterAttackEvent;
     public AttackHero(MinionBlackboard blackboard)
     {
         this.blackboard=blackboard;
@@ -15,9 +14,9 @@ public class AttackHero : Node
 
     public override NodeState Evaluate(Node root)
     {
-        if(blackboard.heroPosition.x == blackboard.minionData.indexMinionX && blackboard.heroPosition.y == blackboard.minionData.indexMinionY)
+        if(blackboard.heroPosition.x == blackboard.minionData.indexX && blackboard.heroPosition.y == blackboard.minionData.indexY)
         {
-            OnMonsterAttackEvent?.Invoke(blackboard.minionData.minionInstance.So.damage);
+            blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage);
             return NodeState.Success;
         }
         return NodeState.Failure;

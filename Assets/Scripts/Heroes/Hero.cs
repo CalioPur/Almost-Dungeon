@@ -42,7 +42,7 @@ public class Hero : MonoBehaviour
         info = instance;
 
         MinionData.OnHeroMoved += SendPos;
-        AttackHero.OnMonsterAttackEvent += TakeDamage;
+        TrapData.OnTrapAttackEvent += TakeDamage;
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
     }

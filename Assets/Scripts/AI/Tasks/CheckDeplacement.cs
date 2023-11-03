@@ -18,8 +18,8 @@ public class CheckDeplacement : Node
     private bool IsInSight(DirectionToMove d, MapManager map)
     {
         
-        int x = blackboard.minionData.indexMinionX;
-        int y = blackboard.minionData.indexMinionY;
+        int x = blackboard.minionData.indexX;
+        int y = blackboard.minionData.indexY;
         switch (d)
         {
             case DirectionToMove.Up:
@@ -69,14 +69,14 @@ public class CheckDeplacement : Node
     public override NodeState Evaluate(Node root)
     {
 
-        if (blackboard.heroPosition.x == blackboard.minionData.indexMinionX)
+        if (blackboard.heroPosition.x == blackboard.minionData.indexX)
         {
-            if (blackboard.heroPosition.y == blackboard.minionData.indexMinionY)
+            if (blackboard.heroPosition.y == blackboard.minionData.indexY)
             {
                 blackboard.dir = DirectionToMove.None;
                 return NodeState.Success;
             }
-            else if (blackboard.heroPosition.y > blackboard.minionData.indexMinionY)
+            else if (blackboard.heroPosition.y > blackboard.minionData.indexY)
             {
                 if (IsInSight(DirectionToMove.Up, blackboard.minionData.mapManager))
                 {
@@ -85,7 +85,7 @@ public class CheckDeplacement : Node
                 }
                 
             }
-            else if (blackboard.heroPosition.y < blackboard.minionData.indexMinionY)
+            else if (blackboard.heroPosition.y < blackboard.minionData.indexY)
             {
                 if (IsInSight(DirectionToMove.Down, blackboard.minionData.mapManager))
                 {
@@ -94,9 +94,9 @@ public class CheckDeplacement : Node
                 }
             }
         }
-        else if (blackboard.heroPosition.y == blackboard.minionData.indexMinionY)
+        else if (blackboard.heroPosition.y == blackboard.minionData.indexY)
         {
-            if(blackboard.heroPosition.x>blackboard.minionData.indexMinionX)
+            if(blackboard.heroPosition.x>blackboard.minionData.indexX)
             {
                 if (IsInSight(DirectionToMove.Right, blackboard.minionData.mapManager))
                 {
@@ -104,7 +104,7 @@ public class CheckDeplacement : Node
                     return NodeState.Success;
                 }
             }
-            else if(blackboard.heroPosition.x<blackboard.minionData.indexMinionX)
+            else if(blackboard.heroPosition.x<blackboard.minionData.indexX)
             {
                 if (IsInSight(DirectionToMove.Left, blackboard.minionData.mapManager))
                 {

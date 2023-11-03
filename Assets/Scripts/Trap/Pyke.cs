@@ -1,26 +1,50 @@
-using System.Collections;
+
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pyke : TrapData
 {
+    
+    private EnemyInstance pykeInstance;
+    private Vector2Int heroPos;
+    
     public override void TakeDamage(int damage)
     {
-        throw new System.NotImplementedException();
+        Debug.LogError("Pyke TakeDamage ! is not normal");
     }
 
     protected override void OnTick()
     {
-        throw new System.NotImplementedException();
+        //je check si le hero ou les minions sont sur ma case
+        mapManager.GetNbMonstersOnPos(new Vector2Int(indexX, indexY), out List<TrapData> minions);
+        if (minions.Count > 0)
+        {
+            foreach (var minion in minions)
+            {
+                minion.TakeDamage(pykeInstance.damagePoint);
+            }
+        }
+        if (heroPos.x == indexX && heroPos.y == indexY)
+        {
+            Attack(pykeInstance.damagePoint);
+        }
     }
 
     protected override void Init()
     {
-        throw new System.NotImplementedException();
+        pykeInstance = SO.CreateInstance();
+        TickManager.SubscribeToMovementEvent(MovementType.Trap, OnTick, entityId);
+        Hero.OnGivePosBackEvent += GetHeroPosOnTile;
+    }
+
+    private void GetHeroPosOnTile(Vector2Int pos)
+    {
+        heroPos = pos;
     }
 
     protected override void OnDead()
     {
-        throw new System.NotImplementedException();
+        Debug.LogError("Pyke is dead ! is not normal");
     }
 }

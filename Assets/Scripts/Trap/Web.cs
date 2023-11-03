@@ -25,7 +25,6 @@ public class Web : TrapData
 
     protected override void OnTick()
     {
-        //je check si le hero ou les minions sont sur ma case
     }
 
     protected override void Init()
@@ -36,12 +35,7 @@ public class Web : TrapData
     protected override void OnDead()
     {
         isDead = true;
-        mapManager.RemoveEnemyOnTile(new Vector2Int(indexMinionX, indexMinionY), this);
+        mapManager.RemoveEnemyOnTile(new Vector2Int(indexX, indexY), this);
         Destroy(gameObject);
-    }
-
-    public override void Attack()
-    {
-        //TODO: Attack
     }
 }

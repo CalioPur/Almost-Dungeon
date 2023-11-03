@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
-  m_Name: EnterDungeon
+  m_Name: SasWith1Min alias Poukidanslesas 1
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: b402db7d3d729874f90ed08aacfd5bfa, type: 3}
-  imgOnMap: {fileID: 21300000, guid: b402db7d3d729874f90ed08aacfd5bfa, type: 3}
-  nbToBuild: 0
-  nbMinionOnCard: 0
-  Web: 0
-  Pyke: 0
+  imgOnHand: {fileID: 21300000, guid: d0163bf9a79f9e24a80c789efb7bd875, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 1f80038e01d0d9648a560fe5c57739b4, type: 3}
+  nbToBuild: 1
+  nbMinionOnCard: 2
   DoorOnTop: 0
   DoorOnBottom: 0
-  DoorOnLeft: 0
-  DoorOnRight: 1
-  description: Is enter en fait
+  DoorOnLeft: 1
+  DoorOnRight: 0
+  description: y a la poucky dans sas
   Rotation: 0
