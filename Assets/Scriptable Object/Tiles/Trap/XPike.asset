@@ -18,9 +18,9 @@ MonoBehaviour:
   nbMinionOnCard: 0
   Web: 0
   Pyke: 1
-  DoorOnTop: 0
+  DoorOnTop: 1
   DoorOnBottom: 1
   DoorOnLeft: 1
-  DoorOnRight: 0
+  DoorOnRight: 1
   description: y a la poucky dans le sas
   Rotation: 0
