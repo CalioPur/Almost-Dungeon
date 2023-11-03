@@ -14,10 +14,7 @@ public class minionFighter : MinionData
     }
 
 
-    public override void TakeDamage(int damage)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     protected override void OnTick()
     {

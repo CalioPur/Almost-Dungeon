@@ -12,6 +12,8 @@ public abstract class MinionData : TrapData
     [SerializeField] protected Transform tr;
     [SerializeField] protected SpriteRenderer sprite;
     [SerializeField] protected MinionBTBase bt;
+    public Queue<AnimToQueue> animQueue = new Queue<AnimToQueue>();
+    private bool isExec = false;
     
     public EnemyInstance minionInstance;
     
@@ -25,6 +27,8 @@ public abstract class MinionData : TrapData
         
         
         tr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
+        animQueue.Enqueue(new AnimToQueue(tr, pos + new Vector3(1, 0.1f, 1), 0.5f));
+        StartCoroutine(doAnim());
     }
     
     public override void TakeDamage(int damage)
@@ -49,4 +53,18 @@ public abstract class MinionData : TrapData
     {
         TickManager.SubscribeToMovementEvent(MovementType.Monster, OnTick, entityId);
     }
+
+    public IEnumerator doAnim()
+    {
+        if (isExec) yield break;
+        while (animQueue.Count > 0)
+        {
+            isExec = true;
+            AnimToQueue anim = animQueue.Dequeue();
+            tr.DOMove(anim.target, anim.time).SetEase(anim.ease).SetLoops(anim.loop, LoopType.Yoyo);
+            yield return new WaitForSeconds(anim.time);
+        }
+        isExec = false;
+        yield return null;
+    } 
 }

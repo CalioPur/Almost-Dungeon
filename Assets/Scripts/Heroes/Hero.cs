@@ -1,5 +1,6 @@
 using System.Collections;
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -20,11 +21,13 @@ public class Hero : MonoBehaviour
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private SimpleHeroBT bt;
-
+    public Queue<AnimToQueue> animQueue = new Queue<AnimToQueue>();
+    private bool isExec = false;
 
     public void Move(Vector3 pos)
     {
-        heroTr.DOMove(pos + new Vector3(1, 0.1f, 1), 0.5f);
+        animQueue.Enqueue(new AnimToQueue(heroTr, pos + new Vector3(1, 0.1f, 1), 0.5f));
+        StartCoroutine(doAnim());
     }
 
     void OnTick()
@@ -87,4 +90,18 @@ public class Hero : MonoBehaviour
     {
         OnBeginToMove();
     }
+    
+    public IEnumerator doAnim()
+    {
+        if (isExec) yield break;
+        while (animQueue.Count > 0)
+        {
+            isExec = true;
+            AnimToQueue anim = animQueue.Dequeue();
+            heroTr.DOMove(anim.target, anim.time).SetEase(anim.ease).SetLoops(anim.loop, LoopType.Yoyo);
+            yield return new WaitForSeconds(anim.time);
+        }
+        isExec = false;
+        yield return null;
+    } 
 }
