@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isConnectedToPath: 0
   isExit: 0
+  isVisited: 0
   isPlayerhere: 0
   isMonsterhere: 0
   isChesthere: 0
