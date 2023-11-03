@@ -39,10 +39,10 @@ public class CardInfoInstance
 {
     public CardInfo So { get;}
     public int Rotation;
-    public bool DoorOnTop { get; private set; }
-    public bool DoorOnBottom { get; private set; }
-    public bool DoorOnLeft { get; private set; }
-    public bool DoorOnRight { get; private set; }
+    public bool DoorOnTop { get;  set; }
+    public bool DoorOnBottom { get; set; }
+    public bool DoorOnLeft { get;  set; }
+    public bool DoorOnRight { get;  set; }
     
     public event Action OnRotationChangedEvent; 
     
