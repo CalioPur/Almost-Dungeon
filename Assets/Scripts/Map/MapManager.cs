@@ -52,7 +52,7 @@ public class MapManager : MonoBehaviour
                 GetWorldPosFromTilePos(i, j, out pos); //pour centrer le tout
                 if (i == 0 || j == 0 || i == width - 1 || j == height - 1)
                 {
-                    Instantiate(walls, pos, walls.transform.rotation, map); //verifie si on est sur un bord
+                    //Instantiate(walls, pos, walls.transform.rotation, map); //verifie si on est sur un bord
                 }
                 else
                 {

@@ -17,7 +17,7 @@ public class GetHeroPos : Node
     
     public override NodeState Evaluate(Node root)
     {
-        blackboard.GetHeroPos();
+        blackboard.minionData.GetHeroPos();
         return NodeState.Success;
     }
 
