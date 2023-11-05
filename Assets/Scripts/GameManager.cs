@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector2Int startPosHero;
 
     private Vector3 pos;
-
+    
     void Start()
     {
         MapManager.OnCardTryToPlaceEvent += CheckIsFirstMove;
@@ -43,4 +44,14 @@ public class GameManager : MonoBehaviour
         SpawnHero();
         OnGameStartEvent?.Invoke();
     }
+
+    public void RetryGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }    
 }

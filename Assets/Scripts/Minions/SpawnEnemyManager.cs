@@ -35,7 +35,7 @@ public class SpawnEnemyManager : MonoBehaviour
             GameObject minionPrefab = TrapsPrefab.Find(x => x.name == "basicMinion").prefab;
             Vector3 posToSpawn = tile.transform.position + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f;
             ;
-            GameObject minion = Instantiate(minionPrefab, posToSpawn, minionPrefab.transform.rotation, transform);
+            GameObject minion = Instantiate(minionPrefab, posToSpawn, minionPrefab.transform.rotation);
             MinionData minionData = minion.GetComponent<MinionData>();
             mapManager.GetTilePosFromWorldPos(posToSpawn, out minionData.indexX, out minionData.indexY);
             minionData.mapManager = mapManager;
@@ -58,7 +58,7 @@ public class SpawnEnemyManager : MonoBehaviour
     public void SpawnEnemy<T>(GameObject prefab, TileData tile, bool addEnemyOnTile) where T : TrapData
     {
         Vector3 position = tile.transform.position;
-        GameObject minion = Instantiate(prefab, position, prefab.transform.rotation, transform);
+        GameObject minion = Instantiate(prefab, position, prefab.transform.rotation);
         T script = minion.GetComponent<T>();
         mapManager.GetTilePosFromWorldPos(position, out script.indexX, out script.indexY);
         script.mapManager = mapManager;
