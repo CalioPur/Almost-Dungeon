@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class UI_Hero : MonoBehaviour
 {
     public static event Action<bool> OnEndGameEvent;
-    
+
     public GameObject healthBar;
     public GameObject heartPrefab;
     List<UI_Heart> hearts = new();
@@ -20,23 +20,23 @@ public class UI_Hero : MonoBehaviour
     public TMP_Text endGameText;
     List<UI_HeroItem> items = new();
     public string[] itemNamesChoices;
-    
+
     public TMP_Text timeLeftBeforeNextMove;
     public TMP_Text heroPersonality;
     public TMP_Text heroLevel;
     public TMP_Text heroName;
-    
+
     public float shakeDuration = 0.5f;
     public Image heroImage;
 
-    
+
     public int itemSlotsCount = 3;
 
     #region Health
-    
-    
 
-    private void DrawHearts(int _currentHealth)
+
+
+    private void DrawHearts(int _currentHealth, bool newHeart)
     {
         DestroyAllHearts();
 
@@ -44,7 +44,7 @@ public class UI_Hero : MonoBehaviour
         {
             OnEndGameEvent?.Invoke(true);
         }
-        
+
         float maxHealthRemainder = _currentHealth % 2;
         int maxHealth = (int)((_currentHealth / 2) + maxHealthRemainder);
         for (int i = 0; i < maxHealth; i++)
@@ -57,8 +57,8 @@ public class UI_Hero : MonoBehaviour
             int heartState = (int)Mathf.Clamp(_currentHealth - i * 2, 0, 2);
             hearts[i].SetHeartState((HeartState)heartState);
         }
-
-        StartCoroutine(TakeDamageFX());
+        if (newHeart)
+            StartCoroutine(TakeDamageFX());
     }
 
     public void CreateFullHeart()
@@ -106,7 +106,7 @@ public class UI_Hero : MonoBehaviour
         {
             CreateEmptyItem();
         }
-        
+
         for (int i = 0; i < items.Count; i++)
         {
             items[i].SetItem(itemNamesChoices[i]);
@@ -138,17 +138,17 @@ public class UI_Hero : MonoBehaviour
         heroLevel.text = heroData.heroLevel.ToString();
         heroPersonality.text = heroData.heroPersonality;
     }
-    
+
     public IEnumerator TakeDamageFX()
     {
-        
-        
+
+
         heroImage.color = Color.red;
         heroImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true);
         yield return new WaitForSeconds(shakeDuration);
         heroImage.color = Color.white;
     }
-    
+
     public void UpdateTimeLeftBeforeNextMove(float time)
     {
         timeLeftBeforeNextMove.text = time.ToString("0.0");
@@ -159,7 +159,7 @@ public class UI_Hero : MonoBehaviour
         Time.timeScale = 0;
         endGameText.text = win ? "You Win !" : "You Lose !";
         endGamePanel.SetActive(true);
-        
+
     }
 
     void LoseGame()
@@ -169,7 +169,7 @@ public class UI_Hero : MonoBehaviour
 
     private void SetupValues(int currentHealth)
     {
-        DrawHearts(currentHealth);
+        DrawHearts(currentHealth, false);
     }
 
 
@@ -184,9 +184,9 @@ public class UI_Hero : MonoBehaviour
         Hero.OnMovedOnEmptyCardEvent += LoseGame;
         Hero.OnTakeDamageEvent += DrawHearts;
         //Hero.OnPopUpEvent += SetupValues;
-        OnEndGameEvent+= EndGame;
-        
-        
+        OnEndGameEvent += EndGame;
+
+
         //test hero data
         // HeroData heroData = new HeroData();
         // heroData.heroName = "Hero's Name";

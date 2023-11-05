@@ -260,7 +260,7 @@ public class MapManager : MonoBehaviour
 
     public bool CheckIfTileIsFree(int x, int y)
     {
-        if (x > width - 2 || y > height - 2 || x < 0 || y < 0) return false;
+        if (x >= width - 2 || y >= height - 2 || x < 0 || y < 0) return false;
         return mapArray[x, y].PiecePlaced;
     }
 
@@ -440,8 +440,7 @@ void Update()
 
     public bool CheckDragonHP(Hero blackboardHero)
     {
-        UI_Dragon.Instance.TakeDamage(blackboardHero.info.So.AttackPoint);
-        blackboardHero.TakeDamage(UI_Dragon.Instance.damage);
+        UI_Dragon.Instance.TakeDamage(blackboardHero.info.So.AttackPoint, blackboardHero);
         if (UI_Dragon.Instance.currentHealth <= 0)
         {
             UI_Dragon.Instance.currentHealth = 0;

@@ -24,7 +24,7 @@ public class UI_Dragon : MonoBehaviour
         DrawHearts();
     }
     
-    public IEnumerator TakeDamageFX()
+    public IEnumerator TakeDamageFX(Hero hero)
     {
         
         
@@ -32,6 +32,7 @@ public class UI_Dragon : MonoBehaviour
         dragonImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true);
         yield return new WaitForSeconds(shakeDuration);
         dragonImage.color = Color.white;
+        hero.TakeDamage(UI_Dragon.Instance.damage);
     }
 
     #region Health
@@ -90,10 +91,10 @@ public class UI_Dragon : MonoBehaviour
 
     #endregion
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Hero hero)
     {
         currentHealth -= damage;
-        StartCoroutine(TakeDamageFX());
+        StartCoroutine(TakeDamageFX(hero));
         DrawHearts();
     }
     

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
-  m_Name: SimpleLine
+  m_Name: TLinePike
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: 327123577b410944dacd140ed24ae4d0, type: 3}
-  imgOnMap: {fileID: 21300000, guid: 327123577b410944dacd140ed24ae4d0, type: 3}
-  nbToBuild: 5
+  imgOnHand: {fileID: 21300000, guid: 758a6f364b2cc6241bf5a92ed190d81b, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 758a6f364b2cc6241bf5a92ed190d81b, type: 3}
+  nbToBuild: 1
   nbMinionOnCard: 0
   Web: 0
-  Pyke: 0
-  DoorOnTop: 0
-  DoorOnBottom: 0
+  Pyke: 1
+  DoorOnTop: 1
+  DoorOnBottom: 1
   DoorOnLeft: 1
-  DoorOnRight: 1
-  description: it's a simple line ahah
+  DoorOnRight: 0
+  description: c'est nous qu'on la fait celle la
   Rotation: 0
