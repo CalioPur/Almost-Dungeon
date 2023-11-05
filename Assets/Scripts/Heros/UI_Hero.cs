@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Hero : MonoBehaviour
 {
@@ -23,6 +25,10 @@ public class UI_Hero : MonoBehaviour
     public TMP_Text heroPersonality;
     public TMP_Text heroLevel;
     public TMP_Text heroName;
+    
+    public float shakeDuration = 0.5f;
+    public Image heroImage;
+
     
     public int itemSlotsCount = 3;
 
@@ -51,6 +57,8 @@ public class UI_Hero : MonoBehaviour
             int heartState = (int)Mathf.Clamp(_currentHealth - i * 2, 0, 2);
             hearts[i].SetHeartState((HeartState)heartState);
         }
+
+        StartCoroutine(TakeDamageFX());
     }
 
     public void CreateFullHeart()
@@ -129,6 +137,16 @@ public class UI_Hero : MonoBehaviour
         heroName.text = heroData.heroName;
         heroLevel.text = heroData.heroLevel.ToString();
         heroPersonality.text = heroData.heroPersonality;
+    }
+    
+    public IEnumerator TakeDamageFX()
+    {
+        
+        
+        heroImage.color = Color.red;
+        heroImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true);
+        yield return new WaitForSeconds(shakeDuration);
+        heroImage.color = Color.white;
     }
     
     public void UpdateTimeLeftBeforeNextMove(float time)

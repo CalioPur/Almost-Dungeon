@@ -1595,7 +1595,10 @@ MonoBehaviour:
   healthBar: {fileID: 2093564348930732538}
   heartPrefab: {fileID: 4618448264207241317, guid: 721f4ecc1d804a544a45b64b1ac5e591,
     type: 3}
+  dragonImage: {fileID: 6967960205811346596}
+  shakeDuration: 0.5
   currentHealth: 10
+  damage: 3
 --- !u!1 &6202709732188957442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2838,6 +2841,8 @@ MonoBehaviour:
   heroPersonality: {fileID: 8868584943725064982}
   heroLevel: {fileID: 4007966496990547212}
   heroName: {fileID: 99862511467698714}
+  shakeDuration: 0.5
+  heroImage: {fileID: 4984830118940490699}
   itemSlotsCount: 2
 --- !u!114 &3116102446628375417
 MonoBehaviour:

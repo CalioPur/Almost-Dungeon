@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Dragon : MonoBehaviour
 {
     public GameObject healthBar;
     public GameObject heartPrefab;
+    public Image dragonImage;
     List<UI_Heart> hearts = new();
+    public float shakeDuration = 0.5f;
     
     public int currentHealth = 100;
     public int damage = 3;
@@ -17,6 +22,16 @@ public class UI_Dragon : MonoBehaviour
     {
         Instance = this;
         DrawHearts();
+    }
+    
+    public IEnumerator TakeDamageFX()
+    {
+        
+        
+        dragonImage.color = Color.red;
+        dragonImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true);
+        yield return new WaitForSeconds(shakeDuration);
+        dragonImage.color = Color.white;
     }
 
     #region Health
@@ -78,6 +93,7 @@ public class UI_Dragon : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        StartCoroutine(TakeDamageFX());
         DrawHearts();
     }
     
