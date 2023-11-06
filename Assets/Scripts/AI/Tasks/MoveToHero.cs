@@ -31,7 +31,6 @@ public class MoveToHero : Node
             new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), out Vector3 pos);
         blackboard.minionData.mapManager.AddMinionOnTile(
             new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), blackboard.minionData);
-        //blackboard.minionData.Move(pos,0.5f);
         return NodeState.Success;
     }
 }
