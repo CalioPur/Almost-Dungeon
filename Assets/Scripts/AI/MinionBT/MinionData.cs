@@ -7,7 +7,6 @@ using UnityEngine.Serialization;
 
 public abstract class MinionData : TrapData
 {
-    public static event Action OnHeroMoved;
     public static event Action OnHeroPosAsked;
    
     [SerializeField] protected Transform tr;
@@ -20,7 +19,7 @@ public abstract class MinionData : TrapData
     
     public void GetHeroPos()
     {
-        OnHeroMoved?.Invoke();
+        OnHeroPosAsked?.Invoke();
     }
 
     public void Move(Vector3 pos, float delay)
