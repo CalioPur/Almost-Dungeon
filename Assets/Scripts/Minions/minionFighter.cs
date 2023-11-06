@@ -29,6 +29,6 @@ public class minionFighter : MinionData
     protected override void OnDead()
     {
         mapManager.RemoveEnemyOnTile(new Vector2Int(indexX, indexY), this);
-        Destroy(gameObject);
+        Destroy(gameObject,0.25f);
     }
 }
