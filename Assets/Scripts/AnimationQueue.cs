@@ -21,7 +21,7 @@ public class AnimationQueue : MonoBehaviour
         while (animQueue.Count > 0)
         {
             AnimToQueue anim = animQueue.Dequeue();
-            anim.obj.DOMove(anim.target, anim.time).SetEase(anim.ease).SetLoops(anim.loop);
+            anim.obj.DOMove(anim.target, anim.time).SetEase(anim.ease).SetLoops(anim.loop, LoopType.Yoyo);
             yield return new WaitForSeconds(anim.time);
         }
         isExec = false;

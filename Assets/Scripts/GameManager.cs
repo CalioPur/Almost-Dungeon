@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public static Action OnGameStartEvent;
+    public static bool isGameStarted = false;
 
     [Header("Managers")] [SerializeField] private MapManager mapManager;
     [SerializeField] private TickManager tick;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         MapManager.OnCardTryToPlaceEvent -= CheckIsFirstMove;
         SpawnHero();
         OnGameStartEvent?.Invoke();
+        isGameStarted = true;
     }
 
     public void RetryGame()

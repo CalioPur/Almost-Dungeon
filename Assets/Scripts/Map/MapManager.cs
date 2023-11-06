@@ -275,7 +275,7 @@ public class MapManager : MonoBehaviour
             if (data.enemies[i] is MinionData)
             {
                 var angle = i * Mathf.PI * 2 / data.enemies.Count;
-                Vector3 angleVector = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.35f;
+                Vector3 angleVector = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.25f;
                 
                 
                 GetWorldPosFromTilePos(vector2Int.x, vector2Int.y, out Vector3 posToGo);

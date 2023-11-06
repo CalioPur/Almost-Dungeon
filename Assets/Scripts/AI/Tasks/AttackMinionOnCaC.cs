@@ -22,9 +22,7 @@ public class AttackMinionOnCaC : Node
             return NodeState.Failure;
         }
         blackboard.ChosenTarget.TakeDamage(blackboard.hero.info.So.AttackPoint);
-        blackboard.hero.animQueue.Enqueue(new AnimToQueue(blackboard.hero.transform, blackboard.ChosenTarget.transform.position, 0.3f, Ease.InBack, 2));
-        blackboard.hero.StartCoroutine(blackboard.hero.doAnim());
-        
+        blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, blackboard.ChosenTarget.transform.position, 0.3f, Ease.InBack, 2));
 
         return NodeState.Success;
     }

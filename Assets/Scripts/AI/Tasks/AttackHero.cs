@@ -24,6 +24,8 @@ public class AttackHero : Node
             
             // blackboard.minionData.animQueue.Enqueue(new AnimToQueue(blackboard.minionData.transform, heroPosVec3, 0.3f, Ease.InBack, 2));
             // blackboard.minionData.StartCoroutine(blackboard.minionData.doAnim());
+            blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform, heroPosVec3, 0.3f,
+                Ease.InBack, 2));
             blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage);
             return NodeState.Success;
         }

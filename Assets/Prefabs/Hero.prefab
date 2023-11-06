@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2382212582554433649}
   - component: {fileID: 922449776285682164}
   - component: {fileID: -4683431529391840305}
+  - component: {fileID: 7733622732822971966}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -102,6 +103,7 @@ MonoBehaviour:
   heroTr: {fileID: 3081425779426153195}
   Sprite: {fileID: 4954612021088544096}
   bt: {fileID: 922449776285682164}
+  animQueue: {fileID: 7733622732822971966}
 --- !u!114 &922449776285682164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,3 +133,15 @@ MonoBehaviour:
   directionToMove: 4
   Targets: []
   ChosenTarget: {fileID: 0}
+--- !u!114 &7733622732822971966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939014474319430147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b8280551aa7a14aa877bfcc4d5a661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

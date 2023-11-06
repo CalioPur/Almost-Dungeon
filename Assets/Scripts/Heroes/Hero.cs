@@ -18,17 +18,16 @@ public class Hero : MonoBehaviour
     public MapManager mapManager { get; private set; }
     public bool isDead { get; set; }
     public HeroInstance info { get; private set; }
+    
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private SimpleHeroBT bt;
-    public Queue<AnimToQueue> animQueue = new Queue<AnimToQueue>();
+    [SerializeField] private AnimationQueue animQueue;
     private bool isExec = false;
 
     public void Move(Vector3 pos)
     {
-        animQueue.Enqueue(new AnimToQueue(heroTr, pos + new Vector3(1, 0.1f, 1), 0.5f));
-        StartCoroutine(doAnim());
-        
+        animQueue.AddAnim(new AnimToQueue(heroTr, pos + new Vector3(1, 0.1f, 1), 0.5f));
     }
 
     void OnTick()
@@ -90,18 +89,9 @@ public class Hero : MonoBehaviour
     {
         OnBeginToMove();
     }
-    
-    public IEnumerator doAnim()
+
+    public void AddAnim(AnimToQueue animToQueue)
     {
-        if (isExec) yield break;
-        while (animQueue.Count > 0)
-        {
-            isExec = true;
-            AnimToQueue anim = animQueue.Dequeue();
-            heroTr.DOMove(anim.target, anim.time).SetEase(anim.ease).SetLoops(anim.loop, LoopType.Yoyo);
-            yield return new WaitForSeconds(anim.time);
-        }
-        isExec = false;
-        yield return null;
-    } 
+        animQueue.AddAnim(animToQueue);
+    }
 }
