@@ -10,27 +10,26 @@ public class UI_Hero : MonoBehaviour
 {
     public static event Action<bool> OnEndGameEvent;
 
-    public GameObject healthBar;
-    public GameObject heartPrefab;
-    List<UI_Heart> hearts = new();
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject heartPrefab;
 
-    public GameObject ItemBar;
-    public GameObject itemsPrefab;
-    public GameObject endGamePanel;
-    public TMP_Text endGameText;
-    List<UI_HeroItem> items = new();
-    public string[] itemNamesChoices;
+    [SerializeField] private GameObject ItemBar;
+    [SerializeField] private GameObject itemsPrefab;
+    [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private TMP_Text endGameText;
+    [SerializeField] private string[] itemNamesChoices;
 
-    public TMP_Text timeLeftBeforeNextMove;
-    public TMP_Text heroPersonality;
-    public TMP_Text heroLevel;
-    public TMP_Text heroName;
+    [SerializeField] private TMP_Text heroPersonality;
+    [SerializeField] private TMP_Text heroLevel;
+    [SerializeField] private TMP_Text heroName;
 
-    public float shakeDuration = 0.5f;
-    public Image heroImage;
+    [SerializeField] private float shakeDuration = 0.5f;
+    [SerializeField] private Image heroImage;
 
+    [SerializeField] private int itemSlotsCount = 3;
 
-    public int itemSlotsCount = 3;
+    private List<UI_Heart> hearts = new();
+    private List<UI_HeroItem> items = new();
 
     #region Health
 
@@ -149,11 +148,6 @@ public class UI_Hero : MonoBehaviour
         heroImage.color = Color.white;
     }
 
-    public void UpdateTimeLeftBeforeNextMove(float time)
-    {
-        timeLeftBeforeNextMove.text = time.ToString("0.0");
-    }
-
     void EndGame(bool win)
     {
         Time.timeScale = 0;
@@ -176,27 +170,17 @@ public class UI_Hero : MonoBehaviour
     private void Awake()
     {
         Hero.OnPopUpEvent += SetupValues;
+        UI_Dragon.OnDragonDeathEvent += LoseGame;
     }
 
     private void Start()
     {
         if (ItemBar.activeSelf) DrawItems();
-        Hero.OnMovedOnEmptyCardEvent += LoseGame;
         Hero.OnTakeDamageEvent += DrawHearts;
-        //Hero.OnPopUpEvent += SetupValues;
         OnEndGameEvent += EndGame;
-
-
-        //test hero data
-        // HeroData heroData = new HeroData();
-        // heroData.heroName = "Hero's Name";
-        // heroData.heroLevel = 1;
-        // heroData.heroPersonality = "Hero's Personality";
-        // SetHeroData(heroData);
     }
 }
 
-//test class will be deleted later
 public class HeroData
 {
     public string heroName;

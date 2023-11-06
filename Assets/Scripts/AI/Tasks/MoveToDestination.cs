@@ -21,22 +21,22 @@ public class MoveToDestination : Node
         switch (blackboard.directionToMove)
         {
             case DirectionToMove.Up:
-                blackboard.hero.indexHeroY++;
+                blackboard.hero.AddIndexY(1);
                 break;
             case DirectionToMove.Down:
-                blackboard.hero.indexHeroY--;
+                blackboard.hero.AddIndexY(-1);
                 break;
             case DirectionToMove.Left:
-                blackboard.hero.indexHeroX--;
+                blackboard.hero.AddIndexX(-1);
                 break;
             case DirectionToMove.Right:
-                blackboard.hero.indexHeroX++;
+                blackboard.hero.AddIndexX(1);
                 break;
         }
         Vector3 pos = Vector3.zero;
-        blackboard.hero.mapManager.GetWorldPosFromTilePos(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY, out pos);
+        blackboard.hero.mapManager.GetWorldPosFromTilePos(blackboard.hero.GetIndexHeroPos(), out pos);
         TileData tile;
-        if (blackboard.hero.mapManager.GetTile(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY, out tile))
+        if (blackboard.hero.mapManager.GetTile(blackboard.hero.GetIndexHeroPos(), out tile))
         {
             tile.isVisited = true;
         }

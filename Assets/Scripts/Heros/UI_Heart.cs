@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class UI_Heart : MonoBehaviour
 {
-    public Sprite fullHeart, halfHeart, emptyHeart;
+    [SerializeField] private Sprite fullHeart;
+    [SerializeField] private Sprite halfHeart;
+    [SerializeField] private Sprite emptyHeart;
+    
     private Image heartImage;
     
     private void Awake()

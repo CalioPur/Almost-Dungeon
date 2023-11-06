@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     public void RetryGame()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 
     public void QuitGame()

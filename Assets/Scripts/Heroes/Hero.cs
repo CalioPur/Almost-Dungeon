@@ -9,25 +9,39 @@ public class Hero : MonoBehaviour
     public static event Action<Vector2Int> OnGivePosBackEvent;
     public static event Action<int, bool> OnTakeDamageEvent;
     public static event Action<int> OnPopUpEvent;
+    public static event Action<Hero> OnMovedOnEmptyCardEvent;
     
     
-    public static event Action OnMovedOnEmptyCardEvent;
-    public int indexHeroX { get; set; }
-    public int indexHeroY { get; set; }
-    private int entityId;
     public MapManager mapManager { get; private set; }
-    public bool isDead { get; set; }
     public HeroInstance info { get; private set; }
     
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private SimpleHeroBT bt;
     [SerializeField] private AnimationQueue animQueue;
+    
     private bool isExec = false;
+    private int entityId;
+    private Vector2Int IndexHeroPos = new (0, 0);
 
     public void Move(Vector3 pos)
     {
         animQueue.AddAnim(new AnimToQueue(heroTr, pos + new Vector3(1, 0.1f, 1), 0.5f));
+    }
+    
+    public Vector2Int GetIndexHeroPos()
+    {
+        return IndexHeroPos;
+    }
+    
+    public void AddIndexX(int x)
+    {
+        IndexHeroPos.x += x;
+    }
+    
+    public void AddIndexY(int y)
+    {
+        IndexHeroPos.y += y;
     }
 
     void OnTick()
@@ -38,8 +52,7 @@ public class Hero : MonoBehaviour
     
     public void Init(HeroInstance instance, int _indexHeroX, int _indexHeroY, MapManager manager)
     {
-        indexHeroX = _indexHeroX;
-        indexHeroY = _indexHeroY;
+        IndexHeroPos = new Vector2Int(_indexHeroX, _indexHeroY);
         mapManager = manager;
         entityId = GetHashCode();
         info = instance;
@@ -52,7 +65,7 @@ public class Hero : MonoBehaviour
 
     private void GivePosBack()
     {
-        OnGivePosBackEvent?.Invoke(new Vector2Int(indexHeroX, indexHeroY));
+        OnGivePosBackEvent?.Invoke(IndexHeroPos);
     }
     private void OnBeginToMove()
     {
@@ -61,7 +74,7 @@ public class Hero : MonoBehaviour
 
     public void OutOfMap()
     {
-        OnMovedOnEmptyCardEvent?.Invoke();
+        OnMovedOnEmptyCardEvent?.Invoke(this);
     }
 
     private void OnDestroy()
@@ -71,7 +84,6 @@ public class Hero : MonoBehaviour
 
     private void IsDead()
     {
-        isDead = true;
         //TODO: t'as gagne bg :*
     }
 

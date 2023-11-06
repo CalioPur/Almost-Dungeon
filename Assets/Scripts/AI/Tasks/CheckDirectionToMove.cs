@@ -16,8 +16,10 @@ public class CheckDirectionToMove : Node
 
     public override NodeState Evaluate(Node root)
     {
-        blackboard.directionToMove = PathFinding.BFSGoToClosestExit(new Vector2Int(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY), blackboard.hero.mapManager.getMapArray(),Personnalities.HurryForTheExit);
-        Vector2Int simulatedPos = new Vector2Int(blackboard.hero.indexHeroX, blackboard.hero.indexHeroY);
+        blackboard.directionToMove = PathFinding.BFSGoToClosestExit(
+            blackboard.hero.GetIndexHeroPos(),
+            blackboard.hero.mapManager.getMapArray(), Personnalities.HurryForTheExit);
+        Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();
         switch (blackboard.directionToMove)
         {
             case DirectionToMove.Up:
@@ -37,7 +39,9 @@ public class CheckDirectionToMove : Node
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos.x, simulatedPos.y)) return NodeState.Success;
-        return blackboard.hero.mapManager.CheckDragonHP(blackboard.hero) ? NodeState.Failure : NodeState.Success;
+
+        if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;
+        blackboard.hero.OutOfMap();
+        return NodeState.Failure;
     }
 }

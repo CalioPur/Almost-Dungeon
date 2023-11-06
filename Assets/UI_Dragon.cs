@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UI_Dragon : MonoBehaviour
 {
+    public static event Action OnDragonDeathEvent;
+    
     public GameObject healthBar;
     public GameObject heartPrefab;
     public Image dragonImage;
@@ -15,24 +17,18 @@ public class UI_Dragon : MonoBehaviour
     
     public int currentHealth = 100;
     public int damage = 3;
-    
-    public static UI_Dragon Instance { get; private set; }
-    
     private void Awake()
     {
-        Instance = this;
         DrawHearts();
     }
     
     public IEnumerator TakeDamageFX(Hero hero)
     {
-        
-        
         dragonImage.color = Color.red;
         dragonImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true);
         yield return new WaitForSeconds(shakeDuration);
         dragonImage.color = Color.white;
-        hero.TakeDamage(UI_Dragon.Instance.damage);
+        hero.TakeDamage(damage);
     }
 
     #region Health
@@ -98,10 +94,20 @@ public class UI_Dragon : MonoBehaviour
         DrawHearts();
     }
     
-    // Additional methods and properties specific to the dragon can be added here.
+    public void CheckDragonHP(Hero hero)
+    {
+        TakeDamage(hero.info.So.AttackPoint, hero);
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            OnDragonDeathEvent?.Invoke();
+        }
+
+        DrawHearts();
+    }
 
     private void Start()
     {
-        // Initialization logic specific to the dragon UI can be placed here.
+        Hero.OnMovedOnEmptyCardEvent += CheckDragonHP;
     }
 }

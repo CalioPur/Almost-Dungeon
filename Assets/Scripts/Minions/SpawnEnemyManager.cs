@@ -29,8 +29,6 @@ public class SpawnEnemyManager : MonoBehaviour
 
             SpawnEnemy<MinionData>(TrapsPrefab.Find(x => x.name == "basicMinion").prefab, tile, true,
                 new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f);
-            
-            
         }
 
         if (card.So.Web)

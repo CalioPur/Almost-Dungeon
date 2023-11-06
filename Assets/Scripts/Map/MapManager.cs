@@ -35,7 +35,7 @@ public class MapManager : MonoBehaviour
             for (int j = 0; j < height; j++)
             {
                 Vector3 pos;
-                GetWorldPosFromTilePos(i, j, out pos); //pour centrer le tout
+                GetWorldPosFromTilePos(new Vector2Int(i, j), out pos); //pour centrer le tout
                 if (i == 0 || j == 0 || i == width - 1 || j == height - 1)
                 {
                     //Instantiate(walls, pos, walls.transform.rotation, map); //verifie si on est sur un bord
@@ -64,18 +64,18 @@ public class MapManager : MonoBehaviour
         //         cardInstance.AddRotation(true);
         //     }
         //
-        //     checkTileToManipulateRandomPosition(cardInstance);
+        //     CheckTileToManipulateRandomPosition(cardInstance);
         // }
         SetConnectedToPath();
         SetExits();
     }
 
-    private void checkTileToManipulateRandomPosition(CardInfoInstance cardInstance)
+    private void CheckTileToManipulateRandomPosition(CardInfoInstance cardInstance)
     {
         int x = Random.Range(1, width - 3);
         int y = Random.Range(1, height - 3);
 
-        if (!CheckPosWithPosition(x, y, cardInstance)) checkTileToManipulateRandomPosition(cardInstance);
+        if (!CheckPosWithPosition(x, y, cardInstance)) CheckTileToManipulateRandomPosition(cardInstance);
         else SetTileAtPosition(cardInstance, x, y);
     }
 
@@ -91,50 +91,16 @@ public class MapManager : MonoBehaviour
     private void SetExits()
     {
         for (int i = 0; i < width - 2; i++)
-        {
-            for (int j = 0; j < height - 2; j++)
-            {
-                if (mapArray[i, j].isConnectedToPath)
-                {
-                    mapArray[i, j].isExit = false;
-                    if (j == 0 && mapArray[i, j].hasDoorDown)
-                    {
-                        mapArray[i, j].isExit = true;
-                    }
-                    else if (mapArray[i, j].hasDoorDown && !mapArray[i, j - 1].PiecePlaced)
-                    {
-                        mapArray[i, j].isExit = true;
-                    }
-
-                    if (j == height - 3 && mapArray[i, j].hasDoorUp)
-                    {
-                        mapArray[i, j].isExit = true;
-                    }
-                    else if (mapArray[i, j].hasDoorUp && !mapArray[i, j + 1].PiecePlaced)
-                    {
-                        mapArray[i, j].isExit = true;
-                    }
-
-                    if (i == 0 && mapArray[i, j].hasDoorLeft)
-                    {
-                        mapArray[i, j].isExit = true;
-                    }
-                    else if (mapArray[i, j].hasDoorLeft && !mapArray[i - 1, j].PiecePlaced)
-                    {
-                        mapArray[i, j].isExit = true;
-                    }
-
-                    if (i == width - 3 && mapArray[i, j].hasDoorRight)
-                    {
-                        mapArray[i, j].isExit = true;
-                    }
-                    else if (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced)
-                    {
-                        mapArray[i, j].isExit = true;
-                    }
-                }
-            }
-        }
+        for (int j = 0; j < height - 2; j++)
+            if (mapArray[i, j].isConnectedToPath)
+                mapArray[i, j].isExit = ((j == 0 && mapArray[i, j].hasDoorDown) ||
+                                        (mapArray[i, j].hasDoorDown && !mapArray[i, j - 1].PiecePlaced) ||
+                                        (j == height - 3 && mapArray[i, j].hasDoorUp) ||
+                                        (mapArray[i, j].hasDoorUp && !mapArray[i, j + 1].PiecePlaced) ||
+                                        (i == 0 && mapArray[i, j].hasDoorLeft) ||
+                                        (mapArray[i, j].hasDoorLeft && !mapArray[i - 1, j].PiecePlaced) ||
+                                        (i == width - 3 && mapArray[i, j].hasDoorRight) ||
+                                        (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced));
     }
 
     private void SetConnectedToPath()
@@ -146,11 +112,11 @@ public class MapManager : MonoBehaviour
                 if (mapArray[i, j].isConnectedToPath) continue;
                 if (i > 0 && mapArray[i - 1, j].isConnectedToPath && mapArray[i, j].hasDoorLeft)
                     mapArray[i, j].isConnectedToPath = true;
-                if (i < width - 3 && mapArray[i + 1, j].isConnectedToPath && mapArray[i, j].hasDoorRight)
+                else if (i < width - 3 && mapArray[i + 1, j].isConnectedToPath && mapArray[i, j].hasDoorRight)
                     mapArray[i, j].isConnectedToPath = true;
-                if (j > 0 && mapArray[i, j - 1].isConnectedToPath && mapArray[i, j].hasDoorDown)
+                else if (j > 0 && mapArray[i, j - 1].isConnectedToPath && mapArray[i, j].hasDoorDown)
                     mapArray[i, j].isConnectedToPath = true;
-                if (j < height - 3 && mapArray[i, j + 1].isConnectedToPath && mapArray[i, j].hasDoorUp)
+                else if (j < height - 3 && mapArray[i, j + 1].isConnectedToPath && mapArray[i, j].hasDoorUp)
                     mapArray[i, j].isConnectedToPath = true;
             }
         }
@@ -163,7 +129,7 @@ public class MapManager : MonoBehaviour
         mapArray[startPos.x, startPos.y].isVisited = true;
         SetConnectedToPath();
         SetExits();
-        GetWorldPosFromTilePos(startPos.x, startPos.y, out pos);
+        GetWorldPosFromTilePos(startPos, out pos);
     }
 
     private bool CheckPosWithData(TileData data, CardHand card)
@@ -233,12 +199,12 @@ public class MapManager : MonoBehaviour
         mapArray[posX, posY].SetInstance(card);
     }
 
-    public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos, bool isStatic = false)
+    public void GetWorldPosFromTilePos(Vector2Int oldPos, out Vector3 pos, bool isStatic = false)
     {
-        pos = new Vector3(x - ((float)(width - 1) / 2), 0, y - (float)(height - 1) / 2);
+        pos = new Vector3(oldPos.x - ((float)(width - 1) / 2), 0, oldPos.y - (float)(height - 1) / 2);
         if (isStatic)
         {
-            pos = mapArray[x, y].transform.position;
+            pos = mapArray[oldPos.x, oldPos.y].transform.position;
         }
     }
 
@@ -248,10 +214,10 @@ public class MapManager : MonoBehaviour
         y = Mathf.RoundToInt(pos.z + ((float)(height - 1) / 2)) - 1;
     }
 
-    public bool CheckIfTileIsFree(int x, int y)
+    public bool CheckIfTileIsFree(Vector2Int pos)
     {
-        if (x >= width - 2 || y >= height - 2 || x < 0 || y < 0) return false;
-        return mapArray[x, y].PiecePlaced;
+        if (pos.x >= width - 2 || pos.y >= height - 2 || pos.x < 0 || pos.y < 0) return false;
+        return mapArray[pos.x, pos.y].PiecePlaced;
     }
 
     public void GetNbMonstersOnPos(Vector2Int pos, out List<TrapData> minions)
@@ -272,18 +238,13 @@ public class MapManager : MonoBehaviour
         data.enemies.Add(minionData);
         for (int i = 0; i < data.enemies.Count; i++)
         {
-            if (data.enemies[i] is MinionData)
-            {
-                var angle = i * Mathf.PI * 2 / data.enemies.Count;
-                Vector3 angleVector = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.25f;
+            if (data.enemies[i] is not MinionData) continue;
+            var angle = i * Mathf.PI * 2 / data.enemies.Count;
+            Vector3 angleVector = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.25f;
                 
-                
-                GetWorldPosFromTilePos(vector2Int.x, vector2Int.y, out Vector3 posToGo);
-                posToGo += angleVector;
-                
-                ((MinionData)data.enemies[i]).Move(posToGo,0.5f);
-
-            }
+            GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
+            posToGo += angleVector;
+            ((MinionData)data.enemies[i]).Move(posToGo, 0.5f);
         }
     }
 
@@ -410,55 +371,14 @@ public class MapManager : MonoBehaviour
         };
     }
 
-    void Update()
-    {
-        //debug the tile that are connected to the path with a red line that goes up
-        for (int i = 0; i < width - 2; i++)
-        {
-            for (int j = 0; j < height - 2; j++)
-            {
-                // if (mapArray[i, j].isConnectedToPath)
-                // {
-                //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-                //         Color.red, 1f);
-                // }
-                //
-                // if (mapArray[i, j].isExit)
-                // {
-                //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-                //         Color.magenta, 1f);
-                // }
-                // if (mapArray[i, j].isVisited)
-                // {
-                //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-                //         Color.green, 1f);
-                // }
-            }
-        }
-    }
-
     public TileData[,] getMapArray()
     {
         return mapArray;
     }
 
-    public bool GetTile(int heroIndexHeroX, int heroIndexHeroY, out TileData tile)
+    public bool GetTile(Vector2Int indexes, out TileData tile)
     {
-        tile = GetTileDataAtPosition(heroIndexHeroX, heroIndexHeroY);
+        tile = GetTileDataAtPosition(indexes.x, indexes.y);
         return tile != null;
-    }
-
-    public bool CheckDragonHP(Hero blackboardHero)
-    {
-        UI_Dragon.Instance.TakeDamage(blackboardHero.info.So.AttackPoint, blackboardHero);
-        if (UI_Dragon.Instance.currentHealth <= 0)
-        {
-            UI_Dragon.Instance.currentHealth = 0;
-            UI_Dragon.Instance.DrawHearts();
-            return false;
-        }
-
-        UI_Dragon.Instance.DrawHearts();
-        return true;
     }
 }

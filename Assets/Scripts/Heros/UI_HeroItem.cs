@@ -13,8 +13,9 @@ public class ItemSpritesDictionary
 }
 public class UI_HeroItem : MonoBehaviour
 {
-    public List<ItemSpritesDictionary> itemSpritesDictionary;
-    Image itemImage;
+    [SerializeField] private List<ItemSpritesDictionary> itemSpritesDictionary;
+    
+    private Image itemImage;
 
     private void Awake()
     {
