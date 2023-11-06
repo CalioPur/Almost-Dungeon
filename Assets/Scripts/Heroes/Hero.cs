@@ -28,7 +28,7 @@ public class Hero : MonoBehaviour
     {
         animQueue.Enqueue(new AnimToQueue(heroTr, pos + new Vector3(1, 0.1f, 1), 0.5f));
         StartCoroutine(doAnim());
-        OnGivePosBackEvent?.Invoke(new Vector2Int(indexHeroX, indexHeroY));
+        
     }
 
     void OnTick()
@@ -48,8 +48,13 @@ public class Hero : MonoBehaviour
         TrapData.OnTrapAttackEvent += TakeDamage;
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
+        MinionData.OnHeroPosAsked+= GivePosBack;
     }
 
+    private void GivePosBack()
+    {
+        OnGivePosBackEvent?.Invoke(new Vector2Int(indexHeroX, indexHeroY));
+    }
     private void OnBeginToMove()
     {
         TickManager.SubscribeToMovementEvent(MovementType.Hero, OnTick, entityId);

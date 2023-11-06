@@ -15,6 +15,8 @@ public class MoveToHero : Node
 
     public override NodeState Evaluate(Node root)
     {
+        
+
         if (blackboard.dir == DirectionToMove.None)
             return NodeState.Success;
 
@@ -32,13 +34,13 @@ public class MoveToHero : Node
 
         blackboard.minionData.mapManager.GetWorldPosFromTilePos(blackboard.minionData.indexX,
             blackboard.minionData.indexY, out pos);
-        tmp.z = localPosition.z % 1 - 0.5f;
-        tmp.x = localPosition.x % 1 - 0.5f;
+        //tmp.z = localPosition.z % 1;
+        //tmp.x = localPosition.x % 1;
 
         pos += tmp;
         blackboard.minionData.mapManager.AddMinionOnTile(
             new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), blackboard.minionData);
-        blackboard.minionData.Move(pos);
+        //blackboard.minionData.Move(pos,0.5f);
         return NodeState.Success;
     }
 }

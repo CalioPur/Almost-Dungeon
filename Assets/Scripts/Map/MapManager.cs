@@ -17,30 +17,16 @@ public class MapManager : MonoBehaviour
     [SerializeField] private CardInfo[] cards;
 
     private TileData[,] mapArray;
-    
+
     public static MapManager Instance { get; private set; }
-    
+
     private void Awake()
     {
         Instance = this;
     }
 
-    struct pp
-    {
-        public string name;
-        public int y;
-    }
-    
-    private void TEST()
-    {
-    }
-    
-    
     public void InitMap()
     {
-        TEST();
-        
-        
         mapArray = new TileData[width, height];
         width += 2;
         height += 2;
@@ -172,7 +158,6 @@ public class MapManager : MonoBehaviour
 
     public void InitEnterDungeon(CardInfoInstance card, out Vector3 pos, Vector2Int startPos)
     {
-
         SetTileAtPosition(card, startPos.x, startPos.y);
         mapArray[startPos.x, startPos.y].isConnectedToPath = true;
         mapArray[startPos.x, startPos.y].isVisited = true;
@@ -219,7 +204,7 @@ public class MapManager : MonoBehaviour
         if (x >= width - 2 || y >= height - 2 || x < 0 || y < 0) return null;
         return mapArray[x, y];
     }
-    
+
     public void ChangeTileDataAtPosition(int x, int y, TileData data, int doorChanged)
     {
         if (x > width - 2 || y > height - 2 || x < 0 || y < 0) return;
@@ -239,6 +224,7 @@ public class MapManager : MonoBehaviour
                 if (mapArray[x + 1, y].PiecePlaced) mapArray[x + 1, y].hasDoorLeft = true;
                 break;
         }
+
         CheckAllTilesTypeAndRotation();
     }
 
@@ -247,15 +233,19 @@ public class MapManager : MonoBehaviour
         mapArray[posX, posY].SetInstance(card);
     }
 
-    public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos)
+    public void GetWorldPosFromTilePos(int x, int y, out Vector3 pos, bool isStatic = false)
     {
         pos = new Vector3(x - ((float)(width - 1) / 2), 0, y - (float)(height - 1) / 2);
+        if (isStatic)
+        {
+            pos = mapArray[x, y].transform.position;
+        }
     }
-    
+
     public void GetTilePosFromWorldPos(Vector3 pos, out int x, out int y)
     {
-        x = Mathf.RoundToInt(pos.x + ((float)(width - 1) / 2))-1;
-        y = Mathf.RoundToInt(pos.z + ((float)(height - 1) / 2))-1;
+        x = Mathf.RoundToInt(pos.x + ((float)(width - 1) / 2)) - 1;
+        y = Mathf.RoundToInt(pos.z + ((float)(height - 1) / 2)) - 1;
     }
 
     public bool CheckIfTileIsFree(int x, int y)
@@ -280,6 +270,21 @@ public class MapManager : MonoBehaviour
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         data.enemies.Add(minionData);
+        for (int i = 0; i < data.enemies.Count; i++)
+        {
+            if (data.enemies[i] is MinionData)
+            {
+                var angle = i * Mathf.PI * 2 / data.enemies.Count;
+                Vector3 angleVector = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.35f;
+                
+                
+                GetWorldPosFromTilePos(vector2Int.x, vector2Int.y, out Vector3 posToGo);
+                posToGo += angleVector;
+                
+                ((MinionData)data.enemies[i]).Move(posToGo,0.5f);
+
+            }
+        }
     }
 
     public void CheckAllTilesTypeAndRotation()
@@ -291,6 +296,7 @@ public class MapManager : MonoBehaviour
                 CheckTileTypeAndRotation(mapArray[i, j]);
             }
         }
+
         SetConnectedToPath();
         SetExits();
     }
@@ -305,12 +311,12 @@ public class MapManager : MonoBehaviour
         else if (isStraightTile(tileData))
         {
             tileData.img.sprite = cards[1].imgOnMap;
-            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromStraightTile(tileData),0);
+            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromStraightTile(tileData), 0);
         }
         else if (isTTile(tileData))
         {
             tileData.img.sprite = cards[2].imgOnMap;
-            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromTTile(tileData),0);
+            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromTTile(tileData), 0);
         }
         else if (isCrossTile(tileData))
         {
@@ -319,7 +325,7 @@ public class MapManager : MonoBehaviour
         else if (isDeadEndTile(tileData))
         {
             tileData.img.sprite = cards[4].imgOnMap;
-            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromDeadEndTile(tileData),0);
+            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromDeadEndTile(tileData), 0);
         }
     }
 
@@ -330,6 +336,7 @@ public class MapManager : MonoBehaviour
                !data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp ||
                !data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp;
     }
+
     private float GetRotationFromLTile(TileData data)
     {
         return data.hasDoorDown switch
@@ -341,12 +348,13 @@ public class MapManager : MonoBehaviour
             _ => 0
         };
     }
-    
+
     private bool isStraightTile(TileData data)
     {
         return data.hasDoorDown && !data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp ||
                !data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp;
     }
+
     private float GetRotationFromStraightTile(TileData data)
     {
         return data.hasDoorDown switch
@@ -356,7 +364,7 @@ public class MapManager : MonoBehaviour
             _ => 0
         };
     }
-    
+
     private bool isTTile(TileData data)
     {
         return data.hasDoorDown && data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
@@ -364,6 +372,7 @@ public class MapManager : MonoBehaviour
                data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp ||
                data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp;
     }
+
     private float GetRotationFromTTile(TileData data)
     {
         return data.hasDoorDown switch
@@ -375,12 +384,12 @@ public class MapManager : MonoBehaviour
             _ => 0
         };
     }
-    
+
     private bool isCrossTile(TileData data)
     {
         return data.hasDoorDown && data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp;
     }
-    
+
     private bool isDeadEndTile(TileData data)
     {
         return data.hasDoorDown && !data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp ||
@@ -388,6 +397,7 @@ public class MapManager : MonoBehaviour
                !data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
                !data.hasDoorDown && !data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp;
     }
+
     private float GetRotationFromDeadEndTile(TileData data)
     {
         return data.hasDoorDown switch
@@ -400,32 +410,32 @@ public class MapManager : MonoBehaviour
         };
     }
 
-void Update()
-{
-    //debug the tile that are connected to the path with a red line that goes up
-    for (int i = 0; i < width - 2; i++)
+    void Update()
     {
-        for (int j = 0; j < height - 2; j++)
+        //debug the tile that are connected to the path with a red line that goes up
+        for (int i = 0; i < width - 2; i++)
         {
-            // if (mapArray[i, j].isConnectedToPath)
-            // {
-            //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-            //         Color.red, 1f);
-            // }
-            //
-            // if (mapArray[i, j].isExit)
-            // {
-            //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-            //         Color.magenta, 1f);
-            // }
-            // if (mapArray[i, j].isVisited)
-            // {
-            //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
-            //         Color.green, 1f);
-            // }
+            for (int j = 0; j < height - 2; j++)
+            {
+                // if (mapArray[i, j].isConnectedToPath)
+                // {
+                //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+                //         Color.red, 1f);
+                // }
+                //
+                // if (mapArray[i, j].isExit)
+                // {
+                //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+                //         Color.magenta, 1f);
+                // }
+                // if (mapArray[i, j].isVisited)
+                // {
+                //     Debug.DrawLine(mapArray[i, j].transform.position, mapArray[i, j].transform.position + Vector3.up,
+                //         Color.green, 1f);
+                // }
+            }
         }
     }
-}
 
     public TileData[,] getMapArray()
     {
@@ -447,6 +457,7 @@ void Update()
             UI_Dragon.Instance.DrawHearts();
             return false;
         }
+
         UI_Dragon.Instance.DrawHearts();
         return true;
     }
