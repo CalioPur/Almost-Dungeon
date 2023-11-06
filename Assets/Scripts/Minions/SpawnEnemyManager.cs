@@ -20,44 +20,32 @@ public class SpawnEnemyManager : MonoBehaviour
         DragAndDropManager.OnTilePosedEvent += SpawnMinionOnTile;
     }
 
-    public void SpawnMinionOnTile(TileData tile, CardInfoInstance card)
+    private void SpawnMinionOnTile(TileData tile, CardInfoInstance card)
     {
         for (int i = 0; i < card.So.nbMinionOnCard; i++)
         {
-            //display in circle around the tile
-
             var angle = i * Mathf.PI * 2 / card.So.nbMinionOnCard;
-            if (card.So.nbMinionOnCard != 1)
-            {
-                angle -= Mathf.PI / 4;
-            }
+            if (card.So.nbMinionOnCard != 1) angle -= Mathf.PI / 4;
 
-            GameObject minionPrefab = TrapsPrefab.Find(x => x.name == "basicMinion").prefab;
-            Vector3 posToSpawn = tile.transform.position + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f;
-            ;
-            GameObject minion = Instantiate(minionPrefab, posToSpawn, minionPrefab.transform.rotation);
-            MinionData minionData = minion.GetComponent<MinionData>();
-            mapManager.GetTilePosFromWorldPos(posToSpawn, out minionData.indexX, out minionData.indexY);
-            minionData.mapManager = mapManager;
-            tile.enemies.Add(minionData);
-            minionData.StartListenTick(MovementType.Monster);
+            SpawnEnemy<MinionData>(TrapsPrefab.Find(x => x.name == "basicMinion").prefab, tile, true,
+                new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f);
         }
 
         if (card.So.Web)
         {
-            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.name == "web").prefab, tile, true);
+            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.name == "web").prefab, tile, true, Vector3.zero);
         }
 
         if (card.So.Pyke)
         {
-            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.name == "pyke").prefab, tile, false);
-
+            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.name == "pyke").prefab, tile, false, Vector3.zero);
         }
     }
 
-    public void SpawnEnemy<T>(GameObject prefab, TileData tile, bool addEnemyOnTile) where T : TrapData
+    private void SpawnEnemy<T>(GameObject prefab, TileData tile, bool addEnemyOnTile, Vector3 positionOffset)
+        where T : TrapData
     {
-        Vector3 position = tile.transform.position;
+        Vector3 position = tile.transform.position + positionOffset;
         GameObject minion = Instantiate(prefab, position, prefab.transform.rotation);
         T script = minion.GetComponent<T>();
         mapManager.GetTilePosFromWorldPos(position, out script.indexX, out script.indexY);

@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 
 
-public class AnimToQueue : MonoBehaviour
+public class AnimToQueue
 {
     public Transform obj;
     public Vector3 target;
