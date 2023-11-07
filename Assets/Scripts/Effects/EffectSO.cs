@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Effect", menuName = "ScriptableObjects/Effect", order = 1)]
@@ -6,7 +7,6 @@ public class EffectSO : ScriptableObject
     [field: SerializeField] public string Name { get; private set; }
     [field: SerializeField] public string Description { get; private set; }
     [field: SerializeField] public Sprite Icon { get; private set; }
-    [field: SerializeField] public int NbTurnToEffect { get; private set; }
     [field: SerializeField] public ActiveEffect[] Effects { get; private set; }
     
     public EffectInstance CreateInstance()
@@ -18,22 +18,28 @@ public class EffectSO : ScriptableObject
 public class EffectInstance
 {
     public EffectSO So { get; }
-    public int RemainingTurnToEffect { get; private set; }
-    public ActiveEffect[] Effects { get; private set; }
+    public List<ActiveEffectInstance> EffectsInstances { get; private set; }
     
     public EffectInstance(EffectSO effectSo)
     {
         So = effectSo;
-        RemainingTurnToEffect = effectSo.NbTurnToEffect;
-        Effects = new ActiveEffect[effectSo.Effects.Length];
+        EffectsInstances = new ();
         for (int i = 0; i < effectSo.Effects.Length; i++)
         {
-            //Effects[i] = EffectsFactoryManager.Create(effectSo.Effects[i]);
+            EffectsInstances.Add(effectSo.Effects[i].CreateInstance());
         }
     }
-
+    
     public void Tick()
     {
-        RemainingTurnToEffect--;
+        for (int i = 0; i < EffectsInstances.Count; i++)
+        {
+            //if (EffectsInstances[i].Tick())
+            {
+                //EffectsInstances[i].So.RemoveEffect();
+                EffectsInstances.RemoveAt(i);
+                i--;
+            }
+        }
     }
 }

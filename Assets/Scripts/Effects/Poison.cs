@@ -8,4 +8,14 @@ public class Poison : ActiveEffect
     {
         Debug.Log("tu es empoisonné bro");
     }
+    
+    public override void RemoveEffect(Hero hero)
+    {
+        Debug.Log("tu n'es plus empoisonné bro");
+    }
+    
+    public override void Tick(Hero hero)
+    {
+        Debug.Log("tu prends des dégats bro");
+    }
 }
