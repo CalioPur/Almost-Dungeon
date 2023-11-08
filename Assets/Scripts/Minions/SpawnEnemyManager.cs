@@ -4,9 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
+public enum TrapType
+{
+    Web,
+    Pyke,
+    BasicCaC,
+    Archer,
+    None
+}
+
+[Serializable]
 public struct ListOfTraps
 {
-    public string name;
+    public TrapType type;
     public GameObject prefab;
 }
 
@@ -22,23 +32,56 @@ public class SpawnEnemyManager : MonoBehaviour
 
     private void SpawnMinionOnTile(TileData tile, CardInfoInstance card)
     {
-        for (int i = 0; i < card.So.nbMinionOnCard; i++)
+        int nbEnemyBasic = 0;
+        int nbEnemyArcher = 0;
+        bool web = false;
+        bool pyke = false;
+        
+        for (int i = 0; i < card.So.TypeOfTrapOrEnemyToSpawn.Length; i++)
         {
-            var angle = i * Mathf.PI * 2 / card.So.nbMinionOnCard;
-            if (card.So.nbMinionOnCard != 1) angle -= Mathf.PI / 4;
+            switch (card.So.TypeOfTrapOrEnemyToSpawn[i])
+            {
+                case TrapType.BasicCaC:
+                    nbEnemyBasic++;
+                    break;
+                case TrapType.Archer:
+                    nbEnemyArcher++;
+                    break;
+                case TrapType.Web:
+                    web = true;
+                    break;
+                case TrapType.Pyke:
+                    pyke = true;
+                    break;
+            }
+        }
+       
+        for (int i = 0; i < nbEnemyBasic; i++)
+        {
+            var angle = i * Mathf.PI * 2 / nbEnemyBasic;
+            if (nbEnemyBasic != 1) angle -= Mathf.PI / 4;
 
-            SpawnEnemy<MinionData>(TrapsPrefab.Find(x => x.name == "basicMinion").prefab, tile, true,
+            SpawnEnemy<MinionData>(TrapsPrefab.Find(x => x.type == TrapType.BasicCaC).prefab, tile, true,
+                new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f);
+        }
+        
+        for (int i = 0; i < nbEnemyArcher; i++)
+        {
+            var angle = i * Mathf.PI * 2 / nbEnemyArcher;
+            if (nbEnemyArcher != 1) angle -= Mathf.PI / 4;
+
+            SpawnEnemy<MinionData>(TrapsPrefab.Find(x => x.type == TrapType.Archer).prefab, tile, true,
                 new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f);
         }
 
-        if (card.So.Web)
+        if (web)
         {
-            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.name == "web").prefab, tile, true, Vector3.zero);
+            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.type == TrapType.Web).prefab, tile, true, Vector3.zero);
         }
 
-        if (card.So.Pyke)
+        if (pyke)
         {
-            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.name == "pyke").prefab, tile, false, Vector3.zero);
+            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.type == TrapType.Pyke).prefab, tile, false, Vector3.zero);
         }
     }
 

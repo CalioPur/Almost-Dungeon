@@ -14,9 +14,7 @@ public class CardInfo : ScriptableObject
     
     [Header("spawn parameters")]
     public int nbToBuild;
-    public int nbMinionOnCard;
-    public bool Web;
-    public bool Pyke;
+    public TrapType[] TypeOfTrapOrEnemyToSpawn;
     
     [Header("Doors")]
     public bool DoorOnTop;
