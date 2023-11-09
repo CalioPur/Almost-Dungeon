@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MinionBlackboard : MonoBehaviour
 {
-    public MinionData minionData;
-    public Vector2Int heroPosition;
-    public DirectionToMove dir = DirectionToMove.None;
+    [HideInInspector] public MinionData minionData;
+    [HideInInspector] public Vector2Int heroPosition;
+    [HideInInspector] public DirectionToMove dir = DirectionToMove.None;
 }

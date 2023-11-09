@@ -15,9 +15,7 @@ MonoBehaviour:
   imgOnHand: {fileID: 21300000, guid: 8fddb352d66caeb4e9408b2cd38dbf4d, type: 3}
   imgOnMap: {fileID: 21300000, guid: 332bc19586933134b9c0997c4606f147, type: 3}
   nbToBuild: 2
-  nbMinionOnCard: 1
-  Web: 0
-  Pyke: 0
+  TypeOfTrapOrEnemyToSpawn: 02000000
   DoorOnTop: 0
   DoorOnBottom: 0
   DoorOnLeft: 1

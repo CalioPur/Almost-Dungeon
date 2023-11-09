@@ -15,6 +15,9 @@ public class MoveToHero : Node
 
     public override NodeState Evaluate(Node root)
     {
+        if (blackboard.dir == DirectionToMove.Error)
+            return NodeState.Failure;
+        
         if (blackboard.dir == DirectionToMove.None)
             return NodeState.Success;
         

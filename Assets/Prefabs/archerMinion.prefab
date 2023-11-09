@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5242026796885018233}
   - component: {fileID: 3666571859102276325}
-  - component: {fileID: 4773831233471019254}
-  - component: {fileID: 1636573392929660682}
+  - component: {fileID: 5465465546169685263}
   - component: {fileID: -4941691768216947425}
   - component: {fileID: 6402256854860038529}
+  - component: {fileID: 62822888144230992}
   m_Layer: 0
-  m_Name: minion
+  m_Name: archerMinion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f6fcc72e377ac28419348d7401ddda56, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.19769335, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4773831233471019254
+--- !u!114 &5465465546169685263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,31 +97,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3487245091449332422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fa3cbecc97385e4ca0fc914c29ac63d, type: 3}
+  m_Script: {fileID: 11500000, guid: 93086706e828216469f9daf4dbc5324e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
   indexX: 0
   indexY: 0
   mapManager: {fileID: 0}
-  SO: {fileID: 11400000, guid: 5b7ab11a861869b4f904b7f28cdb8747, type: 2}
+  SO: {fileID: 11400000, guid: 3cb01d901b0933f4e9298c64e31af304, type: 2}
   tr: {fileID: 5242026796885018233}
   sprite: {fileID: 3666571859102276325}
-  bt: {fileID: 1636573392929660682}
+  bt: {fileID: 62822888144230992}
   animQueue: {fileID: 6402256854860038529}
---- !u!114 &1636573392929660682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3487245091449332422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd39a81849f0c194199bf4af61631784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blackboard: {fileID: -4941691768216947425}
 --- !u!114 &-4941691768216947425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611e99f6f8751734f8992e7d3e675755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionData: {fileID: 4773831233471019254}
+  minionData: {fileID: 5465465546169685263}
   heroPosition: {x: 0, y: 0}
   dir: 4
 --- !u!114 &6402256854860038529
@@ -149,3 +136,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b8280551aa7a14aa877bfcc4d5a661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &62822888144230992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487245091449332422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4837296d208d23048b0f286d0fc400d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: -4941691768216947425}

@@ -5,6 +5,7 @@ public enum DirectionToMove
     Right,
     Up,
     Down,
-    None
+    None,
+    Error
 }
 
