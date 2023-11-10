@@ -202,7 +202,8 @@ public class MapManager : MonoBehaviour
     void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
     {
         mapArray[posX, posY].SetInstance(card);
-        
+        dungeonTilesPositions.Add(new Vector2Int(posX, posY));  //ne marche pas, je veux me pendre
+        FogGenerator.CreateFog(dungeonTilesPositions, fogPainter, width-2, height-2);
     }
 
     public void GetWorldPosFromTilePos(Vector2Int oldPos, out Vector3 pos, bool isStatic = false)
