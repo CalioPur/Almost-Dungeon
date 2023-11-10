@@ -17,9 +17,10 @@ public class MapManager : MonoBehaviour
     [SerializeField] private CardInfo[] cards;
 
     private TileData[,] mapArray;
-
+    private HashSet<Vector2Int> dungeonTilesPositions = new HashSet<Vector2Int>();
+    [SerializeField] private FogPainter fogPainter;
     public static MapManager Instance { get; private set; }
-
+    
     private void Awake()
     {
         Instance = this;
@@ -50,6 +51,9 @@ public class MapManager : MonoBehaviour
         }
 
         CardsManager.OnCardTryToPlaceEvent += CheckCardPos;
+        
+        dungeonTilesPositions.Add(new Vector2Int(1,2)); //position de départ du hero, A CHANGER
+        FogGenerator.CreateFog(dungeonTilesPositions, fogPainter, width-2, height-2);
     }
 
     public void AddRandomCard()
@@ -125,6 +129,7 @@ public class MapManager : MonoBehaviour
     public void InitEnterDungeon(CardInfoInstance card, out Vector3 pos, Vector2Int startPos)
     {
         SetTileAtPosition(card, startPos.x, startPos.y);
+        
         mapArray[startPos.x, startPos.y].isConnectedToPath = true;
         mapArray[startPos.x, startPos.y].isVisited = true;
         SetConnectedToPath();
@@ -197,6 +202,7 @@ public class MapManager : MonoBehaviour
     void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
     {
         mapArray[posX, posY].SetInstance(card);
+        
     }
 
     public void GetWorldPosFromTilePos(Vector2Int oldPos, out Vector3 pos, bool isStatic = false)
