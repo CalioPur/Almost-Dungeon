@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class FogPainter : MonoBehaviour
 {
-    public GameObject baseFogTile;
+    public GameObject baseFogTile, FogTop, FogTopRight, FogRight, FogBottomRight, 
+        FogBottom, FogBottomLeft, FogLeft, FogTopLeft,
+        FogCornerTopRight, FogCornerBottomRight, FogCornerBottomLeft, FogCornerTopLeft;
     public HashSet<Vector2Int> dungeonTilesPositions = new HashSet<Vector2Int>();
 
     
@@ -28,11 +30,44 @@ public class FogPainter : MonoBehaviour
         DestoyChilds();
         foreach (var fogPosition in fogPositions)
         {
-            GameObject fogTile = Instantiate(baseFogTile, new Vector3((fogPosition.x-(float)width/2)+0.5f, 0, (fogPosition.y-(float)height/2)+0.5f), baseFogTile.transform.rotation);
-            fogTile.transform.parent = transform;
+            string neighbourBinaryType = "";
+            foreach (var direction in Direction2D.cardDirList)
+            {
+                var neighborPos = fogPosition + direction;
+                neighbourBinaryType += dungeonTilesPositions.Contains(neighborPos) ? "0" : "1";
+                
+            }
+            
+            PaintSingleFog(fogPosition, neighbourBinaryType, width, height);
         }
     }
-    
+
+    private void PaintSingleFog(Vector2Int fogPosition, string neighbourBinaryType, int width, int height)
+    {
+        int typeAsInt = Convert.ToInt32(neighbourBinaryType,2);
+        GameObject fogTileType = null;
+        if (FogByteType.fogTop.Contains(typeAsInt)) fogTileType = FogTop;
+        else if (FogByteType.fogTopRight.Contains(typeAsInt)) fogTileType = FogTopRight;
+        else if (FogByteType.fogRight.Contains(typeAsInt)) fogTileType = FogRight;
+        else if (FogByteType.fogBottomRight.Contains(typeAsInt)) fogTileType = FogBottomRight;
+        else if (FogByteType.fogBottom.Contains(typeAsInt)) fogTileType = FogBottom;
+        else if (FogByteType.fogBottomLeft.Contains(typeAsInt)) fogTileType = FogBottomLeft;
+        else if (FogByteType.fogLeft.Contains(typeAsInt)) fogTileType = FogLeft;
+        else if (FogByteType.fogTopLeft.Contains(typeAsInt)) fogTileType = FogTopLeft;
+
+        else if (FogByteType.fogCornerTopRight.Contains(typeAsInt)) fogTileType = FogCornerTopRight;
+        else if (FogByteType.fogCornerBottomRight.Contains(typeAsInt)) fogTileType = FogCornerBottomRight;
+        else if (FogByteType.fogCornerBottomLeft.Contains(typeAsInt)) fogTileType = FogCornerBottomLeft;
+        else if (FogByteType.fogCornerTopLeft.Contains(typeAsInt)) fogTileType = FogCornerTopLeft;
+
+
+        else fogTileType = baseFogTile;
+
+
+        GameObject fogTile = Instantiate(fogTileType, new Vector3((fogPosition.x - (float)width / 2) + 0.5f, 0, (fogPosition.y - (float)height / 2) + 0.5f), baseFogTile.transform.rotation);
+        fogTile.transform.parent = transform;
+    }
+
     private void DestoyChilds()
     {
         foreach (Transform child in transform)

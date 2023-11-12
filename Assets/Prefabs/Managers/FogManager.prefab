@@ -46,3 +46,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseFogTile: {fileID: 2414278110027015779, guid: 212883d78f88e874f91c2bdf6b9adbd4,
     type: 3}
+  FogTop: {fileID: 2414278110027015779, guid: 83607385cc4174a44b55280b26be58a3, type: 3}
+  FogTopRight: {fileID: 2414278110027015779, guid: ec24d80c95f5a534f8052c8bde111737,
+    type: 3}
+  FogRight: {fileID: 2414278110027015779, guid: d2a76fcaa8ae7b14692ed6f48eb87c6b,
+    type: 3}
+  FogBottomRight: {fileID: 2414278110027015779, guid: 8d1a0e238b6618b4f80f2356c6fd2f90,
+    type: 3}
+  FogBottom: {fileID: 2414278110027015779, guid: 31041835fc666224e97aebf35713a2fc,
+    type: 3}
+  FogBottomLeft: {fileID: 2414278110027015779, guid: e68a4dc48c970eb459c99522fa76bc1f,
+    type: 3}
+  FogLeft: {fileID: 2414278110027015779, guid: 38277bebfd701af44bcd16d89b7d3d62, type: 3}
+  FogTopLeft: {fileID: 2414278110027015779, guid: 0296a81f9c4bdd74b84cabeebb6f2467,
+    type: 3}
+  FogCornerTopRight: {fileID: 2414278110027015779, guid: 1c4990a4cefebe94aa37095dd04479c4,
+    type: 3}
+  FogCornerBottomRight: {fileID: 2414278110027015779, guid: 04e8ef89fac1b714685711fefda6b9e6,
+    type: 3}
+  FogCornerBottomLeft: {fileID: 2414278110027015779, guid: c9892ecf3dcfb5440baa85ce1e055697,
+    type: 3}
+  FogCornerTopLeft: {fileID: 2414278110027015779, guid: 97f0eba89685e58449189e0f460fdee2,
+    type: 3}
