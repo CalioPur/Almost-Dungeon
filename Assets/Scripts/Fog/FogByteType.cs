@@ -29,11 +29,12 @@ public class FogByteType
         0b00111111,
         0b00111110
     };
-    public static HashSet<int> fogLeft= new HashSet<int>()
+    public static HashSet<int> fogLeft = new HashSet<int>()
     {
         0b11011111,
         0b10011111,
-        0b00111111
+        0b00111111,
+        0b11001111
     };
     public static HashSet<int> fogTopLeft= new HashSet<int>()
     {
