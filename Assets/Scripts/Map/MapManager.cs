@@ -17,7 +17,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private CardInfo[] cards;
 
     private TileData[,] mapArray;
-    private HashSet<Vector2Int> dungeonTilesPositions = new HashSet<Vector2Int>();
+    
     [SerializeField] private FogPainter fogPainter;
     public static MapManager Instance { get; private set; }
     
@@ -52,8 +52,8 @@ public class MapManager : MonoBehaviour
 
         CardsManager.OnCardTryToPlaceEvent += CheckCardPos;
         
-        dungeonTilesPositions.Add(new Vector2Int(1,2)); //position de départ du hero, A CHANGER
-        FogGenerator.CreateFog(dungeonTilesPositions, fogPainter, width-2, height-2);
+        fogPainter.dungeonTilesPositions.Add(new Vector2Int(1,2)); //position de départ du hero, A CHANGER
+        FogGenerator.CreateFog(fogPainter.dungeonTilesPositions, fogPainter, width-2, height-2);
     }
 
     public void AddRandomCard()
@@ -176,6 +176,22 @@ public class MapManager : MonoBehaviour
         return mapArray[x, y];
     }
 
+    public Vector2Int GetPosFromData(TileData data)
+    {
+        for (int i = 0;i< width-2; i++)
+        {
+            for(int j = 0;j< height - 2; j++)
+            {
+                if (data.Equals(mapArray[i, j]))
+                {
+                    return new Vector2Int(i, j);
+                }
+            }
+        }
+        Debug.LogError("il n'existe aucune tile correspondant a : "+ data.ToString());
+        return new Vector2Int(-1, -1);
+    }
+
     public void ChangeTileDataAtPosition(int x, int y, TileData data, int doorChanged)
     {
         if (x > width - 2 || y > height - 2 || x < 0 || y < 0) return;
@@ -202,8 +218,7 @@ public class MapManager : MonoBehaviour
     void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
     {
         mapArray[posX, posY].SetInstance(card);
-        dungeonTilesPositions.Add(new Vector2Int(posX, posY));  //ne marche pas, je veux me pendre
-        FogGenerator.CreateFog(dungeonTilesPositions, fogPainter, width-2, height-2);
+        
     }
 
     public void GetWorldPosFromTilePos(Vector2Int oldPos, out Vector3 pos, bool isStatic = false)
