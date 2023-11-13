@@ -68,3 +68,7 @@ MonoBehaviour:
     type: 3}
   FogCornerTopLeft: {fileID: 2414278110027015779, guid: 97f0eba89685e58449189e0f460fdee2,
     type: 3}
+  FogSlash: {fileID: 2414278110027015779, guid: c0e649126fff5f84fbf71a2b1a53a974,
+    type: 3}
+  FogAntiSlash: {fileID: 2414278110027015779, guid: 5fcd3908a7ba6e44fb9e0d2bed0d6297,
+    type: 3}

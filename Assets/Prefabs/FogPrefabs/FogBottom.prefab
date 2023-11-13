@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3025513668412378401}
   - component: {fileID: 7246135205907335455}
   m_Layer: 0
-  m_Name: BogBottom
+  m_Name: FogBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

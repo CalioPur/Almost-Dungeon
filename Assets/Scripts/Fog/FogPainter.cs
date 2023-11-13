@@ -7,7 +7,8 @@ public class FogPainter : MonoBehaviour
 {
     public GameObject baseFogTile, FogTop, FogTopRight, FogRight, FogBottomRight, 
         FogBottom, FogBottomLeft, FogLeft, FogTopLeft,
-        FogCornerTopRight, FogCornerBottomRight, FogCornerBottomLeft, FogCornerTopLeft;
+        FogCornerTopRight, FogCornerBottomRight, FogCornerBottomLeft, FogCornerTopLeft,
+        FogSlash, FogAntiSlash;
     public HashSet<Vector2Int> dungeonTilesPositions = new HashSet<Vector2Int>();
 
     
@@ -46,7 +47,8 @@ public class FogPainter : MonoBehaviour
     {
         int typeAsInt = Convert.ToInt32(neighbourBinaryType,2);
         GameObject fogTileType = null;
-        if (FogByteType.fogTop.Contains(typeAsInt)) fogTileType = FogTop;
+        if (FogByteType.fogFull.Contains(typeAsInt)) fogTileType = baseFogTile;
+        else if (FogByteType.fogTop.Contains(typeAsInt)) fogTileType = FogTop;
         else if (FogByteType.fogTopRight.Contains(typeAsInt)) fogTileType = FogTopRight;
         else if (FogByteType.fogRight.Contains(typeAsInt)) fogTileType = FogRight;
         else if (FogByteType.fogBottomRight.Contains(typeAsInt)) fogTileType = FogBottomRight;
@@ -60,8 +62,11 @@ public class FogPainter : MonoBehaviour
         else if (FogByteType.fogCornerBottomLeft.Contains(typeAsInt)) fogTileType = FogCornerBottomLeft;
         else if (FogByteType.fogCornerTopLeft.Contains(typeAsInt)) fogTileType = FogCornerTopLeft;
 
+        else if (FogByteType.fogSlash.Contains(typeAsInt)) fogTileType = FogSlash;
+        else if (FogByteType.fogBackSlash.Contains(typeAsInt)) fogTileType = FogAntiSlash;
 
-        else fogTileType = baseFogTile;
+
+        else return;
 
 
         GameObject fogTile = Instantiate(fogTileType, new Vector3((fogPosition.x - (float)width / 2) + 0.5f, 0, (fogPosition.y - (float)height / 2) + 0.5f), baseFogTile.transform.rotation);
