@@ -17,9 +17,6 @@ public class AttackHero : Node
 
     public override NodeState Evaluate(Node root)
     {
-        if (blackboard.heroPosition.x == blackboard.minionData.indexX &&
-            blackboard.heroPosition.y == blackboard.minionData.indexY)
-        {
             Vector3 heroPosVec3 = Vector3.zero;
             blackboard.minionData.mapManager.GetWorldPosFromTilePos(
                 new Vector2Int(blackboard.heroPosition.x + 1, blackboard.heroPosition.y + 1), out heroPosVec3);
@@ -27,8 +24,5 @@ public class AttackHero : Node
                 Ease.InBack, 2));
             blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage);
             return NodeState.Success;
-        }
-
-        return NodeState.Failure;
     }
 }

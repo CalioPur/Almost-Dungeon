@@ -19,7 +19,7 @@ public class MoveToHero : Node
             return NodeState.Failure;
         
         if (blackboard.dir == DirectionToMove.None)
-            return NodeState.Success;
+            return NodeState.Failure;
         
         blackboard.minionData.mapManager.RemoveEnemyOnTile(
             new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), blackboard.minionData);
