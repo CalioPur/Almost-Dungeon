@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: minionSniper
   m_EditorClassIdentifier: 
   <health>k__BackingField: 0
-  <damage>k__BackingField: 0
+  <damage>k__BackingField: 2
   <range>k__BackingField: 0
   <targetPriority>k__BackingField: 10

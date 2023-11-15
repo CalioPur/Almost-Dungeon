@@ -57,4 +57,7 @@ MonoBehaviour:
   - type: 3
     prefab: {fileID: 3487245091449332422, guid: dbe85c2a69e00a44fbb702e0a444e178,
       type: 3}
+  - type: 4
+    prefab: {fileID: 3487245091449332422, guid: 6a1c71d0df6b82441916c03b451f3d25,
+      type: 3}
   mapManager: {fileID: 0}

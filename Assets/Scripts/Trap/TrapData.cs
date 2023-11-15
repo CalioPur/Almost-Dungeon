@@ -13,6 +13,7 @@ public abstract class TrapData : MonoBehaviour
     public int indexX;
     public int indexY;
     public MapManager mapManager;
+    [SerializeField] protected SpriteRenderer sprite;
     
     [SerializeField] protected EnemySo SO;
     protected int entityId;
@@ -34,6 +35,20 @@ public abstract class TrapData : MonoBehaviour
     public void StartListenTick(MovementType movementType)
     {
         TickManager.SubscribeToMovementEvent(movementType, OnTick, entityId);
+    }
+    
+    public void ShowSprite()
+    {
+        var spriteColor = sprite.color;
+        spriteColor.a = 1;
+        sprite.color = spriteColor;
+    }
+    
+    public void AddOnTile(int x, int y)
+    {
+        indexX = x;
+        indexY = y;
+        mapManager.AddTrapOnTile(new Vector2Int(x, y), this);
     }
     
     void Start()

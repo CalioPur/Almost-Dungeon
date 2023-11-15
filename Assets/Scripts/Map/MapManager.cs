@@ -403,4 +403,10 @@ public class MapManager : MonoBehaviour
         tile = GetTileDataAtPosition(indexes.x, indexes.y);
         return tile != null;
     }
+
+    public void AddTrapOnTile(Vector2Int vector2Int, TrapData trapData)
+    {
+        TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
+        data.enemies.Add(trapData);
+    }
 }

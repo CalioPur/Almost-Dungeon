@@ -10,7 +10,6 @@ public abstract class MinionData : TrapData
     public static event Action OnHeroPosAsked;
 
     [SerializeField] protected Transform tr;
-    [SerializeField] protected SpriteRenderer sprite;
     [SerializeField] protected MinionBTBase bt;
     [SerializeField] protected AnimationQueue animQueue;
     private bool isExec = false;

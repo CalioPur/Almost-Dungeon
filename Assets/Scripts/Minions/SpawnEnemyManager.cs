@@ -10,6 +10,7 @@ public enum TrapType
     Pyke,
     BasicCaC,
     Archer,
+    Skeleton,
     None
 }
 
@@ -34,6 +35,7 @@ public class SpawnEnemyManager : MonoBehaviour
     {
         int nbEnemyBasic = 0;
         int nbEnemyArcher = 0;
+        int nbEnemySkeleton = 0;
         bool web = false;
         bool pyke = false;
         
@@ -46,6 +48,9 @@ public class SpawnEnemyManager : MonoBehaviour
                     break;
                 case TrapType.Archer:
                     nbEnemyArcher++;
+                    break;
+                case TrapType.Skeleton:
+                    nbEnemySkeleton++;
                     break;
                 case TrapType.Web:
                     web = true;
@@ -71,6 +76,15 @@ public class SpawnEnemyManager : MonoBehaviour
             if (nbEnemyArcher != 1) angle -= Mathf.PI / 4;
 
             SpawnEnemy<MinionData>(TrapsPrefab.Find(x => x.type == TrapType.Archer).prefab, tile, true,
+                new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f);
+        }
+        
+        for (int i = 0; i < nbEnemySkeleton; i++)
+        {
+            var angle = i * Mathf.PI * 2 / nbEnemySkeleton;
+            if (nbEnemySkeleton != 1) angle -= Mathf.PI / 4;
+
+            SpawnEnemy<MinionData>(TrapsPrefab.Find(x => x.type == TrapType.Skeleton).prefab, tile, false,
                 new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f);
         }
 
