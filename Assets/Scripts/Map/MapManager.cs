@@ -10,15 +10,16 @@ public class MapManager : MonoBehaviour
 {
     public static event Action<TileData, CardHand, bool> OnCardTryToPlaceEvent;
     public static MapManager Instance { get; private set; }
-    
-    public int width { get; private set; }
-    public int height { get; private set; }
-    
+
+    [field: SerializeField] public int width { get; private set; }
+    [field: SerializeField] public int height { get; private set; }
+
     [SerializeField] private GameObject walls, floor;
     [SerializeField] private Transform map;
     [SerializeField] private FogPainter fogPainter;
     private CardInfo[] cards;
     private TileData[,] mapArray;
+
     private void Awake()
     {
         Instance = this;
@@ -55,9 +56,9 @@ public class MapManager : MonoBehaviour
         }
 
         CardsManager.OnCardTryToPlaceEvent += CheckCardPos;
-        
-        fogPainter.dungeonTilesPositions.Add(new Vector2Int(1,2)); //position de départ du hero, A CHANGER
-        FogGenerator.CreateFog(fogPainter.dungeonTilesPositions, fogPainter, width-2, height-2);
+
+        fogPainter.dungeonTilesPositions.Add(new Vector2Int(1, 2)); //position de départ du hero, A CHANGER
+        FogGenerator.CreateFog(fogPainter.dungeonTilesPositions, fogPainter, width - 2, height - 2);
     }
 
     public void AddRandomCard()
@@ -102,13 +103,13 @@ public class MapManager : MonoBehaviour
         for (int j = 0; j < height - 2; j++)
             if (mapArray[i, j].isConnectedToPath)
                 mapArray[i, j].isExit = ((j == 0 && mapArray[i, j].hasDoorDown) ||
-                                        (mapArray[i, j].hasDoorDown && !mapArray[i, j - 1].PiecePlaced) ||
-                                        (j == height - 3 && mapArray[i, j].hasDoorUp) ||
-                                        (mapArray[i, j].hasDoorUp && !mapArray[i, j + 1].PiecePlaced) ||
-                                        (i == 0 && mapArray[i, j].hasDoorLeft) ||
-                                        (mapArray[i, j].hasDoorLeft && !mapArray[i - 1, j].PiecePlaced) ||
-                                        (i == width - 3 && mapArray[i, j].hasDoorRight) ||
-                                        (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced));
+                                         (mapArray[i, j].hasDoorDown && !mapArray[i, j - 1].PiecePlaced) ||
+                                         (j == height - 3 && mapArray[i, j].hasDoorUp) ||
+                                         (mapArray[i, j].hasDoorUp && !mapArray[i, j + 1].PiecePlaced) ||
+                                         (i == 0 && mapArray[i, j].hasDoorLeft) ||
+                                         (mapArray[i, j].hasDoorLeft && !mapArray[i - 1, j].PiecePlaced) ||
+                                         (i == width - 3 && mapArray[i, j].hasDoorRight) ||
+                                         (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced));
     }
 
     private void SetConnectedToPath()
@@ -133,7 +134,7 @@ public class MapManager : MonoBehaviour
     public void InitEnterDungeon(CardInfoInstance card, out Vector3 pos, Vector2Int startPos)
     {
         SetTileAtPosition(card, startPos.x, startPos.y);
-        
+
         mapArray[startPos.x, startPos.y].isConnectedToPath = true;
         mapArray[startPos.x, startPos.y].isVisited = true;
         SetConnectedToPath();
@@ -182,9 +183,9 @@ public class MapManager : MonoBehaviour
 
     public Vector2Int GetPosFromData(TileData data)
     {
-        for (int i = 0;i< width-2; i++)
+        for (int i = 0; i < width - 2; i++)
         {
-            for(int j = 0;j< height - 2; j++)
+            for (int j = 0; j < height - 2; j++)
             {
                 if (data.Equals(mapArray[i, j]))
                 {
@@ -192,7 +193,8 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
-        Debug.LogError("il n'existe aucune tile correspondant a : "+ data.ToString());
+
+        Debug.LogError("il n'existe aucune tile correspondant a : " + data.ToString());
         return new Vector2Int(-1, -1);
     }
 
@@ -222,7 +224,6 @@ public class MapManager : MonoBehaviour
     void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
     {
         mapArray[posX, posY].SetInstance(card);
-        
     }
 
     public void GetWorldPosFromTilePos(Vector2Int oldPos, out Vector3 pos, bool isStatic = false)
@@ -252,26 +253,28 @@ public class MapManager : MonoBehaviour
         minions = new List<TrapData>(data.enemies.OrderBy(x => x.GetSO().targetPriority));
     }
 
-    public void RemoveEnemyOnTile(Vector2Int vector2Int, TrapData minionData)
+    public void RemoveEnemyOnTile(Vector2Int vector2Int, TrapData minionData, Vector3 WoldPos)
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         data.enemies.Remove(minionData);
+        //free occupied tile
+        GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
+        if (minionData is MinionData minion)
+            data.freePosition(minion.indexPos);
     }
 
-    public void AddMinionOnTile(Vector2Int vector2Int, TrapData minionData)
+    public bool AddMinionOnTile(Vector2Int vector2Int, TrapData minionData, out int index)
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
-        data.enemies.Add(minionData);
-        for (int i = 0; i < data.enemies.Count; i++)
+        GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
+        if (data.GetFirstAvailabalePosition(out var offset, out index))
         {
-            if (data.enemies[i] is not MinionData) continue;
-            var angle = i * Mathf.PI * 2 / data.enemies.Count;
-            Vector3 angleVector = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.25f;
-                
-            GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
-            posToGo += angleVector;
-            ((MinionData)data.enemies[i]).Move(posToGo, 0.5f);
+            ((MinionData)minionData).Move(posToGo + offset, 0.5f);
+            data.enemies.Add(minionData);
+            return true;
         }
+
+        return false;
     }
 
     public void CheckAllTilesTypeAndRotation()

@@ -107,7 +107,13 @@ public class SpawnEnemyManager : MonoBehaviour
         T script = minion.GetComponent<T>();
         mapManager.GetTilePosFromWorldPos(position, out script.indexX, out script.indexY);
         script.mapManager = mapManager;
+        int index = -1;
         if (addEnemyOnTile)
-            tile.enemies.Add(script);
+            mapManager.AddMinionOnTile(new Vector2Int(script.indexX, script.indexY), script, out index);
+
+        if (script is MinionData minionData)
+        {
+            minionData.indexPos = index;
+        }
     }
 }

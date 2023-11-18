@@ -9,12 +9,6 @@ public class minionArcher : MinionData
         if (!bt) return;
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
-
-    protected override void OnDead()
-    {
-        mapManager.RemoveEnemyOnTile(new Vector2Int(indexX, indexY), this);
-        Destroy(gameObject, 0.25f);
-    }
     
     private void GetHeroPos(Vector2Int pos)
     {

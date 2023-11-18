@@ -44,14 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745eaeaf008ed954cb88c107330f4aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 7
-  height: 5
+  <width>k__BackingField: 9
+  <height>k__BackingField: 7
   walls: {fileID: 1939014474319430147, guid: ee719a99b03afff4f9514a6ef204cf63, type: 3}
   floor: {fileID: 8744462414812450706, guid: 7299b39184eadc94eafb4cf0320a193c, type: 3}
   map: {fileID: 8817438707714538889}
-  cards:
-  - {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-  - {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-  - {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
-  - {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd, type: 2}
-  - {fileID: 11400000, guid: 246ccb82261b7ca4d9f57f0068f0fa22, type: 2}
+  fogPainter: {fileID: 0}

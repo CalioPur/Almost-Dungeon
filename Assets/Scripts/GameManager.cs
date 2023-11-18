@@ -24,9 +24,9 @@ public class GameManager : MonoBehaviour
         MapManager.OnCardTryToPlaceEvent += CheckIsFirstMove;
 
         mapManager.InitMap();
+        mapManager.AddRandomCard();
         mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), out pos, startPosHero);
         pos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
-        mapManager.AddRandomCard();
     }
 
     private void SpawnHero()

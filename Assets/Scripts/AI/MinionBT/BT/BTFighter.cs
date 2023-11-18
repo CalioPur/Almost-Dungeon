@@ -11,6 +11,7 @@ public class BTFighter : MinionBTBase
             new GetHeroPos(blackboard),
             new IsInSight(blackboard),
             new MoveToHero(blackboard),
+            new CheckifFrontOfHero(blackboard),
             new AttackHero(blackboard)
         );
         return origin;

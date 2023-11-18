@@ -25,10 +25,4 @@ public class minionFighter : MinionData
          base.Init();
          Hero.OnGivePosBackEvent += GetHeroPos;
      }
-
-    protected override void OnDead()
-    {
-        mapManager.RemoveEnemyOnTile(new Vector2Int(indexX, indexY), this);
-        Destroy(gameObject,0.25f);
-    }
 }

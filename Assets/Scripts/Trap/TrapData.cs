@@ -20,7 +20,12 @@ public abstract class TrapData : MonoBehaviour
     
     protected abstract void OnTick();
     protected abstract void Init();
-    protected abstract void OnDead();
+    protected virtual void OnDead()
+    {
+        mapManager.GetWorldPosFromTilePos(new Vector2Int(indexX, indexY) , out Vector3 worldPos);
+        mapManager.RemoveEnemyOnTile(
+            new Vector2Int(indexX, indexY), this, worldPos);
+    }
 
     public void Attack(int damage)
     {

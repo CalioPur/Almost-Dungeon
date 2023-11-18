@@ -31,11 +31,4 @@ public class Web : TrapData
     {
         webInstance = SO.CreateInstance();
     }
-
-    protected override void OnDead()
-    {
-        isDead = true;
-        mapManager.RemoveEnemyOnTile(new Vector2Int(indexX, indexY), this);
-        Destroy(gameObject);
-    }
 }

@@ -12,7 +12,6 @@ public static class FogGenerator
 
     private static HashSet<Vector2Int> FindFogInDirection(HashSet<Vector2Int> dungeonTilesPositions, int width, int height)
     {
-        Debug.Log(dungeonTilesPositions.Count);
         HashSet<Vector2Int> fogPositions = new HashSet<Vector2Int>();
         for (int i = 0; i < width; i++)
         {

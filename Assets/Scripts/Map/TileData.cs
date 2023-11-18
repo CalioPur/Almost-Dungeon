@@ -58,4 +58,25 @@ public class TileData : MonoBehaviour
         img.sprite = _instance.So.imgOnMap;
         transform.rotation = Quaternion.Euler(90, 0, _instance.Rotation);
     }
+    
+    public bool GetFirstAvailabalePosition(out Vector3 pos, out int index)
+    {
+        for (int i = 0; i < _instance.So.offsetSpawn.Length; i++)
+        {
+            if (_instance.offsetSpawnUsed[i]) continue;
+            pos = _instance.So.offsetSpawn[i];
+            _instance.offsetSpawnUsed[i] = true;
+            index = i;
+            return true;
+        }
+
+        pos = Vector3.zero;
+        index = 0;
+        return false;
+    }
+    
+    public void freePosition(int index)
+    {
+        _instance.offsetSpawnUsed[index] = false;
+    }
 }

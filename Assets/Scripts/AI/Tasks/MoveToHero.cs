@@ -15,25 +15,31 @@ public class MoveToHero : Node
 
     public override NodeState Evaluate(Node root)
     {
-        if (blackboard.dir == DirectionToMove.Error)
+        if (blackboard.dir is DirectionToMove.Error)
             return NodeState.Failure;
-        
-        if (blackboard.dir == DirectionToMove.None)
-            return NodeState.Failure;
-        
-        blackboard.minionData.mapManager.RemoveEnemyOnTile(
-            new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), blackboard.minionData);
-        var localPosition = blackboard.minionData.transform.localPosition;
+        if (blackboard.dir is DirectionToMove.None)
+            return NodeState.Success;
 
-        blackboard.minionData.indexX += (blackboard.dir == DirectionToMove.Right) ? 1 :
+        Vector2Int temporaryIndex = new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY);
+        temporaryIndex.x += (blackboard.dir == DirectionToMove.Right) ? 1 :
             (blackboard.dir == DirectionToMove.Left) ? -1 : 0;
-        blackboard.minionData.indexY += (blackboard.dir == DirectionToMove.Up) ? 1 :
+        temporaryIndex.y += (blackboard.dir == DirectionToMove.Up) ? 1 :
             (blackboard.dir == DirectionToMove.Down) ? -1 : 0;
+        int index = -1;
+        bool isValidPos = blackboard.minionData.mapManager.AddMinionOnTile(
+            new Vector2Int(temporaryIndex.x, temporaryIndex.y), blackboard.minionData, out index);
+        if (isValidPos)
+        {
+            blackboard.minionData.mapManager.RemoveEnemyOnTile(
+                new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), blackboard.minionData,
+                blackboard.minionData.gameObject.transform.position);
+            blackboard.minionData.indexX = temporaryIndex.x;
+            blackboard.minionData.indexY = temporaryIndex.y;
+            blackboard.minionData.indexPos = index;
 
-        blackboard.minionData.mapManager.GetWorldPosFromTilePos(
-            new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), out Vector3 pos);
-        blackboard.minionData.mapManager.AddMinionOnTile(
-            new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), blackboard.minionData);
-        return NodeState.Success;
+            return NodeState.Success;
+        }
+
+        return NodeState.Failure;
     }
 }

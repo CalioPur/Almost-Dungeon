@@ -12,9 +12,10 @@ public class CardInfo : ScriptableObject
     public Sprite imgOnHand;
     public Sprite imgOnMap;
     
-    [Header("spawn parameters")]
+    [Header("Minions parameters")]
     public int nbToBuild;
     public TrapType[] TypeOfTrapOrEnemyToSpawn;
+    public Vector3[] offsetSpawn;
     
     [Header("Doors")]
     public bool DoorOnTop;
@@ -42,6 +43,8 @@ public class CardInfoInstance
     public bool DoorOnLeft { get;  set; }
     public bool DoorOnRight { get;  set; }
     
+    public bool[] offsetSpawnUsed;
+    
     public event Action OnRotationChangedEvent; 
     
     public CardInfoInstance(CardInfo info)
@@ -52,6 +55,11 @@ public class CardInfoInstance
         DoorOnBottom = info.DoorOnBottom;
         DoorOnLeft = info.DoorOnLeft;
         DoorOnRight = info.DoorOnRight;
+        offsetSpawnUsed = new bool[So.offsetSpawn.Length];
+        for (int i = 0; i < So.offsetSpawn.Length; i++)
+        {
+            offsetSpawnUsed[i] = false;
+        }
     }
     
     public void AddRotation(bool NotClockwise)

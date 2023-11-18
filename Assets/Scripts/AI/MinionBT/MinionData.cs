@@ -15,7 +15,7 @@ public abstract class MinionData : TrapData
     private bool isExec = false;
 
     public EnemyInstance minionInstance;
-
+    public int indexPos;
     public void GetHeroPos()
     {
         OnHeroPosAsked?.Invoke();
