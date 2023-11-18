@@ -9,21 +9,25 @@ using Random = UnityEngine.Random;
 public class MapManager : MonoBehaviour
 {
     public static event Action<TileData, CardHand, bool> OnCardTryToPlaceEvent;
-    public int width;
-    public int height;
-
-    [SerializeField] private GameObject walls, floor;
-    [SerializeField] private Transform map;
-    [SerializeField] private CardInfo[] cards;
-
-    private TileData[,] mapArray;
-    
-    [SerializeField] private FogPainter fogPainter;
     public static MapManager Instance { get; private set; }
     
+    public int width { get; private set; }
+    public int height { get; private set; }
+    
+    [SerializeField] private GameObject walls, floor;
+    [SerializeField] private Transform map;
+    [SerializeField] private FogPainter fogPainter;
+    private CardInfo[] cards;
+    private TileData[,] mapArray;
     private void Awake()
     {
         Instance = this;
+        CardsManager.DistributeCardEvent += InitCards;
+    }
+
+    private void InitCards(CardInfo[] _cards)
+    {
+        cards = _cards;
     }
 
     public void InitMap()

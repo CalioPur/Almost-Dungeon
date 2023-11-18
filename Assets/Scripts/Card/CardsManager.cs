@@ -9,6 +9,7 @@ using UnityEngine;
 public class CardsManager : MonoBehaviour
 {
     public static event Action<TileData, CardHand> OnCardTryToPlaceEvent;
+    public static event Action<CardInfo[]> DistributeCardEvent;
 
 
     [Header("Deck builder")] [SerializeField]
@@ -40,6 +41,7 @@ public class CardsManager : MonoBehaviour
 
     private void BeginToDraw()
     {
+        DistributeCardEvent?.Invoke(deckToBuild.ToArray());
         StartCoroutine(CheckDrawCard());
     }
 
