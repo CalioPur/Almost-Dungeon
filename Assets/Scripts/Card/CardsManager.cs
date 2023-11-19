@@ -30,9 +30,9 @@ public class CardsManager : MonoBehaviour
     private List<CardInfoInstance> Hand = new();
     private CardHand selectedCard;
     private int cptCardsObtained = 0;
-    private int nbStackingCard = 0;
 
     private Coroutine currentlyDrawing;
+    private List<CardInfoInstance> defausseCard = new();
 
     private void Awake()
     {
@@ -51,7 +51,6 @@ public class CardsManager : MonoBehaviour
         DragAndDropManager.OnTileSelectedEvent += PlaceSolution;
         MapManager.OnCardTryToPlaceEvent += RemoveCard;
         cptCardsObtained = 0;
-        nbStackingCard = nbCardOnStartToDraw;
 
         InitDeck();
         InitSlots();
@@ -92,34 +91,48 @@ public class CardsManager : MonoBehaviour
         }
     }
 
-    private bool CheckHandFull()
+    private bool DefausseToDeck()
     {
-        for (int i = 0; i < slotsHand.Count; i++)
+        if (defausseCard.Count <= 0) return false;
+        foreach (var t in defausseCard)
         {
-            if (slotsHand[i].Occupied == false)
-                return false;
+            deckCreate.Add(t);
         }
 
+        defausseCard.Clear();
+        DeckTr.gameObject.SetActive(true);
         return true;
     }
 
     private IEnumerator CheckDrawCard()
     {
         yield return new WaitForSeconds(TimerBeforeDrawCard);
-        nbStackingCard++;
-        if (deckCreate.Count <= 0) yield break;
-        if (nbStackingCard > 0 && cptCardsObtained < slotsHand.Count)
-            for (int i = 0; i < nbStackingCard; i++)
-            {
-                if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
-                {
-                    DrawCard();
-                }
-            }
+        if (deckCreate.Count <= 0)
+            if (!DefausseToDeck())
+                yield break;
+        if (cptCardsObtained >= slotsHand.Count)
+            RemoveCardAtIndex(0);
+        DrawCard();
 
         if (currentlyDrawing != null)
             StopCoroutine(currentlyDrawing);
         currentlyDrawing = StartCoroutine(CheckDrawCard());
+    }
+
+    private void RemoveCardAtIndex(int index)
+    {
+        slotsHand[index].removeSelection();
+        CardInfoInstance defausseSO = new CardInfoInstance(slotsHand[index].Card.So);
+        defausseCard.Add(defausseSO);
+
+        for (int i = index; i < slotsHand.Count - 1; i++)
+        {
+            if (slotsHand[i + 1].Card != null && slotsHand[i + 1].Card.So != null)
+                slotsHand[i].MoveCardTo(slotsHand[i + 1]);
+        }
+
+        slotsHand[^1].EmptyCard();
+        cptCardsObtained--;
     }
 
     IEnumerator AnimationDrawCard(CardHand Slot)
@@ -135,7 +148,6 @@ public class CardsManager : MonoBehaviour
         if (deckCreate.Count == 0 || cptCardsObtained >= slotsHand.Count) return;
 
         cptCardsObtained++;
-        nbStackingCard--;
         CardInfoInstance card = deckCreate[0];
         if (deckCreate.Count > 0)
         {

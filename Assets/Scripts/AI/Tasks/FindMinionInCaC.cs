@@ -14,6 +14,7 @@ public class FindMinionInCaC : Node
     
     public override NodeState Evaluate(Node root)
     {
+        return NodeState.Failure;
         //je regarde si il y a un ou des ennemis dessus
         blackboard.hero.mapManager.GetNbMonstersOnPos(blackboard.hero.GetIndexHeroPos(), out List<TrapData> minions);
         if (minions.Count > 0)
