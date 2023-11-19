@@ -25,6 +25,7 @@ public abstract class TrapData : MonoBehaviour
         mapManager.GetWorldPosFromTilePos(new Vector2Int(indexX, indexY) , out Vector3 worldPos);
         mapManager.RemoveEnemyOnTile(
             new Vector2Int(indexX, indexY), this, worldPos);
+        Destroy(gameObject);
     }
 
     public void Attack(int damage)
