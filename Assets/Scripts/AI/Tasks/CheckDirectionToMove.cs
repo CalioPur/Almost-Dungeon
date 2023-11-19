@@ -16,7 +16,6 @@ public class CheckDirectionToMove : Node
 
     public override NodeState Evaluate(Node root)
     {
-        return NodeState.Failure;
         blackboard.directionToMove = PathFinding.BFSGoToClosestExit(
             blackboard.hero.GetIndexHeroPos(),
             blackboard.hero.mapManager.getMapArray(), Personnalities.HurryForTheExit);
