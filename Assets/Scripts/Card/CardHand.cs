@@ -54,6 +54,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             img.color = NormalColor;
             OnCardSelectedEvent?.Invoke(null);
         }
+
         if (!Occupied) return;
         OnCardSelectedEvent?.Invoke(this);
         BackgroundDescription.gameObject.SetActive(false);
@@ -68,8 +69,19 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         isSelected = false;
         Occupied = false;
     }
+    
+    public void MoveCardTo(CardHand other)
+    {
 
-    public void InitCard(CardInfoInstance _card)
+        InitCard(other.Card, false);
+        if (other.isSelected)
+        {
+            other.removeSelection();
+            addSelection();
+        }
+    }
+
+    public void InitCard(CardInfoInstance _card, bool resetRotation = true)
     {
         img.transform.rotation = Quaternion.Euler(0, 0, 0);
         Card = _card;
@@ -77,6 +89,17 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         img.color = NormalColor;
         isSelected = false;
         DescriptionText.text = Card.So.description;
+        if (!resetRotation)
+        {
+            int nb = Card.Rotation / 90;
+            //Card.Rotation = 0;
+            for (int i = 0; i < nb; i++)
+            {
+                //Card.AddRotation(true);
+                GetImage().transform.Rotate(0, 0, 90);
+            }
+               
+        }
     }
 
     public Image GetImage()
@@ -92,8 +115,13 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void removeSelection()
     {
-        isSelected = false;
-        img.color = NormalColor;
+        if (!isSelected) return;
+        OnCardSelectedEvent?.Invoke(null);
+    }
+    
+    public void addSelection()
+    {
+        isSelected = true;
         OnCardSelectedEvent?.Invoke(this);
     }
 }

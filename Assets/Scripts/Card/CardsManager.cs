@@ -98,6 +98,7 @@ public class CardsManager : MonoBehaviour
         {
             deckCreate.Add(t);
         }
+
         defausseCard.Clear();
         DeckTr.gameObject.SetActive(true);
         return true;
@@ -107,16 +108,10 @@ public class CardsManager : MonoBehaviour
     {
         yield return new WaitForSeconds(TimerBeforeDrawCard);
         if (deckCreate.Count <= 0)
-        {
             if (!DefausseToDeck())
                 yield break;
-        }
-
         if (cptCardsObtained >= slotsHand.Count)
-        {
             RemoveCardAtIndex(0);
-        }
-
         DrawCard();
 
         if (currentlyDrawing != null)
@@ -129,13 +124,11 @@ public class CardsManager : MonoBehaviour
         slotsHand[index].removeSelection();
         CardInfoInstance defausseSO = new CardInfoInstance(slotsHand[index].Card.So);
         defausseCard.Add(defausseSO);
-        // if defausse card is selected, remove selection
-        
 
         for (int i = index; i < slotsHand.Count - 1; i++)
         {
             if (slotsHand[i + 1].Card != null && slotsHand[i + 1].Card.So != null)
-                slotsHand[i].InitCard(slotsHand[i + 1].Card);
+                slotsHand[i].MoveCardTo(slotsHand[i + 1]);
         }
 
         slotsHand[^1].EmptyCard();
