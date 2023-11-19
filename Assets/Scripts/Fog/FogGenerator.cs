@@ -18,10 +18,8 @@ public static class FogGenerator
             for (int j = 0; j < height; j++)
             {
                 Vector2Int currentPosition = new Vector2Int(i, j);
-                if(!dungeonTilesPositions.Contains(currentPosition))
-                {
-                    fogPositions.Add(currentPosition);
-                }
+                fogPositions.Add(currentPosition);
+                
             }
         }
         return fogPositions;

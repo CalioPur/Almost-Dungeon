@@ -72,3 +72,66 @@ MonoBehaviour:
     type: 3}
   FogAntiSlash: {fileID: 2414278110027015779, guid: 5fcd3908a7ba6e44fb9e0d2bed0d6297,
     type: 3}
+  FogEncapsulated: {fileID: 2414278110027015779, guid: 504ef24d26a12c7449395203d0f26f86,
+    type: 3}
+  FogTopEncap: {fileID: 2414278110027015779, guid: 296ae92646bb2074ba97afab0a0dd3d2,
+    type: 3}
+  FogRightEncap: {fileID: 2414278110027015779, guid: 3124bc4f26a208e41b5f802331384132,
+    type: 3}
+  FogBottomEncap: {fileID: 2414278110027015779, guid: 15163e0166f8571458e1342a7a4927d4,
+    type: 3}
+  FogLeftEncap: {fileID: 2414278110027015779, guid: 6681af4aa8157754986837aa66c67f8e,
+    type: 3}
+  FogTopBottom: {fileID: 2414278110027015779, guid: 649a083ee47cefb438452e867a1fdab4,
+    type: 3}
+  FogRightLeft: {fileID: 2414278110027015779, guid: 7013260ede807ff4dbf0f8f98f65fa29,
+    type: 3}
+  FogDoubleCornerTop: {fileID: 2414278110027015779, guid: 31e5cf975d943d94f94fc64e7cf88fc6,
+    type: 3}
+  FogDoubleCornerRight: {fileID: 2414278110027015779, guid: 20a6382782a414d48a60dc2be6b038d5,
+    type: 3}
+  FogDoubleCornerBottom: {fileID: 2414278110027015779, guid: c894a7890a570a6429081f99d4a04729,
+    type: 3}
+  FogDoubleCornerLeft: {fileID: 2414278110027015779, guid: cd8256171afc5cf47bce34f0f0172aa0,
+    type: 3}
+  FogTripleCornerTopLeft: {fileID: 2414278110027015779, guid: a927de69ef01d2749a82658d1ba06445,
+    type: 3}
+  FogTripleCornerTopRight: {fileID: 2414278110027015779, guid: fd2e340d6c356024db0b6eef664fef7e,
+    type: 3}
+  FogTripleCornerBottomRight: {fileID: 2414278110027015779, guid: a4fd99e6ccced59448a78cd787076086,
+    type: 3}
+  FogTripleCornerBottomLeft: {fileID: 2414278110027015779, guid: 4a58f398d6e8b0d43bb833b3fa442a01,
+    type: 3}
+  FogQuad: {fileID: 2414278110027015779, guid: fa535fa7db611b047a43c752b50b2c80, type: 3}
+  FogTurnTopLeft: {fileID: 2414278110027015779, guid: 4177906b922646145875ce634841b7f1,
+    type: 3}
+  FogTurnTopRight: {fileID: 2414278110027015779, guid: 4d94b31920371f94cbfb94d8f6e191cb,
+    type: 3}
+  FogTurnBottomRight: {fileID: 2414278110027015779, guid: 77a61221f6d56a14993ee4323e877bf7,
+    type: 3}
+  FogTurnBottomLeft: {fileID: 2414278110027015779, guid: dcaf66d61efdee4438654c996cbb0ba3,
+    type: 3}
+  CornerLeftBottom: {fileID: 2414278110027015779, guid: eb66021ea7338fd44b9f38e71002ff2b,
+    type: 3}
+  CornerLeftLeft: {fileID: 2414278110027015779, guid: 4d5054787c392824da209fec1e55a9d4,
+    type: 3}
+  CornerLeftTop: {fileID: 2414278110027015779, guid: a474efd186822144ab167b78a4179c5a,
+    type: 3}
+  CornerLeftRight: {fileID: 2414278110027015779, guid: 6601a0cb784d9b04a873b395eb97aa5a,
+    type: 3}
+  CornerRightBottom: {fileID: 2414278110027015779, guid: 9e352d5c56edd184e9e43d0607fe4747,
+    type: 3}
+  CornerRightLeft: {fileID: 2414278110027015779, guid: 5d306078a5d89204cbe05057cf1bfd76,
+    type: 3}
+  CornerRightTop: {fileID: 2414278110027015779, guid: 17bbf5a8cce09144f85457b510e1ed12,
+    type: 3}
+  CornerRightRight: {fileID: 2414278110027015779, guid: 19b2ceed45d259544a32f648d46427f4,
+    type: 3}
+  DoubleCornerBottom: {fileID: 2414278110027015779, guid: 751a6fd8ffe58274a96368254b5b44e5,
+    type: 3}
+  DoubleCornerLeft: {fileID: 2414278110027015779, guid: 910338fe06e1274409bc0d8122e368c6,
+    type: 3}
+  DoubleCornerTop: {fileID: 2414278110027015779, guid: 0fb1e225dc9f07a4eaba646fa65598f0,
+    type: 3}
+  DoubleCornerRight: {fileID: 2414278110027015779, guid: 96f5c3f3fea50a242be8b45d89f8f015,
+    type: 3}
