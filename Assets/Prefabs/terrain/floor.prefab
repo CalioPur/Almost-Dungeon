@@ -101,11 +101,7 @@ MonoBehaviour:
   isConnectedToPath: 0
   isExit: 0
   isVisited: 0
-  isPlayerhere: 0
-  isMonsterhere: 0
-  isChesthere: 0
-  isTrapHere: 0
-  minions: []
+  enemies: []
   img: {fileID: 7685324131272427853}
 --- !u!65 &2580858192436897141
 BoxCollider:
@@ -126,5 +122,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.2, z: 0.05}
+  m_Size: {x: 0.25, y: 0.25, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}

@@ -38,6 +38,7 @@ public class TileData : MonoBehaviour
 
     public bool isVisited = false;
     public bool PiecePlaced => _instance != null;
+    public CardInfoInstance CardInstance { get; set; }
 
 
     [FormerlySerializedAs("minions")] [Header("Monsters")]
@@ -78,5 +79,11 @@ public class TileData : MonoBehaviour
     public void freePosition(int index)
     {
         _instance.offsetSpawnUsed[index] = false;
+    }
+
+    public void SnapToGrid()
+    {
+        transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y,
+            Mathf.Round(transform.position.z));
     }
 }

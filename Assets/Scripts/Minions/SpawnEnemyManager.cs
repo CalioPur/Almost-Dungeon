@@ -39,9 +39,9 @@ public class SpawnEnemyManager : MonoBehaviour
         bool web = false;
         bool pyke = false;
         
-        for (int i = 0; i < card.So.TypeOfTrapOrEnemyToSpawn.Length; i++)
+        foreach (var typeOfTrapOrEnemy in card.So.TypeOfTrapOrEnemyToSpawn)
         {
-            switch (card.So.TypeOfTrapOrEnemyToSpawn[i])
+            switch (typeOfTrapOrEnemy)
             {
                 case TrapType.BasicCaC:
                     nbEnemyBasic++;
