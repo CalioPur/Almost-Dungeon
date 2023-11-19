@@ -32,6 +32,7 @@ public class CardsManager : MonoBehaviour
     private int cptCardsObtained = 0;
 
     private Coroutine currentlyDrawing;
+    private List<CardInfoInstance> defausseCard = new();
 
     private void Awake()
     {
@@ -90,10 +91,27 @@ public class CardsManager : MonoBehaviour
         }
     }
 
+    private bool DefausseToDeck()
+    {
+        if (defausseCard.Count <= 0) return false;
+        foreach (var t in defausseCard)
+        {
+            deckCreate.Add(t);
+        }
+        defausseCard.Clear();
+        DeckTr.gameObject.SetActive(true);
+        return true;
+    }
+
     private IEnumerator CheckDrawCard()
     {
         yield return new WaitForSeconds(TimerBeforeDrawCard);
-        if (deckCreate.Count <= 0) yield break;
+        if (deckCreate.Count <= 0)
+        {
+            if (!DefausseToDeck())
+                yield break;
+        }
+
         if (cptCardsObtained >= slotsHand.Count)
         {
             RemoveCardAtIndex(0);
@@ -108,13 +126,20 @@ public class CardsManager : MonoBehaviour
 
     private void RemoveCardAtIndex(int index)
     {
+        slotsHand[index].removeSelection();
+        CardInfoInstance defausseSO = new CardInfoInstance(slotsHand[index].Card.So);
+        defausseCard.Add(defausseSO);
+        // if defausse card is selected, remove selection
+        
+
         for (int i = index; i < slotsHand.Count - 1; i++)
         {
-            slotsHand[i].InitCard(slotsHand[i + 1].Card);
-            
+            if (slotsHand[i + 1].Card != null && slotsHand[i + 1].Card.So != null)
+                slotsHand[i].InitCard(slotsHand[i + 1].Card);
         }
-        slotsHand[slotsHand.Count - 1].EmptyCard();
-        
+
+        slotsHand[^1].EmptyCard();
+        cptCardsObtained--;
     }
 
     IEnumerator AnimationDrawCard(CardHand Slot)

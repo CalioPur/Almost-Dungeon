@@ -79,11 +79,6 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         DescriptionText.text = Card.So.description;
     }
 
-    public Vector3 GetRotation()
-    {
-        return new Vector3(0, Card.Rotation);
-    }
-
     public Image GetImage()
     {
         return img;
@@ -92,13 +87,13 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void ChangeSelection(bool newSelection)
     {
         isSelected = newSelection;
-        if (isSelected)
-        {
-            img.color = SelectedColor;
-        }
-        else
-        {
-            img.color = NormalColor;
-        }
+        img.color = isSelected ? SelectedColor : NormalColor;
+    }
+
+    public void removeSelection()
+    {
+        isSelected = false;
+        img.color = NormalColor;
+        OnCardSelectedEvent?.Invoke(this);
     }
 }
