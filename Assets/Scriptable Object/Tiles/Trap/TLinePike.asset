@@ -16,6 +16,11 @@ MonoBehaviour:
   imgOnMap: {fileID: 21300000, guid: db09bd28bb99f4640ad52c1d7ac0e707, type: 3}
   nbToBuild: 1
   TypeOfTrapOrEnemyToSpawn: 01000000
+  offsetMinionPos:
+  - {x: 0.3, y: 0, z: 0}
+  - {x: -0.3, y: 0, z: 0}
+  - {x: -0.3, y: 0, z: 0.3}
+  - {x: 0.3, y: 0, z: -0.3}
   DoorOnTop: 1
   DoorOnBottom: 1
   DoorOnLeft: 1

@@ -15,7 +15,7 @@ public class CardInfo : ScriptableObject
     [Header("Minions parameters")]
     public int nbToBuild;
     public TrapType[] TypeOfTrapOrEnemyToSpawn;
-    public Vector3[] offsetSpawn;
+    public Vector3[] offsetMinionPos;
     
     [Header("Doors")]
     public bool DoorOnTop;
@@ -55,8 +55,8 @@ public class CardInfoInstance
         DoorOnBottom = info.DoorOnBottom;
         DoorOnLeft = info.DoorOnLeft;
         DoorOnRight = info.DoorOnRight;
-        offsetSpawnUsed = new bool[So.offsetSpawn.Length];
-        for (int i = 0; i < So.offsetSpawn.Length; i++)
+        offsetSpawnUsed = new bool[So.offsetMinionPos.Length];
+        for (int i = 0; i < So.offsetMinionPos.Length; i++)
         {
             offsetSpawnUsed[i] = false;
         }
