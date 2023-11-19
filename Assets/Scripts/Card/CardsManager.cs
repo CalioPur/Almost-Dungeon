@@ -30,7 +30,6 @@ public class CardsManager : MonoBehaviour
     private List<CardInfoInstance> Hand = new();
     private CardHand selectedCard;
     private int cptCardsObtained = 0;
-    private int nbStackingCard = 0;
 
     private Coroutine currentlyDrawing;
 
@@ -51,7 +50,6 @@ public class CardsManager : MonoBehaviour
         DragAndDropManager.OnTileSelectedEvent += PlaceSolution;
         MapManager.OnCardTryToPlaceEvent += RemoveCard;
         cptCardsObtained = 0;
-        nbStackingCard = nbCardOnStartToDraw;
 
         InitDeck();
         InitSlots();
@@ -92,34 +90,31 @@ public class CardsManager : MonoBehaviour
         }
     }
 
-    private bool CheckHandFull()
-    {
-        for (int i = 0; i < slotsHand.Count; i++)
-        {
-            if (slotsHand[i].Occupied == false)
-                return false;
-        }
-
-        return true;
-    }
-
     private IEnumerator CheckDrawCard()
     {
         yield return new WaitForSeconds(TimerBeforeDrawCard);
-        nbStackingCard++;
         if (deckCreate.Count <= 0) yield break;
-        if (nbStackingCard > 0 && cptCardsObtained < slotsHand.Count)
-            for (int i = 0; i < nbStackingCard; i++)
-            {
-                if (deckCreate.Count > 0 && cptCardsObtained < slotsHand.Count)
-                {
-                    DrawCard();
-                }
-            }
+        if (cptCardsObtained >= slotsHand.Count)
+        {
+            RemoveCardAtIndex(0);
+        }
+
+        DrawCard();
 
         if (currentlyDrawing != null)
             StopCoroutine(currentlyDrawing);
         currentlyDrawing = StartCoroutine(CheckDrawCard());
+    }
+
+    private void RemoveCardAtIndex(int index)
+    {
+        for (int i = index; i < slotsHand.Count - 1; i++)
+        {
+            slotsHand[i].InitCard(slotsHand[i + 1].Card);
+            
+        }
+        slotsHand[slotsHand.Count - 1].EmptyCard();
+        
     }
 
     IEnumerator AnimationDrawCard(CardHand Slot)
@@ -135,7 +130,6 @@ public class CardsManager : MonoBehaviour
         if (deckCreate.Count == 0 || cptCardsObtained >= slotsHand.Count) return;
 
         cptCardsObtained++;
-        nbStackingCard--;
         CardInfoInstance card = deckCreate[0];
         if (deckCreate.Count > 0)
         {
