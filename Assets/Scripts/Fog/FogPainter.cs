@@ -123,7 +123,7 @@ public class FogPainter : MonoBehaviour
         else return;
 
 
-        GameObject fogTile = Instantiate(fogTileType, new Vector3((fogPosition.x - (float)width / 2) + 0.5f, 0.3f, (fogPosition.y - (float)height / 2) + 0.5f), baseFogTile.transform.rotation);
+        GameObject fogTile = Instantiate(fogTileType, new Vector3((fogPosition.x - (float)width / 2) + 0.5f, 0.01f, (fogPosition.y - (float)height / 2) + 0.5f), baseFogTile.transform.rotation);
         fogTile.transform.parent = transform;
     }
 
