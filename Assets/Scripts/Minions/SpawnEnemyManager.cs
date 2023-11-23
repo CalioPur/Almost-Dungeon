@@ -26,9 +26,14 @@ public class SpawnEnemyManager : MonoBehaviour
     [SerializeField] private List<ListOfTraps> TrapsPrefab;
     [SerializeField] private MapManager mapManager;
 
-    private void Start()
+    private void OnEnable()
     {
         DragAndDropManager.OnTilePosedEvent += SpawnMinionOnTile;
+    }
+    
+    private void OnDisable()
+    {
+        DragAndDropManager.OnTilePosedEvent -= SpawnMinionOnTile;
     }
 
     private void SpawnMinionOnTile(TileData tile, CardInfoInstance card)

@@ -15,7 +15,7 @@ public class UI_Dragon : MonoBehaviour
     List<UI_Heart> hearts = new();
     public float shakeDuration = 0.5f;
     
-    public int currentHealth = 100;
+    public static int currentHealth = 100;
     public int damage = 3;
     private void Awake()
     {
@@ -109,5 +109,10 @@ public class UI_Dragon : MonoBehaviour
     private void Start()
     {
         Hero.OnMovedOnEmptyCardEvent += CheckDragonHP;
+    }
+
+    private void OnDisable()
+    {
+        Hero.OnMovedOnEmptyCardEvent -= CheckDragonHP;
     }
 }

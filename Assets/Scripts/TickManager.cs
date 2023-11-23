@@ -26,9 +26,19 @@ public class TickManager : MonoBehaviour
 
     void Start()
     {
-        GameManager.OnGameStartEvent += () => Initialize(BPM);
+        GameManager.OnGameStartEvent += LaunchBPM;
     }
 
+    private void OnDisable()
+    {
+        GameManager.OnGameStartEvent -= LaunchBPM;
+    }
+    
+    void LaunchBPM()
+    {
+        Initialize(BPM);
+    }
+    
     void Initialize(int bpm)
     {
         beatInterval = 60f / bpm;
