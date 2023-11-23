@@ -18,7 +18,7 @@ public class CheckDirectionToMove : Node
     {
         blackboard.directionToMove = PathFinding.BFSGoToClosestExit(
             blackboard.hero.GetIndexHeroPos(),
-            blackboard.hero.mapManager.getMapArray(), Personnalities.HurryForTheExit);
+            blackboard.hero.mapManager.getMapArray(), blackboard.personality);
         Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();
         switch (blackboard.directionToMove)
         {

@@ -294,28 +294,30 @@ public class MapManager : MonoBehaviour
 
     private void CheckTileTypeAndRotation(TileData tileData)
     {
+        if (tileData.img.sprite.name == "EnterDungeon") return;
         if (isLTile(tileData))
         {
-            tileData.img.sprite = cards[0].imgOnMap;
+            tileData.img.sprite = cards.First(x => x.imgOnMap.name == "LWay").imgOnMap;
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromLTile(tileData), 0);
         }
         else if (isStraightTile(tileData))
         {
-            tileData.img.sprite = cards[1].imgOnMap;
+            tileData.img.sprite = cards.First(x => x.imgOnMap.name == "SimpleWay").imgOnMap;
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromStraightTile(tileData), 0);
         }
         else if (isTTile(tileData))
         {
-            tileData.img.sprite = cards[2].imgOnMap;
+            tileData.img.sprite = cards.First(x => x.imgOnMap.name == "TWay").imgOnMap;
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromTTile(tileData), 0);
         }
         else if (isCrossTile(tileData))
         {
+            tileData.img.sprite = cards.First(x => x.imgOnMap.name == "XRoom").imgOnMap;
             tileData.img.sprite = cards[3].imgOnMap;
         }
         else if (isDeadEndTile(tileData))
         {
-            tileData.img.sprite = cards[4].imgOnMap;
+            tileData.img.sprite = cards.First(x => x.imgOnMap.name == "Sas").imgOnMap;
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromDeadEndTile(tileData), 0);
         }
     }

@@ -16,8 +16,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CardInfo enterDungeonInfo;
     [SerializeField] private Hero heroRenderer;
     [SerializeField] private Vector2Int startPosHero;
+    
 
     private Vector3 pos;
+    
+    public static GameManager _instance;
+    
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+        
+        DontDestroyOnLoad(gameObject);
+    }
     
     void Start()
     {
@@ -36,6 +51,8 @@ public class GameManager : MonoBehaviour
 
         Instantiate(heroRenderer, pos, heroRenderer.transform.rotation)
             .Init(current, startPosHero.x, startPosHero.y, mapManager);
+        
+        UIManager._instance.heroBlackboard = FindObjectOfType<HeroBlackboard>();
     }
 
     private void CheckIsFirstMove(TileData _, CardHand __, bool canBePlaced)
