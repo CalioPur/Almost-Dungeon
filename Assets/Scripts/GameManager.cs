@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
     [Header("Data")] [SerializeField] private List<HeroesInfo> heroesInfos;
     [SerializeField] private CardInfo enterDungeonInfo;
     [SerializeField] private Hero heroRenderer;
-    [SerializeField] private Vector2Int startPosHero;
+    [SerializeField] private Vector2Int normsSpawnX;
+    [SerializeField] private Vector2Int normsSpawnY;
 
-    private Vector3 pos;
+    private Vector3 worldPos;
+    private Vector2Int startPosHero;
     
     void Start()
     {
@@ -25,8 +27,9 @@ public class GameManager : MonoBehaviour
 
         mapManager.InitMap();
         mapManager.AddRandomCard();
-        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), out pos, startPosHero);
-        pos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
+        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), normsSpawnX, normsSpawnY, out worldPos, out startPosHero);
+        mapManager.CreateFog(startPosHero);
+        worldPos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
     }
 
     private void SpawnHero()
@@ -34,7 +37,7 @@ public class GameManager : MonoBehaviour
         int randomHero = Random.Range(0, heroesInfos.Count);
         HeroInstance current = heroesInfos[randomHero].CreateInstance();
 
-        Instantiate(heroRenderer, pos, heroRenderer.transform.rotation)
+        Instantiate(heroRenderer, worldPos, heroRenderer.transform.rotation)
             .Init(current, startPosHero.x, startPosHero.y, mapManager);
     }
 

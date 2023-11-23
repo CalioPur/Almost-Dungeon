@@ -56,11 +56,14 @@ public class MapManager : MonoBehaviour
         }
 
         CardsManager.OnCardTryToPlaceEvent += CheckCardPos;
-
-        fogPainter.dungeonTilesPositions.Add(new Vector2Int(1, 2)); //position de départ du hero, A CHANGER
-        FogGenerator.CreateFog(fogPainter.dungeonTilesPositions, fogPainter, width - 2, height - 2);
     }
 
+    public void CreateFog(Vector2Int StarterPos)
+    {
+        fogPainter.dungeonTilesPositions.Add(new Vector2Int(StarterPos.x, StarterPos.y)); //position de départ du hero, A CHANGER
+        FogGenerator.CreateFog(fogPainter.dungeonTilesPositions, fogPainter, width - 2, height - 2);
+    }
+    
     public void AddRandomCard()
     {
         // for (int i = 0; i < 5; i++)
@@ -131,8 +134,11 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public void InitEnterDungeon(CardInfoInstance card, out Vector3 pos, Vector2Int startPos)
+    public void InitEnterDungeon(CardInfoInstance card, Vector2Int normsX, Vector2Int normsY, out Vector3 pos, out Vector2Int startPos)
     {
+        
+        startPos = new Vector2Int(Random.Range(normsX.x, normsX.y), Random.Range(normsY.x, normsY.y));
+        
         SetTileAtPosition(card, startPos.x, startPos.y);
 
         mapArray[startPos.x, startPos.y].isConnectedToPath = true;
