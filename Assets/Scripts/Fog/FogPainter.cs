@@ -25,9 +25,14 @@ public class FogPainter : MonoBehaviour
 
     
 
-    public void Start()
+    public void OnEnable()
     {
         DragAndDropManager.OnTilePosedEvent += ActualizeFog;
+    }
+    
+    public void OnDisable()
+    {
+        DragAndDropManager.OnTilePosedEvent -= ActualizeFog;
     }
 
     private void ActualizeFog(TileData data, CardInfoInstance instance)
@@ -129,9 +134,16 @@ public class FogPainter : MonoBehaviour
 
     private void DestoyChilds()
     {
-        foreach (Transform child in transform)
+        if (transform)
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            } 
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -15,9 +15,14 @@ public class DragAndDropManager : MonoBehaviour
     
     private Vector3 mousePos;
 
-    private void Start()
+    private void OnEnable()
     {
         MapManager.OnCardTryToPlaceEvent += PlaceCard;
+    }
+
+    private void OnDisable()
+    {
+        MapManager.OnCardTryToPlaceEvent -= PlaceCard;
     }
 
     private void PlaceCard(TileData data, CardHand card, bool canBePlaced)
@@ -43,7 +48,7 @@ public class DragAndDropManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            HandleMouseUp();
+            //HandleMouseUp();
         }
     }
     

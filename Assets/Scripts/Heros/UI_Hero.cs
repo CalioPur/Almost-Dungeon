@@ -173,6 +173,14 @@ public class UI_Hero : MonoBehaviour
         UI_Dragon.OnDragonDeathEvent += LoseGame;
     }
 
+    private void OnDisable()
+    {
+        Hero.OnPopUpEvent -= SetupValues;
+        UI_Dragon.OnDragonDeathEvent -= LoseGame;
+        Hero.OnTakeDamageEvent -= DrawHearts;
+        OnEndGameEvent -= EndGame;
+    }
+
     private void Start()
     {
         if (ItemBar.activeSelf) DrawItems();

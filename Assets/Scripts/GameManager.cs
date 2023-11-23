@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         MapManager.OnCardTryToPlaceEvent += CheckIsFirstMove;
-
+        Time.timeScale = 1;
         mapManager.InitMap();
         mapManager.AddRandomCard();
         mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), normsSpawnX, normsSpawnY, out worldPos, out startPosHero);

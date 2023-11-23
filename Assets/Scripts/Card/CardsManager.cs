@@ -58,6 +58,14 @@ public class CardsManager : MonoBehaviour
         StartCoroutine(DrawStartedCard());
     }
 
+    private void OnDisable()
+    {
+        CardHand.OnCardSelectedEvent -= CartSelected;
+        DragAndDropManager.OnTileSelectedEvent -= PlaceSolution;
+        MapManager.OnCardTryToPlaceEvent -= RemoveCard;
+        GameManager.OnGameStartEvent -= BeginToDraw;
+    }
+
     private void RemoveCard(TileData tileData, CardHand cardHand, bool canBePlaced)
     {
         if (!canBePlaced) return;
