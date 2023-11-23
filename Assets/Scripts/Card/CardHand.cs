@@ -74,7 +74,8 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
 
         InitCard(other.Card, false);
-        if (other.isSelected)
+        Occupied = other.Occupied;
+        if (other.Occupied && other.isSelected)
         {
             other.removeSelection();
             addSelection();
@@ -85,11 +86,11 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         img.transform.rotation = Quaternion.Euler(0, 0, 0);
         Card = _card;
-        img.sprite = Card.So.imgOnHand;
+        img.sprite = (_card != null) ? Card.So.imgOnHand : null;
         img.color = NormalColor;
         isSelected = false;
-        DescriptionText.text = Card.So.description;
-        if (!resetRotation)
+        DescriptionText.text = (_card != null) ? Card.So.description : "";
+        if (!resetRotation && (_card != null))
         {
             int nb = Card.Rotation / 90;
             //Card.Rotation = 0;

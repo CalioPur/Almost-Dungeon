@@ -5,6 +5,8 @@ public class DragAndDropManager : MonoBehaviour
 {
     public static event Action<TileData> OnTileSelectedEvent;
     public static event Action<TileData, CardInfoInstance> OnTilePosedEvent;
+    public static event Action OnFinishToPose;
+
 
     [SerializeField] private GameObject gridVisualizer;
     
@@ -26,7 +28,8 @@ public class DragAndDropManager : MonoBehaviour
 
         data.SetInstance(card.Card);
         OnTilePosedEvent?.Invoke(data, card.Card);
-        card.EmptyCard();
+        //card.EmptyCard();
+        OnFinishToPose?.Invoke();
     }
 
     void Update()
@@ -112,4 +115,5 @@ public class DragAndDropManager : MonoBehaviour
         // Reset the selected tile
         selectedTile = null;
     }
+
 }

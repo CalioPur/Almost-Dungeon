@@ -33,10 +33,33 @@ public class CardsManager : MonoBehaviour
 
     private Coroutine currentlyDrawing;
     private List<CardInfoInstance> defausseCard = new();
+    private int indexCardToDraw = 0;
 
     private void Awake()
     {
         GameManager.OnGameStartEvent += BeginToDraw;
+    }
+
+    private void OnEnable()
+    {
+        DragAndDropManager.OnTilePosedEvent += MoveCard;
+        DragAndDropManager.OnFinishToPose += ReorganizeHand;
+    }
+
+    private void ReorganizeHand()
+    {
+        for (int i = indexCardToDraw; i < slotsHand.Count - 1; i++)
+        {
+            slotsHand[i].MoveCardTo(slotsHand[i + 1]);
+        }
+    }
+
+    private void MoveCard(TileData _, CardInfoInstance instance)
+    {
+        indexCardToDraw = slotsHand.FindIndex(t => t.Card == instance);
+        if (indexCardToDraw == -1) return;
+        if (indexCardToDraw == slotsHand.Count - 1)
+            slotsHand[indexCardToDraw].EmptyCard();
     }
 
     private void BeginToDraw()
@@ -119,19 +142,24 @@ public class CardsManager : MonoBehaviour
         currentlyDrawing = StartCoroutine(CheckDrawCard());
     }
 
+    public void MoveCardToDefausse(int index, bool nextCanBeNull = false)
+    {
+        for (int i = index; i < slotsHand.Count - 1; i++)
+        {
+            if ((slotsHand[i + 1].Card != null && slotsHand[i + 1].Card.So != null) || nextCanBeNull)
+                slotsHand[i].MoveCardTo(slotsHand[i + 1]);
+        }
+
+        slotsHand[^1].EmptyCard();
+    }
+
     private void RemoveCardAtIndex(int index)
     {
         slotsHand[index].removeSelection();
         CardInfoInstance defausseSO = new CardInfoInstance(slotsHand[index].Card.So);
         defausseCard.Add(defausseSO);
 
-        for (int i = index; i < slotsHand.Count - 1; i++)
-        {
-            if (slotsHand[i + 1].Card != null && slotsHand[i + 1].Card.So != null)
-                slotsHand[i].MoveCardTo(slotsHand[i + 1]);
-        }
-
-        slotsHand[^1].EmptyCard();
+        MoveCardToDefausse(index);
         cptCardsObtained--;
     }
 
