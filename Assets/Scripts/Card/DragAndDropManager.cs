@@ -43,7 +43,7 @@ public class DragAndDropManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            HandleMouseUp();
+            //HandleMouseUp();
         }
     }
     
