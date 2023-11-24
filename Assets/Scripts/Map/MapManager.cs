@@ -268,6 +268,11 @@ public class MapManager : MonoBehaviour
         if (minionData is MinionData minion)
             data.freePosition(minion.indexPos);
     }
+    
+    public bool AvailableForSpawn(int x, int y)
+    {
+        return mapArray[x, y].AvailableForSpawn();
+    }
 
     public bool AddMinionOnTile(Vector2Int vector2Int, TrapData minionData, out int index)
     {

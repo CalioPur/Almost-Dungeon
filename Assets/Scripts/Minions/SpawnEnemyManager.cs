@@ -11,6 +11,7 @@ public enum TrapType
     BasicCaC,
     Archer,
     Skeleton,
+    Slime,
     None
 }
 
@@ -18,7 +19,7 @@ public enum TrapType
 public struct ListOfTraps
 {
     public TrapType type;
-    public GameObject prefab;
+    public TrapData prefab;
 }
 
 public class SpawnEnemyManager : MonoBehaviour
@@ -41,6 +42,7 @@ public class SpawnEnemyManager : MonoBehaviour
         int nbEnemyBasic = 0;
         int nbEnemyArcher = 0;
         int nbEnemySkeleton = 0;
+        int nbEnemyslime = 0;
         bool web = false;
         bool pyke = false;
         
@@ -63,6 +65,9 @@ public class SpawnEnemyManager : MonoBehaviour
                 case TrapType.Pyke:
                     pyke = true;
                     break;
+                case TrapType.Slime:
+                    nbEnemyslime++;
+                    break;
             }
         }
        
@@ -71,7 +76,7 @@ public class SpawnEnemyManager : MonoBehaviour
             var angle = i * Mathf.PI * 2 / nbEnemyBasic;
             if (nbEnemyBasic != 1) angle -= Mathf.PI / 4;
 
-            SpawnEnemy<MinionData>(TrapsPrefab.Find(x => x.type == TrapType.BasicCaC).prefab, tile, true,
+            SpawnEnemy(TrapsPrefab.Find(x => x.type == TrapType.BasicCaC).prefab as MinionData, tile, true,
                 new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f);
         }
         
@@ -80,7 +85,7 @@ public class SpawnEnemyManager : MonoBehaviour
             var angle = i * Mathf.PI * 2 / nbEnemyArcher;
             if (nbEnemyArcher != 1) angle -= Mathf.PI / 4;
 
-            SpawnEnemy<MinionData>(TrapsPrefab.Find(x => x.type == TrapType.Archer).prefab, tile, true,
+            SpawnEnemy(TrapsPrefab.Find(x => x.type == TrapType.Archer).prefab as MinionData, tile, true,
                 new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f);
         }
         
@@ -89,32 +94,48 @@ public class SpawnEnemyManager : MonoBehaviour
             var angle = i * Mathf.PI * 2 / nbEnemySkeleton;
             if (nbEnemySkeleton != 1) angle -= Mathf.PI / 4;
 
-            SpawnEnemy<MinionData>(TrapsPrefab.Find(x => x.type == TrapType.Skeleton).prefab, tile, false,
+            SpawnEnemy(TrapsPrefab.Find(x => x.type == TrapType.Skeleton).prefab as MinionData, tile, false,
+                new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f);
+        }
+        
+        for (int i = 0; i < nbEnemyslime; i++)
+        {
+            var angle = i * Mathf.PI * 2 / nbEnemyslime;
+            if (nbEnemyslime != 1) angle -= Mathf.PI / 4;
+
+            SpawnEnemy(TrapsPrefab.Find(x => x.type == TrapType.Slime).prefab as MinionData, tile, false,
                 new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 0.3f);
         }
 
         if (web)
         {
-            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.type == TrapType.Web).prefab, tile, true, Vector3.zero);
+            SpawnEnemy(TrapsPrefab.Find(x => x.type == TrapType.Web).prefab, tile, true, Vector3.zero);
         }
 
         if (pyke)
         {
-            SpawnEnemy<TrapData>(TrapsPrefab.Find(x => x.type == TrapType.Pyke).prefab, tile, false, Vector3.zero);
+            SpawnEnemy(TrapsPrefab.Find(x => x.type == TrapType.Pyke).prefab, tile, false, Vector3.zero);
         }
     }
 
-    private void SpawnEnemy<T>(GameObject prefab, TileData tile, bool addEnemyOnTile, Vector3 positionOffset)
+    public void SpawnEnemy<T>(T prefab, TileData tile, bool addEnemyOnTile, Vector3 positionOffset)
         where T : TrapData
     {
         Vector3 position = tile.transform.position + positionOffset;
-        GameObject minion = Instantiate(prefab, position, prefab.transform.rotation);
-        T script = minion.GetComponent<T>();
-        mapManager.GetTilePosFromWorldPos(position, out script.indexX, out script.indexY);
-        script.mapManager = mapManager;
+        mapManager.GetTilePosFromWorldPos(position, out int indexesX, out int indexesY);
+        SpawnEnemy(prefab, new Vector2Int(indexesX, indexesY), position, mapManager);
+    }
+    
+    public static void SpawnEnemy<T>(T prefab, Vector2Int indexes, Vector3 position, MapManager _mapManager)
+        where T : TrapData
+    {
+        if(!_mapManager.AvailableForSpawn(indexes.x, indexes.y)) return;
+        T script = Instantiate(prefab, position, prefab.transform.rotation);
+        script.indexX = indexes.x;
+        script.indexY = indexes.y;
+        script.mapManager = _mapManager;
         int index = -1;
-        if (addEnemyOnTile)
-            mapManager.AddMinionOnTile(new Vector2Int(script.indexX, script.indexY), script, out index);
+        _mapManager.AddMinionOnTile(new Vector2Int(script.indexX, script.indexY), script, out index);
 
         if (script is MinionData minionData)
         {

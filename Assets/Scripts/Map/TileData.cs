@@ -66,6 +66,15 @@ public class TileData : MonoBehaviour
         transform.rotation = Quaternion.Euler(90, 0, _instance.Rotation);
     }
     
+    public bool AvailableForSpawn()
+    {
+        for (int i = 0; i < _instance.So.offsetMinionPos.Length; i++)
+        {
+            if (!_instance.offsetSpawnUsed[i]) return true;
+        }
+        return false;
+    }
+    
     public bool GetFirstAvailabalePosition(out Vector3 pos, out int index)
     {
         for (int i = 0; i < _instance.So.offsetMinionPos.Length; i++)
