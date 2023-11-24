@@ -129,9 +129,29 @@ public class PathFinding
             }
             case Personnalities.TheSissy when tileWithEnemies.Count > 0:
             {
-                BreakFreeFromNoExit(startPos, map);
-                MapManager.Instance.CheckAllTilesTypeAndRotation();
-                return DirectionToMove.None;
+                List<Vector2Int> nextPositionsPossible = new List<Vector2Int>();
+                //go to the tile with the the less enemies
+                int minEnemies = int.MaxValue;
+                foreach (var tile in tileWithEnemies)
+                {
+                    if (map[tile.x, tile.y].enemies.Count < minEnemies)
+                    {
+                        minEnemies = map[tile.x, tile.y].enemies.Count;
+                        nextPositionsPossible.Clear();
+                        nextPositionsPossible.Add(tile);
+                    }
+                    else if (map[tile.x, tile.y].enemies.Count == minEnemies)
+                    {
+                        nextPositionsPossible.Add(tile);
+                    }
+                }
+                
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, nextPositionsPossible);
+                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
+                {
+                    return GoThroughDoorWithNoTile(startPos, map);
+                }
+                return GetDirectionToMove(startPos, nextPos);
             }
             case Personnalities.TheSissy when exits.Count > 0:
             {
