@@ -12,7 +12,7 @@ public abstract class TrapData : MonoBehaviour
     public bool isDead;
     public int indexX;
     public int indexY;
-    public MapManager mapManager;
+    [HideInInspector] public MapManager mapManager;
     [SerializeField] protected SpriteRenderer sprite;
     
     [SerializeField] protected EnemySo SO;
