@@ -5,6 +5,8 @@ public enum Personnalities
 {
     HurryForTheExit,
     TheExplorer,
+    TheKiller,
+    TheSissy
 }
 
 public class PathFinding
@@ -16,6 +18,7 @@ public class PathFinding
         Dictionary<Vector2Int, Vector2Int> parentMap = new Dictionary<Vector2Int, Vector2Int>();
         List<Vector2Int> exits = new List<Vector2Int>();
         List<Vector2Int> unvisitedTiles = new List<Vector2Int>();
+        List<Vector2Int> tileWithEnemies = new List<Vector2Int>();
 
         queue.Enqueue(startPos);
         visited.Add(startPos);
@@ -38,6 +41,11 @@ public class PathFinding
             if (!map[currentPos.x, currentPos.y].isVisited)
             {
                 unvisitedTiles.Add(currentPos);
+            }
+            
+            if (map[currentPos.x, currentPos.y].enemies.Count > 0)
+            {
+                tileWithEnemies.Add(currentPos);
             }
 
             Vector2Int[] neighbors = GetNeighbors(currentPos, map);
@@ -88,6 +96,77 @@ public class PathFinding
                     return GoThroughDoorWithNoTile(startPos, map);
                 }
                 return GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.TheExplorer when exits.Count == 0:
+            {
+                BreakFreeFromNoExit(startPos, map);
+                MapManager.Instance.CheckAllTilesTypeAndRotation();
+                return DirectionToMove.None;
+            }
+            case Personnalities.TheKiller when tileWithEnemies.Count > 0:
+            {
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, tileWithEnemies);
+                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
+                {
+                    return GoThroughDoorWithNoTile(startPos, map);
+                }
+                return GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.TheKiller when exits.Count > 0:
+            {
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
+                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
+                {
+                    return GoThroughDoorWithNoTile(startPos, map);
+                }
+                return GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.TheKiller when exits.Count == 0:
+            {
+                BreakFreeFromNoExit(startPos, map);
+                MapManager.Instance.CheckAllTilesTypeAndRotation();
+                return DirectionToMove.None;
+            }
+            case Personnalities.TheSissy when tileWithEnemies.Count > 0:
+            {
+                List<Vector2Int> nextPositionsPossible = new List<Vector2Int>();
+                //go to the tile with the the less enemies
+                int minEnemies = int.MaxValue;
+                foreach (var tile in tileWithEnemies)
+                {
+                    if (map[tile.x, tile.y].enemies.Count < minEnemies)
+                    {
+                        minEnemies = map[tile.x, tile.y].enemies.Count;
+                        nextPositionsPossible.Clear();
+                        nextPositionsPossible.Add(tile);
+                    }
+                    else if (map[tile.x, tile.y].enemies.Count == minEnemies)
+                    {
+                        nextPositionsPossible.Add(tile);
+                    }
+                }
+                
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, nextPositionsPossible);
+                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
+                {
+                    return GoThroughDoorWithNoTile(startPos, map);
+                }
+                return GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.TheSissy when exits.Count > 0:
+            {
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
+                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
+                {
+                    return GoThroughDoorWithNoTile(startPos, map);
+                }
+                return GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.TheSissy when exits.Count == 0:
+            {
+                BreakFreeFromNoExit(startPos, map);
+                MapManager.Instance.CheckAllTilesTypeAndRotation();
+                return DirectionToMove.None;
             }
             default:
                 Debug.Log("No valid path found because no exit or unvisited tiles found");
