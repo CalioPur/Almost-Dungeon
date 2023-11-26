@@ -27,6 +27,7 @@ public class Hero : MonoBehaviour
     public void Move(Vector3 pos)
     {
         animQueue.AddAnim(new AnimToQueue(heroTr, pos + new Vector3(1, 0.1f, 1), 0.5f));
+        GivePosBack();
     }
     
     public Vector2Int GetIndexHeroPos()

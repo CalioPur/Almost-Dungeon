@@ -123,10 +123,10 @@ public class SpawnEnemyManager : MonoBehaviour
     {
         Vector3 position = tile.transform.position + positionOffset;
         mapManager.GetTilePosFromWorldPos(position, out int indexesX, out int indexesY);
-        SpawnEnemy(prefab, new Vector2Int(indexesX, indexesY), position, mapManager);
+        SpawnEnemy(prefab, new Vector2Int(indexesX, indexesY), position, mapManager, addEnemyOnTile);
     }
     
-    public static void SpawnEnemy<T>(T prefab, Vector2Int indexes, Vector3 position, MapManager _mapManager)
+    public static void SpawnEnemy<T>(T prefab, Vector2Int indexes, Vector3 position, MapManager _mapManager, bool addEnemyOnTile)
         where T : TrapData
     {
         if(!_mapManager.AvailableForSpawn(indexes.x, indexes.y)) return;
@@ -135,7 +135,7 @@ public class SpawnEnemyManager : MonoBehaviour
         script.indexY = indexes.y;
         script.mapManager = _mapManager;
         int index = -1;
-        _mapManager.AddMinionOnTile(new Vector2Int(script.indexX, script.indexY), script, out index);
+        if (addEnemyOnTile) _mapManager.AddMinionOnTile(new Vector2Int(script.indexX, script.indexY), script, out index);
 
         if (script is MinionData minionData)
         {
