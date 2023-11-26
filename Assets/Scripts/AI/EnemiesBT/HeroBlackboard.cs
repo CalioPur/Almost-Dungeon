@@ -9,5 +9,5 @@ public class HeroBlackboard : MonoBehaviour
      public Personnalities personality;
     [HideInInspector] public DirectionToMove directionToMove = DirectionToMove.None;
     [HideInInspector] public List<TrapData> Targets = new ();
-    [HideInInspector] public TrapData ChosenTarget;
+    [HideInInspector] public List<TrapData> ChosenTarget = new ();
 }

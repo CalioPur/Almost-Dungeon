@@ -14,7 +14,7 @@ public class ArcherHeroBT : Tree
             new Sequence(
                 new ClearMinionTarget(BB),
                 new FirstMinionInSight(BB),
-                new ChooseTargetToHit(BB),
+                new ChooseTargetToHit(BB, false),
                 new AttackMinion(BB),
                 new CheckTargetIsAlive(BB)
             ),

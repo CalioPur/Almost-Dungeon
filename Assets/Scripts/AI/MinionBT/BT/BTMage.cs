@@ -2,7 +2,7 @@ using BehaviourTree;
 using UnityEngine;
 using Tree = BehaviourTree.Tree;
 
-public class KnightBT : Tree
+public class BTMage : Tree
 {
     [SerializeField] private HeroBlackboard BB;
     
@@ -12,8 +12,9 @@ public class KnightBT : Tree
         
         origin = new Selector(
             new Sequence(
-                new FindMinionInCaC(BB),
-                new ChooseTargetToHit(BB, false),
+                new ClearMinionTarget(BB),
+                new FirstMinionInSight(BB),
+                new ChooseTargetToHit(BB, true),
                 new AttackMinion(BB),
                 new CheckTargetIsAlive(BB)
             ),

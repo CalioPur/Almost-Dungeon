@@ -2,7 +2,7 @@ using BehaviourTree;
 using UnityEngine;
 using Tree = BehaviourTree.Tree;
 
-public class KnightBT : Tree
+public class BTBarbare : Tree
 {
     [SerializeField] private HeroBlackboard BB;
     
@@ -26,3 +26,4 @@ public class KnightBT : Tree
         return origin;
     }
 }
+

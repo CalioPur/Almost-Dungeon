@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using BehaviourTree;
 using UnityEngine;
 
@@ -15,7 +16,12 @@ public class CheckTargetIsAlive : Node
     public override NodeState Evaluate(Node root)
     {
         if (blackboard.ChosenTarget == null) return NodeState.Failure;
-        if (!blackboard.ChosenTarget.isDead) return NodeState.Success;
+        foreach (var VARIABLE in blackboard.ChosenTarget.Where(VARIABLE => VARIABLE.isDead))
+        {
+            blackboard.ChosenTarget.Remove(VARIABLE);
+        }
+        
+        if (blackboard.ChosenTarget.Count == 0) return NodeState.Success;
         blackboard.ChosenTarget = null;
         return NodeState.Success;
 

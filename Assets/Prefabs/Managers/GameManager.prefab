@@ -49,8 +49,8 @@ MonoBehaviour:
   heroesInfos:
   - {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   - {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
+  - {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
+  - {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   enterDungeonInfo: {fileID: 11400000, guid: f27eb5bc441e6be49abd14eac8f114b8, type: 2}
-  heroRenderer: {fileID: 2382212582554433649, guid: e2de5e62e34e56d44a8e820e57cdfbdf,
-    type: 3}
   normsSpawnX: {x: 1, y: 3}
   normsSpawnY: {x: 1, y: 5}
