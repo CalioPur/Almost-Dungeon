@@ -13,7 +13,7 @@ public class KnightBT : Tree
         origin = new Selector(
             new Sequence(
                 new FindMinionInCaC(BB),
-                new ChooseTargetToHit(BB, false),
+                new ChooseTargetToHit(BB, false, false),
                 new AttackMinion(BB),
                 new CheckTargetIsAlive(BB)
             ),

@@ -14,7 +14,7 @@ public class BTMage : Tree
             new Sequence(
                 new ClearMinionTarget(BB),
                 new FirstMinionInSight(BB),
-                new ChooseTargetToHit(BB, true),
+                new ChooseTargetToHit(BB, true, true),
                 new AttackMinion(BB),
                 new CheckTargetIsAlive(BB)
             ),
