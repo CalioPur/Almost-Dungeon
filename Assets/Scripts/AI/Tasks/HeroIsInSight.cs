@@ -1,10 +1,10 @@
-using BehaviourTree;
+    using BehaviourTree;
 
-public class IsInSight : Node
+public class HeroIsInSight : Node
 {
     private MinionBlackboard blackboard;
 
-    public IsInSight(MinionBlackboard blackboard)
+    public HeroIsInSight(MinionBlackboard blackboard)
     {
         this.blackboard = blackboard;
     }

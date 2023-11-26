@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 3081425779426153195}
   - component: {fileID: 4954612021088544096}
   - component: {fileID: 2382212582554433649}
-  - component: {fileID: 922449776285682164}
+  - component: {fileID: 8510288047578433188}
   - component: {fileID: -4683431529391840305}
   - component: {fileID: 7733622732822971966}
   m_Layer: 0
-  m_Name: Hero
+  m_Name: Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,15 +77,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: baab805eb58d5d247be73519363de10c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 183aabf4ecefaf14c8aadd30cce0cabe, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.25, y: 0.25}
+  m_Size: {x: 0.125, y: 0.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2382212582554433649
@@ -102,9 +102,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroTr: {fileID: 3081425779426153195}
   Sprite: {fileID: 4954612021088544096}
-  bt: {fileID: 922449776285682164}
+  bt: {fileID: 8510288047578433188}
   animQueue: {fileID: 7733622732822971966}
---- !u!114 &922449776285682164
+  <HeroBlackboard>k__BackingField: {fileID: -4683431529391840305}
+--- !u!114 &8510288047578433188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939014474319430147}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b33189d7b4cbae4498aad5832406b39b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f82bd47982d09f45bd162e1fb76501a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BB: {fileID: -4683431529391840305}
@@ -130,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hero: {fileID: 2382212582554433649}
+  personality: 0
   directionToMove: 4
   Targets: []
   ChosenTarget: {fileID: 0}

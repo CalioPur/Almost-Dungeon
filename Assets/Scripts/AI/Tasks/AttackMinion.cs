@@ -4,11 +4,11 @@ using BehaviourTree;
 using DG.Tweening;
 using UnityEngine;
 
-public class AttackMinionOnCaC : Node
+public class AttackMinion : Node
 {
     private HeroBlackboard blackboard;
     
-    public AttackMinionOnCaC(HeroBlackboard _blackboard)
+    public AttackMinion(HeroBlackboard _blackboard)
     {
         blackboard = _blackboard;
     }
@@ -22,7 +22,8 @@ public class AttackMinionOnCaC : Node
             return NodeState.Failure;
         }
         blackboard.ChosenTarget.TakeDamage(blackboard.hero.info.So.AttackPoint);
-        blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, blackboard.ChosenTarget.transform.position, 0.3f, Ease.InBack, 2));
+        Vector3 dir = blackboard.ChosenTarget.transform.position - blackboard.hero.transform.position;
+        blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, dir.normalized, 0.3f, Ease.InBack, 2));
 
         return NodeState.Success;
     }

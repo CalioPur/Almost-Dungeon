@@ -1,7 +1,6 @@
-using System.Collections;
+using Tree = BehaviourTree.Tree;
 using System;
-using System.Collections.Generic;
-using DG.Tweening;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
@@ -17,8 +16,9 @@ public class Hero : MonoBehaviour
     
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
-    [SerializeField] private SimpleHeroBT bt;
+    [SerializeField] private Tree bt;
     [SerializeField] private AnimationQueue animQueue;
+    [field:SerializeField] public HeroBlackboard HeroBlackboard { get; private set; }
     
     private bool isExec = false;
     private int entityId;

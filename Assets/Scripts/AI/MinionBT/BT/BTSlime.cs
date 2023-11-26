@@ -9,7 +9,7 @@ public class BTSlime : MinionBTBase
 
         origin = new Sequence(
             new GetHeroPos(blackboard),
-            new IsInSight(blackboard),
+            new HeroIsInSight(blackboard),
             new MoveToHero(blackboard),
             new CheckifFrontOfHero(blackboard),
             new AttackHero(blackboard)

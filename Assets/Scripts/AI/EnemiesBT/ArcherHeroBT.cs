@@ -1,8 +1,8 @@
-
 using BehaviourTree;
 using UnityEngine;
+using Tree = BehaviourTree.Tree;
 
-public class SimpleHeroBT : BehaviourTree.Tree
+public class ArcherHeroBT : Tree
 {
     [SerializeField] private HeroBlackboard BB;
     
@@ -12,9 +12,10 @@ public class SimpleHeroBT : BehaviourTree.Tree
         
         origin = new Selector(
             new Sequence(
-                new FindMinionInCaC(BB),
-                new ChooseTargetToHitOnCaC(BB),
-                new AttackMinionOnCaC(BB),
+                new ClearMinionTarget(BB),
+                new FirstMinionInSight(BB),
+                new ChooseTargetToHit(BB),
+                new AttackMinion(BB),
                 new CheckTargetIsAlive(BB)
             ),
             new Sequence(
