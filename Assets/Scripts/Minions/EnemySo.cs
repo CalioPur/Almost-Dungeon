@@ -22,12 +22,10 @@ public class EnemyInstance
     public EnemySo So { get; }
 
     public int CurrentHealthPoint;
-    public int damagePoint;
     public EnemyInstance(EnemySo info)
     {
         So = info;
         CurrentHealthPoint = info.health;
-        damagePoint = info.damage;
     }
 }
 

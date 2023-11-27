@@ -17,17 +17,17 @@ public class Pyke : TrapData
     protected override void OnTick()
     {
         //je check si le hero ou les minions sont sur ma case
-        mapManager.GetNbMonstersOnPos(new Vector2Int(indexX, indexY), out List<TrapData> minions);
+        mapManager.GetMonstersOnPos(new Vector2Int(indexX, indexY), out List<TrapData> minions);
         if (minions.Count > 0)
         {
             foreach (var minion in minions)
             {
-                minion.TakeDamage(pykeInstance.damagePoint);
+                minion.TakeDamage(pykeInstance.So.damage);
             }
         }
         if (heroPos.x == indexX && heroPos.y == indexY)
         {
-            Attack(pykeInstance.damagePoint);
+            Attack(pykeInstance.So.damage);
         }
     }
 
