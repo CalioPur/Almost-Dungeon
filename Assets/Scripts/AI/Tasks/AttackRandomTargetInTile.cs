@@ -20,7 +20,8 @@ public class AttackRandomTargetInTile : Node
         int random = 0;
         blackboard.minionData.mapManager.GetMonstersOnPos(blackboard.heroPosition, out List<TrapData> minions);
         random = (minions.Count > 0) ? Random.Range(0, minions.Count + 1) : 0;
-
+        Vector3 position = blackboard.minionData.transform.position;
+        
         if (random == 0)
         {
             blackboard.minionData.mapManager.GetWorldPosFromTilePos(
@@ -28,12 +29,18 @@ public class AttackRandomTargetInTile : Node
             Vector3 dir = heroPosVec3 - blackboard.minionData.transform.position;
 
             blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform,
-                blackboard.minionData.transform.position + dir.normalized * 0.3f, 0.3f,
+                dir.normalized * 0.3f, true, 0.3f,
                 Ease.InBack, 2));
             blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage);
         }
         else
+        {
+            Vector3 dir = minions[random - 1].transform.position - position;
+            blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform,
+                dir.normalized * 0.3f, true, 0.3f,
+                Ease.InBack, 2));
             minions[random - 1].TakeDamage(blackboard.minionData.minionInstance.So.damage);
+        }
         return NodeState.Success;
     }
 }

@@ -7,18 +7,20 @@ using UnityEngine;
 public class AnimToQueue
 {
     public Transform obj;
-    public Vector3 target;
+    public Vector3 dir;
     public float time;
     public Ease ease;
     public int loop;
+    public bool isDir;
 
-    public AnimToQueue(Transform obj, Vector3 target, float time, Ease ease = Ease.Linear, int loop = 1)
+    public AnimToQueue(Transform obj, Vector3 dir, bool isDir, float time, Ease ease = Ease.Linear, int loop = 1)
     {
         this.obj = obj;
-        this.target = target;
+        this.dir = dir;
         this.time = time;
         this.ease = ease;
         this.loop = loop;
+        this.isDir = isDir;
     }
 
 }

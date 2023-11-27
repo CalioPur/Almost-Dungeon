@@ -23,7 +23,7 @@ public abstract class MinionData : TrapData
 
     public void Move(Vector3 pos, float delay)
     {
-        animQueue.AddAnim(new AnimToQueue(tr, pos + new Vector3(1, 0.1f, 1), delay));
+        animQueue.AddAnim(new AnimToQueue(tr, pos + new Vector3(1, 0.1f, 1), false, delay));
     }
 
     public override void TakeDamage(int damage)
