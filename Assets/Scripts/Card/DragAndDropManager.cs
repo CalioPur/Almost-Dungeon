@@ -43,7 +43,8 @@ public class DragAndDropManager : MonoBehaviour
     {
         if (!canBePlaced)
         {
-            selectedCard.img.gameObject.transform.position = selectedCard.transform.position;
+            card.img.gameObject.transform.position = card.transform.position;
+            card.removeSelection();
             return;
         }
 
@@ -121,18 +122,7 @@ public class DragAndDropManager : MonoBehaviour
             return;
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
-        // tileToPreview = tile;
         OnTileSelectedEvent?.Invoke(tile);
-        // if (tile.PiecePlaced)
-        // {
-        //     // Store the selected tile and calculate the offset
-        //     selectedTile = tile;
-        //     offset = hit.point - tile.transform.position;
-        // }
-        // else
-        // {
-        //     // Invoke the tile selected event if no piece is placed on the tile
-        // }
     }
 
     public void SetSelectedCard(CardHand cardHand)

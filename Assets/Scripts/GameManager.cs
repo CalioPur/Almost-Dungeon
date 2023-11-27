@@ -58,7 +58,12 @@ public class GameManager : MonoBehaviour
 
     private void CheckIsFirstMove(TileData _, CardHand __, bool canBePlaced)
     {
-        if (!canBePlaced) return;
+        if (!canBePlaced) 
+        {
+            __.img.transform.position = __.transform.position;
+            __.removeSelection();
+            return;
+        }
         MapManager.OnCardTryToPlaceEvent -= CheckIsFirstMove;
         SpawnHero();
         OnGameStartEvent?.Invoke();

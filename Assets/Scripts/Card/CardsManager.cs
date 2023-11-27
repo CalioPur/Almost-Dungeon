@@ -105,6 +105,7 @@ public class CardsManager : MonoBehaviour
         if (!canBePlaced)
         {
             cardHand.img.transform.position = cardHand.transform.position;
+            cardHand.removeSelection();
             return;
         }
         cptCardsObtained--;
@@ -117,7 +118,8 @@ public class CardsManager : MonoBehaviour
 
         if (obj.PiecePlaced)
         {
-            obj.img.transform.position = obj.transform.position;
+            selectedCard.img.transform.position = selectedCard.transform.position;
+            selectedCard.removeSelection();
             return;
         }
         OnCardTryToPlaceEvent?.Invoke(obj, selectedCard);
