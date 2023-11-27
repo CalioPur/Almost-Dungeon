@@ -104,7 +104,11 @@ public class CardsManager : MonoBehaviour
     {
         if (selectedCard == null) return;
 
-        if (obj.PiecePlaced) return;
+        if (obj.PiecePlaced)
+        {
+            obj.img.transform.position = obj.transform.position;
+            return;
+        }
         OnCardTryToPlaceEvent?.Invoke(obj, selectedCard);
     }
 
@@ -262,6 +266,7 @@ public class CardsManager : MonoBehaviour
                 }
 
                 t.ChangeSelection(true);
+                DragAndDropManager.Instance.SetSelectedCard(t);
                 selectedCard = t;
             }
         }

@@ -45,9 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poison:
-  - rid: -2
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+  - {fileID: 11400000, guid: 0e49aa0cb3b0227419ab9c00ec08a0ee, type: 2}

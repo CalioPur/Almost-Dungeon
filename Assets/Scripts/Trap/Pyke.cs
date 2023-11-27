@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -43,8 +44,14 @@ public class Pyke : TrapData
         heroPos = pos;
     }
 
+    private void OnDisable()
+    {
+        TickManager.UnsubscribeFromMovementEvent(MovementType.Trap, entityId);
+    }
+
     protected override void OnDead()
     {
         Debug.LogError("Pyke is dead ! is not normal");
+        
     }
 }

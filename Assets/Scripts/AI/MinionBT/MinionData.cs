@@ -58,4 +58,10 @@ public abstract class MinionData : TrapData
     {
         animQueue.AddAnim(animToQueue);
     }
+
+    protected override void OnDead()
+    {
+        base.OnDead();
+        TickManager.UnsubscribeFromMovementEvent(MovementType.Monster, entityId);
+    }
 }

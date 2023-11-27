@@ -64,4 +64,12 @@ public class GameManager : MonoBehaviour
         OnGameStartEvent?.Invoke();
         isGameStarted = true;
     }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
