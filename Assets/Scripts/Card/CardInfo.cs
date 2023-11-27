@@ -108,4 +108,18 @@ public class CardInfoInstance
     {
         OnRotationChangedEvent = null;
     }
+
+    public void CopyValues(CardInfoInstance instance)
+    {
+        Rotation = instance.Rotation;
+        DoorOnTop = instance.DoorOnTop;
+        DoorOnBottom = instance.DoorOnBottom;
+        DoorOnLeft = instance.DoorOnLeft;
+        DoorOnRight = instance.DoorOnRight;
+        offsetSpawnUsed = new bool[So.offsetMinionPos.Length];
+        for (int i = 0; i < So.offsetMinionPos.Length; i++)
+        {
+            offsetSpawnUsed[i] = instance.offsetSpawnUsed[i];
+        }
+    }
 }

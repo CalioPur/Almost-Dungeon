@@ -48,7 +48,8 @@ public class TileData : MonoBehaviour
 
     public void SetInstance(CardInfoInstance instance)
     {
-        _instance = instance;
+        _instance = new CardInfoInstance(instance.So);
+        _instance.CopyValues(instance);
         _instance.OnRotationChangedEvent += UpdateAppearance;
         UpdateAppearance();
     }
