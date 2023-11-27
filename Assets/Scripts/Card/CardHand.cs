@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     public static event Action<CardHand> OnCardSelectedEvent;
 
@@ -14,7 +14,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public CardInfoInstance Card;
 
 
-    [SerializeField] private Image img;
+    [SerializeField] public Image img;
 
     [Header("Color settings")] [SerializeField]
     private Color HoverColor = Color.gray;
@@ -44,7 +44,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         BackgroundDescription.gameObject.SetActive(false);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
@@ -74,6 +74,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
 
         InitCard(other.Card, false);
+        other.img.transform.position = transform.position;
         Occupied = other.Occupied;
         if (other.Occupied && other.isSelected)
         {
@@ -84,6 +85,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void InitCard(CardInfoInstance _card, bool resetRotation = true)
     {
+        img.transform.position = transform.position;
         img.transform.rotation = Quaternion.Euler(0, 0, 0);
         Card = _card;
         img.sprite = (_card != null) ? Card.So.imgOnHand : null;

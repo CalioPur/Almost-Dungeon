@@ -16,6 +16,18 @@ public class DragAndDropManager : MonoBehaviour
     private Vector3 offset;
     
     private Vector3 mousePos;
+    
+    public static DragAndDropManager Instance { get; private set; }
+    CardHand selectedCard;
+    
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        Instance = this;
+    }
 
     private void OnEnable()
     {
@@ -29,7 +41,11 @@ public class DragAndDropManager : MonoBehaviour
 
     private void PlaceCard(TileData data, CardHand card, bool canBePlaced)
     {
-        if (!canBePlaced) return;
+        if (!canBePlaced)
+        {
+            selectedCard.img.gameObject.transform.position = selectedCard.transform.position;
+            return;
+        }
 
         data.SetInstance(card.Card);
         OnTilePosedEvent?.Invoke(data, card.Card);
@@ -40,7 +56,6 @@ public class DragAndDropManager : MonoBehaviour
     void Update()
     {
         gridVisualizer.GetComponent<Renderer>().material.SetVector("_Position", GetMousePositionOnGrid());
-        tileToPreview = selectedTile;
         if (Input.GetMouseButtonDown(0))
         {
             HandleMouseDown();
@@ -51,7 +66,7 @@ public class DragAndDropManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            //HandleMouseUp();
+            HandleMouseUp();
         }
     }
     
@@ -95,30 +110,37 @@ public class DragAndDropManager : MonoBehaviour
 
     private void HandleMouseDrag()
     {
-        if (selectedTile == null) return;
-        // Update the position of the selected tile during dragging
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.CompareTag("Floor"))
-        {
-            selectedTile.transform.position = hit.point - offset;
-            Debug.DrawLine(ray.origin, hit.point, Color.red);
-        }
-        Debug.DrawLine(ray.origin, hit.point, Color.blue);
+        if (selectedCard == null) return;
+        selectedCard.img.gameObject.transform.position = Input.mousePosition;
     }
 
     private void HandleMouseUp()
     {
-        if (selectedTile == null) return;
-        // Snap the selected tile to the grid position
-        selectedTile.SnapToGrid();
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-        // Invoke the tile posed event with the updated tile data
-        OnTilePosedEvent?.Invoke(selectedTile, selectedTile.CardInstance);
-
-        // Reset the selected tile
-        selectedTile = null;
+        if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
+        {
+            selectedCard.img.gameObject.transform.position = selectedCard.transform.position;
+            return;
+        }
+        TileData tile = hit.collider.gameObject.GetComponent<TileData>();
+        // tileToPreview = tile;
+        OnTileSelectedEvent?.Invoke(tile);
+        // if (tile.PiecePlaced)
+        // {
+        //     // Store the selected tile and calculate the offset
+        //     selectedTile = tile;
+        //     offset = hit.point - tile.transform.position;
+        // }
+        // else
+        // {
+        //     // Invoke the tile selected event if no piece is placed on the tile
+        // }
     }
 
+    public void SetSelectedCard(CardHand cardHand)
+    {
+        selectedCard = cardHand;
+    }
 }
