@@ -26,7 +26,10 @@ public class MapManager : MonoBehaviour
         CardsManager.DistributeCardEvent += InitCards;
     }
 
-    
+    public Vector2Int GetSizeDungeon()
+    {
+        return new Vector2Int(width - 2, height - 2);
+    }
 
     private void InitCards(CardInfo[] _cards)
     {

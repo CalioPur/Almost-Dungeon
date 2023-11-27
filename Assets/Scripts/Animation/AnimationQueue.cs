@@ -23,7 +23,7 @@ public class AnimationQueue : MonoBehaviour
             AnimToQueue anim = animQueue.Dequeue();
             Vector3 targetPos = (anim.isDir) ? anim.obj.position + anim.dir : anim.dir;
             anim.obj.DOMove(targetPos, anim.time).SetEase(anim.ease).SetLoops(anim.loop, LoopType.Yoyo);
-            yield return new WaitForSeconds(anim.time);
+            yield return new WaitForSeconds(anim.time + .1f);
         }
         isExec = false;
     }
