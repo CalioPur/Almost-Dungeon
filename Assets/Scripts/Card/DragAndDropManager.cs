@@ -58,7 +58,7 @@ public class DragAndDropManager : MonoBehaviour
         gridVisualizer.GetComponent<Renderer>().material.SetVector("_Position", GetMousePositionOnGrid());
         if (Input.GetMouseButtonDown(0))
         {
-            HandleMouseDown();
+            // HandleMouseDown();
         }
         else if (Input.GetMouseButton(0))
         {
@@ -94,23 +94,19 @@ public class DragAndDropManager : MonoBehaviour
 
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor")) return;
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
-        // tileToPreview = tile;
-        if (tile.PiecePlaced)
-        {
-            // Store the selected tile and calculate the offset
-            selectedTile = tile;
-            offset = hit.point - tile.transform.position;
-        }
-        else
-        {
-            // Invoke the tile selected event if no piece is placed on the tile
-            OnTileSelectedEvent?.Invoke(tile);
-        }
+        OnTileSelectedEvent?.Invoke(tile);
     }
 
+    private string name = null;
     private void HandleMouseDrag()
     {
         if (selectedCard == null) return;
+        if (name == null || name != selectedCard.name)
+        {
+            name = selectedCard.name;
+            // selectedCard.ChangeSelection(false);
+            // CardsManager.Instance.SetSelectedCard(null);
+        }
         selectedCard.img.gameObject.transform.position = Input.mousePosition;
     }
 
