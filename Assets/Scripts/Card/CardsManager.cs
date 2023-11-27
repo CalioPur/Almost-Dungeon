@@ -35,9 +35,16 @@ public class CardsManager : MonoBehaviour
     private Coroutine currentlyDrawing;
     private List<CardInfoInstance> defausseCard = new();
     private int indexCardToDraw = 0;
+    
+    public static CardsManager Instance;
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        Instance = this;        
         GameManager.OnGameStartEvent += BeginToDraw;
     }
 
@@ -95,7 +102,12 @@ public class CardsManager : MonoBehaviour
 
     private void RemoveCard(TileData tileData, CardHand cardHand, bool canBePlaced)
     {
-        if (!canBePlaced) return;
+        if (!canBePlaced)
+        {
+            cardHand.img.transform.position = cardHand.transform.position;
+            cardHand.removeSelection();
+            return;
+        }
         cptCardsObtained--;
         selectedCard = null;
     }
@@ -106,7 +118,8 @@ public class CardsManager : MonoBehaviour
 
         if (obj.PiecePlaced)
         {
-            obj.img.transform.position = obj.transform.position;
+            selectedCard.img.transform.position = selectedCard.transform.position;
+            selectedCard.removeSelection();
             return;
         }
         OnCardTryToPlaceEvent?.Invoke(obj, selectedCard);
@@ -270,6 +283,11 @@ public class CardsManager : MonoBehaviour
                 selectedCard = t;
             }
         }
+    }
+    
+    public void SetSelectedCard(CardHand card)
+    {
+        selectedCard = card;
     }
 
     private void RotateSelection(bool direction)
