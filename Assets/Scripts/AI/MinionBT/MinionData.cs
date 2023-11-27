@@ -15,7 +15,7 @@ public abstract class MinionData : TrapData
     private bool isExec = false;
 
     public EnemyInstance minionInstance;
-    [HideInInspector] public int indexPos;
+    [FormerlySerializedAs("indexPos")] [HideInInspector] public int indexOffsetTile;
     public void GetHeroPos()
     {
         OnHeroPosAsked?.Invoke();

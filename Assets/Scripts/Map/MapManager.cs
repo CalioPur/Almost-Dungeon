@@ -271,10 +271,8 @@ public class MapManager : MonoBehaviour
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         data.enemies.Remove(minionData);
-        //free occupied tile
-        GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
         if (minionData is MinionData minion)
-            data.freePosition(minion.indexPos);
+            data.freePosition(minion.indexOffsetTile);
     }
     
     public bool AvailableForSpawn(int x, int y)

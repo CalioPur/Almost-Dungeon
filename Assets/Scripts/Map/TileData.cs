@@ -88,7 +88,7 @@ public class TileData : MonoBehaviour
         }
 
         pos = Vector3.zero;
-        index = 0;
+        index = -1;
         return false;
     }
     

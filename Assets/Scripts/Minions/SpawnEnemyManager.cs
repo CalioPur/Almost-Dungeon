@@ -139,7 +139,7 @@ public class SpawnEnemyManager : MonoBehaviour
 
         if (script is MinionData minionData)
         {
-            minionData.indexPos = index;
+            minionData.indexOffsetTile = index;
         }
     }
 }

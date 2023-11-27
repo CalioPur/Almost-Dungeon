@@ -25,21 +25,17 @@ public class MoveToHero : Node
             (blackboard.dir == DirectionToMove.Left) ? -1 : 0;
         temporaryIndex.y += (blackboard.dir == DirectionToMove.Up) ? 1 :
             (blackboard.dir == DirectionToMove.Down) ? -1 : 0;
-        int index = -1;
         bool isValidPos = blackboard.minionData.mapManager.AddMinionOnTile(
-            new Vector2Int(temporaryIndex.x, temporaryIndex.y), blackboard.minionData, out index);
-        if (isValidPos)
-        {
-            blackboard.minionData.mapManager.RemoveEnemyOnTile(
-                new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), blackboard.minionData,
-                blackboard.minionData.gameObject.transform.position);
-            blackboard.minionData.indexX = temporaryIndex.x;
-            blackboard.minionData.indexY = temporaryIndex.y;
-            blackboard.minionData.indexPos = index;
-
-            return NodeState.Success;
-        }
-
-        return NodeState.Failure;
+            new Vector2Int(temporaryIndex.x, temporaryIndex.y), blackboard.minionData, out int index);
+        
+        if (!isValidPos) return NodeState.Failure;
+        
+        blackboard.minionData.mapManager.RemoveEnemyOnTile(
+            new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), blackboard.minionData,
+            blackboard.minionData.gameObject.transform.position);
+        blackboard.minionData.indexX = temporaryIndex.x;
+        blackboard.minionData.indexY = temporaryIndex.y;
+        blackboard.minionData.indexOffsetTile = index;
+        return NodeState.Success;
     }
 }
