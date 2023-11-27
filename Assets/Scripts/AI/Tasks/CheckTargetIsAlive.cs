@@ -16,10 +16,15 @@ public class CheckTargetIsAlive : Node
     public override NodeState Evaluate(Node root)
     {
         if (blackboard.ChosenTarget == null) return NodeState.Failure;
-        foreach (var VARIABLE in blackboard.ChosenTarget.Where(VARIABLE => VARIABLE.isDead))
+        for (int i = 0; i < blackboard.ChosenTarget.Count; i++)
         {
-            blackboard.ChosenTarget.Remove(VARIABLE);
+            if(blackboard.ChosenTarget[i] == null || blackboard.ChosenTarget[i].isDead)
+            {
+                blackboard.ChosenTarget.Remove(blackboard.ChosenTarget[i]);
+                i--;
+            }
         }
+        
         
         if (blackboard.ChosenTarget.Count == 0) return NodeState.Success;
         blackboard.ChosenTarget = null;

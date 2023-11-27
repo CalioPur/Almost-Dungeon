@@ -102,7 +102,10 @@ public class CardInfoInstance
         }
         
         OnRotationChangedEvent?.Invoke();
-        
-        
+    }
+
+    public void OnDisable()
+    {
+        OnRotationChangedEvent = null;
     }
 }

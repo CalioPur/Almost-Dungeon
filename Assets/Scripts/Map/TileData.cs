@@ -57,6 +57,7 @@ public class TileData : MonoBehaviour
     {
         if (_instance == null) return;
         _instance.OnRotationChangedEvent -= UpdateAppearance;
+        _instance.OnDisable();
     }
 
     private void UpdateAppearance()

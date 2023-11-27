@@ -26,6 +26,8 @@ public class MapManager : MonoBehaviour
         CardsManager.DistributeCardEvent += InitCards;
     }
 
+    
+
     private void InitCards(CardInfo[] _cards)
     {
         cards = _cards;
@@ -435,5 +437,12 @@ public class MapManager : MonoBehaviour
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         data.enemies.Add(trapData);
+    }
+    
+    private void OnDisable()
+    {
+        CardsManager.DistributeCardEvent -= InitCards;
+        CardsManager.OnCardTryToPlaceEvent -= CheckCardPos;
+        OnCardTryToPlaceEvent = null;
     }
 }

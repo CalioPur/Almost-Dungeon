@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -45,6 +46,7 @@ public class CardsManager : MonoBehaviour
         DragAndDropManager.OnTilePosedEvent += MoveCard;
         DragAndDropManager.OnFinishToPose += ReorganizeHand;
     }
+    
 
     private void ReorganizeHand()
     {
@@ -87,6 +89,8 @@ public class CardsManager : MonoBehaviour
         DragAndDropManager.OnTileSelectedEvent -= PlaceSolution;
         MapManager.OnCardTryToPlaceEvent -= RemoveCard;
         GameManager.OnGameStartEvent -= BeginToDraw;
+        DragAndDropManager.OnTilePosedEvent -= MoveCard;
+        DragAndDropManager.OnFinishToPose -= ReorganizeHand;
     }
 
     private void RemoveCard(TileData tileData, CardHand cardHand, bool canBePlaced)
