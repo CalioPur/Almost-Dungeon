@@ -1,5 +1,6 @@
 using Tree = BehaviourTree.Tree;
 using System;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -60,6 +61,7 @@ public class Hero : MonoBehaviour
 
         TrapData.OnTrapAttackEvent += TakeDamage;
         Sprite.sprite = info.So.Img;
+        Debug.Log("hero health point : " + info.CurrentHealthPoint);
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         MinionData.OnHeroPosAsked+= GivePosBack;
     }
@@ -101,6 +103,12 @@ public class Hero : MonoBehaviour
     private void Start()
     {
         OnBeginToMove();
+    }
+
+    private void OnDisable()
+    {
+        TrapData.OnTrapAttackEvent -= TakeDamage;
+        MinionData.OnHeroPosAsked -= GivePosBack;
     }
 
     public void AddAnim(AnimToQueue animToQueue)
