@@ -66,4 +66,9 @@ public abstract class TrapData : MonoBehaviour
     {
         OnTrapAttackEvent?.Invoke(damage);
     }
+
+    public static void ClearEvent()
+    {
+        OnTrapAttackEvent = null;
+    }
 }

@@ -1,4 +1,4 @@
-    using BehaviourTree;
+using BehaviourTree;
 
 public class HeroIsInSight : Node
 {

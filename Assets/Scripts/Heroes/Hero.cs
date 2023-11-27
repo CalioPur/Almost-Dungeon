@@ -21,7 +21,6 @@ public class Hero : MonoBehaviour
     [SerializeField] private AnimationQueue animQueue;
     [field:SerializeField] public HeroBlackboard HeroBlackboard { get; private set; }
     
-    private bool isExec = false;
     private int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
 
@@ -83,6 +82,10 @@ public class Hero : MonoBehaviour
     private void OnDestroy()
     {
         TickManager.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
+        OnGivePosBackEvent = null;
+        OnTakeDamageEvent = null;
+        OnPopUpEvent = null;
+        OnMovedOnEmptyCardEvent = null;
     }
 
     private void IsDead()
@@ -108,7 +111,9 @@ public class Hero : MonoBehaviour
     private void OnDisable()
     {
         TrapData.OnTrapAttackEvent -= TakeDamage;
+        TrapData.ClearEvent();
         MinionData.OnHeroPosAsked -= GivePosBack;
+        MinionData.ClearSubscribes();
     }
 
     public void AddAnim(AnimToQueue animToQueue)

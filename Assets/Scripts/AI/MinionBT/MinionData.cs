@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,16 +6,21 @@ public abstract class MinionData : TrapData
 {
     public static event Action OnHeroPosAsked;
 
+    public EnemyInstance minionInstance;
+    [HideInInspector] public int indexOffsetTile;
+    
     [SerializeField] protected Transform tr;
     [SerializeField] protected MinionBTBase bt;
     [SerializeField] protected AnimationQueue animQueue;
-    private bool isExec = false;
-
-    public EnemyInstance minionInstance;
-    [FormerlySerializedAs("indexPos")] [HideInInspector] public int indexOffsetTile;
+    
     public void GetHeroPos()
     {
         OnHeroPosAsked?.Invoke();
+    }
+    
+    public static void ClearSubscribes()
+    {
+        OnHeroPosAsked = null;
     }
 
     public void Move(Vector3 pos, float delay)

@@ -202,7 +202,7 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        Debug.LogError("il n'existe aucune tile correspondant a : " + data.ToString());
+        Debug.LogError("il n'existe aucune tile correspondant a : " + data.name);
         return new Vector2Int(-1, -1);
     }
 
