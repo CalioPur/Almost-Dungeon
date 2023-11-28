@@ -54,6 +54,8 @@ public class DragAndDropManager : MonoBehaviour
         OnFinishToPose?.Invoke();
         card.img.gameObject.transform.position = card.transform.position;
         card.removeSelection();
+        selectedCard = null;
+        CardsManager.Instance.SetSelectedCard(null);
     }
 
     void Update()
