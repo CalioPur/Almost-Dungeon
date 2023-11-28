@@ -57,8 +57,10 @@ public class CardsManager : MonoBehaviour
 
     private void ReorganizeHand()
     {
+        selectedCard = null;
         for (int i = indexCardToDraw; i < slotsHand.Count - 1; i++)
         {
+            slotsHand[i].removeSelection();
             slotsHand[i].MoveCardTo(slotsHand[i + 1]);
         }
     }
@@ -106,6 +108,7 @@ public class CardsManager : MonoBehaviour
         {
             cardHand.img.transform.position = cardHand.transform.position;
             cardHand.removeSelection();
+            selectedCard = null;
             return;
         }
         cptCardsObtained--;
@@ -120,6 +123,7 @@ public class CardsManager : MonoBehaviour
         {
             selectedCard.img.transform.position = selectedCard.transform.position;
             selectedCard.removeSelection();
+            selectedCard = null;
             return;
         }
         OnCardTryToPlaceEvent?.Invoke(obj, selectedCard);
@@ -268,8 +272,8 @@ public class CardsManager : MonoBehaviour
         {
             if (t == selectedCard)
             {
-                selectedCard.ChangeSelection(false);
-                selectedCard = null;
+                // selectedCard.ChangeSelection(false);
+                // selectedCard = null;
             }
             else
             {
@@ -308,6 +312,20 @@ public class CardsManager : MonoBehaviour
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             RotateSelection(false);
+        }
+        
+        if (Input.GetMouseButtonDown(1))
+        {
+            RotateSelection(false);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RotateSelection(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            RotateSelection(true);
         }
     }
 }
