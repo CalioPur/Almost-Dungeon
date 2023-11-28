@@ -120,6 +120,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (!isSelected) return;
         OnCardSelectedEvent?.Invoke(null);
+        DragAndDropManager.Instance.SetSelectedCard(null);
     }
     
     public void addSelection()
