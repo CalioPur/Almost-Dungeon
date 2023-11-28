@@ -47,16 +47,18 @@ public class DragAndDropManager : MonoBehaviour
             card.removeSelection();
             return;
         }
-
+        
         data.SetInstance(card.Card);
         OnTilePosedEvent?.Invoke(data, card.Card);
         //card.EmptyCard();
         OnFinishToPose?.Invoke();
+        card.img.gameObject.transform.position = card.transform.position;
+        card.removeSelection();
     }
 
     void Update()
     {
-        gridVisualizer.GetComponent<Renderer>().material.SetVector("_Position", GetMousePositionOnGrid());
+        gridVisualizer.GetComponent<Renderer>().sharedMaterial.SetVector("_Position", GetMousePositionOnGrid());
         if (Input.GetMouseButtonDown(0))
         {
             // HandleMouseDown();
@@ -110,6 +112,7 @@ public class DragAndDropManager : MonoBehaviour
         }
         selectedCard.img.gameObject.transform.position = Input.mousePosition;
     }
+
 
     private void HandleMouseUp()
     {
