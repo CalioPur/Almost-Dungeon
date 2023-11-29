@@ -14,10 +14,10 @@ public class CardsManager : MonoBehaviour
 
 
     [Header("Deck builder")] [SerializeField]
-    private List<CardInfo> deckToBuild = new();
+    public List<CardInfo> deckToBuild = new();
 
     [Header("Values initializer")] [SerializeField]
-    private int nbCardOnStartToDraw = 3;
+    public int nbCardOnStartToDraw = 3;
 
     [SerializeField] private float TimerBeforeDrawCard = 2;
     [SerializeField] private float TimerAnimationDrawCard = 0.2f;

@@ -14,9 +14,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Data")] [SerializeField] private List<HeroesInfo> heroesInfos;
     [SerializeField] private CardInfo enterDungeonInfo;
-    [SerializeField] private Vector2Int normsSpawnX;
-    [SerializeField] private Vector2Int normsSpawnY;
-
+    [SerializeField] public Vector2Int normsSpawnX;
+    [SerializeField] public Vector2Int normsSpawnY;
+    public HeroesInfo currentHero;
+    public int heroHealthPoint;
     private Vector3 worldPos;
     private Vector2Int startPosHero;
     
@@ -47,9 +48,9 @@ public class GameManager : MonoBehaviour
 
     private void SpawnHero()
     {
-        int randomHero = Random.Range(0, heroesInfos.Count);
-        HeroInstance current = heroesInfos[randomHero].CreateInstance();
-
+        //int randomHero = Random.Range(0, heroesInfos.Count);
+        HeroInstance current = currentHero.CreateInstance();
+        current.CurrentHealthPoint = heroHealthPoint;
         Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
         heroScript.Init(current, startPosHero.x, startPosHero.y, mapManager);
         

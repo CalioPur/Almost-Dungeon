@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9766dd7e0a86c034b81f31ae5bb893c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonSos:
+  - {fileID: 11400000, guid: 00a968d9d1d5b2a4e99252dbcfc1be2f, type: 2}

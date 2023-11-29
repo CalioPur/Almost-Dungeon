@@ -37,6 +37,7 @@ public class DragAndDropManager : MonoBehaviour
     private void OnDisable()
     {
         MapManager.OnCardTryToPlaceEvent -= PlaceCard;
+        
     }
 
     private void PlaceCard(TileData data, CardHand card, bool canBePlaced)

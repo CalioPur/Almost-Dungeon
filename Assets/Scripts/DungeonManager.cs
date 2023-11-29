@@ -5,22 +5,45 @@ using UnityEngine;
 
 public class DungeonManager : MonoBehaviour
 {
+    [SerializeField] static int currentLevel = 0;
     [SerializeField] private List<DungeonSO> dungeonSos;
+    
+    CardsManager cardsManager;
+    TickManager tickManager;
+    GameManager gameManager;
+    
     
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        LoadLevel(currentLevel);
     }
-
-    // Start is called before the first frame update
-    void Start()
+    
+    
+    private void LoadLevel(int level)
     {
+        print(currentLevel);
+        if (level >= dungeonSos.Count)
+        {
+            Debug.LogError("Level is too high");
+            return;
+        }
+        var dungeonSo = dungeonSos[level];
+        cardsManager = FindObjectOfType<CardsManager>();
+        cardsManager.deckToBuild = dungeonSo.Deck;
+        cardsManager.nbCardOnStartToDraw = dungeonSo.initialNbCardInHand;
         
+        tickManager = FindObjectOfType<TickManager>();
+        tickManager.actionsTime = dungeonSo.tickData;
+        
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.currentHero = dungeonSo.HeroesInfo;
+        gameManager.heroHealthPoint = dungeonSo.nbHealthHeroInitial;
+        gameManager.normsSpawnX = dungeonSo.clampedSpawnEnterDungeonX;
+        gameManager.normsSpawnY = dungeonSo.clampedSpawnEnterDungeonY;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void LoadNextLevel()
     {
-        
+        currentLevel++;
+        //LoadLevel(currentLevel);
     }
 }
