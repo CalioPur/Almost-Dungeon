@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using BehaviourTree;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using Node = BehaviourTree.Node;
 
 public class CheckifFrontOfHero : Node
