@@ -124,7 +124,7 @@ public class DragAndDropManager : MonoBehaviour
 
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
-            selectedCard.img.gameObject.transform.position = selectedCard.transform.position;
+            if (selectedCard != null) selectedCard.img.gameObject.transform.position = selectedCard.transform.position;
             return;
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
