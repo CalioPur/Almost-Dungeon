@@ -13,7 +13,6 @@ public class CardInfo : ScriptableObject
     public Sprite imgOnMap;
     
     [Header("Minions parameters")]
-    public int nbToBuild;
     public TrapType[] TypeOfTrapOrEnemyToSpawn;
     public Vector3[] offsetMinionPos;
     
@@ -36,7 +35,6 @@ public class CardInfo : ScriptableObject
     {
         imgOnHand = cardSo.imgOnHand;
         imgOnMap = cardSo.imgOnMap;
-        nbToBuild = cardSo.nbToBuild;
         TypeOfTrapOrEnemyToSpawn = cardSo.TypeOfTrapOrEnemyToSpawn;
         offsetMinionPos = cardSo.offsetMinionPos;
         DoorOnTop = cardSo.DoorOnTop;

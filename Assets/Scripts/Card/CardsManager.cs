@@ -14,7 +14,7 @@ public class CardsManager : MonoBehaviour
 
 
     [Header("Deck builder")] [SerializeField]
-    public List<CardInfo> deckToBuild = new();
+    public List<CardToBuild> deckToBuild = new();
 
     [Header("Values initializer")] [SerializeField]
     public int nbCardOnStartToDraw = 3;
@@ -76,7 +76,12 @@ public class CardsManager : MonoBehaviour
 
     private void BeginToDraw()
     {
-        DistributeCardEvent?.Invoke(deckToBuild.ToArray());
+        CardInfo[] deck = new CardInfo[deckCreate.Count];
+        for (int i = 0; i < deckCreate.Count; i++)
+        {
+            deck[i] = deckCreate[i].So;
+        }
+        DistributeCardEvent?.Invoke(deck);
         StartCoroutine(CheckDrawCard());
     }
 
@@ -243,7 +248,7 @@ public class CardsManager : MonoBehaviour
         {
             for (int i = 0; i < card.nbToBuild; i++)
             {
-                CardInfoInstance instance = card.CreateInstance();
+                CardInfoInstance instance = card.cardToBuild.CreateInstance();
                 deckCreate.Add(instance);
             }
         }

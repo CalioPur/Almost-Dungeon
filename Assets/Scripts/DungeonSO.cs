@@ -8,7 +8,7 @@ public class DungeonSO : ScriptableObject
     
     [field: Header("Deck")]
     [field: SerializeField]
-    public List<CardInfo> Deck { get; private set; } = new();
+    public List<CardToBuild> Deck { get; private set; } = new();
     [field: Range(1,6)]
     [field: SerializeField] public int initialNbCardInHand { get; private set; }
 
