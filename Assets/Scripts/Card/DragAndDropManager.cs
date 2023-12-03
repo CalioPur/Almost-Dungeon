@@ -103,13 +103,13 @@ public class DragAndDropManager : MonoBehaviour
         OnTileSelectedEvent?.Invoke(tile);
     }
 
-    private string name = null;
+    private string nameOf = null;
     private void HandleMouseDrag()
     {
         if (selectedCard == null) return;
-        if (name == null || name != selectedCard.name)
+        if (nameOf == null || nameOf != selectedCard.name)
         {
-            name = selectedCard.name;
+            nameOf = selectedCard.name;
             // selectedCard.ChangeSelection(false);
             // CardsManager.Instance.SetSelectedCard(null);
         }
