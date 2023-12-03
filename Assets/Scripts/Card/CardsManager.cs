@@ -58,20 +58,23 @@ public class CardsManager : MonoBehaviour
 
     private void ReorganizeHand()
     {
+        selectedCard.EmptyCard();
+        selectedCard.removeSelection();
         selectedCard = null;
         for (int i = indexCardToDraw; i < slotsHand.Count - 1; i++)
         {
-            slotsHand[i].removeSelection();
             slotsHand[i].MoveCardTo(slotsHand[i + 1]);
+            slotsHand[i].img.gameObject.SetActive(slotsHand[i].Card != null);
         }
+        Debug.Log("ReorganizeHand");
     }
 
     private void MoveCard(TileData _, CardInfoInstance instance)
     {
         indexCardToDraw = slotsHand.FindIndex(t => t.Card == instance);
         if (indexCardToDraw == -1) return;
-        if (indexCardToDraw == slotsHand.Count - 1)
-            slotsHand[indexCardToDraw].EmptyCard();
+        // if (indexCardToDraw == slotsHand.Count - 1)
+        //     slotsHand[indexCardToDraw].EmptyCard();
     }
 
     private void BeginToDraw()
@@ -81,32 +84,33 @@ public class CardsManager : MonoBehaviour
         {
             deck[i] = deckCreate[i].So;
         }
+
         DistributeCardEvent?.Invoke(deck);
         StartCoroutine(CheckDrawCard());
     }
 
-    void Start()
-    {
-        CardHand.OnCardSelectedEvent += CartSelected;
-        DragAndDropManager.OnTileSelectedEvent += PlaceSolution;
-        MapManager.OnCardTryToPlaceEvent += RemoveCard;
-        cptCardsObtained = 0;
-
-        InitDeck();
-        InitSlots();
-        ShuffleDeck();
-        StartCoroutine(DrawStartedCard());
-    }
-
-    private void OnDisable()
-    {
-        CardHand.OnCardSelectedEvent -= CartSelected;
-        DragAndDropManager.OnTileSelectedEvent -= PlaceSolution;
-        MapManager.OnCardTryToPlaceEvent -= RemoveCard;
-        GameManager.OnGameStartEvent -= BeginToDraw;
-        DragAndDropManager.OnTilePosedEvent -= MoveCard;
-        DragAndDropManager.OnFinishToPose -= ReorganizeHand;
-    }
+    // void Start()
+    // {
+    //     CardHand.OnCardSelectedEvent += CartSelected;
+    //     DragAndDropManager.OnTileSelectedEvent += PlaceSolution;
+    //     MapManager.OnCardTryToPlaceEvent += RemoveCard;
+    //     cptCardsObtained = 0;
+    //
+    //     InitDeck();
+    //     InitSlots();
+    //     ShuffleDeck();
+    //     StartCoroutine(DrawStartedCard());
+    // }
+    //
+    // private void OnDisable()
+    // {
+    //     CardHand.OnCardSelectedEvent -= CartSelected;
+    //     DragAndDropManager.OnTileSelectedEvent -= PlaceSolution;
+    //     MapManager.OnCardTryToPlaceEvent -= RemoveCard;
+    //     GameManager.OnGameStartEvent -= BeginToDraw;
+    //     DragAndDropManager.OnTilePosedEvent -= MoveCard;
+    //     DragAndDropManager.OnFinishToPose -= ReorganizeHand;
+    // }
 
     private void RemoveCard(TileData tileData, CardHand cardHand, bool canBePlaced)
     {
@@ -125,6 +129,12 @@ public class CardsManager : MonoBehaviour
     private void PlaceSolution(TileData obj)
     {
         if (selectedCard == null) return;
+        if (selectedCard.Card == null)
+        {
+            selectedCard.removeSelection();
+            selectedCard = null;
+            return;
+        }
 
         if (obj.PiecePlaced)
         {
@@ -155,18 +165,18 @@ public class CardsManager : MonoBehaviour
         }
     }
 
-    private bool DefausseToDeck()
-    {
-        if (defausseCard.Count <= 0) return false;
-        foreach (var t in defausseCard)
-        {
-            deckCreate.Add(t);
-        }
-
-        defausseCard.Clear();
-        DeckTr.gameObject.SetActive(true);
-        return true;
-    }
+    // private bool DefausseToDeck()
+    // {
+    //     if (defausseCard.Count <= 0) return false;
+    //     foreach (var t in defausseCard)
+    //     {
+    //         deckCreate.Add(t);
+    //     }
+    //
+    //     defausseCard.Clear();
+    //     DeckTr.gameObject.SetActive(true);
+    //     return true;
+    // }
 
     private IEnumerator CheckDrawCard()
     {
@@ -174,6 +184,7 @@ public class CardsManager : MonoBehaviour
         if (deckCreate.Count <= 0)
         {
             InitDeck();
+            ShuffleDeck();
         }
 
         // if (!DefausseToDeck())
@@ -230,8 +241,8 @@ public class CardsManager : MonoBehaviour
             deckCreate.RemoveAt(0);
         }
 
-        if (deckCreate.Count == 0)
-            DeckTr.gameObject.SetActive(false);
+        // if (deckCreate.Count == 0)
+        //     DeckTr.gameObject.SetActive(false);
 
         foreach (var t in slotsHand.Where(t => t.Occupied == false))
         {

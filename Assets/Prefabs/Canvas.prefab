@@ -2964,7 +2964,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6007145856728816254}
-  - component: {fileID: 5391404818372816113}
+  - component: {fileID: 82059318102154955}
+  - component: {fileID: 8684507787116597235}
   m_Layer: 5
   m_Name: DeckManager
   m_TagString: Untagged
@@ -2991,7 +2992,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5391404818372816113
+--- !u!114 &82059318102154955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3000,49 +3001,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 6616954391182567827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7df4e41c5007525429e5702ca58364e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 5589c121307fec54e83672e9de1295a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckToBuild:
-  - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    nbToBuild: 10
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
-  - cardToBuild: {fileID: 0}
-    nbToBuild: 0
+  deckToBuild: []
   nbCardOnStartToDraw: 3
   TimerBeforeDrawCard: 2
   TimerAnimationDrawCard: 0.2
+  DeckTr: {fileID: 4519632175122552299}
+  handsManager: {fileID: 8684507787116597235}
+--- !u!114 &8684507787116597235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616954391182567827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570860d1ac7993748b6831a0892b6220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   slotsHand:
   - {fileID: 4802876969633447130}
   - {fileID: 9052175172789201558}
@@ -3050,7 +3029,6 @@ MonoBehaviour:
   - {fileID: 3613060450809185983}
   - {fileID: 5946467939192280288}
   - {fileID: 2010442182230996073}
-  DeckTr: {fileID: 4519632175122552299}
 --- !u!1 &6651510497352859865
 GameObject:
   m_ObjectHideFlags: 0
