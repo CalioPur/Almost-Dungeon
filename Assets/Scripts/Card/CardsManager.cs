@@ -35,7 +35,7 @@ public class CardsManager : MonoBehaviour
     private Coroutine currentlyDrawing;
     private List<CardInfoInstance> defausseCard = new();
     private int indexCardToDraw = 0;
-    
+
     public static CardsManager Instance;
 
     private void Awake()
@@ -44,7 +44,8 @@ public class CardsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Instance = this;        
+
+        Instance = this;
         GameManager.OnGameStartEvent += BeginToDraw;
     }
 
@@ -53,7 +54,7 @@ public class CardsManager : MonoBehaviour
         DragAndDropManager.OnTilePosedEvent += MoveCard;
         DragAndDropManager.OnFinishToPose += ReorganizeHand;
     }
-    
+
 
     private void ReorganizeHand()
     {
@@ -111,6 +112,7 @@ public class CardsManager : MonoBehaviour
             selectedCard = null;
             return;
         }
+
         cptCardsObtained--;
         selectedCard = null;
     }
@@ -126,6 +128,7 @@ public class CardsManager : MonoBehaviour
             selectedCard = null;
             return;
         }
+
         OnCardTryToPlaceEvent?.Invoke(obj, selectedCard);
     }
 
@@ -164,44 +167,50 @@ public class CardsManager : MonoBehaviour
     {
         yield return new WaitForSeconds(TimerBeforeDrawCard);
         if (deckCreate.Count <= 0)
-            if (!DefausseToDeck())
-                yield break;
-        if (cptCardsObtained >= slotsHand.Count)
-            RemoveCardAtIndex(0);
-        DrawCard();
+        {
+            InitDeck();
+        }
+
+        // if (!DefausseToDeck())
+        //     yield break;
+        // if (cptCardsObtained >= slotsHand.Count)
+        //     RemoveCardAtIndex(0);
+        if (cptCardsObtained < slotsHand.Count)
+            DrawCard();
 
         if (currentlyDrawing != null)
             StopCoroutine(currentlyDrawing);
         currentlyDrawing = StartCoroutine(CheckDrawCard());
     }
 
-    public void MoveCardToDefausse(int index, bool nextCanBeNull = false)
-    {
-        for (int i = index; i < slotsHand.Count - 1; i++)
-        {
-            if ((slotsHand[i + 1].Card != null && slotsHand[i + 1].Card.So != null) || nextCanBeNull)
-                slotsHand[i].MoveCardTo(slotsHand[i + 1]);
-        }
+    // public void MoveCardToDefausse(int index, bool nextCanBeNull = false)
+    // {
+    //     for (int i = index; i < slotsHand.Count - 1; i++)
+    //     {
+    //         if ((slotsHand[i + 1].Card != null && slotsHand[i + 1].Card.So != null) || nextCanBeNull)
+    //             slotsHand[i].MoveCardTo(slotsHand[i + 1]);
+    //     }
+    //
+    //     slotsHand[^1].EmptyCard();
+    // }
 
-        slotsHand[^1].EmptyCard();
-    }
+    // private void RemoveCardAtIndex(int index)
+    // {
+    //     slotsHand[index].removeSelection();
+    //     CardInfoInstance defausseSO = new CardInfoInstance(slotsHand[index].Card.So);
+    //     defausseCard.Add(defausseSO);
+    //
+    //     //MoveCardToDefausse(index);
+    //     cptCardsObtained--;
+    // }
 
-    private void RemoveCardAtIndex(int index)
-    {
-        slotsHand[index].removeSelection();
-        CardInfoInstance defausseSO = new CardInfoInstance(slotsHand[index].Card.So);
-        defausseCard.Add(defausseSO);
-
-        MoveCardToDefausse(index);
-        cptCardsObtained--;
-    }
-
-    IEnumerator AnimationDrawCard(CardHand Slot)
+    IEnumerator AnimationDrawCard(CardHand Slot, CardInfoInstance card)
     {
         Slot.GetImage().gameObject.SetActive(true);
         Slot.GetImage().transform.position = DeckTr.position;
         Slot.GetImage().transform.DOMove(Slot.transform.position, TimerAnimationDrawCard);
         yield return new WaitForSeconds(TimerAnimationDrawCard);
+        Slot.InitCard(card);
     }
 
     private void DrawCard()
@@ -221,8 +230,7 @@ public class CardsManager : MonoBehaviour
 
         foreach (var t in slotsHand.Where(t => t.Occupied == false))
         {
-            StartCoroutine(AnimationDrawCard(t));
-            t.InitCard(card);
+            StartCoroutine(AnimationDrawCard(t, card));
             t.Occupied = true;
             break;
         }
@@ -288,7 +296,7 @@ public class CardsManager : MonoBehaviour
             }
         }
     }
-    
+
     public void SetSelectedCard(CardHand card)
     {
         selectedCard = card;
@@ -313,12 +321,12 @@ public class CardsManager : MonoBehaviour
         {
             RotateSelection(false);
         }
-        
+
         if (Input.GetMouseButtonDown(1))
         {
             RotateSelection(false);
         }
-        
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             RotateSelection(false);
