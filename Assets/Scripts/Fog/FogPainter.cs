@@ -27,12 +27,12 @@ public class FogPainter : MonoBehaviour
 
     public void OnEnable()
     {
-        DragAndDropManager.OnTilePosedEvent += ActualizeFog;
+        MovementManager.OnTilePosedEvent += ActualizeFog;
     }
     
     public void OnDisable()
     {
-        DragAndDropManager.OnTilePosedEvent -= ActualizeFog;
+        MovementManager.OnTilePosedEvent -= ActualizeFog;
     }
 
     private void ActualizeFog(TileData data, CardInfoInstance instance)

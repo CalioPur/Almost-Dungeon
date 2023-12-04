@@ -8,18 +8,40 @@ using UnityEngine;
 public class HandsManager : MonoBehaviour
 {
     public static event Action<CardHand> OnCardSelectedEvent;
+    public static event Action<TileData, CardHand> OnCardTryToPlaceEvent;
     
     [Header("References")] [SerializeField]
     private List<CardHand> slotsHand;
 
     private List<CardInfoInstance> Hand = new();
     private CardHand selectedCard;
+    private int indexCardToDraw = 0;
 
     private void Start()
     {
         InitSlots();
+       
     }
-        
+    
+    private void OnEnable()
+    {
+        MovementManager.OnTilePosedEvent += MoveCard;
+        MovementManager.OnFinishToPose += ReorganizeHand;
+        MovementManager.OnTileSelectedEvent += PlaceSolution;
+    }
+    
+    private void OnDisable()
+    {
+        MovementManager.OnTilePosedEvent -= MoveCard;
+        MovementManager.OnFinishToPose -= ReorganizeHand;
+        MovementManager.OnTileSelectedEvent -= PlaceSolution;
+    }
+
+    private void MoveCard(TileData _, CardInfoInstance cardInfo)
+    {
+        indexCardToDraw = slotsHand.FindIndex(t => t.Card == cardInfo);
+    }
+
     private void InitSlots()
     {
         for (int i = 0; i < slotsHand.Count; i++)
@@ -29,6 +51,43 @@ public class HandsManager : MonoBehaviour
         }
     }
     
+    private void ReorganizeHand(CardInfoInstance cardPosed)
+    {
+        Hand.Remove(cardPosed);
+        selectedCard.EmptyCard();
+        selectedCard.removeSelection();
+        selectedCard = null;
+        for (int i = indexCardToDraw; i < slotsHand.Count - 1; i++)
+        {
+            slotsHand[i].MoveCardTo(slotsHand[i + 1]);
+            slotsHand[i+1].Occupied = false;
+            slotsHand[i].GetImage().gameObject.SetActive(slotsHand[i].Card != null);
+        }
+        UpdateHand();
+    }
+    
+    private void PlaceSolution(TileData obj)
+    {
+        if (selectedCard == null) return;
+        if (selectedCard.Card == null)
+        {
+            selectedCard.removeSelection();
+            selectedCard = null;
+            return;
+        }
+
+        if (obj.PiecePlaced)
+        {
+            selectedCard.GetImage().transform.position = selectedCard.transform.position;
+            selectedCard.removeSelection();
+            selectedCard = null;
+            return;
+        }
+
+        OnCardTryToPlaceEvent?.Invoke(obj, selectedCard);
+    }
+    
+    
     private void OnCardWasPointed(CardHand card)
     {
         if (selectedCard == card)
@@ -36,7 +95,7 @@ public class HandsManager : MonoBehaviour
             selectedCard.removeSelection();
             selectedCard = null;
             OnCardSelectedEvent?.Invoke(null);
-            DragAndDropManager.Instance.SetSelectedCard(null);
+            MovementManager.Instance.SetSelectedCard(null);
             return;
         }
         if (selectedCard != null)
@@ -46,7 +105,7 @@ public class HandsManager : MonoBehaviour
         selectedCard = card;
         selectedCard.addSelection();
         OnCardSelectedEvent?.Invoke(card);
-        DragAndDropManager.Instance.SetSelectedCard(card);
+        MovementManager.Instance.SetSelectedCard(card);
     }
     public int GetMaxCard()
     {

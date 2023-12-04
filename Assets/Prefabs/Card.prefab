@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 2443207965858590809}
+  Tr: {fileID: 6505270749760420812}
   HoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   NormalColor: {r: 1, g: 1, b: 1, a: 1}
   SelectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

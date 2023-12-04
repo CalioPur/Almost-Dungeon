@@ -14,7 +14,8 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public CardInfoInstance Card;
 
 
-    [SerializeField] public Image img;
+    [SerializeField] private Image img;
+    [SerializeField] private RectTransform Tr;
 
     [Header("Color settings")] [SerializeField]
     private Color HoverColor = Color.gray;
@@ -36,6 +37,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!isSelected) img.color = HoverColor;
         BackgroundDescription.gameObject.SetActive(true);
     }
+    
 
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -49,6 +51,11 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!Occupied) return;
         OnCardWasPointedEvent?.Invoke(this);
         BackgroundDescription.gameObject.SetActive(false);
+    }
+    
+    public RectTransform GetTr()
+    {
+        return Tr;
     }
 
     public void EmptyCard()
@@ -108,13 +115,12 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void removeSelection()
     {
-        isSelected = false;
-        img.color = NormalColor;
+        ChangeSelection(false);
     }
     
     public void addSelection()
     {
-        isSelected = true;
+        ChangeSelection(true);
     }
 
     public void SetCard(CardInfoInstance cardInfoInstance)
