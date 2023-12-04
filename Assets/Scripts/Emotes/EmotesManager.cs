@@ -4,34 +4,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
+[Serializable]
+public class EmoteData
+{
+    public EmoteType type;
+    public Emote emote;
+}
+
+[Serializable]
+public enum EmoteType
+{
+    Detected,
+}
+
 public class EmotesManager : MonoBehaviour
 {
-    [SerializeField] private VideoPlayer emotePlayer;
-    [SerializeField] private GameObject textEmote;
-    [SerializeField] private List<VideoClip> emotes;
+    [SerializeField] private List<EmoteData> emotes = new();
     
-    
-    public IEnumerator PlayEmote(int index)
+    Dictionary<EmoteType, Emote> emoteDictionary = new Dictionary<EmoteType, Emote>();
+
+    private void Start()
     {
-        textEmote.SetActive(true);
-        if (index < 0 || index >= emotes.Count) yield break;
-        emotePlayer.clip = emotes[index];
-        emotePlayer.Play();
-        yield return new WaitForSeconds((float)emotes[index].length);
-        textEmote.SetActive(false);
-    }
-    
-    public void StopEmote(int index)
-    {
-        if (index < 0 || index >= emotes.Count) return;
-        emotePlayer.Stop();
+        foreach (var emoteData in emotes)
+        {
+            emoteDictionary.Add(emoteData.type, emoteData.emote);
+        }
     }
 
-    private void Update()
+    public void PlayEmote(EmoteType type)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(PlayEmote(0));
-        }
+        emoteDictionary[type].PlayEmote();
+    }
+    
+    public void StopEmote(EmoteType type)
+    {
+        emoteDictionary[type].StopEmote();
     }
 }
