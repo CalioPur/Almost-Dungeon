@@ -276,7 +276,7 @@ public class MapManager : MonoBehaviour
         if (data.GetFirstAvailabalePosition(out var offset, out index))
         {
             if (minionData is MinionData minion)
-                minion.Move(posToGo + offset, 0.5f);
+                minion.Move(data.transform, offset, 0.5f);
             data.enemies.Add(minionData);
             return true;
         }

@@ -22,9 +22,15 @@ public class Hero : MonoBehaviour
     private int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
 
-    public void Move(Vector3 pos)
+    public void Move(Transform targetTr, Vector3 offset, float delay)
     {
-        animQueue.AddAnim(new AnimToQueue(heroTr, pos + new Vector3(1, 0.1f, 1), false, 0.5f));
+        // mapManager.GetTilePosFromWorldPos(pos, out int x, out int y);
+        // Transform tileTransform = mapManager.GetTileDataAtPosition(x, y).transform;
+        //
+        // Vector3 tilePos = mapManager.GetTileDataAtPosition(indexX, indexY).transform.position;
+        // Vector3 offset = tilePos - transform.position;
+        animQueue.AddAnim(new AnimToQueue(heroTr, targetTr,  offset , false, delay));
+        
         GivePosBack();
     }
     
