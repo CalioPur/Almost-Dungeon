@@ -7,6 +7,7 @@ public class DungeonManager : MonoBehaviour
 {
     [SerializeField] static int currentLevel = 0;
     [SerializeField] private List<DungeonSO> dungeonSos;
+    [SerializeField] private MapManager mapManager;
     
     DeckManager cardsManager;
     TickManager tickManager;
@@ -40,6 +41,8 @@ public class DungeonManager : MonoBehaviour
         gameManager.heroHealthPoint = dungeonSo.nbHealthHeroInitial;
         gameManager.normsSpawnX = dungeonSo.clampedSpawnEnterDungeonX;
         gameManager.normsSpawnY = dungeonSo.clampedSpawnEnterDungeonY;
+        
+        mapManager.SpawnPresets(dungeonSo.dungeonPreset);
     }
     public void LoadNextLevel()
     {

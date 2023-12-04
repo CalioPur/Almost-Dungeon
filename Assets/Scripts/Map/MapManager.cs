@@ -24,6 +24,7 @@ public class MapManager : MonoBehaviour
     public CardInfo[] cards;
     public TileData[,] mapArray;
     private readonly MapManagerTools _mapManagerTools;
+    private List<TilePreset> _tilePreset = new ();
 
     public MapManager()
     {
@@ -73,6 +74,15 @@ public class MapManager : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < _tilePreset.Count; i++)
+        {
+            CardInfoInstance card = _tilePreset[i].cardInfo.CreateInstance();
+            card.Rotation = _tilePreset[i].rotation;
+            SetTileAtPosition(card, _tilePreset[i].position.x, _tilePreset[i].position.y);
+            fogPainter.dungeonTilesPositions.Add(new Vector2Int(_tilePreset[i].position.x, _tilePreset[i].position.y));
+        }
+        MapManagerTools.SetConnectedToPath();
+        MapManagerTools.SetExits();
         HandsManager.OnCardTryToPlaceEvent += CheckCardPos;
     }
 
@@ -306,5 +316,10 @@ public class MapManager : MonoBehaviour
         DeckManager.DistributeCardEvent -= InitCards;
         HandsManager.OnCardTryToPlaceEvent -= CheckCardPos;
         OnCardTryToPlaceEvent = null;
+    }
+
+    public void SpawnPresets(List<TilePreset> tilePreset)
+    {
+        _tilePreset = tilePreset;
     }
 }
