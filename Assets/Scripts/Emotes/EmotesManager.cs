@@ -15,6 +15,7 @@ public class EmoteData
 public enum EmoteType
 {
     Detected,
+    Stuck
 }
 
 public class EmotesManager : MonoBehaviour
@@ -33,7 +34,7 @@ public class EmotesManager : MonoBehaviour
 
     public void PlayEmote(EmoteType type)
     {
-        emoteDictionary[type].PlayEmote();
+        emoteDictionary[type]?.PlayEmote();
         SoundManagerIngame.Instance.PlaySound(type);
     }
     

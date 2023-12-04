@@ -3,10 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SoundType
+{
+    WallBreak,
+}
+
 public class SoundManagerIngame : MonoBehaviour
 {
     public static SoundManagerIngame Instance;
     [SerializeField] private AudioSource audioSourceSurprise;
+    [SerializeField] private AudioSource audioWallBreak;
 
     private void Awake()
     {
@@ -17,18 +23,32 @@ public class SoundManagerIngame : MonoBehaviour
         Instance = this;
     }
 
+    private void PlaySound(AudioSource source)
+    {
+        if (source == null) return;
+        if (source.isPlaying) return;
+        source.Play();
+    }
+    
     public void PlaySound(EmoteType emote)
     {
-        AudioSource source = null;
         switch (emote)
         {
             case EmoteType.Detected:
                 
-                source = audioSourceSurprise;
+                PlaySound(audioSourceSurprise);
                 break;
         }
-        if (source == null) return;
-        if (source.isPlaying) return;
-        source.Play();
+    }
+    
+    public void PlaySound(SoundType sound)
+    {
+        switch (sound)
+        {
+            case SoundType.WallBreak:
+                
+                PlaySound(audioWallBreak);
+                break;
+        }
     }
 }

@@ -18,6 +18,7 @@ public class Hero : MonoBehaviour
     [SerializeField] private Tree bt;
     [SerializeField] private AnimationQueue animQueue;
     [field:SerializeField] public HeroBlackboard HeroBlackboard { get; private set; }
+    [field: SerializeField] private EmotesManager emotesManager;
     
     private int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
@@ -67,6 +68,12 @@ public class Hero : MonoBehaviour
         Debug.Log("hero health point : " + info.CurrentHealthPoint);
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         MinionData.OnHeroPosAsked+= GivePosBack;
+        PathFinding.OnNoPathFound += PlayEmoteStuck;
+    }
+
+    private void PlayEmoteStuck()
+    {
+        emotesManager.PlayEmote(EmoteType.Stuck);
     }
 
     private void GivePosBack()
@@ -118,6 +125,7 @@ public class Hero : MonoBehaviour
         TrapData.ClearEvent();
         MinionData.OnHeroPosAsked -= GivePosBack;
         MinionData.ClearSubscribes();
+        PathFinding.OnNoPathFound -= PlayEmoteStuck;
     }
 
     public void AddAnim(AnimToQueue animToQueue)
