@@ -625,6 +625,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmotesManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5964660169955656389, guid: 56f7e2eeaea2580478bb171ae2472672,
+        type: 3}
+      propertyPath: emotes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7471447409192714267, guid: 56f7e2eeaea2580478bb171ae2472672,
         type: 3}
       propertyPath: m_LocalPosition.x
