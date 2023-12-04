@@ -23,9 +23,14 @@ public abstract class MinionData : TrapData
         OnHeroPosAsked = null;
     }
 
-    public void Move(Vector3 pos, float delay)
+    public void Move(Transform targetTr, Vector3 offset, float delay)
     {
-        animQueue.AddAnim(new AnimToQueue(tr, pos + new Vector3(1, 0.1f, 1), false, delay));
+        // mapManager.GetTilePosFromWorldPos(pos, out int x, out int y);
+        // Transform tileTransform = mapManager.GetTileDataAtPosition(x, y).transform;
+        //
+        // Vector3 tilePos = mapManager.GetTileDataAtPosition(indexX, indexY).transform.position;
+        // Vector3 offset = tilePos - transform.position;
+        animQueue.AddAnim(new AnimToQueue(tr, targetTr,  offset , false, delay));
     }
 
     public override void TakeDamage(int damage)

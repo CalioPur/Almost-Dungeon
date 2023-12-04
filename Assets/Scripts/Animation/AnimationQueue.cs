@@ -21,7 +21,8 @@ public class AnimationQueue : MonoBehaviour
         while (animQueue.Count > 0)
         {
             AnimToQueue anim = animQueue.Dequeue();
-            Vector3 targetPos = (anim.isDir) ? anim.obj.position + anim.dir : anim.dir;
+            Vector3 dir = (anim.targetTransform.position - anim.obj.position).normalized;
+            Vector3 targetPos = (anim.isDir) ? anim.targetTransform.position : anim.targetTransform.position+ anim.offset;
             anim.obj.DOMove(targetPos, anim.time).SetEase(anim.ease).SetLoops(anim.loop, LoopType.Yoyo);
             yield return new WaitForSeconds(anim.time + .1f);
         }

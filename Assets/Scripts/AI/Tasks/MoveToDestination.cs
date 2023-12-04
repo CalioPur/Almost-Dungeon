@@ -37,7 +37,8 @@ public class MoveToDestination : Node
         {
             tile.isVisited = true;
         }
-        blackboard.hero.Move(pos);
+
+        blackboard.hero.Move(tile.transform, Vector3.zero, 0.5f);
         return NodeState.Success;
     }
 }

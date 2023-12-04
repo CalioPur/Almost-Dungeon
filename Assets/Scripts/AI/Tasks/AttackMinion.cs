@@ -29,8 +29,7 @@ public class AttackMinion : Node
         foreach (var target in blackboard.ChosenTarget)
         {
             target.TakeDamage(blackboard.hero.info.So.AttackPoint);
-            Vector3 dir = target.transform.position - blackboard.hero.transform.position;
-            blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, dir.normalized * 0.3f, true, delay, Ease.InBack, 2));
+            blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, target.transform, Vector3.zero, true, delay, Ease.InBack, 2));
         }
         
 
