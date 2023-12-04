@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public static Action OnGameStartEvent;
+    public static Action OnEndDialogEvent;
     public static bool isGameStarted = false;
 
     [Header("Managers")] [SerializeField] private MapManager mapManager;
@@ -37,13 +38,14 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        MapManager.OnCardTryToPlaceEvent += CheckIsFirstMove;
+        OnGameStartEvent += SpawnHero;
         Time.timeScale = 1;
         mapManager.InitMap();
         mapManager.AddRandomCard();
         mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), normsSpawnX, normsSpawnY, out worldPos, out startPosHero);
         mapManager.CreateFog(startPosHero);
         worldPos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
+        OnEndDialogEvent?.Invoke();
     }
 
     private void SpawnHero()
@@ -57,16 +59,22 @@ public class GameManager : MonoBehaviour
         UIManager._instance.heroBlackboard = heroScript.HeroBlackboard;
     }
 
-    private void CheckIsFirstMove(TileData _, CardHand __, bool canBePlaced)
+    // private void CheckIsFirstMove(TileData _, CardHand __, bool canBePlaced)
+    // {
+    //     if (!canBePlaced) 
+    //     {
+    //         __.GetImage().transform.position = __.transform.position;
+    //         __.removeSelection();
+    //         return;
+    //     }
+    //     MapManager.OnCardTryToPlaceEvent -= CheckIsFirstMove;
+    //     SpawnHero();
+    //     OnGameStartEvent?.Invoke();
+    //     isGameStarted = true;
+    // }
+
+    public static void StartGame()
     {
-        if (!canBePlaced) 
-        {
-            __.GetImage().transform.position = __.transform.position;
-            __.removeSelection();
-            return;
-        }
-        MapManager.OnCardTryToPlaceEvent -= CheckIsFirstMove;
-        SpawnHero();
         OnGameStartEvent?.Invoke();
         isGameStarted = true;
     }

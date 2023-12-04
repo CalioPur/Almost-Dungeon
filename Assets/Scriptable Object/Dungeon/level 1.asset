@@ -19,7 +19,7 @@ MonoBehaviour:
     nbToBuild: 5
   - cardToBuild: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     nbToBuild: 5
-  <initialNbCardInHand>k__BackingField: 1
+  <initialNbCardInHand>k__BackingField: 4
   <HeroesInfo>k__BackingField: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b,
     type: 2}
   <nbHealthHeroInitial>k__BackingField: 10

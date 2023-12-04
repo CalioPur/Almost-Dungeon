@@ -24,14 +24,14 @@ public class TickManager : MonoBehaviour
     private float beatInterval;
     private float nextTickTime;
 
-    void Start()
+    void Awake()
     {
-        GameManager.OnGameStartEvent += LaunchBPM;
+        GameManager.OnEndDialogEvent += LaunchBPM;
     }
 
     private void OnDisable()
     {
-        GameManager.OnGameStartEvent -= LaunchBPM;
+        GameManager.OnEndDialogEvent -= LaunchBPM;
     }
     
     void LaunchBPM()
