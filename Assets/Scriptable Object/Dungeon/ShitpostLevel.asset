@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: ShitpostLevel
   m_EditorClassIdentifier: 
   <Deck>k__BackingField:
-  - {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-  - {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
-  - {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-  - {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd, type: 2}
+  - cardToBuild: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
+    nbToBuild: 10
+  - cardToBuild: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
+    nbToBuild: 10
+  - cardToBuild: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
+    nbToBuild: 10
+  - cardToBuild: {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
+    nbToBuild: 10
+  - cardToBuild: {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd, type: 2}
+    nbToBuild: 0
+  - cardToBuild: {fileID: 11400000, guid: be0c7f9793aaafa4fa212e0dc84e3558, type: 2}
+    nbToBuild: 0
   <initialNbCardInHand>k__BackingField: 6
   <HeroesInfo>k__BackingField: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32,
     type: 2}
