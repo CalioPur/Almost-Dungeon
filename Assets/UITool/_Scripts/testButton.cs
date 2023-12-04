@@ -35,6 +35,7 @@ public class testButton : MonoBehaviour
 
     void SetupMainMenuInteractions()
     {
+        if(!menuUiDocument) return;
         menu_root_element = menuUiDocument.rootVisualElement;
         var startGameButton = menu_root_element.Q<Button>("StartGame");
         //change label of the button
@@ -149,7 +150,7 @@ public class testButton : MonoBehaviour
         SceneManager.LoadScene(1);
     }
     
-    public void OpenSettings(ClickEvent ev)
+    void OpenSettings(ClickEvent ev)
     {
         settings.SetActive(true);
         SetupSettingsInteractions();
@@ -158,5 +159,11 @@ public class testButton : MonoBehaviour
     void ExitGame(ClickEvent ev)
     {
         Application.Quit();
+    }
+    
+    public void OpenSettings()
+    {
+        settings.SetActive(true);
+        SetupSettingsInteractions();
     }
 }
