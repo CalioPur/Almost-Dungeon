@@ -9,6 +9,7 @@ public class HandsManager : MonoBehaviour
 {
     public static event Action<CardHand> OnCardSelectedEvent;
     public static event Action<TileData, CardHand> OnCardTryToPlaceEvent;
+    public static event Action<CardHand> OnCardWasDiscardedEvent;
     
     [Header("References")] [SerializeField]
     private List<CardHand> slotsHand;
@@ -28,13 +29,15 @@ public class HandsManager : MonoBehaviour
         MovementManager.OnTilePosedEvent += MoveCard;
         MovementManager.OnFinishToPose += ReorganizeHand;
         MovementManager.OnTileSelectedEvent += PlaceSolution;
+        MovementManager.OnDiscardCardEvent += DiscardCard;
     }
-    
+
     private void OnDisable()
     {
         MovementManager.OnTilePosedEvent -= MoveCard;
         MovementManager.OnFinishToPose -= ReorganizeHand;
         MovementManager.OnTileSelectedEvent -= PlaceSolution;
+        MovementManager.OnDiscardCardEvent -= DiscardCard;
     }
 
     private void MoveCard(TileData _, CardInfoInstance cardInfo)
@@ -127,6 +130,7 @@ public class HandsManager : MonoBehaviour
             if (i < Hand.Count)
             {
                 slotsHand[i].SetCard(Hand[i]);
+                slotsHand[i].RefreshCard();
                 
             }
             else
@@ -140,5 +144,13 @@ public class HandsManager : MonoBehaviour
     {
         List<CardHand> availableSlots = slotsHand.Where(t => t.Occupied == false).ToList();
         return (availableSlots.Count > 0 ) ? availableSlots[0] : null;
+    }
+    
+    private void DiscardCard(CardHand obj)
+    {
+        MoveCard(null, obj.Card);
+        ReorganizeHand(obj.Card);
+        MovementManager.Instance.SetSelectedCard(null);
+        OnCardWasDiscardedEvent?.Invoke(obj);
     }
 }

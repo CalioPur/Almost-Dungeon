@@ -80,6 +80,13 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         // RefreshCard();
     }
 
+    public void RefreshCard()
+    {
+        img.sprite = Card.So.imgOnHand;
+        img.color = NormalColor;
+        DescriptionText.text = Card.So.description;
+    }
+    
     public void InitCard(CardInfoInstance _card, bool resetRotation = true)
     {
         if (resetRotation)
