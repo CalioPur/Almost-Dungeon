@@ -37,6 +37,8 @@ public class TileData : MonoBehaviour
     public bool isExit = false;
 
     public bool isVisited = false;
+    
+    public bool isRoom = false;
     public bool PiecePlaced => _instance != null;
     public CardInfoInstance CardInstance { get; set; }
 

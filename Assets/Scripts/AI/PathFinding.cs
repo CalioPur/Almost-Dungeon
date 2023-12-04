@@ -76,7 +76,7 @@ public class PathFinding
             case Personnalities.HurryForTheExit when exits.Count == 0:
             {
                 BreakFreeFromNoExit(startPos, map);
-                MapManager.Instance.CheckAllTilesTypeAndRotation();
+                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
             }
             case Personnalities.TheExplorer when unvisitedTiles.Count > 0:
@@ -100,7 +100,7 @@ public class PathFinding
             case Personnalities.TheExplorer when exits.Count == 0:
             {
                 BreakFreeFromNoExit(startPos, map);
-                MapManager.Instance.CheckAllTilesTypeAndRotation();
+                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
             }
             case Personnalities.TheKiller when tileWithEnemies.Count > 0:
@@ -124,7 +124,7 @@ public class PathFinding
             case Personnalities.TheKiller when exits.Count == 0:
             {
                 BreakFreeFromNoExit(startPos, map);
-                MapManager.Instance.CheckAllTilesTypeAndRotation();
+                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
             }
             case Personnalities.TheSissy when tileWithEnemies.Count > 0:
@@ -165,7 +165,7 @@ public class PathFinding
             case Personnalities.TheSissy when exits.Count == 0:
             {
                 BreakFreeFromNoExit(startPos, map);
-                MapManager.Instance.CheckAllTilesTypeAndRotation();
+                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
             }
             default:

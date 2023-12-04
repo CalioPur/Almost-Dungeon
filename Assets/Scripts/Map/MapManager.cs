@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Networking;
 using Random = UnityEngine.Random;
 
 public class MapManager : MonoBehaviour
@@ -14,16 +12,31 @@ public class MapManager : MonoBehaviour
     [field: SerializeField] public int width { get; private set; }
     [field: SerializeField] public int height { get; private set; }
 
+    public MapManagerTools MapManagerTools => _mapManagerTools;
+
+    public Sprite[] _sprites;
+    
+    private string path = "Sprites";
+
     [SerializeField] private GameObject walls, floor;
     [SerializeField] private Transform map;
     [SerializeField] private FogPainter fogPainter;
-    private CardInfo[] cards;
-    private TileData[,] mapArray;
+    public CardInfo[] cards;
+    public TileData[,] mapArray;
+    private readonly MapManagerTools _mapManagerTools;
+
+    public MapManager()
+    {
+        _mapManagerTools = new MapManagerTools(this);
+    }
 
     private void Awake()
     {
         Instance = this;
         DeckManager.DistributeCardEvent += InitCards;
+        
+        //open path
+        _sprites = Resources.LoadAll<Sprite>(path);
     }
 
     public Vector2Int GetSizeDungeon()
@@ -83,8 +96,8 @@ public class MapManager : MonoBehaviour
         //
         //     CheckTileToManipulateRandomPosition(cardInstance);
         // }
-        SetConnectedToPath();
-        SetExits();
+        MapManagerTools.SetConnectedToPath();
+        MapManagerTools.SetExits();
     }
 
     private void CheckTileToManipulateRandomPosition(CardInfoInstance cardInstance)
@@ -106,42 +119,8 @@ public class MapManager : MonoBehaviour
             card.removeSelection();
         }
         OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
-        SetConnectedToPath();
-        SetExits();
-    }
-
-    private void SetExits()
-    {
-        for (int i = 0; i < width - 2; i++)
-        for (int j = 0; j < height - 2; j++)
-            if (mapArray[i, j].isConnectedToPath)
-                mapArray[i, j].isExit = ((j == 0 && mapArray[i, j].hasDoorDown) ||
-                                         (mapArray[i, j].hasDoorDown && !mapArray[i, j - 1].PiecePlaced) ||
-                                         (j == height - 3 && mapArray[i, j].hasDoorUp) ||
-                                         (mapArray[i, j].hasDoorUp && !mapArray[i, j + 1].PiecePlaced) ||
-                                         (i == 0 && mapArray[i, j].hasDoorLeft) ||
-                                         (mapArray[i, j].hasDoorLeft && !mapArray[i - 1, j].PiecePlaced) ||
-                                         (i == width - 3 && mapArray[i, j].hasDoorRight) ||
-                                         (mapArray[i, j].hasDoorRight && !mapArray[i + 1, j].PiecePlaced));
-    }
-
-    private void SetConnectedToPath()
-    {
-        for (int i = 0; i < width - 2; i++)
-        {
-            for (int j = 0; j < height - 2; j++)
-            {
-                if (mapArray[i, j].isConnectedToPath) continue;
-                if (i > 0 && mapArray[i - 1, j].isConnectedToPath && mapArray[i, j].hasDoorLeft)
-                    mapArray[i, j].isConnectedToPath = true;
-                else if (i < width - 3 && mapArray[i + 1, j].isConnectedToPath && mapArray[i, j].hasDoorRight)
-                    mapArray[i, j].isConnectedToPath = true;
-                else if (j > 0 && mapArray[i, j - 1].isConnectedToPath && mapArray[i, j].hasDoorDown)
-                    mapArray[i, j].isConnectedToPath = true;
-                else if (j < height - 3 && mapArray[i, j + 1].isConnectedToPath && mapArray[i, j].hasDoorUp)
-                    mapArray[i, j].isConnectedToPath = true;
-            }
-        }
+        MapManagerTools.SetConnectedToPath();
+        MapManagerTools.SetExits();
     }
 
     public void InitEnterDungeon(CardInfoInstance card, Vector2Int normsX, Vector2Int normsY, out Vector3 pos, out Vector2Int startPos)
@@ -153,8 +132,8 @@ public class MapManager : MonoBehaviour
 
         mapArray[startPos.x, startPos.y].isConnectedToPath = true;
         mapArray[startPos.x, startPos.y].isVisited = true;
-        SetConnectedToPath();
-        SetExits();
+        MapManagerTools.SetConnectedToPath();
+        MapManagerTools.SetExits();
         GetWorldPosFromTilePos(startPos, out pos);
     }
 
@@ -233,8 +212,10 @@ public class MapManager : MonoBehaviour
                 if (mapArray[x + 1, y].PiecePlaced) mapArray[x + 1, y].hasDoorLeft = true;
                 break;
         }
+        
+        mapArray[x, y].isRoom = mapArray[x, y].img.sprite.name.Contains("Room");
 
-        CheckAllTilesTypeAndRotation();
+        MapManagerTools.CheckAllTilesTypeAndRotation();
     }
 
     void SetTileAtPosition(CardInfoInstance card, int posX, int posY)
@@ -301,132 +282,6 @@ public class MapManager : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void CheckAllTilesTypeAndRotation()
-    {
-        for (int i = 0; i < width - 2; i++)
-        {
-            for (int j = 0; j < height - 2; j++)
-            {
-                CheckTileTypeAndRotation(mapArray[i, j]);
-            }
-        }
-
-        SetConnectedToPath();
-        SetExits();
-    }
-
-    private void CheckTileTypeAndRotation(TileData tileData)
-    {
-        if (tileData.img.sprite.name == "EnterDungeon") return;
-        if (isLTile(tileData))
-        {
-            tileData.img.sprite = cards.First(x => x.imgOnMap.name == "LWay").imgOnMap;
-            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromLTile(tileData), 0);
-        }
-        else if (isStraightTile(tileData))
-        {
-            tileData.img.sprite = cards.First(x => x.imgOnMap.name == "SimpleWay").imgOnMap;
-            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromStraightTile(tileData), 0);
-        }
-        else if (isTTile(tileData))
-        {
-            tileData.img.sprite = cards.First(x => x.imgOnMap.name == "TWay").imgOnMap;
-            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromTTile(tileData), 0);
-        }
-        else if (isCrossTile(tileData))
-        {
-            print("it is a cross tile");
-            tileData.img.sprite = cards.First(x => x.imgOnMap.name == "XRoom").imgOnMap;
-            tileData.img.sprite = cards[3].imgOnMap;
-        }
-        else if (isDeadEndTile(tileData))
-        {
-            tileData.img.sprite = cards.First(x => x.imgOnMap.name == "Sas").imgOnMap;
-            tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromDeadEndTile(tileData), 0);
-        }
-    }
-
-    private bool isLTile(TileData data)
-    {
-        return data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp ||
-               data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
-               !data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp ||
-               !data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp;
-    }
-
-    private float GetRotationFromLTile(TileData data)
-    {
-        return data.hasDoorDown switch
-        {
-            true when data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp => 0,
-            true when !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 270,
-            false when !data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp => 180,
-            false when data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp => 90,
-            _ => 0
-        };
-    }
-
-    private bool isStraightTile(TileData data)
-    {
-        return data.hasDoorDown && !data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp ||
-               !data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp;
-    }
-
-    private float GetRotationFromStraightTile(TileData data)
-    {
-        return data.hasDoorDown switch
-        {
-            true when !data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp => 90,
-            false when !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 0,
-            _ => 0
-        };
-    }
-
-    private bool isTTile(TileData data)
-    {
-        return data.hasDoorDown && data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
-               !data.hasDoorDown && data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp ||
-               data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp ||
-               data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp;
-    }
-
-    private float GetRotationFromTTile(TileData data)
-    {
-        return data.hasDoorDown switch
-        {
-            true when data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 270,
-            false when data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp => 90,
-            true when !data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp => 180,
-            true when data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp => 0,
-            _ => 0
-        };
-    }
-
-    private bool isCrossTile(TileData data)
-    {
-        return data.hasDoorDown && data.hasDoorLeft && data.hasDoorRight && data.hasDoorUp;
-    }
-
-    private bool isDeadEndTile(TileData data)
-    {
-        return data.hasDoorDown && !data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp ||
-               !data.hasDoorDown && data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp ||
-               !data.hasDoorDown && !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp ||
-               !data.hasDoorDown && !data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp;
-    }
-
-    private float GetRotationFromDeadEndTile(TileData data)
-    {
-        return data.hasDoorDown switch
-        {
-            true when !data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp => 270,
-            false when data.hasDoorLeft && !data.hasDoorRight && !data.hasDoorUp => 0,
-            false when !data.hasDoorLeft && data.hasDoorRight && !data.hasDoorUp => 180,
-            false when !data.hasDoorLeft && !data.hasDoorRight && data.hasDoorUp => 90,
-            _ => 0
-        };
     }
 
     public TileData[,] getMapArray()
