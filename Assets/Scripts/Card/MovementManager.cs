@@ -167,7 +167,6 @@ public class MovementManager : MonoBehaviour
             Input.mousePosition.y < _rectTransform.position.y + _rectTransform.sizeDelta.y / 2)
         {
             if (selectedCard == null) return;
-            Debug.Log("Discard " + selectedCard.Card.So.name);
             selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
             OnDiscardCardEvent?.Invoke(selectedCard);
             return;
