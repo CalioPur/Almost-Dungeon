@@ -1,0 +1,27 @@
+.importantButton {
+    font-size: 60px;
+    -unity-font-style: bold;
+    color: rgb(36, 36, 36);
+    border-top-width: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 35%;
+    -unity-text-outline-width: 3px;
+    word-spacing: 0;
+    letter-spacing: 0;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.importantButton:hover {
+    color: rgb(12, 12, 12);
+    -unity-text-outline-color: rgba(99, 0, 255, 0);
+    -unity-text-outline-width: 1px;
+}

@@ -1,0 +1,10 @@
+.slider {
+    align-items: auto;
+    justify-content: flex-end;
+    align-self: center;
+    width: 85%;
+    font-size: 30px;
+    -unity-text-align: upper-right;
+    letter-spacing: 0;
+    text-shadow: 2px 2px 0.5px rgb(55, 55, 55);
+}
