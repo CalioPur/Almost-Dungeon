@@ -34,6 +34,7 @@ public class EmotesManager : MonoBehaviour
     public void PlayEmote(EmoteType type)
     {
         emoteDictionary[type].PlayEmote();
+        SoundManagerIngame.Instance.PlaySound(type);
     }
     
     public void StopEmote(EmoteType type)

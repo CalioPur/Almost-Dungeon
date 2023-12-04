@@ -12,6 +12,7 @@ public abstract class MinionData : TrapData
     [SerializeField] protected Transform tr;
     [SerializeField] protected MinionBTBase bt;
     [SerializeField] protected AnimationQueue animQueue;
+    [SerializeField] protected EmotesManager emotesManager;
     
     public void GetHeroPos()
     {
@@ -63,5 +64,10 @@ public abstract class MinionData : TrapData
     {
         base.OnDead();
         TickManager.UnsubscribeFromMovementEvent(MovementType.Monster, entityId);
+    }
+
+    public void PlayEmote(EmoteType emote)
+    {
+        emotesManager.PlayEmote(emote);
     }
 }

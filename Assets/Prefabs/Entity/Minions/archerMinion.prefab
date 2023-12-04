@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 9196603082216172584}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &3666571859102276325
@@ -104,11 +105,13 @@ MonoBehaviour:
   indexX: 0
   indexY: 0
   mapManager: {fileID: 0}
-  SO: {fileID: 11400000, guid: 3cb01d901b0933f4e9298c64e31af304, type: 2}
-  tr: {fileID: 5242026796885018233}
   sprite: {fileID: 3666571859102276325}
+  SO: {fileID: 11400000, guid: 3cb01d901b0933f4e9298c64e31af304, type: 2}
+  indexOffsetTile: 0
+  tr: {fileID: 5242026796885018233}
   bt: {fileID: 62822888144230992}
   animQueue: {fileID: 6402256854860038529}
+  emotesManager: {fileID: 172181208815515307}
 --- !u!114 &-4941691768216947425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +127,7 @@ MonoBehaviour:
   minionData: {fileID: 5465465546169685263}
   heroPosition: {x: 0, y: 0}
   dir: 4
+  firstTimeSeeHero: 1
 --- !u!114 &6402256854860038529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,3 +153,89 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackboard: {fileID: -4941691768216947425}
+--- !u!1001 &5460099456565373262
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5242026796885018233}
+    m_Modifications:
+    - target: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819403921954875327, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+        type: 3}
+      propertyPath: m_Name
+      value: EmotesMinion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf11df0b8f5f2a64f92efbdbdc660db1, type: 3}
+--- !u!114 &172181208815515307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5306821885283262437, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5460099456565373262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a7063034c6f3144a0fb68f85f36670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &9196603082216172584 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5460099456565373262}
+  m_PrefabAsset: {fileID: 0}

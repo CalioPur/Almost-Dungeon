@@ -17,6 +17,11 @@ public class HeroIsInSight : Node
         if (blackboard.heroPosition.y == y && blackboard.heroPosition.x == x)
         {
             blackboard.dir = DirectionToMove.None;
+            if (blackboard.firstTimeSeeHero)
+            {
+                blackboard.firstTimeSeeHero = false;
+                blackboard.minionData.PlayEmote(EmoteType.Detected);
+            }
             return NodeState.Success;
         }
 
@@ -29,6 +34,11 @@ public class HeroIsInSight : Node
                     y++;
                     if (blackboard.heroPosition.y == y)
                     {
+                        if (blackboard.firstTimeSeeHero)
+                        {
+                            blackboard.firstTimeSeeHero = false;
+                            blackboard.minionData.PlayEmote(EmoteType.Detected);
+                        }
                         blackboard.dir = DirectionToMove.Up;
                         return NodeState.Success;
                     }
@@ -41,6 +51,11 @@ public class HeroIsInSight : Node
                     y--;
                     if (blackboard.heroPosition.y == y)
                     {
+                        if (blackboard.firstTimeSeeHero)
+                        {
+                            blackboard.firstTimeSeeHero = false;
+                            blackboard.minionData.PlayEmote(EmoteType.Detected);
+                        }
                         blackboard.dir = DirectionToMove.Down;
                         return NodeState.Success;
                     }
@@ -55,6 +70,11 @@ public class HeroIsInSight : Node
                     x++;
                     if (blackboard.heroPosition.x == x)
                     {
+                        if (blackboard.firstTimeSeeHero)
+                        {
+                            blackboard.firstTimeSeeHero = false;
+                            blackboard.minionData.PlayEmote(EmoteType.Detected);
+                        }
                         blackboard.dir = DirectionToMove.Right;
                         return NodeState.Success;
                     }
@@ -67,10 +87,19 @@ public class HeroIsInSight : Node
                     x--;
                     if (blackboard.heroPosition.x == x)
                     {
+                        if (blackboard.firstTimeSeeHero)
+                        {
+                            blackboard.firstTimeSeeHero = false;
+                            blackboard.minionData.PlayEmote(EmoteType.Detected);
+                        }
                         blackboard.dir = DirectionToMove.Left;
                         return NodeState.Success;
                     }
                 }
+        if (!blackboard.firstTimeSeeHero)
+        {
+            blackboard.firstTimeSeeHero = true;
+        }
 
         blackboard.dir = DirectionToMove.Error;
         return NodeState.Failure;
