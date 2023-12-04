@@ -6,20 +6,25 @@ public class MovementManager : MonoBehaviour
     public static event Action<TileData> OnTileSelectedEvent;
     public static event Action<TileData, CardInfoInstance> OnTilePosedEvent;
     public static event Action<CardInfoInstance> OnFinishToPose;
+    public static event Action<CardHand> OnDiscardCardEvent; 
 
 
     [SerializeField] private GameObject gridVisualizer;
-    
-    public TileData tileToPreview;
-    
     private TileData selectedTile;
     private Vector3 offset;
     
     private Vector3 mousePos;
     
+    [SerializeField] private GameObject discardPosition;
+    
     public static MovementManager Instance { get; private set; }
     CardHand selectedCard;
-    
+
+    private void Start()
+    {
+        _rectTransform = discardPosition.GetComponent<RectTransform>();
+    }
+
     private void Awake()
     {
         if (Instance != null)
@@ -136,6 +141,8 @@ public class MovementManager : MonoBehaviour
     }
 
     private string nameOf = null;
+    private RectTransform _rectTransform;
+
     private void HandleMouseDrag()
     {
         if (selectedCard == null) return;
@@ -153,6 +160,18 @@ public class MovementManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        
+        if (Input.mousePosition.x > _rectTransform.position.x - _rectTransform.sizeDelta.x / 2 &&
+            Input.mousePosition.x < _rectTransform.position.x + _rectTransform.sizeDelta.x / 2 &&
+            Input.mousePosition.y > _rectTransform.position.y - _rectTransform.sizeDelta.y / 2 &&
+            Input.mousePosition.y < _rectTransform.position.y + _rectTransform.sizeDelta.y / 2)
+        {
+            if (selectedCard == null) return;
+            Debug.Log("Discard " + selectedCard.Card.So.name);
+            selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
+            OnDiscardCardEvent?.Invoke(selectedCard);
+            return;
+        }
 
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
