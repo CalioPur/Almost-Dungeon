@@ -8,13 +8,14 @@ using UnityEngine.UI;
 
 public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    public static event Action<CardHand> OnCardSelectedEvent;
-
+    public event Action<CardHand> OnCardWasPointedEvent;
+    
     public bool Occupied { get; set; } = false;
     public CardInfoInstance Card;
 
 
-    [SerializeField] public Image img;
+    [SerializeField] private Image img;
+    [SerializeField] private RectTransform Tr;
 
     [Header("Color settings")] [SerializeField]
     private Color HoverColor = Color.gray;
@@ -36,6 +37,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!isSelected) img.color = HoverColor;
         BackgroundDescription.gameObject.SetActive(true);
     }
+    
 
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -46,18 +48,14 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        // if (eventData.button == PointerEventData.InputButton.Right)
-        // {
-        //     //enleve la selection de la carte 
-        //     if (!isSelected) return;
-        //     isSelected = false;
-        //     img.color = NormalColor;
-        //     OnCardSelectedEvent?.Invoke(null);
-        // }
-
         if (!Occupied) return;
-        OnCardSelectedEvent?.Invoke(this);
+        OnCardWasPointedEvent?.Invoke(this);
         BackgroundDescription.gameObject.SetActive(false);
+    }
+    
+    public RectTransform GetTr()
+    {
+        return Tr;
     }
 
     public void EmptyCard()
@@ -65,43 +63,42 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         transform.rotation = Quaternion.Euler(0, 0, 0);
         Card = null;
         img.sprite = null;
+        ChangeSelection(false);
         img.gameObject.SetActive(false);
         isSelected = false;
         Occupied = false;
     }
-    
+
     public void MoveCardTo(CardHand other)
     {
-
         InitCard(other.Card, false);
-        other.img.transform.position = transform.position;
+        //other.img.transform.position = transform.position;
         Occupied = other.Occupied;
-        if (other.Occupied && other.isSelected)
-        {
-            other.removeSelection();
-            addSelection();
-        }
+        bool tmp = Card != null;
+        img.enabled = Card != null;
+        //     other.Card.CopyValues(Card);
+        // RefreshCard();
     }
 
     public void InitCard(CardInfoInstance _card, bool resetRotation = true)
     {
-        img.transform.position = transform.position;
-        img.transform.rotation = Quaternion.Euler(0, 0, 0);
-        Card = _card;
-        img.sprite = (_card != null) ? Card.So.imgOnHand : null;
+        if (resetRotation)
+            img.transform.position = transform.position;
+        Card = (_card != null) ? new CardInfoInstance(_card.So) : null;
+        img.sprite = (_card != null) ? _card.So.imgOnHand : null;
         img.color = NormalColor;
         isSelected = false;
-        DescriptionText.text = (_card != null) ? Card.So.description : "";
+        DescriptionText.text = (_card != null) ? _card.So.description : "";
         if (!resetRotation && (_card != null))
         {
-            int nb = Card.Rotation / 90;
+            img.transform.rotation = Quaternion.Euler(0, 0, 0);
+            int nb = _card.Rotation / 90;
             //Card.Rotation = 0;
             for (int i = 0; i < nb; i++)
             {
                 //Card.AddRotation(true);
                 GetImage().transform.Rotate(0, 0, 90);
             }
-               
         }
     }
 
@@ -118,14 +115,19 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void removeSelection()
     {
-        if (!isSelected) return;
-        OnCardSelectedEvent?.Invoke(null);
-        DragAndDropManager.Instance.SetSelectedCard(null);
+        ChangeSelection(false);
     }
     
     public void addSelection()
     {
-        isSelected = true;
-        OnCardSelectedEvent?.Invoke(this);
+        ChangeSelection(true);
+    }
+
+    public void SetCard(CardInfoInstance cardInfoInstance)
+    {
+        Card = cardInfoInstance;
+        img.sprite = cardInfoInstance.So.imgOnHand;
+        img.gameObject.SetActive(true);
+        Occupied = true;
     }
 }

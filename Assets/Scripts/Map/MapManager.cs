@@ -23,7 +23,7 @@ public class MapManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        CardsManager.DistributeCardEvent += InitCards;
+        DeckManager.DistributeCardEvent += InitCards;
     }
 
     public Vector2Int GetSizeDungeon()
@@ -60,7 +60,7 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        CardsManager.OnCardTryToPlaceEvent += CheckCardPos;
+        HandsManager.OnCardTryToPlaceEvent += CheckCardPos;
     }
 
     public void CreateFog(Vector2Int StarterPos)
@@ -102,7 +102,7 @@ public class MapManager : MonoBehaviour
         canBePlaced = CheckPosWithData(data, card);
         if (!canBePlaced)
         {
-            card.img.transform.position = card.transform.position;
+            card.GetImage().transform.position = card.transform.position;
             card.removeSelection();
         }
         OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
@@ -447,8 +447,8 @@ public class MapManager : MonoBehaviour
     
     private void OnDisable()
     {
-        CardsManager.DistributeCardEvent -= InitCards;
-        CardsManager.OnCardTryToPlaceEvent -= CheckCardPos;
+        DeckManager.DistributeCardEvent -= InitCards;
+        HandsManager.OnCardTryToPlaceEvent -= CheckCardPos;
         OnCardTryToPlaceEvent = null;
     }
 }

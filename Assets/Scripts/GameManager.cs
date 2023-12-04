@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         if (!canBePlaced) 
         {
-            __.img.transform.position = __.transform.position;
+            __.GetImage().transform.position = __.transform.position;
             __.removeSelection();
             return;
         }

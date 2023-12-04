@@ -8,7 +8,7 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] static int currentLevel = 0;
     [SerializeField] private List<DungeonSO> dungeonSos;
     
-    CardsManager cardsManager;
+    DeckManager cardsManager;
     TickManager tickManager;
     GameManager gameManager;
     
@@ -28,7 +28,7 @@ public class DungeonManager : MonoBehaviour
             return;
         }
         var dungeonSo = dungeonSos[level];
-        cardsManager = FindObjectOfType<CardsManager>();
+        cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = dungeonSo.Deck;
         cardsManager.nbCardOnStartToDraw = dungeonSo.initialNbCardInHand;
         

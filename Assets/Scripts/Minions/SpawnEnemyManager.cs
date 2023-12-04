@@ -29,12 +29,12 @@ public class SpawnEnemyManager : MonoBehaviour
 
     private void OnEnable()
     {
-        DragAndDropManager.OnTilePosedEvent += SpawnMinionOnTile;
+        MovementManager.OnTilePosedEvent += SpawnMinionOnTile;
     }
     
     private void OnDisable()
     {
-        DragAndDropManager.OnTilePosedEvent -= SpawnMinionOnTile;
+        MovementManager.OnTilePosedEvent -= SpawnMinionOnTile;
     }
 
     private void SpawnMinionOnTile(TileData tile, CardInfoInstance card)

@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-public class DragAndDropManager : MonoBehaviour
+public class MovementManager : MonoBehaviour
 {
     public static event Action<TileData> OnTileSelectedEvent;
     public static event Action<TileData, CardInfoInstance> OnTilePosedEvent;
-    public static event Action OnFinishToPose;
+    public static event Action<CardInfoInstance> OnFinishToPose;
 
 
     [SerializeField] private GameObject gridVisualizer;
@@ -17,7 +17,7 @@ public class DragAndDropManager : MonoBehaviour
     
     private Vector3 mousePos;
     
-    public static DragAndDropManager Instance { get; private set; }
+    public static MovementManager Instance { get; private set; }
     CardHand selectedCard;
     
     private void Awake()
@@ -44,7 +44,7 @@ public class DragAndDropManager : MonoBehaviour
     {
         if (!canBePlaced)
         {
-            card.img.gameObject.transform.position = card.transform.position;
+            card.GetImage().gameObject.transform.position = card.transform.position;
             card.removeSelection();
             return;
         }
@@ -52,13 +52,23 @@ public class DragAndDropManager : MonoBehaviour
         data.SetInstance(card.Card);
         OnTilePosedEvent?.Invoke(data, card.Card);
         //card.EmptyCard();
-        OnFinishToPose?.Invoke();
-        card.img.gameObject.transform.position = card.transform.position;
-        card.removeSelection();
+        OnFinishToPose?.Invoke(card.Card);
         selectedCard = null;
-        CardsManager.Instance.SetSelectedCard(null);
+        card.GetImage().gameObject.transform.position = card.transform.position;
+        // card.removeSelection();
+        // selectedCard = null;
+        // CardsManager.Instance.SetSelectedCard(null);
     }
 
+    private void RotateSelection(bool direction)
+    {
+        if (selectedCard != null)
+        {
+            selectedCard.GetImage().transform.Rotate(0, 0, 90 * (direction ? 1 : -1));
+            selectedCard.Card.AddRotation(direction);
+        }
+    }
+    
     void Update()
     {
         gridVisualizer.GetComponent<Renderer>().sharedMaterial.SetVector("_Position", GetMousePositionOnGrid());
@@ -73,6 +83,28 @@ public class DragAndDropManager : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             HandleMouseUp();
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            RotateSelection(true);
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            RotateSelection(false);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            RotateSelection(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RotateSelection(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            RotateSelection(true);
         }
     }
     
@@ -103,17 +135,17 @@ public class DragAndDropManager : MonoBehaviour
         OnTileSelectedEvent?.Invoke(tile);
     }
 
-    private string name = null;
+    private string nameOf = null;
     private void HandleMouseDrag()
     {
         if (selectedCard == null) return;
-        if (name == null || name != selectedCard.name)
+        if (nameOf == null || nameOf != selectedCard.name)
         {
-            name = selectedCard.name;
+            nameOf = selectedCard.name;
             // selectedCard.ChangeSelection(false);
             // CardsManager.Instance.SetSelectedCard(null);
         }
-        selectedCard.img.gameObject.transform.position = Input.mousePosition;
+        selectedCard.GetImage().gameObject.transform.position = Input.mousePosition;
     }
 
 
@@ -124,7 +156,7 @@ public class DragAndDropManager : MonoBehaviour
 
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
-            if (selectedCard != null) selectedCard.img.gameObject.transform.position = selectedCard.transform.position;
+            if (selectedCard != null) selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
             return;
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();

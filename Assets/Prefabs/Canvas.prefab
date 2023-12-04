@@ -785,7 +785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 145}
+  m_AnchoredPosition: {x: 216, y: 145}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545632283130209412
@@ -2439,7 +2439,6 @@ MonoBehaviour:
     type: 3}
   dragonImage: {fileID: 6967960205811346596}
   shakeDuration: 0.5
-  currentHealth: 8
   damage: 3
 --- !u!1 &6147881862711745053
 GameObject:
@@ -2965,7 +2964,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6007145856728816254}
-  - component: {fileID: 5391404818372816113}
+  - component: {fileID: 82059318102154955}
+  - component: {fileID: 8684507787116597235}
   m_Layer: 5
   m_Name: DeckManager
   m_TagString: Untagged
@@ -2992,7 +2992,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5391404818372816113
+--- !u!114 &82059318102154955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3001,31 +3001,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 6616954391182567827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7df4e41c5007525429e5702ca58364e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 5589c121307fec54e83672e9de1295a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckToBuild:
-  - {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-  - {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936, type: 2}
-  - {fileID: 11400000, guid: fc452d8cc30791a40b65d71caa08f5b1, type: 2}
-  - {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
-  - {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
-  - {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-  - {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
-  - {fileID: 11400000, guid: 7f25b0a51e86e1346975d374f86b7dbd, type: 2}
-  - {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
-  - {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
-  - {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
-  - {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
-  - {fileID: 11400000, guid: f71ad4b17d00e264bafedabcaf487fa8, type: 2}
-  - {fileID: 11400000, guid: 04d799a52176ab249a17e82201cee279, type: 2}
-  - {fileID: 11400000, guid: 22f750f2ecd15de4eaa83fcd82dabbac, type: 2}
-  - {fileID: 11400000, guid: be0c7f9793aaafa4fa212e0dc84e3558, type: 2}
-  - {fileID: 11400000, guid: 246ccb82261b7ca4d9f57f0068f0fa22, type: 2}
-  - {fileID: 11400000, guid: 4007e613041c8f246a6612471df765a9, type: 2}
+  deckToBuild: []
   nbCardOnStartToDraw: 3
   TimerBeforeDrawCard: 2
   TimerAnimationDrawCard: 0.2
+  DeckTr: {fileID: 4519632175122552299}
+  handsManager: {fileID: 8684507787116597235}
+--- !u!114 &8684507787116597235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616954391182567827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570860d1ac7993748b6831a0892b6220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   slotsHand:
   - {fileID: 4802876969633447130}
   - {fileID: 9052175172789201558}
@@ -3033,7 +3029,6 @@ MonoBehaviour:
   - {fileID: 3613060450809185983}
   - {fileID: 5946467939192280288}
   - {fileID: 2010442182230996073}
-  DeckTr: {fileID: 4519632175122552299}
 --- !u!1 &6651510497352859865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3336,7 +3331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -50, y: 25}
+  m_AnchoredPosition: {x: -1270, y: 25}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &3493575600606859132
@@ -4473,9 +4468,9 @@ RectTransform:
   m_Children:
   - {fileID: 6007145856728816254}
   - {fileID: 4519632175122552299}
-  - {fileID: 5375895909958200955}
   - {fileID: 4599485785054712053}
   - {fileID: 3212174651047275594}
+  - {fileID: 5375895909958200955}
   - {fileID: 2566394495566371771}
   - {fileID: 2936864570620190633}
   - {fileID: 2596149099953662770}
