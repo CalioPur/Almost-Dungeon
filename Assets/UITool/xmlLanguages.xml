@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+      <language name="English">
+          <jouer>Play</jouer>
+          <reprendre>Resume</reprendre>
+          <options>Settings</options>
+          <quitter>Quit</quitter>
+          <retour>Back</retour>
+          <langue>Language</langue>
+          <son>Sound</son>
+          <musique>Music</musique>
+          <ecran>Screen</ecran>
+          <pleinEcran>Full screen</pleinEcran>
+          <fenetré>Windowed</fenetré>
+          <sansBordure>Borderless</sansBordure>
+          <menuPrincipal>Main menu</menuPrincipal>
+          <interaction>Press "E" to interact</interaction>
+          
+          <coffreDesc>LOL it's empty</coffreDesc>
+          
+          <panneauDesc>to the left : nothing
+to the right : nothing either
+to the top : idem
+to the bottom : a mountaint of gold !
+just kidding, thers nothing too</panneauDesc>
+          
+      </language>
+    
+      <language name="Français">
+            <jouer>Jouer</jouer>
+            <reprendre>Reprendre</reprendre>
+            <options>Options</options>
+            <quitter>Quitter</quitter>
+            <retour>Retour</retour>
+            <langue>Langue</langue>
+            <son>Son</son>
+            <musique>Musique</musique>
+            <ecran>Ecran</ecran>
+            <pleinEcran>Plein écran</pleinEcran>
+            <fenetré>Fenêtré</fenetré>
+            <sansBordure>Sans bordure</sansBordure>
+            <menuPrincipal>Menu principal</menuPrincipal>
+            <interaction>Appuyez sur "E" pour interagir</interaction>
+            
+            <coffreDesc>MDR il est vide</coffreDesc>
+            <panneauDesc>à gauche : rien
+à droite : toujours rien
+en haut : idem
+en bas : une montagne d'or !
+je rigole, y'a rien non plus</panneauDesc>
+          
+      </language>
+</languages>
+

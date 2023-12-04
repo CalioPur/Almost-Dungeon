@@ -337,6 +337,7 @@ public class MapManager : MonoBehaviour
         }
         else if (isCrossTile(tileData))
         {
+            print("it is a cross tile");
             tileData.img.sprite = cards.First(x => x.imgOnMap.name == "XRoom").imgOnMap;
             tileData.img.sprite = cards[3].imgOnMap;
         }
