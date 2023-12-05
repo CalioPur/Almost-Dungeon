@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: ShitpostLevel
   m_EditorClassIdentifier: 
   <Deck>k__BackingField:
-  - cardToBuild: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
+  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
     nbToBuild: 30
   <initialNbCardInHand>k__BackingField: 6
   <HeroesInfo>k__BackingField: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32,
     type: 2}
-  <nbHealthHeroInitial>k__BackingField: 10
+  <nbHealthHeroInitial>k__BackingField: 50
   <tickData>k__BackingField: 1
   <clampedSpawnEnterDungeonX>k__BackingField: {x: 2, y: 4}
   <clampedSpawnEnterDungeonY>k__BackingField: {x: 2, y: 4}

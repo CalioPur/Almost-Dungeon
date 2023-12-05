@@ -29,3 +29,4 @@ MonoBehaviour:
   <dungeonPreset>k__BackingField:
   - position: {x: 0, y: 0}
     cardInfo: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
+    rotation: 0

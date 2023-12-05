@@ -81,7 +81,7 @@ public class Hero : MonoBehaviour
     }
     private void OnBeginToMove()
     {
-        TickManager.SubscribeToMovementEvent(MovementType.Hero, OnTick, entityId);
+        TickManager.SubscribeToMovementEvent(MovementType.Hero, OnTick, out entityId);
     }
 
     public void OutOfMap()

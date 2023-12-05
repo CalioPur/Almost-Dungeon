@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public enum MovementType
 {
@@ -9,9 +10,15 @@ public enum MovementType
     Monster
 }
 
+public struct TickData
+{
+    public int ID;
+    public Action _action;
+}
+
 public class TickManager : MonoBehaviour
 {
-    private static Dictionary<MovementType, List<Action>> movementEvents = new();
+    private static Dictionary<MovementType, List<TickData>> movementEvents = new();
     private static Dictionary<MovementType, int> entityIds = new();
     public static event Action OnTick;
 
@@ -24,6 +31,7 @@ public class TickManager : MonoBehaviour
     private float beatInterval;
     private float nextTickTime;
     private static bool TickOnPaused = false;
+    private static int index = 0;
 
     void Awake()
     {
@@ -33,6 +41,7 @@ public class TickManager : MonoBehaviour
     private void OnDisable()
     {
         GameManager.OnEndDialogEvent -= LaunchBPM;
+        index = 0;
     }
     
     void LaunchBPM()
@@ -50,14 +59,18 @@ public class TickManager : MonoBehaviour
         InvokeRepeating("Tick", 0f, beatInterval);
     }
 
-    public static void SubscribeToMovementEvent(MovementType movementType, Action movementAction, int entityId)
+    public static void SubscribeToMovementEvent(MovementType movementType, Action movementAction, out int entityId)
     {
         if (!movementEvents.ContainsKey(movementType))
         {
-            movementEvents[movementType] = new List<Action>();
+            movementEvents[movementType] = new List<TickData>();
         }
 
-        movementEvents[movementType].Add(() => movementAction.Invoke());
+        entityId = ++index;
+        TickData newData = new TickData();
+        newData.ID = entityId;
+        newData._action = () => movementAction.Invoke();
+        movementEvents[movementType].Add(newData);
         entityIds[movementType] = entityId;
     }
 
@@ -68,7 +81,7 @@ public class TickManager : MonoBehaviour
             // Check if there are any subscribers before unsubscribing
             if (movementEvents[movementType] != null)
             {
-                movementEvents[movementType].RemoveAll(action => action?.Target.GetHashCode() == entityId);
+                movementEvents[movementType].Remove(movementEvents[movementType].Find(tickData => tickData.ID == entityId));
             }
         }
         else
@@ -89,14 +102,10 @@ public class TickManager : MonoBehaviour
         // Check if the key exists in the dictionary before accessing it
         if (movementEvents.ContainsKey(currentMovementType))
         {
-            foreach (Action movementAction in movementEvents[currentMovementType])
+            foreach (TickData movementAction in movementEvents[currentMovementType])
             {
-                movementAction?.Invoke();
+                movementAction._action?.Invoke();
             }
-        }
-        else
-        {
-            //Debug.LogWarning($"No subscribers found for movement type: {currentMovementType}");
         }
     }
 

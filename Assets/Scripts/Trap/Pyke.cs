@@ -35,7 +35,7 @@ public class Pyke : TrapData
     protected override void Init()
     {
         pykeInstance = SO.CreateInstance();
-        TickManager.SubscribeToMovementEvent(MovementType.Trap, OnTick, entityId);
+        TickManager.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
         Hero.OnGivePosBackEvent += GetHeroPosOnTile;
     }
 

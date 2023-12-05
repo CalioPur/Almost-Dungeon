@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SurpriseEmote : Emote
@@ -8,6 +7,7 @@ public class SurpriseEmote : Emote
     
     public override void PlayEmote()
     {
+        if (!gameObject.activeSelf) return;
         surpriseEmote.enabled = true;
         StartCoroutine(DisableEmote());
     }

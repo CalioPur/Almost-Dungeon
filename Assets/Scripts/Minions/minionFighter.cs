@@ -13,13 +13,6 @@ public class minionFighter : MinionData
         bt.blackboard.heroPosition = pos;
     }
 
-    protected override void OnTick()
-    {
-        if (!bt) return;
-        bt.getOrigin().Evaluate(bt.getOrigin());
-    }
-     
-
      protected override void Init()
      {
          base.Init();

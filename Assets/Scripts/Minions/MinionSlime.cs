@@ -11,12 +11,6 @@ public class MinionSlime : MinionData
         bt.blackboard.heroPosition = pos;
     }
 
-    protected override void OnTick()
-    {
-        if (!bt) return;
-        bt.getOrigin().Evaluate(bt.getOrigin());
-    }
-
     public override void TakeDamage(int damage)
     {
         if (isDead) return;

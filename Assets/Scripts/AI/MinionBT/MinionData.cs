@@ -24,14 +24,16 @@ public abstract class MinionData : TrapData
     {
         OnHeroPosAsked = null;
     }
+    
+    protected override void OnTick()
+    {
+        if (!bt || isDead) return;
+        Debug.Log("OnTick");
+        bt.getOrigin().Evaluate(bt.getOrigin());
+    }
 
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
-        // mapManager.GetTilePosFromWorldPos(pos, out int x, out int y);
-        // Transform tileTransform = mapManager.GetTileDataAtPosition(x, y).transform;
-        //
-        // Vector3 tilePos = mapManager.GetTileDataAtPosition(indexX, indexY).transform.position;
-        // Vector3 offset = tilePos - transform.position;
         animQueue.AddAnim(new AnimToQueue(tr, targetTr,  offset , false, delay));
     }
 
@@ -50,11 +52,14 @@ public abstract class MinionData : TrapData
     public void Revive()
     {
         Init();
+        mapManager.AddMinionOnTile(new Vector2Int(indexX, indexY), this, out indexOffsetTile);
     }
 
     protected override void Init()
     {
         bt.blackboard.Reset();
+        gameObject.SetActive(true);
+        isDead = false;
         minionInstance = SO.CreateInstance();
         if (GameManager.isGameStarted)
             StartListenTick();
@@ -64,12 +69,13 @@ public abstract class MinionData : TrapData
 
     public void StartListenTick()
     {
-        TickManager.SubscribeToMovementEvent(MovementType.Monster, OnTick, entityId);
+        TickManager.SubscribeToMovementEvent(MovementType.Monster, OnTick, out entityId);
     }
 
     public void addAnim(AnimToQueue animToQueue)
     {
         animQueue.AddAnim(animToQueue);
+        Debug.Log("addAnim");
     }
 
     protected override void OnDead()
@@ -86,6 +92,6 @@ public abstract class MinionData : TrapData
 
     private void OnDisable()
     {
-        GameManager.OnGameStartEvent += StartListenTick;
+        GameManager.OnGameStartEvent -= StartListenTick;
     }
 }

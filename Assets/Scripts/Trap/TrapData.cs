@@ -26,7 +26,7 @@ public abstract class TrapData : MonoBehaviour
         mapManager.RemoveEnemyOnTile(
             new Vector2Int(indexX, indexY), this, worldPos);
         
-        Destroy(gameObject, 0.5f);
+       gameObject.SetActive(false);
     }
 
     public void Attack(int damage)
@@ -41,7 +41,7 @@ public abstract class TrapData : MonoBehaviour
     
     public void StartListenTick(MovementType movementType)
     {
-        TickManager.SubscribeToMovementEvent(movementType, OnTick, entityId);
+        TickManager.SubscribeToMovementEvent(movementType, OnTick, out entityId);
     }
     
     public void ShowSprite()
