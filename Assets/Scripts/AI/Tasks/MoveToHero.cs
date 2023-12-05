@@ -1,13 +1,15 @@
 using BehaviourTree;
 using UnityEngine;
 
-public class MoveToHero : Node
+public class MoveToHer : Node
 {
     private MinionBlackboard blackboard;
-    public MoveToHero(MinionBlackboard blackboard)
+    
+    public MoveToHer(MinionBlackboard _blackboard)
     {
-        this.blackboard = blackboard;
+        blackboard = _blackboard;
     }
+    
     public override NodeState Evaluate(Node root)
     {
         blackboard.dir = PathFinding.BFSFindPath(new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), MapManager.Instance.mapArray, Personnalities.MoveToHero);

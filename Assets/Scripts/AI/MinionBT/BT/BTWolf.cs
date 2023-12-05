@@ -9,7 +9,7 @@ public class BTWolf : MinionBTBase
 
         origin = new Sequence(
             new GetHeroPos(blackboard),
-            new MoveToHero(blackboard),
+            new MoveToHer(blackboard),
             new MoveInDirection(blackboard),
             new CheckifFrontOfHero(blackboard),
             new AttackHero(blackboard)
