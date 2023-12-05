@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 public abstract class MinionData : TrapData
 {
     public static event Action OnHeroPosAsked;
+    public static event Action<MinionData> OnMinionDying;
 
     public EnemyInstance minionInstance;
     [HideInInspector] public int indexOffsetTile;
@@ -46,6 +47,11 @@ public abstract class MinionData : TrapData
         }
     }
 
+    public void Revive()
+    {
+        Init();
+    }
+
     protected override void Init()
     {
         bt.blackboard.Reset();
@@ -69,6 +75,7 @@ public abstract class MinionData : TrapData
     protected override void OnDead()
     {
         base.OnDead();
+        OnMinionDying?.Invoke(this);
         TickManager.UnsubscribeFromMovementEvent(MovementType.Monster, entityId);
     }
 

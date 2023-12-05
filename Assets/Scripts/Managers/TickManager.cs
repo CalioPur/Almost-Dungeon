@@ -23,6 +23,7 @@ public class TickManager : MonoBehaviour
 
     private float beatInterval;
     private float nextTickTime;
+    private static bool TickOnPaused = false;
 
     void Awake()
     {
@@ -79,6 +80,7 @@ public class TickManager : MonoBehaviour
 
     void Tick()
     {
+        if (TickOnPaused) return;
         nextTickTime = Time.time;
         OnTick?.Invoke();
 
@@ -96,6 +98,11 @@ public class TickManager : MonoBehaviour
         {
             //Debug.LogWarning($"No subscribers found for movement type: {currentMovementType}");
         }
+    }
+
+    public static void PauseTick(bool pause)
+    {
+        TickOnPaused = pause;
     }
 
 
