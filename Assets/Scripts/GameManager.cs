@@ -48,6 +48,12 @@ public class GameManager : MonoBehaviour
         OnEndDialogEvent?.Invoke();
     }
 
+    private void OnDisable()
+    {
+        OnGameStartEvent -= SpawnHero;
+        OnGameStartEvent = null;
+    }
+
     private void SpawnHero()
     {
         //int randomHero = Random.Range(0, heroesInfos.Count);

@@ -75,4 +75,9 @@ public abstract class MinionData : TrapData
     {
         emotesManager.PlayEmote(emote);
     }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameStartEvent += StartListenTick;
+    }
 }

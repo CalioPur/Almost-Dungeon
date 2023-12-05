@@ -33,6 +33,13 @@ public class DeckManager : MonoBehaviour
         HandsManager.OnCardWasDiscardedEvent += RemoveCard;
     }
 
+    private void OnDisable()
+    {
+        GameManager.OnGameStartEvent -= BeginToDraw;
+        MovementManager.OnFinishToPose -= RemoveCard;
+        HandsManager.OnCardWasDiscardedEvent -= RemoveCard;
+    }
+
     private void RemoveCard(CardHand _)
     {
         cptCardsObtained--;
