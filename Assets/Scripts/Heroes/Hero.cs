@@ -78,6 +78,7 @@ public class Hero : MonoBehaviour
     private void GivePosBack()
     {
         OnGivePosBackEvent?.Invoke(IndexHeroPos);
+        PathFinding.HeroPos = IndexHeroPos;
     }
     private void OnBeginToMove()
     {

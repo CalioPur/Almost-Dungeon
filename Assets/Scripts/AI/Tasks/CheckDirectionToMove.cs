@@ -16,7 +16,7 @@ public class CheckDirectionToMove : Node
 
     public override NodeState Evaluate(Node root)
     {
-        blackboard.directionToMove = PathFinding.BFSGoToClosestExit(
+        blackboard.directionToMove = PathFinding.BFSFindPath(
             blackboard.hero.GetIndexHeroPos(),
             blackboard.hero.mapManager.getMapArray(), blackboard.personality);
         Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();
