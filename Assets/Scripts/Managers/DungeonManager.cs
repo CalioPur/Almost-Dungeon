@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DungeonManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class DungeonManager : MonoBehaviour
         if (level >= dungeonSos.Count)
         {
             Debug.LogError("Level is too high");
+            SceneManager.LoadScene(0);
             return;
         }
         var dungeonSo = dungeonSos[level];
