@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] private Button playButton;
     [SerializeField] private Button quitButton;
+    [SerializeField] private bool  resetLevelIndexOnPlay = true;
     
     void Start()
     {
@@ -22,6 +23,7 @@ public class Menu : MonoBehaviour
 
     private void Play()
     {
+        if (resetLevelIndexOnPlay) DungeonManager.ResetLevelIndex();
         SceneManager.LoadScene(1);
     }
 }

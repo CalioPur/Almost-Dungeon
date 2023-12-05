@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class DungeonManager : MonoBehaviour
 {
-    [SerializeField] static int currentLevel = 0;
     [SerializeField] private List<DungeonSO> dungeonSos;
     [SerializeField] private MapManager mapManager;
     
-    DeckManager cardsManager;
-    TickManager tickManager;
-    GameManager gameManager;
+    private static int currentLevel = 0;
+    private DeckManager cardsManager;
+    private TickManager tickManager;
+    private GameManager gameManager;
     
     
     private void Awake()
@@ -50,5 +50,10 @@ public class DungeonManager : MonoBehaviour
     {
         currentLevel++;
         //LoadLevel(currentLevel);
+    }
+
+    public static void ResetLevelIndex()
+    {
+        currentLevel = 0;
     }
 }
