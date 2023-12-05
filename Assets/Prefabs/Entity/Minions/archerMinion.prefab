@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5242026796885018233}
   - component: {fileID: 3666571859102276325}
-  - component: {fileID: 5465465546169685263}
   - component: {fileID: -4941691768216947425}
   - component: {fileID: 6402256854860038529}
   - component: {fileID: 62822888144230992}
+  - component: {fileID: 4548254740813658740}
   m_Layer: 0
   m_Name: archerMinion
   m_TagString: Untagged
@@ -89,29 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5465465546169685263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3487245091449332422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93086706e828216469f9daf4dbc5324e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDead: 0
-  indexX: 0
-  indexY: 0
-  mapManager: {fileID: 0}
-  sprite: {fileID: 3666571859102276325}
-  SO: {fileID: 11400000, guid: 3cb01d901b0933f4e9298c64e31af304, type: 2}
-  indexOffsetTile: 0
-  tr: {fileID: 5242026796885018233}
-  bt: {fileID: 62822888144230992}
-  animQueue: {fileID: 6402256854860038529}
-  emotesManager: {fileID: 172181208815515307}
 --- !u!114 &-4941691768216947425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611e99f6f8751734f8992e7d3e675755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionData: {fileID: 5465465546169685263}
+  minionData: {fileID: 0}
   heroPosition: {x: 0, y: 0}
   dir: 4
   firstTimeSeeHero: 1
@@ -153,6 +130,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackboard: {fileID: -4941691768216947425}
+--- !u!114 &4548254740813658740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487245091449332422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10a002057263e949b45fae2ddeb2fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+  indexX: 0
+  indexY: 0
+  mapManager: {fileID: 0}
+  sprite: {fileID: 3666571859102276325}
+  SO: {fileID: 11400000, guid: 3cb01d901b0933f4e9298c64e31af304, type: 2}
+  indexOffsetTile: 0
+  tr: {fileID: 5242026796885018233}
+  bt: {fileID: 62822888144230992}
+  animQueue: {fileID: 6402256854860038529}
+  emotesManager: {fileID: 172181208815515307}
 --- !u!1001 &5460099456565373262
 PrefabInstance:
   m_ObjectHideFlags: 0

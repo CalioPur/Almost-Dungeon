@@ -6,11 +6,6 @@ public class MinionSlime : MinionData
 {
     [SerializeField] private MinionData slimePrefab;
 
-    private void GetHeroPos(Vector2Int pos)
-    {
-        bt.blackboard.heroPosition = pos;
-    }
-
     public override void TakeDamage(int damage)
     {
         if (isDead) return;
@@ -27,12 +22,5 @@ public class MinionSlime : MinionData
             SpawnEnemyManager.SpawnEnemy(slimePrefab, new Vector2Int(indexX, indexY), transform.position, mapManager,
                 true);
         }
-    }
-
-
-    protected override void Init()
-    {
-        base.Init();
-        Hero.OnGivePosBackEvent += GetHeroPos;
     }
 }

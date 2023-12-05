@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public abstract class MinionData : TrapData
+public class MinionData : TrapData
 {
     public static event Action OnHeroPosAsked;
     public static event Action<MinionData> OnMinionDying;
@@ -18,6 +18,11 @@ public abstract class MinionData : TrapData
     public void GetHeroPos()
     {
         OnHeroPosAsked?.Invoke();
+    }
+    
+    private void GetHeroPos(Vector2Int pos)
+    {
+        bt.blackboard.heroPosition = pos;
     }
     
     public static void ClearSubscribes()
@@ -65,6 +70,7 @@ public abstract class MinionData : TrapData
             StartListenTick();
         else
             GameManager.OnGameStartEvent += StartListenTick;
+        Hero.OnGivePosBackEvent += GetHeroPos;
     }
 
     public void StartListenTick()
