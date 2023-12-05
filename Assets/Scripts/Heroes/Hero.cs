@@ -65,7 +65,6 @@ public class Hero : MonoBehaviour
 
         TrapData.OnTrapAttackEvent += TakeDamage;
         Sprite.sprite = info.So.Img;
-        Debug.Log("hero health point : " + info.CurrentHealthPoint);
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         MinionData.OnHeroPosAsked+= GivePosBack;
         PathFinding.OnNoPathFound += PlayEmoteStuck;

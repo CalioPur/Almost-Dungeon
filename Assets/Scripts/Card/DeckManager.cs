@@ -133,7 +133,6 @@ public class DeckManager : MonoBehaviour
         CardInfoInstance newCard = null;
         if (deckCreate.Count <= 0) return;
         handsManager.AddCard(deckCreate[0], out newCard);
-        Debug.Log("Draw card");
         CardHand availableSlot = handsManager.getAvailableSlot();
         availableSlot.GetImage().enabled = true;
         StartCoroutine(AnimationDrawCard(availableSlot, newCard));

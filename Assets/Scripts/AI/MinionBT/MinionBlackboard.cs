@@ -6,4 +6,10 @@ public class MinionBlackboard : MonoBehaviour
     [HideInInspector] public Vector2Int heroPosition;
     [HideInInspector] public DirectionToMove dir = DirectionToMove.None;
     [HideInInspector] public bool firstTimeSeeHero = true;
+
+    public void Reset()
+    {
+        dir = DirectionToMove.None;
+        firstTimeSeeHero = true;
+    }
 }

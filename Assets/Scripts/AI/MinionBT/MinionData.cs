@@ -48,6 +48,7 @@ public abstract class MinionData : TrapData
 
     protected override void Init()
     {
+        bt.blackboard.Reset();
         minionInstance = SO.CreateInstance();
         if (GameManager.isGameStarted)
             StartListenTick();
