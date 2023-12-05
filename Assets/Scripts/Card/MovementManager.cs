@@ -161,10 +161,8 @@ public class MovementManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         
-        if (Input.mousePosition.x > _rectTransform.position.x - _rectTransform.sizeDelta.x / 2 &&
-            Input.mousePosition.x < _rectTransform.position.x + _rectTransform.sizeDelta.x / 2 &&
-            Input.mousePosition.y > _rectTransform.position.y - _rectTransform.sizeDelta.y / 2 &&
-            Input.mousePosition.y < _rectTransform.position.y + _rectTransform.sizeDelta.y / 2)
+        //if the mouse pos intersects with the zone of the discard
+        if (RectTransformUtility.RectangleContainsScreenPoint(_rectTransform, Input.mousePosition))
         {
             if (selectedCard == null) return;
             selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;

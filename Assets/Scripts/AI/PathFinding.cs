@@ -8,14 +8,16 @@ public enum Personnalities
     HurryForTheExit,
     TheExplorer,
     TheKiller,
-    TheSissy
+    TheSissy,
+    MoveToHero
 }
 
 public class PathFinding
 {
     public static event Action OnNoPathFound;
+    public static Vector2Int HeroPos { get; set; }
     
-    public static DirectionToMove BFSGoToClosestExit(Vector2Int startPos, TileData[,] map, Personnalities personality)
+    public static DirectionToMove BFSFindPath(Vector2Int startPos, TileData[,] map, Personnalities personality)
     {
         Queue<Vector2Int> queue = new Queue<Vector2Int>();
         HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
@@ -171,6 +173,15 @@ public class PathFinding
                 BreakFreeFromNoExit(startPos, map);
                 MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
+            }
+            case Personnalities.MoveToHero:
+            {
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, new List<Vector2Int>(){HeroPos});
+                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
+                {
+                    return GoThroughDoorWithNoTile(startPos, map);
+                }
+                return GetDirectionToMove(startPos, nextPos);
             }
             default:
                 Debug.Log("No valid path found because no exit or unvisited tiles found");
