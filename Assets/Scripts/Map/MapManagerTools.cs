@@ -152,14 +152,14 @@ public class MapManagerTools
         for (int i = 0; i < _mapManager.width - 2; i++)
         for (int j = 0; j < _mapManager.height - 2; j++)
             if (_mapManager.mapArray[i, j].isConnectedToPath)
-                _mapManager.mapArray[i, j].isExit = ((j == 0 && _mapManager.mapArray[i, j].hasDoorDown) ||
-                                                     (_mapManager.mapArray[i, j].hasDoorDown && !_mapManager.mapArray[i, j - 1].PiecePlaced) ||
-                                                     (j == _mapManager.height - 3 && _mapManager.mapArray[i, j].hasDoorUp) ||
-                                                     (_mapManager.mapArray[i, j].hasDoorUp && !_mapManager.mapArray[i, j + 1].PiecePlaced) ||
-                                                     (i == 0 && _mapManager.mapArray[i, j].hasDoorLeft) ||
-                                                     (_mapManager.mapArray[i, j].hasDoorLeft && !_mapManager.mapArray[i - 1, j].PiecePlaced) ||
-                                                     (i == _mapManager.width - 3 && _mapManager.mapArray[i, j].hasDoorRight) ||
-                                                     (_mapManager.mapArray[i, j].hasDoorRight && !_mapManager.mapArray[i + 1, j].PiecePlaced));
+                _mapManager.mapArray[i, j].isExit = (j == 0 && _mapManager.mapArray[i, j].hasDoorDown) ||
+                                                    (_mapManager.mapArray[i, j].hasDoorDown && !_mapManager.mapArray[i, j - 1].PiecePlaced) ||
+                                                    (j == _mapManager.height - 3 && _mapManager.mapArray[i, j].hasDoorUp) ||
+                                                    (_mapManager.mapArray[i, j].hasDoorUp && !_mapManager.mapArray[i, j + 1].PiecePlaced) ||
+                                                    (i == 0 && _mapManager.mapArray[i, j].hasDoorLeft) ||
+                                                    (_mapManager.mapArray[i, j].hasDoorLeft && !_mapManager.mapArray[i - 1, j].PiecePlaced) ||
+                                                    (i == _mapManager.width - 3 && _mapManager.mapArray[i, j].hasDoorRight) ||
+                                                    (_mapManager.mapArray[i, j].hasDoorRight && !_mapManager.mapArray[i + 1, j].PiecePlaced);
     }
 
     public void SetConnectedToPath()

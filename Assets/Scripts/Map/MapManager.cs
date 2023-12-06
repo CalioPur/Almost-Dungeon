@@ -8,6 +8,8 @@ public class MapManager : MonoBehaviour
 {
     public static event Action<TileData, CardHand, bool> OnCardTryToPlaceEvent;
     public static MapManager Instance { get; private set; }
+    
+    public static event Action MakeFogEvent;
 
     [field: SerializeField] public int width { get; private set; }
     [field: SerializeField] public int height { get; private set; }
@@ -88,8 +90,9 @@ public class MapManager : MonoBehaviour
 
     public void CreateFog(Vector2Int StarterPos)
     {
-        fogPainter.dungeonTilesPositions.Add(new Vector2Int(StarterPos.x, StarterPos.y)); //position de départ du hero, A CHANGER
-        FogGenerator.CreateFog(fogPainter.dungeonTilesPositions, fogPainter, width - 2, height - 2);
+        // fogPainter.dungeonTilesPositions.Add(new Vector2Int(StarterPos.x, StarterPos.y)); //position de départ du hero, A CHANGER
+        // FogGenerator.CreateFog(fogPainter.dungeonTilesPositions, fogPainter, width - 2, height - 2);
+        MakeFogEvent?.Invoke();
     }
     
     public void AddRandomCard()
