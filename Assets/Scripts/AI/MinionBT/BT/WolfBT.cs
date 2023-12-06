@@ -1,7 +1,7 @@
 using BehaviourTree;
 using UnityEngine;
 
-public class BTWolf : MinionBTBase
+public class WolfBT : MinionBTBase
 {
     protected override Node InitTree()
     {

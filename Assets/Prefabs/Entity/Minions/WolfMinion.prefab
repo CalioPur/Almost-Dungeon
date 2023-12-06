@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611e99f6f8751734f8992e7d3e675755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionData: {fileID: 0}
+  minionData: {fileID: 1310289096259466438}
   heroPosition: {x: 0, y: 0}
   dir: 4
   firstTimeSeeHero: 1
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3487245091449332422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4dc270aa1f64be7af81196996fd1e69, type: 3}
+  m_Script: {fileID: 11500000, guid: 5eabae48856cfe049a3df7748cf1a576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blackboard: {fileID: -4941691768216947425}

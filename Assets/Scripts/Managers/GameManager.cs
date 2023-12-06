@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public static event Action OnSceneLoadedEvent;
     public static Action OnGameStartEvent;
     public static Action OnEndDialogEvent;
     public static bool isGameStarted = false;
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
+        OnSceneLoadedEvent?.Invoke();
         if (_instance != null)
         {
             Destroy(gameObject);
