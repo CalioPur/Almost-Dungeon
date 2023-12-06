@@ -44,5 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9766dd7e0a86c034b81f31ae5bb893c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonSos:
-  - {fileID: 11400000, guid: 00a968d9d1d5b2a4e99252dbcfc1be2f, type: 2}
+  biomes:
+  - <Deck>k__BackingField:
+    - cardToBuild: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
+      nbToBuild: 10
+    dungeonSos:
+    - {fileID: 11400000, guid: f3f325a99a3ff084682eb7813f2d1e2f, type: 2}
+    name: Default
+  mapManager: {fileID: 0}
