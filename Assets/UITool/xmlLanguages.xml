@@ -16,14 +16,6 @@
           <menuPrincipal>Main menu</menuPrincipal>
           <interaction>Press "E" to interact</interaction>
           
-          <coffreDesc>LOL it's empty</coffreDesc>
-          
-          <panneauDesc>to the left : nothing
-to the right : nothing either
-to the top : idem
-to the bottom : a mountaint of gold !
-just kidding, thers nothing too</panneauDesc>
-          
       </language>
     
       <language name="Français">
@@ -41,14 +33,24 @@ just kidding, thers nothing too</panneauDesc>
             <sansBordure>Sans bordure</sansBordure>
             <menuPrincipal>Menu principal</menuPrincipal>
             <interaction>Appuyez sur "E" pour interagir</interaction>
-            
-            <coffreDesc>MDR il est vide</coffreDesc>
-            <panneauDesc>à gauche : rien
-à droite : toujours rien
-en haut : idem
-en bas : une montagne d'or !
-je rigole, y'a rien non plus</panneauDesc>
           
+      </language>
+        
+      <language name="Miaou">
+          <jouer>Miou</jouer>
+          <reprendre>mew</reprendre>
+          <options>niaaa</options>
+          <quitter>Nyan</quitter>
+          <retour>miaaaou</retour>
+          <langue>MIAOUUUUUUUUUUUU</langue>
+          <son>nia</son>
+          <musique>Nyan</musique>
+          <ecran>Miiiou</ecran>
+          <pleinEcran>Miou miou</pleinEcran>
+          <fenetré>mia</fenetré>
+          <sansBordure>nyan miaou</sansBordure>
+          <menuPrincipal>nya nyan</menuPrincipal>
+          <interaction>nya miaou "E" nyan miou</interaction>
       </language>
 </languages>
 
