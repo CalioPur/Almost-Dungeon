@@ -46,8 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrapsPrefab:
   - type: 2
-    prefab: {fileID: 4773831233471019254, guid: 2af210a844fca524094453ef5f573e22,
-      type: 3}
+    prefab: {fileID: 863022875712542878, guid: 2af210a844fca524094453ef5f573e22, type: 3}
   - type: 0
     prefab: {fileID: -8707804463132227556, guid: 8dae85895e2cc55408536bcca08f72a8,
       type: 3}
@@ -55,7 +54,7 @@ MonoBehaviour:
     prefab: {fileID: 2011339117868378926, guid: c8c34374694204043a8e90937b2029f6,
       type: 3}
   - type: 3
-    prefab: {fileID: 5465465546169685263, guid: dbe85c2a69e00a44fbb702e0a444e178,
+    prefab: {fileID: 4548254740813658740, guid: dbe85c2a69e00a44fbb702e0a444e178,
       type: 3}
   - type: 4
     prefab: {fileID: 104205483966295659, guid: 6a1c71d0df6b82441916c03b451f3d25, type: 3}
