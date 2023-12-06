@@ -15,7 +15,9 @@ public class EmoteData
 public enum EmoteType
 {
     Detected,
-    Stuck
+    Stuck,
+    WallBreak,
+    DragonDeath
 }
 
 public class EmotesManager : MonoBehaviour
