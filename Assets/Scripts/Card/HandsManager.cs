@@ -65,6 +65,8 @@ public class HandsManager : MonoBehaviour
             slotsHand[i].MoveCardTo(slotsHand[i + 1]);
             slotsHand[i+1].Occupied = false;
             slotsHand[i].GetImage().gameObject.SetActive(slotsHand[i].Card != null);
+            slotsHand[i].GetImage().gameObject.transform.position = slotsHand[i+1].transform.position;
+            slotsHand[i].GetImage().gameObject.transform.DOMove(slotsHand[i].transform.position, 0.5f);
         }
         UpdateHand();
     }
