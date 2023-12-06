@@ -45,8 +45,9 @@ public class DungeonManager : MonoBehaviour
         GameManager.OnSceneLoadedEvent -= LoadLevel;
         if (level >= biomes[SelectedBiome].dungeonSos.Count)
         {
-            Debug.LogError("Level is too high");
+            Debug.LogWarning("Level is too high");
             SceneManager.LoadScene(0);
+            currentLevel = 0;
             return;
         }
         var dungeonSo = biomes[SelectedBiome].dungeonSos[level];
@@ -71,7 +72,7 @@ public class DungeonManager : MonoBehaviour
     public void LoadNextLevel()
     {
         currentLevel++;
-        LoadLevel();
+        GameManager.OnSceneLoadedEvent += LoadLevel;
     }
 
     public static void ResetLevelIndex()
