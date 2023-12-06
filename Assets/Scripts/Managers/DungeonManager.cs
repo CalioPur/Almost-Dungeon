@@ -47,7 +47,7 @@ public class DungeonManager : MonoBehaviour
         {
             Debug.LogWarning("Level is too high");
             SceneManager.LoadScene(0);
-            currentLevel = 0;
+            ResetLevelIndex();
             return;
         }
         var dungeonSo = biomes[SelectedBiome].dungeonSos[level];
