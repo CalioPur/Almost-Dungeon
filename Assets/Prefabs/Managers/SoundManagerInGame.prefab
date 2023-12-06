@@ -175,9 +175,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801df72fc1d7c374ba679e0730d60deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSourceSurprise: {fileID: 3698912591482339778}
-  audioWallBreak: {fileID: 0}
-  deadDragon: {fileID: 2712419153490351755}
+  emotesAudioSources:
+  - emote: 0
+    audioSource: {fileID: 3698912591482339778}
+  - emote: 1
+    audioSource: {fileID: 0}
+  - emote: 2
+    audioSource: {fileID: 0}
+  - emote: 3
+    audioSource: {fileID: 2712419153490351755}
 --- !u!1 &2911195126819372696
 GameObject:
   m_ObjectHideFlags: 0

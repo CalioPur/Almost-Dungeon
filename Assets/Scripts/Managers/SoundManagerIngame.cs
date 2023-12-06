@@ -3,18 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SoundType
+[Serializable]
+public struct AudioDataSound
 {
-    WallBreak,
-    DragonDeath
+    public EmoteType emote;
+    public AudioSource audioSource;
 }
 
 public class SoundManagerIngame : MonoBehaviour
 {
     public static SoundManagerIngame Instance;
-    [SerializeField] private AudioSource audioSourceSurprise;
-    [SerializeField] private AudioSource audioWallBreak;
-    [SerializeField] private AudioSource deadDragon;
+    [SerializeField] private List<AudioDataSound> emotesAudioSources;
+    
+    private Dictionary<EmoteType, AudioSource> emotesDictionary = new Dictionary<EmoteType, AudioSource>();
 
     private void Awake()
     {
@@ -23,6 +24,14 @@ public class SoundManagerIngame : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
+    }
+    
+    private void Start()
+    {
+        foreach (var audioDataSound in emotesAudioSources)
+        {
+            emotesDictionary.Add(audioDataSound.emote, audioDataSound.audioSource);
+        }
     }
 
     private void PlaySound(AudioSource source)
@@ -34,27 +43,6 @@ public class SoundManagerIngame : MonoBehaviour
     
     public void PlaySound(EmoteType emote)
     {
-        switch (emote)
-        {
-            case EmoteType.Detected:
-                PlaySound(audioSourceSurprise);
-                break;
-            case EmoteType.Stuck:
-                
-                break;
-        }
-    }
-    
-    public void PlaySound(SoundType sound)
-    {
-        switch (sound)
-        {
-            case SoundType.WallBreak:
-                PlaySound(audioWallBreak);
-                break;
-            case SoundType.DragonDeath:
-                PlaySound(deadDragon);
-                break;
-        }
+        PlaySound(emotesDictionary[emote]);
     }
 }
