@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
     private void SpawnHero()
     {
         //int randomHero = Random.Range(0, heroesInfos.Count);
+        if (currentHero == null)
+        {
+            Debug.LogError("No hero selected");
+            return;
+        }
         HeroInstance current = currentHero.CreateInstance();
         current.CurrentHealthPoint = heroHealthPoint;
         Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);

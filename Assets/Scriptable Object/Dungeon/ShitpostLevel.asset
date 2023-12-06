@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8dd4e543ca3d06498c7464e410c2f40, type: 3}
   m_Name: ShitpostLevel
   m_EditorClassIdentifier: 
-  <Deck>k__BackingField:
-  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
-    nbToBuild: 30
   <initialNbCardInHand>k__BackingField: 6
   <HeroesInfo>k__BackingField: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32,
     type: 2}

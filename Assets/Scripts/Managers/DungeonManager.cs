@@ -27,6 +27,7 @@ public class DungeonManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this);
+        gameManager = GameManager._instance;
         
     }
 
