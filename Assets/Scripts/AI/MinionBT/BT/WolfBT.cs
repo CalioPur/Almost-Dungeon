@@ -1,7 +1,7 @@
 using BehaviourTree;
 using UnityEngine;
 
-public class BTWolf : MinionBTBase
+public class WolfBT : MinionBTBase
 {
     protected override Node InitTree()
     {
@@ -9,7 +9,7 @@ public class BTWolf : MinionBTBase
 
         origin = new Sequence(
             new GetHeroPos(blackboard),
-            new MoveToHer(blackboard),
+            new MoveToHero(blackboard),
             new MoveInDirection(blackboard),
             new CheckifFrontOfHero(blackboard),
             new AttackHero(blackboard)

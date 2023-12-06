@@ -95,6 +95,11 @@ public class testButton : MonoBehaviour
             XMLReader.currentLanguage = 0;
             PlayerPrefs.SetInt("Language", 0);
         }
+        else if (evt.newValue == "Miaou")
+        {
+            XMLReader.currentLanguage = 2;
+            PlayerPrefs.SetInt("Language", 2);
+        }
         SetupMainMenuInteractions();
         SetupSettingsInteractions();
     }

@@ -1,11 +1,11 @@
 using BehaviourTree;
 using UnityEngine;
 
-public class MoveToHer : Node
+public class MoveToHero : Node
 {
     private MinionBlackboard blackboard;
     
-    public MoveToHer(MinionBlackboard _blackboard)
+    public MoveToHero(MinionBlackboard _blackboard)
     {
         blackboard = _blackboard;
     }

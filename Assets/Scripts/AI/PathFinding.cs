@@ -191,7 +191,7 @@ public class PathFinding
 
     private static void BreakFreeFromNoExit(Vector2Int startPos, TileData[,] map)
     {
-        SoundManagerIngame.Instance.PlaySound(SoundType.WallBreak);
+        SoundManagerIngame.Instance.PlaySound(EmoteType.WallBreak);
         OnNoPathFound?.Invoke();
         TileData tileWallBreaker = map[startPos.x, startPos.y];
         int[] possibleDirectionsToBreak = new int[4];

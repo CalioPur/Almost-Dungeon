@@ -1,13 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/ImportantButtonStyle.uss?fileID=7433441132597879392&amp;guid=ab35e133977abe64d97cb49561ee8725&amp;type=3#ImportantButtonStyle" />
-    <Style src="project://database/Assets/UI/SliderStyle.uss?fileID=7433441132597879392&amp;guid=cf79de76ab0cc964f81333add1f3d7cb&amp;type=3#SliderStyle" />
+    <Style src="project://database/Assets/UITool/UI/ImportantButtonStyle.uss?fileID=7433441132597879392&amp;guid=ab35e133977abe64d97cb49561ee8725&amp;type=3#ImportantButtonStyle" />
+    <Style src="project://database/Assets/UITool/UI/SliderStyle.uss?fileID=7433441132597879392&amp;guid=cf79de76ab0cc964f81333add1f3d7cb&amp;type=3#SliderStyle" />
     <ui:VisualElement name="VisualElement" style="-unity-background-image-tint-color: rgb(0, 0, 0); background-color: rgb(75, 75, 75); width: 75%; height: 839px; align-items: center; justify-content: center; align-self: center; top: 12.5%; flex-wrap: nowrap; flex-direction: column;">
         <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CloseSettings" style="align-self: flex-end; left: 50px; top: -50px; width: 100px; height: 100px; border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px; border-bottom-left-radius: 50px; background-color: rgb(173, 42, 42); font-size: 75px; flex-direction: column; flex-wrap: nowrap;" />
         <ui:VisualElement style="flex-grow: 0; height: 286px; width: 100%; flex-direction: column; flex-wrap: nowrap;" />
         <ui:Slider picking-mode="Ignore" label="Musique" value="0" high-value="20" name="MusicVolume" low-value="-80" class="slider" style="flex-direction: row; flex-wrap: nowrap;" />
         <ui:Slider picking-mode="Ignore" label="Sound" value="0" high-value="20" name="SoundVolume" low-value="-80" class="slider" style="flex-direction: row; flex-wrap: nowrap;" />
         <ui:DropdownField label="Écran" index="0" choices="Fullscreen,Windowed,Borderless" name="screenMode" style="font-size: 30px;" />
-        <ui:DropdownField label="Langue" index="0" choices="English, Français" name="Language" style="font-size: 30px;" />
+        <ui:DropdownField label="Langue" index="0" choices="English,Français,Miaou" name="Language" style="font-size: 30px;" />
         <ui:VisualElement style="flex-grow: 0; height: 50%; width: 100%; flex-direction: column; flex-wrap: nowrap;" />
     </ui:VisualElement>
 </ui:UXML>

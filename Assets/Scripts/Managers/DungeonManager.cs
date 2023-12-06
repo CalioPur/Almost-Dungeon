@@ -9,13 +9,13 @@ public struct Biome
 {
     [field: SerializeField] public List<CardToBuild> Deck { get; private set; }
     [SerializeField] public List<DungeonSO> dungeonSos;
-    [SerializeField] private string name;
+    [SerializeField] public string name;
 }
 
 public class DungeonManager : MonoBehaviour
 {
    
-    [SerializeField] private List<Biome> biomes;
+    [SerializeField] public List<Biome> biomes;
    
     private static int currentLevel = 0;
     private DeckManager cardsManager;
@@ -23,21 +23,31 @@ public class DungeonManager : MonoBehaviour
     private GameManager gameManager;
     private MapManager mapManager;
     private int SelectedBiome = 0;
-    
-    
+
     private void Awake()
     {
-        LoadLevel(currentLevel);
+        DontDestroyOnLoad(this);
+        
+    }
+
+    public void SetSelectedBiome(int index)
+    {
+        SelectedBiome = index;
+        SceneManager.LoadScene(1);
+        GameManager.OnSceneLoadedEvent += LoadLevel;
     }
     
     
-    private void LoadLevel(int level)
+    private void LoadLevel()
     {
         print(currentLevel);
+        int level = currentLevel;
+        GameManager.OnSceneLoadedEvent -= LoadLevel;
         if (level >= biomes[SelectedBiome].dungeonSos.Count)
         {
-            Debug.LogError("Level is too high");
+            Debug.LogWarning("Level is too high");
             SceneManager.LoadScene(0);
+            ResetLevelIndex();
             return;
         }
         var dungeonSo = biomes[SelectedBiome].dungeonSos[level];
@@ -62,7 +72,7 @@ public class DungeonManager : MonoBehaviour
     public void LoadNextLevel()
     {
         currentLevel++;
-        //LoadLevel(currentLevel);
+        GameManager.OnSceneLoadedEvent += LoadLevel;
     }
 
     public static void ResetLevelIndex()

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611e99f6f8751734f8992e7d3e675755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionData: {fileID: 0}
+  minionData: {fileID: 4548254740813658740}
   heroPosition: {x: 0, y: 0}
   dir: 4
   firstTimeSeeHero: 1
@@ -146,13 +146,13 @@ MonoBehaviour:
   indexX: 0
   indexY: 0
   mapManager: {fileID: 0}
-  sprite: {fileID: 3666571859102276325}
-  SO: {fileID: 11400000, guid: 3cb01d901b0933f4e9298c64e31af304, type: 2}
+  sprite: {fileID: 0}
+  SO: {fileID: 0}
   indexOffsetTile: 0
-  tr: {fileID: 5242026796885018233}
-  bt: {fileID: 62822888144230992}
-  animQueue: {fileID: 6402256854860038529}
-  emotesManager: {fileID: 172181208815515307}
+  tr: {fileID: 0}
+  bt: {fileID: 0}
+  animQueue: {fileID: 0}
+  emotesManager: {fileID: 0}
 --- !u!1001 &5460099456565373262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,18 +221,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf11df0b8f5f2a64f92efbdbdc660db1, type: 3}
---- !u!114 &172181208815515307 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5306821885283262437, guid: cf11df0b8f5f2a64f92efbdbdc660db1,
-    type: 3}
-  m_PrefabInstance: {fileID: 5460099456565373262}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a7063034c6f3144a0fb68f85f36670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &9196603082216172584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3775932120143234406, guid: cf11df0b8f5f2a64f92efbdbdc660db1,

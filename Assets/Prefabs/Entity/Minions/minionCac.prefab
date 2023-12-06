@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611e99f6f8751734f8992e7d3e675755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionData: {fileID: 0}
+  minionData: {fileID: 863022875712542878}
   heroPosition: {x: 0, y: 0}
   dir: 4
   firstTimeSeeHero: 1
