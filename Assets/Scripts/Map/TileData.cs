@@ -79,16 +79,35 @@ public class TileData : MonoBehaviour
         return false;
     }
     
-    public bool GetFirstAvailabalePosition(out Vector3 pos, out int index)
+    public bool GetFirstAvailabalePosition(out Vector3 pos, ref int index)
     {
-        for (int i = 0; i < _instance.So.offsetMinionPos.Length; i++)
+        if (index == -1)
         {
-            if (_instance.offsetSpawnUsed[i]) continue;
-            pos = _instance.So.offsetMinionPos[i];
-            _instance.offsetSpawnUsed[i] = true;
-            index = i;
+            for (int i = 0; i < _instance.So.offsetMinionPos.Length; i++)
+            {
+                if (!_instance.offsetSpawnUsed[i])
+                {
+                    pos = _instance.So.offsetMinionPos[i];
+                    _instance.offsetSpawnUsed[i] = true;
+                    index = i;
+                    return true;
+                }
+            }
+        }
+        else if (!_instance.offsetSpawnUsed[index])
+        {
+            pos = _instance.So.offsetMinionPos[index];
+            _instance.offsetSpawnUsed[index] = true;
             return true;
         }
+        // for (int i = 0; i < _instance.So.offsetMinionPos.Length; i++)
+        // {
+        //     if (_instance.offsetSpawnUsed[i]) continue;
+        //     pos = _instance.So.offsetMinionPos[i];
+        //     _instance.offsetSpawnUsed[i] = true;
+        //     index = i;
+        //     return true;
+        // }
 
         pos = Vector3.zero;
         index = -1;

@@ -5,6 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[Serializable]
+public struct EnemiDataOnHand
+{
+    public TrapType type;
+    public int indexOffsetTile;
+}
+
 [CreateAssetMenu(fileName = "CardInfo", menuName = "ScriptableObjects/CardInfo", order = 1)]
 public class CardInfo : ScriptableObject
 {
@@ -13,7 +20,7 @@ public class CardInfo : ScriptableObject
     public Sprite imgOnMap;
     
     [Header("Minions parameters")]
-    public TrapType[] TypeOfTrapOrEnemyToSpawn;
+    public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawn;
     public Vector3[] offsetMinionPos;
     
     [Header("Doors")]
