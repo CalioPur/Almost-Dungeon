@@ -59,10 +59,6 @@ public class MovementManager : MonoBehaviour
         //card.EmptyCard();
         OnFinishToPose?.Invoke(card.Card);
         selectedCard = null;
-        card.GetImage().gameObject.transform.position = card.transform.position;
-        // card.removeSelection();
-        // selectedCard = null;
-        // CardsManager.Instance.SetSelectedCard(null);
     }
 
     private void RotateSelection(bool direction)

@@ -28,5 +28,5 @@ public class LevelSO : ScriptableObject
     [field: SerializeField] public Vector2Int clampedSpawnEnterDungeonY { get; private set; }
     
     [field: Header("Dungeon Preset")]
-    [field: SerializeField] public List<TilePreset> dungeonPreset { get; private set; } = new();
+    [field: SerializeField] public List<TilePreset> levelTilePreset { get; private set; } = new();
 }
