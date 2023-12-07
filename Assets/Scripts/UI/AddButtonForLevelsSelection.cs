@@ -13,7 +13,7 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     void Start()
     {
         int cpt = 0;
-        foreach (var biome in dungeonManager.biomes)
+        foreach (var biome in dungeonManager.dungeons)
         {
             GameObject theButton = Instantiate(buttonPrefab, transform);
             theButton.GetComponentInChildren<TMP_Text>().text = biome.name;

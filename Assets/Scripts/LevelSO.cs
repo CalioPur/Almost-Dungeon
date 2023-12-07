@@ -13,7 +13,7 @@ public struct TilePreset
 
 [CreateAssetMenu(fileName = "DungeonSO", menuName = "ScriptableObjects/DungeonSO", order = 5)]
 
-public class DungeonSO : ScriptableObject
+public class LevelSO : ScriptableObject
 {
     [field: Range(1,6)]
     [field: SerializeField] public int initialNbCardInHand { get; private set; }

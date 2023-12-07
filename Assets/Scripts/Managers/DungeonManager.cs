@@ -5,17 +5,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [Serializable]
-public struct Biome
+public struct Dungeon
 {
     [field: SerializeField] public List<CardToBuild> Deck { get; private set; }
-    [SerializeField] public List<DungeonSO> dungeonSos;
+    [SerializeField] public List<LevelSO> dungeonSos;
     [SerializeField] public string name;
 }
 
 public class DungeonManager : MonoBehaviour
 {
    
-    [SerializeField] public List<Biome> biomes;
+    [SerializeField] public List<Dungeon> dungeons;
    
     private static int currentLevel = 0;
     private DeckManager cardsManager;
@@ -44,16 +44,16 @@ public class DungeonManager : MonoBehaviour
         print(currentLevel);
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
-        if (level >= biomes[SelectedBiome].dungeonSos.Count)
+        if (level >= dungeons[SelectedBiome].dungeonSos.Count)
         {
             Debug.LogWarning("Level is too high");
             SceneManager.LoadScene(0);
             ResetLevelIndex();
             return;
         }
-        var dungeonSo = biomes[SelectedBiome].dungeonSos[level];
+        var dungeonSo = dungeons[SelectedBiome].dungeonSos[level];
         cardsManager = FindObjectOfType<DeckManager>();
-        cardsManager.deckToBuild = biomes[SelectedBiome].Deck;
+        cardsManager.deckToBuild = dungeons[SelectedBiome].Deck;
         cardsManager.nbCardOnStartToDraw = dungeonSo.initialNbCardInHand;
         
         tickManager = FindObjectOfType<TickManager>();
