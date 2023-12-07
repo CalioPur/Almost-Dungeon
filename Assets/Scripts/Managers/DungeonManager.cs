@@ -68,7 +68,7 @@ public class DungeonManager : MonoBehaviour
         mapManager = FindObjectOfType<MapManager>();
 
         
-        mapManager.SpawnPresets(dungeonSo.dungeonPreset);
+        mapManager.SpawnPresets(dungeonSo.levelTilePreset);
     }
     public void LoadNextLevel()
     {
