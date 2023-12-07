@@ -292,8 +292,6 @@ public class MapManager : MonoBehaviour
         GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
         if (data.GetFirstAvailabalePosition(out var offset, out index))
         {
-            if (minionData is MinionData minion)
-                minion.Move(data.transform, offset, 0.5f);
             data.enemies.Add(minionData);
             return true;
         }
