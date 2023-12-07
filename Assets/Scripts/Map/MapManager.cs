@@ -79,7 +79,7 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < _tilePreset.Count; i++)
         {
             CardInfoInstance card = _tilePreset[i].cardInfo.CreateInstance();
-            card.Rotation = _tilePreset[i].rotation;
+            card.Rotation = _tilePreset[i].rotation * 90;
             SetTileAtPosition(card, _tilePreset[i].position.x, _tilePreset[i].position.y);
             fogPainter.dungeonTilesPositions.Add(new Vector2Int(_tilePreset[i].position.x, _tilePreset[i].position.y));
         }
