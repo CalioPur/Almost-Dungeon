@@ -505,16 +505,6 @@ PrefabInstance:
       propertyPath: mapManager
       value: 
       objectReference: {fileID: 6807861319483125049}
-    - target: {fileID: 1629374874559397796, guid: 1ca6666726539b64b9658aa561b423ae,
-        type: 3}
-      propertyPath: TrapsPrefab.Array.data[0].prefab
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1629374874559397796, guid: 1ca6666726539b64b9658aa561b423ae,
-        type: 3}
-      propertyPath: TrapsPrefab.Array.data[3].prefab
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6478207352120983098, guid: 1ca6666726539b64b9658aa561b423ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -568,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 7540312043418133027, guid: 1ca6666726539b64b9658aa561b423ae,
         type: 3}
       propertyPath: m_Name
-      value: MinionManager
+      value: EnemyManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

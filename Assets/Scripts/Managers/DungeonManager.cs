@@ -22,10 +22,20 @@ public class DungeonManager : MonoBehaviour
     private TickManager tickManager;
     private GameManager gameManager;
     private MapManager mapManager;
-    private int SelectedBiome = 0;
+    public static int SelectedBiome;
 
+    private static DungeonManager _instance;
+    
     private void Awake()
     {
+        
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+        
         DontDestroyOnLoad(this);
         gameManager = GameManager._instance;
         
@@ -34,8 +44,8 @@ public class DungeonManager : MonoBehaviour
     public void SetSelectedBiome(int index)
     {
         SelectedBiome = index;
-        SceneManager.LoadScene(1);
         GameManager.OnSceneLoadedEvent += LoadLevel;
+        SceneManager.LoadScene(1);
     }
     
     
@@ -44,6 +54,7 @@ public class DungeonManager : MonoBehaviour
         print(currentLevel);
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
+        print("nb of level : "+dungeons[SelectedBiome].dungeonSos.Count);
         if (level >= dungeons[SelectedBiome].dungeonSos.Count)
         {
             Debug.LogWarning("Level is too high");
