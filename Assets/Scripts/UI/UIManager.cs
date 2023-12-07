@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class UIManager : MonoBehaviour
     public static UIManager _instance;
 
     public HeroBlackboard heroBlackboard;
-    
+    private DungeonManager dungeonManager;
     private void Awake()
     {
         if (_instance != null)
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour
         }
         _instance = this;
         
+        dungeonManager = FindObjectOfType<DungeonManager>();
         //DontDestroyOnLoad(gameObject);
     }
 
@@ -54,5 +56,10 @@ public class UIManager : MonoBehaviour
     {
         PauseMenu.SetActive(false);
         Time.timeScale = 1;
+    }
+    public void NextLevel()
+    {
+        dungeonManager.LoadNextLevel();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
