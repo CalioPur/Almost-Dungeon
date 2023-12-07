@@ -51,6 +51,7 @@ public class AddButtonForLevelsSelection : MonoBehaviour
             cpt++;
         }
     }
+
     private IEnumerator AlphaLerp(int biomeIndex)
     {
         var alpha = CanvasBlack.GetComponent<Image>().color.a;
