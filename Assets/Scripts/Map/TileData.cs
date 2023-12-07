@@ -100,15 +100,6 @@ public class TileData : MonoBehaviour
             _instance.offsetSpawnUsed[index] = true;
             return true;
         }
-        // for (int i = 0; i < _instance.So.offsetMinionPos.Length; i++)
-        // {
-        //     if (_instance.offsetSpawnUsed[i]) continue;
-        //     pos = _instance.So.offsetMinionPos[i];
-        //     _instance.offsetSpawnUsed[i] = true;
-        //     index = i;
-        //     return true;
-        // }
-
         pos = Vector3.zero;
         index = -1;
         return false;
