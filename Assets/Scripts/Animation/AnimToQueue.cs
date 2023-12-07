@@ -13,8 +13,9 @@ public class AnimToQueue
     public Ease ease;
     public int loop;
     public bool isDir;
+    public bool mustDisappear;
 
-    public AnimToQueue(Transform obj,Transform _targetTransform, Vector3 _offset, bool isDir, float time, Ease ease = Ease.Linear, int loop = 1 ) {
+    public AnimToQueue(Transform obj,Transform _targetTransform, Vector3 _offset, bool isDir, float time, Ease ease = Ease.Linear, int loop = 1, bool mustDisappear = false ) {
         this.obj = obj;
         targetTransform = _targetTransform;
         offset = _offset;
@@ -22,6 +23,7 @@ public class AnimToQueue
         this.ease = ease;
         this.loop = loop;
         this.isDir = isDir;
+        this.mustDisappear = mustDisappear;
     }
 
 }

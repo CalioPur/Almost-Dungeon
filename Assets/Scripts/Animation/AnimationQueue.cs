@@ -30,6 +30,11 @@ public class AnimationQueue : MonoBehaviour
             Vector3 targetPos =
                 (anim.isDir) ? anim.targetTransform.position : anim.targetTransform.position + anim.offset;
             anim.obj.DOMove(targetPos, anim.time).SetEase(anim.ease).SetLoops(anim.loop, LoopType.Yoyo);
+            if (anim.mustDisappear)
+            {
+                anim.obj.GetComponent<Material>().DOColor(Color.clear, anim.time).SetEase(anim.ease)
+                    .SetLoops(anim.loop, LoopType.Yoyo);
+            }
             yield return new WaitForSeconds(anim.time + .1f);
             if (!gameObject.activeSelf) yield break;
         }
