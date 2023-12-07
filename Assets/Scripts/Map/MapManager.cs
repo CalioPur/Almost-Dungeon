@@ -79,9 +79,13 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < _tilePreset.Count; i++)
         {
             CardInfoInstance card = _tilePreset[i].cardInfo.CreateInstance();
-            card.Rotation = _tilePreset[i].rotation;
-            SetTileAtPosition(card, _tilePreset[i].position.x, _tilePreset[i].position.y);
             fogPainter.dungeonTilesPositions.Add(new Vector2Int(_tilePreset[i].position.x, _tilePreset[i].position.y));
+            for (int j = 0; j < _tilePreset[i].rotation; j++)
+            {
+                card.AddRotation(false);
+            }
+            Debug.Log("top: " + card.DoorOnTop + " bottom: " + card.DoorOnBottom + " left: " + card.DoorOnLeft + " right: " + card.DoorOnRight);
+            SetTileAtPosition(card, _tilePreset[i].position.x, _tilePreset[i].position.y);
         }
         MapManagerTools.SetConnectedToPath();
         MapManagerTools.SetExits();
@@ -288,8 +292,6 @@ public class MapManager : MonoBehaviour
         GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
         if (data.GetFirstAvailabalePosition(out var offset, out index))
         {
-            if (minionData is MinionData minion)
-                minion.Move(data.transform, offset, 0.5f);
             data.enemies.Add(minionData);
             return true;
         }
