@@ -1845,12 +1845,22 @@ PrefabInstance:
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[1].name
-      value: Dungeon 2
+      value: Dungeon 1
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: biomes.Array.data[1].dungeonSos.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].dungeonSos.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].dungeonSos.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
@@ -1872,13 +1882,30 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
+      propertyPath: dungeons.Array.data[0].dungeonSos.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 91ae23777d618d746b2cb75507eca59f,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].dungeonSos.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: f7be119ea0c163d41adcde9452b6fa18,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
       propertyPath: biomes.Array.data[1].<Deck>k__BackingField.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.size
-      value: 4
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.size
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
@@ -1894,7 +1921,7 @@ PrefabInstance:
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[0].nbToBuild
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
@@ -1904,11 +1931,91 @@ PrefabInstance:
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[2].nbToBuild
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[3].nbToBuild
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[4].nbToBuild
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[5].nbToBuild
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[6].nbToBuild
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[7].nbToBuild
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[8].nbToBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[9].nbToBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[0].nbToBuild
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[1].nbToBuild
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[2].nbToBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[3].nbToBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[4].nbToBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[5].nbToBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[6].nbToBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[7].nbToBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[8].nbToBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[10].nbToBuild
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
@@ -1927,13 +2034,109 @@ PrefabInstance:
         type: 3}
       propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[2].cardToBuild
       value: 
-      objectReference: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f,
+      objectReference: {fileID: 11400000, guid: be0c7f9793aaafa4fa212e0dc84e3558,
         type: 2}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[3].cardToBuild
       value: 
-      objectReference: {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd,
+      objectReference: {fileID: 11400000, guid: 4007e613041c8f246a6612471df765a9,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[4].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[5].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[6].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[7].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[8].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: fc452d8cc30791a40b65d71caa08f5b1,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[9].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f25b0a51e86e1346975d374f86b7dbd,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[0].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[1].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[2].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[3].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: be0c7f9793aaafa4fa212e0dc84e3558,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[4].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: 4007e613041c8f246a6612471df765a9,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[5].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[6].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[7].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].<Deck>k__BackingField.Array.data[8].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: 246ccb82261b7ca4d9f57f0068f0fa22,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].<Deck>k__BackingField.Array.data[10].cardToBuild
+      value: 
+      objectReference: {fileID: 11400000, guid: 246ccb82261b7ca4d9f57f0068f0fa22,
         type: 2}
     - target: {fileID: 6577308284193752911, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
