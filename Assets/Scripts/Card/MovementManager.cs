@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class MovementManager : MonoBehaviour
@@ -65,8 +66,9 @@ public class MovementManager : MonoBehaviour
     {
         if (selectedCard != null)
         {
-            selectedCard.GetImage().transform.Rotate(0, 0, 90 * (direction ? 1 : -1));
+            Vector3 rot = selectedCard.GetImage().transform.rotation.eulerAngles;
             selectedCard.Card.AddRotation(direction);
+            selectedCard.GetImage().transform.DORotate(new Vector3(0, 0, selectedCard.Card.Rotation), 0.2f);
         }
     }
     
