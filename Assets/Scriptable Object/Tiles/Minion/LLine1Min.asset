@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: bccbff68f952d5b4d92a99d6ea76355d, type: 3}
   imgOnMap: {fileID: 21300000, guid: 3701ea7b8b9dcbb4aafd5e288181f6bc, type: 3}
-  nbToBuild: 2
-  TypeOfTrapOrEnemyToSpawn: 02000000
+  TypeOfTrapOrEnemyToSpawn:
+  - type: 2
+    indexOffsetTile: 1
   offsetMinionPos:
   - {x: 0.25, y: 0, z: 0}
+  - {x: 0, y: 0, z: -0.25}
   - {x: -0.25, y: 0, z: 0}
   - {x: 0, y: 0, z: 0.25}
-  - {x: 0, y: 0, z: -0.25}
   DoorOnTop: 0
   DoorOnBottom: 1
   DoorOnLeft: 1

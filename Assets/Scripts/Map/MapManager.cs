@@ -286,11 +286,11 @@ public class MapManager : MonoBehaviour
         return mapArray[x, y].AvailableForSpawn();
     }
 
-    public bool AddMinionOnTile(Vector2Int vector2Int, TrapData minionData, out int index)
+    public bool AddMinionOnTile(Vector2Int vector2Int, TrapData minionData, ref int index)
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
-        if (data.GetFirstAvailabalePosition(out var offset, out index))
+        if (data.GetFirstAvailabalePosition(out var offset, ref index))
         {
             data.enemies.Add(minionData);
             return true;
