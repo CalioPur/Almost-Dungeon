@@ -43,7 +43,7 @@ public class SpawnEnemyManager : MonoBehaviour
     {
         for (int i = 0; i < card.So.TypeOfTrapOrEnemyToSpawn.Length; i++)
         {
-            int index = card.So.TypeOfTrapOrEnemyToSpawn[i].indexOffsetTile;
+            int index = card.TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile;
             switch (card.So.TypeOfTrapOrEnemyToSpawn[i].type)
             {
                 case TrapType.BasicCaC:
