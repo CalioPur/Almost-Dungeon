@@ -15,7 +15,7 @@ public class UI_Dragon : MonoBehaviour
     List<UI_Heart> hearts = new();
     public float shakeDuration = 0.5f;
     
-    public static int currentHealth = 100;
+    public static int currentHealth = 15;
     public int damage = 3;
     private void Awake()
     {

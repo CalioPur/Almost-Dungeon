@@ -48,6 +48,15 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        //if (eventData.button == PointerEventData.InputButton.Right)
+        //{
+            //enleve la selection de la carte 
+            //if (!isSelected) return;
+            //isSelected = false;
+            //img.color = NormalColor;
+            //OnCardSelectedEvent?.Invoke(null);
+        //}
+
         if (!Occupied) return;
         OnCardWasPointedEvent?.Invoke(this);
         BackgroundDescription.gameObject.SetActive(false);
