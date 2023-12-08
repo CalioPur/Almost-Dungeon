@@ -21,7 +21,7 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     void OnEnable()
     {
         var sizeOfScreen = new Vector2(Screen.width, Screen.height);
-        GetComponent<RectTransform>().DOMoveY(sizeOfScreen.y / 2, 1f).SetEase(Ease.Linear);
+        GetComponent<RectTransform>().DOMoveY(sizeOfScreen.y / 2, 0.5f).SetEase(Ease.Linear);
     }
     
     void SeeYouNextTime()

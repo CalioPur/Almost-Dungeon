@@ -4330,7 +4330,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3559636705968845322}
   - {fileID: 6007145856728816254}
   - {fileID: 4519632175122552299}
   - {fileID: 4599485785054712053}
@@ -4340,6 +4339,7 @@ RectTransform:
   - {fileID: 2936864570620190633}
   - {fileID: 38175918329994219}
   - {fileID: 3763495772230374948}
+  - {fileID: 3559636705968845322}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5249,6 +5249,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4166119521896893361, guid: 4ebfd0e20f78ae54b9fccced0b8c1544,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166119521896893361, guid: 4ebfd0e20f78ae54b9fccced0b8c1544,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7724371293614801054, guid: 4ebfd0e20f78ae54b9fccced0b8c1544,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5304,8 +5314,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebfd0e20f78ae54b9fccced0b8c1544, type: 3}
---- !u!4 &3559636705968845322 stripped
-Transform:
+--- !u!224 &3559636705968845322 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 7724371293614801054, guid: 4ebfd0e20f78ae54b9fccced0b8c1544,
     type: 3}
   m_PrefabInstance: {fileID: 6508867482652275348}
