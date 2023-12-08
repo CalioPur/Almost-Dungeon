@@ -58,7 +58,7 @@ public class MinionData : TrapData
     public void Revive()
     {
         Init();
-        mapManager.AddMinionOnTile(new Vector2Int(indexX, indexY), this, out indexOffsetTile);
+        mapManager.AddMinionOnTile(new Vector2Int(indexX, indexY), this, ref indexOffsetTile);
     }
 
     protected override void Init()
