@@ -40,6 +40,7 @@ public class MinionData : TrapData
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
         animQueue.AddAnim(new AnimToQueue(tr, targetTr,  offset , false, delay));
+        print("Move");
     }
 
     public override void TakeDamage(int damage)
@@ -57,7 +58,7 @@ public class MinionData : TrapData
     public void Revive()
     {
         Init();
-        mapManager.AddMinionOnTile(new Vector2Int(indexX, indexY), this, out indexOffsetTile);
+        mapManager.AddMinionOnTile(new Vector2Int(indexX, indexY), this, ref indexOffsetTile);
     }
 
     protected override void Init()
@@ -81,7 +82,6 @@ public class MinionData : TrapData
     public void addAnim(AnimToQueue animToQueue)
     {
         animQueue.AddAnim(animToQueue);
-        Debug.Log("addAnim");
     }
 
     protected override void OnDead()

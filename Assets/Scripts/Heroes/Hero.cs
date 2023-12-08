@@ -1,5 +1,6 @@
 using Tree = BehaviourTree.Tree;
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
@@ -8,6 +9,7 @@ public class Hero : MonoBehaviour
     public static event Action<int, bool> OnTakeDamageEvent;
     public static event Action<int> OnPopUpEvent;
     public static event Action<Hero> OnMovedOnEmptyCardEvent;
+    public static event Action<DirectionToMove> OnDragonAttackEvent;
     
     
     public MapManager mapManager { get; private set; }
@@ -17,6 +19,7 @@ public class Hero : MonoBehaviour
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private Tree bt;
     [SerializeField] private AnimationQueue animQueue;
+    [SerializeField] private GameObject attackPoint;
     [field:SerializeField] public HeroBlackboard HeroBlackboard { get; private set; }
     [field: SerializeField] private EmotesManager emotesManager;
     
@@ -34,6 +37,7 @@ public class Hero : MonoBehaviour
         
         GivePosBack();
     }
+    
     
     public Vector2Int GetIndexHeroPos()
     {
@@ -68,7 +72,36 @@ public class Hero : MonoBehaviour
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         MinionData.OnHeroPosAsked+= GivePosBack;
         PathFinding.OnNoPathFound += PlayEmoteStuck;
+        OnDragonAttackEvent +=AttackDragon;
     }
+
+    private void AttackDragon(DirectionToMove obj)
+    {
+        Vector3 dragonDir = Vector3.zero;
+        switch (obj)
+        {
+            case DirectionToMove.Up:
+                dragonDir = Vector3.forward;
+                break;
+            case DirectionToMove.Down:
+                dragonDir = Vector3.back;
+                break;
+            case DirectionToMove.Left:
+                dragonDir = Vector3.left;
+                break;
+            case DirectionToMove.Right:
+                dragonDir = Vector3.right;
+                break;
+            case DirectionToMove.None:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        attackPoint.transform.position = transform.position + dragonDir;
+        AnimToQueue animToQueue = new AnimToQueue(heroTr, attackPoint.transform , Vector3.zero, true, 0.5f, Ease.InBack, 2);
+        AddAnim(animToQueue);
+    }
+
 
     private void PlayEmoteStuck()
     {
@@ -85,9 +118,10 @@ public class Hero : MonoBehaviour
         TickManager.SubscribeToMovementEvent(MovementType.Hero, OnTick, out entityId);
     }
 
-    public void OutOfMap()
+    public void OutOfMap(DirectionToMove blackboardDirectionToMove)
     {
         OnMovedOnEmptyCardEvent?.Invoke(this);
+        OnDragonAttackEvent?.Invoke(blackboardDirectionToMove);
     }
 
     private void OnDestroy()
@@ -97,6 +131,7 @@ public class Hero : MonoBehaviour
         OnTakeDamageEvent = null;
         OnPopUpEvent = null;
         OnMovedOnEmptyCardEvent = null;
+        OnDragonAttackEvent = null;
     }
 
     private void IsDead()
@@ -117,6 +152,7 @@ public class Hero : MonoBehaviour
     private void Start()
     {
         OnBeginToMove();
+        attackPoint = GameObject.Find("AttackPoint");
     }
 
     private void OnDisable()

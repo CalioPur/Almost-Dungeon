@@ -35,13 +35,14 @@ public class CheckDirectionToMove : Node
                 simulatedPos.x += 1;
                 break;
             case DirectionToMove.None:
+                
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
 
         if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;
-        blackboard.hero.OutOfMap();
+        blackboard.hero.OutOfMap(blackboard.directionToMove);
         return NodeState.Failure;
     }
 }

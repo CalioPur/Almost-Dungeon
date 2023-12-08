@@ -5,6 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[Serializable]
+public struct EnemiDataOnHand
+{
+    public TrapType type;
+     public int indexOffsetTile;
+}
+
 [CreateAssetMenu(fileName = "CardInfo", menuName = "ScriptableObjects/CardInfo", order = 1)]
 public class CardInfo : ScriptableObject
 {
@@ -13,7 +20,7 @@ public class CardInfo : ScriptableObject
     public Sprite imgOnMap;
     
     [Header("Minions parameters")]
-    public TrapType[] TypeOfTrapOrEnemyToSpawn;
+    public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawn;
     public Vector3[] offsetMinionPos;
     
     [Header("Doors")]
@@ -56,6 +63,8 @@ public class CardInfoInstance
     public bool DoorOnLeft { get;  set; }
     public bool DoorOnRight { get;  set; }
     
+    public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawnInstance { get;  private set; }
+    
     public bool[] offsetSpawnUsed;
     
     public event Action OnRotationChangedEvent; 
@@ -69,6 +78,12 @@ public class CardInfoInstance
         DoorOnLeft = info.DoorOnLeft;
         DoorOnRight = info.DoorOnRight;
         offsetSpawnUsed = new bool[So.offsetMinionPos.Length];
+        TypeOfTrapOrEnemyToSpawnInstance = new EnemiDataOnHand[So.TypeOfTrapOrEnemyToSpawn.Length];
+        for (int i = 0; i < So.TypeOfTrapOrEnemyToSpawn.Length; i++)
+        {
+            TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = So.TypeOfTrapOrEnemyToSpawn[i].indexOffsetTile;
+            TypeOfTrapOrEnemyToSpawnInstance[i].type = So.TypeOfTrapOrEnemyToSpawn[i].type;
+        }
         for (int i = 0; i < So.offsetMinionPos.Length; i++)
         {
             offsetSpawnUsed[i] = false;
@@ -90,6 +105,14 @@ public class CardInfoInstance
             DoorOnRight = DoorOnBottom;
             DoorOnBottom = DoorOnLeft;
             DoorOnLeft = Tmp;
+            for (int i = 0; i < TypeOfTrapOrEnemyToSpawnInstance.Length; i++)
+            {
+                TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile--;
+                if (TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile < 0)
+                {
+                    TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = So.offsetMinionPos.Length - 1;
+                }
+            }
         }
         else
         {
@@ -97,6 +120,14 @@ public class CardInfoInstance
             DoorOnLeft = DoorOnBottom;
             DoorOnBottom = DoorOnRight;
             DoorOnRight = Tmp;
+            for (int i = 0; i < TypeOfTrapOrEnemyToSpawnInstance.Length; i++)
+            {
+                TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile++;
+                if (TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile >= So.offsetMinionPos.Length)
+                {
+                    TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = 0;
+                }
+            }
         }
         
         OnRotationChangedEvent?.Invoke();

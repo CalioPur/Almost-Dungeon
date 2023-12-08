@@ -22,8 +22,9 @@ public class MoveInDirection : Node
             (blackboard.dir == DirectionToMove.Left) ? -1 : 0;
         temporaryIndex.y += (blackboard.dir == DirectionToMove.Up) ? 1 :
             (blackboard.dir == DirectionToMove.Down) ? -1 : 0;
+        int index = -1;
         bool isValidPos = blackboard.minionData.mapManager.AddMinionOnTile(
-            new Vector2Int(temporaryIndex.x, temporaryIndex.y), blackboard.minionData, out int index);
+            new Vector2Int(temporaryIndex.x, temporaryIndex.y), blackboard.minionData, ref index);
         
         if (!isValidPos) return NodeState.Failure;
         
@@ -33,6 +34,8 @@ public class MoveInDirection : Node
         blackboard.minionData.indexX = temporaryIndex.x;
         blackboard.minionData.indexY = temporaryIndex.y;
         blackboard.minionData.indexOffsetTile = index;
+        TileData tileData = MapManager.Instance.GetTileDataAtPosition(temporaryIndex.x, temporaryIndex.y);
+        blackboard.minionData.Move(tileData.transform, tileData._instance.So.offsetMinionPos[index], 0.3f);
         return NodeState.Success;
     }
 }

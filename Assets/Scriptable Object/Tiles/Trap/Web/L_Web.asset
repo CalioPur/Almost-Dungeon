@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
-  m_Name: T_Spike
+  m_Name: L_Web
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: 6ab754f7fa507484bbd0090a520b02eb, type: 3}
-  imgOnMap: {fileID: 21300000, guid: db09bd28bb99f4640ad52c1d7ac0e707, type: 3}
-  TypeOfTrapOrEnemyToSpawn: 01000000
+  imgOnHand: {fileID: 21300000, guid: c555136bb7fcf0f4d9040cdd20175417, type: 3}
+  imgOnMap: {fileID: 21300000, guid: e6ac792fc04b75445a16af7d09b600d0, type: 3}
+  TypeOfTrapOrEnemyToSpawn: 00000000
   offsetMinionPos:
   - {x: 0.25, y: 0, z: 0}
+  - {x: 0, y: 0, z: -0.25}
   - {x: -0.25, y: 0, z: 0}
   - {x: 0, y: 0, z: 0.25}
-  - {x: 0, y: 0, z: -0.25}
-  DoorOnTop: 1
+  DoorOnTop: 0
   DoorOnBottom: 1
   DoorOnLeft: 1
   DoorOnRight: 0
-  description: c'est nous qu'on la fait celle la
+  description: beware of spider
   Rotation: 0
