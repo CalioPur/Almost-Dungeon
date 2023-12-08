@@ -15,7 +15,7 @@ MonoBehaviour:
   <initialNbCardInHand>k__BackingField: 6
   <HeroesInfo>k__BackingField: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32,
     type: 2}
-  <nbHealthHeroInitial>k__BackingField: 50
+  <nbHealthHeroInitial>k__BackingField: 40
   <tickData>k__BackingField: 1
   <clampedSpawnEnterDungeonX>k__BackingField: {x: 2, y: 4}
   <clampedSpawnEnterDungeonY>k__BackingField: {x: 2, y: 4}
