@@ -5,25 +5,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CardInfo", menuName = "ScriptableObjects/CardInfo", order = 1)]
 public class CardInfo : ScriptableObject
 {
-    [Header("Visual")]
-    public Sprite imgOnHand;
+    [Header("Visual")] public Sprite imgOnHand;
     public Sprite imgOnMap;
-    
-    [Header("Minions parameters")]
-    public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawn;
+
+    [Header("Minions parameters")] public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawn;
     public Vector3[] offsetMinionPos;
-    
-    [Header("Doors")]
-    public bool DoorOnTop;
+
+    [Header("Doors")] public bool DoorOnTop;
     public bool DoorOnBottom;
     public bool DoorOnLeft;
     public bool DoorOnRight;
-    
-    [Header("Others")]
-    public string description;
+
+    [Header("Others")] public string description;
     public int Rotation;
-    public List<ItemDrop> ItemDrops { get; private set; } = new ();
-    
+    [field: SerializeField] public List<ItemDrop> ItemDrops { get; private set; } = new();
+    [field: SerializeField] public List<DoorLockedData> doorLocked { get; private set; } = new();
+
     public CardInfoInstance CreateInstance()
     {
         return new CardInfoInstance(this);
@@ -44,23 +41,26 @@ public class CardInfo : ScriptableObject
         ItemDrops = cardSo.ItemDrops;
     }
 }
+
 public class CardInfoInstance
 {
-    public CardInfo So { get;}
+    public CardInfo So { get; }
     public int Rotation;
-    public bool DoorOnTop { get;  set; }
+    public bool DoorOnTop { get; set; }
     public bool DoorOnBottom { get; set; }
-    public bool DoorOnLeft { get;  set; }
-    public bool DoorOnRight { get;  set; }
-    
-    public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawnInstance { get;  private set; }
-    
+    public bool DoorOnLeft { get; set; }
+    public bool DoorOnRight { get; set; }
+
+    public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawnInstance { get; private set; }
+
     public bool[] offsetSpawnUsed;
-    
+
     public event Action OnRotationChangedEvent;
-    
+
     public List<ItemDrop> ItemDrops { get; set; }
-    
+
+    public List<DoorLockedData> doorLocked = new();
+
     public CardInfoInstance(CardInfo info)
     {
         So = info;
@@ -76,27 +76,34 @@ public class CardInfoInstance
             TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = So.TypeOfTrapOrEnemyToSpawn[i].indexOffsetTile;
             TypeOfTrapOrEnemyToSpawnInstance[i].type = So.TypeOfTrapOrEnemyToSpawn[i].type;
         }
+
         for (int i = 0; i < So.offsetMinionPos.Length; i++)
         {
             offsetSpawnUsed[i] = false;
         }
-        
+
         ItemDrops = new List<ItemDrop>();
         for (int i = 0; i < info.ItemDrops.Count; i++)
         {
             ItemDrops.Add(info.ItemDrops[i]);
         }
+        
+        doorLocked = new List<DoorLockedData>();
+        for (int i = 0; i < info.doorLocked.Count; i++)
+        {
+            doorLocked.Add(info.doorLocked[i]);
+        }
     }
-    
+
     public void AddRotation(bool NotClockwise)
     {
         Rotation += 90 * (NotClockwise ? 1 : -1);
         if (Rotation < 0) Rotation = 270;
         if (Rotation >= 360) Rotation = 0;
 
-        bool Tmp = DoorOnTop; // counter-clockwise rotation
+        bool Tmp = DoorOnTop;
 
-        
+
         if (NotClockwise)
         {
             DoorOnTop = DoorOnRight;
@@ -110,6 +117,16 @@ public class CardInfoInstance
                 {
                     TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = So.offsetMinionPos.Length - 1;
                 }
+            }
+
+            for (int i = 0; i < doorLocked.Count; i++)
+            {
+                var doorLockedData = doorLocked[i];
+                bool Tmp2 = doorLockedData.DoorOnTop; // counter-clockwise rotation
+                doorLockedData.DoorOnTop = doorLockedData.DoorOnRight;
+                doorLockedData.DoorOnRight = doorLockedData.DoorOnBottom;
+                doorLockedData.DoorOnBottom = doorLockedData.DoorOnLeft;
+                doorLockedData.DoorOnLeft = Tmp2;
             }
         }
         else
@@ -126,8 +143,18 @@ public class CardInfoInstance
                     TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = 0;
                 }
             }
+
+            for (int i = 0; i < doorLocked.Count; i++)
+            {
+                var doorLockedData = doorLocked[i];
+                bool Tmp2 = doorLockedData.DoorOnTop; // counter-clockwise rotation
+                doorLockedData.DoorOnTop = doorLockedData.DoorOnLeft;
+                doorLockedData.DoorOnLeft = doorLockedData.DoorOnBottom;
+                doorLockedData.DoorOnBottom = doorLockedData.DoorOnRight;
+                doorLockedData.DoorOnRight = Tmp2;
+            }
         }
-        
+
         OnRotationChangedEvent?.Invoke();
     }
 
@@ -148,16 +175,25 @@ public class CardInfoInstance
         {
             offsetSpawnUsed[i] = instance.offsetSpawnUsed[i];
         }
+
         TypeOfTrapOrEnemyToSpawnInstance = new EnemiDataOnHand[So.TypeOfTrapOrEnemyToSpawn.Length];
         for (int i = 0; i < So.TypeOfTrapOrEnemyToSpawn.Length; i++)
         {
-            TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = instance.TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile;
+            TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile =
+                instance.TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile;
             TypeOfTrapOrEnemyToSpawnInstance[i].type = instance.TypeOfTrapOrEnemyToSpawnInstance[i].type;
         }
+
         ItemDrops = new List<ItemDrop>();
         for (int i = 0; i < instance.ItemDrops.Count; i++)
         {
             ItemDrops.Add(instance.ItemDrops[i]);
+        }
+
+        doorLocked = new List<DoorLockedData>();
+        for (int i = 0; i < instance.doorLocked.Count; i++)
+        {
+            doorLocked.Add(instance.doorLocked[i]);
         }
     }
 }
