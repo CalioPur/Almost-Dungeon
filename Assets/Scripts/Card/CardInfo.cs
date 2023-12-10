@@ -1,16 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
-
-[Serializable]
-public struct EnemiDataOnHand
-{
-    public TrapType type;
-     public int indexOffsetTile;
-}
 
 [CreateAssetMenu(fileName = "CardInfo", menuName = "ScriptableObjects/CardInfo", order = 1)]
 public class CardInfo : ScriptableObject
@@ -32,6 +22,7 @@ public class CardInfo : ScriptableObject
     [Header("Others")]
     public string description;
     public int Rotation;
+    public List<ItemDrop> ItemDrops { get; private set; } = new ();
     
     public CardInfoInstance CreateInstance()
     {
@@ -50,10 +41,9 @@ public class CardInfo : ScriptableObject
         DoorOnRight = cardSo.DoorOnRight;
         description = cardSo.description;
         Rotation = cardSo.Rotation;
+        ItemDrops = cardSo.ItemDrops;
     }
 }
-
-//[Serializable]
 public class CardInfoInstance
 {
     public CardInfo So { get;}
@@ -67,7 +57,9 @@ public class CardInfoInstance
     
     public bool[] offsetSpawnUsed;
     
-    public event Action OnRotationChangedEvent; 
+    public event Action OnRotationChangedEvent;
+    
+    public List<ItemDrop> ItemDrops { get; set; }
     
     public CardInfoInstance(CardInfo info)
     {
@@ -87,6 +79,12 @@ public class CardInfoInstance
         for (int i = 0; i < So.offsetMinionPos.Length; i++)
         {
             offsetSpawnUsed[i] = false;
+        }
+        
+        ItemDrops = new List<ItemDrop>();
+        for (int i = 0; i < info.ItemDrops.Count; i++)
+        {
+            ItemDrops.Add(info.ItemDrops[i]);
         }
     }
     
@@ -149,6 +147,17 @@ public class CardInfoInstance
         for (int i = 0; i < So.offsetMinionPos.Length; i++)
         {
             offsetSpawnUsed[i] = instance.offsetSpawnUsed[i];
+        }
+        TypeOfTrapOrEnemyToSpawnInstance = new EnemiDataOnHand[So.TypeOfTrapOrEnemyToSpawn.Length];
+        for (int i = 0; i < So.TypeOfTrapOrEnemyToSpawn.Length; i++)
+        {
+            TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = instance.TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile;
+            TypeOfTrapOrEnemyToSpawnInstance[i].type = instance.TypeOfTrapOrEnemyToSpawnInstance[i].type;
+        }
+        ItemDrops = new List<ItemDrop>();
+        for (int i = 0; i < instance.ItemDrops.Count; i++)
+        {
+            ItemDrops.Add(instance.ItemDrops[i]);
         }
     }
 }
