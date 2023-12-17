@@ -17,11 +17,7 @@ public class BTBarbare : Tree
                 new AttackMinion(BB),
                 new CheckTargetIsAlive(BB)
             ),
-            new Sequence(
-                new CheckDirectionToMove(BB),
-                new MoveToDestination(BB),
-                new CheckPlayerOutOfMap(BB)
-            )
+            new HeroMovementBehavior(BB)
         );
         return origin;
     }
