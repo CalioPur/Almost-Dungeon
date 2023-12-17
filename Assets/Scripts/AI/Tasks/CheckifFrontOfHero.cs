@@ -15,7 +15,22 @@ public class CheckifFrontOfHero : Node
         int x = blackboard.minionData.indexX;
         int y = blackboard.minionData.indexY;
 
-        if (blackboard.heroPosition.y == y && blackboard.heroPosition.x == x)
+        if (blackboard.heroPosition.y == y && blackboard.heroPosition.x == x
+            ||
+            ( y + 1 <= blackboard.minionData.mapManager.height - 2 &&
+              blackboard.heroPosition.y == y + 1 && blackboard.heroPosition.x == x &&
+              blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorUp)
+            ||
+            (y - 1 >= 0 && blackboard.heroPosition.y == y - 1 && blackboard.heroPosition.x == x &&
+             blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorDown)
+            ||
+            (x + 1 <= blackboard.minionData.mapManager.width - 2 && 
+             blackboard.heroPosition.y == y && blackboard.heroPosition.x == x + 1 &&
+             blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorRight)
+            ||
+            (x - 1 >= 0 && blackboard.heroPosition.y == y && blackboard.heroPosition.x == x - 1 &&
+             blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorLeft)
+           )
         {
             blackboard.dir = DirectionToMove.None;
             return NodeState.Success;
