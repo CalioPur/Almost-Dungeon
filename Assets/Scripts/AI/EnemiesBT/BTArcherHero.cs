@@ -2,7 +2,7 @@ using BehaviourTree;
 using UnityEngine;
 using Tree = BehaviourTree.Tree;
 
-public class ArcherHeroBT : Tree
+public class BTArcherHero : Tree
 {
     [SerializeField] private HeroBlackboard BB;
     
@@ -18,11 +18,7 @@ public class ArcherHeroBT : Tree
                 new AttackMinion(BB),
                 new CheckTargetIsAlive(BB)
             ),
-            new Sequence(
-                new CheckDirectionToMove(BB),
-                new MoveToDestination(BB),
-                new CheckPlayerOutOfMap(BB)
-            )
+            new HeroMovementBehavior(BB)
         );
         return origin;
     }
