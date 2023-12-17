@@ -52,6 +52,31 @@ public class MapManager : MonoBehaviour
         cards = _cards;
     }
 
+    public void SpawnTilePresets()
+    {
+        for (int i = 0; i < _tilePreset.Count; i++)
+        {
+            CardInfoInstance card = _tilePreset[i].cardInfo.CreateInstance();
+            fogPainter.dungeonTilesPositions.Add(new Vector2Int(_tilePreset[i].position.x, _tilePreset[i].position.y));
+            for (int j = 0; j < _tilePreset[i].rotation; j++)
+            {
+                card.AddRotation(false);
+            }
+            Debug.Log("top: " + card.DoorOnTop + " bottom: " + card.DoorOnBottom + " left: " + card.DoorOnLeft + " right: " + card.DoorOnRight);
+            SetTileAtPosition(card, _tilePreset[i].position.x, _tilePreset[i].position.y);
+            if (card.TypeOfTrapOrEnemyToSpawnInstance.Length > 0)
+            {
+                for (int j = 0; j < card.TypeOfTrapOrEnemyToSpawnInstance.Length; j++)
+                {
+                    EnemiDataOnHand data = card.TypeOfTrapOrEnemyToSpawnInstance[j];
+                    GetTile(_tilePreset[i].position, out var tile);
+                    Vector3 offset = _tilePreset[i].cardInfo.offsetMinionPos[data.indexOffsetTile];
+                    SpawnEnemyManager.SpawnEnemyWithoutPrefab(data.type,tile, true, offset, data.indexOffsetTile, this);
+                }
+            }
+        }
+    }
+
     public void InitMap()
     {
         mapArray = new TileData[width, height];
@@ -76,17 +101,7 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < _tilePreset.Count; i++)
-        {
-            CardInfoInstance card = _tilePreset[i].cardInfo.CreateInstance();
-            fogPainter.dungeonTilesPositions.Add(new Vector2Int(_tilePreset[i].position.x, _tilePreset[i].position.y));
-            for (int j = 0; j < _tilePreset[i].rotation; j++)
-            {
-                card.AddRotation(false);
-            }
-            Debug.Log("top: " + card.DoorOnTop + " bottom: " + card.DoorOnBottom + " left: " + card.DoorOnLeft + " right: " + card.DoorOnRight);
-            SetTileAtPosition(card, _tilePreset[i].position.x, _tilePreset[i].position.y);
-        }
+        SpawnTilePresets();
         MapManagerTools.SetConnectedToPath();
         MapManagerTools.SetExits();
         HandsManager.OnCardTryToPlaceEvent += CheckCardPos;
@@ -286,11 +301,11 @@ public class MapManager : MonoBehaviour
         return mapArray[x, y].AvailableForSpawn();
     }
 
-    public bool AddMinionOnTile(Vector2Int vector2Int, TrapData minionData, out int index)
+    public bool AddMinionOnTile(Vector2Int vector2Int, TrapData minionData, ref int index)
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
-        if (data.GetFirstAvailabalePosition(out var offset, out index))
+        if (data.GetFirstAvailabalePosition(out var offset, ref index))
         {
             data.enemies.Add(minionData);
             return true;

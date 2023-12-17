@@ -26,11 +26,11 @@ public class AddButtonForLevelsSelection : MonoBehaviour
             int biomeIndex = cpt;
             theButton.GetComponent<Button>().onClick.AddListener(() =>
             {
-                buttonList.ForEach(button => button.SetActive(false));
-                image.color = Color.clear;
-                videoPlayer.playbackSpeed = 1;
-                videoPlayer.Play();
-                CanvasBlack.SetActive(true);
+                // buttonList.ForEach(button => button.SetActive(false));
+                // //image.color = Color.clear;
+                // //videoPlayer.playbackSpeed = 1;
+                // videoPlayer.Play();
+                // CanvasBlack.SetActive(true);
                 StartCoroutine(AlphaLerp(biomeIndex));
             });
             cpt++;
@@ -38,13 +38,13 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     }
     private IEnumerator AlphaLerp(int biomeIndex)
     {
-        var alpha = CanvasBlack.GetComponent<Image>().color.a;
-        while (alpha < 1)
-        {
-            alpha += Time.deltaTime;
-            CanvasBlack.GetComponent<Image>().color = new Color(0, 0, 0, alpha);
-            yield return null;
-        }
+        // var alpha = CanvasBlack.GetComponent<Image>().color.a;
+        // while (alpha < 1)
+        // {
+        //     alpha += Time.deltaTime;
+        //     CanvasBlack.GetComponent<Image>().color = new Color(0, 0, 0, alpha);
+        //     yield return null;
+        // }
         dungeonManager.SetSelectedBiome(biomeIndex);
         yield break;
     }
