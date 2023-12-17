@@ -3,13 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
+
 
 [Serializable]
 public struct Dungeon
 {
-    [field: SerializeField] public List<CardToBuild> Deck { get; private set; }
-    [SerializeField] public List<LevelSO> dungeonSos;
+    
+    [SerializeField] public DungeonSO dungeonSO;
     [SerializeField] public string name;
+    [SerializeField] public bool isLocked;
 }
 
 public class DungeonManager : MonoBehaviour
@@ -54,32 +58,43 @@ public class DungeonManager : MonoBehaviour
         print(currentLevel);
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
-        print("nb of level : "+dungeons[SelectedBiome].dungeonSos.Count);
-        if (level >= dungeons[SelectedBiome].dungeonSos.Count)
+        print("nb of level : "+dungeons[SelectedBiome].dungeonSO.etages.Count);
+        if (level >= dungeons[SelectedBiome].dungeonSO.etages.Count)
         {
             Debug.LogWarning("Level is too high");
             SceneManager.LoadScene(0);
             ResetLevelIndex();
             return;
         }
-        var dungeonSo = dungeons[SelectedBiome].dungeonSos[level];
+
+        var etageSo = dungeons[SelectedBiome].dungeonSO.etages[level];
+        
+        var levelData = etageSo.Levels[Random.Range(0, etageSo.Levels.Count)];
+        
+        var terrainData = levelData.terrains[Random.Range(0, levelData.terrains.Count)];
+        var heroData = levelData.heros[Random.Range(0, levelData.heros.Count)];
+        var deckData = levelData.decks[Random.Range(0, levelData.decks.Count)];
+        
         cardsManager = FindObjectOfType<DeckManager>();
-        cardsManager.deckToBuild = dungeons[SelectedBiome].Deck;
-        cardsManager.nbCardOnStartToDraw = dungeonSo.initialNbCardInHand;
+        cardsManager.deckToBuild = deckData.deck;
+        cardsManager.nbCardOnStartToDraw = etageSo.nbCardToDraw;
+        
+        
+        
         
         tickManager = FindObjectOfType<TickManager>();
-        tickManager.actionsTime = dungeonSo.tickData;
+        tickManager.actionsTime = heroData.speed;
         
         gameManager = FindObjectOfType<GameManager>();
-        gameManager.currentHero = dungeonSo.HeroesInfo;
-        gameManager.heroHealthPoint = dungeonSo.nbHealthHeroInitial;
-        gameManager.normsSpawnX = dungeonSo.clampedSpawnEnterDungeonX;
-        gameManager.normsSpawnY = dungeonSo.clampedSpawnEnterDungeonY;
+        gameManager.currentHero = heroData.classe;
+        gameManager.heroHealthPoint = heroData.health;
+        gameManager.normsSpawnX = levelData.ClampSpawnPositionX;
+        gameManager.normsSpawnY = levelData.ClampSpawnPositionY;
         
         mapManager = FindObjectOfType<MapManager>();
 
         
-        mapManager.SpawnPresets(dungeonSo.levelTilePreset);
+        mapManager.SpawnPresets(terrainData.tilePresets);
     }
     public void LoadNextLevel()
     {
