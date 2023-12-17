@@ -276,10 +276,12 @@ public class MapManager : MonoBehaviour
         return mapArray[pos.x, pos.y].PiecePlaced;
     }
 
-    public void GetMonstersOnPos(Vector2Int pos, out List<TrapData> minions)
+    public bool GetMonstersOnPos(Vector2Int pos, out List<TrapData> minions)
     {
+        if (pos.x >= width - 2 || pos.y >= height - 2 || pos.x < 0 || pos.y < 0) { minions = null; return false;}
         TileData data = GetTileDataAtPosition(pos.x, pos.y);
         minions = new List<TrapData>(data.enemies.OrderBy(x => x.GetSO().targetPriority));
+        return true;
     }
     
     public int GetNbMonstersOnPos(Vector2Int pos)
