@@ -17,7 +17,7 @@ public class UI_Dragon : MonoBehaviour
     
     public static int currentHealth = 15;
     public int damage = 3;
-    private void Awake()
+    private void Start()
     {
         DrawHearts();
     }

@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: a180f7b43c80339429079c1217868bab, type: 3}
   imgOnMap: {fileID: 21300000, guid: 327123577b410944dacd140ed24ae4d0, type: 3}
-  TypeOfTrapOrEnemyToSpawn: 01000000
+  TypeOfTrapOrEnemyToSpawn:
+  - type: 1
+    indexOffsetTile: -1
   offsetMinionPos:
   - {x: 0.25, y: 0, z: 0}
   - {x: 0, y: 0, z: -0.25}
@@ -26,3 +28,5 @@ MonoBehaviour:
   DoorOnRight: 1
   description: y a la poucky dans le sas
   Rotation: 0
+  <ItemDrops>k__BackingField: 
+  <doorLocked>k__BackingField: []

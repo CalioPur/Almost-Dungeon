@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: f9cca83f92a275543a6faf8cf010a372, type: 3}
   imgOnMap: {fileID: 21300000, guid: 6eb3df4c6678a364188b4aa6e1762dcd, type: 3}
-  TypeOfTrapOrEnemyToSpawn: 02000000
+  TypeOfTrapOrEnemyToSpawn:
+  - type: 2
+    indexOffsetTile: 0
   offsetMinionPos:
   - {x: 0.25, y: 0, z: 0}
   - {x: 0, y: 0, z: -0.25}
@@ -26,3 +28,5 @@ MonoBehaviour:
   DoorOnRight: 0
   description: T line with 1 enemies :)
   Rotation: 0
+  <ItemDrops>k__BackingField: 
+  <doorLocked>k__BackingField: []

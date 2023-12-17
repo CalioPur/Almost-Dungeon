@@ -14,8 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePresets:
   - position: {x: 3, y: 3}
-    cardInfo: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
+    cardInfo: {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
     rotation: 0
-  - position: {x: 3, y: 5}
-    cardInfo: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
-    rotation: 1

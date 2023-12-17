@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 0}
   AIType: {fileID: 0}
-  img: {fileID: 0}
+  img: {fileID: 4166119521896893361}
   heroBlackboard: {fileID: 0}
 --- !u!222 &8099490725093499358
 CanvasRenderer:

@@ -17,6 +17,7 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     private List<GameObject> buttonList = new();
     void Start()
     {
+        Time.timeScale = 1;
         int cpt = 0;
         foreach (var biome in dungeonManager.dungeons)
         {
@@ -26,7 +27,7 @@ public class AddButtonForLevelsSelection : MonoBehaviour
             int biomeIndex = cpt;
             theButton.GetComponent<Button>().onClick.AddListener(() =>
             {
-                buttonList.ForEach(button => button.SetActive(false));
+                //buttonList.ForEach(button => button.SetActive(false));
                 //image.color = Color.clear;
                 //videoPlayer.playbackSpeed = 1;
                 videoPlayer.Play();
@@ -35,9 +36,11 @@ public class AddButtonForLevelsSelection : MonoBehaviour
             });
             cpt++;
         }
+        StopAllCoroutines();
     }
     private IEnumerator AlphaLerp(int biomeIndex)
     {
+        
         var alpha = CanvasBlack.GetComponent<Image>().color.a;
         while (alpha < 1)
         {
