@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4155434173039398386}
@@ -105,6 +105,7 @@ MonoBehaviour:
   Sprite: {fileID: 4954612021088544096}
   bt: {fileID: 8510288047578433188}
   animQueue: {fileID: 7733622732822971966}
+  attackPoint: {fileID: 0}
   <HeroBlackboard>k__BackingField: {fileID: -4683431529391840305}
   emotesManager: {fileID: 4929261808159266673}
 --- !u!114 &8510288047578433188
@@ -132,12 +133,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c81a189f7e0d9e4c8e18f8ff23b4549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero: {fileID: 2382212582554433649}
   personality: 0
+  hero: {fileID: 2382212582554433649}
   directionToMove: 4
   Targets: []
   ChosenTarget:
   - {fileID: 0}
+  DoorSaw: []
+  DoorTarget: {x: 0, y: 0}
 --- !u!114 &7733622732822971966
 MonoBehaviour:
   m_ObjectHideFlags: 0

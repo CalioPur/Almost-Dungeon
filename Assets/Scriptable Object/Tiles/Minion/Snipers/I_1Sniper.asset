@@ -12,19 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
   m_Name: I_1Sniper
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: c54b7d5c94e806347b49bbe72a98e7e2, type: 3}
-  imgOnMap: {fileID: 21300000, guid: 332bc19586933134b9c0997c4606f147, type: 3}
+  imgOnHand: {fileID: 21300000, guid: 30bce58d0152d4d40974d2774adeaade, type: 3}
+  imgOnMap: {fileID: 21300000, guid: ffb82ec9a9ab5dd46bb32a9757f4ff0c, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 3
     indexOffsetTile: 0
   offsetMinionPos:
-  - {x: 0.25, y: 0, z: 0}
-  - {x: -0.25, y: 0, z: 0}
-  - {x: 0, y: 0, z: -0.25}
-  - {x: 0, y: 0, z: 0.25}
+  - {x: 0, y: 0, z: 0}
   DoorOnTop: 0
   DoorOnBottom: 0
   DoorOnLeft: 1
   DoorOnRight: 1
-  description: line with 1 enemies :)
+  description: 
   Rotation: 0
+  <ItemDrops>k__BackingField: 
+  <doorLocked>k__BackingField: []
