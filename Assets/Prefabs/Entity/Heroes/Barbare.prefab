@@ -109,6 +109,9 @@ MonoBehaviour:
   attackPoint: {fileID: 0}
   <HeroBlackboard>k__BackingField: {fileID: -4683431529391840305}
   emotesManager: {fileID: 4990272541578531698}
+  attackClip:
+  - {fileID: 8300000, guid: adfc2fd02af23c74d80134e2f4f5665e, type: 3}
+  - {fileID: 8300000, guid: 3699aa00e7f1f7c4d824c109e97d5856, type: 3}
 --- !u!114 &-4683431529391840305
 MonoBehaviour:
   m_ObjectHideFlags: 0

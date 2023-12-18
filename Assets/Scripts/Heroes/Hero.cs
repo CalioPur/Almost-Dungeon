@@ -176,7 +176,7 @@ public class Hero : MonoBehaviour
     }
 
     
-    private void PlayAttackClip()
+    public void PlayAttackClip()
     {
         audioSource.PlayOneShot(attackClip[Random.Range(0,attackClip.Length)]);
     }
