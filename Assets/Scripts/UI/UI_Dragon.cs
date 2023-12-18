@@ -17,10 +17,6 @@ public class UI_Dragon : MonoBehaviour
     
     public static int currentHealth = 15;
     public int damage = 3;
-    private void Start()
-    {
-        DrawHearts();
-    }
     
     public IEnumerator TakeDamageFX(Hero hero)
     {
@@ -109,6 +105,7 @@ public class UI_Dragon : MonoBehaviour
 
     private void Start()
     {
+        DrawHearts();
         Hero.OnMovedOnEmptyCardEvent += CheckDragonHP;
     }
 
