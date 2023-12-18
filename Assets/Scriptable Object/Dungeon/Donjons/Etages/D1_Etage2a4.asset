@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c147cf146376604d94d126242f5ce99, type: 3}
-  m_Name: Basic_Tutorial_1
+  m_Script: {fileID: 11500000, guid: 4366a21c764d4d94b813ae91338a7f9b, type: 3}
+  m_Name: D1_Etage2a4
   m_EditorClassIdentifier: 
-  tilePresets: []
+  Levels:
+  - {fileID: 11400000, guid: 6a72119ae3b792a419edd531aabf57bd, type: 2}
+  nbCardToDraw: 3

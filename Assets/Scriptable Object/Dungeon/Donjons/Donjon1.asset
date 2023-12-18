@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Donjon1
   m_EditorClassIdentifier: 
   etages:
+  - {fileID: 11400000, guid: 028eeff1c18779d48ba62db0ee2fb953, type: 2}
   - {fileID: 11400000, guid: 0879a291c31925d4189fcb6382f3f0f1, type: 2}
   - {fileID: 11400000, guid: 0879a291c31925d4189fcb6382f3f0f1, type: 2}
