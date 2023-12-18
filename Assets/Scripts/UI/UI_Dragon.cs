@@ -22,7 +22,6 @@ public class UI_Dragon : MonoBehaviour
 
     private IEnumerator TakeDamageFX(Hero hero)
     {
-        yield return new WaitForSeconds(0.5f);
         var dragonImageColor = dragonImage.color;
         dragonImageColor.a = 0f;
         dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(true);
