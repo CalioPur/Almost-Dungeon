@@ -26,17 +26,21 @@ public class UIManager : MonoBehaviour
         
         dungeonManager = FindObjectOfType<DungeonManager>();
         
-        StartCoroutine(AlphaLerp());
 
         //DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(AlphaLerp());
     }
 
     private IEnumerator AlphaLerp()
     {
         var alpha = img.color.a;
-        while (alpha < 1)
+        while (alpha > 0)
         {
-            alpha += Time.deltaTime;
+            alpha -= Time.deltaTime;
             img.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
