@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
-  m_Name: T_2Snipers
+  m_Name: T_2Skeletons
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: b4a7f5152cc2aa948ba694ae55d3880d, type: 3}
+  imgOnHand: {fileID: 21300000, guid: b96dac472325c6849aa623e268a85df9, type: 3}
   imgOnMap: {fileID: 21300000, guid: 6eb3df4c6678a364188b4aa6e1762dcd, type: 3}
   TypeOfTrapOrEnemyToSpawn:
-  - type: 3
-    indexOffsetTile: 0
-  - type: 3
+  - type: 4
     indexOffsetTile: 1
+  - type: 4
+    indexOffsetTile: 2
   offsetMinionPos:
-  - {x: 0.25, y: 0, z: 0}
   - {x: -0.25, y: 0, z: 0}
   - {x: 0, y: 0, z: -0.25}
   - {x: 0, y: 0, z: 0.25}
@@ -30,3 +29,5 @@ MonoBehaviour:
   DoorOnRight: 0
   description: T line with 2 enemies :)
   Rotation: 0
+  <ItemDrops>k__BackingField: 
+  <doorLocked>k__BackingField: []
