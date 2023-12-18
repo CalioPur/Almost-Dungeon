@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
-  m_Name: Jean
+  m_Script: {fileID: 11500000, guid: 1f0686ad6da41e04095ff2a86b67d424, type: 3}
+  m_Name: Donjon_2
   m_EditorClassIdentifier: 
-  name: Jean
-  health: 10
-  speed: 3
-  classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
-  personnalities: 01000000
+  etages:
+  - {fileID: 11400000, guid: f2e4fb952703f054cb2094a7789d9495, type: 2}
+  - {fileID: 11400000, guid: 16cf19cad6fd42c47be22920c2e48b19, type: 2}
