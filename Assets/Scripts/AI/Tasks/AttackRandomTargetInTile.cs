@@ -24,8 +24,8 @@ public class AttackRandomTargetInTile : Node
         
         if (random == 0)
         {
-            TileData tileWhereHeroIs =  blackboard.minionData.mapManager.GetTileDataAtPosition(blackboard.heroPosition.x + 1,
-                blackboard.heroPosition.y + 1);
+            TileData tileWhereHeroIs =  blackboard.minionData.mapManager.GetTileDataAtPosition(blackboard.heroPosition.x,
+                blackboard.heroPosition.y);
             blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform,tileWhereHeroIs.transform,
                 Vector3.zero, true, 0.3f, Ease.InBack, 2));
             blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage);
