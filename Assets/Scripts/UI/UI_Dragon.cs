@@ -27,9 +27,9 @@ public class UI_Dragon : MonoBehaviour
         dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         dragonImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true);
         currentHealth -= 1;
-        hero.TakeDamage(damage);
         DrawHearts();
         yield return new WaitForSeconds(shakeDuration);
+        hero.TakeDamage(damage);
         dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         dragonImageColor.a = 1f;
     }
