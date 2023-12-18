@@ -1945,7 +1945,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
-<<<<<<< Updated upstream
       propertyPath: dungeons.Array.data[0].Levels.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 00a968d9d1d5b2a4e99252dbcfc1be2f,
@@ -2141,8 +2140,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
-=======
->>>>>>> Stashed changes
       propertyPath: biomes.Array.data[1].dungeonSos.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 00a968d9d1d5b2a4e99252dbcfc1be2f,
