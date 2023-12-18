@@ -15,38 +15,45 @@ public class UI_Dragon : MonoBehaviour
     public Image dragonImage;
     List<UI_Heart> hearts = new();
     public float shakeDuration = 0.5f;
-    
-    public static int currentHealth = 15;
+
+    public static int currentHealth;
+    public static int maxHealth = 0;
     public int damage = 3;
-    
-    public IEnumerator TakeDamageFX(Hero hero)
+
+    private IEnumerator TakeDamageFX(Hero hero)
     {
-        //dragonImage.color = Color.red;
-        //dragonImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true); //on a plus d'image de dragon
-        yield return new WaitForSeconds(1);
+        var dragonImageColor = dragonImage.color;
+        dragonImageColor.a = 0f;
+        dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        dragonImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true);
+        currentHealth -= 1;
+        DrawHearts();
         yield return new WaitForSeconds(shakeDuration);
-        //dragonImage.color = Color.white;
         hero.TakeDamage(damage);
+        dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        dragonImageColor.a = 1f;
     }
 
     #region Health
 
-    public void DrawHearts()
+    private void DrawHearts()
     {
         DestroyAllHearts();
-
-        float maxHealthRemainder = currentHealth % 2;
-        int maxHealth = (int)((currentHealth / 2) + maxHealthRemainder);
-        for (int i = 0; i < maxHealth; i++)
+        int a = 0;
+        //draw full hearts and empty hearts full heart = currentHealth empty heart = maxHealth - currentHealth
+        for (int i = 0; i < currentHealth; i++)
+        {
+            CreateFullHeart();
+            a++;
+        }
+        Debug.Log(a);
+        for (int i = 0; i < maxHealth - currentHealth; i++)
         {
             CreateEmptyHeart();
         }
-
-        for (int i = 0; i < hearts.Count; i++)
-        {
-            int heartState = (int)Mathf.Clamp(currentHealth - i * 2, 0, 2);
-            hearts[i].SetHeartState((HeartState)heartState);
-        }
+        
+        //draw hearts
+        
     }
 
     public void CreateFullHeart()
@@ -54,14 +61,6 @@ public class UI_Dragon : MonoBehaviour
         GameObject heart = Instantiate(heartPrefab, healthBar.transform);
         UI_Heart heartScript = heart.GetComponent<UI_Heart>();
         heartScript.SetHeartState(HeartState.Full);
-        hearts.Add(heartScript);
-    }
-
-    public void CreateHalfHeart()
-    {
-        GameObject heart = Instantiate(heartPrefab, healthBar.transform);
-        UI_Heart heartScript = heart.GetComponent<UI_Heart>();
-        heartScript.SetHeartState(HeartState.Half);
         hearts.Add(heartScript);
     }
 
@@ -87,10 +86,7 @@ public class UI_Dragon : MonoBehaviour
 
     public void TakeDamage(int damage, Hero hero)
     {
-        OnDragonTakeDamageEvent?.Invoke();
-        currentHealth -= damage;
         StartCoroutine(TakeDamageFX(hero));
-        DrawHearts();
     }
     
     IEnumerator AttackByHero(float delay, Hero hero)
@@ -115,6 +111,8 @@ public class UI_Dragon : MonoBehaviour
 
     private void Start()
     {
+        maxHealth = GameManager._instance.dragonHealthPoint;
+        currentHealth = maxHealth;
         DrawHearts();
         Hero.OnMovedOnEmptyCardEvent += CheckDragonHP;
     }

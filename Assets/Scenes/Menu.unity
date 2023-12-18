@@ -1525,8 +1525,8 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -1579,7 +1579,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 2a12ae00ffeaa2644bf8d71be053a89c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.043
   m_Pitch: 1
   Loop: 0
   Mute: 0
