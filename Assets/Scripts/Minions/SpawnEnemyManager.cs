@@ -56,7 +56,7 @@ public class SpawnEnemyManager : MonoBehaviour
         for (int i = 0; i < card.So.TypeOfTrapOrEnemyToSpawn.Length; i++)
         {
             int index = card.TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile;
-            SpawnEnemyWithType(card.So.TypeOfTrapOrEnemyToSpawn[i].type, tile, card.So.offsetMinionPos[index], index, mapManager);
+            SpawnEnemyWithType(card.So.TypeOfTrapOrEnemyToSpawn[i].type, tile, card.So.offsetMinionPos[0], index, mapManager);
         }
     }
 

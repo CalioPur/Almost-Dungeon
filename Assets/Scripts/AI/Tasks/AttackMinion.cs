@@ -32,7 +32,7 @@ public class AttackMinion : Node
             blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, target.transform, Vector3.zero, true, delay, Ease.InBack, 2));
         }
         
-
+        blackboard.hero.PlayAttackClip();
 
         return NodeState.Success;
     }
