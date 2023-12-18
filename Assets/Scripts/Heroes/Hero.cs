@@ -25,6 +25,7 @@ public class Hero : MonoBehaviour
     
     private int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
+    private bool isStunned;
 
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
@@ -57,6 +58,11 @@ public class Hero : MonoBehaviour
     void OnTick()
     {
         if (!bt) return;
+        if (isStunned)
+        {
+            isStunned = false;
+            return;
+        }
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
     
@@ -66,8 +72,10 @@ public class Hero : MonoBehaviour
         mapManager = manager;
         entityId = GetHashCode();
         info = instance;
+        isStunned = false;
 
         TrapData.OnTrapAttackEvent += TakeDamage;
+        TrapData.OnTrapStunEvent += Stun;
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         MinionData.OnHeroPosAsked+= GivePosBack;
@@ -158,10 +166,16 @@ public class Hero : MonoBehaviour
     private void OnDisable()
     {
         TrapData.OnTrapAttackEvent -= TakeDamage;
+        TrapData.OnTrapStunEvent -= Stun;
         TrapData.ClearEvent();
         MinionData.OnHeroPosAsked -= GivePosBack;
         MinionData.ClearSubscribes();
         PathFinding.OnNoPathFound -= PlayEmoteStuck;
+    }
+
+    private void Stun()
+    {
+        isStunned = true;
     }
 
     public void AddAnim(AnimToQueue animToQueue)

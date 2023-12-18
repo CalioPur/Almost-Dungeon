@@ -100,11 +100,12 @@ public class TickManager : MonoBehaviour
         MovementType currentMovementType = GetMovementTypeFromDivision();
 
         // Check if the key exists in the dictionary before accessing it
-        if (movementEvents.ContainsKey(currentMovementType))
+        if (movementEvents.TryGetValue(currentMovementType, out var datas))
         {
-            foreach (TickData movementAction in movementEvents[currentMovementType])
+            // Check if there are any subscribers before invoking
+            if (datas != null)
             {
-                movementAction._action?.Invoke();
+                datas.ForEach(tickData => tickData._action?.Invoke());
             }
         }
     }

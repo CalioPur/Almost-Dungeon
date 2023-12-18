@@ -33,6 +33,11 @@ public class MinionData : TrapData
     protected override void OnTick()
     {
         if (!bt || isDead) return;
+        if (isStunned)
+        {
+            isStunned = false;
+            return;
+        }
         Debug.Log("OnTick");
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
@@ -63,6 +68,7 @@ public class MinionData : TrapData
 
     protected override void Init()
     {
+        isStunned = false;
         bt.blackboard.Reset();
         gameObject.SetActive(true);
         isDead = false;
