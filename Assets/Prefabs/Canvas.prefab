@@ -1460,7 +1460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3910101812022723431
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4831,6 +4831,7 @@ MonoBehaviour:
     type: 3}
   endGamePanel: {fileID: 5588112277290890042}
   endGameText: {fileID: 8769656149661145474}
+  endGameButton: {fileID: 4928435573094370304}
   itemNamesChoices:
   - Test1
   - Test2

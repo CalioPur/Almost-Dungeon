@@ -1875,7 +1875,7 @@ PrefabInstance:
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
@@ -1885,7 +1885,7 @@ PrefabInstance:
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[0].name
-      value: Dungeon 1mdr
+      value: Dungeon 1
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
@@ -1907,6 +1907,12 @@ PrefabInstance:
       propertyPath: dungeons.Array.data[0].dungeonSO
       value: 
       objectReference: {fileID: 11400000, guid: 3cd4d22b85c014c4c9e31a7fd65052ab,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].dungeonSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 7848d90f9bb6c0e4882396f9289ddf41,
         type: 2}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}

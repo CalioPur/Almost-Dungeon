@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UI_Dragon : MonoBehaviour
 {
     public static event Action OnDragonDeathEvent;
+    public static event Action OnDragonTakeDamageEvent;
     
     public GameObject healthBar;
     public GameObject heartPrefab;
@@ -89,9 +90,11 @@ public class UI_Dragon : MonoBehaviour
         StartCoroutine(TakeDamageFX(hero));
     }
     
-    public void CheckDragonHP(Hero hero)
+    IEnumerator AttackByHero(float delay, Hero hero)
     {
+        yield return new WaitForSeconds(delay);
         TakeDamage(hero.info.So.AttackPoint, hero);
+        
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -100,6 +103,11 @@ public class UI_Dragon : MonoBehaviour
         }
 
         DrawHearts();
+    }
+    
+    public void CheckDragonHP(Hero hero)
+    {
+        StartCoroutine(AttackByHero(0.5f, hero));
     }
 
     private void Start()

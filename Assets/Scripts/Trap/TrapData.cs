@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 public abstract class TrapData : MonoBehaviour
 {
     public static event Action<int> OnTrapAttackEvent; 
+    public static event Action OnTrapStunEvent; 
     public abstract void TakeDamage(int damage);
     
     public bool isDead;
@@ -18,6 +19,8 @@ public abstract class TrapData : MonoBehaviour
     [SerializeField] protected EnemySo SO;
     protected int entityId;
     
+    protected bool isStunned;
+    
     protected abstract void OnTick();
     protected abstract void Init();
     protected virtual void OnDead()
@@ -25,6 +28,7 @@ public abstract class TrapData : MonoBehaviour
         mapManager.GetWorldPosFromTilePos(new Vector2Int(indexX, indexY) , out Vector3 worldPos);
         mapManager.RemoveEnemyOnTile(
             new Vector2Int(indexX, indexY), this, worldPos);
+        isDead = true;
         
        gameObject.SetActive(false);
     }
@@ -32,6 +36,11 @@ public abstract class TrapData : MonoBehaviour
     public void Attack(int damage)
     {
         InvokeTrapAttackEvent(damage);
+    }
+    
+    public void Stun()
+    {
+        OnTrapStunEvent?.Invoke();
     }
     
     public EnemySo GetSO()
@@ -71,5 +80,10 @@ public abstract class TrapData : MonoBehaviour
     public static void ClearEvent()
     {
         OnTrapAttackEvent = null;
+    }
+
+    public void Stunned()
+    {
+        
     }
 }

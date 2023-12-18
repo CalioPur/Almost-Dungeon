@@ -215,6 +215,33 @@ public class MapManager : MonoBehaviour
         return mapArray[x, y];
     }
 
+    public bool DoorIsOpenAtPosition(Vector2Int pos, DirectionToMove dir)
+    {
+        switch (dir)
+        {
+            case DirectionToMove.Left:
+                return mapArray[pos.x, pos.y].hasDoorLeft;
+                break;
+            case DirectionToMove.Right:
+                return mapArray[pos.x, pos.y].hasDoorRight;
+                break;
+            case DirectionToMove.Up:
+                return mapArray[pos.x, pos.y].hasDoorUp;
+                break;
+            case DirectionToMove.Down:
+                return mapArray[pos.x, pos.y].hasDoorDown;
+                break;
+            case DirectionToMove.None:
+                return false;
+                break;
+            case DirectionToMove.Error:
+                throw new ArgumentOutOfRangeException(nameof(dir), dir, null);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(dir), dir, null);
+        }
+    }
+
     public Vector2Int GetPosFromData(TileData data)
     {
         for (int i = 0; i < width - 2; i++)

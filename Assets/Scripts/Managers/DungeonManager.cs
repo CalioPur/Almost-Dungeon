@@ -32,7 +32,6 @@ public class DungeonManager : MonoBehaviour
     
     private void Awake()
     {
-        
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
@@ -55,7 +54,8 @@ public class DungeonManager : MonoBehaviour
     
     private void LoadLevel()
     {
-        print(currentLevel);
+        if (currentLevel == 0)
+            UI_Dragon.currentHealth = 15;
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
         print("nb of level : "+dungeons[SelectedBiome].dungeonSO.etages.Count);
@@ -104,6 +104,7 @@ public class DungeonManager : MonoBehaviour
 
     public static void ResetLevelIndex()
     {
+        print("reset!");
         currentLevel = 0;
     }
 }

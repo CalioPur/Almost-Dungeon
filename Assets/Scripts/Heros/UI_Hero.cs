@@ -16,6 +16,7 @@ public class UI_Hero : MonoBehaviour
     [SerializeField] private GameObject itemsPrefab;
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private TMP_Text endGameText;
+    [SerializeField] private Button endGameButton;
     [SerializeField] private string[] itemNamesChoices;
 
     [SerializeField] private TMP_Text heroPersonality;
@@ -108,6 +109,19 @@ public class UI_Hero : MonoBehaviour
     {
         Time.timeScale = 0;
         endGameText.text = win ? "You Win !" : "You Lose !";
+        if (!win)
+        {
+            DungeonManager.ResetLevelIndex();
+            endGameButton.onClick.RemoveAllListeners();
+            //make button go back to scene 0
+            endGameButton.onClick.AddListener(() => { UnityEngine.SceneManagement.SceneManager.LoadScene(0); });
+            
+        }
+        else
+        {
+            endGameButton.onClick.RemoveAllListeners();
+            endGameButton.onClick.AddListener((() => { UIManager._instance.NextLevel(); }));
+        }
         endGamePanel.SetActive(true);
 
     }

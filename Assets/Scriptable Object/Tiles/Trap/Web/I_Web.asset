@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
   m_Name: I_Web
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: f8642377ec686014ab648df40fb6d571, type: 3}
-  imgOnMap: {fileID: 21300000, guid: 327123577b410944dacd140ed24ae4d0, type: 3}
-  TypeOfTrapOrEnemyToSpawn: []
+  - type: 0
+  imgOnHand: {fileID: 21300000, guid: fcf4905229a63124bbed1a6bc0a08c55, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 8fdc15bb2e9aec646a99155b048db70e, type: 3}
+  TypeOfTrapOrEnemyToSpawn:
+  - type: 0
+    indexOffsetTile: 0
   offsetMinionPos:
-  - {x: 0.25, y: 0, z: 0}
-  - {x: -0.25, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   DoorOnTop: 0
   DoorOnBottom: 0
   DoorOnLeft: 1
   DoorOnRight: 1
-  description: beware of spider
+  description: 
   Rotation: 0
   <ItemDrops>k__BackingField: 
   <doorLocked>k__BackingField: []

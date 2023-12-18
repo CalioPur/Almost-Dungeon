@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
+  m_Name: L_Skeleton
+  m_EditorClassIdentifier: 
+  imgOnHand: {fileID: 21300000, guid: d3f3e24dd49454e488ebb995498f5387, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 3701ea7b8b9dcbb4aafd5e288181f6bc, type: 3}
+  TypeOfTrapOrEnemyToSpawn:
+  - type: 4
+    indexOffsetTile: 0
+  offsetMinionPos:
+  - {x: 0, y: 0, z: 0}
+  DoorOnTop: 0
+  DoorOnBottom: 1
+  DoorOnLeft: 1
+  DoorOnRight: 0
+  description: 
+  Rotation: 0
+  <ItemDrops>k__BackingField: 
+  <doorLocked>k__BackingField: []

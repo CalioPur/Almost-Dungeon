@@ -2,6 +2,7 @@ using Tree = BehaviourTree.Tree;
 using System;
 using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Hero : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class Hero : MonoBehaviour
     
     private int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
+    private AudioSource audioSource;
+    public AudioClip[] attackClip;
+    private bool isStunned;
 
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
@@ -57,6 +61,11 @@ public class Hero : MonoBehaviour
     void OnTick()
     {
         if (!bt) return;
+        if (isStunned)
+        {
+            isStunned = false;
+            return;
+        }
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
     
@@ -66,13 +75,17 @@ public class Hero : MonoBehaviour
         mapManager = manager;
         entityId = GetHashCode();
         info = instance;
+        isStunned = false;
 
         TrapData.OnTrapAttackEvent += TakeDamage;
+        TrapData.OnTrapStunEvent += Stun;
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         MinionData.OnHeroPosAsked+= GivePosBack;
         PathFinding.OnNoPathFound += PlayEmoteStuck;
         OnDragonAttackEvent +=AttackDragon;
+        UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void AttackDragon(DirectionToMove obj)
@@ -132,6 +145,7 @@ public class Hero : MonoBehaviour
         OnPopUpEvent = null;
         OnMovedOnEmptyCardEvent = null;
         OnDragonAttackEvent = null;
+        UI_Dragon.OnDragonTakeDamageEvent -= PlayAttackClip;
     }
 
     private void IsDead()
@@ -158,14 +172,26 @@ public class Hero : MonoBehaviour
     private void OnDisable()
     {
         TrapData.OnTrapAttackEvent -= TakeDamage;
+        TrapData.OnTrapStunEvent -= Stun;
         TrapData.ClearEvent();
         MinionData.OnHeroPosAsked -= GivePosBack;
         MinionData.ClearSubscribes();
         PathFinding.OnNoPathFound -= PlayEmoteStuck;
     }
 
+    private void Stun()
+    {
+        isStunned = true;
+    }
+
     public void AddAnim(AnimToQueue animToQueue)
     {
         animQueue.AddAnim(animToQueue);
+    }
+
+    
+    public void PlayAttackClip()
+    {
+        audioSource.PlayOneShot(attackClip[Random.Range(0,attackClip.Length)]);
     }
 }

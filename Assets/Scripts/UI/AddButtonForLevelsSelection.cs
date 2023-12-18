@@ -31,6 +31,7 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     
     void Start()
     {
+        Time.timeScale = 1;
         int cpt = 0;
         foreach (var biome in dungeonManager.dungeons)
         {
@@ -50,10 +51,12 @@ public class AddButtonForLevelsSelection : MonoBehaviour
             });
             cpt++;
         }
+        StopAllCoroutines();
     }
 
     private IEnumerator AlphaLerp(int biomeIndex)
     {
+        
         var alpha = CanvasBlack.GetComponent<Image>().color.a;
         while (alpha < 1)
         {

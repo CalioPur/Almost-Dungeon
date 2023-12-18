@@ -38,7 +38,7 @@ public class SpawnEnemyManager : MonoBehaviour
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Slime).prefab as MinionData, tile, true, offset, index, mapManager);
                 break;
             case TrapType.Web:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Web).prefab, tile, true, Vector3.zero, -1, mapManager);
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Web).prefab, tile, false, Vector3.zero, -1, mapManager);
                 break;
             case TrapType.Pyke:
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Pyke).prefab, tile, false, Vector3.zero, -1, mapManager);
@@ -56,7 +56,7 @@ public class SpawnEnemyManager : MonoBehaviour
         for (int i = 0; i < card.So.TypeOfTrapOrEnemyToSpawn.Length; i++)
         {
             int index = card.TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile;
-            SpawnEnemyWithType(card.So.TypeOfTrapOrEnemyToSpawn[i].type, tile, card.So.offsetMinionPos[index], index, mapManager);
+            SpawnEnemyWithType(card.So.TypeOfTrapOrEnemyToSpawn[i].type, tile, card.So.offsetMinionPos[0], index, mapManager);
         }
     }
 
