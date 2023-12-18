@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UI_Dragon : MonoBehaviour
 {
     public static event Action OnDragonDeathEvent;
+    public static event Action OnDragonTakeDamageEvent;
     
     public GameObject healthBar;
     public GameObject heartPrefab;
@@ -20,10 +21,10 @@ public class UI_Dragon : MonoBehaviour
     
     public IEnumerator TakeDamageFX(Hero hero)
     {
-        dragonImage.color = Color.red;
-        dragonImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true);
+        //dragonImage.color = Color.red;
+        //dragonImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true); //on a plus d'image de dragon
         yield return new WaitForSeconds(shakeDuration);
-        dragonImage.color = Color.white;
+        //dragonImage.color = Color.white;
         hero.TakeDamage(damage);
     }
 
@@ -85,6 +86,7 @@ public class UI_Dragon : MonoBehaviour
 
     public void TakeDamage(int damage, Hero hero)
     {
+        OnDragonTakeDamageEvent?.Invoke();
         currentHealth -= damage;
         StartCoroutine(TakeDamageFX(hero));
         DrawHearts();
