@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -15,6 +17,18 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     [SerializeField] float timeToWait = 2f;
     
     private List<GameObject> buttonList = new();
+    
+    void OnEnable()
+    {
+        var sizeOfScreen = new Vector2(Screen.width, Screen.height);
+        GetComponent<RectTransform>().DOMoveY(sizeOfScreen.y / 2, 0.5f).SetEase(Ease.Linear);
+    }
+    
+    void SeeYouNextTime()
+    {
+        GetComponent<RectTransform>().DOMoveY(-800, 1f).SetEase(Ease.Linear);
+    }
+    
     void Start()
     {
         Time.timeScale = 1;
@@ -27,9 +41,10 @@ public class AddButtonForLevelsSelection : MonoBehaviour
             int biomeIndex = cpt;
             theButton.GetComponent<Button>().onClick.AddListener(() =>
             {
-                //buttonList.ForEach(button => button.SetActive(false));
-                //image.color = Color.clear;
-                //videoPlayer.playbackSpeed = 1;
+                buttonList.ForEach(button => button.SetActive(false));
+                // image.color = Color.clear;
+                SeeYouNextTime();
+                videoPlayer.playbackSpeed = 1;
                 videoPlayer.Play();
                 CanvasBlack.SetActive(true);
                 StartCoroutine(AlphaLerp(biomeIndex));
@@ -38,6 +53,7 @@ public class AddButtonForLevelsSelection : MonoBehaviour
         }
         StopAllCoroutines();
     }
+
     private IEnumerator AlphaLerp(int biomeIndex)
     {
         

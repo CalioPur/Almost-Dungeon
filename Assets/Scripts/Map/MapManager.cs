@@ -76,6 +76,7 @@ public class MapManager : MonoBehaviour
                     {
                         offset = _tilePreset[i].cardInfo.offsetMinionPos[data.indexOffsetTile];
                     }
+                    
 
                     SpawnEnemyManager.SpawnEnemyWithoutPrefab(data.type,tile, true, offset, data.indexOffsetTile, this);
                 }

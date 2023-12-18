@@ -18,15 +18,13 @@ MonoBehaviour:
   - type: 0
     indexOffsetTile: -1
   offsetMinionPos:
-  - {x: 0.25, y: 0, z: 0}
-  - {x: 0, y: 0, z: -0.25}
   - {x: -0.25, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0.25}
+  - {x: 0, y: 0, z: -0.25}
   DoorOnTop: 0
   DoorOnBottom: 1
   DoorOnLeft: 1
   DoorOnRight: 0
-  description: beware of spider
+  description: 
   Rotation: 0
   <ItemDrops>k__BackingField: 
   <doorLocked>k__BackingField: []

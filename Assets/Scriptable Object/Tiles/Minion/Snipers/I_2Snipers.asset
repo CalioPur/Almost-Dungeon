@@ -21,8 +21,8 @@ MonoBehaviour:
     indexOffsetTile: 2
   offsetMinionPos:
   - {x: 0.25, y: 0, z: 0}
-  - {x: 0, y: 0, z: -0.25}
   - {x: -0.25, y: 0, z: 0}
+  - {x: 0, y: 0, z: -0.25}
   - {x: 0, y: 0, z: 0.25}
   DoorOnTop: 0
   DoorOnBottom: 0
