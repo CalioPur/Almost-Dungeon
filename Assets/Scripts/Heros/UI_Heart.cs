@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class UI_Heart : MonoBehaviour
 {
     [SerializeField] private Sprite fullHeart;
-    [SerializeField] private Sprite halfHeart;
     [SerializeField] private Sprite emptyHeart;
     
     private Image heartImage;
@@ -20,7 +19,6 @@ public class UI_Heart : MonoBehaviour
         heartImage.sprite = state switch
         {
             HeartState.Full => fullHeart,
-            HeartState.Half => halfHeart,
             HeartState.Empty => emptyHeart,
             _ => heartImage.sprite
         };
@@ -28,7 +26,6 @@ public class UI_Heart : MonoBehaviour
 }
 public enum HeartState
 {
-    Full = 2,
-    Half = 1,
+    Full = 1,
     Empty = 0
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,12 @@ public class Menu : MonoBehaviour
     
     [SerializeField] private GameObject levelSelection;
     [SerializeField] private bool  resetLevelIndexOnPlay = true;
-    
+
+    private void Awake()
+    {
+        Time.timeScale = 1;
+    }
+
     void Start()
     {
         playButton.onClick.AddListener(Play);

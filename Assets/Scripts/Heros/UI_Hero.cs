@@ -11,7 +11,6 @@ public class UI_Hero : MonoBehaviour
     public static event Action<bool> OnEndGameEvent;
 
     [SerializeField] private GameObject healthBar;
-    [SerializeField] private GameObject heartPrefab;
 
     [SerializeField] private GameObject ItemBar;
     [SerializeField] private GameObject itemsPrefab;
@@ -47,7 +46,7 @@ public class UI_Hero : MonoBehaviour
             OnEndGameEvent?.Invoke(true);
         }
         healthBar.GetComponentInChildren<TMP_Text>().text = _currentHealth.ToString();
-        healthBar.GetComponent<Image>().fillAmount = (float)_currentHealth / maxHealth;
+        healthBar.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)_currentHealth / maxHealth;
         
     }
 
