@@ -14,15 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: 832f9a729da027049ba40f3cafd7fd6b, type: 3}
   imgOnMap: {fileID: 21300000, guid: 332bc19586933134b9c0997c4606f147, type: 3}
-  TypeOfTrapOrEnemyToSpawn: []
+  TypeOfTrapOrEnemyToSpawn:
+  - type: 2
+    indexOffsetTile: 1
   offsetMinionPos:
   - {x: 0.25, y: 0, z: 0}
-  - {x: 0, y: 0, z: -0.25}
   - {x: -0.25, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0.25}
   DoorOnTop: 0
   DoorOnBottom: 0
   DoorOnLeft: 1
   DoorOnRight: 1
-  description: line with 1 enemies :)
+  description: 
   Rotation: 0
+  <ItemDrops>k__BackingField: 
+  <doorLocked>k__BackingField: []

@@ -20,6 +20,7 @@ public class CheckifMinionsIsNotMiddleOfTarget : Node
         switch (blackboard.dir)
         {
             case DirectionToMove.Up:
+                minionPos.y++;
                 while (minionPos.y < blackboard.heroPosition.y)
                 {
                     if (blackboard.minionData.mapManager.GetNbMonstersOnPos(minionPos) > 0) return NodeState.Failure;
@@ -27,6 +28,7 @@ public class CheckifMinionsIsNotMiddleOfTarget : Node
                 }
                 break;
             case DirectionToMove.Down:
+                minionPos.y--;
                 while (minionPos.y > blackboard.heroPosition.y)
                 {
                     if (blackboard.minionData.mapManager.GetNbMonstersOnPos(minionPos) > 0) return NodeState.Failure;
@@ -34,6 +36,7 @@ public class CheckifMinionsIsNotMiddleOfTarget : Node
                 }
                 break;
             case DirectionToMove.Left:
+                minionPos.x--;
                 while (minionPos.x > blackboard.heroPosition.x)
                 {
                     if (blackboard.minionData.mapManager.GetNbMonstersOnPos(minionPos) > 0) return NodeState.Failure;
@@ -41,6 +44,7 @@ public class CheckifMinionsIsNotMiddleOfTarget : Node
                 }
                 break;
             case DirectionToMove.Right:
+                minionPos.x++;
                 while (minionPos.x < blackboard.heroPosition.x)
                 {
                     if (blackboard.minionData.mapManager.GetNbMonstersOnPos(minionPos) > 0) return NodeState.Failure;

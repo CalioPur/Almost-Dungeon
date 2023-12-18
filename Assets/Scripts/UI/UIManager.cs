@@ -1,14 +1,15 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject PauseMenu;
     [SerializeField] private TMP_Dropdown AIType;
+    [SerializeField] private Image img;
     
     public static UIManager _instance;
 
@@ -24,7 +25,26 @@ public class UIManager : MonoBehaviour
         _instance = this;
         
         dungeonManager = FindObjectOfType<DungeonManager>();
+        
+
         //DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(AlphaLerp());
+    }
+
+    private IEnumerator AlphaLerp()
+    {
+        var alpha = img.color.a;
+        while (alpha > 0)
+        {
+            alpha -= Time.deltaTime;
+            img.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+        yield break;
     }
 
     private void Start()

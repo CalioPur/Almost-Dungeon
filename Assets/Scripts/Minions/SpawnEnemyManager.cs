@@ -3,27 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public enum TrapType
-{
-    Web,
-    Pyke,
-    BasicCaC,
-    Archer,
-    Skeleton,
-    Slime,
-    None
-}
-
-
-
-[Serializable]
-public struct ListOfTraps
-{
-    public TrapType type;
-    public TrapData prefab;
-}
-
 public class SpawnEnemyManager : MonoBehaviour
 {
     [SerializeField] private List<ListOfTraps> TrapsPrefab;

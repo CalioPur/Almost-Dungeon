@@ -14,15 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: c555136bb7fcf0f4d9040cdd20175417, type: 3}
   imgOnMap: {fileID: 21300000, guid: e6ac792fc04b75445a16af7d09b600d0, type: 3}
-  TypeOfTrapOrEnemyToSpawn: 00000000
+  TypeOfTrapOrEnemyToSpawn:
+  - type: 0
+    indexOffsetTile: 0
   offsetMinionPos:
-  - {x: 0.25, y: 0, z: 0}
-  - {x: 0, y: 0, z: -0.25}
   - {x: -0.25, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0.25}
+  - {x: 0, y: 0, z: -0.25}
   DoorOnTop: 0
   DoorOnBottom: 1
   DoorOnLeft: 1
   DoorOnRight: 0
-  description: beware of spider
+  description: 
   Rotation: 0
+  <ItemDrops>k__BackingField: 
+  <doorLocked>k__BackingField: []

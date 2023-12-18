@@ -30,6 +30,7 @@ public class UI_Hero : MonoBehaviour
 
     private List<UI_Heart> hearts = new();
     private List<UI_HeroItem> items = new();
+    private int maxHealth = 0;
 
     #region Health
 
@@ -37,61 +38,17 @@ public class UI_Hero : MonoBehaviour
 
     private void DrawHearts(int _currentHealth, bool newHeart)
     {
-        DestroyAllHearts();
-
+        if (_currentHealth > maxHealth)
+        {
+            maxHealth = _currentHealth;
+        }
         if (_currentHealth <= 0)
         {
             OnEndGameEvent?.Invoke(true);
         }
-
-        float maxHealthRemainder = _currentHealth % 2;
-        int maxHealth = (int)((_currentHealth / 2) + maxHealthRemainder);
-        for (int i = 0; i < maxHealth; i++)
-        {
-            CreateEmptyHeart();
-        }
-
-        for (int i = 0; i < hearts.Count; i++)
-        {
-            int heartState = (int)Mathf.Clamp(_currentHealth - i * 2, 0, 2);
-            hearts[i].SetHeartState((HeartState)heartState);
-        }
-        if (newHeart)
-            StartCoroutine(TakeDamageFX());
-    }
-
-    public void CreateFullHeart()
-    {
-        GameObject heart = Instantiate(heartPrefab, healthBar.transform);
-        UI_Heart heartScript = heart.GetComponent<UI_Heart>();
-        heartScript.SetHeartState(HeartState.Full);
-        hearts.Add(heartScript);
-    }
-
-    public void CreateHalfHeart()
-    {
-        GameObject heart = Instantiate(heartPrefab, healthBar.transform);
-        UI_Heart heartScript = heart.GetComponent<UI_Heart>();
-        heartScript.SetHeartState(HeartState.Half);
-        hearts.Add(heartScript);
-    }
-
-    public void CreateEmptyHeart()
-    {
-        GameObject heart = Instantiate(heartPrefab, healthBar.transform);
-        UI_Heart heartScript = heart.GetComponent<UI_Heart>();
-        heartScript.SetHeartState(HeartState.Empty);
-        hearts.Add(heartScript);
-    }
-
-    public void DestroyAllHearts()
-    {
-        foreach (UI_Heart heart in hearts)
-        {
-            Destroy(heart.gameObject);
-        }
-
-        hearts.Clear();
+        healthBar.GetComponentInChildren<TMP_Text>().text = _currentHealth.ToString();
+        healthBar.GetComponent<Image>().fillAmount = (float)_currentHealth / maxHealth;
+        
     }
 
     #endregion

@@ -5,23 +5,21 @@ using Tree = BehaviourTree.Tree;
 public class KnightBT : Tree
 {
     [SerializeField] private HeroBlackboard BB;
-    
+
     protected override Node InitTree()
     {
         if (!BB) Debug.LogError("Blackboard is null");
-        
-        origin = new Selector(
-            new Sequence(
+
+        origin = new Selector
+        (
+            new Sequence
+            (
                 new FindMinionInCaC(BB),
                 new ChooseTargetToHit(BB, false, false),
                 new AttackMinion(BB),
                 new CheckTargetIsAlive(BB)
             ),
-            new Sequence(
-                new CheckDirectionToMove(BB),
-                new MoveToDestination(BB),
-                new CheckPlayerOutOfMap(BB)
-            )
+            new HeroMovementBehavior(BB)
         );
         return origin;
     }

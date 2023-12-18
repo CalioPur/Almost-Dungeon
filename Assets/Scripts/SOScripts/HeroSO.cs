@@ -1,0 +1,15 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+[CreateAssetMenu(fileName = "HeroSO", menuName = "ScriptableObjects/CreationDungeonTool/LevelComponents/HeroSO", order = 9)]
+public class HeroSO : ScriptableObject
+{
+    public string name;
+    public int health;
+    public float speed;//vitesse ?
+    public HeroesInfo classe;
+    public List<Personnalities> personnalities;
+}
