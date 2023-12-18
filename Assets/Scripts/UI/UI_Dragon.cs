@@ -23,6 +23,7 @@ public class UI_Dragon : MonoBehaviour
     {
         //dragonImage.color = Color.red;
         //dragonImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true); //on a plus d'image de dragon
+        yield return new WaitForSeconds(1);
         yield return new WaitForSeconds(shakeDuration);
         //dragonImage.color = Color.white;
         hero.TakeDamage(damage);
@@ -92,9 +93,11 @@ public class UI_Dragon : MonoBehaviour
         DrawHearts();
     }
     
-    public void CheckDragonHP(Hero hero)
+    IEnumerator AttackByHero(float delay, Hero hero)
     {
+        yield return new WaitForSeconds(delay);
         TakeDamage(hero.info.So.AttackPoint, hero);
+        
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -103,6 +106,11 @@ public class UI_Dragon : MonoBehaviour
         }
 
         DrawHearts();
+    }
+    
+    public void CheckDragonHP(Hero hero)
+    {
+        StartCoroutine(AttackByHero(0.5f, hero));
     }
 
     private void Start()
