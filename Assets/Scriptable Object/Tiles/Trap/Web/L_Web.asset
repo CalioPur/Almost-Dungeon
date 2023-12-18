@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
   m_Name: L_Web
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: c555136bb7fcf0f4d9040cdd20175417, type: 3}
-  imgOnMap: {fileID: 21300000, guid: e6ac792fc04b75445a16af7d09b600d0, type: 3}
+  imgOnHand: {fileID: 21300000, guid: 7d63db2158e54f047bb304826f38b07e, type: 3}
+  imgOnMap: {fileID: 21300000, guid: ea54e6e8830f9094b8c533f68da85840, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 0
     indexOffsetTile: -1
   offsetMinionPos:
-  - {x: -0.25, y: 0, z: 0}
-  - {x: 0, y: 0, z: -0.25}
+  - {x: 0, y: 0, z: 0}
   DoorOnTop: 0
   DoorOnBottom: 1
   DoorOnLeft: 1
