@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4366a21c764d4d94b813ae91338a7f9b, type: 3}
-  m_Name: D1_Tutorial
+  m_Name: D2_E2
   m_EditorClassIdentifier: 
   Levels:
-  - {fileID: 11400000, guid: 1fdcabce677bf3b4a8d9807d69ed1ba1, type: 2}
+  - {fileID: 11400000, guid: 1cbf7d03c3962c64cbdb155527457f24, type: 2}
   nbCardToDraw: 3
