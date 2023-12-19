@@ -16,4 +16,7 @@ public struct TilePresetStruct
 public class TilePresetSO : ScriptableObject
 {
     [SerializeField] public List<TilePresetStruct> tilePresets;
+    //-----TEMPORAIRE-----//
+    [SerializeField] public Vector2Int ClampSpawnPositionX;
+    [SerializeField] public Vector2Int ClampSpawnPositionY;
 }
