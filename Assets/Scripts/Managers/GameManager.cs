@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Vector2Int normsSpawnX;
     [SerializeField] public Vector2Int normsSpawnY;
     public HeroesInfo currentHero;
+    public Personnalities currentPersonality;
     public int heroHealthPoint;
     private Vector3 worldPos;
     private Vector2Int startPosHero;
@@ -70,7 +71,7 @@ public class GameManager : MonoBehaviour
         current.CurrentHealthPoint = heroHealthPoint;
         Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
         heroScript.Init(current, startPosHero.x, startPosHero.y, mapManager);
-        
+        heroScript.HeroBlackboard.personality = currentPersonality;
         UIManager._instance.heroBlackboard = heroScript.HeroBlackboard;
     }
 
