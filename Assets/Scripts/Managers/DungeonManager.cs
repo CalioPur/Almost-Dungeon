@@ -55,7 +55,8 @@ public class DungeonManager : MonoBehaviour
     private void LoadLevel()
     {
         if (currentLevel == 0)
-            UI_Dragon.currentHealth = 15;
+            UI_Dragon.currentHealth = UI_Dragon.maxHealth;
+        print(UI_Dragon.currentHealth);
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
         print("nb of level : "+dungeons[SelectedBiome].dungeonSO.etages.Count);
@@ -77,7 +78,7 @@ public class DungeonManager : MonoBehaviour
         
         cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = deckData.deck;
-        cardsManager.nbCardOnStartToDraw = etageSo.nbCardToDraw;
+        cardsManager.nbCardOnStartToDraw = levelData.nbCardToDraw;
         
         
         
@@ -89,8 +90,8 @@ public class DungeonManager : MonoBehaviour
         gameManager.currentHero = heroData.classe;
         gameManager.currentPersonality = heroData.personnalities[0]; //a changer a l'avenir, le hero pourra avoir plusieurs personnalité
         gameManager.heroHealthPoint = heroData.health;
-        gameManager.normsSpawnX = levelData.ClampSpawnPositionX;
-        gameManager.normsSpawnY = levelData.ClampSpawnPositionY;
+        gameManager.normsSpawnX = terrainData.ClampSpawnPositionX;
+        gameManager.normsSpawnY = terrainData.ClampSpawnPositionY;
         
         mapManager = FindObjectOfType<MapManager>();
 

@@ -8,5 +8,4 @@ using UnityEngine;
 public class EtageSO : ScriptableObject
 {
     [field: SerializeField] public List<LevelSO> Levels;
-    [Range(1,6)] public int nbCardToDraw;
 }
