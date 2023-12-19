@@ -17,7 +17,7 @@ public class Slash : AttackFX
         Destroy(gameObject, 0.7f);
     }
 
-    public override void Init(Transform target, Transform owner, float time)
+    public override void Init(Transform target, Transform owner, float time, DirectionToMove direction)
     {
         timer = time;
         //RenderAnim.SetActive(false);

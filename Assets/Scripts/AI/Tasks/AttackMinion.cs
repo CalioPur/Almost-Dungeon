@@ -26,14 +26,38 @@ public class AttackMinion : Node
 
         float delay = 0.3f / blackboard.ChosenTarget.Count;
         
+        DirectionToMove directionWithTarget = DirectionToMove.None;
+        if (blackboard.ChosenTarget.Count > 0)
+        {
+            Vector2Int targetPos = new Vector2Int(blackboard.ChosenTarget[0].indexX, blackboard.ChosenTarget[0].indexY);
+            Vector2Int heroPos = blackboard.hero.GetIndexHeroPos();
+            if (targetPos.x > heroPos.x)
+            {
+                directionWithTarget = DirectionToMove.Right;
+            }
+            else if (targetPos.x < heroPos.x)
+            {
+                directionWithTarget = DirectionToMove.Left;
+            }
+            else if (targetPos.y > heroPos.y)
+            {
+                directionWithTarget = DirectionToMove.Up;
+            }
+            else if (targetPos.y < heroPos.y)
+            {
+                directionWithTarget = DirectionToMove.Down;
+            }
+            blackboard.hero.PlayAttackClip();
+            blackboard.hero.PlayAttackFX(blackboard.Targets[0].transform, delay, directionWithTarget);
+        }
+        
+
+        
         foreach (var target in blackboard.ChosenTarget)
         {
             target.TakeDamage(blackboard.hero.info.So.AttackPoint);
             blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, target.transform, Vector3.zero, true, delay, Ease.InBack, 2));
         }
-        
-        blackboard.hero.PlayAttackClip();
-        blackboard.hero.PlayAttackFX(blackboard.Targets[0].transform, delay);
 
         return NodeState.Success;
     }
