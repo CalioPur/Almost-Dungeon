@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     private Vector3 worldPos;
     private Vector2Int startPosHero;
 
-    public int dragonHealthPoint = 10;
+    //public int dragonHealthPoint = 10;
     
     public static GameManager _instance;
     

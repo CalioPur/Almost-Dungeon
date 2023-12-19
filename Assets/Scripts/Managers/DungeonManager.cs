@@ -55,7 +55,8 @@ public class DungeonManager : MonoBehaviour
     private void LoadLevel()
     {
         if (currentLevel == 0)
-            UI_Dragon.currentHealth = 15;
+            UI_Dragon.currentHealth = UI_Dragon.maxHealth;
+        print(UI_Dragon.currentHealth);
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
         print("nb of level : "+dungeons[SelectedBiome].dungeonSO.etages.Count);
