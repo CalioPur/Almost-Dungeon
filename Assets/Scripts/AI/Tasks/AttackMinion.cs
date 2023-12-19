@@ -33,6 +33,7 @@ public class AttackMinion : Node
         }
         
         blackboard.hero.PlayAttackClip();
+        blackboard.hero.PlayAttackFX(blackboard.Targets[0].transform, delay);
 
         return NodeState.Success;
     }

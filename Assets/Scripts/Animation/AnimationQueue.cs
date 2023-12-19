@@ -28,7 +28,7 @@ public class AnimationQueue : MonoBehaviour
             AnimToQueue anim = animQueue.Dequeue();
             Vector3 dir = (anim.targetTransform.position - anim.obj.position).normalized;
             Vector3 targetPos =
-                (anim.isDir) ?  anim.obj.position + dir * 0.3f : anim.targetTransform.position + anim.offset;
+                (anim.isDir) ?  anim.obj.position + dir * 0.5f : anim.targetTransform.position + anim.offset;
             anim.obj.DOMove(targetPos, anim.time).SetEase(anim.ease).SetLoops(anim.loop, LoopType.Yoyo);
             if (anim.mustDisappear)
             {
