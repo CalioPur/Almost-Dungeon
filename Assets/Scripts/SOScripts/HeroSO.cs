@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HeroSO", menuName = "ScriptableObjects/CreationDungeonTool/LevelComponents/HeroSO", order = 9)]
 public class HeroSO : ScriptableObject
 {
-    public string name;
+    public string nameOfHero;
     public int health;
     public float speed;//vitesse ?
     public HeroesInfo classe;

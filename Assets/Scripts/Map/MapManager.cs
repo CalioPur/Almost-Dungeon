@@ -221,22 +221,16 @@ public class MapManager : MonoBehaviour
         {
             case DirectionToMove.Left:
                 return mapArray[pos.x, pos.y].hasDoorLeft;
-                break;
             case DirectionToMove.Right:
                 return mapArray[pos.x, pos.y].hasDoorRight;
-                break;
             case DirectionToMove.Up:
                 return mapArray[pos.x, pos.y].hasDoorUp;
-                break;
             case DirectionToMove.Down:
                 return mapArray[pos.x, pos.y].hasDoorDown;
-                break;
             case DirectionToMove.None:
                 return false;
-                break;
             case DirectionToMove.Error:
                 throw new ArgumentOutOfRangeException(nameof(dir), dir, null);
-                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(dir), dir, null);
         }
