@@ -110,7 +110,7 @@ public class Hero : MonoBehaviour
         attackPoint.transform.position = transform.position + dragonDir;
         AnimToQueue animToQueue = new AnimToQueue(heroTr, attackPoint.transform , Vector3.zero, true, 0.5f, Ease.InBack, 2);
         AddAnim(animToQueue);
-        PlayAttackFX(attackPoint.transform, 0.5f);
+        PlayAttackFX(attackPoint.transform, 0.5f, obj);
     }
 
 
@@ -188,11 +188,11 @@ public class Hero : MonoBehaviour
     }
     
     
-    public void PlayAttackFX(Transform targetTr, float delay)
+    public void PlayAttackFX(Transform targetTr, float delay, DirectionToMove direction)
     {
         if (animFX == null) return;
         AttackFX fx = Instantiate(animFX, targetTr.position, animFX.transform.rotation);
-        fx.Init(targetTr, transform, delay);
+        fx.Init(targetTr, transform, delay, direction);
         fx.Launch();
     }
 
