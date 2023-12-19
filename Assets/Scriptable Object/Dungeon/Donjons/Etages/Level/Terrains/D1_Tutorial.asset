@@ -34,3 +34,5 @@ MonoBehaviour:
   - position: {x: 7, y: 6}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 0
+  ClampSpawnPositionX: {x: 1, y: 1}
+  ClampSpawnPositionY: {x: 3, y: 3}
