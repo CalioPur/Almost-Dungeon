@@ -59,6 +59,12 @@ public class UI_Dragon : MonoBehaviour
     public void CreateFullHeart()
     {
         GameObject heart = Instantiate(heartPrefab, healthBar.transform);
+        heart.transform.rotation = Quaternion.Euler(0, 0, 45);
+        heart.transform.DORotate(new Vector3(0, 0, 0), 0.5f).SetEase(Ease.OutBounce);
+        heart.transform.DOScale(1.2f, 0.5f).SetEase(Ease.OutBounce).OnComplete(() =>
+        {
+            heart.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBounce);
+        });
         UI_Heart heartScript = heart.GetComponent<UI_Heart>();
         heartScript.SetHeartState(HeartState.Full);
         hearts.Add(heartScript);

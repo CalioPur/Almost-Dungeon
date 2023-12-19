@@ -46,6 +46,7 @@ public class UI_Hero : MonoBehaviour
         {
             OnEndGameEvent?.Invoke(true);
         }
+        healthBar.transform.DOScale(1.2f, 0.1f).OnComplete(() => { healthBar.transform.DOScale(1f, 0.1f); });
         healthBar.GetComponentInChildren<TMP_Text>().text = _currentHealth.ToString();
         healthBar.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)_currentHealth / maxHealth;
         
