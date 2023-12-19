@@ -1,5 +1,6 @@
 using Tree = BehaviourTree.Tree;
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -23,6 +24,7 @@ public class Hero : MonoBehaviour
     [SerializeField] private GameObject attackPoint;
     [field:SerializeField] public HeroBlackboard HeroBlackboard { get; private set; }
     [field: SerializeField] private EmotesManager emotesManager;
+    [field: SerializeField] private AttackFX animFX;
     
     private int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
@@ -32,11 +34,6 @@ public class Hero : MonoBehaviour
 
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
-        // mapManager.GetTilePosFromWorldPos(pos, out int x, out int y);
-        // Transform tileTransform = mapManager.GetTileDataAtPosition(x, y).transform;
-        //
-        // Vector3 tilePos = mapManager.GetTileDataAtPosition(indexX, indexY).transform.position;
-        // Vector3 offset = tilePos - transform.position;
         animQueue.AddAnim(new AnimToQueue(heroTr, targetTr,  offset , false, delay));
         
         GivePosBack();
@@ -113,6 +110,7 @@ public class Hero : MonoBehaviour
         attackPoint.transform.position = transform.position + dragonDir;
         AnimToQueue animToQueue = new AnimToQueue(heroTr, attackPoint.transform , Vector3.zero, true, 0.5f, Ease.InBack, 2);
         AddAnim(animToQueue);
+        PlayAttackFX(attackPoint.transform, 0.5f);
     }
 
 
@@ -187,6 +185,15 @@ public class Hero : MonoBehaviour
     public void AddAnim(AnimToQueue animToQueue)
     {
         animQueue.AddAnim(animToQueue);
+    }
+    
+    
+    public void PlayAttackFX(Transform targetTr, float delay)
+    {
+        if (animFX == null) return;
+        AttackFX fx = Instantiate(animFX, targetTr.position, animFX.transform.rotation);
+        fx.Init(targetTr, transform, delay);
+        fx.Launch();
     }
 
     

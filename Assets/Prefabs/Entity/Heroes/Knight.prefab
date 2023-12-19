@@ -79,15 +79,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: baab805eb58d5d247be73519363de10c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 183aabf4ecefaf14c8aadd30cce0cabe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.25, y: 0.25}
+  m_Size: {x: 0.125, y: 0.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2382212582554433649
@@ -109,6 +109,7 @@ MonoBehaviour:
   attackPoint: {fileID: 0}
   <HeroBlackboard>k__BackingField: {fileID: -4683431529391840305}
   emotesManager: {fileID: 5855379603346946449}
+  animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
   attackClip:
   - {fileID: 8300000, guid: 7972ad356168f554781c20e56b7af98c, type: 3}
   - {fileID: 8300000, guid: 182e8d91e0ff34e4197155d87384b509, type: 3}
