@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f0686ad6da41e04095ff2a86b67d424, type: 3}
-  m_Name: Donjon1
+  m_Name: Tests
   m_EditorClassIdentifier: 
   etages:
-  - {fileID: 11400000, guid: 028eeff1c18779d48ba62db0ee2fb953, type: 2}
-  - {fileID: 11400000, guid: 0879a291c31925d4189fcb6382f3f0f1, type: 2}
+  - {fileID: 11400000, guid: 2851c8284343e5145bfca4442a3cb125, type: 2}

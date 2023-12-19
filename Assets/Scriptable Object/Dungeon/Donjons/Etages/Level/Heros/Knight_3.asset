@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f0686ad6da41e04095ff2a86b67d424, type: 3}
-  m_Name: Donjon1
+  m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
+  m_Name: Knight_3
   m_EditorClassIdentifier: 
-  etages:
-  - {fileID: 11400000, guid: 028eeff1c18779d48ba62db0ee2fb953, type: 2}
-  - {fileID: 11400000, guid: 0879a291c31925d4189fcb6382f3f0f1, type: 2}
+  name: Quentin
+  health: 20
+  speed: 60
+  classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
+  personnalities: 01000000

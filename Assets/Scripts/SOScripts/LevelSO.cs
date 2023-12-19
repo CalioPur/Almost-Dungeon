@@ -10,8 +10,7 @@ public class LevelSO : ScriptableObject
     [SerializeField] public List<TilePresetSO> terrains;
     [SerializeField] public List<HeroSO> heros;
     [SerializeField] public List<DeckSO> decks;
+    [Range(1,6)] public int nbCardToDraw;
     
-    //-----TEMPORAIRE-----//
-    [SerializeField] public Vector2Int ClampSpawnPositionX;
-    [SerializeField] public Vector2Int ClampSpawnPositionY;
+    
 }

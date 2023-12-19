@@ -79,6 +79,7 @@ public class UIManager : MonoBehaviour
     }
     public void NextLevel()
     {
+        print("next level, maybe done twice, this is a bug");
         dungeonManager.LoadNextLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

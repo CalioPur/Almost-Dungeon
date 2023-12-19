@@ -16,8 +16,8 @@ public class UI_Dragon : MonoBehaviour
     List<UI_Heart> hearts = new();
     public float shakeDuration = 0.5f;
 
-    public static int currentHealth;
-    public static int maxHealth = 0;
+    public static int currentHealth = 10;
+    public static int maxHealth = 10;
     public int damage = 3;
 
     private IEnumerator TakeDamageFX(Hero hero)
@@ -46,7 +46,7 @@ public class UI_Dragon : MonoBehaviour
             CreateFullHeart();
             a++;
         }
-        Debug.Log(a);
+        
         for (int i = 0; i < maxHealth - currentHealth; i++)
         {
             CreateEmptyHeart();
@@ -111,8 +111,6 @@ public class UI_Dragon : MonoBehaviour
 
     private void Start()
     {
-        maxHealth = GameManager._instance.dragonHealthPoint;
-        currentHealth = maxHealth;
         DrawHearts();
         Hero.OnMovedOnEmptyCardEvent += CheckDragonHP;
     }
