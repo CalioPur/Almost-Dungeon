@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        
         FindObjectOfType<DungeonManager>().LoadNextLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
