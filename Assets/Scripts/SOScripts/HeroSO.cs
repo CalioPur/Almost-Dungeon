@@ -9,7 +9,7 @@ public class HeroSO : ScriptableObject
 {
     public string name;
     public int health;
-    public float speed;//vitesse ?
+    public int speed;//vitesse ?
     public HeroesInfo classe;
     public List<Personnalities> personnalities;
 }
