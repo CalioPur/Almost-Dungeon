@@ -53,7 +53,7 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         cptCardsObtained = 0;
-        centerDeck = DeckTr.position - new Vector3(-1 * DeckTr.rect.width * 0.5f, DeckTr.rect.height * 0.5f, 0);
+        centerDeck = DeckTr.position + new Vector3(-1 * DeckTr.rect.width * 0.5f, DeckTr.rect.height * 0.5f, 0);
         InitDeck();
         ShuffleDeck();
         StartCoroutine(DrawStartedCard());
