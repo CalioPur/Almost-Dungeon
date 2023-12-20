@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dungeons:
-  - dungeonSO: {fileID: 11400000, guid: 3cd4d22b85c014c4c9e31a7fd65052ab, type: 2}
-    name: Dungeon 1
+  - dungeonSO: {fileID: 11400000, guid: 7e3bcb4599109514ba47f69614169c42, type: 2}
+    name: La Caserne
     isLocked: 0
   - dungeonSO: {fileID: 11400000, guid: 7848d90f9bb6c0e4882396f9289ddf41, type: 2}
-    name: Dungeon 2
+    name: L'Archerie
     isLocked: 0
   - dungeonSO: {fileID: 11400000, guid: c13d45a85968f1e4296682cd99e14e82, type: 2}
     name: Tests
