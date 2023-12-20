@@ -54,3 +54,6 @@ MonoBehaviour:
   - dungeonSO: {fileID: 11400000, guid: c13d45a85968f1e4296682cd99e14e82, type: 2}
     name: Tests
     isLocked: 0
+  - dungeonSO: {fileID: 11400000, guid: 7e3bcb4599109514ba47f69614169c42, type: 2}
+    name: Le Labyrinthe
+    isLocked: 0
