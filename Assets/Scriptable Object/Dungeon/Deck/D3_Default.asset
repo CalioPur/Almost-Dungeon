@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740bd1248c925d64e8de6df5ae1f6de1, type: 3}
+  m_Name: D3_Default
+  m_EditorClassIdentifier: 
+  deck:
+  - cardToBuild: {fileID: 11400000, guid: d26e1cc8f5d372847a130da96ed52b57, type: 2}
+    nbToBuild: 1
+  - cardToBuild: {fileID: 11400000, guid: 04d799a52176ab249a17e82201cee279, type: 2}
+    nbToBuild: 2
+  - cardToBuild: {fileID: 11400000, guid: cc0ea1252c92ec2498ebc7dbaccde103, type: 2}
+    nbToBuild: 4
+  - cardToBuild: {fileID: 11400000, guid: c8947bc12fc3b1646a4dad70707a1551, type: 2}
+    nbToBuild: 4
+  - cardToBuild: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
+    nbToBuild: 2
+  - cardToBuild: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
+    nbToBuild: 2
+  - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+    nbToBuild: 2
