@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0686ad6da41e04095ff2a86b67d424, type: 3}
   m_Name: Donjon_2
   m_EditorClassIdentifier: 
-  etages:
-  - {fileID: 11400000, guid: f2e4fb952703f054cb2094a7789d9495, type: 2}
-  - {fileID: 11400000, guid: 16cf19cad6fd42c47be22920c2e48b19, type: 2}
+  levels:
+  - {fileID: 11400000, guid: e90b5839675ae994283a9721b4fb5241, type: 2}
+  - {fileID: 11400000, guid: 1cbf7d03c3962c64cbdb155527457f24, type: 2}
+  - {fileID: 11400000, guid: d65aa12f6b9fb574a841ee8357079315, type: 2}
+  - {fileID: 11400000, guid: 0090d9fdebc210a43b12e5d28da78c78, type: 2}
+  - {fileID: 11400000, guid: fe5076a706016144ca12e814e5d4733b, type: 2}
