@@ -154,6 +154,10 @@ public class Hero : MonoBehaviour
     public void TakeDamage(int soAttackPoint)
     {
         info.CurrentHealthPoint -= soAttackPoint;
+        Sprite.DOColor(Color.red, 0.2f).SetEase(Ease.InBack).OnComplete(() =>
+        {
+            Sprite.DOColor(Color.white, 0.2f).SetEase(Ease.InBack);
+        });
         OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
         if (info.CurrentHealthPoint <= 0)
         {

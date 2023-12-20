@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public HeroesInfo currentHero;
     public Personnalities currentPersonality;
     public int heroHealthPoint;
+    public int rotationOfSpawnTile;
     private Vector3 worldPos;
     private Vector2Int startPosHero;
 
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         mapManager.InitMap();
         mapManager.AddRandomCard();
-        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), normsSpawnX, normsSpawnY, out worldPos, out startPosHero);
+        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), normsSpawnX, normsSpawnY,rotationOfSpawnTile, out worldPos, out startPosHero);
         mapManager.CreateFog(startPosHero);
         worldPos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
         OnEndDialogEvent?.Invoke();

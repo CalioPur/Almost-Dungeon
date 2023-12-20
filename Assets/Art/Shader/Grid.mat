@@ -110,8 +110,8 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FadeRadius: 0.1
-    - _Float: 0.99
-    - _Float_1: 0.99
+    - _Float: 0.95
+    - _Float_1: 0.95
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0

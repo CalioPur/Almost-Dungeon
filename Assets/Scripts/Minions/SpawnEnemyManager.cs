@@ -46,6 +46,9 @@ public class SpawnEnemyManager : MonoBehaviour
             case TrapType.FireCamp:
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.FireCamp).prefab, tile, false, Vector3.zero, -1, mapManager);
                 break;
+            case TrapType.Wolf:
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Wolf).prefab, tile, false, Vector3.zero, -1, mapManager);
+                break;
             case TrapType.None:
                 break;
             default:

@@ -92,6 +92,7 @@ public class DungeonManager : MonoBehaviour
         gameManager.heroHealthPoint = heroData.health;
         gameManager.normsSpawnX = terrainData.ClampSpawnPositionX;
         gameManager.normsSpawnY = terrainData.ClampSpawnPositionY;
+        gameManager.rotationOfSpawnTile = terrainData.spawnRotation;
         
         mapManager = FindObjectOfType<MapManager>();
 

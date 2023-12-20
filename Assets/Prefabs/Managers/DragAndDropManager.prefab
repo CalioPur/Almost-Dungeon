@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1737ddcecef03bd41b7dcd1494dad730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridVisualizer: {fileID: 0}
+  cardVisualizer: {fileID: 934231560698977879, guid: 957f6ff13df90ac4a8a4b7162ed47762,
+    type: 3}
+  discardPosition: {fileID: 0}

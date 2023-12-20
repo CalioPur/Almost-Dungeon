@@ -36,3 +36,4 @@ MonoBehaviour:
     rotation: 0
   ClampSpawnPositionX: {x: 7, y: 7}
   ClampSpawnPositionY: {x: 3, y: 3}
+  spawnRotation: 2
