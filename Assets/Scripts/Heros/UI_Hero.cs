@@ -108,8 +108,10 @@ public class UI_Hero : MonoBehaviour
 
     void EndGame(bool win)
     {
-        Time.timeScale = 0;
+        
         endGameText.text = win ? "You Win !" : "You Lose !";
+        endGameText.color = win ? Color.green : Color.red;
+        endGameButton.GetComponentInChildren<TMP_Text>().text = win ? "Next Level" : "Main Menu";
         if (!win)
         {
             DungeonManager.ResetLevelIndex();
@@ -123,10 +125,20 @@ public class UI_Hero : MonoBehaviour
             endGameButton.onClick.RemoveAllListeners();
             endGameButton.onClick.AddListener((() => { UIManager._instance.NextLevel(); }));
         }
-        endGamePanel.SetActive(true);
+        //endGamePanel.SetActive(true);
+        StartCoroutine(EndGameFX());
 
     }
-
+    
+    private IEnumerator EndGameFX()
+    {
+        
+        yield return new WaitForSeconds(0.5f);
+        endGamePanel.SetActive(true);
+        Time.timeScale = 0;
+        yield return null;
+    }
+    
     void LoseGame()
     {
         OnEndGameEvent?.Invoke(false);
