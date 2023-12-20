@@ -229,8 +229,8 @@ public class MovementManager : MonoBehaviour
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
             if (selectedCard != null) selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
-            selectedCard = null;
-            Debug.Log("Set selected card null");
+            // selectedCard = null;
+            // Debug.Log("Set selected card null");
             return;
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
