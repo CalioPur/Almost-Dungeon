@@ -79,6 +79,7 @@ public class MovementManager : MonoBehaviour
     }
     
     private Color redA05 = new(255, 0, 0, 0.5f);
+    private Color invisible = new(255, 255, 255, 0);
     private Color whiteA05 = new(255, 255, 255, 0.5f);
     void Update()
     {
@@ -91,15 +92,20 @@ public class MovementManager : MonoBehaviour
 
             if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
             {
-                cardVisualizer.SetActive(false);
+                cardVisualizer.GetComponent<SpriteRenderer>().color = invisible;
             }
             // TileData tile = hit.collider.gameObject.GetComponent<TileData>();
             TileData tile = hit.collider?.gameObject.GetComponent<TileData>();
-            if (tile == null) return;
-            
-            var position = tile.transform.position;
-            cardVisualizer.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
-            cardVisualizer.GetComponent<SpriteRenderer>().color = tile.PiecePlaced ? redA05 : whiteA05;
+            if (tile != null)
+            {
+                var position = tile.transform.position;
+                cardVisualizer.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
+                cardVisualizer.GetComponent<SpriteRenderer>().color = tile.PiecePlaced ? redA05 : whiteA05;
+            }
+        }
+        else
+        {
+            Debug.Log("selectedCard null");
         }
         
         if (Input.GetMouseButtonDown(0))
@@ -198,6 +204,7 @@ public class MovementManager : MonoBehaviour
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
             if (selectedCard != null) selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
+            selectedCard = null;
             return;
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
@@ -215,6 +222,11 @@ public class MovementManager : MonoBehaviour
         if (selectedCard != null && selectedCard.GetSprite() == null)
         {
             Debug.Log("Sprite null");
+            return;
+        }
+        if (cardVisualizer == null)
+        {
+            Debug.Log("cardVisualizer null");
             return;
         }
         cardVisualizer.GetComponent<SpriteRenderer>().sprite = selectedCard.GetSprite();

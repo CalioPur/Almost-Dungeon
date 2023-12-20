@@ -1,3 +1,4 @@
+using System;
 using BehaviourTree;
 using UnityEngine;
 
@@ -16,6 +17,30 @@ public class MoveInDirection : Node
             return NodeState.Failure;
         if (blackboard.dir is DirectionToMove.None)
             return NodeState.Success;
+
+        switch (blackboard.dir)
+        {
+            case DirectionToMove.Left:
+                if (blackboard.minionData.indexX + 1 == blackboard.heroPosition.x &&
+                    blackboard.minionData.indexY == blackboard.heroPosition.y)
+                    return NodeState.Success;
+                break;
+            case DirectionToMove.Right:
+                if (blackboard.minionData.indexX - 1 == blackboard.heroPosition.x &&
+                    blackboard.minionData.indexY == blackboard.heroPosition.y)
+                    return NodeState.Success;
+                break;
+            case DirectionToMove.Up:
+                if (blackboard.minionData.indexX == blackboard.heroPosition.x &&
+                    blackboard.minionData.indexY + 1 == blackboard.heroPosition.y)
+                    return NodeState.Success;
+                break;
+            case DirectionToMove.Down:
+                if (blackboard.minionData.indexX == blackboard.heroPosition.x &&
+                    blackboard.minionData.indexY - 1 == blackboard.heroPosition.y)
+                    return NodeState.Success;
+                break;
+        }
 
         Vector2Int temporaryIndex = new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY);
         temporaryIndex.x += (blackboard.dir == DirectionToMove.Right) ? 1 :
