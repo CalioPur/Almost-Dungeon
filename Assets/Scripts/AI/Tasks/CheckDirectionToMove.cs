@@ -35,7 +35,7 @@ public class CheckDirectionToMove : Node
                 simulatedPos.x += 1;
                 break;
             case DirectionToMove.None:
-                
+                Debug.LogWarning("Direction to move is none");
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

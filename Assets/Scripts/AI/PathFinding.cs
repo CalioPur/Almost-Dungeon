@@ -81,7 +81,7 @@ public class PathFinding
             }
             case Personnalities.HurryForTheExit when exits.Count == 0:
             {
-                if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
+                if(!CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
                 BreakFreeFromNoExit(startPos, map);
                 MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
