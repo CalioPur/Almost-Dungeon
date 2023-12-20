@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DL_Knight_Easy
   m_EditorClassIdentifier: 
   nameOfHero: The Novice
-  health: 10
+  health: 15
   speed: 30
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   personnalities: 01000000

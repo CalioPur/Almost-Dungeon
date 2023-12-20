@@ -13,17 +13,21 @@ MonoBehaviour:
   m_Name: DL_Medium
   m_EditorClassIdentifier: 
   tilePresets:
-  - position: {x: 1, y: 6}
-    cardInfo: {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
-    rotation: 2
-  - position: {x: 2, y: 6}
+  - position: {x: 1, y: 3}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    rotation: 4
-  - position: {x: 3, y: 6}
-    cardInfo: {fileID: 11400000, guid: c8947bc12fc3b1646a4dad70707a1551, type: 2}
-    rotation: 4
-  - position: {x: 3, y: 5}
-    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     rotation: 2
+  - position: {x: 7, y: 6}
+    cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
+    rotation: 3
+  - position: {x: 8, y: 6}
+    cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
+    rotation: 4
+  - position: {x: 6, y: 6}
+    cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
+    rotation: 3
+  - position: {x: 7, y: 5}
+    cardInfo: {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd, type: 2}
+    rotation: 1
   ClampSpawnPositionX: {x: 0, y: 0}
-  ClampSpawnPositionY: {x: 6, y: 6}
+  ClampSpawnPositionY: {x: 3, y: 3}
+  spawnRotation: 0
