@@ -59,8 +59,8 @@ public class DungeonManager : MonoBehaviour
         print(UI_Dragon.currentHealth);
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
-        print("nb of level : "+dungeons[SelectedBiome].dungeonSO.etages.Count);
-        if (level >= dungeons[SelectedBiome].dungeonSO.etages.Count)
+        print("nb of level : "+dungeons[SelectedBiome].dungeonSO.levels.Count);
+        if (level >= dungeons[SelectedBiome].dungeonSO.levels.Count)
         {
             Debug.LogWarning("Level is too high");
             SceneManager.LoadScene(0);
@@ -68,9 +68,9 @@ public class DungeonManager : MonoBehaviour
             return;
         }
 
-        var etageSo = dungeons[SelectedBiome].dungeonSO.etages[level];
-        
-        var levelData = etageSo.Levels[Random.Range(0, etageSo.Levels.Count)];
+
+
+        var levelData = dungeons[SelectedBiome].dungeonSO.levels[level];
         
         var terrainData = levelData.terrains[Random.Range(0, levelData.terrains.Count)];
         var heroData = levelData.heros[Random.Range(0, levelData.heros.Count)];

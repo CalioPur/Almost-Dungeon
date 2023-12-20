@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DungeonSO", menuName = "ScriptableObjects/CreationDungeonTool/DungeonSO", order = 5)]
 public class DungeonSO : ScriptableObject
 {
-    [field: SerializeField] public List<EtageSO> etages;
+    [field: SerializeField] public List<LevelSO> levels;
 }
