@@ -14,6 +14,7 @@ public class MinionData : TrapData
     [SerializeField] protected MinionBTBase bt;
     [SerializeField] protected AnimationQueue animQueue;
     [SerializeField] protected EmotesManager emotesManager;
+    [field: SerializeField] private AttackFX animFX;
     
     public void GetHeroPos()
     {
@@ -105,5 +106,13 @@ public class MinionData : TrapData
     private void OnDisable()
     {
         GameManager.OnGameStartEvent -= StartListenTick;
+    }
+    
+    public void PlayAttackFX(Transform targetTr, float delay, DirectionToMove direction)
+    {
+        if (animFX == null) return;
+        AttackFX fx = Instantiate(animFX, targetTr.position, animFX.transform.rotation);
+        fx.Init(targetTr, transform, delay, direction);
+        fx.Launch();
     }
 }

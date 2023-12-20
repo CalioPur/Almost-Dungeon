@@ -26,6 +26,9 @@ public class AttackHero : Node
             Ease.InBack, 2));
         Debug.Log("AttackHero");
         blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage);
+        DirectionToMove dirTarget = FunctionUtils.GetDirectionToMoveWithTilePos(blackboard.heroPosition,
+            new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY));
+        blackboard.minionData.PlayAttackFX(tileWhereHeroIs.transform, 0.5f, dirTarget);
         return NodeState.Success;
     }
 }

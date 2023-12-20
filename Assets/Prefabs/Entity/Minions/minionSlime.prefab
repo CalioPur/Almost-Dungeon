@@ -112,6 +112,7 @@ MonoBehaviour:
   bt: {fileID: -4220475814365159450}
   animQueue: {fileID: 6402256854860038529}
   emotesManager: {fileID: 9041447989855583336}
+  animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
   slimePrefab: {fileID: -8816407786218390196}
 --- !u!114 &-4220475814365159450
 MonoBehaviour:
