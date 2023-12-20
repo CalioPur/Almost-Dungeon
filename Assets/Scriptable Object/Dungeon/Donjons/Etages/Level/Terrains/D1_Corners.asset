@@ -13,24 +13,17 @@ MonoBehaviour:
   m_Name: D1_Corners
   m_EditorClassIdentifier: 
   tilePresets:
-  - position: {x: 2, y: 3}
-    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
+  - position: {x: 0, y: 0}
+    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
+    rotation: 2
+  - position: {x: 8, y: 0}
+    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     rotation: 1
-  - position: {x: 2, y: 4}
-    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+  - position: {x: 0, y: 6}
+    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     rotation: 3
-  - position: {x: 3, y: 3}
+  - position: {x: 8, y: 6}
     cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     rotation: 0
-  - position: {x: 8, y: 6}
-    cardInfo: {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936, type: 2}
-    rotation: 0
-  - position: {x: 8, y: 0}
-    cardInfo: {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936, type: 2}
-    rotation: 1
-  - position: {x: 7, y: 0}
-    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    rotation: 0
-  - position: {x: 7, y: 6}
-    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    rotation: 0
+  ClampSpawnPositionX: {x: 1, y: 1}
+  ClampSpawnPositionY: {x: 3, y: 3}

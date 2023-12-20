@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Tests
   m_EditorClassIdentifier: 
   terrains:
-  - {fileID: 11400000, guid: f053d3ca21e35924eab1c6892b5c046e, type: 2}
+  - {fileID: 11400000, guid: e568dc2bbcd9bdd4489f6d4a0c260b78, type: 2}
   heros:
   - {fileID: 11400000, guid: 71536925003f60a44bce2634291668b2, type: 2}
   decks:
   - {fileID: 11400000, guid: 172ee50c29e01bb47b30b620b51e17f0, type: 2}
-  ClampSpawnPositionX: {x: 1, y: 1}
-  ClampSpawnPositionY: {x: 3, y: 3}
+  nbCardToDraw: 3
