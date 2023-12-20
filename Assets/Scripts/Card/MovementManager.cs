@@ -91,7 +91,7 @@ public class MovementManager : MonoBehaviour
 
             if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
             {
-                cardVisualizer.GetComponent<SpriteRenderer>().color = redA05;
+                cardVisualizer.SetActive(false);
             }
             // TileData tile = hit.collider.gameObject.GetComponent<TileData>();
             TileData tile = hit.collider?.gameObject.GetComponent<TileData>();
