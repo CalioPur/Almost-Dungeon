@@ -81,6 +81,7 @@ public class PathFinding
             }
             case Personnalities.HurryForTheExit when exits.Count == 0:
             {
+                if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
                 BreakFreeFromNoExit(startPos, map);
                 MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
@@ -88,23 +89,16 @@ public class PathFinding
             case Personnalities.TheExplorer when unvisitedTiles.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, unvisitedTiles);
-                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
-                {
-                    return GoThroughDoorWithNoTile(startPos, map);
-                }
-                return GetDirectionToMove(startPos, nextPos);
+                return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
             }
             case Personnalities.TheExplorer when exits.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
-                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
-                {
-                    return GoThroughDoorWithNoTile(startPos, map);
-                }
-                return GetDirectionToMove(startPos, nextPos);
+                return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
             }
             case Personnalities.TheExplorer when exits.Count == 0:
             {
+                if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
                 BreakFreeFromNoExit(startPos, map);
                 MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
@@ -112,23 +106,16 @@ public class PathFinding
             case Personnalities.TheKiller when tileWithEnemies.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, tileWithEnemies);
-                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
-                {
-                    return GoThroughDoorWithNoTile(startPos, map);
-                }
-                return GetDirectionToMove(startPos, nextPos);
+                return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
             }
             case Personnalities.TheKiller when exits.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
-                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
-                {
-                    return GoThroughDoorWithNoTile(startPos, map);
-                }
-                return GetDirectionToMove(startPos, nextPos);
+                return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
             }
             case Personnalities.TheKiller when exits.Count == 0:
             {
+                if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
                 BreakFreeFromNoExit(startPos, map);
                 MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
@@ -170,6 +157,7 @@ public class PathFinding
             }
             case Personnalities.TheSissy when exits.Count == 0:
             {
+                if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
                 BreakFreeFromNoExit(startPos, map);
                 MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
                 return DirectionToMove.None;
@@ -187,6 +175,26 @@ public class PathFinding
                 Debug.Log("No valid path found because no exit or unvisited tiles found");
                 return GoThroughDoorWithNoTile(startPos, map);
         }
+    }
+
+    private static bool CheckIfNotSurroundedByExits(Vector2Int startPos, TileData[,] map)
+    {
+        if (startPos.x > 0 && map[startPos.x - 1, startPos.y].isExit)
+        {
+            return true;
+        }
+
+        if (startPos.x < map.GetLength(0) - 1 && map[startPos.x + 1, startPos.y].isExit)
+        {
+            return true;
+        }
+
+        if (startPos.y > 0 && map[startPos.x, startPos.y - 1].isExit)
+        {
+            return true;
+        }
+
+        return startPos.y < map.GetLength(1) - 1 && map[startPos.x, startPos.y + 1].isExit;
     }
 
     private static void BreakFreeFromNoExit(Vector2Int startPos, TileData[,] map)
