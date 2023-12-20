@@ -106,7 +106,10 @@ public class UI_Dragon : MonoBehaviour
             OnDragonDeathEvent?.Invoke();
             SoundManagerIngame.Instance.PlaySound(EmoteType.DragonDeath);
         }
-
+        else
+        {
+            OnDragonTakeDamageEvent?.Invoke();
+        }
         DrawHearts();
     }
     
