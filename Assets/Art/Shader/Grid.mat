@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Grid
-  m_Shader: {fileID: -6465566751694194690, guid: 4cc185c29227b534fa38bce37dd190c1,
+  m_Shader: {fileID: -6465566751694194690, guid: 78138b473cc318e4aa661954879e9a69,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

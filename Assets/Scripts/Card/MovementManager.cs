@@ -23,6 +23,8 @@ public class MovementManager : MonoBehaviour
     
     public static MovementManager Instance { get; private set; }
     CardHand selectedCard;
+    
+    public bool isDragNDrop = false;
 
     private void Start()
     {
@@ -65,6 +67,7 @@ public class MovementManager : MonoBehaviour
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.SetActive(false);
         selectedCard = null;
+        Debug.Log("Set selected card null");
     }
 
     private void RotateSelection(bool direction)
@@ -108,18 +111,19 @@ public class MovementManager : MonoBehaviour
             Debug.Log("selectedCard null");
         }
         
-        if (Input.GetMouseButtonDown(0))
+        switch (isDragNDrop)
         {
-            // HandleMouseDown();
+            case false when Input.GetMouseButtonDown(0):
+                HandleMouseDown();
+                break;
+            case true when Input.GetMouseButton(0):
+                HandleMouseDrag();
+                break;
+            case true when Input.GetMouseButtonUp(0):
+                HandleMouseUp();
+                break;
         }
-        else if (Input.GetMouseButton(0))
-        {
-            HandleMouseDrag();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            HandleMouseUp();
-        }
+        
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             RotateSelection(true);
@@ -165,10 +169,31 @@ public class MovementManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        
+        //if the mouse pos intersects with the zone of the discard
+        // if (RectTransformUtility.RectangleContainsScreenPoint(_rectTransform, Input.mousePosition))
+        // {
+        //     if (selectedCard == null) return;
+        //     selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
+        //     OnDiscardCardEvent?.Invoke(selectedCard);
+        //     return;
+        // }
 
-        if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor")) return;
-        TileData tile = hit.collider.gameObject.GetComponent<TileData>();
-        OnTileSelectedEvent?.Invoke(tile);
+        if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
+        {
+            if (selectedCard != null) selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
+            // selectedCard = null;
+            // Debug.Log("Set selected card null");
+            return;
+        }
+        
+        if (selectedCard != null)
+        {
+            TileData tile = hit.collider.gameObject.GetComponent<TileData>();
+            cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
+            cardVisualizer.SetActive(false);
+            OnTileSelectedEvent?.Invoke(tile);
+        }
     }
 
     private string nameOf = null;
@@ -204,7 +229,8 @@ public class MovementManager : MonoBehaviour
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
             if (selectedCard != null) selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
-            selectedCard = null;
+            // selectedCard = null;
+            // Debug.Log("Set selected card null");
             return;
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
@@ -222,11 +248,6 @@ public class MovementManager : MonoBehaviour
         if (selectedCard != null && selectedCard.GetSprite() == null)
         {
             Debug.Log("Sprite null");
-            return;
-        }
-        if (cardVisualizer == null)
-        {
-            Debug.Log("cardVisualizer null");
             return;
         }
         cardVisualizer.GetComponent<SpriteRenderer>().sprite = selectedCard.GetSprite();
