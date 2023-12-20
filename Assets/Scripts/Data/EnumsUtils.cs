@@ -15,6 +15,7 @@ public enum TrapType
     Archer,
     Skeleton,
     Slime,
+    FireCamp,
     None
 }
 
