@@ -19,6 +19,8 @@ public class MovementManager : MonoBehaviour
     
     [SerializeField] private GameObject discardPosition;
     
+    Vector3 baseRotation = new(90, 0, 0);
+    
     public static MovementManager Instance { get; private set; }
     CardHand selectedCard;
 
@@ -60,6 +62,7 @@ public class MovementManager : MonoBehaviour
         OnTilePosedEvent?.Invoke(data, card.Card);
         //card.EmptyCard();
         OnFinishToPose?.Invoke(card.Card);
+        cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.SetActive(false);
         selectedCard = null;
     }
@@ -90,7 +93,8 @@ public class MovementManager : MonoBehaviour
             {
                 cardVisualizer.GetComponent<SpriteRenderer>().color = redA05;
             }
-            TileData tile = hit.collider.gameObject.GetComponent<TileData>();
+            // TileData tile = hit.collider.gameObject.GetComponent<TileData>();
+            TileData tile = hit.collider?.gameObject.GetComponent<TileData>();
             if (tile == null) return;
             
             var position = tile.transform.position;
@@ -197,6 +201,7 @@ public class MovementManager : MonoBehaviour
             return;
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
+        cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.SetActive(false);
         OnTileSelectedEvent?.Invoke(tile);
     }
@@ -204,13 +209,14 @@ public class MovementManager : MonoBehaviour
     public void SetSelectedCard(CardHand cardHand)
     {
         selectedCard = cardHand;
+        cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
+        cardVisualizer.transform.position = new Vector3(100, 100, 100);
         cardVisualizer.SetActive(true);
         if (selectedCard != null && selectedCard.GetSprite() == null)
         {
             Debug.Log("Sprite null");
             return;
         }
-
         cardVisualizer.GetComponent<SpriteRenderer>().sprite = selectedCard.GetSprite();
     }
 }
