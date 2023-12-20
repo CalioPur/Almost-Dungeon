@@ -46,6 +46,7 @@ public class UI_Hero : MonoBehaviour
         {
             OnEndGameEvent?.Invoke(true);
         }
+        healthBar.transform.DOScale(1.2f, 0.1f).OnComplete(() => { healthBar.transform.DOScale(1f, 0.1f); });
         healthBar.GetComponentInChildren<TMP_Text>().text = _currentHealth.ToString();
         healthBar.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)_currentHealth / maxHealth;
         
@@ -107,8 +108,10 @@ public class UI_Hero : MonoBehaviour
 
     void EndGame(bool win)
     {
-        Time.timeScale = 0;
+        
         endGameText.text = win ? "You Win !" : "You Lose !";
+        endGameText.color = win ? Color.green : Color.red;
+        endGameButton.GetComponentInChildren<TMP_Text>().text = win ? "Next Level" : "Main Menu";
         if (!win)
         {
             DungeonManager.ResetLevelIndex();
@@ -122,10 +125,32 @@ public class UI_Hero : MonoBehaviour
             endGameButton.onClick.RemoveAllListeners();
             endGameButton.onClick.AddListener((() => { UIManager._instance.NextLevel(); }));
         }
-        endGamePanel.SetActive(true);
+        //endGamePanel.SetActive(true);
+        StartCoroutine(EndGameFX());
 
     }
-
+    
+    private IEnumerator EndGameFX()
+    {
+        Camera camera1 = Camera.main;
+        float t = 0;
+        float baseSize = Camera.main.orthographicSize;
+        
+        camera1.transform.DOMove(FindObjectOfType<Hero>().transform.position + new Vector3(0, +10, 0), 0.5f);
+        while (t < 0.5f)
+        {
+            t += Time.deltaTime;
+            camera1.orthographicSize = Mathf.Lerp(baseSize, 1f, t / 0.5f);
+            Time.timeScale = Mathf.Lerp(1, 0.25f, t / 0.5f);
+            yield return null;
+        }
+        
+        yield return new WaitForSeconds(0.5f);
+        endGamePanel.SetActive(true);
+        Time.timeScale = 0;
+        yield return null;
+    }
+    
     void LoseGame()
     {
         OnEndGameEvent?.Invoke(false);

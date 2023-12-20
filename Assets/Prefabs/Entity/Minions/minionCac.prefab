@@ -154,6 +154,7 @@ MonoBehaviour:
   bt: {fileID: 1636573392929660682}
   animQueue: {fileID: 6402256854860038529}
   emotesManager: {fileID: 3990342877312240800}
+  animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
 --- !u!82 &6299596542574410117
 AudioSource:
   m_ObjectHideFlags: 0

@@ -153,6 +153,7 @@ MonoBehaviour:
   bt: {fileID: 3626995099247602375}
   animQueue: {fileID: 6402256854860038529}
   emotesManager: {fileID: 172181208815515307}
+  animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
 --- !u!1001 &5460099456565373262
 PrefabInstance:
   m_ObjectHideFlags: 0

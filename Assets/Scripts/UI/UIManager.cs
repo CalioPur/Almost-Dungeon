@@ -77,6 +77,11 @@ public class UIManager : MonoBehaviour
         PauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
+    
+    public void Quit()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void NextLevel()
     {
         print("next level, maybe done twice, this is a bug");

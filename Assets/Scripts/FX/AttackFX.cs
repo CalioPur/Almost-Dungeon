@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class AttackFX : MonoBehaviour
 {
  public abstract void Launch();
- public abstract void Init(Transform target, Transform owner, float time);
+ public abstract void Init(Transform target, Transform owner, float time, DirectionToMove direction);
 }
