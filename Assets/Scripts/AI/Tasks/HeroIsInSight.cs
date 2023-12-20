@@ -47,7 +47,7 @@ public class HeroIsInSight : Node
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).PiecePlaced)
                 {
                     y++;
-                    if (blackboard.heroPosition.y == y + 1 )
+                    if (blackboard.heroPosition.y == y)
                     {
                         if (blackboard.firstTimeSeeHero)
                         {
@@ -64,7 +64,7 @@ public class HeroIsInSight : Node
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).PiecePlaced)
                 {
                     y--;
-                    if (blackboard.heroPosition.y == y - 1)
+                    if (blackboard.heroPosition.y == y)
                     {
                         if (blackboard.firstTimeSeeHero)
                         {
@@ -83,7 +83,7 @@ public class HeroIsInSight : Node
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).PiecePlaced)
                 {
                     x++;
-                    if (blackboard.heroPosition.x == x + 1 )
+                    if (blackboard.heroPosition.x == x)
                     {
                         if (blackboard.firstTimeSeeHero)
                         {
@@ -100,7 +100,7 @@ public class HeroIsInSight : Node
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).PiecePlaced)
                 {
                     x--;
-                    if (blackboard.heroPosition.x == x - 1)
+                    if (blackboard.heroPosition.x == x)
                     {
                         if (blackboard.firstTimeSeeHero)
                         {
