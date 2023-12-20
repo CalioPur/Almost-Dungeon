@@ -19,6 +19,7 @@ public class CheckDirectionToMove : Node
         blackboard.directionToMove = PathFinding.BFSFindPath(
             blackboard.hero.GetIndexHeroPos(),
             blackboard.hero.mapManager.getMapArray(), blackboard.personality);
+        if (blackboard.directionToMove == DirectionToMove.None) blackboard.directionToMove = RandomDirection();
         Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();
         switch (blackboard.directionToMove)
         {
@@ -44,5 +45,18 @@ public class CheckDirectionToMove : Node
         if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;
         blackboard.hero.OutOfMap(blackboard.directionToMove);
         return NodeState.Failure;
+    }
+    
+    public DirectionToMove RandomDirection()
+    {
+        int random = UnityEngine.Random.Range(0, 4);
+        return random switch
+        {
+            0 => DirectionToMove.Up,
+            1 => DirectionToMove.Down,
+            2 => DirectionToMove.Left,
+            3 => DirectionToMove.Right,
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 }
