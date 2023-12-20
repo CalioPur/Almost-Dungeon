@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8dd4e543ca3d06498c7464e410c2f40, type: 3}
-  m_Name: Tests
+  m_Name: DL_Tutorial_2
   m_EditorClassIdentifier: 
   terrains:
-  - {fileID: 11400000, guid: 23e0d055d80ff7d409201dbc957d84a2, type: 2}
+  - {fileID: 11400000, guid: a88e181488b49204b8e861c2f316e0bd, type: 2}
   heros:
-  - {fileID: 11400000, guid: 71536925003f60a44bce2634291668b2, type: 2}
+  - {fileID: 11400000, guid: 03d904ae70330eb42ac2cdf2f89a8039, type: 2}
   decks:
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
-  nbCardToDraw: 3
+  nbCardToDraw: 0

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0686ad6da41e04095ff2a86b67d424, type: 3}
   m_Name: Donjon_Labyrinthe
   m_EditorClassIdentifier: 
-  etages:
-  - {fileID: 11400000, guid: 1a73b6d8c1b27fb40ab1447fd0e0a20d, type: 2}
-  - {fileID: 11400000, guid: 47edbf75cb9fc5e4b90526e3c04b42e3, type: 2}
+  levels:
+  - {fileID: 11400000, guid: fdeea50479e9df640b051f5f86ea1fc8, type: 2}
+  - {fileID: 11400000, guid: 871d14555bcfa4e4e83d36c35086db01, type: 2}
+  - {fileID: 11400000, guid: 2a08dd0943fd221449096293df5e0b5e, type: 2}
+  - {fileID: 11400000, guid: 905b461c280fcdd499019076aa8d99c0, type: 2}
