@@ -122,6 +122,11 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         return img;
     }
+    
+    public Sprite GetSprite()
+    {
+        return img.sprite;
+    }
 
     public void ChangeSelection(bool newSelection)
     {

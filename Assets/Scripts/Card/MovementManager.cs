@@ -11,6 +11,7 @@ public class MovementManager : MonoBehaviour
 
 
     [SerializeField] private GameObject gridVisualizer;
+    [SerializeField] private GameObject cardVisualizer;
     private TileData selectedTile;
     private Vector3 offset;
     
@@ -59,6 +60,7 @@ public class MovementManager : MonoBehaviour
         OnTilePosedEvent?.Invoke(data, card.Card);
         //card.EmptyCard();
         OnFinishToPose?.Invoke(card.Card);
+        cardVisualizer.SetActive(false);
         selectedCard = null;
     }
 
@@ -69,12 +71,33 @@ public class MovementManager : MonoBehaviour
             Vector3 rot = selectedCard.GetImage().transform.rotation.eulerAngles;
             selectedCard.Card.AddRotation(direction);
             selectedCard.GetImage().transform.DORotate(new Vector3(0, 0, selectedCard.Card.Rotation), 0.2f);
+            cardVisualizer.transform.DORotate(new Vector3(90, 0, selectedCard.Card.Rotation), 0.2f);
         }
     }
     
+    private Color redA05 = new(255, 0, 0, 0.5f);
+    private Color whiteA05 = new(255, 255, 255, 0.5f);
     void Update()
     {
         gridVisualizer.GetComponent<Renderer>().sharedMaterial.SetVector("_Position", GetMousePositionOnGrid());
+
+        if (selectedCard != null)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
+            {
+                cardVisualizer.GetComponent<SpriteRenderer>().color = redA05;
+            }
+            TileData tile = hit.collider.gameObject.GetComponent<TileData>();
+            if (tile == null) return;
+            
+            var position = tile.transform.position;
+            cardVisualizer.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
+            cardVisualizer.GetComponent<SpriteRenderer>().color = tile.PiecePlaced ? redA05 : whiteA05;
+        }
+        
         if (Input.GetMouseButtonDown(0))
         {
             // HandleMouseDown();
@@ -160,13 +183,13 @@ public class MovementManager : MonoBehaviour
         RaycastHit hit;
         
         //if the mouse pos intersects with the zone of the discard
-        if (RectTransformUtility.RectangleContainsScreenPoint(_rectTransform, Input.mousePosition))
-        {
-            if (selectedCard == null) return;
-            selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
-            OnDiscardCardEvent?.Invoke(selectedCard);
-            return;
-        }
+        // if (RectTransformUtility.RectangleContainsScreenPoint(_rectTransform, Input.mousePosition))
+        // {
+        //     if (selectedCard == null) return;
+        //     selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
+        //     OnDiscardCardEvent?.Invoke(selectedCard);
+        //     return;
+        // }
 
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
@@ -174,11 +197,20 @@ public class MovementManager : MonoBehaviour
             return;
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
+        cardVisualizer.SetActive(false);
         OnTileSelectedEvent?.Invoke(tile);
     }
 
     public void SetSelectedCard(CardHand cardHand)
     {
         selectedCard = cardHand;
+        cardVisualizer.SetActive(true);
+        if (selectedCard != null && selectedCard.GetSprite() == null)
+        {
+            Debug.Log("Sprite null");
+            return;
+        }
+
+        cardVisualizer.GetComponent<SpriteRenderer>().sprite = selectedCard.GetSprite();
     }
 }
