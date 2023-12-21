@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
-  m_Name: DL_Knight_Easy
+  m_Name: Knight_5bis
   m_EditorClassIdentifier: 
-  nameOfHero: The Novice
-  health: 15
-  speed: 30
+  nameOfHero: 
+  health: 40
+  speed: 90
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   personnalities: 01000000

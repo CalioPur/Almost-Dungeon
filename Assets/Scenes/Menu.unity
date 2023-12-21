@@ -1862,6 +1862,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].dungeonSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cd4d22b85c014c4c9e31a7fd65052ab,
+        type: 2}
     - target: {fileID: 6577308284193752911, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: m_LocalPosition.x
