@@ -106,10 +106,10 @@ public class MovementManager : MonoBehaviour
                 cardVisualizer.GetComponent<SpriteRenderer>().color = tile.PiecePlaced ? redA05 : whiteA05;
             }
         }
-        else
-        {
-            Debug.Log("selectedCard null");
-        }
+        // else
+        // {
+        //     Debug.Log("selectedCard null");
+        // }
         
         switch (isDragNDrop)
         {

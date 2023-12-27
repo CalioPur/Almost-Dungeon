@@ -74,6 +74,7 @@ public class Hero : MonoBehaviour
         info = instance;
         isStunned = false;
 
+        TrapData.ClearEvent();
         TrapData.OnTrapAttackEvent += TakeDamage;
         TrapData.OnTrapStunEvent += Stun;
         Sprite.sprite = info.So.Img;
@@ -158,11 +159,12 @@ public class Hero : MonoBehaviour
         {
             Sprite.DOColor(Color.white, 0.2f).SetEase(Ease.InBack);
         });
-        OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
         if (info.CurrentHealthPoint <= 0)
         {
+            info.CurrentHealthPoint = 0;
             IsDead();
         }
+        OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
     }
 
     private void Start()
