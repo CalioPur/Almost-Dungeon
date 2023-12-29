@@ -13,6 +13,7 @@ public class LDCreator : MonoBehaviour
 
     [SerializeField] private List<CardInfo> cartes;
     [SerializeField] private Image imageCarte;
+    [SerializeField] private RectTransform imageCarteTr;
     [SerializeField] private Transform floor;
 
     [Header("Data Button")] [SerializeField]
@@ -109,6 +110,12 @@ public class LDCreator : MonoBehaviour
             {
                 cartesViewer.SaveWorld();
             }
+            if (GUILayout.Button("Rotate"))
+            {
+                cartesViewer.currentInstance.AddRotation(false);
+                cartesViewer.imageCarteTr.rotation = Quaternion.Euler(0, 0, cartesViewer.currentInstance.Rotation);
+                
+            }
         }
     }
 
@@ -120,7 +127,7 @@ public class LDCreator : MonoBehaviour
         TilePresetStruct newPreset = new TilePresetStruct();
         newPreset.position = new Vector2Int(x, y);
         newPreset.cardInfo = data.cardInfo;
-        newPreset.rotation = data.nbRotation;
+        newPreset.rotation = data.nbRotation / 90;
         Debug.Log("Create Preset SO : " + newPreset.position + " - " + newPreset.cardInfo.name + " - " +
                   newPreset.rotation);
         nouvelleInstance.tilePresets.Add(newPreset);
@@ -157,6 +164,7 @@ public class LDCreator : MonoBehaviour
         currentInstance = cartes[indexCardToSelect].CreateInstance();
         currentIndex = indexCardToSelect;
         imageCarte.sprite = cartes[currentIndex].imgOnHand;
+        imageCarteTr.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void AfficherCarteSuivante()
@@ -167,6 +175,7 @@ public class LDCreator : MonoBehaviour
             currentIndex++;
             currentInstance = cartes[currentIndex].CreateInstance();
             imageCarte.sprite = cartes[currentIndex].imgOnHand;
+            imageCarteTr.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
@@ -178,6 +187,7 @@ public class LDCreator : MonoBehaviour
             currentIndex--;
             currentInstance = cartes[currentIndex].CreateInstance();
             imageCarte.sprite = cartes[currentIndex].imgOnHand;
+            imageCarteTr.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
@@ -198,5 +208,7 @@ public class LDCreator : MonoBehaviour
                 }
             }
         }
+        indexCardToSelect = 0;
+        SelectWithIndex();
     }
 }
