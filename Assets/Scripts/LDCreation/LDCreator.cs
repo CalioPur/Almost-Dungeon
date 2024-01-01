@@ -13,8 +13,9 @@ public class LDCreator : MonoBehaviour
 
     [SerializeField] private List<CardInfo> cartes;
     [SerializeField] private Image imageCarte;
+    [SerializeField] private Sprite DefaultSprite;
     [SerializeField] private RectTransform imageCarteTr;
-    [SerializeField] private Transform floor;
+    [SerializeField] private SpriteRenderer floor;
 
     [Header("Data Button")] [SerializeField]
     private int indexCardToSelect;
@@ -24,6 +25,7 @@ public class LDCreator : MonoBehaviour
     private int currentIndex = 0;
     private CardInfoInstance currentInstance;
     private LDEditorData[,] mapArray;
+    private bool DeleteMode = false;
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(LDCreator))]
@@ -49,6 +51,13 @@ public class LDCreator : MonoBehaviour
                     {
                         if (tile.PiecePlaced)
                         {
+                            if (!cartesViewer.DeleteMode) return;
+                            tile.SetInstance(null);
+                            tile.img.sprite = cartesViewer.floor.sprite;
+                            LDEditorData data = tile.GetComponent<LDEditorData>();
+                            data.nbRotation = 0;
+                            data.cardInfo = null;
+                            data.isUsed = false;
                         }
                         else
                         {
@@ -73,9 +82,16 @@ public class LDCreator : MonoBehaviour
             GUILayout.Space(10);
 
             EditorGUILayout.LabelField("", EditorStyles.boldLabel);
+            
+            // if (EditorGUILayout.Toggle("Delete Mode", cartesViewer.DeleteMode))
+            // {
+            //     cartesViewer.DeleteMode = !cartesViewer.DeleteMode;
+            // }
+            
+            cartesViewer.DeleteMode = EditorGUILayout.Toggle("Delete Mode", cartesViewer.DeleteMode);
 
             EditorGUILayout.BeginHorizontal();
-
+            
             if (GUILayout.Button("Carte Précédente"))
             {
                 cartesViewer.AfficherCartePrecedente();
