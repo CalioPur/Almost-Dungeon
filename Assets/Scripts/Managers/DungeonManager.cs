@@ -41,7 +41,8 @@ public class DungeonManager : MonoBehaviour
         
         DontDestroyOnLoad(this);
         gameManager = GameManager._instance;
-        
+
+        DialogueManager._instance.StartDialogue(0);
     }
 
     public void SetSelectedBiome(int index)
