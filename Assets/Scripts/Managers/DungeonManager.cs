@@ -42,7 +42,7 @@ public class DungeonManager : MonoBehaviour
         DontDestroyOnLoad(this);
         gameManager = GameManager._instance;
 
-        DialogueManager._instance.StartDialogue(0);
+        
     }
 
     public void SetSelectedBiome(int index)
@@ -69,7 +69,7 @@ public class DungeonManager : MonoBehaviour
             return;
         }
 
-
+        DialogueManager._instance.StartDialogue(SelectedBiome,level);
 
         var levelData = dungeons[SelectedBiome].dungeonSO.levels[level];
         

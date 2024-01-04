@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         OnGameStartEvent += SpawnHero;
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         mapManager.InitMap();
         mapManager.AddRandomCard();
         mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), normsSpawnX, normsSpawnY,rotationOfSpawnTile, out worldPos, out startPosHero);
