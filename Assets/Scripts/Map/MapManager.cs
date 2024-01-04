@@ -84,7 +84,7 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public void InitMap()
+    public void SpawnMap()
     {
         mapArray = new TileData[width, height];
         width += 2;
@@ -107,7 +107,11 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
-
+    }
+    
+    public void InitMap()
+    {
+        SpawnMap();
         SpawnTilePresets();
         MapManagerTools.SetConnectedToPath();
         MapManagerTools.SetExits();
