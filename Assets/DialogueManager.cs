@@ -48,12 +48,25 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(int indexDg, int indexLv)
     {
-        
-        if(indexDg >= dialogues.Count || indexLv >= dialogues[indexDg].dialogueFiles.Count) return; //evite les erreurs
-        story = new Story(dialogues[indexDg].dialogueFiles[indexLv].text);
-        if(story == null) return; //evite les erreurs
-        
         GetUiElements();
+
+        if (indexDg >= dialogues.Count || indexLv >= dialogues[indexDg].dialogueFiles.Count)
+        {
+            dialogueBox.SetActive(false);
+            return;
+        }
+
+        try
+        {
+            story = new Story(dialogues[indexDg].dialogueFiles[indexLv].text);
+        }
+        catch (Exception e){
+            dialogueBox.SetActive(false);
+            Time.timeScale = 1;
+            return; 
+        }
+        
+        
         dialogueBox.SetActive(true);
         
         RefreshView();
@@ -77,6 +90,7 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueBox.SetActive(false);
             nextButton.onClick.RemoveAllListeners();
+            story = null;
             Time.timeScale = 1;
         }
     }
