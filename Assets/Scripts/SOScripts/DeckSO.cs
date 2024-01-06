@@ -8,4 +8,5 @@ using UnityEngine;
 public class DeckSO : ScriptableObject
 {
     public List<CardToBuild> deck;
+    [SerializeField] public TextAsset deckDialogue;
 }

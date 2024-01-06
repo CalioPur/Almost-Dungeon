@@ -7,17 +7,13 @@ using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-[Serializable]
-public struct DungeonDialogue
-{
-    [SerializeField] public List<TextAsset> dialogueFiles;
-}
+
 
 public class DialogueManager : MonoBehaviour
 {
     
     public static DialogueManager _instance;
-    public List<DungeonDialogue> dialogues;
+    public List<TextAsset> dialogues;
     private Story story;
     private GameObject dialogueBox;
     private GameObject arrowKnight;
@@ -26,6 +22,8 @@ public class DialogueManager : MonoBehaviour
     private GameObject choice2;
     private TMP_Text dialogueText;
     private Button nextButton;
+    private static event Action OnEndDialogEvent; 
+    private int dialogueIndex = 0;
     
     
     private void Awake()
@@ -51,19 +49,42 @@ public class DialogueManager : MonoBehaviour
         nextButton = dialogueBox.GetComponentInChildren<Button>();
         nextButton.onClick.AddListener(NextDialogue);
     }
-    public void StartDialogue(int indexDg, int indexLv)
+    
+    
+    public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, TextAsset heroDialogue)
     {
         GetUiElements();
+        dialogues = new List<TextAsset>(){terrainDialogue, deckDialogue, heroDialogue};
+        OnEndDialogEvent+=PlayNextDialogue;
+        PlayNextDialogue();
+    }
 
-        if (indexDg >= dialogues.Count || indexLv >= dialogues[indexDg].dialogueFiles.Count)
+    private void PlayNextDialogue()
+    {
+        if(dialogueIndex >= dialogues.Count)
+        {
+            OnEndDialogEvent = null;
+            dialogueBox.SetActive(false);
+            nextButton.onClick.RemoveAllListeners();
+            Time.timeScale = 1;
+            return;
+        }
+        StartDialogue(dialogues[dialogueIndex]);
+        dialogueIndex++;
+    }
+
+    private void StartDialogue(TextAsset currentDialogue)
+    {
+        if (currentDialogue == null)
         {
             dialogueBox.SetActive(false);
             return;
         }
 
+
         try
         {
-            story = new Story(dialogues[indexDg].dialogueFiles[indexLv].text);
+            story = new Story(currentDialogue.text);
         }
         catch (Exception e){
             dialogueBox.SetActive(false);
@@ -106,9 +127,8 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
             dialogueBox.SetActive(false);
-            nextButton.onClick.RemoveAllListeners();
             story = null;
-            Time.timeScale = 1;
+            OnEndDialogEvent?.Invoke();
         }
     }
 

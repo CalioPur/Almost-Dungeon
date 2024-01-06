@@ -19,4 +19,5 @@ public class TilePresetSO : ScriptableObject
     [SerializeField] public Vector2Int ClampSpawnPositionX;
     [SerializeField] public Vector2Int ClampSpawnPositionY;
     [SerializeField] public int spawnRotation;
+    [SerializeField] public TextAsset terrainDialogue;
 }
