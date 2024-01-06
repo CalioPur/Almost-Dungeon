@@ -2024,7 +2024,7 @@ PrefabInstance:
         type: 3}
       propertyPath: dialogues.Array.data[0].dialogueFiles.Array.data[0]
       value: 
-      objectReference: {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
+      objectReference: {fileID: 4900000, guid: e0af87366687c75469b5e9b80dc404d2, type: 3}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
       propertyPath: dialogues.Array.data[0].dialogueFiles.Array.data[1]
