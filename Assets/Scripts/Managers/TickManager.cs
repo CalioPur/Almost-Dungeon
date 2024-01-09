@@ -22,11 +22,9 @@ public class TickManager : MonoBehaviour
     private static Dictionary<MovementType, int> entityIds = new();
     public static event Action OnTick;
 
-    [Range(0f, 1000f)]
-    public int BPM = 120;
+    [Range(0f, 1000f)] public int BPM = 120;
 
-    [Range(0.1f, 5f)] 
-    public float actionsTime; //this is the time for all of the actions to be completed
+    [Range(0.1f, 5f)] public float actionsTime; //this is the time for all of the actions to be completed
 
     private float beatInterval;
     private float nextTickTime;
@@ -42,13 +40,15 @@ public class TickManager : MonoBehaviour
     {
         GameManager.OnEndDialogEvent -= LaunchBPM;
         index = 0;
+        movementEvents = new();
+        entityIds = new();
     }
-    
+
     void LaunchBPM()
     {
         Initialize(BPM);
     }
-    
+
     void Initialize(int bpm)
     {
         beatInterval = 60f / bpm;
@@ -56,6 +56,7 @@ public class TickManager : MonoBehaviour
         {
             CancelInvoke("Tick");
         }
+
         InvokeRepeating("Tick", 0f, beatInterval);
     }
 
@@ -81,7 +82,8 @@ public class TickManager : MonoBehaviour
             // Check if there are any subscribers before unsubscribing
             if (movementEvents[movementType] != null)
             {
-                movementEvents[movementType].Remove(movementEvents[movementType].Find(tickData => tickData.ID == entityId));
+                movementEvents[movementType]
+                    .Remove(movementEvents[movementType].Find(tickData => tickData.ID == entityId));
             }
         }
         else
@@ -134,13 +136,11 @@ public class TickManager : MonoBehaviour
                 throw new InvalidOperationException("Invalid tick count.");
         }
     }
-    
+
     //while in the inspector do that
     private void OnValidate()
     {
         //change the BPM when the slider for actions time is changed so the bpm is equivalent to the actions time for exemple we have 3 type of actions and the actions time is 3s so each actions take 1s so the bpm is 60
-        BPM = Mathf.RoundToInt(60 / actionsTime );
+        BPM = Mathf.RoundToInt(60 / actionsTime);
     }
-    
-    
 }

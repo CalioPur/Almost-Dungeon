@@ -85,20 +85,6 @@ public class GameManager : MonoBehaviour
         UIManager._instance.heroBlackboard = heroScript.HeroBlackboard;
     }
 
-    // private void CheckIsFirstMove(TileData _, CardHand __, bool canBePlaced)
-    // {
-    //     if (!canBePlaced) 
-    //     {
-    //         __.GetImage().transform.position = __.transform.position;
-    //         __.removeSelection();
-    //         return;
-    //     }
-    //     MapManager.OnCardTryToPlaceEvent -= CheckIsFirstMove;
-    //     SpawnHero();
-    //     OnGameStartEvent?.Invoke();
-    //     isGameStarted = true;
-    // }
-
     public static void StartGame()
     {
         OnGameStartEvent?.Invoke();

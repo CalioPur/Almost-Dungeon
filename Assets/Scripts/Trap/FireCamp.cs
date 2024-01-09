@@ -14,14 +14,15 @@ public class FireCamp : TrapData
     private EnemyInstance firecampInstance;
     private Vector2Int heroPos = new Vector2Int(-9999, -9999);
 
-    private void Awake()
-    {
-        MinionData.OnMinionDying += StockMinions;
-    }
-
-    public void StockMinions(MinionData minion)
+     public static void StockMinions(MinionData minion)
     {
         MinionDatas.Add(minion);
+    }
+    
+    public static void ClearMinions()
+    {
+        if (MinionDatas == null) MinionDatas = new List<MinionData>();
+        MinionDatas.Clear();
     }
 
     IEnumerator ReviveAnimation()
@@ -31,14 +32,13 @@ public class FireCamp : TrapData
         yield return new WaitForSeconds(2f);
         foreach (var minion in MinionDatas)
         {
-            minion.Revive();
+           Destroy(minion.gameObject);
         }
         MinionDatas.Clear();
+        mapManager.Revive();
         OnEndNightFireCamp?.Invoke(1);
         yield return new WaitForSeconds(2.0f);
-        TickManager.UnsubscribeFromMovementEvent(MovementType.Trap, entityId);
         TickManager.PauseTick(false);
-        Destroy(gameObject);
     }
     
     public void Revive()

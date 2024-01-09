@@ -4,6 +4,7 @@ using System;
 public struct EnemiDataOnHand
 {
     public TrapType type;
+    public bool canBeRevive;
     public int indexOffsetTile;
 }
 
@@ -11,6 +12,7 @@ public struct EnemiDataOnHand
 public struct ListOfTraps
 {
     public TrapType type;
+    
     public TrapData prefab;
 }
 

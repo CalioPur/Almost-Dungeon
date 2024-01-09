@@ -378,4 +378,24 @@ public class MapManager : MonoBehaviour
     {
         _tilePreset = tilePreset;
     }
+
+    public void Revive()
+    {
+        foreach (var tile in mapArray)
+        {
+            if (tile.PiecePlaced)
+            {
+                if (tile._instance.TypeOfTrapOrEnemyToSpawnInstance.Length > 0)
+                {
+                    foreach (var enemy in tile._instance.TypeOfTrapOrEnemyToSpawnInstance)
+                    {
+                        if (enemy.canBeRevive)
+                        {
+                            SpawnEnemyManager.SpawnEnemyWithType(enemy.type, tile, Vector3.zero, enemy.indexOffsetTile, this);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

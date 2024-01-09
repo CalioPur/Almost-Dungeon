@@ -5,8 +5,6 @@ using UnityEngine.Serialization;
 public class MinionData : TrapData
 {
     public static event Action OnHeroPosAsked;
-    public static event Action<MinionData> OnMinionDying;
-
     public EnemyInstance minionInstance;
     [HideInInspector] public int indexOffsetTile;
 
@@ -15,6 +13,8 @@ public class MinionData : TrapData
     [SerializeField] protected AnimationQueue animQueue;
     [SerializeField] protected EmotesManager emotesManager;
     [field: SerializeField] private AttackFX animFX;
+    
+    private Vector2Int SpawnIndex;
 
     public void GetHeroPos()
     {
@@ -61,16 +61,6 @@ public class MinionData : TrapData
         }
     }
 
-    public void Revive()
-    {
-        if (!isDead) return;
-        Init();
-        if (!mapManager.AddMinionOnTile(new Vector2Int(indexX, indexY), this, ref indexOffsetTile))
-        {
-            OnDead();
-        }
-    }
-
     protected override void Init()
     {
         isStunned = false;
@@ -99,7 +89,6 @@ public class MinionData : TrapData
     {
         base.OnDead();
         isDead = true;
-        OnMinionDying?.Invoke(this);
         TickManager.UnsubscribeFromMovementEvent(MovementType.Monster, entityId);
     }
 

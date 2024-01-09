@@ -75,6 +75,7 @@ public class CardInfoInstance
         {
             TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = So.TypeOfTrapOrEnemyToSpawn[i].indexOffsetTile;
             TypeOfTrapOrEnemyToSpawnInstance[i].type = So.TypeOfTrapOrEnemyToSpawn[i].type;
+            TypeOfTrapOrEnemyToSpawnInstance[i].canBeRevive = So.TypeOfTrapOrEnemyToSpawn[i].canBeRevive;
         }
 
         for (int i = 0; i < So.offsetMinionPos.Length; i++)
@@ -182,6 +183,8 @@ public class CardInfoInstance
             TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile =
                 instance.TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile;
             TypeOfTrapOrEnemyToSpawnInstance[i].type = instance.TypeOfTrapOrEnemyToSpawnInstance[i].type;
+            TypeOfTrapOrEnemyToSpawnInstance[i].canBeRevive =
+                instance.TypeOfTrapOrEnemyToSpawnInstance[i].canBeRevive;
         }
 
         ItemDrops = new List<ItemDrop>();

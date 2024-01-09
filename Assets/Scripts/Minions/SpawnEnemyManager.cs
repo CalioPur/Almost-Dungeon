@@ -14,14 +14,16 @@ public class SpawnEnemyManager : MonoBehaviour
     {
         MovementManager.OnTilePosedEvent += SpawnMinionOnTile;
         _trapsPrefab = TrapsPrefab;
+        FireCamp.ClearMinions();
     }
     
     private void OnDisable()
     {
         MovementManager.OnTilePosedEvent -= SpawnMinionOnTile;
+        FireCamp.ClearMinions();
     }
 
-    private static void SpawnEnemyWithType(TrapType type, TileData tile, Vector3 offset, int index, MapManager mapManager)
+    public static void SpawnEnemyWithType(TrapType type, TileData tile, Vector3 offset, int index, MapManager mapManager)
     {
         switch (type)
         {
@@ -88,6 +90,7 @@ public class SpawnEnemyManager : MonoBehaviour
         if (script is MinionData minionData)
         {
             minionData.indexOffsetTile = index;
+            FireCamp.StockMinions(minionData);
         }
     }
     
