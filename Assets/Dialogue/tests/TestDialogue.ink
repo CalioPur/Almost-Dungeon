@@ -4,13 +4,12 @@ Encore vous !? Mais laissez moi tranquille ! Je ne veux plus continuer ! #chara:
 
 *L'attaquer : -> Verite
 *Le soigner : -> Mentir
-*Lui donner une autre arme : -> Arme
-*Changer de deck : -> Deck
+
 
 === Verite ===
 Mais si, vous allez continuer ! Si vous ne voulez pas finir en roti ! #chara:dragon
 Nooooooon ! #chara:knight #damages:4 #changepers:peureux
-   -> END
+   -> Choix2
 
 === Mentir===
 Allons mon ami... vous n'allez pas fuir pour si peu voyons... #chara:dragon
@@ -18,7 +17,12 @@ Voyez, vous m'êtes sympathique, prenez ce petit remontant ça vous donnera des 
  #chara:knight #removeemote:fear
  Ah... vous êtes bien aimables merci... #hpplus:4 #changepers:courageux
 Bien.. nous pouvons y retourner alors... #chara:dragon
-    -> END
+    -> Choix2
+
+===Choix2===
+*Lui donner une autre arme : -> Arme
+*Changer de deck : -> Deck
+
 
 === Arme ===
 Ne vous en faites pas voyons... Regardez, j'ai une nouvelle arme pour vous #chara:dragon #changeclass:archer
