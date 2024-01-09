@@ -1987,10 +1987,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
+      propertyPath: mageClass
+      value: 
+      objectReference: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3,
+        type: 2}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
       propertyPath: HeroSprite
       value: 
       objectReference: {fileID: 21300000, guid: 183aabf4ecefaf14c8aadd30cce0cabe,
         type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: archerClass
+      value: 
+      objectReference: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b,
+        type: 2}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
       propertyPath: arrowDragon
@@ -2008,15 +2020,68 @@ PrefabInstance:
       objectReference: {fileID: 855479920}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
+      propertyPath: knightClass
+      value: 
+      objectReference: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32,
+        type: 2}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
       propertyPath: MinionSprite
       value: 
       objectReference: {fileID: 21300000, guid: 65ee64f22058c114997d49ddf6d99b08,
         type: 3}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
+      propertyPath: barbareClass
+      value: 
+      objectReference: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823,
+        type: 2}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 2088323764}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: decks.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: decks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137,
+        type: 2}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: decks.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 172ee50c29e01bb47b30b620b51e17f0,
+        type: 2}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: decks.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: ca631da45c2900b4c98b78c322c8b58d,
+        type: 2}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: decks.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: cfe95eaa78c64d9498825a63ad32ecbf,
+        type: 2}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: decks.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9fe5dc83dff5c2f44ad3d24de9297c1c,
+        type: 2}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: decks.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 85fb4635a1c62d146a5b4c8aa1b2c387,
+        type: 2}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
       propertyPath: dialogues.Array.size

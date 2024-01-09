@@ -30,6 +30,6 @@ Ooooh, merci beaucoup, vous êtes finalement bien généreux pour un dragon, cet
  -> END
 
 === Deck ===
-Voyons mon bon Chevalier, ne vous en faites pas, regardez... Je change mes cartes. #chara:dragon #changedeck:D2_Corridor
+Voyons mon bon Chevalier, ne vous en faites pas, regardez... Je change mes cartes. #chara:dragon #changedeck:D2_Corridors
 Aahh... merci, vous m'en voyez ravi, je n'en pouvais plus de tous ces piques. #chara:knight
  -> END

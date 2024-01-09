@@ -77,9 +77,9 @@ public class GameManager : MonoBehaviour
         heroScript.Init(current, startPosHero.x, startPosHero.y, mapManager);
         heroScript.HeroBlackboard.personality = currentPersonality;
         
-        if (heroCurrentHealthPoint < heroHealthPoint)
+        if (heroCurrentHealthPoint < heroHealthPoint) //Degats pris pendant le dialogue
         {
-            heroScript.TakeDamage(heroHealthPoint - heroCurrentHealthPoint);
+            heroScript.TakeDamage((heroHealthPoint - heroCurrentHealthPoint), AttackType.Fire);
         }
         
         UIManager._instance.heroBlackboard = heroScript.HeroBlackboard;

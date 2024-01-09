@@ -23,8 +23,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private HeroesInfo mageClass;
     [SerializeField] private HeroesInfo barbareClass;
     
+    [SerializeField] private List<DeckSO> decks;
+    
     private List<TextAsset> dialogues;
     private Story story;
+    private DeckManager cardsManager;
     private GameObject dialogueBox;
     private GameObject arrowKnight;
     private GameObject arrowDragon;
@@ -64,7 +67,7 @@ public class DialogueManager : MonoBehaviour
     }
     
     
-    public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, TextAsset heroDialogue)
+    public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, TextAsset heroDialogue, DeckManager cardsManager)
     {
         GetUiElements();
         dialogues = new List<TextAsset>(){
@@ -74,6 +77,7 @@ public class DialogueManager : MonoBehaviour
         
         OnEndDialogEvent+=PlayNextDialogue;
         PlayNextDialogue();
+        this.cardsManager = cardsManager;
     }
 
     private void PlayNextDialogue()
@@ -193,7 +197,35 @@ public class DialogueManager : MonoBehaviour
                                 break;
                         }
                         break;
-                        
+                    case "changeclass":
+                        switch (split[1])
+                        {
+                            case ("knight"):
+                                GameManager._instance.currentHero = knightClass;
+                                break;
+                            case ("archer"):
+                                GameManager._instance.currentHero = archerClass;
+                                break;
+                            case("mage"):
+                                GameManager._instance.currentHero = mageClass;
+                                break;
+                            case("barbare"):
+                                GameManager._instance.currentHero = barbareClass;
+                                break;
+                        }
+                        break;
+                    case "changedeck":
+                        //recuperer les nom des decks et les comprarer avec le split[1]
+                        foreach (var deck in decks)
+                        {
+                            if (deck.name == split[1])
+                            {
+                                print("DECK FOUND");
+                                cardsManager.deckToBuild = deck.deck;
+                                break;
+                            }
+                        }
+                        break;
                 }
             }
         }

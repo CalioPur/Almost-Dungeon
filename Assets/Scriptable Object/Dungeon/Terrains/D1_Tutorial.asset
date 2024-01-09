@@ -37,4 +37,4 @@ MonoBehaviour:
   ClampSpawnPositionX: {x: 1, y: 1}
   ClampSpawnPositionY: {x: 3, y: 3}
   spawnRotation: 0
-  terrainDialogue: {fileID: 4900000, guid: c8f95f91b93b3354c98198a05dbdf1fd, type: 3}
+  terrainDialogue: {fileID: 4900000, guid: af31ecac56a45024b98179ad268c2633, type: 3}

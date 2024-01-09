@@ -77,13 +77,13 @@ public class DungeonManager : MonoBehaviour
         var heroData = levelData.heros[Random.Range(0, levelData.heros.Count)];
         var deckData = levelData.decks[Random.Range(0, levelData.decks.Count)];
         
-        DialogueManager._instance.PlayAllThreeDialogues(terrainData.terrainDialogue, deckData.deckDialogue, heroData.heroDialogue);
+        
         
         cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = deckData.deck;
         cardsManager.nbCardOnStartToDraw = levelData.nbCardToDraw;
         
-        
+        DialogueManager._instance.PlayAllThreeDialogues(terrainData.terrainDialogue, deckData.deckDialogue, heroData.heroDialogue, cardsManager);
         
         
         tickManager = FindObjectOfType<TickManager>();
