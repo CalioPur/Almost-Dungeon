@@ -1987,6 +1987,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
+      propertyPath: HeroSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 183aabf4ecefaf14c8aadd30cce0cabe,
+        type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
       propertyPath: arrowDragon
       value: 
       objectReference: {fileID: 1241174588}
@@ -2000,6 +2006,12 @@ PrefabInstance:
       propertyPath: dialogueBox
       value: 
       objectReference: {fileID: 855479920}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: MinionSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 65ee64f22058c114997d49ddf6d99b08,
+        type: 3}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
       propertyPath: dialogueText
