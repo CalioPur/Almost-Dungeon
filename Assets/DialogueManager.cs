@@ -17,6 +17,11 @@ public class DialogueManager : MonoBehaviour
     
     public Sprite HeroSprite;
     public Sprite MinionSprite;
+
+    [SerializeField] private HeroesInfo knightClass;
+    [SerializeField] private HeroesInfo archerClass;
+    [SerializeField] private HeroesInfo mageClass;
+    [SerializeField] private HeroesInfo barbareClass;
     
     private List<TextAsset> dialogues;
     private Story story;
@@ -140,19 +145,56 @@ public class DialogueManager : MonoBehaviour
     {
         foreach (var lineTag in story.currentTags)
         {
-            switch (lineTag)
+            if (lineTag.Contains(':'))
             {
-                case "chara:dragon":
-                    ShowArrowDragon();
-                    break;
-                case "chara:knight":
-                    ShowArrowKnight();
-                    otherImage.sprite = HeroSprite;
-                    break;
-                case "chara:minion":
-                    otherImage.sprite = MinionSprite;
-                    ShowArrowKnight();
-                    break;
+                var split = lineTag.Split(':');
+
+                switch (split[0])
+                {
+                    case "chara":
+                        switch (split[1])
+                        {
+                            case "dragon":
+                                ShowArrowDragon();
+                                break;
+                            case "knight":
+                                ShowArrowKnight();
+                                otherImage.sprite = HeroSprite;
+                                break;
+                            case "minion":
+                                ShowArrowKnight();
+                                otherImage.sprite = MinionSprite;
+                                break;
+                        }
+                        break;
+                    case "damages":
+                        var damage = int.Parse(split[1]);
+                        GameManager._instance.heroCurrentHealthPoint -= damage;
+                        break;
+                    case "hpplus":
+                        var heal = int.Parse(split[1]);
+                        GameManager._instance.heroHealthPoint += heal;
+                        GameManager._instance.heroCurrentHealthPoint += heal;
+                        break;
+                    case "changepers":
+                        switch (split[1])
+                        {
+                            case ("courageux"):
+                                GameManager._instance.currentPersonality = Personnalities.TheKiller;
+                                break;
+                            case ("peureux"):
+                                GameManager._instance.currentPersonality = Personnalities.TheSissy;
+                                break;
+                            case("clairvoyant"):
+                                GameManager._instance.currentPersonality = Personnalities.HurryForTheExit;
+                                break;
+                            case("explorateur"):
+                                GameManager._instance.currentPersonality = Personnalities.TheExplorer;
+                                break;
+                        }
+                        break;
+                        
+                }
             }
         }
     }
