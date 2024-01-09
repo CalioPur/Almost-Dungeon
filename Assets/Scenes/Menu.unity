@@ -2017,6 +2017,41 @@ PrefabInstance:
       objectReference: {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
+      propertyPath: interludeDialogues.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: interludeDialogues.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900000, guid: 86fab50253d2cc045b4c254b9c3b29ae, type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: interludeDialogues.Array.data[1]
+      value: 
+      objectReference: {fileID: 4900000, guid: 1d24240f33bf75940a1fe3a5e3cb808c, type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: interludeDialogues.Array.data[2]
+      value: 
+      objectReference: {fileID: 4900000, guid: cc5a1d86b2693bb46bf61be5574ce854, type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: interludeDialogues.Array.data[3]
+      value: 
+      objectReference: {fileID: 4900000, guid: b76398f52f8f9ab4dbf0ab8610a6beba, type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: interludeDialogues.Array.data[4]
+      value: 
+      objectReference: {fileID: 4900000, guid: ddd0ca40b52da6a4783f6842bec34eea, type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: interludeDialogues.Array.data[5]
+      value: 
+      objectReference: {fileID: 4900000, guid: 99a8d02bdba7de247bec6a110a4afa9f, type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
       propertyPath: dialogues.Array.data[0].dialogueFiles.Array.size
       value: 2
       objectReference: {fileID: 0}
