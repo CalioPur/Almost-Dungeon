@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public HeroesInfo currentHero;
     public Personnalities currentPersonality;
     public int heroHealthPoint;
+    public int heroCurrentHealthPoint;
     public int rotationOfSpawnTile;
     private Vector3 worldPos;
     private Vector2Int startPosHero;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
+        
         OnSceneLoadedEvent?.Invoke();
         if (_instance != null)
         {
@@ -70,9 +72,16 @@ public class GameManager : MonoBehaviour
         }
         HeroInstance current = currentHero.CreateInstance();
         current.CurrentHealthPoint = heroHealthPoint;
+        
         Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
         heroScript.Init(current, startPosHero.x, startPosHero.y, mapManager);
         heroScript.HeroBlackboard.personality = currentPersonality;
+        
+        if (heroCurrentHealthPoint < heroHealthPoint)
+        {
+            heroScript.TakeDamage(heroHealthPoint - heroCurrentHealthPoint);
+        }
+        
         UIManager._instance.heroBlackboard = heroScript.HeroBlackboard;
     }
 
