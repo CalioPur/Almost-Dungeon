@@ -6,14 +6,16 @@ using Ink.Runtime;
 using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-
+using Random = UnityEngine.Random;
 
 
 public class DialogueManager : MonoBehaviour
 {
     
     public static DialogueManager _instance;
-    public List<TextAsset> dialogues;
+    public List<TextAsset> interludeDialogues;
+    
+    private List<TextAsset> dialogues;
     private Story story;
     private GameObject dialogueBox;
     private GameObject arrowKnight;
@@ -54,7 +56,11 @@ public class DialogueManager : MonoBehaviour
     public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, TextAsset heroDialogue)
     {
         GetUiElements();
-        dialogues = new List<TextAsset>(){terrainDialogue, deckDialogue, heroDialogue};
+        dialogues = new List<TextAsset>(){
+            terrainDialogue,interludeDialogues[Random.Range(0,interludeDialogues.Count)],
+            deckDialogue, interludeDialogues[Random.Range(0,interludeDialogues.Count)], 
+            heroDialogue};
+        
         OnEndDialogEvent+=PlayNextDialogue;
         PlayNextDialogue();
     }
