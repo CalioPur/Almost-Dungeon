@@ -32,7 +32,7 @@ public class SpawnEnemyManager : MonoBehaviour
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Archer).prefab as MinionData, tile, true, offset, index, mapManager);
                 break;
             case TrapType.Skeleton:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Skeleton).prefab as MinionData, tile, true, offset, index, mapManager);
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Skeleton).prefab as MinionData, tile, false, offset, index, mapManager);
                 break;
             case TrapType.Slime:
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Slime).prefab as MinionData, tile, true, offset, index, mapManager);

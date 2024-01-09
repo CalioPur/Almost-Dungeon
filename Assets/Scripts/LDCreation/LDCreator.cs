@@ -177,6 +177,7 @@ public class LDCreator : MonoBehaviour
     private void SelectWithIndex()
     {
         currentInstance = cartes[indexCardToSelect].CreateInstance();
+        currentInstance.Rotation = 0;
         currentIndex = indexCardToSelect;
         imageCarte.sprite = cartes[currentIndex].imgOnHand;
         imageCarteTr.rotation = Quaternion.Euler(0, 0, 0);
