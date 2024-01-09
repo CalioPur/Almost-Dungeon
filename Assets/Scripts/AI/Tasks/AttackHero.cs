@@ -10,10 +10,12 @@ using UnityEngine;
 public class AttackHero : Node
 {
     MinionBlackboard blackboard;
+    AttackType attackType;
 
-    public AttackHero(MinionBlackboard blackboard)
+    public AttackHero(MinionBlackboard blackboard, AttackType _attackType)
     {
         this.blackboard = blackboard;
+        attackType = _attackType;
     }
 
     public override NodeState Evaluate(Node root)
@@ -25,7 +27,7 @@ public class AttackHero : Node
         blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform,tileWhereHeroIs.transform ,Vector3.zero, true, 0.3f,
             Ease.InBack, 2));
         Debug.Log("AttackHero");
-        blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage);
+        blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage, attackType);
         DirectionToMove dirTarget = FunctionUtils.GetDirectionToMoveWithTilePos(blackboard.heroPosition,
             new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY));
         blackboard.minionData.PlayAttackFX(tileWhereHeroIs.transform, 0.5f, dirTarget);

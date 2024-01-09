@@ -49,14 +49,13 @@ public class MinionData : TrapData
         print("Move");
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage,  AttackType attackType)
     {
         if (isDead) return;
 
         minionInstance.CurrentHealthPoint -= damage;
         if (minionInstance.CurrentHealthPoint <= 0)
         {
-            isDead = true;
             OnDead();
         }
     }
@@ -64,7 +63,10 @@ public class MinionData : TrapData
     public void Revive()
     {
         Init();
-        mapManager.AddMinionOnTile(new Vector2Int(indexX, indexY), this, ref indexOffsetTile);
+        if (!mapManager.AddMinionOnTile(new Vector2Int(indexX, indexY), this, ref indexOffsetTile))
+        {
+            OnDead();
+        }
     }
 
     protected override void Init()
@@ -94,6 +96,7 @@ public class MinionData : TrapData
     protected override void OnDead()
     {
         base.OnDead();
+        isDead = true;
         OnMinionDying?.Invoke(this);
         TickManager.UnsubscribeFromMovementEvent(MovementType.Monster, entityId);
     }

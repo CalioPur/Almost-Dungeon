@@ -62,7 +62,6 @@ public class MapManager : MonoBehaviour
             {
                 card.AddRotation(false);
             }
-            Debug.Log("top: " + card.DoorOnTop + " bottom: " + card.DoorOnBottom + " left: " + card.DoorOnLeft + " right: " + card.DoorOnRight);
             SetTileAtPosition(card, _tilePreset[i].position.x, _tilePreset[i].position.y);
             if (card.TypeOfTrapOrEnemyToSpawnInstance.Length > 0)
             {

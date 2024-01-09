@@ -29,3 +29,9 @@ public enum DirectionToMove
     None,
     Error
 }
+
+public enum AttackType
+{
+    Physical,
+    Fire,
+}

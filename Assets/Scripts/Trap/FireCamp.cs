@@ -46,7 +46,7 @@ public class FireCamp : TrapData
         StartCoroutine(ReviveAnimation());
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage,  AttackType attackType)
     {
         Debug.LogError("FireCamp TakeDamage ! is not normal");
     }

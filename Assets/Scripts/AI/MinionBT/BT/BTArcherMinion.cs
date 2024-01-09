@@ -11,7 +11,7 @@ public class BTArcherMinion : MinionBTBase
             new GetHeroPos(blackboard),
             new HeroIsInSight(blackboard),
             new CheckifMinionsIsNotMiddleOfTarget(blackboard),
-            new AttackRandomTargetInTile(blackboard)
+            new AttackRandomTargetInTile(blackboard, AttackType.Fire)
         );
         return origin;
     }

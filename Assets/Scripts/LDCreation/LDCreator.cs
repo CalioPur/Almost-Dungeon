@@ -13,7 +13,6 @@ public class LDCreator : MonoBehaviour
 
     [SerializeField] private List<CardInfo> cartes;
     [SerializeField] private Image imageCarte;
-    [SerializeField] private Sprite DefaultSprite;
     [SerializeField] private RectTransform imageCarteTr;
     [SerializeField] private SpriteRenderer floor;
 
@@ -189,9 +188,8 @@ public class LDCreator : MonoBehaviour
         if (currentIndex < cartes.Count - 1)
         {
             currentIndex++;
-            currentInstance = cartes[currentIndex].CreateInstance();
-            imageCarte.sprite = cartes[currentIndex].imgOnHand;
-            imageCarteTr.rotation = Quaternion.Euler(0, 0, 0);
+            indexCardToSelect = currentIndex;
+            SelectWithIndex();
         }
     }
 
@@ -201,9 +199,8 @@ public class LDCreator : MonoBehaviour
         if (currentIndex > 0)
         {
             currentIndex--;
-            currentInstance = cartes[currentIndex].CreateInstance();
-            imageCarte.sprite = cartes[currentIndex].imgOnHand;
-            imageCarteTr.rotation = Quaternion.Euler(0, 0, 0);
+            indexCardToSelect = currentIndex;
+            SelectWithIndex();
         }
     }
 

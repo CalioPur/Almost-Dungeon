@@ -12,7 +12,7 @@ public class BTFighter : MinionBTBase
             new HeroIsInSight(blackboard),
             new MoveInDirection(blackboard),
             new CheckifFrontOfHero(blackboard),
-            new AttackHero(blackboard)
+            new AttackHero(blackboard, AttackType.Physical)
         );
         return origin;
     }

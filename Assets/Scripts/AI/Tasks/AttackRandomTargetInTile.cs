@@ -7,10 +7,12 @@ using UnityEngine.EventSystems;
 public class AttackRandomTargetInTile : Node
 {
     MinionBlackboard blackboard;
+    AttackType attackType;
 
-    public AttackRandomTargetInTile(MinionBlackboard _blackboard)
+    public AttackRandomTargetInTile(MinionBlackboard _blackboard,  AttackType _attackType)
     {
         blackboard = _blackboard;
+        attackType = _attackType;
     }
 
     public override NodeState Evaluate(Node root)
@@ -26,7 +28,7 @@ public class AttackRandomTargetInTile : Node
                 blackboard.heroPosition.y);
             blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform, tileWhereHeroIs.transform,
                 Vector3.zero, true, 0.3f, Ease.InBack, 2));
-            blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage);
+            blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage, attackType);
             dirTarget = FunctionUtils.GetDirectionToMoveWithTilePos(blackboard.heroPosition,
                 new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY));
             blackboard.minionData.PlayAttackFX(tileWhereHeroIs.transform, 0.5f, dirTarget);
@@ -37,7 +39,7 @@ public class AttackRandomTargetInTile : Node
             blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform, target,
                 Vector3.zero, true, 0.3f,
                 Ease.InBack, 2));
-            minions[random - 1].TakeDamage(blackboard.minionData.minionInstance.So.damage);
+            minions[random - 1].TakeDamage(blackboard.minionData.minionInstance.So.damage, attackType);
             dirTarget = FunctionUtils.GetDirectionToMoveWithTilePos(blackboard.heroPosition,
                 new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY));
             blackboard.minionData.PlayAttackFX(target, 0.5f, dirTarget);
