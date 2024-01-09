@@ -28,7 +28,7 @@ public class Web : TrapData
     }
 
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage,  AttackType attackType)
     {
         webInstance.CurrentHealthPoint -= damage;
         if (webInstance.CurrentHealthPoint <= 0)
@@ -44,14 +44,14 @@ public class Web : TrapData
         if (minions.Count > 0)
         {
            minions[0].Stunned();
-           TakeDamage(999);
+           TakeDamage(999, AttackType.Physical);
         }
         else
         {
             if (heroPos.x == indexX && heroPos.y == indexY)
             {
                 Stun();
-                TakeDamage(999);
+                TakeDamage(999, AttackType.Physical);
             }
         }
     }

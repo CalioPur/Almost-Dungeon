@@ -17,6 +17,8 @@ public class Hero : MonoBehaviour
     public MapManager mapManager { get; private set; }
     public HeroInstance info { get; private set; }
     
+    public AttackType attackType = AttackType.Physical;
+    
     [SerializeField] private Transform heroTr;
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private Tree bt;
@@ -152,7 +154,7 @@ public class Hero : MonoBehaviour
         //TODO: t'as gagne bg :*
     }
 
-    public void TakeDamage(int soAttackPoint)
+    public void TakeDamage(int soAttackPoint, AttackType attackType)
     {
         info.CurrentHealthPoint -= soAttackPoint;
         Sprite.DOColor(Color.red, 0.2f).SetEase(Ease.InBack).OnComplete(() =>

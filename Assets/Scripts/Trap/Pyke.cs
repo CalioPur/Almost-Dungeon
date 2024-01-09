@@ -10,7 +10,7 @@ public class Pyke : TrapData
     private EnemyInstance pykeInstance;
     private Vector2Int heroPos = new Vector2Int(-9999, -9999);
     
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, AttackType attackType)
     {
         Debug.LogError("Pyke TakeDamage ! is not normal");
     }
@@ -23,12 +23,12 @@ public class Pyke : TrapData
         {
             foreach (var minion in minions)
             {
-                minion.TakeDamage(pykeInstance.So.damage);
+                minion.TakeDamage(pykeInstance.So.damage, AttackType.Fire);
             }
         }
         if (heroPos.x == indexX && heroPos.y == indexY)
         {
-            Attack(pykeInstance.So.damage);
+            Attack(pykeInstance.So.damage, AttackType.Fire);
         }
     }
 

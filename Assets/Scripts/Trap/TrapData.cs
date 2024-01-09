@@ -6,9 +6,9 @@ using UnityEngine.Serialization;
 
 public abstract class TrapData : MonoBehaviour
 {
-    public static event Action<int> OnTrapAttackEvent; 
+    public static event Action<int, AttackType> OnTrapAttackEvent; 
     public static event Action OnTrapStunEvent; 
-    public abstract void TakeDamage(int damage);
+    public abstract void TakeDamage(int damage,  AttackType attackType);
     
     public bool isDead;
     public int indexX;
@@ -38,9 +38,9 @@ public abstract class TrapData : MonoBehaviour
         StartCoroutine(Dying());
     }
 
-    public void Attack(int damage)
+    public void Attack(int damage, AttackType attackType)
     {
-        InvokeTrapAttackEvent(damage);
+        InvokeTrapAttackEvent(damage, attackType);
     }
     
     public void Stun()
@@ -77,9 +77,9 @@ public abstract class TrapData : MonoBehaviour
         Init();
     }
 
-    protected void InvokeTrapAttackEvent(int damage)
+    protected void InvokeTrapAttackEvent(int damage, AttackType attackType)
     {
-        OnTrapAttackEvent?.Invoke(damage);
+        OnTrapAttackEvent?.Invoke(damage, attackType);
     }
 
     public static void ClearEvent()

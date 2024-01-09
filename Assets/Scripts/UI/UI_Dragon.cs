@@ -29,7 +29,7 @@ public class UI_Dragon : MonoBehaviour
         currentHealth -= 1;
         DrawHearts();
         yield return new WaitForSeconds(shakeDuration);
-        hero.TakeDamage(damage);
+        hero.TakeDamage(damage, AttackType.Physical);
         dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         dragonImageColor.a = 1f;
     }

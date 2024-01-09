@@ -13,7 +13,7 @@ public class BTSkeleton : MinionBTBase
             new GetHeroPos(blackboard),
             new CheckifFrontOfHero(blackboard),
            new AppearOnWorld(blackboard),
-            new AttackHero(blackboard)
+            new AttackHero(blackboard, AttackType.Physical)
         );
         return origin;
     }

@@ -6,7 +6,7 @@ public class MinionSlime : MinionData
 {
     [SerializeField] private MinionData slimePrefab;
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, AttackType attackType)
     {
         if (isDead) return;
 

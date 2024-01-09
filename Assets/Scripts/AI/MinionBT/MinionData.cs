@@ -49,7 +49,7 @@ public class MinionData : TrapData
         print("Move");
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage,  AttackType attackType)
     {
         if (isDead) return;
 
