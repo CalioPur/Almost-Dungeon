@@ -4,6 +4,8 @@ Encore vous !? Mais laissez moi tranquille ! Je ne veux plus continuer ! #chara:
 
 *L'attaquer : -> Verite
 *Le soigner : -> Mentir
+*Lui donner une autre arme : -> Arme
+*Changer de deck : -> Deck
 
 === Verite ===
 Mais si, vous allez continuer ! Si vous ne voulez pas finir en roti ! #chara:dragon
@@ -17,3 +19,13 @@ Voyez, vous m'êtes sympathique, prenez ce petit remontant ça vous donnera des 
  Ah... vous êtes bien aimables merci... #hpplus:4 #changepers:courageux
 Bien.. nous pouvons y retourner alors... #chara:dragon
     -> END
+
+=== Arme ===
+Ne vous en faites pas voyons... Regardez, j'ai une nouvelle arme pour vous #chara:dragon #changeclass:archer
+Ooooh, merci beaucoup, vous êtes finalement bien généreux pour un dragon, cet arc est magnifique. #chara:archer
+ -> END
+
+=== Deck ===
+Voyons mon bon Chevalier, ne vous en faites pas, regardez... Je change mes cartes. #chara:dragon #changedeck:D2_Corridor
+Aahh... merci, vous m'en voyez ravi, je n'en pouvais plus de tous ces piques. #chara:knight
+ -> END
