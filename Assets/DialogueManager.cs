@@ -15,6 +15,9 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager _instance;
     public List<TextAsset> interludeDialogues;
     
+    public Sprite HeroSprite;
+    public Sprite MinionSprite;
+    
     private List<TextAsset> dialogues;
     private Story story;
     private GameObject dialogueBox;
@@ -24,6 +27,7 @@ public class DialogueManager : MonoBehaviour
     private GameObject choice2;
     private TMP_Text dialogueText;
     private Button nextButton;
+    private Image otherImage;
     private static event Action OnEndDialogEvent; 
     private int dialogueIndex = 0;
     
@@ -47,6 +51,8 @@ public class DialogueManager : MonoBehaviour
         arrowDragon = GameObject.Find("ArrowDragon");
         choice1 = GameObject.Find("Choice1");
         choice2 = GameObject.Find("Choice2");
+        otherImage = GameObject.Find("InterlocutorImg").GetComponent<Image>();
+        
         dialogueText = dialogueBox.GetComponentInChildren<TMP_Text>();
         nextButton = dialogueBox.GetComponentInChildren<Button>();
         nextButton.onClick.AddListener(NextDialogue);
@@ -86,8 +92,6 @@ public class DialogueManager : MonoBehaviour
             dialogueBox.SetActive(false);
             return;
         }
-
-
         try
         {
             story = new Story(currentDialogue.text);
@@ -114,16 +118,10 @@ public class DialogueManager : MonoBehaviour
     void RefreshView()
     {
         var choices = story.currentChoices.Count;
-        
-        
-        
         if (story.canContinue)
         {
             dialogueText.text = story.Continue();
-            if (story.currentTags[0].Contains("knight")) ShowArrowKnight();
-            else ShowArrowDragon();
-            
-            
+            EvaluateTags();
         }
         else
         {
@@ -135,6 +133,27 @@ public class DialogueManager : MonoBehaviour
             dialogueBox.SetActive(false);
             story = null;
             OnEndDialogEvent?.Invoke();
+        }
+    }
+
+    private void EvaluateTags()
+    {
+        foreach (var lineTag in story.currentTags)
+        {
+            switch (lineTag)
+            {
+                case "chara:dragon":
+                    ShowArrowDragon();
+                    break;
+                case "chara:knight":
+                    ShowArrowKnight();
+                    otherImage.sprite = HeroSprite;
+                    break;
+                case "chara:minion":
+                    otherImage.sprite = MinionSprite;
+                    ShowArrowKnight();
+                    break;
+            }
         }
     }
 
