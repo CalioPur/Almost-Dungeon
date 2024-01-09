@@ -11,9 +11,31 @@ public class BTSkeleton : MinionBTBase
 
         origin = new Sequence(
             new GetHeroPos(blackboard),
-            new CheckifFrontOfHero(blackboard),
-           new AppearOnWorld(blackboard),
-            new AttackHero(blackboard, AttackType.Physical)
+            new Selector(
+                new Sequence(
+                    new CheckOnDig(blackboard),
+                    new Selector(
+                        new Sequence(
+                            new CheckIsAloneOnTile(blackboard),
+                            new CheckIfReadyToUndig(blackboard),
+                            new FinishToDig(blackboard),
+                            new ResetDigSystem(blackboard)
+                        ),
+                        new Sequence(
+                            new Selector(
+                                new CheckIsAloneOnTile(blackboard),
+                                new IsReadyToUndig(blackboard)
+                            )
+                        )
+                    )
+                ),
+                new Sequence(
+                    new HeroIsInSight(blackboard),
+                    new MoveInDirection(blackboard),
+                    new CheckifFrontOfHero(blackboard),
+                    new AttackHero(blackboard, AttackType.Physical)
+                )
+            )
         );
         return origin;
     }

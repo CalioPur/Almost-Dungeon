@@ -9,28 +9,28 @@ public class MinionData : TrapData
 
     public EnemyInstance minionInstance;
     [HideInInspector] public int indexOffsetTile;
-    
+
     [SerializeField] protected Transform tr;
     [SerializeField] protected MinionBTBase bt;
     [SerializeField] protected AnimationQueue animQueue;
     [SerializeField] protected EmotesManager emotesManager;
     [field: SerializeField] private AttackFX animFX;
-    
+
     public void GetHeroPos()
     {
         OnHeroPosAsked?.Invoke();
     }
-    
+
     private void GetHeroPos(Vector2Int pos)
     {
         bt.blackboard.heroPosition = pos;
     }
-    
+
     public static void ClearSubscribes()
     {
         OnHeroPosAsked = null;
     }
-    
+
     protected override void OnTick()
     {
         if (!bt || isDead) return;
@@ -39,17 +39,18 @@ public class MinionData : TrapData
             isStunned = false;
             return;
         }
+
         Debug.Log("OnTick");
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
 
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
-        animQueue.AddAnim(new AnimToQueue(tr, targetTr,  offset , false, delay));
+        animQueue.AddAnim(new AnimToQueue(tr, targetTr, offset, false, delay));
         print("Move");
     }
 
-    public override void TakeDamage(int damage,  AttackType attackType)
+    public override void TakeDamage(int damage, AttackType attackType)
     {
         if (isDead) return;
 
@@ -62,6 +63,7 @@ public class MinionData : TrapData
 
     public void Revive()
     {
+        if (!isDead) return;
         Init();
         if (!mapManager.AddMinionOnTile(new Vector2Int(indexX, indexY), this, ref indexOffsetTile))
         {
@@ -110,7 +112,7 @@ public class MinionData : TrapData
     {
         GameManager.OnGameStartEvent -= StartListenTick;
     }
-    
+
     public void PlayAttackFX(Transform targetTr, float delay, DirectionToMove direction)
     {
         if (animFX == null) return;

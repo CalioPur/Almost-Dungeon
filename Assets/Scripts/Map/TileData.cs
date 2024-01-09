@@ -85,6 +85,12 @@ public class TileData : MonoBehaviour
     
     public bool GetFirstAvailabalePosition(out Vector3 pos, ref int index)
     {
+        if (_instance == null)
+        {
+            pos = Vector3.zero;
+            index = -1;
+            return false;
+        }
         if (index == -1)
         {
             for (int i = 0; i < _instance.So.offsetMinionPos.Length; i++)
