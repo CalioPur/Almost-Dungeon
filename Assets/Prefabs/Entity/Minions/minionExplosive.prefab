@@ -253,6 +253,8 @@ MonoBehaviour:
   emotesManager: {fileID: 3990342877312240800}
   animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
   damageFire: 5
+  ExplosionFX: {fileID: 606801270142196365, guid: 6a47555f1e03e6640b6bad2688c1ebd2,
+    type: 3}
 --- !u!1001 &9134731435719463749
 PrefabInstance:
   m_ObjectHideFlags: 0
