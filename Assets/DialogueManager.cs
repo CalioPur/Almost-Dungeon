@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour
     
     [SerializeField] private List<DeckSO> decks;
     
-    private List<TextAsset> dialogues;
+    public List<TextAsset> dialogues;
     private Story story;
     private DeckManager cardsManager;
     private GameObject dialogueBox;
@@ -70,13 +70,30 @@ public class DialogueManager : MonoBehaviour
     }
     
     
-    public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, TextAsset heroDialogue, DeckManager cardsManager)
+    public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, List<TextAsset> heroDialogue, DeckManager cardsManager)
     {
+        Debug.LogWarning("PlayAllThreeDialogues");
+        print("HERO DIALOGUE COUNT : "+heroDialogue.Count);
+        dialogueIndex = -1;
         GetUiElements();
-        dialogues = new List<TextAsset>(){
-            terrainDialogue,interludeDialogues[Random.Range(0,interludeDialogues.Count)],
-            heroDialogue, interludeDialogues[Random.Range(0,interludeDialogues.Count)], 
-            deckDialogue};
+        dialogues = new List<TextAsset>();
+        if(terrainDialogue != null)
+            dialogues.Add(terrainDialogue);
+        if (heroDialogue != null)
+        {
+            
+            if (dialogues.Count > 0)
+                dialogues.Add(interludeDialogues[Random.Range(0, interludeDialogues.Count)]);
+            if(heroDialogue.Count > 0)
+                dialogues.Add(heroDialogue[Random.Range(0, heroDialogue.Count)]);
+        }
+        if (deckDialogue != null)
+        {
+            if (dialogues.Count > 0)
+                dialogues.Add(interludeDialogues[Random.Range(0, interludeDialogues.Count)]);
+            dialogues.Add(deckDialogue);
+        }
+        
         
         OnEndDialogEvent+=PlayNextDialogue;
         PlayNextDialogue();
@@ -85,7 +102,6 @@ public class DialogueManager : MonoBehaviour
 
     private void PlayNextDialogue()
     {
-        print(dialogues.Count);
         dialogueIndex++;
         if(dialogueIndex >= dialogues.Count)
         {
@@ -102,17 +118,15 @@ public class DialogueManager : MonoBehaviour
 
     private void StartDialogue(TextAsset currentDialogue)
     {
-        print(dialogueIndex);
+
         if (currentDialogue == null)
         {
-            print("SKIPPED");
             dialogueBox.SetActive(false);
             dialogueIndex++;
             OnEndDialogEvent?.Invoke();
             return;
         }
 
-        print("PLAYED");
         try
         {
             story = new Story(currentDialogue.text);
@@ -286,11 +300,10 @@ public class DialogueManager : MonoBehaviour
         arrowDragon.SetActive(false);
         arrowKnight.SetActive(true);
     }
-    
+
     void ShowArrowDragon()
     {
         arrowDragon.SetActive(true);
         arrowKnight.SetActive(false);
     }
-    
 }
