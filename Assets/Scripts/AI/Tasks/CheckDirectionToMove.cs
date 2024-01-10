@@ -22,10 +22,10 @@ public class CheckDirectionToMove : Node
         //     blackboard.hero.mapManager.getMapArray(), blackboard.personality);
         blackboard.directionToMove = PathFindingV2.FindNextMove(
             blackboard.hero.GetIndexHeroPos(),
-            blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>() { }, VisionType.CLAIRVOYANT,
+            blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>() { }, VisionType.RECTILIGNE,
             Aggressivity.COURAGEUX, new[]
             {
-                Objectives.SORTIE
+                Objectives.EXPLORATION
             });
         if (blackboard.directionToMove == DirectionToMove.None) blackboard.directionToMove = RandomDirection();
         Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();

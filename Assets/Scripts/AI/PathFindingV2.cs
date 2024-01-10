@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum PersonnalitiesV2
 {
@@ -46,11 +49,15 @@ public class PathFindingV2
     public static DirectionToMove FindNextMove(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities,
         VisionType visionType, Aggressivity aggressivity, Objectives[] objectives)
     {
+        Debug.Log("Has door up " + map[startPos.x, startPos.y].hasDoorUp);
+        Debug.Log("Has door down " + map[startPos.x, startPos.y].hasDoorDown);
+        Debug.Log("Has door left " + map[startPos.x, startPos.y].hasDoorLeft);
+        Debug.Log("Has door right " + map[startPos.x, startPos.y].hasDoorRight);
+        
         if (personalities.Count > 0)
         {
-            foreach (PersonnalitiesV2 personality in personalities)
+            foreach (var personality in personalities.Where(personality => personality == PersonnalitiesV2.IMPATIENT))
             {
-                if (personality != PersonnalitiesV2.IMPATIENT) continue;
                 FindExits(map);
                 FindUnvisitedTiles(map);
                 if (exits.Count <= 0 || unvisitedTiles.Count <= 0) continue;
@@ -174,16 +181,9 @@ public class PathFindingV2
             if (neighborsWithEnemies.Count > 0)
             {
                 List<Vector2Int> neighborsWithoutEnemies = new List<Vector2Int>();
-                foreach (Vector2Int neighbor in neighborsWithEnemies)
+                foreach (var neighborsOfNeighbor in neighborsWithEnemies.Select(neighbor => GetNeighbors(neighbor, map)))
                 {
-                    Vector2Int[] neighborsOfNeighbor = GetNeighbors(neighbor, map);
-                    foreach (Vector2Int neighborOfNeighbor in neighborsOfNeighbor)
-                    {
-                        if (map[neighborOfNeighbor.x, neighborOfNeighbor.y].enemies.Count <= 0)
-                        {
-                            neighborsWithoutEnemies.Add(neighborOfNeighbor);
-                        }
-                    }
+                    neighborsWithoutEnemies.AddRange(neighborsOfNeighbor.Where(neighborOfNeighbor => map[neighborOfNeighbor.x, neighborOfNeighbor.y].enemies.Count <= 0));
                 }
                 if (neighborsWithoutEnemies.Count > 0)
                 {
@@ -198,7 +198,6 @@ public class PathFindingV2
             }
 
         }
-        
         switch (objectives.Length)
         {
             case 0:
@@ -210,6 +209,13 @@ public class PathFindingV2
                         Vector2Int[] neighbors = GetNeighbors(startPos, map);
                         return neighbors.Length > 0 ? DirectionFromTo(startPos, neighbors[Random.Range(0, neighbors.Length)]) : GoThroughRandomOpenDoor(startPos, map);
                     case Objectives.SORTIE:
+                        FindExits(map);
+                        CheckIfExitIsNeighbor(startPos, map, out Vector2Int exit);
+                        if (exit != Vector2Int.zero)
+                        {
+                            return DirectionFromTo(startPos, exit);
+                        }
+                        return GoThroughRandomOpenDoor(startPos, map);
                     default:
                         throw new System.Exception("Unknown objective");
                 }
@@ -238,40 +244,70 @@ public class PathFindingV2
             FindTilesWithEnemies(map);
             List<Vector2Int> enemiesInLineOfSight = new List<Vector2Int>();
             enemiesInLineOfSight = CheckIfEnemyIsInLineOfSight(startPos, tilesInLineOfSight, tilesWithEnemies);
-            if (enemiesInLineOfSight.Count <= 0) return DirectionToMove.None;
-            int randomIndex = Random.Range(0, enemiesInLineOfSight.Count);
-            return DirectionFromTo(startPos, enemiesInLineOfSight[randomIndex]);
+            if (enemiesInLineOfSight.Count > 0)
+            {
+                // go in the direction of the first enemy in line of sight
+                return DirectionFromTo(startPos, GetClosestEnemy(startPos, enemiesInLineOfSight));
+            }
         }
         else
         {
             FindTilesWithEnemies(map);
             List<Vector2Int> enemiesInLineOfSight = new List<Vector2Int>();
             enemiesInLineOfSight = CheckIfEnemyIsInLineOfSight(startPos, tilesInLineOfSight, tilesWithEnemies);
-            if (enemiesInLineOfSight.Count > 0)
+            if (enemiesInLineOfSight.Count < 0)
             {
-                int randomIndex = Random.Range(0, enemiesInLineOfSight.Count);
-                return DirectionFromTo(startPos, enemiesInLineOfSight[randomIndex]);
+                FindUnvisitedTiles(map);
+                if (objectives.Any(objective => objective == Objectives.SORTIE))
+                {
+                    CheckIfExitIsInLineOfSight(startPos, map, out Vector2Int exit);
+                    if (exit != Vector2Int.zero)
+                    {
+                        return DirectionFromTo(startPos, exit);
+                    }
+                }
+                if (unvisitedTiles.Count > 0)
+                {
+                    int minDistance = unvisitedTiles.Aggregate(int.MaxValue,
+                        (current, unvisitedTile) => Mathf.Abs(unvisitedTile.x - startPos.x) + Mathf.Abs(unvisitedTile.y - startPos.y) < current
+                            ? Mathf.Abs(unvisitedTile.x - startPos.x) + Mathf.Abs(unvisitedTile.y - startPos.y)
+                            : current);
+                    Vector2Int closestUnvisitedTile = unvisitedTiles.First(unvisitedTile => Mathf.Abs(unvisitedTile.x - startPos.x) + Mathf.Abs(unvisitedTile.y - startPos.y) == minDistance);
+                    return DirectionFromTo(startPos, closestUnvisitedTile);
+                }
+
+                return GoToClosestExit(startPos, map);
             }
-            
-            List<Vector2Int> unvisitedTilesInLineOfSight = new List<Vector2Int>();
-            unvisitedTilesInLineOfSight = CheckIfEnemyIsInLineOfSight(startPos, tilesInLineOfSight, unvisitedTiles);
-            if (unvisitedTilesInLineOfSight.Count > 0)
+
+            FindUnvisitedTiles(map);
+            if (objectives.Any(objective => objective == Objectives.SORTIE))
             {
-                int randomIndex = Random.Range(0, unvisitedTilesInLineOfSight.Count);
-                return DirectionFromTo(startPos, unvisitedTilesInLineOfSight[randomIndex]);
+                CheckIfExitIsInLineOfSight(startPos, map, out Vector2Int exit);
+                if (exit != Vector2Int.zero)
+                {
+                    return DirectionFromTo(startPos, exit);
+                }
             }
-            else
+            if (unvisitedTiles.Count > 0)
             {
-                int randomIndex = Random.Range(0, enemiesInLineOfSight.Count);
-                return DirectionFromTo(startPos, enemiesInLineOfSight[randomIndex]);
+                // choose a random unvisited tile in line of sight
+                
             }
         }
-        
-        // Check if there is an unexplored tile in the hero's vision
-        // If there is, return the direction to move to reach the closest one
-        // If there is not, return DirectionToMove.None
 
-        return DirectionToMove.None; // Placeholder, replace with actual result
+        Debug.Log("Something went wrong, no direction found");
+        return GoThroughRandomOpenDoor(startPos, map);
+    }
+
+    private static DirectionToMove GoToClosestExit(Vector2Int startPos, TileData[,] map)
+    {
+        FindExits(map);
+        int minDistance = exits.Aggregate(int.MaxValue,
+            (current, exit) => Mathf.Abs(exit.x - startPos.x) + Mathf.Abs(exit.y - startPos.y) < current
+                ? Mathf.Abs(exit.x - startPos.x) + Mathf.Abs(exit.y - startPos.y)
+                : current);
+        Vector2Int closestExit = exits.First(exit => Mathf.Abs(exit.x - startPos.x) + Mathf.Abs(exit.y - startPos.y) == minDistance);
+        return DirectionFromTo(startPos, closestExit);
     }
 
     private static List<Vector2Int> CheckIfEnemyIsInLineOfSight(Vector2Int startPos, Vector2Int[] tilesInLineOfSight,
@@ -294,7 +330,6 @@ public class PathFindingV2
         if (directions.Count > 0)
         {
             int randomIndex = Random.Range(0, directions.Count);
-            Debug.Log("Go through random door : " + directions[randomIndex] + " because no tile on the other side");
             return directions[randomIndex];
         }
 
@@ -332,9 +367,9 @@ public class PathFindingV2
     private static void FindTilesWithEnemies(TileData[,] map)
     {
         tilesWithEnemies.Clear();
-        for (int i = 0; i < map.GetLength(0); i++)
+        for (int i = 0; i < MapManager.Instance.width - 2; i++)
         {
-            for (int j = 0; j < map.GetLength(1); i++)
+            for (int j = 0; j < MapManager.Instance.height - 2; j++)
             {
                 if (map[i, j].enemies.Count > 0)
                 {
@@ -384,7 +419,7 @@ public class PathFindingV2
         exits.Clear();
         for (int i = 0; i < map.GetLength(0); i++)
         {
-            for (int j = 0; j < map.GetLength(1); i++)
+            for (int j = 0; j < map.GetLength(1); j++)
             {
                 if (map[i, j].isExit)
                 {
@@ -421,6 +456,43 @@ public class PathFindingV2
             return neighbor.y > startPos.y ? DirectionToMove.Up : DirectionToMove.Down;
         }
         return neighbor.x > startPos.x ? DirectionToMove.Right : DirectionToMove.Left;
+    }
+    
+    private static void CheckIfExitIsNeighbor(Vector2Int startPos, TileData[,] map, out Vector2Int vector2Int)
+    {
+        vector2Int = new Vector2Int();
+        Vector2Int[] neighbors = GetNeighbors(startPos, map);
+        foreach (Vector2Int neighbor in neighbors)
+        {
+            if (map[neighbor.x, neighbor.y].isExit)
+            {
+                vector2Int = neighbor;
+                return;
+            }
+        }
+    }
+    
+    private static Vector2Int GetClosestEnemy(Vector2Int startPos, List<Vector2Int> enemiesInLineOfSight)
+    {
+        int minDistance = enemiesInLineOfSight.Aggregate(int.MaxValue,
+            (current, enemy) => Mathf.Abs(enemy.x - startPos.x) + Mathf.Abs(enemy.y - startPos.y) < current
+                ? Mathf.Abs(enemy.x - startPos.x) + Mathf.Abs(enemy.y - startPos.y)
+                : current);
+        return enemiesInLineOfSight.First(enemy => Mathf.Abs(enemy.x - startPos.x) + Mathf.Abs(enemy.y - startPos.y) == minDistance);
+    }
+    
+    private static void CheckIfExitIsInLineOfSight(Vector2Int startPos, TileData[,] map, out Vector2Int vector2Int)
+    {
+        vector2Int = new Vector2Int();
+        Vector2Int[] tilesInLineOfSight = MapManager.Instance.GetTilesInLineOfSight(startPos);
+        foreach (Vector2Int tileInLineOfSight in tilesInLineOfSight)
+        {
+            if (map[tileInLineOfSight.x, tileInLineOfSight.y].isExit)
+            {
+                vector2Int = tileInLineOfSight;
+                return;
+            }
+        }
     }
 
     #endregion
