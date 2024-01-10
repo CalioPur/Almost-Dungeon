@@ -17,6 +17,8 @@ public class DialogueManager : MonoBehaviour
     
     public Sprite HeroSprite;
     public Sprite archerSprite;
+    public Sprite mageSprite;
+    public Sprite barbareSprite;
     public Sprite MinionSprite;
 
     [SerializeField] private HeroesInfo knightClass;
@@ -169,6 +171,14 @@ public class DialogueManager : MonoBehaviour
                             case "archer":
                                 ShowArrowKnight();
                                 otherImage.sprite = archerSprite;
+                                break;
+                            case "mage":
+                                ShowArrowKnight();
+                                otherImage.sprite = mageSprite;
+                                break;
+                            case "barbare":
+                                ShowArrowKnight();
+                                otherImage.sprite = barbareSprite;
                                 break;
                             case "minion":
                                 ShowArrowKnight();
