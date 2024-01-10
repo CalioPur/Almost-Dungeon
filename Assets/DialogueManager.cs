@@ -40,7 +40,7 @@ public class DialogueManager : MonoBehaviour
     private Button nextButton;
     private Image otherImage;
     private static event Action OnEndDialogEvent; 
-    private int dialogueIndex = 0;
+    private int dialogueIndex = -1;
     
     
     private void Awake()
@@ -75,8 +75,8 @@ public class DialogueManager : MonoBehaviour
         GetUiElements();
         dialogues = new List<TextAsset>(){
             terrainDialogue,interludeDialogues[Random.Range(0,interludeDialogues.Count)],
-            deckDialogue, interludeDialogues[Random.Range(0,interludeDialogues.Count)], 
-            heroDialogue};
+            heroDialogue, interludeDialogues[Random.Range(0,interludeDialogues.Count)], 
+            deckDialogue};
         
         OnEndDialogEvent+=PlayNextDialogue;
         PlayNextDialogue();
@@ -85,6 +85,8 @@ public class DialogueManager : MonoBehaviour
 
     private void PlayNextDialogue()
     {
+        print(dialogues.Count);
+        dialogueIndex++;
         if(dialogueIndex >= dialogues.Count)
         {
             OnEndDialogEvent = null;
@@ -93,17 +95,24 @@ public class DialogueManager : MonoBehaviour
             Time.timeScale = 1;
             return;
         }
+        
         StartDialogue(dialogues[dialogueIndex]);
-        dialogueIndex++;
+        
     }
 
     private void StartDialogue(TextAsset currentDialogue)
     {
+        print(dialogueIndex);
         if (currentDialogue == null)
         {
+            print("SKIPPED");
             dialogueBox.SetActive(false);
+            dialogueIndex++;
+            OnEndDialogEvent?.Invoke();
             return;
         }
+
+        print("PLAYED");
         try
         {
             story = new Story(currentDialogue.text);
