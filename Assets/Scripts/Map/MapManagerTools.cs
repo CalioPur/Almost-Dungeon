@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -178,5 +179,47 @@ public class MapManagerTools
                 else if (j < _mapManager.height - 3 && _mapManager.mapArray[i, j + 1].isConnectedToPath && _mapManager.mapArray[i, j].hasDoorUp) _mapManager.mapArray[i, j].isConnectedToPath = true;
             }
         }
+    }
+
+    public Vector2Int[] GetTilesInLineOfSight(Vector2Int startPos)
+    {
+        List<Vector2Int> tiles = new List<Vector2Int>();
+        for (int i = 0; i < 4; i++)
+        {
+            int x = startPos.x;
+            int y = startPos.y;
+            int xDir = 0;
+            int yDir = 0;
+            switch (i)
+            {
+                case 0:
+                    xDir = 1;
+                    break;
+                case 1:
+                    xDir = -1;
+                    break;
+                case 2:
+                    yDir = 1;
+                    break;
+                case 3:
+                    yDir = -1;
+                    break;
+            }
+            while (x >= 0 && x < _mapManager.width - 2 && y >= 0 && y < _mapManager.height - 2)
+            {
+                if (_mapManager.mapArray[x, y].isRoom)
+                {
+                    _mapManager.mapArray[x, y].isVisited = true;
+                    tiles.Add(new Vector2Int(x, y));
+                }
+                else
+                {
+                    break;
+                }
+                x += xDir;
+                y += yDir;
+            }
+        }
+        return tiles.ToArray();
     }
 }

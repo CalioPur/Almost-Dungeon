@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using BehaviourTree;
+using Ink.Parsed;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,9 +17,16 @@ public class CheckDirectionToMove : Node
 
     public override NodeState Evaluate(Node root)
     {
-        blackboard.directionToMove = PathFinding.BFSFindPath(
+        // blackboard.directionToMove = PathFinding.BFSFindPath(
+        //     blackboard.hero.GetIndexHeroPos(),
+        //     blackboard.hero.mapManager.getMapArray(), blackboard.personality);
+        blackboard.directionToMove = PathFindingV2.FindNextMove(
             blackboard.hero.GetIndexHeroPos(),
-            blackboard.hero.mapManager.getMapArray(), blackboard.personality);
+            blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>() { }, VisionType.CLAIRVOYANT,
+            Aggressivity.COURAGEUX, new[]
+            {
+                Objectives.SORTIE
+            });
         if (blackboard.directionToMove == DirectionToMove.None) blackboard.directionToMove = RandomDirection();
         Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();
         switch (blackboard.directionToMove)

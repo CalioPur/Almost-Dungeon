@@ -38,18 +38,15 @@ public class PathFindingV2
     //
     //     Dans le cas où un MONSTRE ou un OBSTACLE se trouve sur son chemin, il l'attaque pour libérer la voie avant d’avancer.
     //     Dans le cas où le héros s’aventure vers une case non construite, il attaque directement le dragon tapi dans la pénombre.
-
-    static Queue<Vector2Int> queue = new();
-    static HashSet<Vector2Int> visited = new();
-    static Dictionary<Vector2Int, Vector2Int> parentMap = new();
+    
     static List<Vector2Int> exits = new();
     static List<Vector2Int> unvisitedTiles = new();
     static List<Vector2Int> tilesWithEnemies = new();
     
-    public static DirectionToMove FindNextMove(Vector2Int startPos, TileData[,] map, PersonnalitiesV2[] personalities,
+    public static DirectionToMove FindNextMove(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities,
         VisionType visionType, Aggressivity aggressivity, Objectives[] objectives)
     {
-        if (personalities.Length > 0)
+        if (personalities.Count > 0)
         {
             foreach (PersonnalitiesV2 personality in personalities)
             {
@@ -83,7 +80,7 @@ public class PathFindingV2
         };
     }
 
-    private static DirectionToMove Clairvoyant(Vector2Int startPos, TileData[,] map, PersonnalitiesV2[] personalities, Aggressivity aggressivity, Objectives[] objectives)
+    private static DirectionToMove Clairvoyant(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities, Aggressivity aggressivity, Objectives[] objectives)
     {
         if (aggressivity == Aggressivity.COURAGEUX)
         {
@@ -116,7 +113,6 @@ public class PathFindingV2
                 }
             default:
             {
-                // get the closest objective to the hero and go to it using BFS
                 List<Vector2Int> objectivesPositions = new List<Vector2Int>();
                 foreach (Objectives objective in objectives)
                 {
@@ -145,7 +141,7 @@ public class PathFindingV2
             }
         }
     }
-    private static DirectionToMove Bigleux(Vector2Int startPos, TileData[,] map, PersonnalitiesV2[] personalities, Aggressivity aggressivity, Objectives[] objectives)
+    private static DirectionToMove Bigleux(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities, Aggressivity aggressivity, Objectives[] objectives)
     {
         if (aggressivity == Aggressivity.COURAGEUX)
         {
@@ -177,20 +173,28 @@ public class PathFindingV2
             
             if (neighborsWithEnemies.Count > 0)
             {
-                int randomIndex = Random.Range(0, neighborsWithEnemies.Count);
-                return DirectionFromTo(startPos, neighborsWithEnemies[randomIndex]);
-            }
-
-            if (unvisitedNeighbors.Count > 0)
-            {
-                int randomIndex = Random.Range(0, unvisitedNeighbors.Count);
-                return DirectionFromTo(startPos, unvisitedNeighbors[randomIndex]);
-            }
-
-            if (neighbors.Length <= 0) return GoThroughRandomOpenDoor(startPos, map);
-            {
-                int randomIndex = Random.Range(0, neighbors.Length);
-                return DirectionFromTo(startPos, neighbors[randomIndex]);
+                List<Vector2Int> neighborsWithoutEnemies = new List<Vector2Int>();
+                foreach (Vector2Int neighbor in neighborsWithEnemies)
+                {
+                    Vector2Int[] neighborsOfNeighbor = GetNeighbors(neighbor, map);
+                    foreach (Vector2Int neighborOfNeighbor in neighborsOfNeighbor)
+                    {
+                        if (map[neighborOfNeighbor.x, neighborOfNeighbor.y].enemies.Count <= 0)
+                        {
+                            neighborsWithoutEnemies.Add(neighborOfNeighbor);
+                        }
+                    }
+                }
+                if (neighborsWithoutEnemies.Count > 0)
+                {
+                    int randomIndex = Random.Range(0, neighborsWithoutEnemies.Count);
+                    return DirectionFromTo(startPos, neighborsWithoutEnemies[randomIndex]);
+                }
+                else
+                {
+                    int randomIndex = Random.Range(0, neighborsWithEnemies.Count);
+                    return DirectionFromTo(startPos, neighborsWithEnemies[randomIndex]);
+                }
             }
 
         }
@@ -224,17 +228,56 @@ public class PathFindingV2
         }
     }
 
-    private static DirectionToMove Rectiligne(Vector2Int startPos, TileData[,] map, PersonnalitiesV2[] personalities, Aggressivity aggressivity, Objectives[] objectives)
+    private static DirectionToMove Rectiligne(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities, Aggressivity aggressivity, Objectives[] objectives)
     {
         //first set all the tiles in straight line of sight to visited
-        
+        Vector2Int[] tilesInLineOfSight = MapManager.Instance.GetTilesInLineOfSight(startPos);
         // Handle RECTILIGNE vision type
-
+        if (aggressivity == Aggressivity.COURAGEUX)
+        {
+            FindTilesWithEnemies(map);
+            List<Vector2Int> enemiesInLineOfSight = new List<Vector2Int>();
+            enemiesInLineOfSight = CheckIfEnemyIsInLineOfSight(startPos, tilesInLineOfSight, tilesWithEnemies);
+            if (enemiesInLineOfSight.Count <= 0) return DirectionToMove.None;
+            int randomIndex = Random.Range(0, enemiesInLineOfSight.Count);
+            return DirectionFromTo(startPos, enemiesInLineOfSight[randomIndex]);
+        }
+        else
+        {
+            FindTilesWithEnemies(map);
+            List<Vector2Int> enemiesInLineOfSight = new List<Vector2Int>();
+            enemiesInLineOfSight = CheckIfEnemyIsInLineOfSight(startPos, tilesInLineOfSight, tilesWithEnemies);
+            if (enemiesInLineOfSight.Count > 0)
+            {
+                int randomIndex = Random.Range(0, enemiesInLineOfSight.Count);
+                return DirectionFromTo(startPos, enemiesInLineOfSight[randomIndex]);
+            }
+            
+            List<Vector2Int> unvisitedTilesInLineOfSight = new List<Vector2Int>();
+            unvisitedTilesInLineOfSight = CheckIfEnemyIsInLineOfSight(startPos, tilesInLineOfSight, unvisitedTiles);
+            if (unvisitedTilesInLineOfSight.Count > 0)
+            {
+                int randomIndex = Random.Range(0, unvisitedTilesInLineOfSight.Count);
+                return DirectionFromTo(startPos, unvisitedTilesInLineOfSight[randomIndex]);
+            }
+            else
+            {
+                int randomIndex = Random.Range(0, enemiesInLineOfSight.Count);
+                return DirectionFromTo(startPos, enemiesInLineOfSight[randomIndex]);
+            }
+        }
+        
         // Check if there is an unexplored tile in the hero's vision
         // If there is, return the direction to move to reach the closest one
         // If there is not, return DirectionToMove.None
 
         return DirectionToMove.None; // Placeholder, replace with actual result
+    }
+
+    private static List<Vector2Int> CheckIfEnemyIsInLineOfSight(Vector2Int startPos, Vector2Int[] tilesInLineOfSight,
+        List<Vector2Int> vector2Ints)
+    {
+        return tilesInLineOfSight.Where(tileInLineOfSight => vector2Ints.Contains(tileInLineOfSight)).ToList();
     }
 
     #region Tools

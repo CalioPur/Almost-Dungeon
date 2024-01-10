@@ -379,4 +379,8 @@ public class MapManager : MonoBehaviour
     {
         _tilePreset = tilePreset;
     }
+    public Vector2Int[] GetTilesInLineOfSight(Vector2Int startPos)
+    {
+        return MapManagerTools.GetTilesInLineOfSight(startPos);
+    }
 }
