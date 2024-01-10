@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour
     
     [SerializeField] private List<DeckSO> decks;
     
-    private List<TextAsset> dialogues;
+    public List<TextAsset> dialogues;
     private Story story;
     private DeckManager cardsManager;
     private GameObject dialogueBox;
@@ -72,12 +72,16 @@ public class DialogueManager : MonoBehaviour
     
     public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, List<TextAsset> heroDialogue, DeckManager cardsManager)
     {
+        Debug.LogWarning("PlayAllThreeDialogues");
+        print("HERO DIALOGUE COUNT : "+heroDialogue.Count);
+        dialogueIndex = -1;
         GetUiElements();
         dialogues = new List<TextAsset>();
         if(terrainDialogue != null)
             dialogues.Add(terrainDialogue);
         if (heroDialogue != null)
         {
+            
             if (dialogues.Count > 0)
                 dialogues.Add(interludeDialogues[Random.Range(0, interludeDialogues.Count)]);
             if(heroDialogue.Count > 0)
@@ -98,7 +102,6 @@ public class DialogueManager : MonoBehaviour
 
     private void PlayNextDialogue()
     {
-        print(dialogues.Count);
         dialogueIndex++;
         if(dialogueIndex >= dialogues.Count)
         {
