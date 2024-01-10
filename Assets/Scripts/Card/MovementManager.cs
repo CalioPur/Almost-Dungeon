@@ -7,8 +7,6 @@ public class MovementManager : MonoBehaviour
     public static event Action<TileData> OnTileSelectedEvent;
     public static event Action<TileData, CardInfoInstance> OnTilePosedEvent;
     public static event Action<CardInfoInstance> OnFinishToPose;
-    public static event Action<CardHand> OnDiscardCardEvent; 
-
 
     [SerializeField] private GameObject gridVisualizer;
     [SerializeField] private GameObject cardVisualizer;

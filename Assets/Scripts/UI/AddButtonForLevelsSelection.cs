@@ -13,7 +13,6 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private GameObject CanvasBlack;
-    [SerializeField] float timeToWait = 2f;
     
     private List<GameObject> buttonList = new();
     

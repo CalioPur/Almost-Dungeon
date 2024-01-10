@@ -39,15 +39,12 @@ public class MinionData : TrapData
             isStunned = false;
             return;
         }
-
-        Debug.Log("OnTick");
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
 
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
         animQueue.AddAnim(new AnimToQueue(tr, targetTr, offset, false, delay));
-        print("Move");
     }
 
     public override void TakeDamage(int damage, AttackType attackType)
