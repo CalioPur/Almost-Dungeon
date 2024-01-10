@@ -35,8 +35,19 @@ public class TileData : MonoBehaviour
     public bool isConnectedToPath = false;
 
     public bool isExit = false;
+    
+    public bool IsVisited 
+    {
+        get { return isVisited; }
+        set
+        {
+            isVisited = value;
+            img.color = isVisited ? new Color(1f, 1f, 1f) : new Color(0.7f, 0.7f, 0.7f);
+        }
+    }
 
-    public bool isVisited = false;
+    private bool isVisited;
+   
     
     public bool isRoom = false;
     public bool PiecePlaced => _instance != null;
@@ -72,6 +83,7 @@ public class TileData : MonoBehaviour
         if (_instance == null) return;
         img.sprite = _instance.So.imgOnMap;
         transform.rotation = Quaternion.Euler(90, 0, _instance.Rotation);
+        img.color = new Color(0.7f, 0.7f, 0.7f);
     }
     
     public bool AvailableForSpawn()
