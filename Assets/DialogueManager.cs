@@ -16,6 +16,9 @@ public class DialogueManager : MonoBehaviour
     public List<TextAsset> interludeDialogues;
     
     public Sprite HeroSprite;
+    public Sprite archerSprite;
+    public Sprite mageSprite;
+    public Sprite barbareSprite;
     public Sprite MinionSprite;
 
     [SerializeField] private HeroesInfo knightClass;
@@ -164,6 +167,18 @@ public class DialogueManager : MonoBehaviour
                             case "knight":
                                 ShowArrowKnight();
                                 otherImage.sprite = HeroSprite;
+                                break;
+                            case "archer":
+                                ShowArrowKnight();
+                                otherImage.sprite = archerSprite;
+                                break;
+                            case "mage":
+                                ShowArrowKnight();
+                                otherImage.sprite = mageSprite;
+                                break;
+                            case "barbare":
+                                ShowArrowKnight();
+                                otherImage.sprite = barbareSprite;
                                 break;
                             case "minion":
                                 ShowArrowKnight();
