@@ -29,7 +29,6 @@ public class HandsManager : MonoBehaviour
         MovementManager.OnTilePosedEvent += MoveCard;
         MovementManager.OnFinishToPose += ReorganizeHand;
         MovementManager.OnTileSelectedEvent += PlaceSolution;
-        MovementManager.OnDiscardCardEvent += DiscardCard;
     }
 
     private void OnDisable()
@@ -37,7 +36,6 @@ public class HandsManager : MonoBehaviour
         MovementManager.OnTilePosedEvent -= MoveCard;
         MovementManager.OnFinishToPose -= ReorganizeHand;
         MovementManager.OnTileSelectedEvent -= PlaceSolution;
-        MovementManager.OnDiscardCardEvent -= DiscardCard;
     }
 
     private void MoveCard(TileData _, CardInfoInstance cardInfo)

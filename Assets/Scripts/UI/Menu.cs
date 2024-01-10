@@ -8,7 +8,6 @@ public class Menu : MonoBehaviour
     [SerializeField] private Button quitButton;
     
     [SerializeField] private GameObject levelSelection;
-    [SerializeField] private bool  resetLevelIndexOnPlay = true;
 
     private void Awake()
     {
