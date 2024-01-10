@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Ink.Parsed;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -61,7 +62,7 @@ public class DungeonManager : MonoBehaviour
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
         print("nb of level : "+dungeons[SelectedBiome].dungeonSO.levels.Count);
-        if (level >= dungeons[SelectedBiome].dungeonSO.levels.Count)
+        if (currentLevel >= dungeons[SelectedBiome].dungeonSO.levels.Count)
         {
             Debug.LogWarning("Level is too high");
             SceneManager.LoadScene(0);
@@ -74,7 +75,21 @@ public class DungeonManager : MonoBehaviour
         var levelData = dungeons[SelectedBiome].dungeonSO.levels[level];
         
         var terrainData = levelData.terrains[Random.Range(0, levelData.terrains.Count)];
-        var heroData = levelData.heros[Random.Range(0, levelData.heros.Count)];
+        List<HeroSO> heroUnlock = new List<HeroSO>();
+        foreach (var hero in levelData.heros)
+        {
+            string keyName = hero.keyToUnlock;
+            if (keyName == "")
+            {
+                heroUnlock.Add(hero);
+                continue;
+            }
+            if (PlayerPrefs.HasKey(keyName))
+            {
+                heroUnlock.Add(hero);
+            }
+        }
+        var heroData = heroUnlock[Random.Range(0, heroUnlock.Count)];
         var deckData = levelData.decks[Random.Range(0, levelData.decks.Count)];
         
         
@@ -105,6 +120,10 @@ public class DungeonManager : MonoBehaviour
     }
     public void LoadNextLevel()
     {
+        foreach (var key in dungeons[SelectedBiome].dungeonSO.levels[currentLevel].keysElementsToUnlock)
+        {
+            PlayerPrefs.SetInt(key, 1);
+        }
         currentLevel++;
         GameManager.OnSceneLoadedEvent += LoadLevel;
     }

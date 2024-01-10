@@ -12,5 +12,6 @@ public class HeroSO : ScriptableObject
     public int speed;//vitesse ?
     public HeroesInfo classe;
     public List<Personnalities> personnalities;
-    [SerializeField] public List<TextAsset> heroDialogues;
+    public List<TextAsset> heroDialogues;
+    public string keyToUnlock;
 }
