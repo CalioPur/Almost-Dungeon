@@ -398,4 +398,11 @@ public class MapManager : MonoBehaviour
             }
         }
     }
+
+    public bool HasDoorOpen(Vector2Int oldPos, Vector2Int newPos)
+    {
+        if (newPos.x >= width - 2 || newPos.y >= height - 2 || newPos.x < 0 || newPos.y < 0) return false;
+        if (oldPos.x == newPos.x) return oldPos.y > newPos.y ? mapArray[oldPos.x, oldPos.y].hasDoorDown : mapArray[oldPos.x, oldPos.y].hasDoorUp;
+        return oldPos.x > newPos.x ? mapArray[oldPos.x, oldPos.y].hasDoorLeft : mapArray[oldPos.x, oldPos.y].hasDoorRight;
+    }
 }

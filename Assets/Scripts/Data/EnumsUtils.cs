@@ -17,6 +17,7 @@ public enum TrapType
     Slime,
     FireCamp,
     Wolf,
+    Laden,
     None
 }
 

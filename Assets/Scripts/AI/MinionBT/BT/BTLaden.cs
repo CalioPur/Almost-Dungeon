@@ -1,7 +1,7 @@
 using BehaviourTree;
 using UnityEngine;
 
-public class BTArcherMinion : MinionBTBase
+public class BTLaden : MinionBTBase
 {
     protected override Node InitTree()
     {
@@ -10,10 +10,9 @@ public class BTArcherMinion : MinionBTBase
         origin = new Sequence(
             new GetHeroPos(blackboard),
             new HeroIsInSight(blackboard),
-            new Selector(
-                new AttackMinionsIsMiddleOfTarget(blackboard, AttackType.Fire),
-                new AttackRandomTargetInTile(blackboard, AttackType.Fire)
-            )
+            new MoveInDirection(blackboard),
+            new CheckifFrontOfHero(blackboard),
+            new AttackHero(blackboard, AttackType.Physical)
         );
         return origin;
     }
