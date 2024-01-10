@@ -176,7 +176,7 @@ public class MapManager : MonoBehaviour
         SetTileAtPosition(card, startPos.x, startPos.y);
 
         mapArray[startPos.x, startPos.y].isConnectedToPath = true;
-        mapArray[startPos.x, startPos.y].isVisited = true;
+        mapArray[startPos.x, startPos.y].IsVisited = true;
         MapManagerTools.SetConnectedToPath();
         MapManagerTools.SetExits();
         GetWorldPosFromTilePos(startPos, out pos);

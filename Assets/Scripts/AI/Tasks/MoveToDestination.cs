@@ -35,7 +35,7 @@ public class MoveToDestination : Node
         TileData tile;
         if (blackboard.hero.mapManager.GetTile(blackboard.hero.GetIndexHeroPos(), out tile))
         {
-            tile.isVisited = true;
+            tile.IsVisited = true;
         }
 
         blackboard.hero.Move(tile.transform, Vector3.zero, 0.5f);

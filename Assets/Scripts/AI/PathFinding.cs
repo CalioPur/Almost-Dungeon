@@ -44,7 +44,7 @@ public class PathFinding
                 }
             }
 
-            if (!map[currentPos.x, currentPos.y].isVisited)
+            if (!map[currentPos.x, currentPos.y].IsVisited)
             {
                 unvisitedTiles.Add(currentPos);
             }
