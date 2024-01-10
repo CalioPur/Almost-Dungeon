@@ -10,8 +10,10 @@ public class BTArcherMinion : MinionBTBase
         origin = new Sequence(
             new GetHeroPos(blackboard),
             new HeroIsInSight(blackboard),
-            new CheckifMinionsIsNotMiddleOfTarget(blackboard),
-            new AttackRandomTargetInTile(blackboard, AttackType.Fire)
+            new Selector(
+                new AttackMinionsIsMiddleOfTarget(blackboard, AttackType.Fire),
+                new AttackRandomTargetInTile(blackboard, AttackType.Fire)
+            )
         );
         return origin;
     }

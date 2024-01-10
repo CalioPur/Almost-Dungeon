@@ -146,7 +146,7 @@ MonoBehaviour:
   indexX: 0
   indexY: 0
   mapManager: {fileID: 0}
-  sprite: {fileID: 0}
+  sprite: {fileID: 3666571859102276325}
   SO: {fileID: 11400000, guid: 3cb01d901b0933f4e9298c64e31af304, type: 2}
   indexOffsetTile: 0
   tr: {fileID: 5242026796885018233}
