@@ -17,3 +17,10 @@ MonoBehaviour:
   speed: 75
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   personnalities: 01000000
+  heroDialogues:
+  - {fileID: 4900000, guid: 2bed614193286c644b25ebcb5cdaa958, type: 3}
+  - {fileID: 4900000, guid: 5040596196bf7ca42a5f12c6a919c646, type: 3}
+  - {fileID: 4900000, guid: d60fd25eb4fd0eb4585756135f42f94a, type: 3}
+  - {fileID: 4900000, guid: 209f34e84f345c145aff60ce44cd3f7c, type: 3}
+  - {fileID: 4900000, guid: 398b8b566e2b4ca489a68c0bb7a5c995, type: 3}
+  - {fileID: 4900000, guid: 8ec16841054bd7b4f90cb7e0bc1f0268, type: 3}

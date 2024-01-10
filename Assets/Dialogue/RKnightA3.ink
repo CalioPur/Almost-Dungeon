@@ -52,5 +52,5 @@ Continuez à courir ou vous finirez en rôti !
 Bien sûr, bien sûr, regardez, voici une potion pour me faire pardonner. #chara:dragon
 Ah... #chara:knight
 Bon, merci, vous êtes bien aimable finalement, j'accepte.
-A la bonne heure ! Tenez, cela devrait vous aider à garder votre courage. #chara:dragon
+A la bonne heure ! Tenez, cela devrait vous aider à garder votre courage. #chara:dragon #hpplus:10
 -> END
