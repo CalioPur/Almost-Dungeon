@@ -5,6 +5,7 @@ using UnityEngine;
 public class MinionLaden : MinionData
 {
     [SerializeField] private int damageFire = 5;
+    [SerializeField] private ParticleSystem ExplosionFX;
 
     private void ExplosionAttack(Vector2Int pos)
     {
@@ -42,5 +43,11 @@ public class MinionLaden : MinionData
             }
         }
         base.TakeDamage(damage, attackType);
+    }
+
+    protected override void OnDead()
+    {
+        Destroy(Instantiate(ExplosionFX, transform.position, ExplosionFX.transform.rotation), 1.5f);
+        base.OnDead();
     }
 }
