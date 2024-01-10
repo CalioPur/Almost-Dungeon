@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class MinionData : TrapData
+public class MinionData : TrapData, IFlippable
 {
     public static event Action OnHeroPosAsked;
     public EnemyInstance minionInstance;
@@ -12,6 +12,7 @@ public class MinionData : TrapData
     [SerializeField] protected MinionBTBase bt;
     [SerializeField] protected AnimationQueue animQueue;
     [SerializeField] protected EmotesManager emotesManager;
+    [SerializeField] protected Animator animator;
     [field: SerializeField] private AttackFX animFX;
     
     private Vector2Int SpawnIndex;
@@ -105,5 +106,10 @@ public class MinionData : TrapData
         AttackFX fx = Instantiate(animFX, targetTr.position, animFX.transform.rotation);
         fx.Init(targetTr, transform, delay, direction);
         fx.Launch();
+    }
+
+    public void Flip()
+    {
+        animator.SetTrigger("Flip");
     }
 }

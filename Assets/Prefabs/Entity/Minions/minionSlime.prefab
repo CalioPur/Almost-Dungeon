@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -4220475814365159450}
   - component: {fileID: -4941691768216947425}
   - component: {fileID: 6402256854860038529}
+  - component: {fileID: 293881463936976748}
   m_Layer: 0
   m_Name: minionSlime
   m_TagString: Untagged
@@ -112,6 +113,7 @@ MonoBehaviour:
   bt: {fileID: -4220475814365159450}
   animQueue: {fileID: 6402256854860038529}
   emotesManager: {fileID: 9041447989855583336}
+  animator: {fileID: 293881463936976748}
   animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
   slimePrefab: {fileID: -8816407786218390196}
 --- !u!114 &-4220475814365159450
@@ -155,6 +157,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b8280551aa7a14aa877bfcc4d5a661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &293881463936976748
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487245091449332422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac70de1cc751c884db8ce7f720338dd1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3808975907760186253
 PrefabInstance:
   m_ObjectHideFlags: 0

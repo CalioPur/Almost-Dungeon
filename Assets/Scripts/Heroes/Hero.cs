@@ -5,13 +5,15 @@ using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Hero : MonoBehaviour
+public class Hero : MonoBehaviour, IFlippable
 {
     public static event Action<Vector2Int> OnGivePosBackEvent;
     public static event Action<int, bool> OnTakeDamageEvent;
     public static event Action<int> OnPopUpEvent;
     public static event Action<Hero> OnMovedOnEmptyCardEvent;
     public static event Action<DirectionToMove> OnDragonAttackEvent;
+    
+    public static Hero Instance;
     
     
     public MapManager mapManager { get; private set; }
@@ -27,7 +29,8 @@ public class Hero : MonoBehaviour
     [field:SerializeField] public HeroBlackboard HeroBlackboard { get; private set; }
     [field: SerializeField] private EmotesManager emotesManager;
     [field: SerializeField] private AttackFX animFX;
-    
+    [SerializeField] private Animator animator;
+
     private int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
     private AudioSource audioSource;
@@ -169,6 +172,11 @@ public class Hero : MonoBehaviour
         OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
     }
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         OnBeginToMove();
@@ -208,5 +216,10 @@ public class Hero : MonoBehaviour
     public void PlayAttackClip()
     {
         audioSource.PlayOneShot(attackClip[Random.Range(0,attackClip.Length)]);
+    }
+
+    public void Flip()
+    {
+        animator.SetTrigger("Flip");
     }
 }

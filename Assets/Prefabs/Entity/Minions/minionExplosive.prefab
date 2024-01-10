@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6402256854860038529}
   - component: {fileID: 6299596542574410117}
   - component: {fileID: 4532217106397339076}
+  - component: {fileID: 1809047893005811221}
   m_Layer: 0
   m_Name: minionExplosive
   m_TagString: Untagged
@@ -251,10 +252,32 @@ MonoBehaviour:
   bt: {fileID: 3253777730665908814}
   animQueue: {fileID: 6402256854860038529}
   emotesManager: {fileID: 3990342877312240800}
+  animator: {fileID: 1809047893005811221}
   animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
   damageFire: 5
   ExplosionFX: {fileID: 606801270142196365, guid: 6a47555f1e03e6640b6bad2688c1ebd2,
     type: 3}
+--- !u!95 &1809047893005811221
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487245091449332422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac70de1cc751c884db8ce7f720338dd1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &9134731435719463749
 PrefabInstance:
   m_ObjectHideFlags: 0

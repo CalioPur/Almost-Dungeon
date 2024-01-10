@@ -13,11 +13,20 @@ public class MinionLaden : MinionData
         foreach (var monster in monsters)
         {
             monster.TakeDamage(damageFire, AttackType.Fire);
+            if (monster is IFlippable flip)
+            {
+                flip.Flip();
+            }
         }
         if (bt.blackboard.heroPosition == pos)
         {
             Attack(damageFire, AttackType.Fire);
-        }  
+            if (Hero.Instance is IFlippable flip)
+            {
+                flip.Flip();
+            }
+        }
+        
     }
     
     public override void TakeDamage(int damage, AttackType attackType)

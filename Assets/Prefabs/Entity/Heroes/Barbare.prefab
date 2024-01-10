@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7733622732822971966}
   - component: {fileID: 6624390477691500056}
   - component: {fileID: -880584021932348849}
+  - component: {fileID: 8969802921678826240}
   m_Layer: 0
   m_Name: Barbare
   m_TagString: Untagged
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c802d2d4a347145923191443fe5178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 0
   heroTr: {fileID: 3081425779426153195}
   Sprite: {fileID: 4954612021088544096}
   bt: {fileID: 6624390477691500056}
@@ -109,6 +111,8 @@ MonoBehaviour:
   attackPoint: {fileID: 0}
   <HeroBlackboard>k__BackingField: {fileID: -4683431529391840305}
   emotesManager: {fileID: 4990272541578531698}
+  animFX: {fileID: 0}
+  animator: {fileID: 8969802921678826240}
   attackClip:
   - {fileID: 8300000, guid: adfc2fd02af23c74d80134e2f4f5665e, type: 3}
   - {fileID: 8300000, guid: 3699aa00e7f1f7c4d824c109e97d5856, type: 3}
@@ -254,6 +258,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &8969802921678826240
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939014474319430147}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac70de1cc751c884db8ce7f720338dd1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7576544396199962908
 PrefabInstance:
   m_ObjectHideFlags: 0

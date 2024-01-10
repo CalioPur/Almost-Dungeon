@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -4941691768216947425}
   - component: {fileID: 6402256854860038529}
   - component: {fileID: 8669962021866816037}
+  - component: {fileID: 400235481481985483}
   m_Layer: 0
   m_Name: skeletonMinion
   m_TagString: Untagged
@@ -112,6 +113,7 @@ MonoBehaviour:
   bt: {fileID: 8669962021866816037}
   animQueue: {fileID: 6402256854860038529}
   emotesManager: {fileID: 8634584595765153902}
+  animator: {fileID: 400235481481985483}
   animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
   isDigger: 0
   isReadyToUndig: 0
@@ -158,6 +160,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackboard: {fileID: -4941691768216947425}
+--- !u!95 &400235481481985483
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487245091449332422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac70de1cc751c884db8ce7f720338dd1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4499565048157933451
 PrefabInstance:
   m_ObjectHideFlags: 0

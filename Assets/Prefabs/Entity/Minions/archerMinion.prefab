@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6402256854860038529}
   - component: {fileID: 62822888144230992}
   - component: {fileID: 4548254740813658740}
+  - component: {fileID: -4475006244683912997}
   m_Layer: 0
   m_Name: archerMinion
   m_TagString: Untagged
@@ -153,7 +154,29 @@ MonoBehaviour:
   bt: {fileID: 62822888144230992}
   animQueue: {fileID: 6402256854860038529}
   emotesManager: {fileID: 172181208815515307}
+  animator: {fileID: -4475006244683912997}
   animFX: {fileID: 630786388120619315, guid: 420bbf0ab1b449c4ca0f9471aa6f3d54, type: 3}
+--- !u!95 &-4475006244683912997
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487245091449332422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac70de1cc751c884db8ce7f720338dd1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5460099456565373262
 PrefabInstance:
   m_ObjectHideFlags: 0
