@@ -46,7 +46,7 @@ public class TileData : MonoBehaviour
         }
     }
 
-    private bool isVisited;
+    public bool isVisited;
    
     
     public bool isRoom = false;
