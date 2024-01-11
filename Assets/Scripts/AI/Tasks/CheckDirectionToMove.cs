@@ -22,7 +22,7 @@ public class CheckDirectionToMove : Node
         //     blackboard.hero.mapManager.getMapArray(), blackboard.personality);
         blackboard.directionToMove = PathFindingV2.FindNextMove(
             blackboard.hero.GetIndexHeroPos(),
-            blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>() { }, VisionType.RECTILIGNE,
+            blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>(), VisionType.CLAIRVOYANT,
             Aggressivity.COURAGEUX, new[]
             {
                 Objectives.EXPLORATION

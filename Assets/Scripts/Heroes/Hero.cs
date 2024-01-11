@@ -81,6 +81,7 @@ public class Hero : MonoBehaviour
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         MinionData.OnHeroPosAsked+= GivePosBack;
         PathFinding.OnNoPathFound += PlayEmoteStuck;
+        PathFindingV2.OnNoPathFound += PlayEmoteStuck;
         OnDragonAttackEvent +=AttackDragon;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
         audioSource = GetComponent<AudioSource>();
@@ -145,6 +146,7 @@ public class Hero : MonoBehaviour
         OnMovedOnEmptyCardEvent = null;
         OnDragonAttackEvent = null;
         UI_Dragon.OnDragonTakeDamageEvent -= PlayAttackClip;
+        PathFindingV2.OnNoPathFound -= PlayEmoteStuck;
     }
 
     private void IsDead()

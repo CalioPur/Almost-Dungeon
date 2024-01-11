@@ -67,7 +67,7 @@ public class PathFindingV2
                         .Min());
                 if (minDistance < 5)
                 {
-                    Debug.Log("RAGE");
+                    return BreakWallClosestToEmptyTile(startPos, map);
                 }
             }
         }
@@ -85,6 +85,124 @@ public class PathFindingV2
                 Clairvoyant(startPos, map, personalities, aggressivity, objectives),
             _ => throw new System.Exception("Unknown vision type")
         };
+    }
+
+    private static DirectionToMove BreakWallClosestToEmptyTile(Vector2Int startPos, TileData[,] map)
+    {
+        SoundManagerIngame.Instance.PlaySound(EmoteType.WallBreak);
+        TileData tileWallBreaker = map[startPos.x, startPos.y];
+        int[] possibleDirectionsToBreak = new int[4];
+        if (!tileWallBreaker.hasDoorDown)
+        {
+            possibleDirectionsToBreak[0] = 1;
+        }
+        if (!tileWallBreaker.hasDoorUp)
+        {
+            possibleDirectionsToBreak[1] = 1;
+        }
+        if (!tileWallBreaker.hasDoorLeft)
+        {
+            possibleDirectionsToBreak[2] = 1;
+        }
+        if (!tileWallBreaker.hasDoorRight)
+        {
+            possibleDirectionsToBreak[3] = 1;
+        }
+        
+        Vector2Int closestEmptyTile = FindClosestEmptyTile(startPos, map);
+        
+        // break the wall closest to the empty tile
+        int minDistance = int.MaxValue;
+        int directionToBreak = 0;
+        for (int i = 0; i < possibleDirectionsToBreak.Length; i++)
+        {
+            if (possibleDirectionsToBreak[i] == 0) continue;
+            switch (i)
+            {
+                case 0:
+                    //down
+                    if (Mathf.Abs(startPos.x - closestEmptyTile.x) + Mathf.Abs(startPos.y - 1 - closestEmptyTile.y) < minDistance)
+                    {
+                        minDistance = Mathf.Abs(startPos.x - closestEmptyTile.x) + Mathf.Abs(startPos.y - 1 - closestEmptyTile.y);
+                        directionToBreak = i;
+                    }
+                    break;
+                case 1:
+                    //up
+                    if (Mathf.Abs(startPos.x - closestEmptyTile.x) + Mathf.Abs(startPos.y + 1 - closestEmptyTile.y) < minDistance)
+                    {
+                        minDistance = Mathf.Abs(startPos.x - closestEmptyTile.x) + Mathf.Abs(startPos.y + 1 - closestEmptyTile.y);
+                        directionToBreak = i;
+                    }
+                    break;
+                case 2:
+                    //left
+                    if (Mathf.Abs(startPos.x - 1 - closestEmptyTile.x) + Mathf.Abs(startPos.y - closestEmptyTile.y) < minDistance)
+                    {
+                        minDistance = Mathf.Abs(startPos.x - 1 - closestEmptyTile.x) + Mathf.Abs(startPos.y - closestEmptyTile.y);
+                        directionToBreak = i;
+                    }
+                    break;
+                case 3:
+                    //right
+                    if (Mathf.Abs(startPos.x + 1 - closestEmptyTile.x) + Mathf.Abs(startPos.y - closestEmptyTile.y) < minDistance)
+                    {
+                        minDistance = Mathf.Abs(startPos.x + 1 - closestEmptyTile.x) + Mathf.Abs(startPos.y - closestEmptyTile.y);
+                        directionToBreak = i;
+                    }
+                    break;
+                default:
+                    throw new System.Exception("Unknown direction");
+            }
+        }
+        
+        switch (directionToBreak)
+        {
+            case 0:
+                //down
+                tileWallBreaker.hasDoorDown = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,0);
+                return DirectionToMove.Down;
+            case 1:
+                //up
+                tileWallBreaker.hasDoorUp = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,0);
+                return DirectionToMove.Up;
+            case 2:
+                //left
+                tileWallBreaker.hasDoorLeft = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,0);
+                return DirectionToMove.Left;
+            case 3:
+                //right
+                tileWallBreaker.hasDoorRight = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,0);
+                return DirectionToMove.Right;
+            default:
+                throw new System.Exception("Unknown direction");
+        }
+        
+    }
+
+    private static Vector2Int FindClosestEmptyTile(Vector2Int startPos, TileData[,] map)
+    {
+        // PiecePlaced == null
+        List<Vector2Int> emptyTiles = new List<Vector2Int>();
+        for (int i = 0; i < map.GetLength(0) - 2; i++)
+        {
+            for (int j = 0; j < map.GetLength(1) - 2; j++)
+            {
+                if (!map[i, j].PiecePlaced)
+                {
+                    emptyTiles.Add(new Vector2Int(i, j));
+                }
+            }
+        }
+        int minDistance = emptyTiles.Aggregate(int.MaxValue,
+            (current, emptyTile) => Mathf.Abs(emptyTile.x - startPos.x) + Mathf.Abs(emptyTile.y - startPos.y) < current
+                ? Mathf.Abs(emptyTile.x - startPos.x) + Mathf.Abs(emptyTile.y - startPos.y)
+                : current);
+        return emptyTiles.First(emptyTile => Mathf.Abs(emptyTile.x - startPos.x) + Mathf.Abs(emptyTile.y - startPos.y) == minDistance);
     }
 
     private static DirectionToMove Clairvoyant(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities, Aggressivity aggressivity, Objectives[] objectives)
@@ -275,8 +393,6 @@ public class PathFindingV2
                     Vector2Int closestUnvisitedTile = unvisitedTiles.First(unvisitedTile => Mathf.Abs(unvisitedTile.x - startPos.x) + Mathf.Abs(unvisitedTile.y - startPos.y) == minDistance);
                     return DirectionFromTo(startPos, closestUnvisitedTile);
                 }
-
-                return GoToClosestExit(startPos, map);
             }
 
             FindUnvisitedTiles(map);
@@ -291,7 +407,12 @@ public class PathFindingV2
             if (unvisitedTiles.Count > 0)
             {
                 // choose a random unvisited tile in line of sight
-                
+                int minDistance = unvisitedTiles.Aggregate(int.MaxValue,
+                    (current, unvisitedTile) => Mathf.Abs(unvisitedTile.x - startPos.x) + Mathf.Abs(unvisitedTile.y - startPos.y) < current
+                        ? Mathf.Abs(unvisitedTile.x - startPos.x) + Mathf.Abs(unvisitedTile.y - startPos.y)
+                        : current);
+                Vector2Int closestUnvisitedTile = unvisitedTiles.First(unvisitedTile => Mathf.Abs(unvisitedTile.x - startPos.x) + Mathf.Abs(unvisitedTile.y - startPos.y) == minDistance);
+                return DirectionFromTo(startPos, closestUnvisitedTile);
             }
         }
 
@@ -493,6 +614,65 @@ public class PathFindingV2
                 return;
             }
         }
+    }
+    
+    public static event Action OnNoPathFound;
+
+    private static DirectionToMove BreakFreeFromNoExit(Vector2Int startPos, TileData[,] map)
+    {
+        SoundManagerIngame.Instance.PlaySound(EmoteType.WallBreak);
+        OnNoPathFound?.Invoke();
+        TileData tileWallBreaker = map[startPos.x, startPos.y];
+        int[] possibleDirectionsToBreak = new int[4];
+        if (!tileWallBreaker.hasDoorDown)
+        {
+            possibleDirectionsToBreak[0] = 1;
+        }
+        if (!tileWallBreaker.hasDoorUp)
+        {
+            possibleDirectionsToBreak[1] = 1;
+        }
+        if (!tileWallBreaker.hasDoorLeft)
+        {
+            possibleDirectionsToBreak[2] = 1;
+        }
+        if (!tileWallBreaker.hasDoorRight)
+        {
+            possibleDirectionsToBreak[3] = 1;
+        }
+        
+        int randomIndex = Random.Range(0, possibleDirectionsToBreak.Length);
+        int security = 0;
+        while (possibleDirectionsToBreak[randomIndex] == 0 && security < 100)
+        {
+            randomIndex = Random.Range(0, possibleDirectionsToBreak.Length);
+            security++;
+        }
+
+        switch (randomIndex)
+        {
+            case 0:
+                //down
+                tileWallBreaker.hasDoorDown = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,0);
+                return DirectionToMove.Down;                    
+            case 1:
+                //up
+                tileWallBreaker.hasDoorUp = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,2);
+                return DirectionToMove.Up;
+            case 2:
+                //left
+                tileWallBreaker.hasDoorLeft = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,1);
+                return DirectionToMove.Left;
+            case 3:
+                //right
+                tileWallBreaker.hasDoorRight = true;
+                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,3);
+                return DirectionToMove.Right;
+        }
+        return DirectionToMove.None;
     }
 
     #endregion
