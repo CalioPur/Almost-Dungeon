@@ -26,42 +26,43 @@ public class SpawnEnemyManager : MonoBehaviour
     public static void SpawnEnemyWithType(TrapType type, TileData tile, Vector3 offset, int index,
         MapManager mapManager)
     {
+        Vector3 offsetCoin = Vector3.zero;
         switch (type)
         {
             case TrapType.BasicCaC:
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.BasicCaC).prefab as MinionData, tile, true,
-                    offset, index, mapManager);
+                    offsetCoin, index, mapManager);
                 break;
             case TrapType.Archer:
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Archer).prefab as MinionData, tile, true,
-                    offset, index, mapManager);
+                    offsetCoin, index, mapManager);
                 break;
             case TrapType.Skeleton:
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Skeleton).prefab as MinionData, tile, false,
-                    offset, index, mapManager);
+                    offsetCoin, index, mapManager);
                 break;
             case TrapType.Slime:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Slime).prefab as MinionData, tile, true, offset,
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Slime).prefab as MinionData, tile, true, offsetCoin,
                     index, mapManager);
                 break;
             case TrapType.Laden:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Laden).prefab as MinionData, tile, true, offset,
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Laden).prefab as MinionData, tile, true, offsetCoin,
                     index, mapManager);
                 break;
             case TrapType.Web:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Web).prefab, tile, false, Vector3.zero, -1,
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Web).prefab, tile, false, offsetCoin, -1,
                     mapManager);
                 break;
             case TrapType.Pyke:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Pyke).prefab, tile, false, Vector3.zero, -1,
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Pyke).prefab, tile, false, offsetCoin, -1,
                     mapManager);
                 break;
             case TrapType.FireCamp:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.FireCamp).prefab, tile, false, Vector3.zero, -1,
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.FireCamp).prefab, tile, false, offsetCoin, -1,
                     mapManager);
                 break;
             case TrapType.Wolf:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Wolf).prefab, tile, false, Vector3.zero, index,
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Wolf).prefab, tile, false, offsetCoin, index,
                     mapManager);
                 break;
             case TrapType.None:
