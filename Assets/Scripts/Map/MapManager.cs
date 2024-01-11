@@ -405,4 +405,8 @@ public class MapManager : MonoBehaviour
         if (oldPos.x == newPos.x) return oldPos.y > newPos.y ? mapArray[oldPos.x, oldPos.y].hasDoorDown : mapArray[oldPos.x, oldPos.y].hasDoorUp;
         return oldPos.x > newPos.x ? mapArray[oldPos.x, oldPos.y].hasDoorLeft : mapArray[oldPos.x, oldPos.y].hasDoorRight;
     }
+    public Vector2Int[] GetTilesInLineOfSight(Vector2Int startPos)
+    {
+        return MapManagerTools.GetTilesInLineOfSight(startPos);
+    }
 }
