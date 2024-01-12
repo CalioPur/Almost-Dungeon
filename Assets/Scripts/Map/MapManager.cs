@@ -51,6 +51,9 @@ public class MapManager : MonoBehaviour
                     Debug.DrawLine(pos, pos + Vector3.left, Color.blue, 1f);
                 if (mapArray[i,j].hasDoorRight)
                     Debug.DrawLine(pos, pos + Vector3.right, Color.blue, 1f);
+                
+                if (mapArray[i,j].isExit)
+                    Debug.DrawLine(new Vector3(pos.x+0.1f,pos.y,pos.z), new Vector3(pos.x+0.1f,pos.y,pos.z) + Vector3.up, Color.green, 1f);
             }
         }
     }
@@ -105,6 +108,19 @@ public class MapManager : MonoBehaviour
         }
         MapManagerTools.SetConnectedToPath();
         MapManagerTools.SetExits();
+        
+        SetAllTilesAsVisited();
+    }
+
+    private void SetAllTilesAsVisited()
+    {
+        for (int i = 0; i < width - 2; i++)
+        {
+            for (int j = 0; j < height - 2; j++)
+            {
+                mapArray[i, j].IsVisited = true;
+            }
+        }
     }
 
     public void SpawnMap()

@@ -6,31 +6,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public enum PersonnalitiesV2
-{
-    EXPLORATEUR, // Lorsqu'il y a plusieurs tuiles menant à une zone inexplorée dans son champ de vision, se déplace vers la plus proche.
-    IMPATIENT // Lorsqu'il se trouve à plus de 5 tuiles de la sortie, entre en RAGE.
-}
-
-public enum VisionType
-{
-    RECTILIGNE, // Le héros voit en ligne droite dans les 4 directions
-    BIGLEUX, // Le hero se déplace de manière aléatoire sur les tile non visité adjacentes à sa position sinon complètement aléatoire
-    CLAIRVOYANT, // Le hero va au chemin le plus court vers son objectif
-}
-
-public enum Aggressivity
-{
-    PEUREUX, // L'aventurier n'attaque pas et s'éloigne des minions s'il peut poursuivre l'exploration du donjon (c'est-à-dire s'il peut encore découvrir une zone inexplorée)
-    COURAGEUX, // L'aventurier va attaquer coute que coute l'ennemi le plus proche dans son champ de vision, meme s'il n'entrave pas son exploration du donjon.
-}
-
-public enum Objectives
-{
-    EXPLORATION, // L'aventurier cherche à explorer le donjon
-    SORTIE, // L'aventurier cherche à atteindre la sortie
-}
-
 public class PathFindingV2
 {
     // Le héros cartographie son évolution dans le donjon, c'est-à-dire qu'il enregistre le chemin vers toutes les tuiles qui sont passées dans son champ de vision rectiligne : 
@@ -49,10 +24,6 @@ public class PathFindingV2
     public static DirectionToMove FindNextMove(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities,
         VisionType visionType, Aggressivity aggressivity, Objectives[] objectives)
     {
-        Debug.Log("Has door up " + map[startPos.x, startPos.y].hasDoorUp);
-        Debug.Log("Has door down " + map[startPos.x, startPos.y].hasDoorDown);
-        Debug.Log("Has door left " + map[startPos.x, startPos.y].hasDoorLeft);
-        Debug.Log("Has door right " + map[startPos.x, startPos.y].hasDoorRight);
         
         if (personalities.Count > 0)
         {
@@ -215,38 +186,53 @@ public class PathFindingV2
                 {
                     MapManager.Instance.mapArray[i, j].isVisited = true;
                     map[i, j].isVisited = true;
-                    // Debug.DrawLine(MapManager.Instance.mapArray[i, j].transform.position, MapManager.Instance.mapArray[i, j].transform.position + Vector3.up, Color.red, 100f);
                 }
             }
         }
         if (aggressivity == Aggressivity.COURAGEUX)
         {
             FindTilesWithEnemies(map);
-            return BFSToObjective(startPos, map, tilesWithEnemies);
+            if (tilesWithEnemies.Count > 0)
+            {
+                return BFSToObjective(startPos, map, tilesWithEnemies);
+            }
         }
         
         switch (objectives.Length)
         {
             case 0:
-                return GoThroughRandomOpenDoor(startPos, map);
+                FindExits(map);
+                return BFSToObjective(startPos, map, exits);
             case 1:
                 switch (objectives[0])
                 {
                     case Objectives.EXPLORATION:
-                        FindUnvisitedTiles(map);
+                        FindExits(map);
                         if (aggressivity == Aggressivity.PEUREUX)
                         {
-                            foreach (Vector2Int tileWithEnemies in tilesWithEnemies)
+                            FindTilesWithEnemies(map);
+                            DirectionToMove dir = BFSToObjectiveWithAvoidingEnemies(startPos, map, exits, tilesWithEnemies);
+                            if (dir != DirectionToMove.None)
                             {
-                                unvisitedTiles.Remove(tileWithEnemies);
+                                return dir;
                             }
                         }
-                        return BFSToObjective(startPos, map, unvisitedTiles);
+                        return BFSToObjective(startPos, map, exits);
+                        
                     case Objectives.SORTIE:
                         FindExits(map);
+                        if (aggressivity == Aggressivity.PEUREUX)
+                        {
+                            FindTilesWithEnemies(map);
+                            DirectionToMove dir = BFSToObjectiveWithAvoidingEnemies(startPos, map, exits, tilesWithEnemies);
+                            if (dir != DirectionToMove.None)
+                            {
+                                return dir;
+                            }
+                        }
                         return BFSToObjective(startPos, map, exits);
                     default:
-                        throw new System.Exception("Unknown objective");
+                        throw new Exception("Unknown objective");
                 }
             default:
             {
@@ -278,6 +264,42 @@ public class PathFindingV2
             }
         }
     }
+
+    private static DirectionToMove BFSToObjectiveWithAvoidingEnemies(Vector2Int startPos, TileData[,] map, List<Vector2Int> vector2Ints, List<Vector2Int> list)
+    {
+        Queue<Vector2Int> queue = new();
+        HashSet<Vector2Int> visited = new();
+        Dictionary<Vector2Int, Vector2Int> parentMap = new();
+        queue.Enqueue(startPos);
+        visited.Add(startPos);
+        while (queue.Count > 0)
+        {
+            Vector2Int currentPos = queue.Dequeue();
+            if (vector2Ints.Contains(currentPos))
+            {
+                while (parentMap[currentPos] != startPos)
+                {
+                    currentPos = parentMap[currentPos];
+                }
+                if (currentPos.x == startPos.x)
+                {
+                    return currentPos.y > startPos.y ? DirectionToMove.Up : DirectionToMove.Down;
+                }
+                return currentPos.x > startPos.x ? DirectionToMove.Right : DirectionToMove.Left;
+            }
+            foreach (Vector2Int neighbor in GetNeighbors(currentPos, map))
+            {
+                if (!visited.Contains(neighbor) && !list.Contains(neighbor))
+                {
+                    queue.Enqueue(neighbor);
+                    visited.Add(neighbor);
+                    parentMap.Add(neighbor, currentPos);
+                }
+            }
+        }
+        return DirectionToMove.None;
+    }
+
     private static DirectionToMove Bigleux(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities, Aggressivity aggressivity, Objectives[] objectives)
     {
         if (aggressivity == Aggressivity.COURAGEUX)
@@ -544,6 +566,7 @@ public class PathFindingV2
                 }
             }
         }
+        Debug.Log("Something went wrong, no direction found");
         return DirectionToMove.None;
     }
     
