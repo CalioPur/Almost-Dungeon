@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class FogScriptHihihi : MonoBehaviour
+public class FogScript : MonoBehaviour
 {
     [SerializeField] private Sprite fogExit1;
     [SerializeField] private Sprite fogExitOpposite;
@@ -249,6 +249,7 @@ public class FogScriptHihihi : MonoBehaviour
         if (fogParent == null)
         {
             fogParent = new GameObject("FogParent");
+            fogParent.SetActive(false);
         }
     }
 

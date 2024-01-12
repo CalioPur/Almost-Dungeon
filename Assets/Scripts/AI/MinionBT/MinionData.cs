@@ -46,6 +46,7 @@ public class MinionData : TrapData, IFlippable
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
         animQueue.AddAnim(new AnimToQueue(tr, targetTr, offset, false, delay));
+        animator.SetTrigger("Move");
     }
 
     public override void TakeDamage(int damage, AttackType attackType)
