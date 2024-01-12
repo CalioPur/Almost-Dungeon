@@ -20,14 +20,18 @@ public class CheckDirectionToMove : Node
         // blackboard.directionToMove = PathFinding.BFSFindPath(
         //     blackboard.hero.GetIndexHeroPos(),
         //     blackboard.hero.mapManager.getMapArray(), blackboard.personality);
-        blackboard.directionToMove = PathFindingV2.FindNextMove(
+        blackboard.directionToMove = PathFinding.BFSFindPathV2(
             blackboard.hero.GetIndexHeroPos(),
-            blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>(), VisionType.CLAIRVOYANT,
+            blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>(), VisionType.RECTILIGNE,
             Aggressivity.COURAGEUX, new[]
             {
-                Objectives.EXPLORATION
+                Objectives.SORTIE
             });
-        if (blackboard.directionToMove == DirectionToMove.None) blackboard.directionToMove = RandomDirection();
+        if (blackboard.directionToMove == DirectionToMove.None)
+        {
+            Debug.Log("Random");
+            blackboard.directionToMove = RandomDirection();
+        }
         Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();
         switch (blackboard.directionToMove)
         {
@@ -52,6 +56,7 @@ public class CheckDirectionToMove : Node
 
         if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;
         blackboard.hero.OutOfMap(blackboard.directionToMove);
+        Debug.Log("Direction to move : " + blackboard.directionToMove);
         return NodeState.Failure;
     }
     

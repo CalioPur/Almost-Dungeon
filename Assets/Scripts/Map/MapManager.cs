@@ -33,6 +33,31 @@ public class MapManager : MonoBehaviour
         _mapManagerTools = new MapManagerTools(this);
     }
 
+    private void Update()
+    {
+        for (int i = 0; i < Instance.width - 2; i++)
+        {
+            for (int j = 0; j < Instance.height - 2; j++)
+            {
+                Vector3 pos = Instance.mapArray[i, j].transform.position;
+                if (mapArray[i,j].isConnectedToPath)
+                    Debug.DrawLine(pos, pos + Vector3.up, Color.red, 1f);
+
+                if (mapArray[i,j].hasDoorDown)
+                    Debug.DrawLine(pos, pos + Vector3.back, Color.blue, 1f);
+                if (mapArray[i,j].hasDoorUp)
+                    Debug.DrawLine(pos, pos + Vector3.forward, Color.blue, 1f);
+                if (mapArray[i,j].hasDoorLeft)
+                    Debug.DrawLine(pos, pos + Vector3.left, Color.blue, 1f);
+                if (mapArray[i,j].hasDoorRight)
+                    Debug.DrawLine(pos, pos + Vector3.right, Color.blue, 1f);
+                
+                if (mapArray[i,j].isExit)
+                    Debug.DrawLine(new Vector3(pos.x+0.1f,pos.y,pos.z), new Vector3(pos.x+0.1f,pos.y,pos.z) + Vector3.up, Color.green, 1f);
+            }
+        }
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -79,6 +104,21 @@ public class MapManager : MonoBehaviour
 
                     SpawnEnemyManager.SpawnEnemyWithoutPrefab(data.type,tile, true, offset, data.indexOffsetTile, this);
                 }
+            }
+        }
+        MapManagerTools.SetConnectedToPath();
+        MapManagerTools.SetExits();
+        
+        SetAllTilesAsVisited();
+    }
+
+    private void SetAllTilesAsVisited()
+    {
+        for (int i = 0; i < width - 2; i++)
+        {
+            for (int j = 0; j < height - 2; j++)
+            {
+                mapArray[i, j].IsVisited = true;
             }
         }
     }
@@ -223,23 +263,16 @@ public class MapManager : MonoBehaviour
 
     public bool DoorIsOpenAtPosition(Vector2Int pos, DirectionToMove dir)
     {
-        switch (dir)
+        return dir switch
         {
-            case DirectionToMove.Left:
-                return mapArray[pos.x, pos.y].hasDoorLeft;
-            case DirectionToMove.Right:
-                return mapArray[pos.x, pos.y].hasDoorRight;
-            case DirectionToMove.Up:
-                return mapArray[pos.x, pos.y].hasDoorUp;
-            case DirectionToMove.Down:
-                return mapArray[pos.x, pos.y].hasDoorDown;
-            case DirectionToMove.None:
-                return false;
-            case DirectionToMove.Error:
-                throw new ArgumentOutOfRangeException(nameof(dir), dir, null);
-            default:
-                throw new ArgumentOutOfRangeException(nameof(dir), dir, null);
-        }
+            DirectionToMove.Left => mapArray[pos.x, pos.y].hasDoorLeft,
+            DirectionToMove.Right => mapArray[pos.x, pos.y].hasDoorRight,
+            DirectionToMove.Up => mapArray[pos.x, pos.y].hasDoorUp,
+            DirectionToMove.Down => mapArray[pos.x, pos.y].hasDoorDown,
+            DirectionToMove.None => false,
+            DirectionToMove.Error => throw new ArgumentOutOfRangeException(nameof(dir), dir, null),
+            _ => throw new ArgumentOutOfRangeException(nameof(dir), dir, null)
+        };
     }
 
     public Vector2Int GetPosFromData(TileData data)
@@ -282,6 +315,8 @@ public class MapManager : MonoBehaviour
         mapArray[x, y].isRoom = mapArray[x, y].img.sprite.name.Contains("Room");
 
         MapManagerTools.CheckAllTilesTypeAndRotation();
+        MapManagerTools.SetConnectedToPath();
+        MapManagerTools.SetExits();
     }
 
     void SetTileAtPosition(CardInfoInstance card, int posX, int posY)

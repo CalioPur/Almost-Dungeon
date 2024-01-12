@@ -12,6 +12,31 @@ public enum Personnalities
     MoveToHero
 }
 
+public enum PersonnalitiesV2
+{
+    EXPLORATEUR, // Lorsqu'il y a plusieurs tuiles menant à une zone inexplorée dans son champ de vision, se déplace vers la plus proche.
+    IMPATIENT // Lorsqu'il se trouve à plus de 5 tuiles de la sortie, entre en RAGE.
+}
+
+public enum VisionType
+{
+    RECTILIGNE, // Le héros voit en ligne droite dans les 4 directions
+    BIGLEUX, // Le hero se déplace de manière aléatoire sur les tile non visité adjacentes à sa position sinon complètement aléatoire
+    CLAIRVOYANT, // Le hero va au chemin le plus court vers son objectif
+}
+
+public enum Aggressivity
+{
+    PEUREUX, // L'aventurier n'attaque pas et s'éloigne des minions s'il peut poursuivre l'exploration du donjon (c'est-à-dire s'il peut encore découvrir une zone inexplorée)
+    COURAGEUX, // L'aventurier va attaquer coute que coute l'ennemi le plus proche dans son champ de vision, meme s'il n'entrave pas son exploration du donjon.
+}
+
+public enum Objectives
+{
+    EXPLORATION, // L'aventurier cherche à explorer le donjon
+    SORTIE, // L'aventurier cherche à atteindre la sortie
+}
+
 public class PathFinding
 {
     public static event Action OnNoPathFound;
@@ -82,9 +107,7 @@ public class PathFinding
             case Personnalities.HurryForTheExit when exits.Count == 0:
             {
                 if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
-                BreakFreeFromNoExit(startPos, map);
-                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
-                return DirectionToMove.None;
+                return BreakFreeFromNoExit(startPos, map);
             }
             case Personnalities.TheExplorer when unvisitedTiles.Count > 0:
             {
@@ -99,68 +122,13 @@ public class PathFinding
             case Personnalities.TheExplorer when exits.Count == 0:
             {
                 if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
-                BreakFreeFromNoExit(startPos, map);
-                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
-                return DirectionToMove.None;
+                return BreakFreeFromNoExit(startPos, map);
+
             }
             case Personnalities.TheKiller when tileWithEnemies.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, tileWithEnemies);
                 return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
-            }
-            case Personnalities.TheKiller when exits.Count > 0:
-            {
-                Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
-                return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
-            }
-            case Personnalities.TheKiller when exits.Count == 0:
-            {
-                if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
-                BreakFreeFromNoExit(startPos, map);
-                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
-                return DirectionToMove.None;
-            }
-            case Personnalities.TheSissy when tileWithEnemies.Count > 0:
-            {
-                List<Vector2Int> nextPositionsPossible = new List<Vector2Int>();
-                //go to the tile with the the less enemies
-                int minEnemies = int.MaxValue;
-                foreach (var tile in tileWithEnemies)
-                {
-                    if (map[tile.x, tile.y].enemies.Count < minEnemies)
-                    {
-                        minEnemies = map[tile.x, tile.y].enemies.Count;
-                        nextPositionsPossible.Clear();
-                        nextPositionsPossible.Add(tile);
-                    }
-                    else if (map[tile.x, tile.y].enemies.Count == minEnemies)
-                    {
-                        nextPositionsPossible.Add(tile);
-                    }
-                }
-                
-                Vector2Int nextPos = GetNextPosition(startPos, parentMap, nextPositionsPossible);
-                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
-                {
-                    return GoThroughDoorWithNoTile(startPos, map);
-                }
-                return GetDirectionToMove(startPos, nextPos);
-            }
-            case Personnalities.TheSissy when exits.Count > 0:
-            {
-                Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
-                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
-                {
-                    return GoThroughDoorWithNoTile(startPos, map);
-                }
-                return GetDirectionToMove(startPos, nextPos);
-            }
-            case Personnalities.TheSissy when exits.Count == 0:
-            {
-                if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
-                BreakFreeFromNoExit(startPos, map);
-                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
-                return DirectionToMove.None;
             }
             case Personnalities.MoveToHero:
             {
@@ -175,6 +143,373 @@ public class PathFinding
                 Debug.Log("No valid path found because no exit or unvisited tiles found");
                 return GoThroughDoorWithNoTile(startPos, map);
         }
+    }
+
+    public static DirectionToMove BFSFindPathV2(Vector2Int startPos, TileData[,] map,
+        List<PersonnalitiesV2> personalities,
+        VisionType visionType, Aggressivity aggressivity, Objectives[] objectives)
+    {
+        if (personalities.Count > 0)
+        {
+            //Break a wall and go through it
+            if (personalities.Contains(PersonnalitiesV2.IMPATIENT))
+            {
+                if (CheckIfNotSurroundedByExits(startPos, map))
+                {
+                    return GoThroughRandomOpenDoor(startPos, map);
+                }
+                return BreakFreeFromNoExit(startPos, map);
+            }
+        }
+        
+        if (visionType != VisionType.CLAIRVOYANT)
+        {
+            // check the number of unvisited tiles if it is 0 and there is no exit, break a wall and go through it
+            int unvisitedTiles = 0;
+            for (int i = 0; i < map.GetLength(0) - 2; i++)
+            {
+                for (int j = 0; j < map.GetLength(1) - 2; j++)
+                {
+                    if (!map[i, j].IsVisited && map[i, j].isConnectedToPath)
+                    {
+                        unvisitedTiles++;
+                    }
+                }
+            }
+            
+            int exits = 0;
+            for (int i = 0; i < map.GetLength(0) - 2; i++)
+            {
+                for (int j = 0; j < map.GetLength(1) - 2; j++)
+                {
+                    if (map[i, j].isExit)
+                    {
+                        exits++;
+                    }
+                }
+            }
+            
+            if (unvisitedTiles == 0 && exits == 0)
+            {
+                if (CheckIfNotSurroundedByExits(startPos, map))
+                {
+                    return GoThroughRandomOpenDoor(startPos, map);
+                }
+
+                return BreakFreeFromNoExit(startPos, map);
+            }
+        }
+
+        switch (visionType)
+        {
+            case VisionType.RECTILIGNE:
+                return LineVision(startPos, map,personalities, aggressivity, objectives);
+            case VisionType.BIGLEUX:
+                return CheckSuroundingTiles(startPos, map, personalities, aggressivity, objectives);
+            case VisionType.CLAIRVOYANT:
+                
+                SetAllTilesAsVisited(map);
+                
+                if (aggressivity == Aggressivity.COURAGEUX)
+                {
+                    // check if there are enemies on the map
+                    List<Vector2Int> enemies = new List<Vector2Int>();
+                    for (int i = 0; i < map.GetLength(0) - 2; i++)
+                    {
+                        for (int j = 0; j < map.GetLength(1) - 2; j++)
+                        {
+                            if (map[i, j].enemies.Count > 0)
+                            {
+                                enemies.Add(new Vector2Int(i, j));
+                            }
+                        }
+                    }
+                    
+                    if (enemies.Count > 0)
+                    {
+                        BFSFindPath(startPos, map, Personnalities.TheKiller);
+                    }
+                }
+                return BFSFindPath(startPos, map, Personnalities.HurryForTheExit);
+            default:
+                throw new ArgumentOutOfRangeException(nameof(visionType), visionType, null);
+        }
+    }
+
+    private static DirectionToMove LineVision(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities, Aggressivity aggressivity, Objectives[] objectives)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            int x = startPos.x;
+            int y = startPos.y;
+            int xDir = 0;
+            int yDir = 0;
+            switch (i)
+            {
+                case 0:
+                    xDir = 1;
+                    break;
+                case 1:
+                    xDir = -1;
+                    break;
+                case 2:
+                    yDir = 1;
+                    break;
+                case 3:
+                    yDir = -1;
+                    break;
+            }
+
+            while (x >= 0 && x < MapManager.Instance.width - 2 && y >= 0 && y < MapManager.Instance.height - 2)
+            {
+                if (MapManager.Instance.mapArray[x, y].isRoom)
+                {
+                    MapManager.Instance.mapArray[x, y].isVisited = true;
+                }
+                else
+                {
+                    break;
+                }
+
+                x += xDir;
+                y += yDir;
+            }
+        }
+
+        if (aggressivity == Aggressivity.COURAGEUX)
+        {
+            return BFSFindPath(startPos, map, Personnalities.TheKiller);
+        }
+
+        foreach (var VARIABLE in objectives)
+        {
+            switch (VARIABLE)
+            {
+                case Objectives.EXPLORATION:
+                    return BFSFindPath(startPos, map, Personnalities.TheExplorer);
+                case Objectives.SORTIE:
+                    return BFSFindPath(startPos, map, Personnalities.HurryForTheExit);
+            }
+        }
+        
+        return BFSFindPath(startPos, map, Personnalities.HurryForTheExit);
+    }
+
+    private static void SetAllTilesAsVisited(TileData[,] map)
+    {
+        for (int i = 0; i < MapManager.Instance.width - 2; i++)
+        {
+            for (int j = 0; j < MapManager.Instance.height - 2; j++)
+            {
+                if (MapManager.Instance.mapArray[i, j].isConnectedToPath)
+                {
+                    MapManager.Instance.mapArray[i, j].isVisited = true;
+                    map[i, j].isVisited = true;
+                }
+            }
+        }
+    }
+
+    private static DirectionToMove CheckSuroundingTiles(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities, Aggressivity aggressivity, Objectives[] objectives)
+    {
+        // check the 4 tiles around the hero, if they have a door
+        List<DirectionToMove> directions = new List<DirectionToMove>();
+        if (startPos.x > 0 && map[startPos.x, startPos.y].hasDoorLeft)
+        {
+            directions.Add(DirectionToMove.Left);
+        }
+        if (startPos.x < map.GetLength(0) - 1 && map[startPos.x, startPos.y].hasDoorRight)
+        {
+            directions.Add(DirectionToMove.Right);
+        }
+        if (startPos.y > 0 && map[startPos.x, startPos.y].hasDoorDown)
+        {
+            directions.Add(DirectionToMove.Down);
+        }
+        if (startPos.y < map.GetLength(1) - 1 && map[startPos.x, startPos.y].hasDoorUp)
+        {
+            directions.Add(DirectionToMove.Up);
+        }
+        
+        if (directions.Count > 0)
+        {
+            foreach (var direction in directions)
+            {
+                Vector2Int simulatedPos = startPos;
+                switch (direction)
+                {
+                    case DirectionToMove.Up:
+                        simulatedPos.y += 1;
+                        break;
+                    case DirectionToMove.Down:
+                        simulatedPos.y -= 1;
+                        break;
+                    case DirectionToMove.Left:
+                        simulatedPos.x -= 1;
+                        break;
+                    case DirectionToMove.Right:
+                        simulatedPos.x += 1;
+                        break;
+                    case DirectionToMove.None:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                map[simulatedPos.x, simulatedPos.y].isVisited = true;
+            }
+            
+            if (aggressivity == Aggressivity.COURAGEUX)
+            {
+                List<DirectionToMove> directionsWithEnemies = new List<DirectionToMove>();
+                foreach (var direction in directions)
+                {
+                    Vector2Int simulatedPos = startPos;
+                    switch (direction)
+                    {
+                        case DirectionToMove.Up:
+                            simulatedPos.y += 1;
+                            break;
+                        case DirectionToMove.Down:
+                            simulatedPos.y -= 1;
+                            break;
+                        case DirectionToMove.Left:
+                            simulatedPos.x -= 1;
+                            break;
+                        case DirectionToMove.Right:
+                            simulatedPos.x += 1;
+                            break;
+                        case DirectionToMove.None:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+
+                    if (map[simulatedPos.x, simulatedPos.y].enemies.Count > 0)
+                    {
+                        directionsWithEnemies.Add(direction);
+                    }
+                }
+                if (directionsWithEnemies.Count > 0)
+                {
+                    int randomIndex = Random.Range(0, directionsWithEnemies.Count);
+                    return directionsWithEnemies[randomIndex];
+                }
+            }
+
+            if (aggressivity == Aggressivity.PEUREUX)
+            {
+                List<DirectionToMove> directionsWithNoEnemies = new List<DirectionToMove>();
+                foreach (var direction in directions)
+                {
+                    Vector2Int simulatedPos = startPos;
+                    switch (direction)
+                    {
+                        case DirectionToMove.Up:
+                            simulatedPos.y += 1;
+                            break;
+                        case DirectionToMove.Down:
+                            simulatedPos.y -= 1;
+                            break;
+                        case DirectionToMove.Left:
+                            simulatedPos.x -= 1;
+                            break;
+                        case DirectionToMove.Right:
+                            simulatedPos.x += 1;
+                            break;
+                        case DirectionToMove.None:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+
+                    if (map[simulatedPos.x, simulatedPos.y].enemies.Count == 0)
+                    {
+                        directionsWithNoEnemies.Add(direction);
+                    }
+                }
+                if (directionsWithNoEnemies.Count > 0)
+                {
+                    List<DirectionToMove> possibleDirections = new List<DirectionToMove>();
+                    foreach (var objective in objectives)
+                    {
+                        if (objective == Objectives.EXPLORATION)
+                        {
+                            foreach (var direction in directionsWithNoEnemies)
+                            {
+                                Vector2Int simulatedPos = startPos;
+                                switch (direction)
+                                {
+                                    case DirectionToMove.Up:
+                                        simulatedPos.y += 1;
+                                        break;
+                                    case DirectionToMove.Down:
+                                        simulatedPos.y -= 1;
+                                        break;
+                                    case DirectionToMove.Left:
+                                        simulatedPos.x -= 1;
+                                        break;
+                                    case DirectionToMove.Right:
+                                        simulatedPos.x += 1;
+                                        break;
+                                    case DirectionToMove.None:
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException();
+                                }
+
+                                if (!map[simulatedPos.x, simulatedPos.y].IsVisited)
+                                {
+                                    possibleDirections.Add(direction);
+                                }
+                            }
+                        }
+
+                        if (objective == Objectives.SORTIE)
+                        {
+                            foreach (var direction in directionsWithNoEnemies)
+                            {
+                                Vector2Int simulatedPos = startPos;
+                                switch (direction)
+                                {
+                                    case DirectionToMove.Up:
+                                        simulatedPos.y += 1;
+                                        break;
+                                    case DirectionToMove.Down:
+                                        simulatedPos.y -= 1;
+                                        break;
+                                    case DirectionToMove.Left:
+                                        simulatedPos.x -= 1;
+                                        break;
+                                    case DirectionToMove.Right:
+                                        simulatedPos.x += 1;
+                                        break;
+                                    case DirectionToMove.None:
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException();
+                                }
+
+                                if (map[simulatedPos.x, simulatedPos.y].isExit)
+                                {
+                                    possibleDirections.Add(direction);
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (possibleDirections.Count > 0)
+                    {
+                        int randomIndex = Random.Range(0, possibleDirections.Count);
+                        return possibleDirections[randomIndex];
+                    }
+                    
+                    return directionsWithNoEnemies[Random.Range(0, directionsWithNoEnemies.Count)];
+                }
+            }
+        }
+        
+        return GoThroughRandomOpenDoor(startPos, map);
     }
 
     private static bool CheckIfNotSurroundedByExits(Vector2Int startPos, TileData[,] map)
@@ -197,7 +532,7 @@ public class PathFinding
         return startPos.y < map.GetLength(1) - 1 && map[startPos.x, startPos.y + 1].isExit;
     }
 
-    private static void BreakFreeFromNoExit(Vector2Int startPos, TileData[,] map)
+    private static DirectionToMove BreakFreeFromNoExit(Vector2Int startPos, TileData[,] map)
     {
         SoundManagerIngame.Instance.PlaySound(EmoteType.WallBreak);
         OnNoPathFound?.Invoke();
@@ -234,23 +569,30 @@ public class PathFinding
                 //down
                 tileWallBreaker.hasDoorDown = true;
                 MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,0);
-                break;
+                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
+                return DirectionToMove.Down;
             case 1:
                 //up
                 tileWallBreaker.hasDoorUp = true;
                 MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,2);
-                break;
+                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
+                return DirectionToMove.Up;
             case 2:
                 //left
                 tileWallBreaker.hasDoorLeft = true;
                 MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,1);
-                break;
+                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
+                return DirectionToMove.Left;
             case 3:
                 //right
                 tileWallBreaker.hasDoorRight = true;
                 MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,3);
-                break;
+                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
+                return DirectionToMove.Right;
         }
+        
+        MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
+        return DirectionToMove.None;
     }
 
     private static Vector2Int GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap, List<Vector2Int> positions)
@@ -276,7 +618,7 @@ public class PathFinding
 
         return nextPos;
     }
-
+    
     private static DirectionToMove GetDirectionToMove(Vector2Int startPos, Vector2Int nextPos)
     {
         if (nextPos.x < startPos.x)
