@@ -207,6 +207,18 @@ public class PathFindingV2
 
     private static DirectionToMove Clairvoyant(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities, Aggressivity aggressivity, Objectives[] objectives)
     {
+        for (int i = 0; i < MapManager.Instance.width - 2; i++)
+        {
+            for (int j = 0; j < MapManager.Instance.height - 2; j++)
+            {
+                if (MapManager.Instance.mapArray[i, j].isConnectedToPath)
+                {
+                    MapManager.Instance.mapArray[i, j].isVisited = true;
+                    map[i, j].isVisited = true;
+                    // Debug.DrawLine(MapManager.Instance.mapArray[i, j].transform.position, MapManager.Instance.mapArray[i, j].transform.position + Vector3.up, Color.red, 100f);
+                }
+            }
+        }
         if (aggressivity == Aggressivity.COURAGEUX)
         {
             FindTilesWithEnemies(map);
@@ -431,8 +443,8 @@ public class PathFindingV2
         return DirectionFromTo(startPos, closestExit);
     }
 
-    private static List<Vector2Int> CheckIfEnemyIsInLineOfSight(Vector2Int startPos, Vector2Int[] tilesInLineOfSight,
-        List<Vector2Int> vector2Ints)
+    private static List<Vector2Int> CheckIfEnemyIsInLineOfSight(Vector2Int startPos, IEnumerable<Vector2Int> tilesInLineOfSight,
+        ICollection<Vector2Int> vector2Ints)
     {
         return tilesInLineOfSight.Where(tileInLineOfSight => vector2Ints.Contains(tileInLineOfSight)).ToList();
     }

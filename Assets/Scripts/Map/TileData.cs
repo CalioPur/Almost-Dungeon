@@ -14,6 +14,7 @@ public class TileData : MonoBehaviour
         set => _instance.DoorOnTop = value;
     }
 
+    
     public bool hasDoorRight
     {
         get => _instance?.DoorOnRight ?? false;
