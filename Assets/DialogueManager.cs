@@ -264,6 +264,10 @@ public class DialogueManager : MonoBehaviour
                             }
                         }
                         break;
+                    case "dragonHeal":
+                        var healDragon = int.Parse(split[1]);
+                        FindObjectOfType<UI_Dragon>().Heal(healDragon);
+                        break;
                 }
             }
         }

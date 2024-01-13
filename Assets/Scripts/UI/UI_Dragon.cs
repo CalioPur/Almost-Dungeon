@@ -117,6 +117,15 @@ public class UI_Dragon : MonoBehaviour
     {
         StartCoroutine(AttackByHero(0.5f, hero));
     }
+    public void Heal(int healAmount)
+    {
+        currentHealth += healAmount;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        DrawHearts();
+    }
 
     private void Start()
     {

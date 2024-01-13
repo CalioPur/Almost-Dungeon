@@ -8,7 +8,7 @@ Haha... Bien sûr, ce n'était qu'un échauffement pour moi, je suis toujours pr
 === Effrayer ===
 Bien, nous allons pouvoir augmenter le rythme alors. J'espère que vous êtes prêt à affronter mon armée. #chara:dragon
 Quoi... ? Euh... je veux dire bien sûr hahaha... une armée.. #chara:knight
-Tant mieux, commençons sans tarder, en garde Héros... #chara:dragon
+Tant mieux, commençons sans tarder, en garde Héros... #chara:dragon #dragonHeal:2
 En garde Dragon ! #chara:knight
     -> END
 
