@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   terrains:
-  - {fileID: 11400000, guid: 1c161b04b0fb1f348b534906312a459b, type: 2}
+  - {fileID: 11400000, guid: f053d3ca21e35924eab1c6892b5c046e, type: 2}
   heros:
-  - {fileID: 11400000, guid: 71536925003f60a44bce2634291668b2, type: 2}
+  - {fileID: 11400000, guid: 4144be4f2ea074245945692b83c41ac4, type: 2}
   decks:
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
   nbCardToDraw: 3

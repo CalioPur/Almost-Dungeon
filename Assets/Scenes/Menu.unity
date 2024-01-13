@@ -1292,7 +1292,6 @@ MonoBehaviour:
   playButton: {fileID: 771655035}
   quitButton: {fileID: 588752015}
   levelSelection: {fileID: 1713900632}
-  resetLevelIndexOnPlay: 1
 --- !u!114 &1461340014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1585,7 +1584,6 @@ MonoBehaviour:
   image: {fileID: 1713900634}
   videoPlayer: {fileID: 689731033}
   CanvasBlack: {fileID: 901229528}
-  timeToWait: 2
 --- !u!1 &1983260439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,9 +1911,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
+      propertyPath: dungeons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[2].name
+      value: test
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
       propertyPath: dungeons.Array.data[0].dungeonSO
       value: 
       objectReference: {fileID: 11400000, guid: 3cd4d22b85c014c4c9e31a7fd65052ab,
+        type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[2].dungeonSO
+      value: 
+      objectReference: {fileID: 11400000, guid: c13d45a85968f1e4296682cd99e14e82,
         type: 2}
     - target: {fileID: 6577308284193752911, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
