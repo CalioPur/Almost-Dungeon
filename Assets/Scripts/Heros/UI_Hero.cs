@@ -136,7 +136,7 @@ public class UI_Hero : MonoBehaviour
         float t = 0;
         float baseSize = Camera.main.orthographicSize;
         
-        camera1.transform.DOMove(FindObjectOfType<Hero>().transform.position + new Vector3(0, +10, 0), 0.5f);
+        //camera1.transform.DOMove(FindObjectOfType<Hero>().transform.position + new Vector3(0, +10, 0), 0.5f);
         while (t < 0.5f)
         {
             t += Time.deltaTime;

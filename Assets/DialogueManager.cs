@@ -131,7 +131,7 @@ public class DialogueManager : MonoBehaviour
         {
             story = new Story(currentDialogue.text);
         }
-        catch (Exception e){
+        catch{
             dialogueBox.SetActive(false);
             Time.timeScale = 1;
             return; 
