@@ -4,5 +4,5 @@ Ah te voilà $$Dragon$$ ! Vile créature, je vais te pourfendre et revenir couve
 ... #chara:dragon
 Je ne t'entends pas $$Dragon$$ ! Ton verbe serait-il aussi vide que ton Donjon ? #chara:knight
 Bon... Et bien puisque vous insistez pour être désagréable, $$battons-nous$$ "Héros" !  #chara:dragon
-A la bonne heure ! #chara:knight
+A la bonne heure ! #chara:knight #playSFX:DragonRoar
     -> END

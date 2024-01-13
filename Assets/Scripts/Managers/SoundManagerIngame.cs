@@ -10,10 +10,18 @@ public struct AudioDataSound
     public AudioSource audioSource;
 }
 
+[Serializable]
+public struct SFXAudioDataSound
+{
+    public String sfxName;
+    public AudioSource audioSource;
+}
+
 public class SoundManagerIngame : MonoBehaviour
 {
     public static SoundManagerIngame Instance;
     [SerializeField] private List<AudioDataSound> emotesAudioSources;
+    public SFXAudioDataSound[] sfxAudioSource;
     
     private Dictionary<EmoteType, AudioSource> emotesDictionary = new Dictionary<EmoteType, AudioSource>();
 
@@ -44,5 +52,12 @@ public class SoundManagerIngame : MonoBehaviour
     public void PlaySound(EmoteType emote)
     {
         PlaySound(emotesDictionary[emote]);
+    }
+
+    public void PlayDialogueSFX(string name)
+    {
+        SFXAudioDataSound s = Array.Find(sfxAudioSource, x => x.sfxName == name);
+        
+            PlaySound(s.audioSource);
     }
 }

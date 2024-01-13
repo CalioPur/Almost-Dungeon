@@ -2,7 +2,7 @@ VAR pdv = 10
 
 Encore en vie Chevalier ?  #chara:dragon
 Oh non... Pas encore lui...  #chara:knight #emote:fear
-Et bien cher Héros... où est donc passé ton entrain, serait-il resté embroché sur l'un de mes pièges ? #chara:dragon
+Et bien cher Héros... où est donc passé ton entrain, serait-il resté embroché sur l'un de $$mes pièges$$ ? #chara:dragon
 Pitié, arrêtez les flammes, les explosions, je n'en peux plus... #chara:knight
 Dites moi que c'est fini je vous en prie... 
 

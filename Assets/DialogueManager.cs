@@ -236,6 +236,19 @@ public class DialogueManager : MonoBehaviour
                                 break;
                         }
                         break;
+                    
+                    case "playSFX":
+                        switch (split[1])
+                        {
+                            case (not null) :
+                                SoundManagerIngame.Instance.PlayDialogueSFX(tag);
+                                break;
+                            case (null) :
+                                Debug.Log("sound not assigned");
+                                break;
+                        }
+                        break;
+                    
                     case "changeclass":
                         switch (split[1])
                         {
