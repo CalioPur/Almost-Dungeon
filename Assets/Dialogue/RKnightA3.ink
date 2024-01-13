@@ -4,15 +4,15 @@ Et bien cher Héros... où est donc passé ton entrain, serait-il resté embroch
 PPitié, arrêtez les flammes, les explosions, je n'en peux plus... #chara:knight
 Dites moi que c'est fini je vous en prie... 
 
-*Lui dire la vérité : -> Verite
-*Lui mentir : -> Mentir
+* [Lui dire la vérité] -> Verite
+* [Lui mentir] -> Mentir
 
 === Verite ===
 Je crains que ce ne soit pas la fin, vous allez encore devoir subir quelques pièges... #chara:dragon
 Quoi ... ? Ce n'est pas possible... Ce n'était pas supposé se passer comme ça... #chara:knight
 
-* L'effrayer : -> Morale
-* Le soigner : -> Vie
+* [L'effrayer] -> Morale
+* [Le soigner] -> Vie
 
 === Morale ===
 L'aventure a ce désaventage en effet, mais vous ne pouviez pas dire que vous n'aviez pas été prévenu. #chara:dragon
@@ -39,8 +39,8 @@ Bien sûr cher ennemi, c'est fini, le prochain labyrinthe sera bien plus simple.
 Oh vraiment... vous êtes certain ? #chara:knight #removeemote:fear
 Plus de flammes dans votre deck ? 
 
-* L'effrayer : -> Defausse
-* Le soigner : -> Pioche
+* [L'effrayer] -> Defausse
+* [Le soigner] -> Pioche
 
 === Defausse ===
 Bien sûr que non imbécile ! #chara:dragon
