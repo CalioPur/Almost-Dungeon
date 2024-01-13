@@ -19,7 +19,10 @@ public class KnightBT : Tree
                 new AttackMinion(BB),
                 new CheckTargetIsAlive(BB)
             ),
-            new HeroMovementBehavior(BB)
+            
+            new HeroMovementBehavior(BB),
+            new DisplayNewDirection(BB)
+            
         );
         return origin;
     }

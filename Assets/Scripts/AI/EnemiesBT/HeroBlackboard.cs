@@ -12,4 +12,8 @@ public class HeroBlackboard : MonoBehaviour
     [HideInInspector] public List<TrapData> ChosenTarget = new();
     [HideInInspector] public List<Vector2Int> DoorSaw = new();
     [HideInInspector] public Vector2Int DoorTarget;
+    public GameObject upArrow;
+    public GameObject rightArrow;
+    public GameObject downArrow;
+    public GameObject leftArrow;
 }
