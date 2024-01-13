@@ -1,7 +1,9 @@
+VAR pdv = 10
+
 Encore en vie Chevalier ?  #chara:dragon
 Oh non... Pas encore lui...  #chara:knight #emote:fear
 Et bien cher Héros... où est donc passé ton entrain, serait-il resté embroché sur l'un de mes pièges ? #chara:dragon
-PPitié, arrêtez les flammes, les explosions, je n'en peux plus... #chara:knight
+Pitié, arrêtez les flammes, les explosions, je n'en peux plus... #chara:knight
 Dites moi que c'est fini je vous en prie... 
 
 * [Lui dire la vérité] -> Verite
@@ -10,9 +12,9 @@ Dites moi que c'est fini je vous en prie...
 === Verite ===
 Je crains que ce ne soit pas la fin, vous allez encore devoir subir quelques pièges... #chara:dragon
 Quoi ... ? Ce n'est pas possible... Ce n'était pas supposé se passer comme ça... #chara:knight
-
-* [L'effrayer] -> Morale
-* [Le soigner] -> Vie
+Je ne vais jamais en ressortir vivant !
+* [Continuer de l'effrayer ($le héros devient$ <color=blue>$$peureux$$) ] -> Morale
+* [L'empêcher de paniquer ($Le héros gagne <color=red>{pdv} pdv</color>$) ] -> Vie
 
 === Morale ===
 L'aventure a ce désaventage en effet, mais vous ne pouviez pas dire que vous n'aviez pas été prévenu. #chara:dragon
@@ -29,7 +31,7 @@ Quoi ?! Mon argent ... ? #chara:knight
 Mais tout cela n'aura servi à rien... 
 ...
 Bien, j'accepte... 
-A la bonne heure ! Tenez, voici qui devrait vous aider à garder votre courage.  #chara:dragon #hpplus:10
+A la bonne heure ! Tenez, voici qui devrait vous aider à garder votre courage.  #chara:dragon #hpplus:{pdv}
 -> END
 
 
@@ -37,10 +39,10 @@ A la bonne heure ! Tenez, voici qui devrait vous aider à garder votre courage. 
 === Mentir===
 Bien sûr cher ennemi, c'est fini, le prochain labyrinthe sera bien plus simple... #chara:dragon
 Oh vraiment... vous êtes certain ? #chara:knight #removeemote:fear
-Plus de flammes dans votre deck ? 
+Vous me promettez de ne plus de flammes dans votre deck ? 
 
-* [L'effrayer] -> Defausse
-* [Le soigner] -> Pioche
+* [Lui dire la vérité ($le héros devient$ <color=blue>$$peureux$$)] -> Defausse
+* [L'empêcher de paniquer ($Le héros gagne <color=red>{pdv} pdv</color>$)] -> Pioche
 
 === Defausse ===
 Bien sûr que non imbécile ! #chara:dragon
@@ -52,5 +54,5 @@ Continuez à courir ou vous finirez en rôti !
 Bien sûr, bien sûr, regardez, voici une potion pour me faire pardonner. #chara:dragon
 Ah... #chara:knight
 Bon, merci, vous êtes bien aimable finalement, j'accepte.
-A la bonne heure ! Tenez, cela devrait vous aider à garder votre courage. #chara:dragon #hpplus:10
+A la bonne heure ! Tenez, cela devrait vous aider à garder votre courage. #chara:dragon #hpplus:{pdv}
 -> END

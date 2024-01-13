@@ -19,3 +19,4 @@ MonoBehaviour:
   personnalities: 01000000
   heroDialogues:
   - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
+  keyToUnlock: 
