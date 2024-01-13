@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
+using LogicUI.FancyTextRendering;
 using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -36,7 +37,7 @@ public class DialogueManager : MonoBehaviour
     private GameObject arrowDragon;
     private GameObject choice1;
     private GameObject choice2;
-    private TMP_Text dialogueText;
+    private MarkdownRenderer dialogueText;
     private Button nextButton;
     private Image otherImage;
     private static event Action OnEndDialogEvent; 
@@ -64,7 +65,7 @@ public class DialogueManager : MonoBehaviour
         choice2 = GameObject.Find("Choice2");
         otherImage = GameObject.Find("InterlocutorImg").GetComponent<Image>();
         
-        dialogueText = dialogueBox.GetComponentInChildren<TMP_Text>();
+        dialogueText = dialogueBox.GetComponentInChildren<MarkdownRenderer>();
         nextButton = dialogueBox.GetComponentInChildren<Button>();
         nextButton.onClick.AddListener(NextDialogue);
     }
@@ -155,7 +156,7 @@ public class DialogueManager : MonoBehaviour
         var choices = story.currentChoices.Count;
         if (story.canContinue)
         {
-            dialogueText.text = story.Continue();
+            dialogueText.Source = story.Continue();
             EvaluateTags();
         }
         else
