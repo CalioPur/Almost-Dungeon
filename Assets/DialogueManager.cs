@@ -284,8 +284,8 @@ public class DialogueManager : MonoBehaviour
         choice1.SetActive(true);
         choice2.SetActive(true);
         nextButton.gameObject.SetActive(false);
-        choice1.GetComponentInChildren<TMP_Text>().text = storyCurrentChoices[0].text;
-        choice2.GetComponentInChildren<TMP_Text>().text = storyCurrentChoices[1].text;
+        choice1.GetComponentInChildren<MarkdownRenderer>().Source = storyCurrentChoices[0].text;
+        choice2.GetComponentInChildren<MarkdownRenderer>().Source = storyCurrentChoices[1].text;
         choice1.GetComponentInChildren<Button>().onClick.AddListener(delegate { OnClickChoiceButton(storyCurrentChoices[0]); });
         choice2.GetComponentInChildren<Button>().onClick.AddListener(delegate { OnClickChoiceButton(storyCurrentChoices[1]); });
     }
