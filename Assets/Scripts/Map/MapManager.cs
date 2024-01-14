@@ -197,8 +197,9 @@ public class MapManager : MonoBehaviour
         canBePlaced = CheckPosWithData(data, card);
         if (!canBePlaced)
         {
-            card.GetImage().transform.position = card.transform.position;
-            card.removeSelection();
+            return;
+            // card.GetImage().transform.position = card.transform.position;
+            // card.removeSelection();
         }
         OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
         MapManagerTools.SetConnectedToPath();

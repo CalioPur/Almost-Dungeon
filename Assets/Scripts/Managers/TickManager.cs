@@ -107,7 +107,12 @@ public class TickManager : MonoBehaviour
             // Check if there are any subscribers before invoking
             if (datas != null)
             {
-                datas.ForEach(tickData => tickData._action?.Invoke());
+                //datas.ForEach(tickData => tickData._action?.Invoke());
+                for (int i = 0; i < datas.Count; i++)
+                {
+                    if (i < datas.Count && datas[i]._action != null)
+                        datas[i]._action.Invoke();
+                }
             }
         }
     }

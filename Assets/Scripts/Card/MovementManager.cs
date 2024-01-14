@@ -53,11 +53,11 @@ public class MovementManager : MonoBehaviour
     {
         if (!canBePlaced)
         {
-            card.GetImage().gameObject.transform.position = card.transform.position;
-            card.removeSelection();
+            //card.GetImage().gameObject.transform.position = card.transform.position;
+            //card.removeSelection();
             return;
         }
-        
+        cardVisualizer.SetActive(false);
         data.SetInstance(card.Card);
         OnTilePosedEvent?.Invoke(data, card.Card);
         //card.EmptyCard();
@@ -189,7 +189,6 @@ public class MovementManager : MonoBehaviour
         {
             TileData tile = hit.collider.gameObject.GetComponent<TileData>();
             cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
-            cardVisualizer.SetActive(false);
             OnTileSelectedEvent?.Invoke(tile);
         }
     }
@@ -243,7 +242,8 @@ public class MovementManager : MonoBehaviour
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.transform.position = new Vector3(100, 100, 100);
         cardVisualizer.SetActive(true);
-        if (selectedCard != null && selectedCard.GetSprite() == null)
+        if (!selectedCard) return;
+        if (selectedCard.GetSprite() == null)
         {
             Debug.Log("Sprite null");
             return;

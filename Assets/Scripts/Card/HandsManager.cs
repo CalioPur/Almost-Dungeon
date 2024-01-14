@@ -77,19 +77,18 @@ public class HandsManager : MonoBehaviour
         if (selectedCard == null) return;
         if (selectedCard.Card == null)
         {
-            selectedCard.removeSelection();
-            selectedCard = null;
+            // selectedCard.removeSelection();
+            // selectedCard = null;
             return;
         }
 
         if (obj.PiecePlaced)
         {
-            selectedCard.GetImage().transform.position = selectedCard.transform.position;
-            selectedCard.removeSelection();
-            selectedCard = null;
+            // selectedCard.GetImage().transform.position = selectedCard.transform.position;
+            // selectedCard.removeSelection();
+            // selectedCard = null;
             return;
         }
-
         OnCardTryToPlaceEvent?.Invoke(obj, selectedCard);
     }
     
