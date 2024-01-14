@@ -157,6 +157,11 @@ public class Hero : MonoBehaviour, IFlippable
     private void IsDead()
     {
         //TODO: t'as gagne bg :*
+        Vector3 pos = transform.position;
+        pos.y += 1f;
+
+        Camera.main.transform.DOMove(pos, 1f).SetEase(Ease.InBack);
+        Camera.main.transform.DORotate(new Vector3(90, 0, 0), 1f).SetEase(Ease.InBack);
     }
 
     public void TakeDamage(int soAttackPoint, AttackType attackType)
