@@ -20,8 +20,7 @@ public class KnightBT : Tree
                 new CheckTargetIsAlive(BB)
             ),
             
-            new HeroMovementBehavior(BB),
-            new DisplayNewDirection(BB)
+            new HeroMovementBehavior(BB)
             
         );
         return origin;
