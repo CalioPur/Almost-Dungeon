@@ -20,13 +20,14 @@ public class CheckDirectionToMove : Node
         // blackboard.directionToMove = PathFinding.BFSFindPath(
         //     blackboard.hero.GetIndexHeroPos(),
         //     blackboard.hero.mapManager.getMapArray(), blackboard.personality);
-        blackboard.directionToMove = PathFinding.BFSFindPathV2(
-            blackboard.hero.GetIndexHeroPos(),
-            blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>(), VisionType.RECTILIGNE,
-            Aggressivity.COURAGEUX, new[]
-            {
-                Objectives.SORTIE
-            });
+        // blackboard.directionToMove = PathFinding.BFSFindPathV2(
+        //     blackboard.hero.GetIndexHeroPos(),
+        //     blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>(), VisionType.RECTILIGNE,
+        //     Aggressivity.COURAGEUX, new[]
+        //     {
+        //         Objectives.SORTIE
+        //     });
+        blackboard.directionToMove = ALaid1.Line(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
         if (blackboard.directionToMove == DirectionToMove.None)
         {
             Debug.Log("Random");
