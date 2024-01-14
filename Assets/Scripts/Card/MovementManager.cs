@@ -8,7 +8,7 @@ public class MovementManager : MonoBehaviour
     public static event Action<TileData, CardInfoInstance> OnTilePosedEvent;
     public static event Action<CardInfoInstance> OnFinishToPose;
 
-    [SerializeField] private GameObject gridVisualizer;
+    //[SerializeField] private GameObject gridVisualizer;
     [SerializeField] private GameObject cardVisualizer;
     private TileData selectedTile;
     private Vector3 offset;
@@ -84,7 +84,7 @@ public class MovementManager : MonoBehaviour
     private Color whiteA05 = new(255, 255, 255, 0.5f);
     void Update()
     {
-        gridVisualizer.GetComponent<Renderer>().sharedMaterial.SetVector("_Position", GetMousePositionOnGrid());
+        //gridVisualizer.GetComponent<Renderer>().sharedMaterial.SetVector("_Position", GetMousePositionOnGrid());
 
         if (selectedCard != null)
         {
@@ -146,22 +146,22 @@ public class MovementManager : MonoBehaviour
         }
     }
     
-    private Vector4 GetMousePositionOnGrid()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (!Physics.Raycast(ray, out hit)) return Vector4.zero;
-        if (!hit.collider.gameObject == gridVisualizer) return Vector4.zero;
-        mousePos = hit.point;
-        //set the mouse position to a value between 0 and 1
-        mousePos.x /= (gridVisualizer.transform.localScale.x*10);
-        mousePos.z /= (gridVisualizer.transform.localScale.z*10);
-        mousePos.x = 0.5f - mousePos.x;
-        mousePos.z = 0.5f - mousePos.z;
-        mousePos.x = Mathf.Clamp(mousePos.x, 0, 1);
-        mousePos.z = Mathf.Clamp(mousePos.z, 0, 1);
-        return new Vector4(mousePos.x, mousePos.z, 0, 0);
-    }
+    // private Vector4 GetMousePositionOnGrid()
+    // {
+    //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //     RaycastHit hit;
+    //     if (!Physics.Raycast(ray, out hit)) return Vector4.zero;
+    //     if (!hit.collider.gameObject == gridVisualizer) return Vector4.zero;
+    //     mousePos = hit.point;
+    //     //set the mouse position to a value between 0 and 1
+    //     mousePos.x /= (gridVisualizer.transform.localScale.x*10);
+    //     mousePos.z /= (gridVisualizer.transform.localScale.z*10);
+    //     mousePos.x = 0.5f - mousePos.x;
+    //     mousePos.z = 0.5f - mousePos.z;
+    //     mousePos.x = Mathf.Clamp(mousePos.x, 0, 1);
+    //     mousePos.z = Mathf.Clamp(mousePos.z, 0, 1);
+    //     return new Vector4(mousePos.x, mousePos.z, 0, 0);
+    // }
 
     private void HandleMouseDown()
     {
