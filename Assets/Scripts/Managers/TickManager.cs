@@ -30,10 +30,12 @@ public class TickManager : MonoBehaviour
     private float nextTickTime;
     private static bool TickOnPaused = false;
     private static int index = 0;
+    private static bool EndGame = false;
 
     void Awake()
     {
         GameManager.OnEndDialogEvent += LaunchBPM;
+        EndGame = false;
     }
 
     private void OnDisable()
@@ -42,6 +44,7 @@ public class TickManager : MonoBehaviour
         index = 0;
         movementEvents = new();
         entityIds = new();
+        EndGame = false;
     }
 
     void LaunchBPM()
@@ -95,7 +98,7 @@ public class TickManager : MonoBehaviour
 
     void Tick()
     {
-        if (TickOnPaused) return;
+        if (TickOnPaused || EndGame) return;
         nextTickTime = Time.time;
         OnTick?.Invoke();
 
@@ -147,5 +150,10 @@ public class TickManager : MonoBehaviour
     {
         //change the BPM when the slider for actions time is changed so the bpm is equivalent to the actions time for exemple we have 3 type of actions and the actions time is 3s so each actions take 1s so the bpm is 60
         BPM = Mathf.RoundToInt(60 / actionsTime);
+    }
+
+    public static void OnEndGame()
+    {
+        EndGame = true;
     }
 }

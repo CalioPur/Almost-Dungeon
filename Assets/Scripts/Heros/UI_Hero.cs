@@ -127,23 +127,22 @@ public class UI_Hero : MonoBehaviour
         }
         //endGamePanel.SetActive(true);
         StartCoroutine(EndGameFX());
-
     }
     
     private IEnumerator EndGameFX()
     {
-        Camera camera1 = Camera.main;
-        float t = 0;
-        float baseSize = Camera.main.orthographicSize;
-        
-        //camera1.transform.DOMove(FindObjectOfType<Hero>().transform.position + new Vector3(0, +10, 0), 0.5f);
-        while (t < 0.5f)
-        {
-            t += Time.deltaTime;
-            camera1.orthographicSize = Mathf.Lerp(baseSize, 1f, t / 0.5f);
-            Time.timeScale = Mathf.Lerp(1, 0.25f, t / 0.5f);
-            yield return null;
-        }
+        // Camera camera1 = Camera.main;
+        // float t = 0;
+        // float baseSize = Camera.main.orthographicSize;
+        //
+        // //camera1.transform.DOMove(FindObjectOfType<Hero>().transform.position + new Vector3(0, +10, 0), 0.5f);
+        // while (t < 0.5f)
+        // {
+        //     t += Time.deltaTime;
+        //     camera1.orthographicSize = Mathf.Lerp(baseSize, 1f, t / 0.5f);
+        //     Time.timeScale = Mathf.Lerp(1, 0.25f, t / 0.5f);
+        //     yield return null;
+        // }
         
         yield return new WaitForSeconds(0.5f);
         endGamePanel.SetActive(true);

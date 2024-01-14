@@ -153,7 +153,13 @@ public class Hero : MonoBehaviour, IFlippable
         UI_Dragon.OnDragonTakeDamageEvent -= PlayAttackClip;
         PathFindingV2.OnNoPathFound -= PlayEmoteStuck;
     }
-
+    
+    IEnumerator FXDeath()
+    {
+        yield return new WaitForSeconds(1f);
+        FXTakeDamage();
+    }
+    
     private void IsDead()
     {
         //TODO: t'as gagne bg :*
@@ -162,21 +168,32 @@ public class Hero : MonoBehaviour, IFlippable
 
         Camera.main.transform.DOMove(pos, 1f).SetEase(Ease.InBack);
         Camera.main.transform.DORotate(new Vector3(90, 0, 0), 1f).SetEase(Ease.InBack);
+        StartCoroutine(FXDeath());
     }
 
-    public void TakeDamage(int soAttackPoint, AttackType attackType)
+    private void FXTakeDamage()
     {
-        info.CurrentHealthPoint -= soAttackPoint;
         Sprite.DOColor(Color.red, 0.2f).SetEase(Ease.InBack).OnComplete(() =>
         {
             Sprite.DOColor(Color.white, 0.2f).SetEase(Ease.InBack);
         });
-        if (info.CurrentHealthPoint <= 0)
+        OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
+    }
+
+    public void TakeDamage(int soAttackPoint, AttackType attackType)
+    {
+        if (info.CurrentHealthPoint - soAttackPoint <= 0)
         {
             info.CurrentHealthPoint = 0;
+            TickManager.OnEndGame();
             IsDead();
         }
-        OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
+        else
+        {
+            info.CurrentHealthPoint -= soAttackPoint;
+            FXTakeDamage();
+        }
+        
     }
 
     private void Awake()
