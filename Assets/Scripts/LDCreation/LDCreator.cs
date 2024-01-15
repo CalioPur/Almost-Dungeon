@@ -127,7 +127,7 @@ public class LDCreator : MonoBehaviour
             }
             if (GUILayout.Button("Rotate"))
             {
-                cartesViewer.currentInstance.AddRotation(false);
+                cartesViewer.currentInstance.AddRotation(true);
                 cartesViewer.imageCarteTr.rotation = Quaternion.Euler(0, 0, cartesViewer.currentInstance.Rotation);
                 
             }
@@ -143,8 +143,6 @@ public class LDCreator : MonoBehaviour
         newPreset.position = new Vector2Int(x, y);
         newPreset.cardInfo = data.cardInfo;
         newPreset.rotation = data.nbRotation / 90;
-        Debug.Log("Create Preset SO : " + newPreset.position + " - " + newPreset.cardInfo.name + " - " +
-                  newPreset.rotation);
         nouvelleInstance.tilePresets.Add(newPreset);
     }
 
