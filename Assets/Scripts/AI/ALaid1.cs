@@ -158,65 +158,44 @@ public class ALaid1
         map = mapDatas;
         List<TileData> visibleTiles = new List<TileData>();
         Vector2Int simulatedPos = startPos;
+        
+        int debug = 0;
 
-        while (simulatedPos.y <= map.GetLength(1) && map[simulatedPos.x, simulatedPos.y + 1].hasDoorUp)
-        {
-            simulatedPos.y += 1;
-            if (simulatedPos.y <= map.GetLength(1))
-            {
-                visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
-                MapManager.Instance.mapArray[simulatedPos.x, simulatedPos.y].IsVisited = true;
-            }
-            else
-            {
-                break;
-            }
-        }
-        simulatedPos = startPos;
-
-        while (simulatedPos.y - 1 >= 0 && map[simulatedPos.x, simulatedPos.y - 1].hasDoorDown)
+        while (simulatedPos.y > 0 && map[simulatedPos.x, simulatedPos.y].hasDoorDown)
         {
             simulatedPos.y -= 1;
-            if (simulatedPos.y >= 0)
-            {
-                visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
-                MapManager.Instance.mapArray[simulatedPos.x, simulatedPos.y].IsVisited = true;
-            }
-            else
-            {
-                break;
-            }
+            visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
+            MapManager.Instance.mapArray[simulatedPos.x, simulatedPos.y].IsVisited = true;
+            debug++;
         }
-        simulatedPos = startPos;
 
-        while (simulatedPos.x - 1 >= 0 && map[simulatedPos.x - 1, simulatedPos.y].hasDoorLeft)
+        simulatedPos = startPos;
+        while (simulatedPos.y <= map.GetLength(1) - 2 && map[simulatedPos.x, simulatedPos.y].hasDoorUp)
+        {
+            simulatedPos.y += 1;
+            visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
+            MapManager.Instance.mapArray[simulatedPos.x, simulatedPos.y].IsVisited = true;
+            debug++;
+        }
+
+        simulatedPos = startPos;
+        while (simulatedPos.x > 0 && map[simulatedPos.x, simulatedPos.y].hasDoorLeft)
         {
             simulatedPos.x -= 1;
-            if (simulatedPos.x >= 0)
-            {
-                visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
-                MapManager.Instance.mapArray[simulatedPos.x, simulatedPos.y].IsVisited = true;
-            }
-            else
-            {
-                break;
-            }
+            visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
+            MapManager.Instance.mapArray[simulatedPos.x, simulatedPos.y].IsVisited = true;
+            debug++;
         }
-        simulatedPos = startPos;
 
-        while (simulatedPos.x + 1 <= map.GetLength(0) - 1 && map[simulatedPos.x + 1, simulatedPos.y].hasDoorRight)
-        { 
+        simulatedPos = startPos;
+        while (simulatedPos.x < map.GetLength(0) - 2 && map[simulatedPos.x, simulatedPos.y].hasDoorRight)
+        {
             simulatedPos.x += 1;
-            if (simulatedPos.x <= map.GetLength(0))
-            {
-                visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
-                MapManager.Instance.mapArray[simulatedPos.x, simulatedPos.y].IsVisited = true;
-            }
-            else
-            {
-                break;
-            }
+            visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
+            MapManager.Instance.mapArray[simulatedPos.x, simulatedPos.y].IsVisited = true;
+            debug++;
         }
+        Debug.Log("Debug : " + debug);
         return visibleTiles;
     }
 
