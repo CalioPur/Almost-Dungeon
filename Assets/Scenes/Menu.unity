@@ -2106,6 +2106,11 @@ PrefabInstance:
       objectReference: {fileID: 2088323764}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
+      propertyPath: globalsInkFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 705f83ff878d90940bb349ef4548592f, type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
       propertyPath: decks.Array.size
       value: 6
       objectReference: {fileID: 0}
