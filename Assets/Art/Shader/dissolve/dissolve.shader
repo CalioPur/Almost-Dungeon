@@ -69,7 +69,7 @@ Shader "Unlit/DissolveEffectShader"
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
-				float cutout = tex2D(_NoiseTex, i.uv).r;
+				float cutout = tex2D(_NoiseTex, i.uv).r;				
 				fixed4 col = tex2D(_MainTex, i.uv);
 
 				if (cutout < _Level)
