@@ -210,19 +210,19 @@ public class ALaid1
     {
         map = tileDatas;
         List<DirectionToMove> possibleDirections = new List<DirectionToMove>();
-        if (map[startPos.x, startPos.y + 1].hasDoorDown && map[startPos.x, startPos.y + 1].enemies.Count == 0)
+        if (startPos.y <=  map.GetLength(1) - 2 && map[startPos.x, startPos.y + 1].hasDoorDown && map[startPos.x, startPos.y + 1].enemies.Count == 0)
         {
             possibleDirections.Add(DirectionToMove.Up);
         }
-        if (map[startPos.x, startPos.y - 1].hasDoorUp && map[startPos.x, startPos.y - 1].enemies.Count == 0)
+        if (startPos.y > 0 && map[startPos.x, startPos.y - 1].hasDoorUp && map[startPos.x, startPos.y - 1].enemies.Count == 0)
         {
             possibleDirections.Add(DirectionToMove.Down);
         }
-        if (map[startPos.x - 1, startPos.y].hasDoorRight && map[startPos.x - 1, startPos.y].enemies.Count == 0)
+        if (startPos.x > 0 && map[startPos.x - 1, startPos.y].hasDoorRight && map[startPos.x - 1, startPos.y].enemies.Count == 0)
         {
             possibleDirections.Add(DirectionToMove.Left);
         }
-        if (map[startPos.x + 1, startPos.y].hasDoorLeft && map[startPos.x + 1, startPos.y].enemies.Count == 0)
+        if (startPos.x <= map.GetLength(0) - 2 && map[startPos.x + 1, startPos.y].hasDoorLeft && map[startPos.x + 1, startPos.y].enemies.Count == 0)
         {
             possibleDirections.Add(DirectionToMove.Right);
         }

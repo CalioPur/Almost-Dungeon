@@ -89,7 +89,7 @@ public class MovementManager : MonoBehaviour
         if (selectedCard != null)
         {
             selectedCard.Card.AddRotation(direction);
-            StartCoroutine(RotateB(0.2f, selectedCard.Card.Rotation, direction ? -1 : 1));
+            StartCoroutine(RotateB(0.2f, selectedCard.Card.Rotation, direction ? 1 : -1));
         }
     }
     

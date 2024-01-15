@@ -1291,7 +1291,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playButton: {fileID: 771655035}
   quitButton: {fileID: 588752015}
+  videoPlayer: {fileID: 689731033}
   levelSelection: {fileID: 1713900632}
+  fadeImage: {fileID: 901229529}
 --- !u!114 &1461340014
 MonoBehaviour:
   m_ObjectHideFlags: 0
