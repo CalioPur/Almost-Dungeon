@@ -126,20 +126,23 @@ public class TickManager : MonoBehaviour
     }
 
 
-    int tickCount = 0;
+    byte tickCount = 0;
 
     MovementType GetMovementTypeFromDivision()
     {
         tickCount++;
+        tickCount %= 4;
 
-        switch (tickCount % 3)
+        switch (tickCount)
         {
+            case 0:
+                return MovementType.Monster;
             case 1:
                 return MovementType.Trap;
             case 2:
                 return MovementType.Hero;
-            case 0:
-                return MovementType.Monster;
+            case 3:
+                return MovementType.Trap;
             default:
                 throw new InvalidOperationException("Invalid tick count.");
         }
@@ -149,7 +152,7 @@ public class TickManager : MonoBehaviour
     private void OnValidate()
     {
         //change the BPM when the slider for actions time is changed so the bpm is equivalent to the actions time for exemple we have 3 type of actions and the actions time is 3s so each actions take 1s so the bpm is 60
-        BPM = Mathf.RoundToInt(60 / actionsTime);
+        BPM = Mathf.RoundToInt(90 / actionsTime);
     }
 
     public static void OnEndGame()
