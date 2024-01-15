@@ -23,19 +23,14 @@ public abstract class TrapData : MonoBehaviour
     
     protected abstract void OnTick();
     protected abstract void Init();
-
-    IEnumerator Dying()
-    {
-        yield return new WaitForSeconds(0.2f);
-        gameObject.SetActive(false);
-    }
+    
     protected virtual void OnDead()
     {
         mapManager.GetWorldPosFromTilePos(new Vector2Int(indexX, indexY) , out Vector3 worldPos);
         mapManager.RemoveEnemyOnTile(
             new Vector2Int(indexX, indexY), this, worldPos);
         isDead = true;
-        StartCoroutine(Dying());
+        Destroy(gameObject, 0.3f);
     }
 
     public void Attack(int damage, AttackType attackType)
