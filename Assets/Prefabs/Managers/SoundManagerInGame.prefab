@@ -314,9 +314,9 @@ MonoBehaviour:
     audioSource: {fileID: 0}
   - emote: 3
     audioSource: {fileID: 2712419153490351755}
-  sfxAudioSource:
+  sfxAudioSourceList:
   - sfxName: DragonRoar
-    audioSource: {fileID: 8295425695023763585}
+    sfxAudioSource: {fileID: 8295425695023763585}
 --- !u!1 &2911195126819372696
 GameObject:
   m_ObjectHideFlags: 0

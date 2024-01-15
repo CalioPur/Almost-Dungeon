@@ -137,6 +137,10 @@ MonoBehaviour:
   - {fileID: 0}
   DoorSaw: []
   DoorTarget: {x: 0, y: 0}
+  upArrow: {fileID: 0}
+  rightArrow: {fileID: 0}
+  downArrow: {fileID: 0}
+  leftArrow: {fileID: 0}
 --- !u!114 &7733622732822971966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8316112614916967648
 Transform:
   m_ObjectHideFlags: 0
@@ -380,7 +384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &120168561944037559
 Transform:
   m_ObjectHideFlags: 0
@@ -464,7 +468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2797648531444991107
 Transform:
   m_ObjectHideFlags: 0
@@ -583,7 +587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7635125709902180738
 Transform:
   m_ObjectHideFlags: 0
