@@ -2108,6 +2108,11 @@ PrefabInstance:
       objectReference: {fileID: 2088323764}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
+      propertyPath: globalsInkFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 705f83ff878d90940bb349ef4548592f, type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
       propertyPath: decks.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -2270,6 +2275,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1461340012}
     m_Modifications:
+    - target: {fileID: 4024647005650175913, guid: 8c99205dbea3e834c91454307f7002be,
+        type: 3}
+      propertyPath: _Source
+      value: <font=NotoMono-Regular>test</font>
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146393075715903951, guid: 8c99205dbea3e834c91454307f7002be,
+        type: 3}
+      propertyPath: m_text
+      value: '<font="Witch of Thebes SDF">starfoullah</font>
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 4275459347334335403, guid: 8c99205dbea3e834c91454307f7002be,
         type: 3}
       propertyPath: m_Pivot.x

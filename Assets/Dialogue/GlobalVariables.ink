@@ -1,0 +1,1 @@
+VAR RknightSeen = false

@@ -1,3 +1,5 @@
+INCLUDE ../../GlobalVariables.ink
+
 Un Dragon ?! #chara:mage
 Enfin une source infinie de magie... 
 Mes recherches arrivent à leur terme !

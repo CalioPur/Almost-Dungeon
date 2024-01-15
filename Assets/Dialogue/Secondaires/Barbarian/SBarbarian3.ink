@@ -1,3 +1,5 @@
+INCLUDE ../../GlobalVariables.ink
+
 Brûle ma rage ! #chara:barbarian
 Atteins le septième sens !
 Ne vous enflammez pas trop vite héros  #chara:dragon

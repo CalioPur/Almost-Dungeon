@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Ink.Runtime;
 using LogicUI.FancyTextRendering;
@@ -12,6 +13,8 @@ using Random = UnityEngine.Random;
 
 public class DialogueManager : MonoBehaviour
 {
+    private DialogueVariable dialogueVariable;
+    [SerializeField] private TextAsset globalsInkFile;
     
     public static DialogueManager _instance;
     public List<TextAsset> interludeDialogues;
@@ -54,6 +57,7 @@ public class DialogueManager : MonoBehaviour
         _instance = this;
         
         DontDestroyOnLoad(this);
+        dialogueVariable = new DialogueVariable(globalsInkFile);
     }
     
     private void GetUiElements()
@@ -131,6 +135,7 @@ public class DialogueManager : MonoBehaviour
         try
         {
             story = new Story(currentDialogue.text);
+            dialogueVariable.StartListening(story);
         }
         catch{
             dialogueBox.SetActive(false);
@@ -166,6 +171,7 @@ public class DialogueManager : MonoBehaviour
                 DisplayChoices();
                 return;
             }
+            dialogueVariable.StopListening(story);
             dialogueBox.SetActive(false);
             story = null;
             OnEndDialogEvent?.Invoke();

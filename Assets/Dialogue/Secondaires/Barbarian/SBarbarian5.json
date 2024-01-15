@@ -1,1 +1,1 @@
-﻿{"inkVersion":21,"root":[["^Viens te battre Dragon ! ","#","^chara:barbarian","/#","\n","^J'arrive Héros !  ","#","^chara:dragon","/#","\n","end",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
+﻿{"inkVersion":21,"root":[["\n","^Viens te battre Dragon ! ","#","^chara:barbarian","/#","\n","^J'arrive Héros !  ","#","^chara:dragon","/#","\n","end",["done",{"#f":5,"#n":"g-0"}],null],"done",{"global decl":["ev",false,{"VAR=":"RknightSeen"},"/ev","end",null],"#f":1}],"listDefs":{}}
