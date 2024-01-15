@@ -241,7 +241,7 @@ public class DialogueManager : MonoBehaviour
                         switch (split[1])
                         {
                             case (not null) :
-                                SoundManagerIngame.Instance.PlayDialogueSFX(tag);
+                                SoundManagerIngame.Instance.PlayDialogueSFX(split[1]);
                                 break;
                             case (null) :
                                 Debug.Log("sound not assigned");
