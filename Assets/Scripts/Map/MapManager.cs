@@ -109,16 +109,17 @@ public class MapManager : MonoBehaviour
         MapManagerTools.SetConnectedToPath();
         MapManagerTools.SetExits();
         
-        //SetAllTilesAsVisited();
+        // SetAllTilesAsVisited();
     }
 
-    private void SetAllTilesAsVisited()
+    public void SetAllTilesAsVisited()
     {
         for (int i = 0; i < width - 2; i++)
         {
             for (int j = 0; j < height - 2; j++)
             {
-                mapArray[i, j].IsVisited = true;
+                if (mapArray[i, j].isConnectedToPath)
+                    mapArray[i, j].IsVisited = true;
             }
         }
     }
