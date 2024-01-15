@@ -36,3 +36,37 @@ public enum AttackType
     Physical,
     Fire,
 }
+
+public enum Personnalities
+{
+    HurryForTheExit,
+    TheExplorer,
+    TheKiller,
+    TheSissy,
+    MoveToHero
+}
+
+public enum PersonnalitiesV2
+{
+    EXPLORATEUR, // Lorsqu'il y a plusieurs tuiles menant à une zone inexplorée dans son champ de vision, se déplace vers la plus proche.
+    IMPATIENT // Lorsqu'il se trouve à plus de 5 tuiles de la sortie, entre en RAGE.
+}
+
+public enum VisionType
+{
+    RECTILIGNE, // Le héros voit en ligne droite dans les 4 directions
+    BIGLEUX, // Le hero se déplace de manière aléatoire sur les tile non visité adjacentes à sa position sinon complètement aléatoire
+    CLAIRVOYANT, // Le hero va au chemin le plus court vers son objectif
+}
+
+public enum Aggressivity
+{
+    PEUREUX, // L'aventurier n'attaque pas et s'éloigne des minions s'il peut poursuivre l'exploration du donjon (c'est-à-dire s'il peut encore découvrir une zone inexplorée)
+    COURAGEUX, // L'aventurier va attaquer coute que coute l'ennemi le plus proche dans son champ de vision, meme s'il n'entrave pas son exploration du donjon.
+}
+
+public enum Objectives
+{
+    EXPLORATION, // L'aventurier cherche à explorer le donjon
+    SORTIE, // L'aventurier cherche à atteindre la sortie
+}

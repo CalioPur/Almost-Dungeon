@@ -3,40 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public enum Personnalities
-{
-    HurryForTheExit,
-    TheExplorer,
-    TheKiller,
-    TheSissy,
-    MoveToHero
-}
-
-public enum PersonnalitiesV2
-{
-    EXPLORATEUR, // Lorsqu'il y a plusieurs tuiles menant à une zone inexplorée dans son champ de vision, se déplace vers la plus proche.
-    IMPATIENT // Lorsqu'il se trouve à plus de 5 tuiles de la sortie, entre en RAGE.
-}
-
-public enum VisionType
-{
-    RECTILIGNE, // Le héros voit en ligne droite dans les 4 directions
-    BIGLEUX, // Le hero se déplace de manière aléatoire sur les tile non visité adjacentes à sa position sinon complètement aléatoire
-    CLAIRVOYANT, // Le hero va au chemin le plus court vers son objectif
-}
-
-public enum Aggressivity
-{
-    PEUREUX, // L'aventurier n'attaque pas et s'éloigne des minions s'il peut poursuivre l'exploration du donjon (c'est-à-dire s'il peut encore découvrir une zone inexplorée)
-    COURAGEUX, // L'aventurier va attaquer coute que coute l'ennemi le plus proche dans son champ de vision, meme s'il n'entrave pas son exploration du donjon.
-}
-
-public enum Objectives
-{
-    EXPLORATION, // L'aventurier cherche à explorer le donjon
-    SORTIE, // L'aventurier cherche à atteindre la sortie
-}
-
 public class PathFinding
 {
     public static event Action OnNoPathFound;
@@ -125,7 +91,7 @@ public class PathFinding
                 return BreakFreeFromNoExit(startPos, map);
 
             }
-            case Personnalities.TheKiller when tileWithEnemies.Count > 0:
+            case Personnalities.TheKiller:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, tileWithEnemies);
                 return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
@@ -149,18 +115,18 @@ public class PathFinding
         List<PersonnalitiesV2> personalities,
         VisionType visionType, Aggressivity aggressivity, Objectives[] objectives)
     {
-        if (personalities.Count > 0)
-        {
-            //Break a wall and go through it
-            if (personalities.Contains(PersonnalitiesV2.IMPATIENT))
-            {
-                if (CheckIfNotSurroundedByExits(startPos, map))
-                {
-                    return GoThroughRandomOpenDoor(startPos, map);
-                }
-                return BreakFreeFromNoExit(startPos, map);
-            }
-        }
+        // if (personalities.Count > 0)
+        // {
+        //     //Break a wall and go through it
+        //     if (personalities.Contains(PersonnalitiesV2.IMPATIENT))
+        //     {
+        //         if (CheckIfNotSurroundedByExits(startPos, map))
+        //         {
+        //             return GoThroughRandomOpenDoor(startPos, map);
+        //         }
+        //         return BreakFreeFromNoExit(startPos, map);
+        //     }
+        // }
         
         if (visionType != VisionType.CLAIRVOYANT)
         {
@@ -242,37 +208,55 @@ public class PathFinding
         {
             int x = startPos.x;
             int y = startPos.y;
-            int xDir = 0;
-            int yDir = 0;
-            switch (i)
+            bool hasNoDoor = false;
+            while (x >= 0 && x < MapManager.Instance.width - 2 && y >= 0 && y < MapManager.Instance.height - 2 && !hasNoDoor)
             {
-                case 0:
-                    xDir = 1;
-                    break;
-                case 1:
-                    xDir = -1;
-                    break;
-                case 2:
-                    yDir = 1;
-                    break;
-                case 3:
-                    yDir = -1;
-                    break;
-            }
-
-            while (x >= 0 && x < MapManager.Instance.width - 2 && y >= 0 && y < MapManager.Instance.height - 2)
-            {
-                if (MapManager.Instance.mapArray[x, y].isRoom)
+                switch (i)
                 {
-                    MapManager.Instance.mapArray[x, y].isVisited = true;
+                    case 0:
+                        if (map[x, y].hasDoorRight)
+                        {
+                            x += 1;
+                        }
+                        else
+                        {
+                            hasNoDoor = true;
+                        }
+                        break;
+                    case 1:
+                        if (map[x, y].hasDoorLeft)
+                        {
+                            x -= 1;
+                        }
+                        else
+                        {
+                            hasNoDoor = true;
+                        }
+                        break;
+                    case 2:
+                        if (map[x, y].hasDoorUp)
+                        {
+                            y += 1;
+                        }
+                        else
+                        {
+                            hasNoDoor = true;
+                        }
+                        break;
+                    case 3:
+                        if (map[x, y].hasDoorDown)
+                        {
+                            y -= 1;
+                        }
+                        else
+                        {
+                            hasNoDoor = true;
+                        }
+                        break;
                 }
-                else
-                {
-                    break;
-                }
-
-                x += xDir;
-                y += yDir;
+                
+                //Debug the number of lines set to visited
+                Debug.Log("Line " + i + " : x" + (startPos.x - x) + " y" + (startPos.y - y));
             }
         }
 
@@ -312,53 +296,32 @@ public class PathFinding
 
     private static DirectionToMove CheckSuroundingTiles(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities, Aggressivity aggressivity, Objectives[] objectives)
     {
+        
         // check the 4 tiles around the hero, if they have a door
         List<DirectionToMove> directions = new List<DirectionToMove>();
         if (startPos.x > 0 && map[startPos.x, startPos.y].hasDoorLeft)
         {
             directions.Add(DirectionToMove.Left);
+            MapManager.Instance.mapArray[startPos.x - 1, startPos.y].isVisited = true;
         }
         if (startPos.x < map.GetLength(0) - 1 && map[startPos.x, startPos.y].hasDoorRight)
         {
             directions.Add(DirectionToMove.Right);
+            MapManager.Instance.mapArray[startPos.x + 1, startPos.y].isVisited = true;
         }
         if (startPos.y > 0 && map[startPos.x, startPos.y].hasDoorDown)
         {
             directions.Add(DirectionToMove.Down);
+            MapManager.Instance.mapArray[startPos.x, startPos.y - 1].isVisited = true;
         }
         if (startPos.y < map.GetLength(1) - 1 && map[startPos.x, startPos.y].hasDoorUp)
         {
             directions.Add(DirectionToMove.Up);
+            MapManager.Instance.mapArray[startPos.x, startPos.y + 1].isVisited = true;
         }
         
         if (directions.Count > 0)
         {
-            foreach (var direction in directions)
-            {
-                Vector2Int simulatedPos = startPos;
-                switch (direction)
-                {
-                    case DirectionToMove.Up:
-                        simulatedPos.y += 1;
-                        break;
-                    case DirectionToMove.Down:
-                        simulatedPos.y -= 1;
-                        break;
-                    case DirectionToMove.Left:
-                        simulatedPos.x -= 1;
-                        break;
-                    case DirectionToMove.Right:
-                        simulatedPos.x += 1;
-                        break;
-                    case DirectionToMove.None:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
-                map[simulatedPos.x, simulatedPos.y].isVisited = true;
-            }
-            
             if (aggressivity == Aggressivity.COURAGEUX)
             {
                 List<DirectionToMove> directionsWithEnemies = new List<DirectionToMove>();
@@ -532,7 +495,7 @@ public class PathFinding
         return startPos.y < map.GetLength(1) - 1 && map[startPos.x, startPos.y + 1].isExit;
     }
 
-    private static DirectionToMove BreakFreeFromNoExit(Vector2Int startPos, TileData[,] map)
+    public static DirectionToMove BreakFreeFromNoExit(Vector2Int startPos, TileData[,] map)
     {
         SoundManagerIngame.Instance.PlaySound(EmoteType.WallBreak);
         OnNoPathFound?.Invoke();
