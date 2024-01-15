@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -68,14 +69,31 @@ public class MovementManager : MonoBehaviour
         Debug.Log("Set selected card null");
     }
 
+    IEnumerator RotateB(float time, float desiredAngle)
+    {
+        float ratio = -90.0f / time;
+        
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            Vector3 rot = selectedCard.GetImage().transform.rotation.eulerAngles;
+            rot += new Vector3(0, 0, ratio * Time.deltaTime);
+            Vector3 rot2 = cardVisualizer.transform.rotation.eulerAngles;
+            rot2 += new Vector3(0, 0, ratio * Time.deltaTime);
+            selectedCard.GetImage().transform.rotation = Quaternion.Euler(rot);
+            cardVisualizer.transform.rotation = Quaternion.Euler(rot2);
+            yield return null;
+        }
+        selectedCard.GetImage().transform.rotation = Quaternion.Euler(new Vector3(0, 0, desiredAngle));
+        cardVisualizer.transform.rotation = Quaternion.Euler(new Vector3(90, 0, desiredAngle));
+    }
+
     private void RotateSelection(bool direction)
     {
         if (selectedCard != null)
         {
-            Vector3 rot = selectedCard.GetImage().transform.rotation.eulerAngles;
             selectedCard.Card.AddRotation(direction);
-            selectedCard.GetImage().transform.DORotate(new Vector3(0, 0, selectedCard.Card.Rotation), 0.2f);
-            cardVisualizer.transform.DORotate(new Vector3(90, 0, selectedCard.Card.Rotation), 0.2f);
+            StartCoroutine(RotateB(0.2f, selectedCard.Card.Rotation));
         }
     }
     

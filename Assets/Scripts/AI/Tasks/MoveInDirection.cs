@@ -16,7 +16,7 @@ public class MoveInDirection : Node
         if (blackboard.dir is DirectionToMove.Error)
             return NodeState.Failure;
         if (blackboard.dir is DirectionToMove.None)
-            return NodeState.Success;
+            return NodeState.Failure;
 
         switch (blackboard.dir)
         {

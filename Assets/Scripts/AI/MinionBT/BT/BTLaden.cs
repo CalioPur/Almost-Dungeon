@@ -9,10 +9,16 @@ public class BTLaden : MinionBTBase
 
         origin = new Sequence(
             new GetHeroPos(blackboard),
-            new HeroIsInSight(blackboard),
-            new MoveInDirection(blackboard),
-            new CheckifFrontOfHero(blackboard),
-            new AttackHero(blackboard, AttackType.Physical)
+            new Selector(
+                new Sequence(
+                    new CheckifFrontOfHero(blackboard),
+                    new AttackHero(blackboard, AttackType.Physical)
+                ),
+                new Sequence(
+                    new HeroIsInSight(blackboard),
+                    new MoveInDirection(blackboard)
+                )
+            )
         );
         return origin;
     }

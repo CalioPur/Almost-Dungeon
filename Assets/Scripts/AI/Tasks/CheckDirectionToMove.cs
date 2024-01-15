@@ -20,13 +20,25 @@ public class CheckDirectionToMove : Node
         // blackboard.directionToMove = PathFinding.BFSFindPath(
         //     blackboard.hero.GetIndexHeroPos(),
         //     blackboard.hero.mapManager.getMapArray(), blackboard.personality);
-        blackboard.directionToMove = PathFinding.BFSFindPathV2(
-            blackboard.hero.GetIndexHeroPos(),
-            blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>(), VisionType.RECTILIGNE,
-            Aggressivity.COURAGEUX, new[]
-            {
-                Objectives.SORTIE
-            });
+        // blackboard.directionToMove = PathFinding.BFSFindPathV2(
+        //     blackboard.hero.GetIndexHeroPos(),
+        //     blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>(), VisionType.RECTILIGNE,
+        //     Aggressivity.COURAGEUX, new[]
+        //     {
+        //         Objectives.SORTIE
+        //     });
+
+        if (blackboard.aggressivity == Aggressivity.COURAGEUX)
+            ALaid1.aggressivity = Aggressivity.COURAGEUX;
+        else if (blackboard.aggressivity == Aggressivity.PEUREUX)
+            ALaid1.aggressivity = Aggressivity.PEUREUX;
+        
+        if (blackboard.visionType == VisionType.BIGLEUX)
+            blackboard.directionToMove = ALaid1.Bigleux(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
+        if (blackboard.visionType == VisionType.RECTILIGNE)
+            blackboard.directionToMove = ALaid1.Line(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
+        if (blackboard.visionType == VisionType.CLAIRVOYANT)
+            blackboard.directionToMove = ALaid1.Clairvoyant(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
         if (blackboard.directionToMove == DirectionToMove.None)
         {
             Debug.Log("Random");

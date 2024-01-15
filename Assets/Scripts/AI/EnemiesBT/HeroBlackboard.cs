@@ -16,4 +16,6 @@ public class HeroBlackboard : MonoBehaviour
     public GameObject rightArrow;
     public GameObject downArrow;
     public GameObject leftArrow;
+    public VisionType visionType;
+    public Aggressivity aggressivity;
 }
