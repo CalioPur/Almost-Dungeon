@@ -52,7 +52,7 @@ public class MinionData : TrapData, IFlippable
     public override void TakeDamage(int damage, AttackType attackType)
     {
         if (isDead) return;
-
+animator.SetTrigger("TakeDamage");
         minionInstance.CurrentHealthPoint -= damage;
         if (minionInstance.CurrentHealthPoint <= 0)
         {

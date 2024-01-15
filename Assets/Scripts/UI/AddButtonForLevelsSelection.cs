@@ -16,6 +16,9 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     
     private List<GameObject> buttonList = new();
     
+    [SerializeField] List<Sprite> dungeonsSprite;
+    [SerializeField] Sprite lockedSprite;
+    
     void OnEnable()
     {
         var sizeOfScreen = new Vector2(Screen.width, Screen.height);
@@ -35,7 +38,22 @@ public class AddButtonForLevelsSelection : MonoBehaviour
         {
             GameObject theButton = Instantiate(buttonPrefab, transform);
             buttonList.Add(theButton);
-            theButton.GetComponentInChildren<TMP_Text>().text = biome.name;
+            
+            
+            Image btnImage = theButton.GetComponent<Image>();
+            btnImage.sprite = dungeonsSprite[cpt];
+            btnImage.color = Color.white;
+            btnImage.SetNativeSize();
+            
+            //theButton.GetComponentInChildren<TMP_Text>().text = biome.name;
+            if (biome.isLocked)
+            {
+                btnImage.sprite = lockedSprite;
+                cpt++;
+                continue;
+            }
+            
+            
             int biomeIndex = cpt;
             theButton.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -52,7 +70,7 @@ public class AddButtonForLevelsSelection : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private IEnumerator AlphaLerp(int biomeIndex)
+    public IEnumerator AlphaLerp(int biomeIndex)
     {
         
         var alpha = CanvasBlack.GetComponent<Image>().color.a;

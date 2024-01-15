@@ -223,16 +223,16 @@ public class DialogueManager : MonoBehaviour
                         switch (split[1])
                         {
                             case ("courageux"):
-                                GameManager._instance.currentPersonality = Personnalities.TheKiller;
+                                GameManager._instance.currentAggressivity = Aggressivity.COURAGEUX;
                                 break;
                             case ("peureux"):
-                                GameManager._instance.currentPersonality = Personnalities.TheSissy;
+                                GameManager._instance.currentAggressivity = Aggressivity.PEUREUX;
                                 break;
                             case("clairvoyant"):
-                                GameManager._instance.currentPersonality = Personnalities.HurryForTheExit;
+                                GameManager._instance.currentVisionType = VisionType.CLAIRVOYANT;
                                 break;
                             case("explorateur"):
-                                GameManager._instance.currentPersonality = Personnalities.TheExplorer;
+                                //PTDR
                                 break;
                         }
                         break;

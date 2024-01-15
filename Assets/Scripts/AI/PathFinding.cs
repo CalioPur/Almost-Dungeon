@@ -42,6 +42,7 @@ public class PathFinding
             
             if (map[currentPos.x, currentPos.y].enemies.Count > 0)
             {
+                unvisitedTiles.Add(currentPos);
                 tileWithEnemies.Add(currentPos);
             }
 

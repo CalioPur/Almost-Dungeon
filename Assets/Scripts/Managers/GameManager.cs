@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Vector2Int normsSpawnX;
     [SerializeField] public Vector2Int normsSpawnY;
     public HeroesInfo currentHero;
-    public Personnalities currentPersonality;
+    // public Personnalities currentPersonality;
+    public VisionType currentVisionType;
+    public Aggressivity currentAggressivity;
     public int heroHealthPoint;
     public int heroCurrentHealthPoint;
     public int rotationOfSpawnTile;
@@ -75,7 +77,8 @@ public class GameManager : MonoBehaviour
         
         Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
         heroScript.Init(current, startPosHero.x, startPosHero.y, mapManager);
-        heroScript.HeroBlackboard.personality = currentPersonality;
+        heroScript.HeroBlackboard.visionType = currentVisionType;
+        heroScript.HeroBlackboard.aggressivity = currentAggressivity;
         
         if (heroCurrentHealthPoint < heroHealthPoint) //Degats pris pendant le dialogue
         {
