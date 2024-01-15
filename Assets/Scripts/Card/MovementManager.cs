@@ -52,12 +52,8 @@ public class MovementManager : MonoBehaviour
 
     private void PlaceCard(TileData data, CardHand card, bool canBePlaced)
     {
-        if (!canBePlaced)
-        {
-            //card.GetImage().gameObject.transform.position = card.transform.position;
-            //card.removeSelection();
-            return;
-        }
+        if (!canBePlaced) return;
+        
         cardVisualizer.SetActive(false);
         data.SetInstance(card.Card);
         OnTilePosedEvent?.Invoke(data, card.Card);
@@ -69,9 +65,9 @@ public class MovementManager : MonoBehaviour
         Debug.Log("Set selected card null");
     }
 
-    IEnumerator RotateB(float time, float desiredAngle)
+    IEnumerator RotateB(float time, float desiredAngle, float direction)
     {
-        float ratio = -90.0f / time;
+        float ratio = direction * 90.0f / time;
         
         while (time > 0)
         {
@@ -93,7 +89,7 @@ public class MovementManager : MonoBehaviour
         if (selectedCard != null)
         {
             selectedCard.Card.AddRotation(direction);
-            StartCoroutine(RotateB(0.2f, selectedCard.Card.Rotation));
+            StartCoroutine(RotateB(0.2f, selectedCard.Card.Rotation, direction ? 1 : -1));
         }
     }
     
@@ -164,49 +160,21 @@ public class MovementManager : MonoBehaviour
         }
     }
     
-    // private Vector4 GetMousePositionOnGrid()
-    // {
-    //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //     RaycastHit hit;
-    //     if (!Physics.Raycast(ray, out hit)) return Vector4.zero;
-    //     if (!hit.collider.gameObject == gridVisualizer) return Vector4.zero;
-    //     mousePos = hit.point;
-    //     //set the mouse position to a value between 0 and 1
-    //     mousePos.x /= (gridVisualizer.transform.localScale.x*10);
-    //     mousePos.z /= (gridVisualizer.transform.localScale.z*10);
-    //     mousePos.x = 0.5f - mousePos.x;
-    //     mousePos.z = 0.5f - mousePos.z;
-    //     mousePos.x = Mathf.Clamp(mousePos.x, 0, 1);
-    //     mousePos.z = Mathf.Clamp(mousePos.z, 0, 1);
-    //     return new Vector4(mousePos.x, mousePos.z, 0, 0);
-    // }
 
     private void HandleMouseDown()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        
-        //if the mouse pos intersects with the zone of the discard
-        // if (RectTransformUtility.RectangleContainsScreenPoint(_rectTransform, Input.mousePosition))
-        // {
-        //     if (selectedCard == null) return;
-        //     selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
-        //     OnDiscardCardEvent?.Invoke(selectedCard);
-        //     return;
-        // }
 
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
             if (selectedCard != null) selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
-            // selectedCard = null;
-            // Debug.Log("Set selected card null");
             return;
         }
         
         if (selectedCard != null)
         {
             TileData tile = hit.collider.gameObject.GetComponent<TileData>();
-            cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
             OnTileSelectedEvent?.Invoke(tile);
         }
     }
