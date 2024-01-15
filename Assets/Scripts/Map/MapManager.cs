@@ -33,30 +33,30 @@ public class MapManager : MonoBehaviour
         _mapManagerTools = new MapManagerTools(this);
     }
 
-    // private void Update()
-    // {
-    //     for (int i = 0; i < Instance.width - 2; i++)
-    //     {
-    //         for (int j = 0; j < Instance.height - 2; j++)
-    //         {
-    //             Vector3 pos = Instance.mapArray[i, j].transform.position;
-    //             if (mapArray[i,j].isConnectedToPath)
-    //                 Debug.DrawLine(pos, pos + Vector3.up, Color.red, 1f);
-    //
-    //             if (mapArray[i,j].hasDoorDown)
-    //                 Debug.DrawLine(pos, pos + Vector3.back, Color.blue, 1f);
-    //             if (mapArray[i,j].hasDoorUp)
-    //                 Debug.DrawLine(pos, pos + Vector3.forward, Color.blue, 1f);
-    //             if (mapArray[i,j].hasDoorLeft)
-    //                 Debug.DrawLine(pos, pos + Vector3.left, Color.blue, 1f);
-    //             if (mapArray[i,j].hasDoorRight)
-    //                 Debug.DrawLine(pos, pos + Vector3.right, Color.blue, 1f);
-    //             
-    //             if (mapArray[i,j].isExit)
-    //                 Debug.DrawLine(new Vector3(pos.x+0.1f,pos.y,pos.z), new Vector3(pos.x+0.1f,pos.y,pos.z) + Vector3.up, Color.green, 1f);
-    //         }
-    //     }
-    // }
+    private void Update()
+    {
+        for (int i = 0; i < Instance.width - 2; i++)
+        {
+            for (int j = 0; j < Instance.height - 2; j++)
+            {
+                Vector3 pos = Instance.mapArray[i, j].transform.position;
+                if (mapArray[i,j].isConnectedToPath)
+                    Debug.DrawLine(pos, pos + Vector3.up, Color.red, 1f);
+    
+                if (mapArray[i,j].hasDoorDown)
+                    Debug.DrawLine(pos, pos + Vector3.back, Color.blue, 1f);
+                if (mapArray[i,j].hasDoorUp)
+                    Debug.DrawLine(pos, pos + Vector3.forward, Color.blue, 1f);
+                if (mapArray[i,j].hasDoorLeft)
+                    Debug.DrawLine(pos, pos + Vector3.left, Color.blue, 1f);
+                if (mapArray[i,j].hasDoorRight)
+                    Debug.DrawLine(pos, pos + Vector3.right, Color.blue, 1f);
+                
+                if (mapArray[i,j].isExit)
+                    Debug.DrawLine(new Vector3(pos.x+0.1f,pos.y,pos.z), new Vector3(pos.x+0.1f,pos.y,pos.z) + Vector3.up, Color.green, 1f);
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -301,15 +301,19 @@ public class MapManager : MonoBehaviour
         switch (doorChanged)
         {
             case 0:
+                if (y == 0) return;
                 if (mapArray[x, y - 1].PiecePlaced) mapArray[x, y - 1].hasDoorUp = true;
                 break;
             case 1:
+                if (x == 0) return;
                 if (mapArray[x - 1, y].PiecePlaced) mapArray[x - 1, y].hasDoorRight = true;
                 break;
             case 2:
+                if (y == height - 3) return;
                 if (mapArray[x, y + 1].PiecePlaced) mapArray[x, y + 1].hasDoorDown = true;
                 break;
             case 3:
+                if (x == width - 3) return;
                 if (mapArray[x + 1, y].PiecePlaced) mapArray[x + 1, y].hasDoorLeft = true;
                 break;
         }

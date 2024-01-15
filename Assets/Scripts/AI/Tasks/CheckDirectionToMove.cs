@@ -32,7 +32,7 @@ public class CheckDirectionToMove : Node
             ALaid1.aggressivity = Aggressivity.COURAGEUX;
         else if (blackboard.aggressivity == Aggressivity.PEUREUX)
             ALaid1.aggressivity = Aggressivity.PEUREUX;
-        
+        Debug.Log("Vision type = " + blackboard.visionType);
         if (blackboard.visionType == VisionType.BIGLEUX)
             blackboard.directionToMove = ALaid1.Bigleux(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
         if (blackboard.visionType == VisionType.RECTILIGNE)
