@@ -1,4 +1,4 @@
-INCLUDE ReccurentDatabase.ink
+INCLUDE GlobalVariables.ink
 
 Haaa... Haa... #chara:knight
 Tiens... Toujours vivant Chevalier ? #chara:dragon

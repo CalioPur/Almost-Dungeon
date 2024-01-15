@@ -1,1 +1,0 @@
-VAR archerEncountered = false

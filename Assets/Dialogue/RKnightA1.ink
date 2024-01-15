@@ -1,4 +1,4 @@
-INCLUDE ReccurentDatabase.ink
+INCLUDE GlobalVariables.ink
 
 Alors c'est ça un $$donjon$$ ? #chara:knight 
 Sois le bienvenu héros te voici en...  #chara:dragon

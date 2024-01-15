@@ -1,4 +1,4 @@
-INCLUDE ArcherDatabase.ink
+INCLUDE ../../GlobalVariables.ink
 
 Dragon, tu es un gibier rare... #chara:archer
 ... te te traquerai avec grand plaisir

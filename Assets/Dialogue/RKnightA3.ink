@@ -1,3 +1,5 @@
+INCLUDE GlobalVariables.Ink
+
 VAR pdv = 10
 
 Encore en vie Chevalier ?  #chara:dragon
