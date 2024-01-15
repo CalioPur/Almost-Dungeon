@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -14,14 +15,15 @@ public struct AudioDataSound
 public struct SFXAudioDataSound
 {
     public String sfxName;
-    public AudioSource audioSource;
+    public AudioSource sfxAudioSource;
 }
 
 public class SoundManagerIngame : MonoBehaviour
 {
     public static SoundManagerIngame Instance;
     [SerializeField] private List<AudioDataSound> emotesAudioSources;
-    public SFXAudioDataSound[] sfxAudioSource;
+    [SerializeField] private List<SFXAudioDataSound> sfxAudioSourceList;
+    //public SFXAudioDataSound[] sfxAudioSourceList;
     
     private Dictionary<EmoteType, AudioSource> emotesDictionary = new Dictionary<EmoteType, AudioSource>();
 
@@ -45,7 +47,7 @@ public class SoundManagerIngame : MonoBehaviour
     private void PlaySound(AudioSource source)
     {
         if (source == null) return;
-        if (source.isPlaying) return;
+        //if (source.isPlaying) return;
         source.Play();
     }
     
@@ -54,10 +56,20 @@ public class SoundManagerIngame : MonoBehaviour
         PlaySound(emotesDictionary[emote]);
     }
 
-    public void PlayDialogueSFX(string name)
+    public void PlayDialogueSFX(string key)
     {
-        SFXAudioDataSound s = Array.Find(sfxAudioSource, x => x.sfxName == name);
+        Debug.Log($"{key}");
         
-            PlaySound(s.audioSource);
+        SFXAudioDataSound s = sfxAudioSourceList.FirstOrDefault(x  => x.sfxName == key);
+        
+        Debug.Log($"{s}");
+        
+        PlaySound(s.sfxAudioSource);
+    }
+
+    [ContextMenu("TEST")]
+    private void test()
+    {
+        PlayDialogueSFX("DragonRoar");
     }
 }
