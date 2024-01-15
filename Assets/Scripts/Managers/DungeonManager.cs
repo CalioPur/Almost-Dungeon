@@ -29,7 +29,7 @@ public class DungeonManager : MonoBehaviour
     private MapManager mapManager;
     public static int SelectedBiome;
 
-    private static DungeonManager _instance;
+    public static DungeonManager _instance;
     
     private void Awake()
     {
@@ -50,7 +50,7 @@ public class DungeonManager : MonoBehaviour
     {
         SelectedBiome = index;
         GameManager.OnSceneLoadedEvent += LoadLevel;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     
     
