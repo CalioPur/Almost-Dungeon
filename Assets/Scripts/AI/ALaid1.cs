@@ -291,7 +291,7 @@ public class ALaid1
         }
 
         simulatedPos = startPos;
-        while (simulatedPos.x < map.GetLength(0) - 2 && map[simulatedPos.x, simulatedPos.y].hasDoorRight)
+        while (simulatedPos.x <= map.GetLength(0) - 2 && map[simulatedPos.x, simulatedPos.y].hasDoorRight)
         {
             simulatedPos.x += 1;
             visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
