@@ -65,9 +65,9 @@ public class MovementManager : MonoBehaviour
         Debug.Log("Set selected card null");
     }
 
-    IEnumerator RotateB(float time, float desiredAngle)
+    IEnumerator RotateB(float time, float desiredAngle, float direction)
     {
-        float ratio = -90.0f / time;
+        float ratio = direction * 90.0f / time;
         
         while (time > 0)
         {
@@ -89,7 +89,7 @@ public class MovementManager : MonoBehaviour
         if (selectedCard != null)
         {
             selectedCard.Card.AddRotation(direction);
-            StartCoroutine(RotateB(0.2f, selectedCard.Card.Rotation));
+            StartCoroutine(RotateB(0.2f, selectedCard.Card.Rotation, direction ? -1 : 1));
         }
     }
     
