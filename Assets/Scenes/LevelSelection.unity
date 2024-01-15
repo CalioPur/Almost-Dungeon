@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 28164302}
-  - component: {fileID: 28164303}
   m_Layer: 0
   m_Name: Cards
   m_TagString: Untagged
@@ -159,18 +158,6 @@ Transform:
   - {fileID: 331647206}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &28164303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28164301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23c183007884674ab5642771b4713cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &331647205
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpriteAttached: {fileID: 1223199358}
+  lockedSprite: {fileID: 21300000, guid: 8d4ca03731828414a8e9eec82187b3cb, type: 3}
+  isLocked: 0
   biomeIndex: 3
 --- !u!65 &331647208
 BoxCollider:
@@ -512,6 +501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpriteAttached: {fileID: 2124090102}
+  lockedSprite: {fileID: 21300000, guid: 8d4ca03731828414a8e9eec82187b3cb, type: 3}
+  isLocked: 0
   biomeIndex: 0
 --- !u!1 &742539238
 GameObject:
@@ -1326,6 +1317,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpriteAttached: {fileID: 552985320}
+  lockedSprite: {fileID: 21300000, guid: 8d4ca03731828414a8e9eec82187b3cb, type: 3}
+  isLocked: 0
   biomeIndex: 2
 --- !u!65 &2035461163
 BoxCollider:
@@ -1396,6 +1389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpriteAttached: {fileID: 1315340360}
+  lockedSprite: {fileID: 21300000, guid: 8d4ca03731828414a8e9eec82187b3cb, type: 3}
+  isLocked: 0
   biomeIndex: 1
 --- !u!65 &2089491329
 BoxCollider:
