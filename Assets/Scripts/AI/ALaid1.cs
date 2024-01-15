@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -42,16 +43,67 @@ public class ALaid1
             return PathFinding.BreakFreeFromNoExit(startPos, map);
         }
         
-        if (aggressivity == Aggressivity.COURAGEUX)
-        {
-            //TODO check neighbours if they are enemies
-        }
-        else if (aggressivity == Aggressivity.PEUREUX)
-        {
-            //TODO check neighbours if they are enemies
-        }
+        Vector2Int[] neighboursWithEnemiesAndOpenDoors = GetNeighboursWithEnemiesAndOpenDoors(startPos, map);
         
+        if (aggressivity == Aggressivity.COURAGEUX && neighboursWithEnemiesAndOpenDoors.Length != 0)
+        {
+            return GoToEnemies(startPos, neighboursWithEnemiesAndOpenDoors);
+        }
+
+        if (aggressivity == Aggressivity.PEUREUX && neighboursWithEnemiesAndOpenDoors.Length != 0)
+        {
+            //run away from enemies
+            DirectionToMove dir = DirectionWithNoEnemies(startPos, map);
+            if (dir != DirectionToMove.None)
+            {
+                return dir;
+            }
+        }
+
         return ChooseRandomPossibleDirection(startPos, map);
+    }
+
+    private static DirectionToMove GoToEnemies(Vector2Int startPos, Vector2Int[] neighboursWithEnemiesAndOpenDoors)
+    {
+        Vector2Int chosenNeighbour = neighboursWithEnemiesAndOpenDoors[Random.Range(0, neighboursWithEnemiesAndOpenDoors.Length)];
+        switch (chosenNeighbour)
+        {
+            case var n when n.y > startPos.y:
+                return DirectionToMove.Up;
+            case var n when n.y < startPos.y:
+                return DirectionToMove.Down;
+            case var n when n.x > startPos.x:
+                return DirectionToMove.Right;
+            case var n when n.x < startPos.x:
+                return DirectionToMove.Left;
+            default:
+                Debug.LogError("Unknown direction");
+                return DirectionToMove.None;
+        }
+    }
+
+    private static Vector2Int[] GetNeighboursWithEnemiesAndOpenDoors(Vector2Int startPos, TileData[,] tileDatas)
+    {
+        map = tileDatas;
+        List<Vector2Int> neighboursWithEnemiesAndOpenDoors = new List<Vector2Int>();
+        if (map[startPos.x, startPos.y + 1].hasDoorDown && map[startPos.x, startPos.y + 1].enemies.Count != 0)
+        {
+            neighboursWithEnemiesAndOpenDoors.Add(new Vector2Int(startPos.x, startPos.y + 1));
+        }
+        if (map[startPos.x, startPos.y - 1].hasDoorUp && map[startPos.x, startPos.y - 1].enemies.Count != 0)
+        {
+            neighboursWithEnemiesAndOpenDoors.Add(new Vector2Int(startPos.x, startPos.y - 1));
+        }
+        if (map[startPos.x - 1, startPos.y].hasDoorRight && map[startPos.x - 1, startPos.y].enemies.Count != 0)
+        {
+            neighboursWithEnemiesAndOpenDoors.Add(new Vector2Int(startPos.x - 1, startPos.y));
+        }
+        if (map[startPos.x + 1, startPos.y].hasDoorLeft && map[startPos.x + 1, startPos.y].enemies.Count != 0)
+        {
+            neighboursWithEnemiesAndOpenDoors.Add(new Vector2Int(startPos.x + 1, startPos.y));
+        }
+
+        return neighboursWithEnemiesAndOpenDoors.ToArray();
     }
 
     private static DirectionToMove ChooseRandomPossibleDirection(Vector2Int startPos, TileData[,] mapDatas)
@@ -134,23 +186,74 @@ public class ALaid1
         
         
         
-        int numberOfVisibleEnemies = 0;
-        
-        foreach (var tileData in tilesInLineOfSight)
-        {
-            numberOfVisibleEnemies += tileData.enemies.Count;
-        }
-        
+        int numberOfVisibleEnemies = tilesInLineOfSight.Sum(tileData => tileData.enemies.Count);
+
         if (aggressivity == Aggressivity.COURAGEUX && numberOfVisibleEnemies > 0)
         {
-            PathFinding.BFSFindPath(startPos, map, Personnalities.TheKiller);
+            return PathFinding.BFSFindPath(startPos, map, Personnalities.TheKiller);
         }
-        else if (aggressivity == Aggressivity.PEUREUX)
+
+        if (aggressivity == Aggressivity.PEUREUX && numberOfVisibleEnemies > 0)
         {
-            //TODO check if there are enemies in line of sight
+            //run away from enemies
+            DirectionToMove dir = DirectionWithNoEnemies(startPos, map);
+            if (dir != DirectionToMove.None)
+            {
+                return dir;
+            }
         }
 
         return PathFinding.BFSFindPath(startPos, map, numberOfUnvisitedTiles == 0 ? Personnalities.HurryForTheExit : Personnalities.TheExplorer);
+    }
+
+    private static DirectionToMove DirectionWithNoEnemies(Vector2Int startPos, TileData[,] tileDatas)
+    {
+        map = tileDatas;
+        List<DirectionToMove> possibleDirections = new List<DirectionToMove>();
+        if (map[startPos.x, startPos.y + 1].hasDoorDown && map[startPos.x, startPos.y + 1].enemies.Count == 0)
+        {
+            possibleDirections.Add(DirectionToMove.Up);
+        }
+        if (map[startPos.x, startPos.y - 1].hasDoorUp && map[startPos.x, startPos.y - 1].enemies.Count == 0)
+        {
+            possibleDirections.Add(DirectionToMove.Down);
+        }
+        if (map[startPos.x - 1, startPos.y].hasDoorRight && map[startPos.x - 1, startPos.y].enemies.Count == 0)
+        {
+            possibleDirections.Add(DirectionToMove.Left);
+        }
+        if (map[startPos.x + 1, startPos.y].hasDoorLeft && map[startPos.x + 1, startPos.y].enemies.Count == 0)
+        {
+            possibleDirections.Add(DirectionToMove.Right);
+        }
+
+        switch (possibleDirections.Count)
+        {
+            case 0:
+                return DirectionToMove.None;
+            case 1:
+                return possibleDirections[0];
+            default:
+                foreach (var VARIABLE in possibleDirections)
+                {
+                    switch (VARIABLE)
+                    {
+                        case DirectionToMove.Up:
+                            MapManager.Instance.mapArray[startPos.x, startPos.y + 1].IsVisited = true;
+                            break;
+                        case DirectionToMove.Down:
+                            MapManager.Instance.mapArray[startPos.x, startPos.y - 1].IsVisited = true;
+                            break;
+                        case DirectionToMove.Left:
+                            MapManager.Instance.mapArray[startPos.x - 1, startPos.y].IsVisited = true;
+                            break;
+                        case DirectionToMove.Right:
+                            MapManager.Instance.mapArray[startPos.x + 1, startPos.y].IsVisited = true;
+                            break;
+                    }
+                }
+                return possibleDirections[Random.Range(0, possibleDirections.Count)];
+        }
     }
 
     private static List<TileData> GetTilesInLineOfSight(Vector2Int startPos, TileData[,] mapDatas)
