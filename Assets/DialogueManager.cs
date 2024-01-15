@@ -102,7 +102,6 @@ public class DialogueManager : MonoBehaviour
         
         OnEndDialogEvent+=PlayNextDialogue;
         PlayNextDialogue();
-        dialogueVariable.StartListening(story);
         this.cardsManager = cardsManager;
     }
 
@@ -136,6 +135,7 @@ public class DialogueManager : MonoBehaviour
         try
         {
             story = new Story(currentDialogue.text);
+            dialogueVariable.StartListening(story);
         }
         catch{
             dialogueBox.SetActive(false);
@@ -171,7 +171,7 @@ public class DialogueManager : MonoBehaviour
                 DisplayChoices();
                 return;
             }
-             dialogueVariable.StopListening(story);
+            dialogueVariable.StopListening(story);
             dialogueBox.SetActive(false);
             story = null;
             OnEndDialogEvent?.Invoke();

@@ -2273,6 +2273,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1461340012}
     m_Modifications:
+    - target: {fileID: 4024647005650175913, guid: 8c99205dbea3e834c91454307f7002be,
+        type: 3}
+      propertyPath: _Source
+      value: <font=NotoMono-Regular>test</font>
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146393075715903951, guid: 8c99205dbea3e834c91454307f7002be,
+        type: 3}
+      propertyPath: m_text
+      value: '<font="Witch of Thebes SDF">starfoullah</font>
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 4275459347334335403, guid: 8c99205dbea3e834c91454307f7002be,
         type: 3}
       propertyPath: m_Pivot.x

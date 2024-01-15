@@ -2,7 +2,6 @@ INCLUDE ReccurentDatabase.ink
 
 Haaa... Haa... #chara:knight
 Tiens... Toujours vivant Chevalier ? #chara:dragon
-{RknightSeen : de ouf bro}
 Haha... Bien sûr, ce n'était qu'un échauffement pour moi, je suis toujours prêt à te pourfendre ! #chara:knight
 
 * L'effrayer : -> Effrayer

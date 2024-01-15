@@ -1,5 +1,5 @@
 INCLUDE ArcherDatabase.ink
 
-Un tir, un mort ! #chara:archer
-Il en faudra plus pour m'achever héros ! #chara:dragon
-    -> END
+Un tir, un mort ! #chara:dragon
+Il en faudra plus pour m'achever héros ! #chara:archer
+-> END
