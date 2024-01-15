@@ -1,3 +1,5 @@
+INCLUDE InkDatabase.ink
+
 Alors c'est ça un $$donjon$$ ? #chara:knight
 Sois le bienvenu héros te voici en...  #chara:dragon
 Ah te voilà $$Dragon$$ ! Vile créature, je vais te pourfendre et revenir couvert de gloire au village  ! #chara:knight
