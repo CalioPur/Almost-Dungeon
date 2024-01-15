@@ -36,10 +36,11 @@ public class LevelCardScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isLocked)
         {
             Debug.Log("Clicked");
-            DungeonManager._instance.SetSelectedBiome(biomeIndex);
+            //DungeonManager._instance.SetSelectedBiome(biomeIndex);
+            StartCoroutine(StartLevel());
         }
     }
 
@@ -49,6 +50,12 @@ public class LevelCardScript : MonoBehaviour
         SpriteAttached.DOLocalRotate(new Vector3(0, 0, 0), 0.1f);
     }
 
-
+    IEnumerator StartLevel()
+    {
+        Camera.main.transform.DOMove(transform.position, 3);
+        GameObject.Find("BLACK").GetComponent<Image>().DOFade(1, 1f);
+        yield return new WaitForSeconds(1f);
+        DungeonManager._instance.SetSelectedBiome(biomeIndex);
+    }
     
 }
