@@ -156,7 +156,7 @@ MonoBehaviour:
   animQueue: {fileID: 6402256854860038529}
   emotesManager: {fileID: 172181208815515307}
   animator: {fileID: -4475006244683912997}
-  animFX: {fileID: 630786388120619315, guid: 420bbf0ab1b449c4ca0f9471aa6f3d54, type: 3}
+  animFX: {fileID: 5084154666985997302, guid: bdcdf2694044b3542a689bcfae134ba8, type: 3}
 --- !u!95 &-4475006244683912997
 Animator:
   serializedVersion: 5

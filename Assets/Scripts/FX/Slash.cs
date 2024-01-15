@@ -20,6 +20,7 @@ public class Slash : AttackFX
     public override void Init(Transform target, Transform owner, float time, DirectionToMove direction)
     {
         timer = time;
+        transform.position = target.position;
         //RenderAnim.SetActive(false);
     }
 }

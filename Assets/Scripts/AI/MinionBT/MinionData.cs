@@ -104,7 +104,7 @@ animator.SetTrigger("TakeDamage");
     public void PlayAttackFX(Transform targetTr, float delay, DirectionToMove direction)
     {
         if (animFX == null) return;
-        AttackFX fx = Instantiate(animFX, targetTr.position, animFX.transform.rotation);
+        AttackFX fx = Instantiate(animFX, transform.position, animFX.transform.rotation);
         fx.Init(targetTr, transform, delay, direction);
         fx.Launch();
     }

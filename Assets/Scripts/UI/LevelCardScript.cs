@@ -10,6 +10,7 @@ public class LevelCardScript : MonoBehaviour
 {
     public Transform SpriteAttached;
     public Sprite lockedSprite;
+    public Image BlackImage;
     public bool isLocked = false;
     public int biomeIndex;
 
@@ -53,8 +54,8 @@ public class LevelCardScript : MonoBehaviour
     IEnumerator StartLevel()
     {
         Camera.main.transform.DOMove(transform.position, 3);
-        GameObject.Find("BLACK").GetComponent<Image>().DOFade(1, 1f);
-        yield return new WaitForSeconds(1f);
+        BlackImage.DOColor(Color.black, 1f);
+        yield return new WaitForSeconds(0.95f);
         DungeonManager._instance.SetSelectedBiome(biomeIndex);
     }
     
