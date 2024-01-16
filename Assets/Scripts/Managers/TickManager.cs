@@ -25,6 +25,8 @@ public class TickManager : MonoBehaviour
     [Range(0f, 1000f)] public int BPM = 120;
 
     [Range(0.1f, 5f)] public float actionsTime; //this is the time for all of the actions to be completed
+    
+    [SerializeField] private AnimationCurve BPMBoostCurve;
 
     private float beatInterval;
     private float nextTickTime;

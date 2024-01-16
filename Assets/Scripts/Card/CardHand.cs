@@ -86,7 +86,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         bool tmp = Card != null;
         img.enabled = Card != null;
         //     other.Card.CopyValues(Card);
-        // RefreshCard();
+        RefreshCard();
     }
 
     public void RefreshCard()

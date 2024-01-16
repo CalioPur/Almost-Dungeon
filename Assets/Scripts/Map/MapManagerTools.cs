@@ -176,23 +176,39 @@ public class MapManagerTools
 
     public void SetConnectedToPath()
     {
-        for (int i = 0; i < _mapManager.width - 2; i++)
+        for (int aaa = 0; aaa < 10; aaa++)
         {
-            for (int j = 0; j < _mapManager.height - 2; j++)
+            for (int i = 0; i < _mapManager.width - 2; i++)
             {
-                var currentCell = _mapManager.mapArray[i, j];
-
-                if (currentCell.isConnectedToPath)
-                    continue;
-
-                var isConnectedLeft = i > 0 && _mapManager.mapArray[i - 1, j].isConnectedToPath && currentCell.hasDoorLeft;
-                var isConnectedRight = i < _mapManager.width - 3 && _mapManager.mapArray[i + 1, j].isConnectedToPath && currentCell.hasDoorRight;
-                var isConnectedDown = j > 0 && _mapManager.mapArray[i, j - 1].isConnectedToPath && currentCell.hasDoorDown;
-                var isConnectedUp = j < _mapManager.height - 3 && _mapManager.mapArray[i, j + 1].isConnectedToPath && currentCell.hasDoorUp;
-
-                if (isConnectedLeft || isConnectedRight || isConnectedDown || isConnectedUp)
+                for (int j = 0; j < _mapManager.height - 2; j++)
                 {
-                    currentCell.isConnectedToPath = true;
+                    var currentCell = _mapManager.mapArray[i, j];
+
+                    if (currentCell.isConnectedToPath)
+                        continue;
+
+                    var isConnectedLeft = i > 0 && _mapManager.mapArray[i - 1, j].isConnectedToPath &&
+                                          currentCell.hasDoorLeft;
+                    var isConnectedRight = i < _mapManager.width - 3 &&
+                                           _mapManager.mapArray[i + 1, j].isConnectedToPath && currentCell.hasDoorRight;
+                    var isConnectedDown = j > 0 && _mapManager.mapArray[i, j - 1].isConnectedToPath &&
+                                          currentCell.hasDoorDown;
+                    var isConnectedUp = j < _mapManager.height - 3 &&
+                                        _mapManager.mapArray[i, j + 1].isConnectedToPath && currentCell.hasDoorUp;
+
+                    if (isConnectedLeft || isConnectedRight || isConnectedDown || isConnectedUp)
+                    {
+                        currentCell.isConnectedToPath = true;
+
+                        if (isConnectedLeft)
+                            Debug.Log("Left");
+                        if (isConnectedRight)
+                            Debug.Log("Right");
+                        if (isConnectedDown)
+                            Debug.Log("Down");
+                        if (isConnectedUp)
+                            Debug.Log("Up");
+                    }
                 }
             }
         }
