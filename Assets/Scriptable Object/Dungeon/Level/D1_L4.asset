@@ -15,10 +15,7 @@ MonoBehaviour:
   terrains:
   - {fileID: 11400000, guid: 09fd32e72801152468b490503336a7b6, type: 2}
   heros:
-  - {fileID: 11400000, guid: 0f45bd6c48421564c8927616e1ed6589, type: 2}
-  - {fileID: 11400000, guid: d5f529c6faabe6c439c7d3d958fd4529, type: 2}
-  - {fileID: 11400000, guid: 14c30ca09c225824a8353b3ac5111eb7, type: 2}
-  - {fileID: 11400000, guid: 14c30ca09c225824a8353b3ac5111eb7, type: 2}
+  - {fileID: 11400000, guid: 4c6ead8935f245e4d9f986b8f3f40df1, type: 2}
   decks:
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
   nbCardToDraw: 3
