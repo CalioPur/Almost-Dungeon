@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
   m_Name: T_Web
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: f18d4ac5650fdfb478b6362cbc8d5616, type: 3}
+  imgOnHand: {fileID: 21300000, guid: 882789505e3112d4fb93eb7e411941e0, type: 3}
   imgOnMap: {fileID: 21300000, guid: 2337a13351058a84faf1327c5c5e9f73, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 0

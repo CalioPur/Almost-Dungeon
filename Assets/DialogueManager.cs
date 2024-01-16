@@ -46,6 +46,7 @@ public class DialogueManager : MonoBehaviour
     private Image otherImage;
     private GameObject canvaDragon;
     private GameObject canvaHero;
+    private GameObject timer;
     private static event Action OnEndDialogEvent; 
     private int dialogueIndex = -1;
     
