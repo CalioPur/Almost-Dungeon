@@ -11,7 +11,8 @@ public class HeroSO : ScriptableObject
     public int health;
     public int speed;//vitesse ?
     public HeroesInfo classe;
-    public List<Personnalities> personnalities;
+    public VisionType visionType;
+    public Aggressivity aggressivity;
     public List<TextAsset> heroDialogues;
     public string keyToUnlock;
 }

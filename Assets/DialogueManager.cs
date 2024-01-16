@@ -247,13 +247,13 @@ public class DialogueManager : MonoBehaviour
                         switch (split[1])
                         {
                             case ("courageux"):
-                                GameManager._instance.currentAggressivity = Aggressivity.COURAGEUX;
+                                GameManager._instance.currentHero.aggressivity = Aggressivity.COURAGEUX;
                                 break;
                             case ("peureux"):
-                                GameManager._instance.currentAggressivity = Aggressivity.PEUREUX;
+                                GameManager._instance.currentHero.aggressivity = Aggressivity.PEUREUX;
                                 break;
                             case("clairvoyant"):
-                                GameManager._instance.currentVisionType = VisionType.CLAIRVOYANT;
+                                GameManager._instance.currentHero.visionType = VisionType.CLAIRVOYANT;
                                 break;
                             case("explorateur"):
                                 //PTDR
@@ -277,16 +277,16 @@ public class DialogueManager : MonoBehaviour
                         switch (split[1])
                         {
                             case ("knight"):
-                                GameManager._instance.currentHero = knightClass;
+                                GameManager._instance.currentHero.classe = knightClass;
                                 break;
                             case ("archer"):
-                                GameManager._instance.currentHero = archerClass;
+                                GameManager._instance.currentHero.classe = archerClass;
                                 break;
                             case("mage"):
-                                GameManager._instance.currentHero = mageClass;
+                                GameManager._instance.currentHero.classe = mageClass;
                                 break;
                             case("barbare"):
-                                GameManager._instance.currentHero = barbareClass;
+                                GameManager._instance.currentHero.classe = barbareClass;
                                 break;
                         }
                         break;
