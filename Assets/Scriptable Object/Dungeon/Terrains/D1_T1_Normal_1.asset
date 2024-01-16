@@ -24,7 +24,7 @@ MonoBehaviour:
     rotation: 0
   - position: {x: 3, y: 3}
     cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
-    rotation: 1
+    rotation: 0
   - position: {x: 3, y: 4}
     cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     rotation: 3
