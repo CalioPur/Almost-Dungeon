@@ -21,16 +21,8 @@ MonoBehaviour:
     nbToBuild: 2
   - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     nbToBuild: 5
-  - cardToBuild: {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
-    nbToBuild: 2
-  - cardToBuild: {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
-    nbToBuild: 3
-  - cardToBuild: {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936, type: 2}
-    nbToBuild: 1
-  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
-    nbToBuild: 1
   - cardToBuild: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     nbToBuild: 3
-  - cardToBuild: {fileID: 11400000, guid: be0c7f9793aaafa4fa212e0dc84e3558, type: 2}
-    nbToBuild: 1
+  - cardToBuild: {fileID: 11400000, guid: 1db26f8ca750521449a53d839380a11b, type: 2}
+    nbToBuild: 3
   deckDialogue: {fileID: 0}
