@@ -16,8 +16,8 @@ MonoBehaviour:
   health: 10
   speed: 60
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
-  visionTypes: 00000000
-  aggressivities: 01000000
+  visionType: 0
+  aggressivity: 1
   heroDialogues:
   - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
   keyToUnlock: 
