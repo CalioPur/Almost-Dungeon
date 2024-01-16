@@ -47,6 +47,9 @@ public class DialogueManager : MonoBehaviour
     private GameObject canvaDragon;
     private GameObject canvaHero;
     private GameObject timer;
+
+    private GameObject lightDragon;
+    private GameObject lightHero;
     private static event Action OnEndDialogEvent; 
     private int dialogueIndex = -1;
     
@@ -74,12 +77,17 @@ public class DialogueManager : MonoBehaviour
         nextButton = GameObject.Find("NextButton").GetComponent<Button>();
         otherImage = GameObject.Find("InterlocutorImg").GetComponent<Image>();
         
+        lightDragon = GameObject.Find("LightDragon");
+        lightHero = GameObject.Find("LightHero");
+        
         canvaDragon = GameObject.Find("CanvasDragonUI");
         canvaHero = GameObject.Find("CanvasHeroUI");
         
         dialogueText = dialogueBox.GetComponentInChildren<MarkdownRenderer>();
         
         nextButton.onClick.AddListener(NextDialogue);
+        lightDragon.SetActive(false);
+        lightHero.SetActive(false);
     }
     
     
@@ -341,11 +349,17 @@ public class DialogueManager : MonoBehaviour
     {
         arrowDragon.SetActive(false);
         arrowKnight.SetActive(true);
+        
+        lightHero.SetActive(true);
+        lightDragon.SetActive(false);
     }
 
     void ShowArrowDragon()
     {
         arrowDragon.SetActive(true);
         arrowKnight.SetActive(false);
+        
+        lightHero.SetActive(false);
+        lightDragon.SetActive(true);
     }
 }
