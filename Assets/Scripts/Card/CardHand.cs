@@ -91,6 +91,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void RefreshCard()
     {
+        if (Card == null) return;
         img.sprite = Card.So.imgOnHand;
         img.color = NormalColor;
         DescriptionText.text = Card.So.description;
