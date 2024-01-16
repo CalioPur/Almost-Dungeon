@@ -528,11 +528,10 @@ MonoBehaviour:
   width: 9
   height: 7
   cartes:
+  - {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
   - {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
   - {fileID: 11400000, guid: cc0ea1252c92ec2498ebc7dbaccde103, type: 2}
-  - {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
   imageCarte: {fileID: 2123408703}
-  DefaultSprite: {fileID: 0}
   imageCarteTr: {fileID: 2123408705}
   floor: {fileID: 7685324131272427853, guid: 7299b39184eadc94eafb4cf0320a193c, type: 3}
   indexCardToSelect: 0

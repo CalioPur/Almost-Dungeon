@@ -66,7 +66,10 @@ public class LDCreator : MonoBehaviour
                             data.nbRotation = cartesViewer.currentInstance.Rotation;
                             data.cardInfo = cartesViewer.currentInstance.So;
                             data.isUsed = true;
+                            Debug.Log("Rotation : " + data.nbRotation);
+                            tile.transform.rotation = Quaternion.Euler(90, 0, 360- data.nbRotation);
                         }
+                        
                     }
                 }
             }
@@ -115,6 +118,32 @@ public class LDCreator : MonoBehaviour
                     i--;
                 }
             }
+            
+            if (GUILayout.Button("Load World"))
+            {
+                for (int i = 0; i < cartesViewer.map.childCount; i++)
+                {
+                    DestroyImmediate(cartesViewer.map.GetChild(i).gameObject);
+                    i--;
+                }
+                cartesViewer.SpawnMap();
+                
+                TilePresetSO world = AssetDatabase.LoadAssetAtPath<TilePresetSO>("Assets/" + cartesViewer.nameWorldToSave + ".asset");
+                
+                foreach (var tilePreset in world.tilePresets)
+                {
+                    TileData tile = cartesViewer.mapArray[tilePreset.position.x, tilePreset.position.y].GetComponent<TileData>();
+                    tile.SetInstance(tilePreset.cardInfo.CreateInstance());
+                    tile.img.sprite = tilePreset.cardInfo.imgOnHand;
+                    LDEditorData data = tile.GetComponent<LDEditorData>();
+                    data.nbRotation = tilePreset.rotation;
+                    data.cardInfo = tilePreset.cardInfo;
+                    data.isUsed = true;
+                    
+                    tile.transform.rotation = Quaternion.Euler(90, 0, 360-data.nbRotation * 90);
+                    
+                }
+            }
 
             if (GUILayout.Button("Select Card with index"))
             {
@@ -127,9 +156,8 @@ public class LDCreator : MonoBehaviour
             }
             if (GUILayout.Button("Rotate"))
             {
-                cartesViewer.currentInstance.AddRotation(true);
-                cartesViewer.imageCarteTr.rotation = Quaternion.Euler(0, 0, cartesViewer.currentInstance.Rotation);
-                
+                cartesViewer.currentInstance.AddRotation(false);
+                cartesViewer.imageCarteTr.rotation = Quaternion.Euler(0, 0, -cartesViewer.currentInstance.Rotation);
             }
         }
     }
