@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8dd4e543ca3d06498c7464e410c2f40, type: 3}
+  m_Name: D2_L6
+  m_EditorClassIdentifier: 
+  terrains:
+  - {fileID: 11400000, guid: 8c629cc77ea3def46a87ae6ae4df7908, type: 2}
+  - {fileID: 11400000, guid: 0fbe58551ddc2bd498b55bf6a23bfe6d, type: 2}
+  - {fileID: 11400000, guid: 90e74b690825d0543a4ff7ef60577cee, type: 2}
+  - {fileID: 11400000, guid: 5c9680163cbe7794d9fdaef9fafcfb29, type: 2}
+  - {fileID: 11400000, guid: c5c2f28bf66d1394a9e7c4cbddb24ae5, type: 2}
+  heros:
+  - {fileID: 11400000, guid: 54d300113b53d69429d650c21082879a, type: 2}
+  decks:
+  - {fileID: 11400000, guid: 9fe5dc83dff5c2f44ad3d24de9297c1c, type: 2}
+  nbCardToDraw: 3
