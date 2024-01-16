@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
         heroScript.Init(current, startPosHero.x, startPosHero.y, mapManager);
         heroScript.HeroBlackboard.visionType = currentHero.visionType;
-        heroScript.HeroBlackboard.aggressivity = currentHero.aggressivity;
+        // heroScript.HeroBlackboard.aggressivity = currentHero.aggressivity;
         
         if (heroCurrentHealthPoint < heroHealthPoint) //Degats pris pendant le dialogue
         {
