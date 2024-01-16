@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: I_Wolf
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: ae5ccd389508ce641b905eb7d304ae9d, type: 3}
-  imgOnMap: {fileID: 21300000, guid: ffb82ec9a9ab5dd46bb32a9757f4ff0c, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 7c9d9576f4587184297d3e448279e8dd, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 7
     canBeRevive: 1

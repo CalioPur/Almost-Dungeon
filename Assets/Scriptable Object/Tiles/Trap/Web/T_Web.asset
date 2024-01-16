@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: T_Web
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: f18d4ac5650fdfb478b6362cbc8d5616, type: 3}
-  imgOnMap: {fileID: 21300000, guid: 4f5c30b23bb394d4ca221a63ca50ac56, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 2337a13351058a84faf1327c5c5e9f73, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 0
+    canBeRevive: 0
     indexOffsetTile: 0
   offsetMinionPos:
   - {x: 0, y: 0, z: 0}

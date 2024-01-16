@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: L_Spike
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: 790c00dfd739ce24cafae18bd8dc2d65, type: 3}
-  imgOnMap: {fileID: 21300000, guid: ea54e6e8830f9094b8c533f68da85840, type: 3}
+  imgOnMap: {fileID: 21300000, guid: e6f5cd736ca035246be6d1d5d80d873a, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 1
+    canBeRevive: 0
     indexOffsetTile: 0
   offsetMinionPos:
   - {x: 0, y: 0, z: 0}

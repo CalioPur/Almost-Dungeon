@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: I_Web
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: fcf4905229a63124bbed1a6bc0a08c55, type: 3}
-  imgOnMap: {fileID: 21300000, guid: 8fdc15bb2e9aec646a99155b048db70e, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 7c9d9576f4587184297d3e448279e8dd, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 0
     canBeRevive: 0

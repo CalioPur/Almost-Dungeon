@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: X_Corridor
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: ca35caf29377baf46bda85203ce4500d, type: 3}
-  imgOnMap: {fileID: 21300000, guid: ca35caf29377baf46bda85203ce4500d, type: 3}
+  imgOnMap: {fileID: 21300000, guid: c9dcf34500af8714c9fee513ba3792b8, type: 3}
   TypeOfTrapOrEnemyToSpawn: []
   offsetMinionPos:
   - {x: 0, y: 0, z: 0}

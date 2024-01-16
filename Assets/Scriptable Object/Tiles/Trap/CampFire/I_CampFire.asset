@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: I_CampFire
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: a3597997e2ff42d41a4d6e8a90df8041, type: 3}
-  imgOnMap: {fileID: 21300000, guid: 8fdc15bb2e9aec646a99155b048db70e, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 7c9d9576f4587184297d3e448279e8dd, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 6
     canBeRevive: 0

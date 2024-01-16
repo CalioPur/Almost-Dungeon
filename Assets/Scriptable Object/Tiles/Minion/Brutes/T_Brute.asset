@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T_Brute
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: 743b82263ae059a43a1f538270fe7092, type: 3}
-  imgOnMap: {fileID: 21300000, guid: 6eb3df4c6678a364188b4aa6e1762dcd, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 2337a13351058a84faf1327c5c5e9f73, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 2
     canBeRevive: 1
