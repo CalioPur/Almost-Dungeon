@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 using Ink.Runtime;
 using LogicUI.FancyTextRendering;
@@ -43,6 +44,8 @@ public class DialogueManager : MonoBehaviour
     private MarkdownRenderer dialogueText;
     private Button nextButton;
     private Image otherImage;
+    private GameObject canvaDragon;
+    private GameObject canvaHero;
     private static event Action OnEndDialogEvent; 
     private int dialogueIndex = -1;
     
@@ -68,6 +71,9 @@ public class DialogueManager : MonoBehaviour
         choice1 = GameObject.Find("Choice1");
         choice2 = GameObject.Find("Choice2");
         otherImage = GameObject.Find("InterlocutorImg").GetComponent<Image>();
+        
+        canvaDragon = GameObject.Find("CanvasDragonUI");
+        canvaHero = GameObject.Find("CanvasHeroUI");
         
         dialogueText = dialogueBox.GetComponentInChildren<MarkdownRenderer>();
         nextButton = dialogueBox.GetComponentInChildren<Button>();
@@ -114,6 +120,16 @@ public class DialogueManager : MonoBehaviour
             dialogueBox.SetActive(false);
             nextButton.onClick.RemoveAllListeners();
             Time.timeScale = 1;
+            Transform camTransform = Camera.main.transform;
+            camTransform.DOMove(new Vector3(0, 6.06f, -4.64f), 1f);
+            camTransform.DORotate(new Vector3(60, 0, 0), 1f);
+
+            canvaDragon.transform.DOMove(new Vector3(-6.46f, -0.5f, 1.3f), 1);
+            canvaDragon.transform.DORotate(new Vector3(90, 0, 0), 1);
+            
+            canvaHero.transform.DOMove(new Vector3(6.46f, -0.5f, 1.3f), 1);
+            canvaHero.transform.DORotate(new Vector3(90,0,0), 1);
+            
             return;
         }
         

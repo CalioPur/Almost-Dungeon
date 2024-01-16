@@ -2054,7 +2054,13 @@ PrefabInstance:
         type: 3}
       propertyPath: HeroSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 183aabf4ecefaf14c8aadd30cce0cabe,
+      objectReference: {fileID: 21300000, guid: 9a575ab06f40df24686774879bb26a0e,
+        type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
+      propertyPath: mageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2271d57ab51691b4ab74173c85d24fbb,
         type: 3}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
@@ -2093,7 +2099,7 @@ PrefabInstance:
         type: 3}
       propertyPath: archerSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 03c60f67f624c3c4ab5fff653728ecfb,
+      objectReference: {fileID: 21300000, guid: cc38538058292e34296f111adcdaf279,
         type: 3}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
@@ -2108,9 +2114,15 @@ PrefabInstance:
       objectReference: {fileID: 2088323764}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
+      propertyPath: barbareSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9a575ab06f40df24686774879bb26a0e,
+        type: 3}
+    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
+        type: 3}
       propertyPath: globalsInkFile
       value: 
-      objectReference: {fileID: 4900000, guid: 705f83ff878d90940bb349ef4548592f, type: 3}
+      objectReference: {fileID: 4900000, guid: 4ed389083f8177e4c898823e3b1d858a, type: 3}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
       propertyPath: decks.Array.size
