@@ -71,6 +71,7 @@ public class MovementManager : MonoBehaviour
         
         while (time > 0)
         {
+            if (selectedCard == null) yield break;
             time -= Time.deltaTime;
             Vector3 rot = selectedCard.GetImage().transform.rotation.eulerAngles;
             rot += new Vector3(0, 0, ratio * Time.deltaTime);
@@ -80,6 +81,8 @@ public class MovementManager : MonoBehaviour
             cardVisualizer.transform.rotation = Quaternion.Euler(rot2);
             yield return null;
         }
+
+        if (selectedCard == null) yield break;
         selectedCard.GetImage().transform.rotation = Quaternion.Euler(new Vector3(0, 0, desiredAngle));
         cardVisualizer.transform.rotation = Quaternion.Euler(new Vector3(90, 0, desiredAngle));
     }
