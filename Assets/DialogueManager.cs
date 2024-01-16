@@ -73,6 +73,7 @@ public class DialogueManager : MonoBehaviour
         choice2 = GameObject.Find("Choice2");
         nextButton = GameObject.Find("NextButton").GetComponent<Button>();
         otherImage = GameObject.Find("InterlocutorImg").GetComponent<Image>();
+        timer = GameObject.Find("CountDown");
         
         canvaDragon = GameObject.Find("CanvasDragonUI");
         canvaHero = GameObject.Find("CanvasHeroUI");
@@ -89,6 +90,7 @@ public class DialogueManager : MonoBehaviour
         print("HERO DIALOGUE COUNT : "+heroDialogue.Count);
         dialogueIndex = -1;
         GetUiElements();
+        timer.SetActive(false);
         dialogues = new List<TextAsset>();
         if(terrainDialogue != null)
             dialogues.Add(terrainDialogue);
@@ -121,16 +123,20 @@ public class DialogueManager : MonoBehaviour
             OnEndDialogEvent = null;
             dialogueBox.SetActive(false);
             nextButton.onClick.RemoveAllListeners();
+            timer.SetActive(true);
             Time.timeScale = 1;
             Transform camTransform = Camera.main.transform;
-            camTransform.DOMove(new Vector3(0, 6.06f, -4.64f), 1f);
-            camTransform.DORotate(new Vector3(60, 0, 0), 1f);
+            camTransform.DOMove(new Vector3(0, 6.71f, -4f), 1f);
+            camTransform.DORotate(new Vector3(65.5f, 0, 0), 1f);
 
-            canvaDragon.transform.DOMove(new Vector3(-6.46f, -0.5f, 1.3f), 1);
-            canvaDragon.transform.DORotate(new Vector3(90, 0, 0), 1);
+            canvaDragon.transform.DOMove(new Vector3(-6.9f, -0.5f, 1f), 1.5f);
+            canvaDragon.transform.DORotate(new Vector3(90, 0, 0), 1.5f);
+            canvaDragon.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.5f);
             
-            canvaHero.transform.DOMove(new Vector3(6.46f, -0.5f, 1.3f), 1);
-            canvaHero.transform.DORotate(new Vector3(90,0,0), 1);
+            canvaHero.transform.DOMove(new Vector3(6.9f, -0.5f, 1.1f), 1.5f);
+            canvaHero.transform.DORotate(new Vector3(90,0,0), 1.5f);
+            canvaHero.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.5f);
+
             
             return;
         }
