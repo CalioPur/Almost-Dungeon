@@ -170,7 +170,6 @@ public class DialogueManager : MonoBehaviour
 
     public void NextDialogue()
     {
-        print("beuteu");
         RefreshView();
     }
 
