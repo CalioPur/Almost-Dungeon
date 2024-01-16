@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1_Caserne
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: 1fdcabce677bf3b4a8d9807d69ed1ba1, type: 2}
+  - {fileID: 11400000, guid: 386a63ec92c4a8e44bf2ac28dd44507f, type: 2}
   - {fileID: 11400000, guid: 67b4a8fde4cb8f146aef37d2d43887b5, type: 2}
   - {fileID: 11400000, guid: e7d43c4b34fc27e40a5ab1542b23d8b8, type: 2}
   - {fileID: 11400000, guid: d81d0c1b311785145958a9d76cf0107b, type: 2}
