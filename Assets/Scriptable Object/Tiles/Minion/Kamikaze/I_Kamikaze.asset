@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
   m_Name: I_Kamikaze
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: 290302a9c4ea33b409db6db83ba48fc1, type: 3}
+  imgOnHand: {fileID: 21300000, guid: a65e21affc8f8cb41bcbccf439304c06, type: 3}
   imgOnMap: {fileID: 21300000, guid: 7c9d9576f4587184297d3e448279e8dd, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 8
