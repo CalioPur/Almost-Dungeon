@@ -101,9 +101,14 @@ public class UI_Hero : MonoBehaviour
 
 
         heroImage.color = Color.red;
-        heroImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true);
+        heroImage.transform.parent.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
         yield return new WaitForSeconds(shakeDuration);
         heroImage.color = Color.white;
+    }
+    
+    private void TakeDamage(int _, bool __)
+    {
+        StartCoroutine(TakeDamageFX());
     }
 
     void EndGame(bool win)
@@ -164,8 +169,11 @@ public class UI_Hero : MonoBehaviour
     private void Awake()
     {
         Hero.OnPopUpEvent += SetupValues;
+        Hero.OnTakeDamageEvent += TakeDamage;
         UI_Dragon.OnDragonDeathEvent += LoseGame;
     }
+
+
 
     private void OnDisable()
     {
@@ -173,6 +181,7 @@ public class UI_Hero : MonoBehaviour
         UI_Dragon.OnDragonDeathEvent -= LoseGame;
         Hero.OnTakeDamageEvent -= DrawHearts;
         OnEndGameEvent -= EndGame;
+        Hero.OnTakeDamageEvent -= TakeDamage;
         OnEndGameEvent = null;
     }
 
@@ -180,6 +189,7 @@ public class UI_Hero : MonoBehaviour
     {
         if (ItemBar.activeSelf) DrawItems();
         Hero.OnTakeDamageEvent += DrawHearts;
+        Hero.OnTakeDamageEvent += TakeDamage;
         OnEndGameEvent += EndGame;
     }
 }

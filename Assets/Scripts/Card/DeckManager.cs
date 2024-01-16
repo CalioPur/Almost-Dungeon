@@ -127,7 +127,6 @@ public class DeckManager : MonoBehaviour
 
     private void DrawCard()
     {
-        print("DRAW CARD");
         if (deckCreate.Count == 0 || cptCardsObtained >= handsManager.GetMaxCard()) return;
         
         cptCardsObtained++;
