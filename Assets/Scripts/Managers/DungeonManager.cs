@@ -105,7 +105,7 @@ public class DungeonManager : MonoBehaviour
         tickManager.BPM = heroData.speed;
         
         gameManager = FindObjectOfType<GameManager>();
-        gameManager.currentHero = heroData.classe;
+        gameManager.currentHero = heroData;
         //gameManager.currentPersonality = heroData.personnalities[0]; //a changer a l'avenir, le hero pourra avoir plusieurs personnalité
         gameManager.heroHealthPoint = heroData.health;
         gameManager.heroCurrentHealthPoint = heroData.health;

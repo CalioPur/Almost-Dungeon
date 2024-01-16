@@ -18,10 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CardInfo enterDungeonInfo;
     [SerializeField] public Vector2Int normsSpawnX;
     [SerializeField] public Vector2Int normsSpawnY;
-    public HeroesInfo currentHero;
-    // public Personnalities currentPersonality;
-    public VisionType currentVisionType;
-    public Aggressivity currentAggressivity;
+    public HeroSO currentHero;
     public int heroHealthPoint;
     public int heroCurrentHealthPoint;
     public int rotationOfSpawnTile;
@@ -72,13 +69,13 @@ public class GameManager : MonoBehaviour
             Debug.LogError("No hero selected");
             return;
         }
-        HeroInstance current = currentHero.CreateInstance();
+        HeroInstance current = currentHero.classe.CreateInstance();
         current.CurrentHealthPoint = heroHealthPoint;
         
         Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
         heroScript.Init(current, startPosHero.x, startPosHero.y, mapManager);
-        heroScript.HeroBlackboard.visionType = currentVisionType;
-        heroScript.HeroBlackboard.aggressivity = currentAggressivity;
+        heroScript.HeroBlackboard.visionType = currentHero.visionType;
+        heroScript.HeroBlackboard.aggressivity = currentHero.aggressivity;
         
         if (heroCurrentHealthPoint < heroHealthPoint) //Degats pris pendant le dialogue
         {
