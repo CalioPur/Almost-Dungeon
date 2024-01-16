@@ -532,10 +532,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc0ea1252c92ec2498ebc7dbaccde103, type: 2}
   - {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
   imageCarte: {fileID: 2123408703}
-  DefaultSprite: {fileID: 0}
   imageCarteTr: {fileID: 2123408705}
   floor: {fileID: 7685324131272427853, guid: 7299b39184eadc94eafb4cf0320a193c, type: 3}
-  indexCardToSelect: 0
+  indexCardToSelect: 2
   nameWorldToSave: poire2
 --- !u!4 &1678027750
 Transform:
@@ -727,7 +726,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a1d351472c22e4248ae39559d08ae87b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 790c00dfd739ce24cafae18bd8dc2d65, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -10,7 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f0686ad6da41e04095ff2a86b67d424, type: 3}
-  m_Name: Tests
+  m_Name: 2_Archerie
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: a26eb8ce9f727c64a817f4556c6065a1, type: 2}
+  - {fileID: 11400000, guid: e90b5839675ae994283a9721b4fb5241, type: 2}
+  - {fileID: 11400000, guid: 1cbf7d03c3962c64cbdb155527457f24, type: 2}
+  - {fileID: 11400000, guid: d65aa12f6b9fb574a841ee8357079315, type: 2}
+  - {fileID: 11400000, guid: 0090d9fdebc210a43b12e5d28da78c78, type: 2}
+  - {fileID: 11400000, guid: fe5076a706016144ca12e814e5d4733b, type: 2}
