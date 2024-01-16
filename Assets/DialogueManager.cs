@@ -70,13 +70,14 @@ public class DialogueManager : MonoBehaviour
         arrowDragon = GameObject.Find("ArrowDragon");
         choice1 = GameObject.Find("Choice1");
         choice2 = GameObject.Find("Choice2");
+        nextButton = GameObject.Find("NextButton").GetComponent<Button>();
         otherImage = GameObject.Find("InterlocutorImg").GetComponent<Image>();
         
         canvaDragon = GameObject.Find("CanvasDragonUI");
         canvaHero = GameObject.Find("CanvasHeroUI");
         
         dialogueText = dialogueBox.GetComponentInChildren<MarkdownRenderer>();
-        nextButton = dialogueBox.GetComponentInChildren<Button>();
+        
         nextButton.onClick.AddListener(NextDialogue);
     }
     
@@ -169,6 +170,7 @@ public class DialogueManager : MonoBehaviour
 
     public void NextDialogue()
     {
+        print("beuteu");
         RefreshView();
     }
 
