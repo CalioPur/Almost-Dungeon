@@ -6,7 +6,6 @@ using UnityEngine;
 public class SpawnEnemyManager : MonoBehaviour
 {
     [SerializeField] private List<ListOfTraps> TrapsPrefab;
-    [SerializeField] private MapManager mapManager;
 
     private static List<ListOfTraps> _trapsPrefab;
 
@@ -49,6 +48,10 @@ public class SpawnEnemyManager : MonoBehaviour
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Laden).prefab as MinionData, tile, true, offsetCoin,
                     index, mapManager);
                 break;
+            case TrapType.Wolf:
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Wolf).prefab, tile, true, offsetCoin, index,
+                    mapManager);
+                break;
             case TrapType.Web:
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Web).prefab, tile, false, offsetCoin, -1,
                     mapManager);
@@ -61,10 +64,7 @@ public class SpawnEnemyManager : MonoBehaviour
                 SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.FireCamp).prefab, tile, false, offsetCoin, -1,
                     mapManager);
                 break;
-            case TrapType.Wolf:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Wolf).prefab, tile, false, offsetCoin, index,
-                    mapManager);
-                break;
+
             case TrapType.None:
                 break;
             default:

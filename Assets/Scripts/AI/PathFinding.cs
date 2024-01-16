@@ -37,14 +37,13 @@ public class PathFinding
                 }
             }
 
-            if (!map[currentPos.x, currentPos.y].IsVisited)
+            if (!map[currentPos.x, currentPos.y].IsVisited || map[currentPos.x, currentPos.y].isExit)
             {
                 unvisitedTiles.Add(currentPos);
             }
             
             if (map[currentPos.x, currentPos.y].enemies.Count > 0)
             {
-                unvisitedTiles.Add(currentPos);
                 tileWithEnemies.Add(currentPos);
             }
 
@@ -197,28 +196,53 @@ public class PathFinding
         return DirectionToMove.None;
     }
 
-    private static Vector2Int GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap, List<Vector2Int> positions)
+    private static Vector2Int GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap, List<Vector2Int> goalPositions)
     {
-        Vector2Int closestPos = positions[0];
-        float closestDistance = Vector2Int.Distance(startPos, closestPos);
+        Vector2Int closestPos = goalPositions[0];
+        int minDist = 9999;
+        // float closestDistance = Vector2Int.Distance(startPos, closestPos);
+        //
+        // foreach (var pos in positions)
+        // {
+        //     float distance = Vector2Int.Distance(startPos, pos);
+        //     if (distance < closestDistance)
+        //     {
+        //         closestPos = pos;
+        //         closestDistance = distance;
+        //     }
+        // }
 
-        foreach (var pos in positions)
+        foreach (var position in goalPositions)
         {
-            float distance = Vector2Int.Distance(startPos, pos);
-            if (distance < closestDistance)
+            
+            Dictionary<Vector2Int, Vector2Int> parentMapCopy = new Dictionary<Vector2Int, Vector2Int>(parentMap);
+            Vector2Int currentPos = position;
+            int distance = 0;
+            while (parentMapCopy.ContainsKey(currentPos) && parentMapCopy[currentPos] != startPos)
             {
-                closestPos = pos;
-                closestDistance = distance;
+                Vector2Int parent = parentMapCopy[currentPos];
+                parentMapCopy.Remove(currentPos);
+                currentPos = parent;
+                distance++;
+            }
+            if (minDist > distance)
+            {
+                minDist = distance;
+                closestPos = currentPos;
             }
         }
+        
 
-        Vector2Int nextPos = closestPos;
-        while (parentMap.ContainsKey(nextPos) && parentMap[nextPos] != startPos)
-        {
-            nextPos = parentMap[nextPos];
-        }
+        
+        
 
-        return nextPos;
+        // Vector2Int nextPos = closestPos;
+        // while (parentMap.ContainsKey(nextPos) && parentMap[nextPos] != startPos)
+        // {
+        //     nextPos = parentMap[nextPos];
+        // }
+
+        return closestPos;
     }
     
     private static DirectionToMove GetDirectionToMove(Vector2Int startPos, Vector2Int nextPos)

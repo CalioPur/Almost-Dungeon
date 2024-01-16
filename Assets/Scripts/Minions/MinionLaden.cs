@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 
@@ -6,6 +5,7 @@ public class MinionLaden : MinionData
 {
     [SerializeField] private int damageFire = 5;
     [SerializeField] private ParticleSystem ExplosionFX;
+    private AttackType DeadAttackType = AttackType.Fire;
 
     private void ExplosionAttack(Vector2Int pos)
     {
@@ -18,6 +18,7 @@ public class MinionLaden : MinionData
                 flip.Flip();
             }
         }
+
         if (bt.blackboard.heroPosition == pos)
         {
             Attack(damageFire, AttackType.Fire);
@@ -26,11 +27,11 @@ public class MinionLaden : MinionData
                 flip.Flip();
             }
         }
-        
     }
-    
+
     public override void TakeDamage(int damage, AttackType attackType)
     {
+        DeadAttackType = attackType;
         if (attackType == AttackType.Fire)
         {
             mapManager.RemoveEnemyOnTile(new Vector2Int(indexX, indexY), this, transform.position);
@@ -38,25 +39,31 @@ public class MinionLaden : MinionData
             {
                 ExplosionAttack(new Vector2Int(indexX, indexY + 1));
             }
+
             if (mapManager.HasDoorOpen(new Vector2Int(indexX, indexY), new Vector2Int(indexX, indexY - 1)))
             {
                 ExplosionAttack(new Vector2Int(indexX, indexY - 1));
             }
+
             if (mapManager.HasDoorOpen(new Vector2Int(indexX, indexY), new Vector2Int(indexX + 1, indexY)))
             {
                 ExplosionAttack(new Vector2Int(indexX + 1, indexY));
             }
+
             if (mapManager.HasDoorOpen(new Vector2Int(indexX, indexY), new Vector2Int(indexX - 1, indexY)))
             {
                 ExplosionAttack(new Vector2Int(indexX - 1, indexY));
             }
         }
+
         base.TakeDamage(damage, attackType);
     }
 
     protected override void OnDead()
     {
-        Destroy(Instantiate(ExplosionFX, transform.position, ExplosionFX.transform.rotation), 1.5f);
+        if (DeadAttackType == AttackType.Fire)
+            Destroy(Instantiate(ExplosionFX, transform.position, ExplosionFX.transform.rotation), 1.5f);
+
         base.OnDead();
     }
 }
