@@ -23,7 +23,7 @@ MonoBehaviour:
   DoorOnTop: 0
   DoorOnBottom: 0
   DoorOnLeft: 1
-  DoorOnRight: 1
+  DoorOnRight: 0
   description: Is enter en fait
   Rotation: 0
   <ItemDrops>k__BackingField: 
