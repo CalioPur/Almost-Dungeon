@@ -11,6 +11,7 @@ public class MovementManager : MonoBehaviour
 
     //[SerializeField] private GameObject gridVisualizer;
     [SerializeField] private GameObject cardVisualizer;
+    
     private TileData selectedTile;
     private Vector3 offset;
     
@@ -19,6 +20,8 @@ public class MovementManager : MonoBehaviour
     [SerializeField] private GameObject discardPosition;
     
     Vector3 baseRotation = new(90, 0, 0);
+
+    [SerializeField] private SoundManagerIngame soundManagerIngame;
     
     public static MovementManager Instance { get; private set; }
     CardHand selectedCard;
@@ -172,12 +175,14 @@ public class MovementManager : MonoBehaviour
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
             if (selectedCard != null) selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
+            soundManagerIngame.PlayDialogueSFX("UiClick");
             return;
         }
         
         if (selectedCard != null)
         {
             TileData tile = hit.collider.gameObject.GetComponent<TileData>();
+            soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
             OnTileSelectedEvent?.Invoke(tile);
         }
     }
@@ -222,6 +227,7 @@ public class MovementManager : MonoBehaviour
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.SetActive(false);
+
         OnTileSelectedEvent?.Invoke(tile);
     }
 
