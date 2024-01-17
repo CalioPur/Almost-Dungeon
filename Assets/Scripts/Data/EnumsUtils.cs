@@ -43,7 +43,8 @@ public enum Personnalities
     TheExplorer,
     TheKiller,
     TheSissy,
-    MoveToHero
+    MoveToHero,
+    Nothing
 }
 
 public enum PersonnalitiesV2

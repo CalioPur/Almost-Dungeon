@@ -8,8 +8,7 @@ public class PathFinding
     public static event Action OnNoPathFound;
     public static Vector2Int HeroPos { get; set; }
     
-    public static int distanceFromClosestExit = 0;
-    
+    public static int distToClosestExit = 9999;
     public static DirectionToMove BFSFindPath(Vector2Int startPos, TileData[,] map, Personnalities personality)
     {
         Queue<Vector2Int> queue = new Queue<Vector2Int>();
@@ -61,6 +60,8 @@ public class PathFinding
             dbgInt++;
         }
         
+        distToClosestExit = GetNumberOfTilesToClosestExit(startPos, parentMap, exits);
+        
         switch (personality)
         {
             case Personnalities.HurryForTheExit when exits.Count > 0:
@@ -106,6 +107,10 @@ public class PathFinding
                     return GoThroughDoorWithNoTile(startPos, map);
                 }
                 return GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.Nothing:
+            {
+                return DirectionToMove.None;
             }
             default:
                 Debug.Log("No valid path found because no exit or unvisited tiles found");
@@ -196,25 +201,13 @@ public class PathFinding
         return DirectionToMove.None;
     }
 
-    private static Vector2Int GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap, List<Vector2Int> goalPositions)
+    private static Vector2Int GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap,
+        List<Vector2Int> goalPositions)
     {
         Vector2Int closestPos = goalPositions[0];
         int minDist = 9999;
-        // float closestDistance = Vector2Int.Distance(startPos, closestPos);
-        //
-        // foreach (var pos in positions)
-        // {
-        //     float distance = Vector2Int.Distance(startPos, pos);
-        //     if (distance < closestDistance)
-        //     {
-        //         closestPos = pos;
-        //         closestDistance = distance;
-        //     }
-        // }
-
         foreach (var position in goalPositions)
         {
-            
             Dictionary<Vector2Int, Vector2Int> parentMapCopy = new Dictionary<Vector2Int, Vector2Int>(parentMap);
             Vector2Int currentPos = position;
             int distance = 0;
@@ -225,6 +218,35 @@ public class PathFinding
                 currentPos = parent;
                 distance++;
             }
+
+            if (minDist > distance)
+            {
+                minDist = distance;
+                closestPos = currentPos;
+            }
+        }
+
+        return closestPos;
+    }
+
+    public static int GetNumberOfTilesToClosestExit(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap,
+        List<Vector2Int> exits)
+    {
+        Vector2Int closestPos = exits[0];
+        int minDist = 9999;
+        foreach (var position in exits)
+        {
+            Dictionary<Vector2Int, Vector2Int> parentMapCopy = new Dictionary<Vector2Int, Vector2Int>(parentMap);
+            Vector2Int currentPos = position;
+            int distance = 0;
+            while (parentMapCopy.ContainsKey(currentPos) && parentMapCopy[currentPos] != startPos)
+            {
+                Vector2Int parent = parentMapCopy[currentPos];
+                parentMapCopy.Remove(currentPos);
+                currentPos = parent;
+                distance++;
+            }
+
             if (minDist > distance)
             {
                 minDist = distance;
@@ -232,17 +254,7 @@ public class PathFinding
             }
         }
         
-
-        
-        
-
-        // Vector2Int nextPos = closestPos;
-        // while (parentMap.ContainsKey(nextPos) && parentMap[nextPos] != startPos)
-        // {
-        //     nextPos = parentMap[nextPos];
-        // }
-
-        return closestPos;
+        return minDist;
     }
     
     private static DirectionToMove GetDirectionToMove(Vector2Int startPos, Vector2Int nextPos)
