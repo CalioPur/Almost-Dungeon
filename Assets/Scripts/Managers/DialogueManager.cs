@@ -328,10 +328,10 @@ public class DialogueManager : MonoBehaviour
                         switch (split[1])
                         {
                             case "in":
-                                minionToken.transform.DOMove(new Vector3(-4.5f, 1, 9), 1f);
+                                minionToken.transform.DOMove(new Vector3(-4.5f, 0.8f, 8), 1f);
                                 break;
                             case "out":
-                                minionToken.transform.DOMove(new Vector3(-10f, 1, 9), 1f);
+                                minionToken.transform.DOMove(new Vector3(-10f, 0.8f, 8), 1f);
                                 break;
                         }
                         break;
