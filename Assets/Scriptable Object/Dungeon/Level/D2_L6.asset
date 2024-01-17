@@ -16,6 +16,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 09fd32e72801152468b490503336a7b6, type: 2}
   heros:
   - {fileID: 11400000, guid: a68db13b9fa160f4cb0b69dc1f5c4187, type: 2}
+  - {fileID: 11400000, guid: ddb903577e335b04d840cda1c2a091e7, type: 2}
+  - {fileID: 11400000, guid: 1e7e17bd3aa7d204cb640aac714c4008, type: 2}
   decks:
   - {fileID: 11400000, guid: 9fe5dc83dff5c2f44ad3d24de9297c1c, type: 2}
   nbCardToDraw: 4
