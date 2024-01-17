@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Ink.Parsed;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,7 +23,7 @@ public class DungeonManager : MonoBehaviour
    
     [SerializeField] public List<Dungeon> dungeons;
    
-    private static int currentLevel = 0;
+    public static int currentLevel = 0;
     private DeckManager cardsManager;
     private TickManager tickManager;
     private GameManager gameManager;
@@ -53,6 +54,18 @@ public class DungeonManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
     
+    public void SetSelectedBiomeAndLevelFromSave(int indexBiome, int indexLevel)
+    {
+        SelectedBiome = indexBiome;
+        currentLevel = indexLevel;
+        GameManager.OnSceneLoadedEvent += LoadLevel;
+        SceneManager.LoadScene(2);
+    }
+    
+    public static string ToTitleCase(string title)
+    {
+        return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(title.ToLower()); 
+    }
     
     private void LoadLevel()
     {
@@ -92,13 +105,16 @@ public class DungeonManager : MonoBehaviour
         var heroData = heroUnlock[Random.Range(0, heroUnlock.Count)];
         var deckData = levelData.decks[Random.Range(0, levelData.decks.Count)];
         
-        
+        UI_Hero heroCard = FindObjectOfType<UI_Hero>();
+        heroCard.heroName.text = heroData.nameOfHero;
+        heroCard.heroPersonality.text = ToTitleCase(heroData.visionType.ToString() + " " + heroData.aggressivity);
         
         cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = deckData.deck;
         cardsManager.nbCardOnStartToDraw = levelData.nbCardToDraw;
         
-        DialogueManager._instance.PlayAllThreeDialogues(terrainData.terrainDialogue, deckData.deckDialogue, heroData.heroDialogues, cardsManager);
+        DialogueManager._instance.PlayAllThreeDialogues(terrainData.terrainDialogue, deckData.deckDialogue,
+                heroData.heroDialogues, cardsManager);
         
         
         tickManager = FindObjectOfType<TickManager>();

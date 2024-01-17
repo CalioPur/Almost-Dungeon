@@ -15,9 +15,10 @@ using Random = UnityEngine.Random;
 public class DialogueManager : MonoBehaviour
 {
     private DialogueVariable dialogueVariable;
-    [SerializeField] private TextAsset globalsInkFile;
+    [SerializeField] public TextAsset globalsInkFile;
     
     public static DialogueManager _instance;
+    public SaveSystem saveSystem;
     public List<TextAsset> interludeDialogues;
     
     public Sprite HeroSprite;
@@ -396,5 +397,10 @@ public class DialogueManager : MonoBehaviour
         
         lightHero.SetActive(false);
         lightDragon.SetActive(false);
+    }
+    
+    public void SetGlobalInkFile(string json)
+    {
+        globalsInkFile = new TextAsset(json);
     }
 }

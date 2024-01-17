@@ -19,9 +19,8 @@ public class UI_Hero : MonoBehaviour
     [SerializeField] private Button endGameButton;
     [SerializeField] private string[] itemNamesChoices;
 
-    [SerializeField] private TMP_Text heroPersonality;
-    [SerializeField] private TMP_Text heroLevel;
-    [SerializeField] private TMP_Text heroName;
+    public TMP_Text heroPersonality;
+    public TMP_Text heroName;
 
     [SerializeField] private float shakeDuration = 0.5f;
     [SerializeField] private Image heroImage;
@@ -33,8 +32,7 @@ public class UI_Hero : MonoBehaviour
     private int maxHealth = 0;
 
     #region Health
-
-
+    
 
     private void DrawHearts(int _currentHealth, bool newHeart)
     {
@@ -92,7 +90,6 @@ public class UI_Hero : MonoBehaviour
     public void SetHeroData(HeroData heroData)
     {
         heroName.text = heroData.heroName;
-        heroLevel.text = heroData.heroLevel.ToString();
         heroPersonality.text = heroData.heroPersonality;
     }
 

@@ -10,33 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c147cf146376604d94d126242f5ce99, type: 3}
-  m_Name: D1_T6_Random6
+  m_Name: D1_T6_Random
   m_EditorClassIdentifier: 
   tilePresets:
   - position: {x: 0, y: 0}
     cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
-    rotation: 0
+    rotation: 2
   - position: {x: 0, y: 1}
     cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
-    rotation: 2
+    rotation: 0
   - position: {x: 0, y: 2}
     cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
-    rotation: 0
+    rotation: 2
   - position: {x: 0, y: 3}
     cardInfo: {fileID: 11400000, guid: 807a936e75b831244a6910ce19b67ed9, type: 2}
-    rotation: 0
+    rotation: 2
   - position: {x: 0, y: 4}
     cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
-    rotation: 2
+    rotation: 0
   - position: {x: 0, y: 5}
     cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
-    rotation: 0
+    rotation: 2
   - position: {x: 0, y: 6}
     cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
-    rotation: 3
+    rotation: 0
   - position: {x: 8, y: 0}
     cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-    rotation: 1
+    rotation: 0
   - position: {x: 8, y: 1}
     cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   - position: {x: 8, y: 5}
     cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 0
-  ClampSpawnPositionX: {x: 8, y: 8}
-  ClampSpawnPositionY: {x: 6, y: 6}
-  spawnRotation: 1
+  ClampSpawnPositionX: {x: 0, y: 0}
+  ClampSpawnPositionY: {x: 0, y: 0}
+  spawnRotation: 0
   terrainDialogue: {fileID: 0}
