@@ -22,7 +22,7 @@ public class DungeonManager : MonoBehaviour
    
     [SerializeField] public List<Dungeon> dungeons;
    
-    private static int currentLevel = 0;
+    public static int currentLevel = 0;
     private DeckManager cardsManager;
     private TickManager tickManager;
     private GameManager gameManager;
@@ -49,6 +49,14 @@ public class DungeonManager : MonoBehaviour
     public void SetSelectedBiome(int index)
     {
         SelectedBiome = index;
+        GameManager.OnSceneLoadedEvent += LoadLevel;
+        SceneManager.LoadScene(2);
+    }
+    
+    public void SetSelectedBiomeAndLevelFromSave(int indexBiome, int indexLevel)
+    {
+        SelectedBiome = indexBiome;
+        currentLevel = indexLevel;
         GameManager.OnSceneLoadedEvent += LoadLevel;
         SceneManager.LoadScene(2);
     }
