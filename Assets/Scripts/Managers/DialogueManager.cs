@@ -48,6 +48,7 @@ public class DialogueManager : MonoBehaviour
     private GameObject canvaDragon;
     private GameObject canvaHero;
     private GameObject timer;
+    private GameObject minionToken;
 
     private GameObject lightDragon;
     private GameObject lightHero;
@@ -85,6 +86,7 @@ public class DialogueManager : MonoBehaviour
         
         canvaDragon = GameObject.Find("CanvasDragonUI");
         canvaHero = GameObject.Find("CanvasHeroUI");
+        minionToken = GameObject.Find("MinionToken");
         
         dialogueText = dialogueBox.GetComponentInChildren<MarkdownRenderer>();
         
@@ -145,6 +147,7 @@ public class DialogueManager : MonoBehaviour
             canvaHero.transform.DORotate(new Vector3(90,0,0), 1.5f);
             canvaHero.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.5f);
 
+            minionToken.SetActive(false);
             
             return;
         }
@@ -320,6 +323,17 @@ public class DialogueManager : MonoBehaviour
                     case "dragonHeal":
                         var healDragon = int.Parse(split[1]);
                         FindObjectOfType<UI_Dragon>().Heal(healDragon);
+                        break;
+                    case "minion":
+                        switch (split[1])
+                        {
+                            case "in":
+                                minionToken.transform.DOMove(new Vector3(-4.5f, 1, 9), 1f);
+                                break;
+                            case "out":
+                                minionToken.transform.DOMove(new Vector3(-10f, 1, 9), 1f);
+                                break;
+                        }
                         break;
                 }
             }
