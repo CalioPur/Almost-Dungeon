@@ -18,5 +18,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9303c4d2dd938394799fe0c20f394403, type: 2}
   decks:
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
-  nbCardToDraw: 3
+  nbCardToDraw: 5
   keysElementsToUnlock: []
