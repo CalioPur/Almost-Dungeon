@@ -13,7 +13,7 @@ public class CanvasUtils : MonoBehaviour
 
     public void ToMainMenu()
     {
-        Save.SaveAll();
+        SaveSystem.SaveAll();
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }

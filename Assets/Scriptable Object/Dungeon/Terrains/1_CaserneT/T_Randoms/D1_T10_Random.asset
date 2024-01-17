@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c147cf146376604d94d126242f5ce99, type: 3}
-  m_Name: D1_T10_Random10
+  m_Name: D1_T10_Random
   m_EditorClassIdentifier: 
   tilePresets:
   - position: {x: 1, y: 1}
     cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-    rotation: 0
+    rotation: 1
   - position: {x: 1, y: 2}
     cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
-    rotation: 0
+    rotation: 2
   - position: {x: 1, y: 3}
     cardInfo: {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd, type: 2}
     rotation: 0
   - position: {x: 1, y: 4}
     cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
-    rotation: 0
+    rotation: 2
   - position: {x: 1, y: 5}
     cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     rotation: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
     rotation: 0
   - position: {x: 8, y: 1}
     cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-    rotation: 0
+    rotation: 1
   - position: {x: 8, y: 2}
     cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
     rotation: 0

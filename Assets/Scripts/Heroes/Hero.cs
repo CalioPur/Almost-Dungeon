@@ -42,7 +42,7 @@ public class Hero : MonoBehaviour, IFlippable
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
         animQueue.AddAnim(new AnimToQueue(heroTr, targetTr,  offset , false, delay));
-        
+        animator.SetTrigger("Move");
         GivePosBack();
     }
     
@@ -181,10 +181,11 @@ public class Hero : MonoBehaviour, IFlippable
 
     private void FXTakeDamage()
     {
-        Sprite.DOColor(Color.red, 0.2f).SetEase(Ease.InBack).OnComplete(() =>
-        {
-            Sprite.DOColor(Color.white, 0.2f).SetEase(Ease.InBack);
-        });
+        // Sprite.DOColor(Color.red, 0.2f).SetEase(Ease.InBack).OnComplete(() =>
+        // {
+        //     Sprite.DOColor(Color.white, 0.2f).SetEase(Ease.InBack);
+        // });
+        animator.SetTrigger("TakeDamage");
         OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
     }
 

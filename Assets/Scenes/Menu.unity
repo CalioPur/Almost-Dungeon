@@ -231,7 +231,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: f6d18c3180fc6d144b7a6de0674717a9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.543
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -392,7 +392,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 588752016}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1983260440}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &588752016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,7 +816,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 771655033}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1983260440}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &855479920 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6489710539791211562, guid: 8c99205dbea3e834c91454307f7002be,
@@ -899,6 +923,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1983260440}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1461340014}
         m_TargetAssemblyTypeName: testButton, Assembly-CSharp
         m_MethodName: OpenSettings
@@ -1802,9 +1838,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4062451230179402305, guid: 54460d5c4c2fd4d4f9d9694855ef3c75,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 2a12ae00ffeaa2644bf8d71be053a89c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c3460e5335ba43e45adbed167d1932c9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.043
+  m_Volume: 0.55
   m_Pitch: 1
   Loop: 0
   Mute: 0
