@@ -102,7 +102,7 @@ animator.SetTrigger("TakeDamage");
         Material[] mats = threeDeeHero.GetComponent<MeshRenderer>().materials;
         foreach (var t in mats)
         {
-            t.DOFloat(1, "_Level", 1f).SetEase(Ease.InBack);
+            t.DOFloat(0.6f, "_Level", 1f).SetEase(Ease.InBack);
         }
         yield return new WaitForSeconds(1f);
     }

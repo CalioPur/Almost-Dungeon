@@ -162,7 +162,7 @@ public class Hero : MonoBehaviour, IFlippable
         Material[] mats = threeDeeHero.GetComponent<MeshRenderer>().materials;
         foreach (var t in mats)
         {
-            t.DOFloat(1, "_Level", 2f).SetEase(Ease.InBack);
+            t.DOFloat(0.6f, "_Level", 2f).SetEase(Ease.InBack);
         }
         yield return new WaitForSeconds(2f);
         FXTakeDamage();
