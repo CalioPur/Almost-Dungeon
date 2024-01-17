@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Ink.Parsed;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -61,6 +62,10 @@ public class DungeonManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
     
+    public static string ToTitleCase(string title)
+    {
+        return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(title.ToLower()); 
+    }
     
     private void LoadLevel()
     {
@@ -102,7 +107,7 @@ public class DungeonManager : MonoBehaviour
         
         UI_Hero heroCard = FindObjectOfType<UI_Hero>();
         heroCard.heroName.text = heroData.nameOfHero;
-        heroCard.heroPersonality.text = heroData.visionType + " " + heroData.aggressivity;
+        heroCard.heroPersonality.text = ToTitleCase(heroData.visionType.ToString() + " " + heroData.aggressivity);
         
         cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = deckData.deck;
