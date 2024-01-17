@@ -101,9 +101,13 @@ public class TickManager : MonoBehaviour
     void Tick()
     {
         if (TickOnPaused || EndGame) return;
+        
         nextTickTime = Time.time;
         OnTick?.Invoke();
-
+        
+        beatInterval += BPMBoostCurve.Evaluate(DistanceFromClosestExit());
+        Debug.Log("aAaeijojio" + DistanceFromClosestExit());
+        
         MovementType currentMovementType = GetMovementTypeFromDivision();
 
         // Check if the key exists in the dictionary before accessing it
@@ -120,6 +124,11 @@ public class TickManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private int DistanceFromClosestExit()
+    {
+        return ALaid1.distanceToExit;
     }
 
     public static void PauseTick(bool pause)
