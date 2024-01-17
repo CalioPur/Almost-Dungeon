@@ -18,7 +18,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] public TextAsset globalsInkFile;
     
     public static DialogueManager _instance;
-    public Save save;
     public List<TextAsset> interludeDialogues;
     
     public Sprite HeroSprite;

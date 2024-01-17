@@ -28,6 +28,7 @@ public class Save
         }
         if (PlayerPrefs.HasKey("dialoguesDB"))
         {
+            Debug.Log("Found dialogue save loading it " + PlayerPrefs.GetString("dialoguesDB"));
             dialogueManager.SetGlobalInkFile(PlayerPrefs.GetString("dialoguesDB"));
         }
         

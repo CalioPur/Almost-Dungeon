@@ -108,7 +108,8 @@ public class DungeonManager : MonoBehaviour
         cardsManager.deckToBuild = deckData.deck;
         cardsManager.nbCardOnStartToDraw = levelData.nbCardToDraw;
         
-        DialogueManager._instance.PlayAllThreeDialogues(terrainData.terrainDialogue, deckData.deckDialogue, heroData.heroDialogues, cardsManager);
+        DialogueManager._instance.PlayAllThreeDialogues(terrainData.terrainDialogue, deckData.deckDialogue,
+                heroData.heroDialogues, cardsManager);
         
         
         tickManager = FindObjectOfType<TickManager>();
