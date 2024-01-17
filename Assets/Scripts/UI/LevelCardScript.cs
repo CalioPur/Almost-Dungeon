@@ -13,6 +13,7 @@ public class LevelCardScript : MonoBehaviour
     public Image BlackImage;
     public bool isLocked = false;
     public int biomeIndex;
+    [SerializeField] private SoundManagerIngame soundManagerIngame;
 
     void Start()
     {
@@ -25,6 +26,8 @@ public class LevelCardScript : MonoBehaviour
     
     private void OnMouseEnter()
     {
+        soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
+        
         if (!isLocked)
         {
             SpriteAttached.DOLocalMove(new Vector3(0, 0f, -1), 0.1f);
@@ -40,6 +43,7 @@ public class LevelCardScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isLocked)
         {
             Debug.Log("Clicked");
+            soundManagerIngame.PlayDialogueSFX("UiClick");
             //DungeonManager._instance.SetSelectedBiome(biomeIndex);
             StartCoroutine(StartLevel());
         }
