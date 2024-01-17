@@ -60,7 +60,7 @@ public class Menu : MonoBehaviour
         videoPlayer.Play();
         fadeImage.DOFade(1, 1f);
         yield return new WaitForSeconds(1f);
-        DungeonManager._instance.SetSelectedBiomeAndLevelFromSave(Save.currentDungeon, Save.currentLevel);
+        DungeonManager._instance.SetSelectedBiomeAndLevelFromSave(Save.currentLevel,Save.currentDungeon);
     }
 
     IEnumerator SwitchToLevelSelection()
