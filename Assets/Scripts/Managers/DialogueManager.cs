@@ -39,6 +39,7 @@ public class DialogueManager : MonoBehaviour
     private GameObject dialogueBox;
     private GameObject arrowKnight;
     private GameObject arrowDragon;
+    private GameObject arrowMinion;
     private GameObject choice1;
     private GameObject choice2;
     private MarkdownRenderer dialogueText;
@@ -72,6 +73,7 @@ public class DialogueManager : MonoBehaviour
         dialogueBox = GameObject.Find("DialoguePanel");
         arrowKnight = GameObject.Find("ArrowKnight");
         arrowDragon = GameObject.Find("ArrowDragon");
+        arrowMinion = GameObject.Find("ArrowMinion");
         choice1 = GameObject.Find("Choice1");
         choice2 = GameObject.Find("Choice2");
         nextButton = GameObject.Find("NextButton").GetComponent<Button>();
@@ -87,8 +89,6 @@ public class DialogueManager : MonoBehaviour
         dialogueText = dialogueBox.GetComponentInChildren<MarkdownRenderer>();
         
         nextButton.onClick.AddListener(NextDialogue);
-        lightDragon.SetActive(false);
-        lightHero.SetActive(false);
     }
     
     
@@ -243,8 +243,9 @@ public class DialogueManager : MonoBehaviour
                                 otherImage.sprite = barbareSprite;
                                 break;
                             case "minion":
-                                ShowArrowKnight();
-                                otherImage.sprite = MinionSprite;
+                                ShowArrowMinion();
+                                //otherImage.sprite = MinionSprite;
+                                //action a faire pour voir un minion a l'ecran
                                 break;
                         }
                         break;
@@ -355,6 +356,7 @@ public class DialogueManager : MonoBehaviour
     {
         arrowDragon.SetActive(false);
         arrowKnight.SetActive(true);
+        arrowMinion.SetActive(false);
         
         lightHero.SetActive(true);
         lightDragon.SetActive(false);
@@ -364,8 +366,19 @@ public class DialogueManager : MonoBehaviour
     {
         arrowDragon.SetActive(true);
         arrowKnight.SetActive(false);
+        arrowMinion.SetActive(false);
         
         lightHero.SetActive(false);
         lightDragon.SetActive(true);
+    }
+    
+    void ShowArrowMinion()
+    {
+        arrowDragon.SetActive(false);
+        arrowKnight.SetActive(false);
+        arrowMinion.SetActive(true);
+        
+        lightHero.SetActive(false);
+        lightDragon.SetActive(false);
     }
 }
