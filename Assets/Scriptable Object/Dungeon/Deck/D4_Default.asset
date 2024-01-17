@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: D4_Default
   m_EditorClassIdentifier: 
   deck:
-  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
+  - cardToBuild: {fileID: 11400000, guid: cc0ea1252c92ec2498ebc7dbaccde103, type: 2}
     nbToBuild: 1
   - cardToBuild: {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936, type: 2}
     nbToBuild: 1
