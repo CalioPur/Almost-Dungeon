@@ -13,6 +13,7 @@ public class UI_Dragon : MonoBehaviour
     public GameObject healthBar;
     public GameObject heartPrefab;
     public Image dragonImage;
+    public Transform dragonCard;
     List<UI_Heart> hearts = new();
     public float shakeDuration = 0.5f;
 
@@ -25,10 +26,13 @@ public class UI_Dragon : MonoBehaviour
         var dragonImageColor = dragonImage.color;
         dragonImageColor.a = 0f;
         dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        dragonImage.transform.DOShakePosition(shakeDuration, 10, 10, 90, false, true);
+        Image dragImg = dragonCard.GetChild(0).GetComponent<Image>();
+        dragImg.color = Color.red;
+        dragonCard.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
         currentHealth -= 1;
         DrawHearts();
         yield return new WaitForSeconds(shakeDuration);
+        dragImg.color = Color.white;
         hero.TakeDamage(damage, AttackType.Physical);
         dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         dragonImageColor.a = 1f;
