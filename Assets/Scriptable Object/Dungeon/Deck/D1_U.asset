@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: D1_U
   m_EditorClassIdentifier: 
   deck:
-  - cardToBuild: {fileID: 11400000, guid: 4007e613041c8f246a6612471df765a9, type: 2}
-    nbToBuild: 4
-  - cardToBuild: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
-    nbToBuild: 7
-  - cardToBuild: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
-    nbToBuild: 9
+  - cardToBuild: {fileID: 11400000, guid: aad2b8ef0f3d6fa4cb2dcda4466b5a55, type: 2}
+    nbToBuild: 0
+  deckDialogue: {fileID: 0}
