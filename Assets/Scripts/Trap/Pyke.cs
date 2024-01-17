@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,7 +18,10 @@ public class Pyke : TrapData
     
     private IEnumerator AttackFX()
     {
+        Vector3 pos = fireParticles.transform.position;
+        fireParticles.transform.position = new Vector3(pos.x, pos.y - 0.15f, pos.z);
         fireParticles.gameObject.SetActive(true);
+        fireParticles.gameObject.transform.DOMoveY(pos.y, 0.5f).SetEase(Ease.OutBack);
         yield return new WaitForSeconds(0.5f);
         fireParticles.gameObject.SetActive(false);
     }

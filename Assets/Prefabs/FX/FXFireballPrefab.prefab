@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectiles:
   - target: {fileID: 8221876146499013269}
-    timer: 0.4
+    timer: 0.2
   - target: {fileID: 3787933586207068887}
     timer: 0.5
 --- !u!1 &1743772207153134035

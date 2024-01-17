@@ -14,13 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrains:
   - {fileID: 11400000, guid: 09fd32e72801152468b490503336a7b6, type: 2}
-  - {fileID: 11400000, guid: 0fbe58551ddc2bd498b55bf6a23bfe6d, type: 2}
-  - {fileID: 11400000, guid: 90e74b690825d0543a4ff7ef60577cee, type: 2}
-  - {fileID: 11400000, guid: 5c9680163cbe7794d9fdaef9fafcfb29, type: 2}
-  - {fileID: 11400000, guid: c5c2f28bf66d1394a9e7c4cbddb24ae5, type: 2}
   heros:
-  - {fileID: 11400000, guid: 0f45bd6c48421564c8927616e1ed6589, type: 2}
+  - {fileID: 11400000, guid: 57fef7403b80ff742963b22f31a0368f, type: 2}
+  - {fileID: 11400000, guid: e50e16e86c9c123458faf607ff7302c8, type: 2}
+  - {fileID: 11400000, guid: 69bbe0983b3388e47aadba8975b8ce51, type: 2}
   decks:
   - {fileID: 11400000, guid: 9fe5dc83dff5c2f44ad3d24de9297c1c, type: 2}
-  nbCardToDraw: 3
+  nbCardToDraw: 2
   keysElementsToUnlock: []
