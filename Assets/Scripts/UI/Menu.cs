@@ -22,17 +22,17 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
-        Save.LoadSave();
+        SaveSystem.LoadSave();
         playButton.onClick.AddListener(Play);
         quitButton.onClick.AddListener(Quit);
         
-        if (Save.currentDungeon == -1)
+        if (SaveSystem.currentDungeon == -1)
         {
             continueButton.interactable = false;
         }
         else
         {
-            Debug.Log("Current dungeon: " + Save.currentDungeon + " Current level: " + Save.currentLevel);
+            Debug.Log("Current dungeon: " + SaveSystem.currentDungeon + " Current level: " + SaveSystem.currentLevel);
             continueButton.onClick.AddListener(Continue);
         }
     }
@@ -60,7 +60,7 @@ public class Menu : MonoBehaviour
         videoPlayer.Play();
         fadeImage.DOFade(1, 1f);
         yield return new WaitForSeconds(1f);
-        DungeonManager._instance.SetSelectedBiomeAndLevelFromSave(Save.currentLevel,Save.currentDungeon);
+        DungeonManager._instance.SetSelectedBiomeAndLevelFromSave(SaveSystem.currentLevel,SaveSystem.currentDungeon);
     }
 
     IEnumerator SwitchToLevelSelection()

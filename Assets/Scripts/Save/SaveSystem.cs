@@ -1,7 +1,6 @@
-using System.IO;
 using UnityEngine;
 
-public class Save
+public class SaveSystem
 {
     private static DialogueManager dialogueManager;
     public static int currentDungeon = -1;
