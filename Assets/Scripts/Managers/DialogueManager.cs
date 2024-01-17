@@ -137,11 +137,11 @@ public class DialogueManager : MonoBehaviour
             camTransform.DOMove(new Vector3(0, 6.71f, -4f), 1f);
             camTransform.DORotate(new Vector3(65.5f, 0, 0), 1f);
 
-            canvaDragon.transform.DOMove(new Vector3(-6.9f, -0.5f, 1f), 1.5f);
+            canvaDragon.transform.DOMove(new Vector3(-6.9f, -0.2f, 1f), 1.5f);
             canvaDragon.transform.DORotate(new Vector3(90, 0, 0), 1.5f);
             canvaDragon.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.5f);
             
-            canvaHero.transform.DOMove(new Vector3(6.9f, -0.5f, 1.1f), 1.5f);
+            canvaHero.transform.DOMove(new Vector3(6.9f, -0.2f, 1.1f), 1.5f);
             canvaHero.transform.DORotate(new Vector3(90,0,0), 1.5f);
             canvaHero.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.5f);
 
