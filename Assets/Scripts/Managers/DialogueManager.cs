@@ -325,13 +325,15 @@ public class DialogueManager : MonoBehaviour
                         FindObjectOfType<UI_Dragon>().Heal(healDragon);
                         break;
                     case "minion":
+                        print("MINION");
                         switch (split[1])
                         {
                             case "in":
-                                minionToken.transform.DOMove(new Vector3(-4.5f, 0.8f, 8), 1f);
+                                print("IN");
+                                minionToken.transform.DOMove(new Vector3(-4.5f, 0.8f, 8), 0.5f).SetUpdate(true);
                                 break;
                             case "out":
-                                minionToken.transform.DOMove(new Vector3(-10f, 0.8f, 8), 1f);
+                                minionToken.transform.DOMove(new Vector3(-10f, 0.8f, 8), 0.5f).SetUpdate(true);
                                 break;
                         }
                         break;
