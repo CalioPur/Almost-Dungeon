@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TickManager tick;
 
     [Header("Data")] [SerializeField] private List<HeroesInfo> heroesInfos;
+    [SerializeField] private List<Light> lightsAmbiant;
     [SerializeField] private CardInfo enterDungeonInfo;
     [SerializeField] public Vector2Int normsSpawnX;
     [SerializeField] public Vector2Int normsSpawnY;
@@ -53,6 +54,10 @@ public class GameManager : MonoBehaviour
         mapManager.CreateFog(startPosHero);
         worldPos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
         OnEndDialogEvent?.Invoke();
+        foreach (var light in lightsAmbiant)
+        {
+            light.color = DungeonManager._instance.dungeons[DungeonManager.SelectedBiome].dungeonSO.color;
+        }
     }
 
     private void OnDisable()

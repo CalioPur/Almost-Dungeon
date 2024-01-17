@@ -6,4 +6,5 @@ using UnityEngine;
 public class DungeonSO : ScriptableObject
 {
     [field: SerializeField] public List<LevelSO> levels;
+    [field:SerializeField] public Color color = Color.white;
 }
