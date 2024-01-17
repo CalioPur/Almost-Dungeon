@@ -14,6 +14,7 @@ Shader "Unlit/DissolveEffectShader"
 	}
 	SubShader
 	{
+		Cull off
 		Tags { "Queue"="Transparent" "RenderType"="Transparent" }
 		LOD 100
 
