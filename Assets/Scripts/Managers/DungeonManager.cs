@@ -100,7 +100,9 @@ public class DungeonManager : MonoBehaviour
         var heroData = heroUnlock[Random.Range(0, heroUnlock.Count)];
         var deckData = levelData.decks[Random.Range(0, levelData.decks.Count)];
         
-        
+        UI_Hero heroCard = FindObjectOfType<UI_Hero>();
+        heroCard.heroName.text = heroData.nameOfHero;
+        heroCard.heroPersonality.text = heroData.visionType + " " + heroData.aggressivity;
         
         cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = deckData.deck;
