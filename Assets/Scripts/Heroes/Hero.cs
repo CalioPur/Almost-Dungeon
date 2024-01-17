@@ -30,6 +30,8 @@ public class Hero : MonoBehaviour, IFlippable
     [field: SerializeField] private EmotesManager emotesManager;
     [field: SerializeField] private AttackFX animFX;
     [SerializeField] private Animator animator;
+    
+    [SerializeField] private GameObject threeDeeHero;
 
     private int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
@@ -156,7 +158,13 @@ public class Hero : MonoBehaviour, IFlippable
     
     IEnumerator FXDeath()
     {
-        yield return new WaitForSeconds(1f);
+        Debug.Log("FX Death");
+        Material[] mats = threeDeeHero.GetComponent<MeshRenderer>().materials;
+        foreach (var t in mats)
+        {
+            t.DOFloat(1, "_Level", 2f).SetEase(Ease.InBack);
+        }
+        yield return new WaitForSeconds(2f);
         FXTakeDamage();
     }
     
@@ -165,11 +173,11 @@ public class Hero : MonoBehaviour, IFlippable
         //TODO: t'as gagne bg :*
         Vector3 pos = transform.position;
         pos.y += 3f;
-
         Camera.main.transform.DOMove(pos, 1f).SetEase(Ease.InBack);
         Camera.main.transform.DORotate(new Vector3(90, 0, 0), 1f).SetEase(Ease.InBack);
         StartCoroutine(FXDeath());
     }
+
 
     private void FXTakeDamage()
     {

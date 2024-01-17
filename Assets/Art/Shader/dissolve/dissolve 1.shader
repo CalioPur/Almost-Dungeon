@@ -5,7 +5,6 @@ Shader "Unlit/DissolveEffectShader"
 	Properties
 	{
 		_MainColor ("Main color", Color) = (1.0, 1.0, 1.0, 1.0)
-		_Metallic ("Metallic", Range (0.0, 1.0)) = 0.0
 		_NoiseTex ("Texture", 2D) = "white" {}
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
 		_EdgeColour1 ("Edge colour 1", Color) = (1.0, 1.0, 1.0, 1.0)
@@ -47,7 +46,6 @@ Shader "Unlit/DissolveEffectShader"
 			};
 
 			sampler2D _MainTex;
-			half _Metallic;
 			sampler2D _NoiseTex;
 			float4 _MainColor;
 			float4 _EdgeColour1;

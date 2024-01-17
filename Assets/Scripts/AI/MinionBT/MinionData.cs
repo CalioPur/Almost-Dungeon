@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,6 +16,9 @@ public class MinionData : TrapData, IFlippable
     [SerializeField] protected EmotesManager emotesManager;
     [SerializeField] protected Animator animator;
     [field: SerializeField] private AttackFX animFX;
+    
+    [SerializeField] private GameObject threeDeeHero;
+
     
     private Vector2Int SpawnIndex;
 
@@ -86,9 +91,20 @@ animator.SetTrigger("TakeDamage");
 
     protected override void OnDead()
     {
+        StartCoroutine(Die());
         base.OnDead();
         isDead = true;
         TickManager.UnsubscribeFromMovementEvent(MovementType.Monster, entityId);
+    }
+
+    private IEnumerator Die()
+    {
+        Material[] mats = threeDeeHero.GetComponent<MeshRenderer>().materials;
+        foreach (var t in mats)
+        {
+            t.DOFloat(1, "_Level", 1f).SetEase(Ease.InBack);
+        }
+        yield return new WaitForSeconds(1f);
     }
 
     public void PlayEmote(EmoteType emote)
