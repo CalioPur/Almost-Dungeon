@@ -84,7 +84,7 @@ public class CardHand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         //other.img.transform.position = transform.position;
         Occupied = other.Occupied;
         bool tmp = Card != null;
-        img.enabled = Card != null;
+        // img.enabled = Card != null;
         //     other.Card.CopyValues(Card);
         // RefreshCard();
     }
