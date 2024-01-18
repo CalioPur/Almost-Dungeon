@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Pyke
   m_EditorClassIdentifier: 
   <health>k__BackingField: 0
-  <damage>k__BackingField: 2
+  <damage>k__BackingField: 1
   <range>k__BackingField: 0
   <targetPriority>k__BackingField: 1
-  <attackSound>k__BackingField: FireTrap
+  <attackSound>k__BackingField: 
   <deathSound>k__BackingField: 
