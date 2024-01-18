@@ -10,6 +10,9 @@ public class EnemySo : ScriptableObject
     [field:SerializeField]public int range { get; private set; }
     [field:SerializeField]public byte targetPriority { get; private set; }
     
+    [field:SerializeField]public string attackSound { get; private set; }
+    [field:SerializeField]public string deathSound { get; private set; }
+    
     public EnemyInstance CreateInstance()
     {
         return new EnemyInstance(this);
