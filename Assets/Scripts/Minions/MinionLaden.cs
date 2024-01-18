@@ -68,6 +68,8 @@ public class MinionLaden : MinionData
     
     protected override void OnDead()
     {
+        SoundManagerIngame.Instance.PlayDialogueSFX("Explosion");
+        
         if (DeadAttackType == AttackType.Fire)
             Destroy(Instantiate(ExplosionFX, transform.position, ExplosionFX.transform.rotation), 1.5f);
 
