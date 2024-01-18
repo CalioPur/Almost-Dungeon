@@ -12,10 +12,11 @@ public class BTMage : Tree
         
         origin = new Selector(
             new Sequence(
-                new FirstMinionInSight(BB),
-                new ChooseTargetToHit(BB, true, true),
-                new AttackMinion(BB),
-                new CheckTargetIsAlive(BB)
+                new GetDirectionOfNearestEnemyInSight(BB),
+                new AttackMinionsInLine(BB)
+                // new ChooseTargetToHit(BB, true, true),
+                // new AttackMinion(BB),
+                // new CheckTargetIsAlive(BB)
             ),
             new HeroMovementBehavior(BB)
         );

@@ -18,9 +18,11 @@ public class Kamehameha : AttackFX
         switch (_direction)
         {
             case DirectionToMove.Left:
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
                 while (i < timer)
                 {
                     float dt = Mathf.Lerp(transform.position.x, targetPos.x, i / timer);
+                    lineRenderer.SetPosition(0, transform.position);
                     lineRenderer.SetPosition(1, new Vector3(dt, transform.position.y, transform.position.z));
                     float distance = Mathf.Abs(transform.position.x - dt) / particleSystem.startSpeed;
                     particleSystem.startLifetime = distance;
@@ -32,6 +34,7 @@ public class Kamehameha : AttackFX
                 while (i < timer)
                 {
                     float dt = Mathf.Lerp(transform.position.x, targetPos.x, i / timer);
+                    lineRenderer.SetPosition(0, transform.position);
                     lineRenderer.SetPosition(1, new Vector3(dt, transform.position.y, transform.position.z));
                     float distance = Mathf.Abs(transform.position.x - dt) / particleSystem.startSpeed;
                     particleSystem.startLifetime = distance;
@@ -40,9 +43,11 @@ public class Kamehameha : AttackFX
                 }
                 break;
             case DirectionToMove.Up:
+                transform.rotation = Quaternion.Euler(0, 270, 0);
                 while (i < timer)
                 {
                     float dt = Mathf.Lerp(transform.position.z, targetPos.z, i / timer);
+                    lineRenderer.SetPosition(0, transform.position);
                     lineRenderer.SetPosition(1, new Vector3(transform.position.x, transform.position.y, dt));
                     float distance = Mathf.Abs(transform.position.z - dt) / particleSystem.startSpeed;
                     particleSystem.startLifetime = distance;
@@ -51,9 +56,11 @@ public class Kamehameha : AttackFX
                 }
                 break;
             case DirectionToMove.Down:
+                transform.rotation = Quaternion.Euler(0, 90, 0);
                 while (i < timer)
                 {
                     float dt = Mathf.Lerp(transform.position.z, targetPos.z, i / timer);
+                    lineRenderer.SetPosition(0, transform.position);
                     lineRenderer.SetPosition(1, new Vector3(transform.position.x, transform.position.y, dt));
                     float distance = Mathf.Abs(transform.position.z - dt) / particleSystem.startSpeed;
                     particleSystem.startLifetime = distance;
@@ -80,7 +87,7 @@ public class Kamehameha : AttackFX
 
     public override void Init(Transform target, Transform owner, float time, DirectionToMove direction)
     {
-        transform.position = owner.position;
+        transform.position = owner.position + new Vector3(0, 0.4f, 0);
         targetPos = target.position;
         timer = time;
         _direction = direction;
