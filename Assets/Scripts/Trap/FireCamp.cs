@@ -43,6 +43,7 @@ public class FireCamp : TrapData
     
     public void Revive()
     {
+        SoundManagerIngame.Instance.PlayDialogueSFX("CampFireSound");
         StartCoroutine(ReviveAnimation());
     }
 

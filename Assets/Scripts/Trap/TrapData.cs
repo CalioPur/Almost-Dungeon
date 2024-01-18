@@ -42,6 +42,7 @@ public abstract class TrapData : MonoBehaviour
     public void Stun()
     {
         OnTrapStunEvent?.Invoke();
+        SoundManagerIngame.Instance.PlayDialogueSFX("SpiderStun");
     }
     
     public EnemySo GetSO()
