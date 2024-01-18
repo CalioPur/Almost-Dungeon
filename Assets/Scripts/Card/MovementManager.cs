@@ -65,6 +65,7 @@ public class MovementManager : MonoBehaviour
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.SetActive(false);
         selectedCard = null;
+        soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
         Debug.Log("Set selected card null");
     }
 
@@ -175,14 +176,12 @@ public class MovementManager : MonoBehaviour
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
             if (selectedCard != null) selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
-            soundManagerIngame.PlayDialogueSFX("UiClick");
             return;
         }
         
         if (selectedCard != null)
         {
             TileData tile = hit.collider.gameObject.GetComponent<TileData>();
-            soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
             OnTileSelectedEvent?.Invoke(tile);
         }
     }
@@ -234,6 +233,7 @@ public class MovementManager : MonoBehaviour
     public void SetSelectedCard(CardHand cardHand)
     {
         selectedCard = cardHand;
+        soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.transform.position = new Vector3(100, 100, 100);
         cardVisualizer.SetActive(true);

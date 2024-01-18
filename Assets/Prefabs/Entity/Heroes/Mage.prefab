@@ -113,7 +113,7 @@ MonoBehaviour:
   attackPoint: {fileID: 0}
   <HeroBlackboard>k__BackingField: {fileID: -4683431529391840305}
   emotesManager: {fileID: 6077261374683212724}
-  animFX: {fileID: 0}
+  animFX: {fileID: 7204535970360123863, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
   animator: {fileID: 2406530745532428887}
   threeDeeHero: {fileID: 7208080533387792801}
   attackClip:

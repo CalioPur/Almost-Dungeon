@@ -16,3 +16,5 @@ MonoBehaviour:
   <damage>k__BackingField: 1
   <range>k__BackingField: 0
   <targetPriority>k__BackingField: 10
+  <attackSound>k__BackingField: punch_1b
+  <deathSound>k__BackingField: 

@@ -12,7 +12,6 @@ public class BTMage : Tree
         
         origin = new Selector(
             new Sequence(
-                new ClearMinionTarget(BB),
                 new FirstMinionInSight(BB),
                 new ChooseTargetToHit(BB, true, true),
                 new AttackMinion(BB),
