@@ -26,6 +26,7 @@ public abstract class TrapData : MonoBehaviour
     
     protected virtual void OnDead()
     {
+        SoundManagerIngame.Instance.PlayDialogueSFX(SO.deathSound);
         mapManager.GetWorldPosFromTilePos(new Vector2Int(indexX, indexY) , out Vector3 worldPos);
         mapManager.RemoveEnemyOnTile(
             new Vector2Int(indexX, indexY), this, worldPos);

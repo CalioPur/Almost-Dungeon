@@ -17,4 +17,4 @@ MonoBehaviour:
   <range>k__BackingField: 0
   <targetPriority>k__BackingField: 10
   <attackSound>k__BackingField: SkeletonHit
-  <deathSound>k__BackingField: 
+  <deathSound>k__BackingField: SkeletonDeath
