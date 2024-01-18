@@ -81,6 +81,20 @@ public class testButton : MonoBehaviour
         languageDropdown.index = PlayerPrefs.GetInt("Language", 0);
         languageDropdown.RegisterCallback<ChangeEvent<string>>(ChangeLanguage);
         
+        var dragnDrop = settings_root_element.Q<Toggle>("dragndroptoggle");
+        dragnDrop.value = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
+        dragnDrop.RegisterCallback(new EventCallback<ChangeEvent<bool>>(evt =>
+        {
+            if (evt.newValue)
+            {
+                PlayerPrefs.SetInt("DragNDrop", 1);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("DragNDrop", 0);
+            }
+        }));
+        
     }
 
     private void ChangeLanguage(ChangeEvent<string> evt)

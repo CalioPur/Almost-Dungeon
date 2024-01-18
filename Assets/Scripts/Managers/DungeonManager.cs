@@ -136,6 +136,8 @@ public class DungeonManager : MonoBehaviour
 
         
         mapManager.SpawnPresets(terrainData.tilePresets);
+        
+        MovementManager.Instance.isDragNDrop = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
     }
     public void LoadNextLevel()
     {
