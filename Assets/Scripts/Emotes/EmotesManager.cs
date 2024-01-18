@@ -17,7 +17,8 @@ public enum EmoteType
     Detected,
     Stuck,
     WallBreak,
-    DragonDeath
+    DragonDeath,
+    NextToExit
 }
 
 public class EmotesManager : MonoBehaviour

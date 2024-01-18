@@ -24,7 +24,7 @@ public class HeroMovementBehavior : Node
                 (
                     new CheckDirectionToMove(BB),
                     new MoveToDestination(BB),
-                    new DisplayNewDirection(BB),
+                    // new DisplayNewDirection(BB),
                     new CheckPlayerOutOfMap(BB)
                 )
             )

@@ -27,7 +27,7 @@ public class Hero : MonoBehaviour, IFlippable
     [SerializeField] private AnimationQueue animQueue;
     [SerializeField] private GameObject attackPoint;
     [field:SerializeField] public HeroBlackboard HeroBlackboard { get; private set; }
-    [field: SerializeField] private EmotesManager emotesManager;
+    [field: SerializeField] public EmotesManager emotesManager;
     [field: SerializeField] private AttackFX animFX;
     [SerializeField] private Animator animator;
     

@@ -316,6 +316,8 @@ MonoBehaviour:
     audioSource: {fileID: 0}
   - emote: 3
     audioSource: {fileID: 2712419153490351755}
+  - emote: 4
+    audioSource: {fileID: 2712419153490351755}
   sfxAudioSourceList:
   - sfxName: DragonRoar
     sfxAudioSource: {fileID: 8295425695023763585}

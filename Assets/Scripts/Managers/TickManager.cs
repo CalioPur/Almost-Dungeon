@@ -106,7 +106,7 @@ public class TickManager : MonoBehaviour
         OnTick?.Invoke();
         
         beatInterval += BPMBoostCurve.Evaluate(DistanceFromClosestExit());
-        Debug.Log("aAaeijojio" + DistanceFromClosestExit());
+        // Debug.Log("aAaeijojio" + DistanceFromClosestExit());
         
         MovementType currentMovementType = GetMovementTypeFromDivision();
 
