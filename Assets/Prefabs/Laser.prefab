@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 2.49
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 20
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4843,7 +4843,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400042}
-  - component: {fileID: 11400000}
+  - component: {fileID: 7204535970360123863}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -4868,7 +4868,7 @@ Transform:
   - {fileID: 5905432499144705784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11400000
+--- !u!114 &7204535970360123863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4877,11 +4877,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff8e458bea482444b92fbe7a4688ce95, type: 3}
+  m_Script: {fileID: 11500000, guid: 227c3ced1603ac94aa37cd406db7aa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 400014}
+  lineRenderer: {fileID: 7231168194989578556}
+  particleSystem: {fileID: 19800000}
 --- !u!1 &5460235647083993696
 GameObject:
   m_ObjectHideFlags: 0
