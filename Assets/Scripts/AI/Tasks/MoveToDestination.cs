@@ -38,7 +38,7 @@ public class MoveToDestination : Node
             tile.IsVisited = true;
         }
         
-        if(isHeroNextToExit()) blackboard.hero.emotesManager.PlayEmote(EmoteType.NextToExit);
+        // if(isHeroNextToExit()) blackboard.hero.emotesManager.PlayEmote(EmoteType.NextToExit);
 
         blackboard.hero.Move(tile.transform, Vector3.zero, 0.5f);
         return NodeState.Success;

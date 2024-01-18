@@ -16,7 +16,7 @@ public class AttackMinion : Node
 
     public override NodeState Evaluate(Node root)
     {
-        if (isHeroNextToExit()) blackboard.hero.emotesManager.PlayEmote(EmoteType.NextToExit);
+        // if (isHeroNextToExit()) blackboard.hero.emotesManager.PlayEmote(EmoteType.NextToExit);
         
         if (blackboard.ChosenTarget == null) return NodeState.Failure;
         foreach (var target in blackboard.ChosenTarget.Where(target => target.isDead))

@@ -28,35 +28,61 @@ public class MapManager : MonoBehaviour
     private readonly MapManagerTools _mapManagerTools;
     private List<TilePresetStruct> _tilePreset = new ();
 
+    [SerializeField] private Sprite ATTENTION;
+
     public MapManager()
     {
         _mapManagerTools = new MapManagerTools(this);
     }
 
-    // private void Update()
-    // {
-    //     for (int i = 0; i < Instance.width - 2; i++)
-    //     {
-    //         for (int j = 0; j < Instance.height - 2; j++)
-    //         {
-    //             Vector3 pos = Instance.mapArray[i, j].transform.position;
-    //             if (mapArray[i,j].isConnectedToPath)
-    //                 Debug.DrawLine(pos, pos + Vector3.up, Color.red, 1f);
-    //
-    //             if (mapArray[i,j].hasDoorDown)
-    //                 Debug.DrawLine(pos, pos + Vector3.back, Color.blue, 1f);
-    //             if (mapArray[i,j].hasDoorUp)
-    //                 Debug.DrawLine(pos, pos + Vector3.forward, Color.blue, 1f);
-    //             if (mapArray[i,j].hasDoorLeft)
-    //                 Debug.DrawLine(pos, pos + Vector3.left, Color.blue, 1f);
-    //             if (mapArray[i,j].hasDoorRight)
-    //                 Debug.DrawLine(pos, pos + Vector3.right, Color.blue, 1f);
-    //             
-    //             if (mapArray[i,j].isExit)
-    //                 Debug.DrawLine(new Vector3(pos.x+0.1f,pos.y,pos.z), new Vector3(pos.x+0.1f,pos.y,pos.z) + Vector3.up, Color.green, 1f);
-    //         }
-    //     }
-    // }
+    private void Update()
+    {
+        // for (int i = 0; i < Instance.width - 2; i++)
+        // {
+        //     for (int j = 0; j < Instance.height - 2; j++)
+        //     {
+        //         Vector3 pos = Instance.mapArray[i, j].transform.position;
+        //         if (mapArray[i,j].isConnectedToPath)
+        //             Debug.DrawLine(pos, pos + Vector3.up, Color.red, 1f);
+        //
+        //         if (mapArray[i,j].hasDoorDown)
+        //             Debug.DrawLine(pos, pos + Vector3.back, Color.blue, 1f);
+        //         if (mapArray[i,j].hasDoorUp)
+        //             Debug.DrawLine(pos, pos + Vector3.forward, Color.blue, 1f);
+        //         if (mapArray[i,j].hasDoorLeft)
+        //             Debug.DrawLine(pos, pos + Vector3.left, Color.blue, 1f);
+        //         if (mapArray[i,j].hasDoorRight)
+        //             Debug.DrawLine(pos, pos + Vector3.right, Color.blue, 1f);
+        //         
+        //         if (mapArray[i,j].isExit)
+        //             Debug.DrawLine(new Vector3(pos.x+0.1f,pos.y,pos.z), new Vector3(pos.x+0.1f,pos.y,pos.z) + Vector3.up, Color.green, 1f);
+        //     }
+        // }
+        
+        for (int i = 0; i < Instance.width - 2; i++)
+        {
+            for (int j = 0; j < Instance.height - 2; j++)
+            {
+                if (!mapArray[i, j].isExit) continue;
+                if (mapArray[i, j].hasDoorDown && j > 0 && !mapArray[i, j - 1].isConnectedToPath)
+                {
+                    mapArray[i, j - 1].img.sprite = ATTENTION;
+                }
+                if (mapArray[i, j].hasDoorUp && j < height - 3 && !mapArray[i, j + 1].isConnectedToPath)
+                {
+                    mapArray[i, j + 1].img.sprite = ATTENTION;
+                }
+                if (mapArray[i, j].hasDoorLeft && i > 0 && !mapArray[i - 1, j].isConnectedToPath)
+                {
+                    mapArray[i - 1, j].img.sprite = ATTENTION;
+                }
+                if (mapArray[i, j].hasDoorRight && i < width - 3 && !mapArray[i + 1, j].isConnectedToPath)
+                {
+                    mapArray[i + 1, j].img.sprite = ATTENTION;
+                }
+            }
+        }
+    }
 
     private void Awake()
     {
