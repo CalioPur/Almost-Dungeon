@@ -42,31 +42,7 @@ public class Web : TrapData
     IEnumerator FX_Catch()
     {
         TileData tileData = mapManager.GetTileDataAtPosition(indexX, indexY);
-        // yield return tileData.transform.DOScaleX(6f, 0.33f).SetEase(Ease.InElastic).onComplete += () =>
-        // {
-        //     tileData.transform.DOScaleX(4f, 0.33f).SetEase(Ease.InElastic);
-        // };
-        // yield return tileData.transform.DOScaleY(6f, 0.33f).SetEase(Ease.InElastic).onComplete += () =>
-        // {
-        //     tileData.transform.DOScaleY(4f, 0.33f).SetEase(Ease.InElastic);
-        // };
-        // yield return tileData.transform.DOScaleZ(6f, 0.33f).SetEase(Ease.InElastic).onComplete += () =>
-        // {
-        //     tileData.transform.DOScaleZ(4f, 0.33f).SetEase(Ease.InElastic);
-        // };
-        
         tileData.transform.DOShakeScale(0.5f, 0.5f, 10, 90, false);
-        
-        // tileData.transform.DOScaleY(6f, 0.33f).SetEase(Ease.InElastic);
-        // tileData.transform.DOScaleZ(6f, 0.33f).SetEase(Ease.InElastic);
-        // yield return new WaitForSeconds(0.4f);
-        // tileData.transform.DOScaleX(2f, 0.33f).SetEase(Ease.InElastic);
-        // tileData.transform.DOScaleY(2f, 0.33f).SetEase(Ease.InElastic);
-        // tileData.transform.DOScaleZ(2f, 0.33f).SetEase(Ease.InElastic);
-        // yield return new WaitForSeconds(0.4f);
-        // tileData.transform.DOScaleX(4f, 0.33f).SetEase(Ease.InElastic);
-        // tileData.transform.DOScaleY(4f, 0.33f).SetEase(Ease.InElastic);
-        // tileData.transform.DOScaleZ(4f, 0.33f).SetEase(Ease.InElastic);
         yield return new WaitForSeconds(1f);
         TakeDamage(999, AttackType.Physical);
     }
