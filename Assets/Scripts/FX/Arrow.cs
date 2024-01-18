@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Arrow : AttackFX
 {
-    [SerializeField] RectTransform rect;
+    [SerializeField] Transform rect;
     private Transform tr;
     private float timer;
 
