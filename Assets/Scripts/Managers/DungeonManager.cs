@@ -69,6 +69,8 @@ public class DungeonManager : MonoBehaviour
     
     private void LoadLevel()
     {
+        PlayerPrefs.SetInt("LevelUnlock" + 1, 1); //on unlock le niveau 2 au lancement d'un donjon, qui sera forcement le niveau 1
+        
         if (currentLevel == 0)
             UI_Dragon.currentHealth = UI_Dragon.maxHealth;
         print(UI_Dragon.currentHealth);
@@ -77,8 +79,17 @@ public class DungeonManager : MonoBehaviour
         print("nb of level : "+dungeons[SelectedBiome].dungeonSO.levels.Count);
         if (currentLevel >= dungeons[SelectedBiome].dungeonSO.levels.Count) //le donjon a été parcouru en entier
         {
-            if(PlayerPrefs.GetInt("LevelUnlock" + 2, 0) == 0) PlayerPrefs.SetInt("LevelUnlock" + 2, 1);
-            else PlayerPrefs.SetInt("LevelUnlock" + 3, 1); //si le niveau 3 est unlock, on unlock le niveau 4
+            PlayerPrefs.SetInt("LevelBeaten" + SelectedBiome, 1); //on sauvegarde le donjon comme battu
+            PlayerPrefs.SetInt("LevelVictory" + SelectedBiome, PlayerPrefs.GetInt("LevelVictory" + SelectedBiome, 0) + 1); //on incremente la valeur de victoire du donjon
+            
+            if (PlayerPrefs.GetInt("LevelUnlock" + 2, 0) == 0) //si le niveau 3 n'est pas unlock
+            {
+                PlayerPrefs.SetInt("LevelUnlock" + 2, 1); //on unlock le niveau 3
+                PlayerPrefs.SetInt("LevelThatUnlockedLevel3", SelectedBiome); //on sauvegarde le donjon qui a unlock le niveau 3
+            }
+            else if(SelectedBiome != PlayerPrefs.GetInt("LevelThatUnlockedLevel3")) { //si le niveau 3 est unlock, pas avec le meme donjon
+                PlayerPrefs.SetInt("LevelUnlock" + 3, 1); //on unlock le niveau 4
+            }
             
             Debug.LogWarning("Level is too high");
             SceneManager.LoadScene(0);
