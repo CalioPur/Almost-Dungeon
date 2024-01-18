@@ -25,7 +25,7 @@ public class CheckIfDoorToRemember : Node
         {
             _blackboard.DoorSaw.Add(heroPos);
         }
-        Debug.Log("nb door saw: " + _blackboard.DoorSaw.Count);
+        // Debug.Log("nb door saw: " + _blackboard.DoorSaw.Count);
         
         return NodeState.Success;
     }

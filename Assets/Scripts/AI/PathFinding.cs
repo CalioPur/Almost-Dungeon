@@ -261,6 +261,22 @@ public class PathFinding
         return minDist;
     }
     
+    public static int GetDistanceBetweenTwoTiles(Vector2Int startPos, Vector2Int endPos, Dictionary<Vector2Int, Vector2Int> parentMap)
+    {
+        Dictionary<Vector2Int, Vector2Int> parentMapCopy = new Dictionary<Vector2Int, Vector2Int>(parentMap);
+        Vector2Int currentPos = endPos;
+        int distance = 0;
+        while (parentMapCopy.ContainsKey(currentPos) && parentMapCopy[currentPos] != startPos)
+        {
+            Vector2Int parent = parentMapCopy[currentPos];
+            parentMapCopy.Remove(currentPos);
+            currentPos = parent;
+            distance++;
+        }
+
+        return distance;
+    }
+    
     private static DirectionToMove GetDirectionToMove(Vector2Int startPos, Vector2Int nextPos)
     {
         if (nextPos.x < startPos.x)
