@@ -35,6 +35,7 @@ public abstract class TrapData : MonoBehaviour
 
     public void Attack(int damage, AttackType attackType)
     {
+        SoundManagerIngame.Instance.PlayDialogueSFX(SO.attackSound);
         InvokeTrapAttackEvent(damage, attackType);
     }
     

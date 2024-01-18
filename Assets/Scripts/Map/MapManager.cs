@@ -381,7 +381,13 @@ public class MapManager : MonoBehaviour
     {
         if (pos.x >= width - 2 || pos.y >= height - 2 || pos.x < 0 || pos.y < 0) { minions = null; return false;}
         TileData data = GetTileDataAtPosition(pos.x, pos.y);
-        minions = new List<TrapData>(data.enemies.OrderBy(x => x.GetSO().targetPriority));
+        minions = new List<TrapData>();
+        if (data.enemies.Count == 0) return false;
+        foreach (var enemy in data.enemies.OrderBy(x => x.GetSO().targetPriority))
+        {
+            minions.Add(enemy);
+        }
+        //minions = new List<TrapData>(data.enemies.OrderBy(x => x.GetSO().targetPriority));
         return true;
     }
     
