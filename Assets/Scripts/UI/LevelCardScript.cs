@@ -17,7 +17,7 @@ public class LevelCardScript : MonoBehaviour
 
     void Start()
     {
-        if (DungeonManager._instance.dungeons[biomeIndex].isLocked)
+        if (DungeonManager._instance.dungeons[biomeIndex].isLocked && (PlayerPrefs.GetInt("LevelUnlock" + biomeIndex, 0)==0))
         {
             SpriteAttached.GetComponent<SpriteRenderer>().sprite = lockedSprite;
             isLocked = true;
