@@ -232,6 +232,10 @@ public class PathFinding
     public static int GetNumberOfTilesToClosestExit(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap,
         List<Vector2Int> exits)
     {
+        if (exits.Count == 0)
+        {
+            return 9999;
+        }
         Vector2Int closestPos = exits[0];
         int minDist = 9999;
         foreach (var position in exits)
