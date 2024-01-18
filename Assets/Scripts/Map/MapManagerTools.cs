@@ -27,42 +27,55 @@ public class MapManagerTools
 
     private void CheckTileTypeAndRotation(TileData tileData)
     {
-        if (tileData.img.sprite.name == "EnterDungeon") return;
+        if (tileData.img.sprite.name == "Tile_Entrance") return;
         if (isLTile(tileData))
         {
-            tileData.img.sprite = !tileData.isRoom
-                ? _mapManager._sprites.First(x => x.name == "LWay")
-                : _mapManager._sprites.First(x => x.name == "LRoom");
+            if (tileData.isRoom)
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_L_Room");
+            else if (tileData._instance.TypeOfTrapOrEnemyToSpawnInstance.Length > 0 && tileData._instance.TypeOfTrapOrEnemyToSpawnInstance[0].type == TrapType.Pyke)
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_L_Fire");
+            else
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_L_Empty");
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromLTile(tileData), 0);
         }
         else if (isStraightTile(tileData))
         {
             if (tileData.isRoom)
             {
-                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "SimpleRoom");
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_I_Room");
+            }
+            else if (tileData._instance.TypeOfTrapOrEnemyToSpawnInstance.Length > 0 && tileData._instance.TypeOfTrapOrEnemyToSpawnInstance[0].type == TrapType.Pyke)
+            {
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_I_Fire");
             }
             else
             {
-                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "SimpleWay");
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_I_Empty");
             }
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromStraightTile(tileData), 0);
         }
         else if (isTTile(tileData))
         {
-            tileData.img.sprite = !tileData.isRoom
-                ? _mapManager._sprites.First(x => x.name == "TWay")
-                : _mapManager._sprites.First(x => x.name == "TRoom");
+            if (tileData.isRoom)
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_T_Room");
+            else if (tileData._instance.TypeOfTrapOrEnemyToSpawnInstance.Length > 0 && tileData._instance.TypeOfTrapOrEnemyToSpawnInstance[0].type == TrapType.Pyke)
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_T_Fire");
+            else
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_T_Empty");
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromTTile(tileData), 0);
         }
         else if (isCrossTile(tileData))
         {
-            tileData.img.sprite = !tileData.isRoom
-                ? _mapManager._sprites.First(x => x.name == "XWay")
-                : _mapManager._sprites.First(x => x.name == "XRoom");
+            if (tileData.isRoom)
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_X_Room");
+            else if (tileData._instance.TypeOfTrapOrEnemyToSpawnInstance.Length > 0 && tileData._instance.TypeOfTrapOrEnemyToSpawnInstance[0].type == TrapType.Pyke)
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_X_Fire");
+            else
+                tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_X_Empty");
         }
         else if (isDeadEndTile(tileData))
         {
-            tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Sas");
+            tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_U_Room");
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromDeadEndTile(tileData), 0);
         }
     }
