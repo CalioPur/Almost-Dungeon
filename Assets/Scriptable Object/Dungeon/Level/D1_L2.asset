@@ -24,9 +24,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c858284abb5971c42bf978eaf3affa38, type: 2}
   - {fileID: 11400000, guid: 4ea7fc5475a00ef418514c49abe3b5be, type: 2}
   heros:
-  - {fileID: 11400000, guid: 57fef7403b80ff742963b22f31a0368f, type: 2}
-  - {fileID: 11400000, guid: e50e16e86c9c123458faf607ff7302c8, type: 2}
-  - {fileID: 11400000, guid: 69bbe0983b3388e47aadba8975b8ce51, type: 2}
+  - {fileID: 11400000, guid: 3baac2b1c0aeacc4ea816fd3bb285cc4, type: 2}
+  - {fileID: 11400000, guid: f391174796aa1c8429ee8ec2fe538de3, type: 2}
+  - {fileID: 11400000, guid: 7b85cc5b38385854ab5cbefd67614667, type: 2}
+  - {fileID: 11400000, guid: a3192073f055f244e944639c8bae0c27, type: 2}
+  - {fileID: 11400000, guid: 73c4ace36883bc24c8567494cdf39fa1, type: 2}
+  - {fileID: 11400000, guid: 85996c14f4252de469ade85cfb433c33, type: 2}
+  - {fileID: 11400000, guid: 4d788a44ad179644c9a4b71fc4ab8256, type: 2}
   decks:
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
