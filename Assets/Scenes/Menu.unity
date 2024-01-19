@@ -1493,7 +1493,7 @@ MonoBehaviour:
   continueButton: {fileID: 1195376729}
   videoPlayer: {fileID: 689731033}
   levelSelection: {fileID: 1713900632}
-  fadeImage: {fileID: 0}
+  fadeImage: {fileID: 901229529}
 --- !u!114 &1461340014
 MonoBehaviour:
   m_ObjectHideFlags: 0
