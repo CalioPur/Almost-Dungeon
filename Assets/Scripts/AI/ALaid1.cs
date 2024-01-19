@@ -47,6 +47,17 @@ public class ALaid1
             return PathFinding.BreakFreeFromNoExit(startPos, map);
         }
         
+        foreach(var personnalities in Hero.Instance.HeroBlackboard.personalities)
+        {
+            if (personnalities == PersonnalitiesV2.IMPATIENT)
+            {
+                if (PathFinding.distToClosestExit > 5)
+                {
+                    return PathFinding.BreakFreeFromNoExit(startPos, map);
+                }
+            }
+        }
+        
         Vector2Int[] neighboursWithEnemiesAndOpenDoors = GetNeighboursWithEnemiesAndOpenDoors(startPos, map);
         
         if (aggressivity == Aggressivity.COURAGEUX && neighboursWithEnemiesAndOpenDoors.Length != 0)
@@ -190,7 +201,16 @@ public class ALaid1
             return PathFinding.BreakFreeFromNoExit(startPos, map);
         }
         
-        
+        foreach(var personnalities in Hero.Instance.HeroBlackboard.personalities)
+        {
+            if (personnalities == PersonnalitiesV2.IMPATIENT)
+            {
+                if (PathFinding.distToClosestExit > 5)
+                {
+                    return PathFinding.BreakFreeFromNoExit(startPos, map);
+                }
+            }
+        }
         
         int numberOfVisibleEnemies = tilesInLineOfSight.Sum(tileData => tileData.enemies.Count);
 
@@ -321,6 +341,18 @@ public class ALaid1
         map = mapDatas;
         MapManager.Instance.SetAllTilesAsVisited();
         numberOfEnemies = CheckNumberOfEnemiesOnMap(map);
+        
+        foreach(var personnalities in Hero.Instance.HeroBlackboard.personalities)
+        {
+            if (personnalities == PersonnalitiesV2.IMPATIENT)
+            {
+                if (PathFinding.distToClosestExit > 5)
+                {
+                    return PathFinding.BreakFreeFromNoExit(startPos, map);
+                }
+            }
+        }
+        
         if (aggressivity == Aggressivity.COURAGEUX && numberOfEnemies > 0)
         {
             return PathFinding.BFSFindPath(startPos, map, Personnalities.TheKiller);

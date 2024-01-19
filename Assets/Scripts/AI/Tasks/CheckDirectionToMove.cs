@@ -27,7 +27,7 @@ public class CheckDirectionToMove : Node
         //     {
         //         Objectives.SORTIE
         //     });
-
+        
         if (blackboard.aggressivity == Aggressivity.COURAGEUX)
             ALaid1.aggressivity = Aggressivity.COURAGEUX;
         else if (blackboard.aggressivity == Aggressivity.PEUREUX)

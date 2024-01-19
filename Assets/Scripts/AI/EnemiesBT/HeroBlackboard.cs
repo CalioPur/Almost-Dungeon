@@ -18,4 +18,5 @@ public class HeroBlackboard : MonoBehaviour
     public GameObject leftArrow;
     public VisionType visionType;
     public Aggressivity aggressivity;
+    public List<PersonnalitiesV2> personalities;
 }
