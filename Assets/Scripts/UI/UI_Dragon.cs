@@ -39,6 +39,7 @@ public class UI_Dragon : MonoBehaviour
         GameObject fireBall = Instantiate(fireBallPrefab, dragonCard);
         fireBall.GetComponent<Animator>().Play(fireBallAnim.name);
         yield return new WaitForSeconds(fireBallAnim.length);
+        Camera.main.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
         Destroy(fireBall);
         dragImg.color = Color.white;
         hero.TakeDamage(damage, AttackType.Physical);
