@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public int heroHealthPoint;
     public int heroCurrentHealthPoint;
     public int rotationOfSpawnTile;
+    public bool isInDialogue = false;
     private Vector3 worldPos;
     private Vector2Int startPosHero;
 

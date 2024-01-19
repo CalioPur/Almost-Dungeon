@@ -52,6 +52,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject minionToken;
     [SerializeField] private GameObject lightDragon;
     [SerializeField] private GameObject lightHero;
+    [SerializeField] private GameObject slots;
     [SerializeField] private TMP_Text heroName;
     private static event Action OnEndDialogEvent; 
     private int dialogueIndex = -1;
@@ -100,10 +101,12 @@ public class DialogueManager : MonoBehaviour
     
     public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, List<TextAsset> heroDialogue, DeckManager cardsManager)
     {
+        GameManager._instance.isInDialogue = true;
         Debug.LogWarning("PlayAllThreeDialogues");
         print("HERO DIALOGUE COUNT : "+heroDialogue.Count);
         dialogueIndex = -1;
         GetUiElements();
+        slots.SetActive(false);
         timer.SetActive(false);
         dialogues = new List<TextAsset>();
         if(terrainDialogue != null)
@@ -131,6 +134,7 @@ public class DialogueManager : MonoBehaviour
 
     private void PlayNextDialogue()
     {
+        
         dialogueIndex++;
         if(dialogueIndex >= dialogues.Count)
         {
@@ -152,7 +156,8 @@ public class DialogueManager : MonoBehaviour
             canvaHero.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.5f);
 
             minionToken.SetActive(false);
-            
+            slots.SetActive(true);
+            GameManager._instance.isInDialogue = false;
             return;
         }
         
