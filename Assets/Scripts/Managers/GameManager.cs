@@ -33,14 +33,14 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         
-        OnSceneLoadedEvent?.Invoke();
+        
         if (_instance != null)
         {
             Destroy(gameObject);
             return;
         }
         _instance = this;
-        
+        OnSceneLoadedEvent?.Invoke();
         //DontDestroyOnLoad(gameObject);
     }
     

@@ -24,11 +24,16 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] public List<Dungeon> dungeons;
    
     public static int currentLevel = 0;
-    private DeckManager cardsManager;
+    public DeckManager cardsManager;
     private TickManager tickManager;
     private GameManager gameManager;
     private MapManager mapManager;
     public static int SelectedBiome;
+    
+    public TilePresetSO terrainData;
+    public HeroSO heroData;
+    public DeckSO deckData;
+    
 
     public static DungeonManager _instance;
     
@@ -101,7 +106,7 @@ public class DungeonManager : MonoBehaviour
 
         var levelData = dungeons[SelectedBiome].dungeonSO.levels[level];
         
-        var terrainData = levelData.terrains[Random.Range(0, levelData.terrains.Count)];
+        terrainData = levelData.terrains[Random.Range(0, levelData.terrains.Count)];
         List<HeroSO> heroUnlock = new List<HeroSO>();
         foreach (var hero in levelData.heros)
         {
@@ -116,8 +121,8 @@ public class DungeonManager : MonoBehaviour
                 heroUnlock.Add(hero);
             }
         }
-        var heroData = heroUnlock[Random.Range(0, heroUnlock.Count)];
-        var deckData = levelData.decks[Random.Range(0, levelData.decks.Count)];
+        heroData = heroUnlock[Random.Range(0, heroUnlock.Count)];
+        deckData = levelData.decks[Random.Range(0, levelData.decks.Count)];
         
         UI_Hero heroCard = FindObjectOfType<UI_Hero>();
         heroCard.heroName.text = heroData.nameOfHero;
@@ -127,14 +132,12 @@ public class DungeonManager : MonoBehaviour
         cardsManager.deckToBuild = deckData.deck;
         cardsManager.nbCardOnStartToDraw = levelData.nbCardToDraw;
         
-        DialogueManager._instance.PlayAllThreeDialogues(terrainData.terrainDialogue, deckData.deckDialogue,
-                heroData.heroDialogues, cardsManager);
         
         
         tickManager = FindObjectOfType<TickManager>();
         tickManager.BPM = heroData.speed;
         
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = GameManager._instance;
         gameManager.currentHero = heroData;
         //gameManager.currentPersonality = heroData.personnalities[0]; //a changer a l'avenir, le hero pourra avoir plusieurs personnalité
         gameManager.heroHealthPoint = heroData.health;

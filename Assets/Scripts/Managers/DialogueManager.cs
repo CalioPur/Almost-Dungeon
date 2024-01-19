@@ -36,23 +36,22 @@ public class DialogueManager : MonoBehaviour
     
     public List<TextAsset> dialogues;
     private Story story;
-    private DeckManager cardsManager;
-    private GameObject dialogueBox;
-    private GameObject arrowKnight;
-    private GameObject arrowDragon;
-    private GameObject arrowMinion;
-    private GameObject choice1;
-    private GameObject choice2;
-    private MarkdownRenderer dialogueText;
-    private Button nextButton;
-    private Image otherImage;
-    private GameObject canvaDragon;
-    private GameObject canvaHero;
-    private GameObject timer;
-    private GameObject minionToken;
-
-    private GameObject lightDragon;
-    private GameObject lightHero;
+    [SerializeField] private DeckManager cardsManager;
+    [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private GameObject arrowKnight;
+    [SerializeField] private GameObject arrowDragon;
+    [SerializeField] private GameObject arrowMinion;
+    [SerializeField] private GameObject choice1;
+    [SerializeField] private GameObject choice2;
+    [SerializeField] private MarkdownRenderer dialogueText;
+    [SerializeField] private Button nextButton;
+    [SerializeField] private Image otherImage;
+    [SerializeField] private GameObject canvaDragon;
+    [SerializeField] private GameObject canvaHero;
+    [SerializeField] private GameObject timer;
+    [SerializeField] private GameObject minionToken;
+    [SerializeField] private GameObject lightDragon;
+    [SerializeField] private GameObject lightHero;
     private static event Action OnEndDialogEvent; 
     private int dialogueIndex = -1;
     
@@ -66,13 +65,16 @@ public class DialogueManager : MonoBehaviour
         }
         _instance = this;
         
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         dialogueVariable = new DialogueVariable(globalsInkFile);
+        
+        PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue, DungeonManager._instance.deckData.deckDialogue,
+            DungeonManager._instance.heroData.heroDialogues, DungeonManager._instance.cardsManager);
     }
     
     private void GetUiElements()
     {
-        dialogueBox = GameObject.Find("DialoguePanel");
+        /*dialogueBox = GameObject.Find("DialoguePanel");
         arrowKnight = GameObject.Find("ArrowKnight");
         arrowDragon = GameObject.Find("ArrowDragon");
         arrowMinion = GameObject.Find("ArrowMinion");
@@ -87,7 +89,7 @@ public class DialogueManager : MonoBehaviour
         
         canvaDragon = GameObject.Find("CanvasDragonUI");
         canvaHero = GameObject.Find("CanvasHeroUI");
-        minionToken = GameObject.Find("MinionToken");
+        minionToken = GameObject.Find("MinionToken");*/
         
         dialogueText = dialogueBox.GetComponentInChildren<MarkdownRenderer>();
         
