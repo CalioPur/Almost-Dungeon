@@ -38,27 +38,6 @@ public class MapManager : MonoBehaviour
 
     private void Update()
     {
-        // for (int i = 0; i < Instance.width - 2; i++)
-        // {
-        //     for (int j = 0; j < Instance.height - 2; j++)
-        //     {
-        //         Vector3 pos = Instance.mapArray[i, j].transform.position;
-        //         if (mapArray[i,j].isConnectedToPath)
-        //             Debug.DrawLine(pos, pos + Vector3.up, Color.red, 1f);
-        //
-        //         if (mapArray[i,j].hasDoorDown)
-        //             Debug.DrawLine(pos, pos + Vector3.back, Color.blue, 1f);
-        //         if (mapArray[i,j].hasDoorUp)
-        //             Debug.DrawLine(pos, pos + Vector3.forward, Color.blue, 1f);
-        //         if (mapArray[i,j].hasDoorLeft)
-        //             Debug.DrawLine(pos, pos + Vector3.left, Color.blue, 1f);
-        //         if (mapArray[i,j].hasDoorRight)
-        //             Debug.DrawLine(pos, pos + Vector3.right, Color.blue, 1f);
-        //         
-        //         if (mapArray[i,j].isExit)
-        //             Debug.DrawLine(new Vector3(pos.x+0.1f,pos.y,pos.z), new Vector3(pos.x+0.1f,pos.y,pos.z) + Vector3.up, Color.green, 1f);
-        //     }
-        // }
         if (!Hero.Instance) return;
         for (int i = 0; i < Instance.width - 2; i++)
         {

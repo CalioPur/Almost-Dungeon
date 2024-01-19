@@ -10,14 +10,12 @@ public class MovementManager : MonoBehaviour
     public static event Action<CardInfoInstance> OnFinishToPose;
 
     //[SerializeField] private GameObject gridVisualizer;
-    [SerializeField] private GameObject cardVisualizer;
+    [SerializeField] private SpriteRenderer cardVisualizer;
     
     private TileData selectedTile;
     private Vector3 offset;
     
     private Vector3 mousePos;
-    
-    [SerializeField] private GameObject discardPosition;
     
     Vector3 baseRotation = new(90, 0, 0);
 
@@ -27,11 +25,6 @@ public class MovementManager : MonoBehaviour
     CardHand selectedCard;
     
     public bool isDragNDrop = false;
-
-    private void Start()
-    {
-        _rectTransform = discardPosition.GetComponent<RectTransform>();
-    }
 
     private void Awake()
     {
@@ -57,13 +50,12 @@ public class MovementManager : MonoBehaviour
     {
         if (!canBePlaced) return;
         
-        cardVisualizer.SetActive(false);
+        cardVisualizer.gameObject.SetActive(false);
         data.SetInstance(card.Card);
         OnTilePosedEvent?.Invoke(data, card.Card);
-        //card.EmptyCard();
         OnFinishToPose?.Invoke(card.Card);
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
-        cardVisualizer.SetActive(false);
+        cardVisualizer.gameObject.SetActive(false);
         selectedCard = null;
         soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
         Debug.Log("Set selected card null");
@@ -105,8 +97,6 @@ public class MovementManager : MonoBehaviour
     private Color whiteA05 = new(255, 255, 255, 0.5f);
     void Update()
     {
-        //gridVisualizer.GetComponent<Renderer>().sharedMaterial.SetVector("_Position", GetMousePositionOnGrid());
-
         if (selectedCard != null)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -114,21 +104,16 @@ public class MovementManager : MonoBehaviour
 
             if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
             {
-                cardVisualizer.GetComponent<SpriteRenderer>().color = invisible;
+                cardVisualizer.color = invisible;
             }
-            // TileData tile = hit.collider.gameObject.GetComponent<TileData>();
             TileData tile = hit.collider?.gameObject.GetComponent<TileData>();
             if (tile != null)
             {
                 var position = tile.transform.position;
                 cardVisualizer.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
-                cardVisualizer.GetComponent<SpriteRenderer>().color = tile.PiecePlaced ? redA05 : whiteA05;
+                cardVisualizer.color = tile.PiecePlaced ? redA05 : whiteA05;
             }
         }
-        // else
-        // {
-        //     Debug.Log("selectedCard null");
-        // }
         
         switch (isDragNDrop)
         {
@@ -187,7 +172,6 @@ public class MovementManager : MonoBehaviour
     }
 
     private string nameOf = null;
-    private RectTransform _rectTransform;
 
     private void HandleMouseDrag()
     {
@@ -225,7 +209,7 @@ public class MovementManager : MonoBehaviour
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
-        cardVisualizer.SetActive(false);
+        cardVisualizer.gameObject.SetActive(false);
 
         OnTileSelectedEvent?.Invoke(tile);
     }
@@ -236,7 +220,7 @@ public class MovementManager : MonoBehaviour
         soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.transform.position = new Vector3(100, 100, 100);
-        cardVisualizer.SetActive(true);
+        cardVisualizer.gameObject.SetActive(true);
         if (!selectedCard) return;
         if (selectedCard.GetSprite() == null)
         {

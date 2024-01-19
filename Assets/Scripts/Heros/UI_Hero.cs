@@ -184,7 +184,6 @@ public class UI_Hero : MonoBehaviour
 
     private void Start()
     {
-        if (ItemBar.activeSelf) DrawItems();
         Hero.OnTakeDamageEvent += TakeDamage;
         Hero.OnTakeDamageEvent += DrawHearts;
         OnEndGameEvent += EndGame;

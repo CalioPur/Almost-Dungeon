@@ -234,6 +234,7 @@ MonoBehaviour:
   emotesManager: {fileID: 5855379603346946449}
   animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
   animator: {fileID: 4046407605029630513}
+  audioSource: {fileID: -8462507803985530084}
   threeDeeHero: {fileID: 6083543131701964934}
   attackClip:
   - {fileID: 8300000, guid: 7972ad356168f554781c20e56b7af98c, type: 3}

@@ -15,11 +15,9 @@ public class UI_HeroItem : MonoBehaviour
 {
     [SerializeField] private List<ItemSpritesDictionary> itemSpritesDictionary;
     
-    private Image itemImage;
 
     private void Awake()
     {
-        itemImage = GetComponent<Image>();
         
         SetSpritesInDictionary();
     }
@@ -31,7 +29,7 @@ public class UI_HeroItem : MonoBehaviour
 
     public void SetItem(string itemName)
     {
-        itemImage.sprite = itemSpritesDictionary.Find(x => x.itemName == itemName).itemSprite;
+        
     }
 }
 

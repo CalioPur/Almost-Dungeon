@@ -6,13 +6,7 @@ public class UI_Heart : MonoBehaviour
 {
     [SerializeField] private Sprite fullHeart;
     [SerializeField] private Sprite emptyHeart;
-    
-    private Image heartImage;
-    
-    private void Awake()
-    {
-        heartImage = GetComponent<Image>();
-    }
+    [SerializeField] private Image heartImage;
     
     public void SetHeartState(HeartState state)
     {

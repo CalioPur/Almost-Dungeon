@@ -67,7 +67,6 @@ public class DialogueManager : MonoBehaviour
         }
         _instance = this;
         
-        //DontDestroyOnLoad(this);
         dialogueVariable = new DialogueVariable(globalsInkFile);
         
         PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue, DungeonManager._instance.deckData.deckDialogue,
@@ -76,23 +75,6 @@ public class DialogueManager : MonoBehaviour
     
     private void GetUiElements()
     {
-        /*dialogueBox = GameObject.Find("DialoguePanel");
-        arrowKnight = GameObject.Find("ArrowKnight");
-        arrowDragon = GameObject.Find("ArrowDragon");
-        arrowMinion = GameObject.Find("ArrowMinion");
-        choice1 = GameObject.Find("Choice1");
-        choice2 = GameObject.Find("Choice2");
-        nextButton = GameObject.Find("NextButton").GetComponent<Button>();
-        otherImage = GameObject.Find("InterlocutorImg").GetComponent<Image>();
-        timer = GameObject.Find("CountDown");
-        
-        lightDragon = GameObject.Find("LightDragon");
-        lightHero = GameObject.Find("LightHero");
-        
-        canvaDragon = GameObject.Find("CanvasDragonUI");
-        canvaHero = GameObject.Find("CanvasHeroUI");
-        minionToken = GameObject.Find("MinionToken");*/
-        
         dialogueText = dialogueBox.GetComponentInChildren<MarkdownRenderer>();
         
         nextButton.onClick.AddListener(NextDialogue);

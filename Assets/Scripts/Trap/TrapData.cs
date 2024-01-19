@@ -69,10 +69,16 @@ public abstract class TrapData : MonoBehaviour
         indexY = y;
         mapManager.AddTrapOnTile(new Vector2Int(x, y), this);
     }
+
+    protected virtual void OnStart()
+    {
+        
+    }
     
     void Start()
     {
         Init();
+        OnStart();
     }
 
     protected void InvokeTrapAttackEvent(int damage, AttackType attackType)

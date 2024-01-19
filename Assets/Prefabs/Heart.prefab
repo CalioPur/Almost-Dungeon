@@ -90,3 +90,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullHeart: {fileID: 21300000, guid: f88adfbda393b384fabe2bf65380671b, type: 3}
   emptyHeart: {fileID: 21300000, guid: 54f334b917574d14e86913a552e47722, type: 3}
+  heartImage: {fileID: 8729509491382002405}

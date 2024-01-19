@@ -25,19 +25,19 @@ public class Hero : MonoBehaviour, IFlippable
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private Tree bt;
     [SerializeField] private AnimationQueue animQueue;
-    [SerializeField] private GameObject attackPoint;
     [field:SerializeField] public HeroBlackboard HeroBlackboard { get; private set; }
     [field: SerializeField] public EmotesManager emotesManager;
     [field: SerializeField] private AttackFX animFX;
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource audioSource;
     
     [SerializeField] private GameObject threeDeeHero;
 
     private int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
-    private AudioSource audioSource;
     public AudioClip[] attackClip;
     private bool isStunned;
+    private GameObject attackPoint;
 
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
@@ -91,7 +91,6 @@ public class Hero : MonoBehaviour, IFlippable
         PathFindingV2.OnNoPathFound += PlayEmoteStuck;
         OnDragonAttackEvent +=AttackDragon;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void AttackDragon(DirectionToMove obj)
