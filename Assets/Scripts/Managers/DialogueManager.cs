@@ -52,6 +52,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject minionToken;
     [SerializeField] private GameObject lightDragon;
     [SerializeField] private GameObject lightHero;
+    [SerializeField] private TMP_Text heroName;
     private static event Action OnEndDialogEvent; 
     private int dialogueIndex = -1;
     
@@ -339,6 +340,12 @@ public class DialogueManager : MonoBehaviour
                                 minionToken.transform.DOMove(new Vector3(-10f, 0.8f, 8), 0.5f).SetUpdate(true);
                                 break;
                         }
+                        break;
+                    case "name":
+                        heroName.text = split[1];
+                        break;
+                    case "time":
+                        DungeonManager._instance.tickManager.BPM = int.Parse(split[1]);
                         break;
                 }
             }

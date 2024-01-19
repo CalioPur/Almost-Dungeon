@@ -25,7 +25,7 @@ public class DungeonManager : MonoBehaviour
    
     public static int currentLevel = 0;
     public DeckManager cardsManager;
-    private TickManager tickManager;
+    public TickManager tickManager;
     private GameManager gameManager;
     private MapManager mapManager;
     public static int SelectedBiome;
