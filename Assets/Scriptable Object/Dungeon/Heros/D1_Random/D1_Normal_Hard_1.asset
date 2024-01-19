@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D1_Normal_Hard_1
   m_EditorClassIdentifier: 
-  nameOfHero: 
-  health: 15
-  speed: 70
+  nameOfHero: Sire GrandJean
+  health: 30
+  speed: 100
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2

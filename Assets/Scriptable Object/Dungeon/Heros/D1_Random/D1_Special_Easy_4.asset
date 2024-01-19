@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfHero: 
   health: 15
-  speed: 70
-  classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
+  speed: 75
+  classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
   visionType: 0
   aggressivity: 2
   heroDialogues:
   - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
-  keyToUnlock: D1_L1
+  keyToUnlock: D2_L1
