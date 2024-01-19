@@ -262,7 +262,7 @@ public class ALaid1
         }
     }
 
-    private static List<TileData> GetTilesInLineOfSight(Vector2Int startPos, TileData[,] mapDatas)
+    public static List<TileData> GetTilesInLineOfSight(Vector2Int startPos, TileData[,] mapDatas)
     {
         map = mapDatas;
         List<TileData> visibleTiles = new List<TileData>();

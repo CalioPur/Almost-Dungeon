@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BehaviourTree;
 using UnityEngine;
 
@@ -41,6 +42,9 @@ public class MoveToDestination : Node
         // if(isHeroNextToExit()) blackboard.hero.emotesManager.PlayEmote(EmoteType.NextToExit);
 
         blackboard.hero.Move(tile.transform, Vector3.zero, 0.5f);
+        
+        List<TileData> aaa = ALaid1.GetTilesInLineOfSight(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
+        
         return NodeState.Success;
     }
     private bool isHeroNextToExit()

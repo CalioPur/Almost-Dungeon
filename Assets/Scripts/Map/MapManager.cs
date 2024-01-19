@@ -29,6 +29,7 @@ public class MapManager : MonoBehaviour
     private List<TilePresetStruct> _tilePreset = new ();
 
     [SerializeField] private Sprite ATTENTION;
+    [SerializeField] private Sprite ATTENTIONROUUUGE;
 
     public MapManager()
     {
@@ -66,19 +67,47 @@ public class MapManager : MonoBehaviour
                 if (!mapArray[i, j].isExit) continue;
                 if (mapArray[i, j].hasDoorDown && j > 0 && !mapArray[i, j - 1].isConnectedToPath)
                 {
-                    mapArray[i, j - 1].img.sprite = ATTENTION;
+                    if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                    {
+                        mapArray[i, j - 1].img.sprite = ATTENTIONROUUUGE;
+                    }
+                    else
+                    {
+                        mapArray[i, j - 1].img.sprite = ATTENTION;
+                    }
                 }
                 if (mapArray[i, j].hasDoorUp && j < height - 3 && !mapArray[i, j + 1].isConnectedToPath)
                 {
-                    mapArray[i, j + 1].img.sprite = ATTENTION;
+                    if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                    {
+                        mapArray[i, j + 1].img.sprite = ATTENTIONROUUUGE;
+                    }
+                    else
+                    {
+                        mapArray[i, j + 1].img.sprite = ATTENTION;
+                    }
                 }
                 if (mapArray[i, j].hasDoorLeft && i > 0 && !mapArray[i - 1, j].isConnectedToPath)
                 {
-                    mapArray[i - 1, j].img.sprite = ATTENTION;
+                    if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                    {
+                        mapArray[i - 1, j].img.sprite = ATTENTIONROUUUGE;
+                    }
+                    else
+                    {
+                        mapArray[i - 1, j].img.sprite = ATTENTION;
+                    }
                 }
                 if (mapArray[i, j].hasDoorRight && i < width - 3 && !mapArray[i + 1, j].isConnectedToPath)
                 {
-                    mapArray[i + 1, j].img.sprite = ATTENTION;
+                    if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                    {
+                        mapArray[i + 1, j].img.sprite = ATTENTIONROUUUGE;
+                    }
+                    else
+                    {
+                        mapArray[i + 1, j].img.sprite = ATTENTION;
+                    }
                 }
             }
         }
