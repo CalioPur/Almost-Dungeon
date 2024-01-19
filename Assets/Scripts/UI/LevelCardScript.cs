@@ -11,6 +11,7 @@ public class LevelCardScript : MonoBehaviour
 {
     public Transform SpriteAttached;
     public Sprite lockedSprite;
+    public Sprite FinishedSprite;
     public Image BlackImage;
     public bool isLocked = false;
     public int biomeIndex;
@@ -28,7 +29,7 @@ public class LevelCardScript : MonoBehaviour
         }
         else if (PlayerPrefs.GetInt("LevelBeaten" + biomeIndex,0) == 1)
         {
-            SpriteAttached.GetComponent<SpriteRenderer>().color = Color.yellow;
+            SpriteAttached.GetComponent<SpriteRenderer>().sprite = FinishedSprite;
         }
         
         tryText.text = PlayerPrefs.GetInt("LevelTry" + biomeIndex, 0).ToString();
