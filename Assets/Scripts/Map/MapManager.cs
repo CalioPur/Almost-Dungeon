@@ -59,7 +59,7 @@ public class MapManager : MonoBehaviour
         //             Debug.DrawLine(new Vector3(pos.x+0.1f,pos.y,pos.z), new Vector3(pos.x+0.1f,pos.y,pos.z) + Vector3.up, Color.green, 1f);
         //     }
         // }
-        
+        if (!Hero.Instance) return;
         for (int i = 0; i < Instance.width - 2; i++)
         {
             for (int j = 0; j < Instance.height - 2; j++)
