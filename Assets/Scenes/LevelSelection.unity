@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6f2c2a7f248334194c479a303ee83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteAttached: {fileID: 1223199358}
+  SpriteAttached: {fileID: 1223199359}
   lockedSprite: {fileID: 21300000, guid: 8d4ca03731828414a8e9eec82187b3cb, type: 3}
   FinishedSprite: {fileID: 21300000, guid: 26c291a3e72d8b3448a4cf694b64137a, type: 3}
   BlackImage: {fileID: 1043532975}
@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6f2c2a7f248334194c479a303ee83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteAttached: {fileID: 2124090102}
+  SpriteAttached: {fileID: 2124090103}
   lockedSprite: {fileID: 21300000, guid: 8d4ca03731828414a8e9eec82187b3cb, type: 3}
   FinishedSprite: {fileID: 21300000, guid: 9a8e4b99038fef04cb1c6e37df7fd758, type: 3}
   BlackImage: {fileID: 1043532975}
@@ -3912,7 +3912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6f2c2a7f248334194c479a303ee83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteAttached: {fileID: 552985320}
+  SpriteAttached: {fileID: 552985321}
   lockedSprite: {fileID: 21300000, guid: 8d4ca03731828414a8e9eec82187b3cb, type: 3}
   FinishedSprite: {fileID: 21300000, guid: 95df594f96c5aa7409561dc033e12c37, type: 3}
   BlackImage: {fileID: 1043532975}
@@ -4333,7 +4333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6f2c2a7f248334194c479a303ee83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteAttached: {fileID: 1315340360}
+  SpriteAttached: {fileID: 1315340361}
   lockedSprite: {fileID: 21300000, guid: 8d4ca03731828414a8e9eec82187b3cb, type: 3}
   FinishedSprite: {fileID: 21300000, guid: a6290d2463a24a7478acc014e51d5b64, type: 3}
   BlackImage: {fileID: 1043532975}

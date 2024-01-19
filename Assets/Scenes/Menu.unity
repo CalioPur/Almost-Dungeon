@@ -2102,7 +2102,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -241.7862, y: -101.86835}
+  m_AnchoredPosition: {x: -249.58, y: -101.86835}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2031707494
@@ -2121,7 +2121,7 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 8fab1af2c94de4743bca6c40fd718282,
     type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1.08
 --- !u!114 &2088323764 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4146393075715903951, guid: 8c99205dbea3e834c91454307f7002be,
@@ -2155,12 +2155,12 @@ PrefabInstance:
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[2].name
-      value: test
+      value: La crypte
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[3].name
-      value: test
+      value: Le Bois
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
@@ -2186,13 +2186,13 @@ PrefabInstance:
         type: 3}
       propertyPath: dungeons.Array.data[2].dungeonSO
       value: 
-      objectReference: {fileID: 11400000, guid: c13d45a85968f1e4296682cd99e14e82,
+      objectReference: {fileID: 11400000, guid: 25abac3fe756de642a7360dec3f9276c,
         type: 2}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[3].dungeonSO
       value: 
-      objectReference: {fileID: 11400000, guid: c13d45a85968f1e4296682cd99e14e82,
+      objectReference: {fileID: 11400000, guid: 5e1e93a855dd4234086eb0c72eb1c0b8,
         type: 2}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}

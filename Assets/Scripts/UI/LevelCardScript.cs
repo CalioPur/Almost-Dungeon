@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class LevelCardScript : MonoBehaviour
 {
-    public Transform SpriteAttached;
+    public SpriteRenderer SpriteAttached;
     public Sprite lockedSprite;
     public Sprite FinishedSprite;
     public Image BlackImage;
@@ -24,7 +24,11 @@ public class LevelCardScript : MonoBehaviour
     {
         if (DungeonManager._instance.dungeons[biomeIndex].isLocked && (PlayerPrefs.GetInt("LevelUnlock" + biomeIndex, 0)==0))
         {
-            SpriteAttached.GetComponent<SpriteRenderer>().sprite = lockedSprite;
+            SpriteAttached.sprite = lockedSprite;
+            foreach (Transform child in SpriteAttached.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
             isLocked = true;
         }
         else if (PlayerPrefs.GetInt("LevelBeaten" + biomeIndex,0) == 1)
@@ -42,11 +46,11 @@ public class LevelCardScript : MonoBehaviour
         
         if (!isLocked)
         {
-            SpriteAttached.DOLocalMove(new Vector3(0, 0f, -1), 0.1f);
+            SpriteAttached.transform.DOLocalMove(new Vector3(0, 0f, -1), 0.1f);
         }
         else
         {
-            SpriteAttached.DOLocalRotate(new Vector3(0, 0, 5), 0.05f).SetLoops(4, LoopType.Yoyo);
+            SpriteAttached.transform.DOLocalRotate(new Vector3(0, 0, 5), 0.05f).SetLoops(4, LoopType.Yoyo);
         }
     }
 
@@ -63,8 +67,8 @@ public class LevelCardScript : MonoBehaviour
 
     private void OnMouseExit()
     {
-        SpriteAttached.DOLocalMove(new Vector3(0, 0f, 0f), 0.1f);
-        SpriteAttached.DOLocalRotate(new Vector3(0, 0, 0), 0.1f);
+        SpriteAttached.transform.DOLocalMove(new Vector3(0, 0f, 0f), 0.1f);
+        SpriteAttached.transform.DOLocalRotate(new Vector3(0, 0, 0), 0.1f);
     }
 
     IEnumerator StartLevel()
