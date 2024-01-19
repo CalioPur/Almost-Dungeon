@@ -23,14 +23,32 @@ public class PauseInGameScript : MonoBehaviour
         gameModeToggle.onValueChanged.AddListener(GameModeToggle);
         musicSlider.onValueChanged.AddListener(MusicSlider);
         soundSlider.onValueChanged.AddListener(SoundSlider);
+        
+        gameModeToggle.isOn = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0);
+        soundSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0);
     }
 
     void Update()
     {
         //si la touche echapest appuyée
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager._instance.isInDialogue)
         {
-            
+            //si le menu pause est actif
+            if (pauseMenu.activeSelf)
+            {
+                //on le desactive
+                pauseMenu.SetActive(false);
+                //on remet le temps à 1
+                Time.timeScale = 1;
+            }
+            else
+            {
+                //sinon on l'active
+                pauseMenu.SetActive(true);
+                //on met le temps à 0
+                Time.timeScale = 0;
+            }
         }
     }
     

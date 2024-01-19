@@ -100,6 +100,7 @@ public class DialogueManager : MonoBehaviour
     
     public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, List<TextAsset> heroDialogue, DeckManager cardsManager)
     {
+        GameManager._instance.isInDialogue = true;
         Debug.LogWarning("PlayAllThreeDialogues");
         print("HERO DIALOGUE COUNT : "+heroDialogue.Count);
         dialogueIndex = -1;
@@ -131,6 +132,7 @@ public class DialogueManager : MonoBehaviour
 
     private void PlayNextDialogue()
     {
+        
         dialogueIndex++;
         if(dialogueIndex >= dialogues.Count)
         {
@@ -152,7 +154,7 @@ public class DialogueManager : MonoBehaviour
             canvaHero.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.5f);
 
             minionToken.SetActive(false);
-            
+            GameManager._instance.isInDialogue = false;
             return;
         }
         
