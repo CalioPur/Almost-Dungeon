@@ -13,7 +13,16 @@ MonoBehaviour:
   m_Name: D3_L3
   m_EditorClassIdentifier: 
   terrains:
-  - {fileID: 11400000, guid: 09fd32e72801152468b490503336a7b6, type: 2}
+  - {fileID: 11400000, guid: 0f08fe698e6c6794cbcddf6dbbc0d7af, type: 2}
+  - {fileID: 11400000, guid: 6ad67ec97356da4428e46db92dc61436, type: 2}
+  - {fileID: 11400000, guid: 55afba1168b939e4bbd558c39a18307b, type: 2}
+  - {fileID: 11400000, guid: 221b29d30844ba14698a88ddc25bbcb9, type: 2}
+  - {fileID: 11400000, guid: 948505a8e7e03094bb3b880a8af69d59, type: 2}
+  - {fileID: 11400000, guid: b2919abd99464f843bdfeb0a8290340d, type: 2}
+  - {fileID: 11400000, guid: e8e30909e01c66c4bba0a366ee6f5fa6, type: 2}
+  - {fileID: 11400000, guid: e12c6d198cc04534fbc5782eb0341d44, type: 2}
+  - {fileID: 11400000, guid: 1f000b3bc66ab884787170e81b6d390b, type: 2}
+  - {fileID: 11400000, guid: e0a5cbe8d0d364546bc867a85975eb32, type: 2}
   heros:
   - {fileID: 11400000, guid: bfcce5bfbd9ca1a428dbca70f0e6fda5, type: 2}
   - {fileID: 11400000, guid: 8ed532d84b7b90e478cd6c77d939c016, type: 2}

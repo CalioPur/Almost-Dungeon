@@ -13,7 +13,17 @@ MonoBehaviour:
   m_Name: D2_L2
   m_EditorClassIdentifier: 
   terrains:
-  - {fileID: 11400000, guid: 09fd32e72801152468b490503336a7b6, type: 2}
+  - {fileID: 11400000, guid: a8d7538a3b72eed4eb6b32aa7b58be30, type: 2}
+  - {fileID: 11400000, guid: 52313a758195ff5428bd3d8d5eba1bbb, type: 2}
+  - {fileID: 11400000, guid: a37f9a1fcc396d74b9506a2e5afe3c4b, type: 2}
+  - {fileID: 11400000, guid: 1b82221cfa944fb448c4411d976fa5e1, type: 2}
+  - {fileID: 11400000, guid: 1b82221cfa944fb448c4411d976fa5e1, type: 2}
+  - {fileID: 11400000, guid: 483b7cfa9438ceb4d9d7e23ba3794225, type: 2}
+  - {fileID: 11400000, guid: 69a51af51ae69a447ae4a92aa558d06b, type: 2}
+  - {fileID: 11400000, guid: 3cae6195383e27a46b9ed1a042eecefd, type: 2}
+  - {fileID: 11400000, guid: 8877ccc4dc6f45f47b6ef10b1dd14f44, type: 2}
+  - {fileID: 11400000, guid: ed24e3ca50faa49429def813051ed648, type: 2}
+  - {fileID: 11400000, guid: ee66260b057a6cf4484d17bcbf44c33a, type: 2}
   heros:
   - {fileID: 11400000, guid: 57fef7403b80ff742963b22f31a0368f, type: 2}
   - {fileID: 11400000, guid: e50e16e86c9c123458faf607ff7302c8, type: 2}
