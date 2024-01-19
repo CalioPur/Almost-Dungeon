@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: Knight_Recurring_1
   m_EditorClassIdentifier: 
-  nameOfHero: Warren
+  nameOfHero: Sir Kay
   health: 10
   speed: 60
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 0
   heroDialogues:
-  - {fileID: 4900000, guid: af31ecac56a45024b98179ad268c2633, type: 3}
+  - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
   keyToUnlock: 

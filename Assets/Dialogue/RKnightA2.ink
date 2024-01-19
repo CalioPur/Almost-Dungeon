@@ -1,22 +1,12 @@
 INCLUDE GlobalVariables.ink
 
-Haaa... Haa... #chara:knight
-Tiens... Toujours vivant Chevalier ? #chara:dragon
-Haha... Bien sûr, ce n'était qu'un échauffement pour moi, je suis toujours prêt à te pourfendre ! #chara:knight
-
-* L'effrayer : -> Effrayer
-* Le rassurer : -> Rassurer
-
-=== Effrayer ===
-Bien, nous allons pouvoir augmenter le rythme alors. J'espère que vous êtes prêt à affronter mon armée. #chara:dragon
-Quoi... ? Euh... je veux dire bien sûr hahaha... une armée.. #chara:knight
-Tant mieux, commençons sans tarder, en garde Héros... #chara:dragon #dragonHeal:2
-En garde Dragon ! #chara:knight
-    -> END
-
-=== Rassurer ===
-Mais oui vous allez y arriver ne vous en faites pas. Il suffit de persévérer toujours plus...  #chara:dragon
-Ah vraiment ? Euh... je veux dire bien sûr que je vais y arriver hahaha... #chara:knight
-Tant mieux, commençons sans tarder, en garde Héros... #chara:dragon
-En garde Dragon ! #chara:knight
+Haha ! Me revoilà Dragon ! J'ai survécu à tes pièges ! #chara:knight
+Ha, Sir Kay, vous appréciez votre virée dans le Donjon ? #chara:dragon
+Haha, Bien sûr, ce n'était qu'un échauffement pour moi, je suis toujours prêt à te pourfendre ! #chara:knight
+Patron, faites gaffe ! Regardez son armure, y'a un truc pas clair avec ! #minion:in #chara:minion
+Haha ! Pas mal hein ? J'ai trouvé ce petit bijou à la fin du dernier niveau, je suis invicible maintenant ! #chara:knight #minion:out
+Enfer ! C'est une Armure de Vitalité ! #chara:dragon
+En garde Dragon, avec cette armure je suis capable d'affronter n'importe quoi ! #chara:knight
+Vite mon Sbire ! Prépare moi des explosifs, beaucoup d'explosifs ! Il faut l'arrêter avant qu'il soit trop tard ! chara:dragon
+Pas de soucis patron ! Voilà ! Avec ça, on va l'envoyer sur orbite ! #minion:in #chara:minion
 -> END
