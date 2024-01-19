@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject PauseMenu;
-    [SerializeField] private TMP_Dropdown AIType;
+    //[SerializeField] private TMP_Dropdown AIType;
     [SerializeField] private Image img;
     
     public static UIManager _instance;
@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
         yield break;
     }
 
-    private void Start()
+    /*private void Start()
     {
         AIType.options.Clear();
         foreach (var personality in Enum.GetValues(typeof(Personnalities)))
@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
     {
         PauseMenu.SetActive(false);
         Time.timeScale = 1;
-    }
+    }*/
     
     public void Quit()
     {
