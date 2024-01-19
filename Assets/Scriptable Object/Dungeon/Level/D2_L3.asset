@@ -25,10 +25,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed24e3ca50faa49429def813051ed648, type: 2}
   - {fileID: 11400000, guid: ee66260b057a6cf4484d17bcbf44c33a, type: 2}
   heros:
-  - {fileID: 11400000, guid: bfcce5bfbd9ca1a428dbca70f0e6fda5, type: 2}
-  - {fileID: 11400000, guid: 8ed532d84b7b90e478cd6c77d939c016, type: 2}
-  - {fileID: 11400000, guid: 9aac9f183ab10644e80e34080632adb5, type: 2}
+  - {fileID: 11400000, guid: edc2d1fee193c9145947b086a17eeac8, type: 2}
+  - {fileID: 11400000, guid: 763d45d6726839945bf94c22f8ab27ff, type: 2}
+  - {fileID: 11400000, guid: 7ab8901badbe328458565083b4156d64, type: 2}
+  - {fileID: 11400000, guid: a616bb493d8eed948aeda512ff48354f, type: 2}
+  - {fileID: 11400000, guid: 6d82167a5a9bde04587844709d0c778c, type: 2}
+  - {fileID: 11400000, guid: 074cf16257d70ca46a1b3e9cabd58ff6, type: 2}
+  - {fileID: 11400000, guid: ff48c195ded9f794c8f4f7995bb4d9c8, type: 2}
   decks:
   - {fileID: 11400000, guid: 9fe5dc83dff5c2f44ad3d24de9297c1c, type: 2}
   nbCardToDraw: 3
-  keysElementsToUnlock: []
+  keysElementsToUnlock:
+  - D2_L3

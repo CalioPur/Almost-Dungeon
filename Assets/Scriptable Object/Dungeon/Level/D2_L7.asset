@@ -19,4 +19,5 @@ MonoBehaviour:
   decks:
   - {fileID: 11400000, guid: 9fe5dc83dff5c2f44ad3d24de9297c1c, type: 2}
   nbCardToDraw: 5
-  keysElementsToUnlock: []
+  keysElementsToUnlock:
+  - D2_L7

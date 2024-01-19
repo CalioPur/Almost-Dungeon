@@ -40,4 +40,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
   - {fileID: 11400000, guid: 172ee50c29e01bb47b30b620b51e17f0, type: 2}
   nbCardToDraw: 4
-  keysElementsToUnlock: []
+  keysElementsToUnlock:
+  - D1_L5
