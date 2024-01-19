@@ -59,12 +59,26 @@ public class SoundManagerIngame : MonoBehaviour
     public void PlayDialogueSFX(string key)
     {
         Debug.Log($"{key}");
+        if (sfxAudioSourceList == null) return;
         
-        SFXAudioDataSound s = sfxAudioSourceList.FirstOrDefault(x  => x.sfxName == key);
+        if (sfxAudioSourceList.Count <= 0) return;
         
-        Debug.Log($"{s}");
+        AudioSource s = sfxAudioSourceList.FirstOrDefault(x  => x.sfxName == key).sfxAudioSource;
         
-        PlaySound(s.sfxAudioSource);
+        if (s == null) return;
+        
+        PlaySound(s);
+        
+        // if (sfxAudioSourceList.ContainsKey((EmoteType)Enum.Parse(typeof(EmoteType), key)))
+        // {
+        //     PlaySound(emotesDictionary[(EmoteType)Enum.Parse(typeof(EmoteType), key)]);
+        //     return;
+        // }
+        // SFXAudioDataSound s = sfxAudioSourceList.FirstOrDefault(x  => x.sfxName == key);
+        //
+        // Debug.Log($"{s}");
+        //
+        // PlaySound(s.sfxAudioSource);
     }
 
     [ContextMenu("TEST")]

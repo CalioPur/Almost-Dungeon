@@ -16,6 +16,8 @@ public class AttackMinion : Node
 
     public override NodeState Evaluate(Node root)
     {
+        // if (isHeroNextToExit()) blackboard.hero.emotesManager.PlayEmote(EmoteType.NextToExit);
+        
         if (blackboard.ChosenTarget == null) return NodeState.Failure;
         foreach (var target in blackboard.ChosenTarget.Where(target => target.isDead))
         {
@@ -63,5 +65,39 @@ public class AttackMinion : Node
         }
 
         return NodeState.Success;
+    }
+    
+    private bool isHeroNextToExit()
+    {
+        blackboard.hero.mapManager.GetTile(blackboard.hero.GetIndexHeroPos(), out TileData tile);
+        if (tile == null)
+            return false;
+        if (tile.hasDoorDown)
+        {
+            if (blackboard.hero.GetIndexHeroPos().y - 1 < 0) return true;
+            if (!blackboard.hero.mapManager
+                    .mapArray[blackboard.hero.GetIndexHeroPos().x, blackboard.hero.GetIndexHeroPos().y - 1]
+                    .isConnectedToPath) return true;
+        }
+        if (tile.hasDoorUp)
+        {
+            if (blackboard.hero.GetIndexHeroPos().y + 1 >= blackboard.hero.mapManager.mapArray.GetLength(1)) return true;
+            if (!blackboard.hero.mapManager
+                    .mapArray[blackboard.hero.GetIndexHeroPos().x, blackboard.hero.GetIndexHeroPos().y + 1]
+                    .isConnectedToPath) return true;
+        }
+        if (tile.hasDoorLeft)
+        {
+            if (blackboard.hero.GetIndexHeroPos().x - 1 < 0) return true;
+            if (!blackboard.hero.mapManager
+                    .mapArray[blackboard.hero.GetIndexHeroPos().x - 1, blackboard.hero.GetIndexHeroPos().y]
+                    .isConnectedToPath) return true;
+        }
+
+        if (!tile.hasDoorRight) return false;
+        if (blackboard.hero.GetIndexHeroPos().x + 1 >= blackboard.hero.mapManager.mapArray.GetLength(0)) return true;
+        return !blackboard.hero.mapManager
+            .mapArray[blackboard.hero.GetIndexHeroPos().x + 1, blackboard.hero.GetIndexHeroPos().y]
+            .isConnectedToPath;
     }
 }

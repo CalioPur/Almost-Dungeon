@@ -12,6 +12,8 @@ public class ALaid1
     private static int numberOfUnvisitedTiles;
     private static TileData[,] map;
     
+    public static int distanceToExit = int.MaxValue;
+    
     private static void UpdateNumberOfExitsAndUnvisitedTiles(TileData[,] mapDatas)
     {
         numberOfExits = 0;
@@ -36,6 +38,8 @@ public class ALaid1
 
     public static DirectionToMove Bigleux(Vector2Int startPos, TileData[,] mapDatas)
     {
+        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapDatas, Personnalities.Nothing);
+        distanceToExit = PathFinding.distToClosestExit;
         map = mapDatas;
         UpdateNumberOfExitsAndUnvisitedTiles(map);
         if(numberOfExits == 0 && numberOfUnvisitedTiles == 0)
@@ -172,6 +176,8 @@ public class ALaid1
     
     public static DirectionToMove Line(Vector2Int startPos, TileData[,] mapData)
     {
+        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapData, Personnalities.Nothing);
+        distanceToExit = PathFinding.distToClosestExit;
         List<TileData> tilesInLineOfSight = new List<TileData>();
         map = mapData;
         
@@ -310,6 +316,8 @@ public class ALaid1
     
     public static DirectionToMove Clairvoyant(Vector2Int startPos, TileData[,] mapDatas)
     {
+        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapDatas, Personnalities.Nothing);
+        distanceToExit = PathFinding.distToClosestExit;
         map = mapDatas;
         MapManager.Instance.SetAllTilesAsVisited();
         numberOfEnemies = CheckNumberOfEnemiesOnMap(map);

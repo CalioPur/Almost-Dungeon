@@ -11,6 +11,7 @@ public class MovementManager : MonoBehaviour
 
     //[SerializeField] private GameObject gridVisualizer;
     [SerializeField] private GameObject cardVisualizer;
+    
     private TileData selectedTile;
     private Vector3 offset;
     
@@ -19,6 +20,8 @@ public class MovementManager : MonoBehaviour
     [SerializeField] private GameObject discardPosition;
     
     Vector3 baseRotation = new(90, 0, 0);
+
+    [SerializeField] private SoundManagerIngame soundManagerIngame;
     
     public static MovementManager Instance { get; private set; }
     CardHand selectedCard;
@@ -62,6 +65,7 @@ public class MovementManager : MonoBehaviour
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.SetActive(false);
         selectedCard = null;
+        soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
         Debug.Log("Set selected card null");
     }
 
@@ -222,12 +226,14 @@ public class MovementManager : MonoBehaviour
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.SetActive(false);
+
         OnTileSelectedEvent?.Invoke(tile);
     }
 
     public void SetSelectedCard(CardHand cardHand)
     {
         selectedCard = cardHand;
+        soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
         cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
         cardVisualizer.transform.position = new Vector3(100, 100, 100);
         cardVisualizer.SetActive(true);

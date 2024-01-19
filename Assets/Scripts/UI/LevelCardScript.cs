@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,15 +14,25 @@ public class LevelCardScript : MonoBehaviour
     public Image BlackImage;
     public bool isLocked = false;
     public int biomeIndex;
+    
     [SerializeField] private SoundManagerIngame soundManagerIngame;
+    [SerializeField] private TMP_Text tryText;
+    [SerializeField] private TMP_Text victoryText;
 
     void Start()
     {
-        if (DungeonManager._instance.dungeons[biomeIndex].isLocked)
+        if (DungeonManager._instance.dungeons[biomeIndex].isLocked && (PlayerPrefs.GetInt("LevelUnlock" + biomeIndex, 0)==0))
         {
             SpriteAttached.GetComponent<SpriteRenderer>().sprite = lockedSprite;
             isLocked = true;
         }
+        else if (PlayerPrefs.GetInt("LevelBeaten" + biomeIndex,0) == 1)
+        {
+            SpriteAttached.GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
+        
+        tryText.text = PlayerPrefs.GetInt("LevelTry" + biomeIndex, 0).ToString();
+        victoryText.text = PlayerPrefs.GetInt("LevelVictory" + biomeIndex, 0).ToString();
     }
     
     private void OnMouseEnter()
@@ -61,6 +72,7 @@ public class LevelCardScript : MonoBehaviour
         BlackImage.DOColor(Color.black, 1f);
         yield return new WaitForSeconds(0.95f);
         DungeonManager._instance.SetSelectedBiome(biomeIndex);
+        PlayerPrefs.SetInt("LevelTry" + biomeIndex, PlayerPrefs.GetInt("LevelTry" + biomeIndex, 0) + 1);
     }
     
 }

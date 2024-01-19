@@ -8,6 +8,7 @@
         <ui:Slider picking-mode="Ignore" label="Sound" value="0" high-value="20" name="SoundVolume" low-value="-80" class="slider" style="flex-direction: row; flex-wrap: nowrap;" />
         <ui:DropdownField label="Écran" index="0" choices="Fullscreen,Windowed,Borderless" name="screenMode" style="font-size: 30px;" />
         <ui:DropdownField label="Langue" index="0" choices="English,Français,Miaou" name="Language" style="font-size: 30px;" />
+        <ui:Toggle label="Drag and drop mode" name="dragndroptoggle" style="height: 67px; width: 389px; align-self: center; justify-content: space-between; align-items: center; font-size: 55%; -unity-text-align: middle-center;" />
         <ui:VisualElement style="flex-grow: 0; height: 50%; width: 100%; flex-direction: column; flex-wrap: nowrap;" />
     </ui:VisualElement>
 </ui:UXML>

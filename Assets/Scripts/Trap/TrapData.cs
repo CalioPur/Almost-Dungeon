@@ -26,6 +26,7 @@ public abstract class TrapData : MonoBehaviour
     
     protected virtual void OnDead()
     {
+        SoundManagerIngame.Instance.PlayDialogueSFX(SO.deathSound);
         mapManager.GetWorldPosFromTilePos(new Vector2Int(indexX, indexY) , out Vector3 worldPos);
         mapManager.RemoveEnemyOnTile(
             new Vector2Int(indexX, indexY), this, worldPos);
@@ -35,12 +36,14 @@ public abstract class TrapData : MonoBehaviour
 
     public void Attack(int damage, AttackType attackType)
     {
+        SoundManagerIngame.Instance.PlayDialogueSFX(SO.attackSound);
         InvokeTrapAttackEvent(damage, attackType);
     }
     
     public void Stun()
     {
         OnTrapStunEvent?.Invoke();
+        SoundManagerIngame.Instance.PlayDialogueSFX("SpiderStun");
     }
     
     public EnemySo GetSO()

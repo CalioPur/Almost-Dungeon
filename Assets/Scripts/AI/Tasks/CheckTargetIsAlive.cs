@@ -16,14 +16,14 @@ public class CheckTargetIsAlive : Node
     public override NodeState Evaluate(Node root)
     {
         if (blackboard.ChosenTarget == null) return NodeState.Failure;
-        for (int i = 0; i < blackboard.ChosenTarget.Count; i++)
-        {
-            if(blackboard.ChosenTarget[i] == null || blackboard.ChosenTarget[i].isDead)
-            {
-                blackboard.ChosenTarget.Remove(blackboard.ChosenTarget[i]);
-                i--;
-            }
-        }
+        // for (int i = 0; i < blackboard.ChosenTarget.Count; i++)
+        // {
+        //     if(blackboard.ChosenTarget[i] == null || blackboard.ChosenTarget[i].isDead)
+        //     {
+        //         blackboard.ChosenTarget.Remove(blackboard.ChosenTarget[i]);
+        //         i--;
+        //     }
+        // }
         
         
         if (blackboard.ChosenTarget.Count == 0) return NodeState.Success;

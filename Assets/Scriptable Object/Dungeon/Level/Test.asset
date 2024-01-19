@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   terrains:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 6ad67ec97356da4428e46db92dc61436, type: 2}
   heros:
   - {fileID: 11400000, guid: a68db13b9fa160f4cb0b69dc1f5c4187, type: 2}
   decks:

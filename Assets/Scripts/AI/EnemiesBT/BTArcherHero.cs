@@ -13,7 +13,7 @@ public class BTArcherHero : Tree
         
         origin = new Selector(
             new Sequence(
-                new ClearMinionTarget(BB),
+                
                 new FirstMinionInSight(BB),
                 new ChooseTargetToHit(BB, false, false),
                 new AttackMinion(BB),
