@@ -193,13 +193,16 @@ public class Hero : MonoBehaviour, IFlippable
     {
         if (info.CurrentHealthPoint - soAttackPoint <= 0)
         {
+            Debug.Log("Hero is dead");
             info.CurrentHealthPoint = 0;
+            FXTakeDamage();
             TickManager.OnEndGame();
             IsDead();
         }
         else
         {
             info.CurrentHealthPoint -= soAttackPoint;
+            Debug.Log("Hero take damage and now have " + info.CurrentHealthPoint + " hp");
             FXTakeDamage();
         }
         

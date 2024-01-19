@@ -146,7 +146,7 @@ public class UI_Hero : MonoBehaviour
         //     yield return null;
         // }
         
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         endGamePanel.SetActive(true);
         Time.timeScale = 0;
         yield return null;
@@ -185,8 +185,8 @@ public class UI_Hero : MonoBehaviour
     private void Start()
     {
         if (ItemBar.activeSelf) DrawItems();
-        Hero.OnTakeDamageEvent += DrawHearts;
         Hero.OnTakeDamageEvent += TakeDamage;
+        Hero.OnTakeDamageEvent += DrawHearts;
         OnEndGameEvent += EndGame;
     }
 }

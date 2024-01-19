@@ -68,7 +68,7 @@ public class CheckDirectionToMove : Node
 
         if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;
         blackboard.hero.OutOfMap(blackboard.directionToMove);
-        Debug.Log("Direction to move : " + blackboard.directionToMove);
+        // Debug.Log("Direction to move : " + blackboard.directionToMove);
         return NodeState.Failure;
     }
     
