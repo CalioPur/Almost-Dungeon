@@ -113,7 +113,7 @@ MonoBehaviour:
   attackPoint: {fileID: 0}
   <HeroBlackboard>k__BackingField: {fileID: -4683431529391840305}
   emotesManager: {fileID: 4990272541578531698}
-  animFX: {fileID: 0}
+  animFX: {fileID: 7422246830028083296, guid: a8e69bcde6c4c3f4ba024f4645365c58, type: 3}
   animator: {fileID: 8969802921678826240}
   threeDeeHero: {fileID: 5571705284579042080}
   attackClip:
@@ -811,16 +811,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3664482524142784466, guid: d511511a77092e049a6666a66da05283,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c14a07e4afeaba244bb26242ca9f51f5, type: 2}
-    - target: {fileID: 3664482524142784466, guid: d511511a77092e049a6666a66da05283,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 4a7d94e607e03654d9aae17b1b702067, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
