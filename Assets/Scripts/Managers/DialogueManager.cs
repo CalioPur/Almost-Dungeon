@@ -10,12 +10,13 @@ using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using Ink.UnityIntegration;
 
 
 public class DialogueManager : MonoBehaviour
 {
     private DialogueVariable dialogueVariable;
-    [SerializeField] public TextAsset globalsInkFile;
+    [SerializeField] public InkFile globalsInkFile;
     
     public static DialogueManager _instance;
     public SaveSystem saveSystem;
@@ -69,7 +70,7 @@ public class DialogueManager : MonoBehaviour
         }
         _instance = this;
         
-        dialogueVariable = new DialogueVariable(globalsInkFile);
+        dialogueVariable = new DialogueVariable(globalsInkFile.filePath);
         
         PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue, DungeonManager._instance.deckData.deckDialogue,
             DungeonManager._instance.heroData.heroDialogues, DungeonManager._instance.cardsManager);
@@ -412,8 +413,8 @@ public class DialogueManager : MonoBehaviour
         lightDragon.SetActive(false);
     }
     
-    public void SetGlobalInkFile(string json)
+    /*public void SetGlobalInkFile(string json)
     {
         globalsInkFile = new TextAsset(json);
-    }
+    }*/
 }
