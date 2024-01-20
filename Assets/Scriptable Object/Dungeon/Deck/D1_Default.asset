@@ -24,9 +24,11 @@ MonoBehaviour:
   - cardToBuild: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
     nbToBuild: 1
   - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    nbToBuild: 3
+    nbToBuild: 2
   - cardToBuild: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     nbToBuild: 4
   - cardToBuild: {fileID: 11400000, guid: a0f4cce5fc6ed0a44bfe42b12a955251, type: 2}
+    nbToBuild: 1
+  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
     nbToBuild: 1
   deckDialogue: {fileID: 0}

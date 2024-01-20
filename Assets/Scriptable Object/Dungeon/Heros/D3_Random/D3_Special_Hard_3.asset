@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: D3_Special_Hard_3
   m_EditorClassIdentifier: 
   nameOfHero: 
-  health: 20
+  health: 15
   speed: 80
   classe: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   visionType: 0

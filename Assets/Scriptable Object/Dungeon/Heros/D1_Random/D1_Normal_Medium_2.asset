@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D1_Normal_Medium_2
   m_EditorClassIdentifier: 
   nameOfHero: Sire Artorius
-  health: 20
-  speed: 80
+  health: 15
+  speed: 70
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2

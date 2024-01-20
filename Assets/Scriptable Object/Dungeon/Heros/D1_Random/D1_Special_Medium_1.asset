@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D1_Special_Medium_1
   m_EditorClassIdentifier: 
   nameOfHero: Louis
-  health: 25
-  speed: 80
+  health: 20
+  speed: 70
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2

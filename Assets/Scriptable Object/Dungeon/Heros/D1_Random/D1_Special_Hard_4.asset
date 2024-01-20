@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D1_Special_Hard_4
   m_EditorClassIdentifier: 
   nameOfHero: Olaf
-  health: 30
-  speed: 105
+  health: 25
+  speed: 75
   classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
   visionType: 0
   aggressivity: 2

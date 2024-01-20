@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D1_Special_Medium_2
   m_EditorClassIdentifier: 
   nameOfHero: Karl
-  health: 20
-  speed: 90
+  health: 15
+  speed: 65
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D1_Normal_Impossible_3
   m_EditorClassIdentifier: 
   nameOfHero: Sire Godric
-  health: 35
-  speed: 110
+  health: 25
+  speed: 80
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2
