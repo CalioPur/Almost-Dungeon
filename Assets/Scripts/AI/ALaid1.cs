@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -234,52 +234,7 @@ public class ALaid1
 
     private static DirectionToMove DirectionWithNoEnemies(Vector2Int startPos, TileData[,] tileDatas)
     {
-        map = tileDatas;
-        List<DirectionToMove> possibleDirections = new List<DirectionToMove>();
-        if (startPos.y <=  map.GetLength(1) - 2 && map[startPos.x, startPos.y + 1].hasDoorDown && map[startPos.x, startPos.y + 1].enemies.Count == 0)
-        {
-            possibleDirections.Add(DirectionToMove.Up);
-        }
-        if (startPos.y > 0 && map[startPos.x, startPos.y - 1].hasDoorUp && map[startPos.x, startPos.y - 1].enemies.Count == 0)
-        {
-            possibleDirections.Add(DirectionToMove.Down);
-        }
-        if (startPos.x > 0 && map[startPos.x - 1, startPos.y].hasDoorRight && map[startPos.x - 1, startPos.y].enemies.Count == 0)
-        {
-            possibleDirections.Add(DirectionToMove.Left);
-        }
-        if (startPos.x <= map.GetLength(0) - 2 && map[startPos.x + 1, startPos.y].hasDoorLeft && map[startPos.x + 1, startPos.y].enemies.Count == 0)
-        {
-            possibleDirections.Add(DirectionToMove.Right);
-        }
-
-        switch (possibleDirections.Count)
-        {
-            case 0:
-                return DirectionToMove.None;
-            case 1:
-                return possibleDirections[0];
-            default:
-                foreach (var VARIABLE in possibleDirections)
-                {
-                    switch (VARIABLE)
-                    {
-                        case DirectionToMove.Up:
-                            MapManager.Instance.mapArray[startPos.x, startPos.y + 1].IsVisited = true;
-                            break;
-                        case DirectionToMove.Down:
-                            MapManager.Instance.mapArray[startPos.x, startPos.y - 1].IsVisited = true;
-                            break;
-                        case DirectionToMove.Left:
-                            MapManager.Instance.mapArray[startPos.x - 1, startPos.y].IsVisited = true;
-                            break;
-                        case DirectionToMove.Right:
-                            MapManager.Instance.mapArray[startPos.x + 1, startPos.y].IsVisited = true;
-                            break;
-                    }
-                }
-                return possibleDirections[Random.Range(0, possibleDirections.Count)];
-        }
+        return PathFinding.BFSFindPathWithLessEnemies(startPos, tileDatas, numberOfUnvisitedTiles == 0 ? Personnalities.HurryForTheExit : Personnalities.TheExplorer);
     }
 
     public static List<TileData> GetTilesInLineOfSight(Vector2Int startPos, TileData[,] mapDatas)
