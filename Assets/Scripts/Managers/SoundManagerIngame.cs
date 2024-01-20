@@ -58,7 +58,6 @@ public class SoundManagerIngame : MonoBehaviour
 
     public void PlayDialogueSFX(string key)
     {
-        Debug.Log($"{key}");
         if (sfxAudioSourceList == null) return;
         
         if (sfxAudioSourceList.Count <= 0) return;

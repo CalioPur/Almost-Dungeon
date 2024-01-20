@@ -23,6 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bbf4bf7b23a75dc45a9b0ded82115917, type: 2}
   - {fileID: 11400000, guid: c858284abb5971c42bf978eaf3affa38, type: 2}
   - {fileID: 11400000, guid: 4ea7fc5475a00ef418514c49abe3b5be, type: 2}
+  - {fileID: 11400000, guid: ffa9debbfcc954a47bc01e8430d84283, type: 2}
   heros:
   - {fileID: 11400000, guid: 865dc754292edb94e9ab87c42ef0f7ce, type: 2}
   - {fileID: 11400000, guid: 1259d5687dc5d2c4d8a8685201bb45ba, type: 2}
@@ -38,7 +39,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
-  - {fileID: 11400000, guid: 172ee50c29e01bb47b30b620b51e17f0, type: 2}
   nbCardToDraw: 3
   keysElementsToUnlock:
   - D1_L3
