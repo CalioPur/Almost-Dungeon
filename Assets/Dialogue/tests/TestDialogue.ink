@@ -1,4 +1,7 @@
+INCLUDE ../GlobalVariables.ink
+
 C'est bon... Enfin sorti... #chara:knight
+~RknightSeen = true
 Ah Chevalier, je craignais de vous avoir perdu de vue ! #chara:dragon
 Encore vous !? Mais laissez moi tranquille ! Je ne veux plus continuer ! #chara:knight
 Allez y patron réglez lui son compte !  #minion:in #chara:minion

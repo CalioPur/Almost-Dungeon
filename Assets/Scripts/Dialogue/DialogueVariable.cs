@@ -8,52 +8,39 @@ using Object = Ink.Runtime.Object;
 
 public class DialogueVariable
 {
-    private Dictionary<string, Ink.Runtime.Object> variables;
-
-    private TextAsset asset;
+    private Dictionary<string, Object> variables;
     public void StartListening(Story story)
     {
         VariableToStory(story);
         story.variablesState.variableChangedEvent += VariableChanged;
     }
 
-        
-    public void StopListening(Story story)
+    public DialogueVariable(TextAsset loadGlobalsJSON)
     {
-        story.variablesState.variableChangedEvent -= VariableChanged;
-    }
-    
-    public DialogueVariable(string globalFilePath)
-    {
-        //asset = loadGlobalsJSON;
-        string inkfileContents = File.ReadAllText(globalFilePath);
-        Ink.Compiler compiler = new Ink.Compiler(inkfileContents);
-        Story globalVariablesStory = compiler.Compile();
-        
-        /*var globalVariablesStory = new Story(asset.text); */
+        var globalVariablesStory = new Story(loadGlobalsJSON.text);
 
         variables = new Dictionary<string, Object>();
         foreach (var name in globalVariablesStory.variablesState)
         {
-            Ink.Runtime.Object value = globalVariablesStory.variablesState.GetVariableWithName(name);
+            var value = globalVariablesStory.variablesState.GetVariableWithName(name);
             variables.Add(name, value);
             Debug.Log("Initialized global dialogue variable" + name + " = " + value);
         }
+    }
+    
+    public void StopListening(Story story)
+    {
+        story.variablesState.variableChangedEvent -= VariableChanged;
     }
 
     private void VariableChanged(string name, Ink.Runtime.Object value)
     {
         Debug.Log("Variable changed: " + name + " = " + value);
-
         if (variables.ContainsKey(name))
         {
             variables.Remove(name);
             variables.Add(name, value);
         }
-
-        var globalVariablesStory = new Story(asset.text);
-        var obj = globalVariablesStory.variablesState.GetVariableWithName(name);
-        Debug.Log($"Object: {obj}");
     }
 
     private void VariableToStory(Story story)
@@ -63,5 +50,6 @@ public class DialogueVariable
             story.variablesState.SetGlobal(variable.Key, variable.Value);
         }
     }
+
     
 }

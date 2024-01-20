@@ -7,7 +7,7 @@ INCLUDE ../../GlobalVariables.ink
 
 === Encounter1 ===
 Et bien, est ce vous qui provoquez ce raffut à ma porte ! #chara:dragon
-~SKnight1Seen = true 
+{RknightSeen : PUTAIN CA MARCHE JE BANDE}
 C'est bien moi Dragon ! Je suis Sire Grandjean, plus grand chevalier du Val et paladin de... #chara:knight
 Vous n'êtes pas venu m'énoncer vos titre avant de repartir n'est ce pas ? #chara:dragon
 Alors battons-nous ! 
