@@ -19,25 +19,25 @@ MonoBehaviour:
   - position: {x: 3, y: 1}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 0
+  - position: {x: 3, y: 2}
+    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+    rotation: 0
+  - position: {x: 4, y: 0}
+    cardInfo: {fileID: 11400000, guid: f27eb5bc441e6be49abd14eac8f114b8, type: 2}
+    rotation: 3
   - position: {x: 4, y: 1}
     cardInfo: {fileID: 11400000, guid: d26e1cc8f5d372847a130da96ed52b57, type: 2}
     rotation: 0
   - position: {x: 4, y: 2}
-    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    rotation: 3
-  - position: {x: 4, y: 3}
-    cardInfo: {fileID: 11400000, guid: d26e1cc8f5d372847a130da96ed52b57, type: 2}
-    rotation: 0
-  - position: {x: 4, y: 4}
     cardInfo: {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd, type: 2}
-    rotation: 0
-  - position: {x: 4, y: 5}
-    cardInfo: {fileID: 11400000, guid: d26e1cc8f5d372847a130da96ed52b57, type: 2}
     rotation: 0
   - position: {x: 4, y: 6}
     cardInfo: {fileID: 11400000, guid: a3f8dc17fd4308347be0deb783fd5b21, type: 2}
     rotation: 3
   - position: {x: 5, y: 1}
+    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+    rotation: 0
+  - position: {x: 5, y: 2}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 0
   - position: {x: 6, y: 1}
