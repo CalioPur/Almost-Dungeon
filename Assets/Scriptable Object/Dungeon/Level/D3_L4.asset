@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: D3_L4
   m_EditorClassIdentifier: 
   terrains:
-  - {fileID: 11400000, guid: 09fd32e72801152468b490503336a7b6, type: 2}
+  - {fileID: 0}
   heros:
   - {fileID: 11400000, guid: edda26f47b4ca8c47b29a696071cd11a, type: 2}
   decks:
   - {fileID: 11400000, guid: 85fb4635a1c62d146a5b4c8aa1b2c387, type: 2}
-  nbCardToDraw: 3
+  nbCardToDraw: 5
   keysElementsToUnlock:
   - D3_L4
