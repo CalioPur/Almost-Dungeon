@@ -38,6 +38,7 @@ public class MoveToDestination : Node
         }
         
         blackboard.hero.Move(tile.transform, Vector3.zero, 0.5f);
+        List<TileData> aaa = ALaid1.GetTilesInLineOfSight(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
         
         return NodeState.Success;
     }
