@@ -34,6 +34,8 @@ public class DialogueManager : MonoBehaviour
     
     [SerializeField] private List<DeckSO> decks;
     
+    [SerializeField] private HashSet<Sprite> customSprites;
+    
     public List<TextAsset> dialogues;
     private Story story;
     [SerializeField] private DeckManager cardsManager;
@@ -260,7 +262,7 @@ public class DialogueManager : MonoBehaviour
                                 GameManager._instance.currentHero.visionType = VisionType.BIGLEUX;
                                 break;
                             case("visionBase"):
-                                GameManager._instance.currentHero.visionType = VisionType.RECTILIGNE;
+                                GameManager._instance.currentHero.visionType = VisionType.LIGNEDROITE;
                                 break;
                             case("clairvoyant"):
                                 GameManager._instance.currentHero.visionType = VisionType.CLAIRVOYANT;
