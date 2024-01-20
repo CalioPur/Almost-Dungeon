@@ -23,7 +23,7 @@ public class DungeonManager : MonoBehaviour
    
     [SerializeField] public List<Dungeon> dungeons;
    
-    public static int currentLevel = 0;
+    public int currentLevel = 0;
     public DeckManager cardsManager;
     public TickManager tickManager;
     private GameManager gameManager;
@@ -166,7 +166,7 @@ public class DungeonManager : MonoBehaviour
         GameManager.OnSceneLoadedEvent += LoadLevel;
     }
 
-    public static void ResetLevelIndex()
+    public void ResetLevelIndex()
     {
         print("reset!");
         currentLevel = 0;

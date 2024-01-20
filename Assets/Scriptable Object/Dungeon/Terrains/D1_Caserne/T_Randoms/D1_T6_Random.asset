@@ -18,7 +18,7 @@ MonoBehaviour:
     rotation: 2
   - position: {x: 0, y: 1}
     cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
-    rotation: 0
+    rotation: 2
   - position: {x: 0, y: 2}
     cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
     rotation: 2
@@ -27,16 +27,16 @@ MonoBehaviour:
     rotation: 2
   - position: {x: 0, y: 4}
     cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
-    rotation: 0
+    rotation: 2
   - position: {x: 0, y: 5}
     cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
     rotation: 2
   - position: {x: 0, y: 6}
     cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
-    rotation: 0
+    rotation: 3
   - position: {x: 8, y: 0}
     cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-    rotation: 0
+    rotation: 1
   - position: {x: 8, y: 1}
     cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   - position: {x: 8, y: 5}
     cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 0
-  ClampSpawnPositionX: {x: 0, y: 0}
-  ClampSpawnPositionY: {x: 0, y: 0}
-  spawnRotation: 0
+  ClampSpawnPositionX: {x: 8, y: 8}
+  ClampSpawnPositionY: {x: 6, y: 6}
+  spawnRotation: 1
   terrainDialogue: {fileID: 0}

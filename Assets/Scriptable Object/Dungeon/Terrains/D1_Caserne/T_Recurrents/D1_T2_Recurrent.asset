@@ -13,58 +13,52 @@ MonoBehaviour:
   m_Name: D1_T2_Recurrent
   m_EditorClassIdentifier: 
   tilePresets:
-  - position: {x: 3, y: 1}
-    cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
+  - position: {x: 0, y: 0}
+    cardInfo: {fileID: 11400000, guid: 14d44198267cf304aaff6397f06c1a95, type: 2}
     rotation: 2
-  - position: {x: 3, y: 2}
-    cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
+  - position: {x: 0, y: 6}
+    cardInfo: {fileID: 11400000, guid: 14d44198267cf304aaff6397f06c1a95, type: 2}
+    rotation: 2
+  - position: {x: 1, y: 0}
+    cardInfo: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
+    rotation: 0
+  - position: {x: 1, y: 6}
+    cardInfo: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
+    rotation: 0
+  - position: {x: 2, y: 0}
+    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
+    rotation: 1
+  - position: {x: 2, y: 6}
+    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     rotation: 0
   - position: {x: 3, y: 3}
-    cardInfo: {fileID: 11400000, guid: 1db26f8ca750521449a53d839380a11b, type: 2}
-    rotation: 0
-  - position: {x: 3, y: 4}
-    cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
-    rotation: 1
-  - position: {x: 3, y: 5}
-    cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
-    rotation: 3
-  - position: {x: 4, y: 1}
-    cardInfo: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
-    rotation: 0
-  - position: {x: 4, y: 2}
-    cardInfo: {fileID: 11400000, guid: 14d44198267cf304aaff6397f06c1a95, type: 2}
-    rotation: 1
-  - position: {x: 4, y: 3}
-    cardInfo: {fileID: 11400000, guid: aad2b8ef0f3d6fa4cb2dcda4466b5a55, type: 2}
-    rotation: 0
-  - position: {x: 4, y: 4}
-    cardInfo: {fileID: 11400000, guid: 14d44198267cf304aaff6397f06c1a95, type: 2}
-    rotation: 3
-  - position: {x: 4, y: 5}
-    cardInfo: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
-    rotation: 0
-  - position: {x: 5, y: 1}
-    cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
-    rotation: 1
-  - position: {x: 5, y: 2}
-    cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
-    rotation: 3
-  - position: {x: 5, y: 3}
-    cardInfo: {fileID: 11400000, guid: 1db26f8ca750521449a53d839380a11b, type: 2}
-    rotation: 0
-  - position: {x: 5, y: 4}
-    cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 2
-  - position: {x: 5, y: 5}
-    cardInfo: {fileID: 11400000, guid: fcf7ea1ea01aad24c8521edb612af920, type: 2}
+  - position: {x: 4, y: 3}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
+    rotation: 1
+  - position: {x: 5, y: 3}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 0
-  - position: {x: 8, y: 4}
-    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+  - position: {x: 6, y: 0}
+    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
+    rotation: 2
+  - position: {x: 6, y: 6}
+    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     rotation: 3
-  - position: {x: 8, y: 5}
-    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    rotation: 3
-  ClampSpawnPositionX: {x: 8, y: 8}
-  ClampSpawnPositionY: {x: 6, y: 6}
+  - position: {x: 7, y: 0}
+    cardInfo: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
+    rotation: 0
+  - position: {x: 7, y: 6}
+    cardInfo: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
+    rotation: 0
+  - position: {x: 8, y: 0}
+    cardInfo: {fileID: 11400000, guid: 14d44198267cf304aaff6397f06c1a95, type: 2}
+    rotation: 0
+  - position: {x: 8, y: 6}
+    cardInfo: {fileID: 11400000, guid: 14d44198267cf304aaff6397f06c1a95, type: 2}
+    rotation: 0
+  ClampSpawnPositionX: {x: 4, y: 4}
+  ClampSpawnPositionY: {x: 4, y: 4}
   spawnRotation: 1
   terrainDialogue: {fileID: 0}
