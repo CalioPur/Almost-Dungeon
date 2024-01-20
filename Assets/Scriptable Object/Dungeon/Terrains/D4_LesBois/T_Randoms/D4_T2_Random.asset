@@ -26,11 +26,11 @@ MonoBehaviour:
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 0
   - position: {x: 4, y: 3}
-    cardInfo: {fileID: 11400000, guid: 096698d71925a27409497f89848e7709, type: 2}
+    cardInfo: {fileID: 11400000, guid: 71cef8cf2fb84d547b1764f62e532017, type: 2}
     rotation: 0
   - position: {x: 4, y: 6}
-    cardInfo: {fileID: 11400000, guid: c40540138da859048a19a62f8435bd3c, type: 2}
-    rotation: 3
+    cardInfo: {fileID: 11400000, guid: 5f86788e635084246ba543faf614e4ad, type: 2}
+    rotation: 0
   - position: {x: 6, y: 0}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 2
