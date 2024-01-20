@@ -17,8 +17,8 @@ MonoBehaviour:
     cardInfo: {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
     rotation: 2
   - position: {x: 0, y: 1}
-    cardInfo: {fileID: 11400000, guid: c26955d4502d99b4ea0e6ce4d1838385, type: 2}
-    rotation: 2
+    cardInfo: {fileID: 11400000, guid: afbc9deea00c17d439841b08a2f642a4, type: 2}
+    rotation: 1
   - position: {x: 0, y: 5}
     cardInfo: {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
     rotation: 3
@@ -65,11 +65,11 @@ MonoBehaviour:
     cardInfo: {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
     rotation: 2
   - position: {x: 8, y: 0}
-    cardInfo: {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
+    cardInfo: {fileID: 11400000, guid: 2a8dad98131e4eb499374cd686ae1ffe, type: 2}
     rotation: 1
   - position: {x: 8, y: 1}
-    cardInfo: {fileID: 11400000, guid: c26955d4502d99b4ea0e6ce4d1838385, type: 2}
-    rotation: 0
+    cardInfo: {fileID: 11400000, guid: afbc9deea00c17d439841b08a2f642a4, type: 2}
+    rotation: 1
   - position: {x: 8, y: 5}
     cardInfo: {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
     rotation: 1
