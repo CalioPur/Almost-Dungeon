@@ -13,12 +13,26 @@ MonoBehaviour:
   m_Name: D4_L6
   m_EditorClassIdentifier: 
   terrains:
-  - {fileID: 11400000, guid: 09fd32e72801152468b490503336a7b6, type: 2}
+  - {fileID: 11400000, guid: b0e95efc48dc16c4399635db883724df, type: 2}
+  - {fileID: 11400000, guid: a3de2729e860a514787629f81d5043a8, type: 2}
+  - {fileID: 11400000, guid: 3f2a18d9228a1d542abc21c0eaef3527, type: 2}
+  - {fileID: 11400000, guid: b66bf146967d5c144b8360895181becc, type: 2}
+  - {fileID: 11400000, guid: 490318ce6432f8849b973d7a3bf17ffd, type: 2}
+  - {fileID: 11400000, guid: 63791fd74d963034cb0716c4d272a7ab, type: 2}
+  - {fileID: 11400000, guid: 5f95cb978360eed4293883ee40157cc1, type: 2}
+  - {fileID: 11400000, guid: 4f73da6c2d386ad41a4843331b038439, type: 2}
+  - {fileID: 11400000, guid: d9e9be09b3393b94eb329be0cfc082e0, type: 2}
+  - {fileID: 11400000, guid: 8ae958aa6da21f145802b2c4cc5f26b3, type: 2}
   heros:
-  - {fileID: 11400000, guid: a68db13b9fa160f4cb0b69dc1f5c4187, type: 2}
-  - {fileID: 11400000, guid: ddb903577e335b04d840cda1c2a091e7, type: 2}
-  - {fileID: 11400000, guid: 1e7e17bd3aa7d204cb640aac714c4008, type: 2}
+  - {fileID: 11400000, guid: 9bbdbd71ac8d2df449fd047c13009d9d, type: 2}
+  - {fileID: 11400000, guid: 683642d27420bb040a8e3171b291d505, type: 2}
+  - {fileID: 11400000, guid: b611d9990cfab3b45a514224a383252a, type: 2}
+  - {fileID: 11400000, guid: 8dd6881d03eedd545ac9d4106e06c7f7, type: 2}
+  - {fileID: 11400000, guid: 050d0892ddd2bb6439d46d588d01b130, type: 2}
+  - {fileID: 11400000, guid: d4df95a9bf0bf9f4784026ec6b0fa6b4, type: 2}
+  - {fileID: 11400000, guid: 6389e935028c69544947833322a01494, type: 2}
   decks:
-  - {fileID: 11400000, guid: 9fe5dc83dff5c2f44ad3d24de9297c1c, type: 2}
+  - {fileID: 11400000, guid: 71569aba598dd2e438f6a7f2c0cf59fc, type: 2}
   nbCardToDraw: 4
-  keysElementsToUnlock: []
+  keysElementsToUnlock:
+  - D4_L6
