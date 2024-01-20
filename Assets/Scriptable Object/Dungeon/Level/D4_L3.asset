@@ -32,7 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a6046d277f44bb44587ed2d9d87c3904, type: 2}
   - {fileID: 11400000, guid: fc8a6921c5141e4438bd92b94727eca8, type: 2}
   decks:
-  - {fileID: 11400000, guid: 71569aba598dd2e438f6a7f2c0cf59fc, type: 2}
+  - {fileID: 11400000, guid: 9d9bd96ffc865314eb7a579d7e474fc4, type: 2}
   nbCardToDraw: 5
   keysElementsToUnlock:
   - D4_L3
