@@ -34,7 +34,7 @@ public class DialogueManager : MonoBehaviour
     
     [SerializeField] private List<DeckSO> decks;
     
-    [SerializeField] private HashSet<Sprite> customSprites;
+    [SerializeField] private List<Sprite> customSprites;
     
     public List<TextAsset> dialogues;
     private Story story;
@@ -278,7 +278,6 @@ public class DialogueManager : MonoBehaviour
                                 break;
                         }
                         break;
-                    
                     case "playSFX":
                         switch (split[1])
                         {
@@ -290,7 +289,6 @@ public class DialogueManager : MonoBehaviour
                                 break;
                         }
                         break;
-                    
                     case "changeclass":
                         switch (split[1])
                         {
@@ -342,6 +340,16 @@ public class DialogueManager : MonoBehaviour
                         break;
                     case "time":
                         DungeonManager._instance.tickManager.BPM = int.Parse(split[1]);
+                        break;
+                    case "customSprite":
+                        foreach (var sprite in customSprites)
+                        {
+                            if (sprite.name == split[1])
+                            {
+                                otherImage.sprite = sprite;
+                                break;
+                            }
+                        }
                         break;
                 }
             }
