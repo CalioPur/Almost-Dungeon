@@ -81,7 +81,9 @@ public class UI_Dragon : MonoBehaviour
         }
         singleHeart.transform.DOScale(0.0065f, 0.1f).OnComplete(() => { singleHeart.transform.DOScale(0.006f, 0.1f); });
         singleHeart.GetComponentInChildren<TMP_Text>().text = currentHealth.ToString();
-        singleHeart.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)currentHealth / maxHealth;
+        Image img = singleHeart.transform.GetChild(0).GetComponent<Image>();
+        if (img)
+            img.fillAmount = (float)currentHealth / maxHealth;
         
     }
 
