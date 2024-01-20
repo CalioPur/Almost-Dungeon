@@ -113,9 +113,9 @@ public class UI_Hero : MonoBehaviour
 
         if (win)
         {
-            endGameText.text = heroName.text + " s'est fait rotir par Dargon le dragon !";
+            endGameText.text = "Vous avez roti "+ heroName.text + " !";
             endGameText.color = Color.green;
-            if (DungeonManager._instance.currentLevel < 9)
+            if (DungeonManager._instance.currentLevel < 6)
             {
                 endGameButton.GetComponentInChildren<TMP_Text>().text = "Passer au niveau " + (DungeonManager._instance.currentLevel+2);
             }
@@ -128,7 +128,7 @@ public class UI_Hero : MonoBehaviour
         }
         else
         {
-            endGameText.text = heroName.text + "a vaincu Dargon le dragon !";
+            endGameText.text = heroName.text + " vous a vaincu !";
             endGameText.color = Color.red;
             endGameButton.GetComponentInChildren<TMP_Text>().text = "Main Menu";
             DungeonManager._instance.ResetLevelIndex();
@@ -143,20 +143,6 @@ public class UI_Hero : MonoBehaviour
     
     private IEnumerator EndGameFX()
     {
-        // Camera camera1 = Camera.main;
-        // float t = 0;
-        // float baseSize = Camera.main.orthographicSize;
-        //
-        // //camera1.transform.DOMove(FindObjectOfType<Hero>().transform.position + new Vector3(0, +10, 0), 0.5f);
-        // while (t < 0.5f)
-        // {
-        //     t += Time.deltaTime;
-        //     camera1.orthographicSize = Mathf.Lerp(baseSize, 1f, t / 0.5f);
-        //     Time.timeScale = Mathf.Lerp(1, 0.25f, t / 0.5f);
-        //     yield return null;
-        // }
-        
-        yield return new WaitForSeconds(1.5f);
         endGamePanel.SetActive(true);
         Time.timeScale = 0;
         yield return null;

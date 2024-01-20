@@ -43,7 +43,7 @@ public class TileData : MonoBehaviour
         set
         {
             isVisited = value;
-            img.color = isVisited ? new Color(1f, 1f, 1f) : new Color(0.7f, 0.7f, 0.7f);
+            img.color = isVisited ? new Color(1f, 1f, 1f) : new Color(0.35f, 0.35f, 0.35f);
         }
     }
 
@@ -84,7 +84,7 @@ public class TileData : MonoBehaviour
         if (_instance == null) return;
         img.sprite = _instance.So.imgOnMap;
         transform.rotation = Quaternion.Euler(90, 0, _instance.Rotation);
-        img.color = new Color(0.7f, 0.7f, 0.7f);
+        img.color = new Color(0.35f, 0.35f, 0.35f);
     }
     
     public bool AvailableForSpawn()

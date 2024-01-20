@@ -55,7 +55,7 @@ public enum PersonnalitiesV2
 
 public enum VisionType
 {
-    RECTILIGNE, // Le héros voit en ligne droite dans les 4 directions
+    LIGNEDROITE, // Le héros voit en ligne droite dans les 4 directions
     BIGLEUX, // Le hero se déplace de manière aléatoire sur les tile non visité adjacentes à sa position sinon complètement aléatoire
     CLAIRVOYANT, // Le hero va au chemin le plus court vers son objectif
 }

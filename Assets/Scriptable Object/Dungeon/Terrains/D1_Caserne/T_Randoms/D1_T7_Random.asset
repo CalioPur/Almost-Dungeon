@@ -29,7 +29,7 @@ MonoBehaviour:
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 0
   - position: {x: 4, y: 2}
-    cardInfo: {fileID: 11400000, guid: be0c7f9793aaafa4fa212e0dc84e3558, type: 2}
+    cardInfo: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
     rotation: 0
   - position: {x: 4, y: 5}
     cardInfo: {fileID: 11400000, guid: f27eb5bc441e6be49abd14eac8f114b8, type: 2}
