@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Knight_Recurring_7
   m_EditorClassIdentifier: 
   nameOfHero: 
-  health: 40
+  health: 30
   speed: 90
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0

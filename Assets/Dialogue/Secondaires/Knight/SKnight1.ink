@@ -1,6 +1,7 @@
 INCLUDE ../../GlobalVariables.ink
 
-{not SKnight1Seen : Dragon ! Moi, Sire Grandjean exige une audience avec le maître des lieux. #chara:knight } {SKnight1Seen : Tiens regardez patron, revoilà messire Grosjean ! #chara:minion #minion:in}
+{not SKnight1Seen : Dragon ! Moi, Sire Grandjean exige une audience avec le maître des lieux. #chara:knight } 
+{SKnight1Seen : Tiens regardez patron, revoilà messire Grosjean ! #chara:minion #minion:in}
 {not SKnight1Seen : ->Encounter1} 
 {SKnight1Seen : ->Encounter2} 
 

@@ -45,7 +45,7 @@ public class PathFindingV2
         
         return visionType switch
         {
-            VisionType.RECTILIGNE =>
+            VisionType.LIGNEDROITE =>
                 // Handle RECTILIGNE vision type
                 Rectiligne(startPos, map, personalities, aggressivity, objectives),
             VisionType.BIGLEUX =>

@@ -1,6 +1,7 @@
 INCLUDE ../../GlobalVariables.ink
 
-{not SKnight5Seen : ça y est... Le Donjon... Misère de misère... #chara:knight } {SKnight5Seen : C'est pas possible ! Encore dans le Donjon... #chara:knight}
+{not SKnight5Seen : ça y est... Le Donjon... Misère de misère... #chara:knight } 
+{SKnight5Seen : C'est pas possible ! Encore dans le Donjon... #chara:knight}
 {not SKnight5Seen : ->Encounter1} 
 {SKnight5Seen : ->Encounter2} 
 
