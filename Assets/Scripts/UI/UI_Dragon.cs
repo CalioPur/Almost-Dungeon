@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class UI_Dragon : MonoBehaviour
     public static event Action OnDragonTakeDamageEvent;
     
     public GameObject healthBar;
+    public GameObject singleHeart;
     public GameObject heartPrefab;
     public Image dragonImage;
     public Transform dragonCard;
@@ -66,6 +68,13 @@ public class UI_Dragon : MonoBehaviour
         }
         
         //draw hearts
+        if (currentHealth > maxHealth)
+        {
+            maxHealth = currentHealth;
+        }
+        singleHeart.transform.DOScale(0.0065f, 0.1f).OnComplete(() => { singleHeart.transform.DOScale(0.006f, 0.1f); });
+        singleHeart.GetComponentInChildren<TMP_Text>().text = currentHealth.ToString();
+        singleHeart.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)currentHealth / maxHealth;
         
     }
 

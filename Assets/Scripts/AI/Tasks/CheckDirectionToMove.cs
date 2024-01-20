@@ -35,7 +35,7 @@ public class CheckDirectionToMove : Node
         // Debug.Log("Vision type = " + blackboard.visionType);
         if (blackboard.visionType == VisionType.BIGLEUX)
             blackboard.directionToMove = ALaid1.Bigleux(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
-        if (blackboard.visionType == VisionType.RECTILIGNE)
+        if (blackboard.visionType == VisionType.LIGNEDROITE)
             blackboard.directionToMove = ALaid1.Line(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
         if (blackboard.visionType == VisionType.CLAIRVOYANT)
             blackboard.directionToMove = ALaid1.Clairvoyant(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
