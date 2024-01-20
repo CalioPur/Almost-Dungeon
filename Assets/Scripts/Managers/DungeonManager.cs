@@ -121,8 +121,11 @@ public class DungeonManager : MonoBehaviour
         
         UI_Hero heroCard = FindObjectOfType<UI_Hero>();
         heroCard.heroName.text = heroData.nameOfHero;
-        heroCard.heroPersonality.text = ToTitleCase(heroData.visionType.ToString() + " " + heroData.aggressivity);
-        
+        string personality = "";
+        if (heroData.visionType != VisionType.LIGNEDROITE) personality += ToTitleCase(heroData.visionType.ToString()) + " ";
+        if (heroData.aggressivity != Aggressivity.NONE) personality += ToTitleCase(heroData.aggressivity.ToString());
+        // heroCard.heroPersonality.text = ToTitleCase(heroData.visionType.ToString() + " " + heroData.aggressivity);
+        heroCard.heroPersonality.text = personality;
         cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = deckData.deck;
         cardsManager.nbCardOnStartToDraw = levelData.nbCardToDraw;
