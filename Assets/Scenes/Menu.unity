@@ -2107,6 +2107,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
+      propertyPath: globalsInkFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 4ed389083f8177e4c898823e3b1d858a, type: 3}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
       propertyPath: dungeons.Array.size
       value: 4
       objectReference: {fileID: 0}

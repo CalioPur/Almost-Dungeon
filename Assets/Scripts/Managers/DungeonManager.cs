@@ -34,6 +34,10 @@ public class DungeonManager : MonoBehaviour
     public HeroSO heroData;
     public DeckSO deckData;
     
+    
+    public DialogueVariable dialogueVariable;
+    [Header("Le truc ink la")]
+    [SerializeField] private TextAsset globalsInkFile;
 
     public static DungeonManager _instance;
     
@@ -49,7 +53,7 @@ public class DungeonManager : MonoBehaviour
         DontDestroyOnLoad(this);
         gameManager = GameManager._instance;
 
-        
+        dialogueVariable = new DialogueVariable(globalsInkFile);
     }
 
     public void SetSelectedBiome(int index)
