@@ -1,6 +1,7 @@
 INCLUDE ../../GlobalVariables.ink
 
-{not SKnight4Seen : Mais où suis-je ? Ce n'était pas du tout le chemin vers le Val... #chara:knight } {SKnight4Seen : AH NON HEIN ! Pas encore vous ! #chara:knight}
+{not SKnight4Seen : Mais où suis-je ? Ce n'était pas du tout le chemin vers le Val... #chara:knight } 
+{SKnight4Seen : AH NON HEIN ! Pas encore vous ! #chara:knight}
 {not SKnight4Seen : ->Encounter1} 
 {SKnight4Seen : ->Encounter2} 
 
