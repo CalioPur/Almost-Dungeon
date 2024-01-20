@@ -44,7 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c250cf9028da648b01b86c7375245a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalsInkFile: {fileID: 4900000, guid: 4ed389083f8177e4c898823e3b1d858a, type: 3}
+  globalsInkFile:
+    inkAsset: {fileID: 102900000, guid: a0b64babdc4ddda4ab9508b6930db7ee, type: 3}
+    jsonAssetDirectory: {fileID: 0}
+    jsonAsset: {fileID: 0}
+    unhandledCompileErrors: []
+    recursiveIncludeErrorPaths: []
+    errors: []
+    warnings: []
+    todos: []
+    masterInkAssets: []
+    localIncludePaths: []
+    includes: []
   interludeDialogues:
   - {fileID: 4900000, guid: 86fab50253d2cc045b4c254b9c3b29ae, type: 3}
   - {fileID: 4900000, guid: 1d24240f33bf75940a1fe3a5e3cb808c, type: 3}
@@ -68,5 +79,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cfe95eaa78c64d9498825a63ad32ecbf, type: 2}
   - {fileID: 11400000, guid: 9fe5dc83dff5c2f44ad3d24de9297c1c, type: 2}
   - {fileID: 11400000, guid: 85fb4635a1c62d146a5b4c8aa1b2c387, type: 2}
+  customSprites: []
   dialogues:
   - {fileID: 0}
+  cardsManager: {fileID: 0}
+  dialogueBox: {fileID: 0}
+  arrowKnight: {fileID: 0}
+  arrowDragon: {fileID: 0}
+  arrowMinion: {fileID: 0}
+  choice1: {fileID: 0}
+  choice2: {fileID: 0}
+  dialogueText: {fileID: 0}
+  nextButton: {fileID: 0}
+  otherImage: {fileID: 0}
+  canvaDragon: {fileID: 0}
+  canvaHero: {fileID: 0}
+  timer: {fileID: 0}
+  minionToken: {fileID: 0}
+  lightDragon: {fileID: 0}
+  lightHero: {fileID: 0}
+  slots: {fileID: 0}
+  heroName: {fileID: 0}
