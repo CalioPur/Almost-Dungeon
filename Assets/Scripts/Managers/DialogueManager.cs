@@ -255,17 +255,24 @@ public class DialogueManager : MonoBehaviour
                     case "changepers":
                         switch (split[1])
                         {
-                            case ("courageux"):
-                                GameManager._instance.currentHero.aggressivity = Aggressivity.COURAGEUX;
+                            
+                            case("bigleux"):
+                                GameManager._instance.currentHero.visionType = VisionType.BIGLEUX;
                                 break;
-                            case ("peureux"):
-                                GameManager._instance.currentHero.aggressivity = Aggressivity.PEUREUX;
+                            case("visionBase"):
+                                GameManager._instance.currentHero.visionType = VisionType.RECTILIGNE;
                                 break;
                             case("clairvoyant"):
                                 GameManager._instance.currentHero.visionType = VisionType.CLAIRVOYANT;
                                 break;
-                            case("explorateur"):
-                                //PTDR
+                            case ("peureux"):
+                                GameManager._instance.currentHero.aggressivity = Aggressivity.PEUREUX;
+                                break;
+                            case ("agroBase"):
+                                GameManager._instance.currentHero.aggressivity = Aggressivity.NONE;
+                                break;
+                            case ("courageux"):
+                                GameManager._instance.currentHero.aggressivity = Aggressivity.COURAGEUX;
                                 break;
                         }
                         break;

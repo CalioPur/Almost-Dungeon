@@ -33,9 +33,9 @@ public class SaveSystem
         
     }
 
-    public static void SaveAll()
+    public void SaveAll()
     {
-        PlayerPrefs.SetInt("currentDungeon", DungeonManager.currentLevel);
+        PlayerPrefs.SetInt("currentDungeon", DungeonManager._instance.currentLevel);
         PlayerPrefs.SetInt("currentLevel", DungeonManager.SelectedBiome);
         //PlayerPrefs.SetString("dialoguesDB", dialogueManager.globalsInkFile.text);
         Debug.Log("Saved all" + PlayerPrefs.GetInt("currentDungeon") + " " + PlayerPrefs.GetInt("currentLevel") + " " + PlayerPrefs.GetString("dialoguesDB"));
