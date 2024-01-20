@@ -35,6 +35,13 @@ public class UI_Dragon : MonoBehaviour
         dragonCard.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
         currentHealth -= 1;
         DrawHearts();
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            OnDragonDeathEvent?.Invoke();
+            SoundManagerIngame.Instance.PlaySound(EmoteType.DragonDeath);
+            yield break;
+        }
         yield return new WaitForSeconds(shakeDuration);
         GameObject fireBall = Instantiate(fireBallPrefab, dragonCard);
         fireBall.GetComponent<Animator>().Play(fireBallAnim.name);
@@ -112,17 +119,7 @@ public class UI_Dragon : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         TakeDamage(hero.info.So.AttackPoint, hero);
-        
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            OnDragonDeathEvent?.Invoke();
-            SoundManagerIngame.Instance.PlaySound(EmoteType.DragonDeath);
-        }
-        else
-        {
-            OnDragonTakeDamageEvent?.Invoke();
-        }
+        OnDragonTakeDamageEvent?.Invoke();
         DrawHearts();
     }
     
