@@ -17,7 +17,7 @@ public class HeroMovementBehavior : Node
     {
         new Sequence
         (
-            new CheckIfDoorToRemember(BB),
+            //new CheckIfDoorToRemember(BB),
             new Selector
             (
                 new Sequence
