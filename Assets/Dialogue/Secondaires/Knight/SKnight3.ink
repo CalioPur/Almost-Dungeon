@@ -1,6 +1,7 @@
 INCLUDE ../../GlobalVariables.ink
 
-{not SKnight3Seen : Un Dragon ! Prendre sa tête m'assurera une gloire éternelle ! #chara:knight } {SKnight3Seen : Et revoici Sire Godric. Toujours en quête d'une tête de Dragon ?#chara:dragon}
+{not SKnight3Seen : Un Dragon ! Prendre sa tête m'assurera une gloire éternelle ! #chara:knight } 
+{SKnight3Seen : Et revoici Sire Godric. Toujours en quête d'une tête de Dragon ?#chara:dragon}
 {not SKnight3Seen : ->Encounter1} 
 {SKnight3Seen : ->Encounter2} 
 

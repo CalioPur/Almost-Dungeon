@@ -1,6 +1,7 @@
 INCLUDE ../../GlobalVariables.ink
 
-{not SBarbarian1Seen : Haha, après des semaines de marche depuis les Contrées du Nord, me voici enfin dans le Donjon ! #chara:barbarian } {SBarbarian1Seen : Revoici ce bon explorateur... #chara:dragon}
+{not SBarbarian1Seen : Haha, après des semaines de marche depuis les Contrées du Nord, me voici enfin dans le Donjon ! #chara:barbarian } 
+{SBarbarian1Seen : Revoici ce bon explorateur... #chara:dragon}
 {not SBarbarian1Seen : ->Encounter1} 
 {SBarbarian1Seen : ->Encounter2} 
 
