@@ -18,6 +18,7 @@ MonoBehaviour:
   classe: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
   visionType: 0
   aggressivity: 2
+  personalities: 
   heroDialogues:
   - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
   keyToUnlock: 
