@@ -8,6 +8,7 @@ using Object = Ink.Runtime.Object;
 public class DialogueVariable
 {
     private Dictionary<string, Object> variables;
+    private TextAsset asset;
     public void StartListening(Story story)
     {
         VariableToStory(story);
@@ -16,7 +17,8 @@ public class DialogueVariable
 
     public DialogueVariable(TextAsset loadGlobalsJSON)
     {
-        var globalVariablesStory = new Story(loadGlobalsJSON.text);
+        asset = loadGlobalsJSON;
+        var globalVariablesStory = new Story(asset.text);
 
         variables = new Dictionary<string, Object>();
         foreach (var name in globalVariablesStory.variablesState)
@@ -35,11 +37,13 @@ public class DialogueVariable
     private void VariableChanged(string name, Ink.Runtime.Object value)
     {
         Debug.Log("Variable changed: " + name + " = " + value);
-        if (variables.ContainsKey(name))
-        {
-            variables.Remove(name);
-            variables.Add(name, value);
-        }
+        
+        if (variables.ContainsKey(name)) variables.Remove(name);
+        variables.Add(name, value);
+        
+        var globalVariablesStory = new Story(asset.text);
+        var obj = globalVariablesStory.variablesState.GetVariableWithName(name);
+        Debug.Log($"Object: {obj}");
     }
 
     private void VariableToStory(Story story)

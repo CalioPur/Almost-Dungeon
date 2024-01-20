@@ -1,6 +1,7 @@
 INCLUDE GlobalVariables.ink
 
 Alors c'est ça le $$Donjon$$ ? #chara:knight 
+~RknightSeen = true
 $zzzzzz...zzzzz...zzzzz...$  #chara:dragon
 Quels sont ces ronflements ? Et pourquoi n'y a t-il pas de lumière ici ? #chara:knight
 Patron ! Patron ! #chara:minion #minion:in
