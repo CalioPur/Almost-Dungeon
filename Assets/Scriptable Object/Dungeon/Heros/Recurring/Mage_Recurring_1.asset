@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Mage_Recurring_1
   m_EditorClassIdentifier: 
   nameOfHero: 
-  health: 10
+  health: 5
   speed: 60
   classe: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   visionType: 0
   aggressivity: 2
+  personalities: 
   heroDialogues:
   - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
   keyToUnlock: 
