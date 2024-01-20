@@ -19,6 +19,7 @@ public class LevelCardScript : MonoBehaviour
     [SerializeField] private SoundManagerIngame soundManagerIngame;
     [SerializeField] private TMP_Text tryText;
     [SerializeField] private TMP_Text victoryText;
+    [SerializeField] private TMP_Text biomeName;
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class LevelCardScript : MonoBehaviour
         
         tryText.text = PlayerPrefs.GetInt("LevelTry" + biomeIndex, 0).ToString();
         victoryText.text = PlayerPrefs.GetInt("LevelVictory" + biomeIndex, 0).ToString();
+        biomeName.text = DungeonManager._instance.dungeons[biomeIndex].name;
     }
     
     private void OnMouseEnter()

@@ -110,23 +110,33 @@ public class UI_Hero : MonoBehaviour
 
     void EndGame(bool win)
     {
-        
-        endGameText.text = win ? "You Win !" : "You Lose !";
-        endGameText.color = win ? Color.green : Color.red;
-        endGameButton.GetComponentInChildren<TMP_Text>().text = win ? "Next Level" : "Main Menu";
-        if (!win)
+
+        if (win)
         {
-            DungeonManager.ResetLevelIndex();
-            endGameButton.onClick.RemoveAllListeners();
-            //make button go back to scene 0
-            endGameButton.onClick.AddListener(() => { UnityEngine.SceneManagement.SceneManager.LoadScene(0); });
-            
-        }
-        else
-        {
+            endGameText.text = heroName.text + " s'est fait rotir par Dargon le dragon !";
+            endGameText.color = Color.green;
+            if (DungeonManager._instance.currentLevel < 9)
+            {
+                endGameButton.GetComponentInChildren<TMP_Text>().text = "Passer au niveau " + (DungeonManager._instance.currentLevel+2);
+            }
+            else
+            {
+                endGameButton.GetComponentInChildren<TMP_Text>().text = "Main Menu";
+            }
             endGameButton.onClick.RemoveAllListeners();
             endGameButton.onClick.AddListener((() => { UIManager._instance.NextLevel(); }));
         }
+        else
+        {
+            endGameText.text = heroName.text + "a vaincu Dargon le dragon !";
+            endGameText.color = Color.red;
+            endGameButton.GetComponentInChildren<TMP_Text>().text = "Main Menu";
+            DungeonManager._instance.ResetLevelIndex();
+            endGameButton.onClick.RemoveAllListeners();
+            //make button go back to scene 0
+            endGameButton.onClick.AddListener(() => { UnityEngine.SceneManagement.SceneManager.LoadScene(0); });
+        }
+        
         //endGamePanel.SetActive(true);
         StartCoroutine(EndGameFX());
     }

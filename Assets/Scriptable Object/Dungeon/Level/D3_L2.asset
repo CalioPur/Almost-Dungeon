@@ -33,6 +33,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7692dbdcbd9c8514aa8a79a868a0491c, type: 2}
   decks:
   - {fileID: 11400000, guid: 85fb4635a1c62d146a5b4c8aa1b2c387, type: 2}
-  nbCardToDraw: 2
+  nbCardToDraw: 5
   keysElementsToUnlock:
   - D3_L2
