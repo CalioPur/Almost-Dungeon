@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,6 +9,124 @@ public class PathFinding
     public static Vector2Int HeroPos { get; set; }
     
     public static int distToClosestExit = 9999;
+
+    public static DirectionToMove BFSFindPathWithLessEnemies(Vector2Int startPos, TileData[,] map, Personnalities personality)
+    {
+        Queue<Vector2Int> queue = new Queue<Vector2Int>();
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+        Dictionary<Vector2Int, Vector2Int> parentMap = new Dictionary<Vector2Int, Vector2Int>();
+        List<Vector2Int> exits = new List<Vector2Int>();
+        List<Vector2Int> unvisitedTiles = new List<Vector2Int>();
+        List<Vector2Int> tileWithEnemies = new List<Vector2Int>();
+
+        queue.Enqueue(startPos);
+        visited.Add(startPos);
+
+        int dbgInt = 0;
+        while (queue.Count > 0)
+        {
+            Vector2Int currentPos = queue.Dequeue();
+
+            if (map[currentPos.x, currentPos.y].isExit)
+            {
+                exits.Add(currentPos);
+                Vector2Int nextPos = currentPos;
+                while (parentMap.ContainsKey(nextPos) && parentMap[nextPos] != startPos)
+                {
+                    nextPos = parentMap[nextPos];
+                }
+            }
+
+            if (!map[currentPos.x, currentPos.y].IsVisited || map[currentPos.x, currentPos.y].isExit)
+            {
+                unvisitedTiles.Add(currentPos);
+            }
+
+            if (map[currentPos.x, currentPos.y].enemies.Count > 0)
+            {
+                tileWithEnemies.Add(currentPos);
+            }
+
+            Vector2Int[] neighbors = GetNeighbors(currentPos, map);
+            foreach (var neighbor in neighbors)
+            {
+                if (!visited.Contains(neighbor))
+                {
+                    queue.Enqueue(neighbor);
+                    visited.Add(neighbor);
+                    parentMap[neighbor] = currentPos;
+                }
+            }
+
+            dbgInt++;
+        }
+
+        distToClosestExit = GetNumberOfTilesToClosestExit(startPos, parentMap, exits);
+
+        switch (personality)
+        {
+            case Personnalities.HurryForTheExit when exits.Count > 0:
+            {
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits, true);
+                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
+                {
+                    return GoThroughDoorWithNoTile(startPos, map);
+                }
+
+                return GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.HurryForTheExit when exits.Count == 0:
+            {
+                if (CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
+                return BreakFreeFromNoExit(startPos, map);
+            }
+            case Personnalities.TheExplorer when unvisitedTiles.Count > 0:
+            {
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, unvisitedTiles, true);
+                return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None
+                    ? GoThroughDoorWithNoTile(startPos, map)
+                    : GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.TheExplorer when exits.Count > 0:
+            {
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits, true);
+                return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None
+                    ? GoThroughDoorWithNoTile(startPos, map)
+                    : GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.TheExplorer when exits.Count == 0:
+            {
+                if (CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
+                return BreakFreeFromNoExit(startPos, map);
+
+            }
+            case Personnalities.TheKiller:
+            {
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, tileWithEnemies, true);
+                return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None
+                    ? GoThroughDoorWithNoTile(startPos, map)
+                    : GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.MoveToHero:
+            {
+                Vector2Int nextPos = GetNextPosition(startPos, parentMap, new List<Vector2Int>() { HeroPos }, true);
+                if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
+                {
+                    return GoThroughDoorWithNoTile(startPos, map);
+                }
+
+                return GetDirectionToMove(startPos, nextPos);
+            }
+            case Personnalities.Nothing:
+            {
+                return DirectionToMove.None;
+            }
+            default:
+                Debug.Log("No valid path found because no exit or unvisited tiles found");
+                return GoThroughDoorWithNoTile(startPos, map);
+        }
+    }
+
     public static DirectionToMove BFSFindPath(Vector2Int startPos, TileData[,] map, Personnalities personality)
     {
         Queue<Vector2Int> queue = new Queue<Vector2Int>();
@@ -202,26 +320,43 @@ public class PathFinding
     }
 
     private static Vector2Int GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap,
-        List<Vector2Int> goalPositions)
+        List<Vector2Int> goalPositions, bool withLessEnemies = false)
     {
         Vector2Int closestPos = goalPositions[0];
         int minDist = 9999;
+        int minEnemies = 9999;
         foreach (var position in goalPositions)
         {
             Dictionary<Vector2Int, Vector2Int> parentMapCopy = new Dictionary<Vector2Int, Vector2Int>(parentMap);
             Vector2Int currentPos = position;
             int distance = 0;
+            int nbEnemies = 0;
             while (parentMapCopy.ContainsKey(currentPos) && parentMapCopy[currentPos] != startPos)
             {
                 Vector2Int parent = parentMapCopy[currentPos];
                 parentMapCopy.Remove(currentPos);
                 currentPos = parent;
                 distance++;
+                
+                TileData tile = null;
+                MapManager.Instance.GetTile(new Vector2Int(currentPos.x, currentPos.y), out tile);
+                
+                if (tile != null && tile.enemies.Count > 0)
+                {
+                   nbEnemies += tile.enemies.Count;
+                }
+                
             }
 
-            if (minDist > distance)
+            if (minDist > distance && !withLessEnemies)
             {
                 minDist = distance;
+                closestPos = currentPos;
+            }
+            else if (minDist > distance && withLessEnemies && nbEnemies < minEnemies)
+            {
+                minDist = distance;
+                minEnemies = nbEnemies;
                 closestPos = currentPos;
             }
         }
