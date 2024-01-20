@@ -82,19 +82,14 @@ public class DungeonManager : MonoBehaviour
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
         print("nb of level : "+dungeons[SelectedBiome].dungeonSO.levels.Count);
+        if (currentLevel == 5)//si on a battu le niveau milestonne
+        {
+            PlayerPrefs.SetInt("LevelUnlock"+ (SelectedBiome+1), 1); //on unlock le biome suivant;
+        }
         if (currentLevel >= dungeons[SelectedBiome].dungeonSO.levels.Count) //le donjon a été parcouru en entier
         {
             PlayerPrefs.SetInt("LevelBeaten" + SelectedBiome, 1); //on sauvegarde le donjon comme battu
             PlayerPrefs.SetInt("LevelVictory" + SelectedBiome, PlayerPrefs.GetInt("LevelVictory" + SelectedBiome, 0) + 1); //on incremente la valeur de victoire du donjon
-            
-            if (PlayerPrefs.GetInt("LevelUnlock" + 2, 0) == 0) //si le niveau 3 n'est pas unlock
-            {
-                PlayerPrefs.SetInt("LevelUnlock" + 2, 1); //on unlock le niveau 3
-                PlayerPrefs.SetInt("LevelThatUnlockedLevel3", SelectedBiome); //on sauvegarde le donjon qui a unlock le niveau 3
-            }
-            else if(SelectedBiome != PlayerPrefs.GetInt("LevelThatUnlockedLevel3")) { //si le niveau 3 est unlock, pas avec le meme donjon
-                PlayerPrefs.SetInt("LevelUnlock" + 3, 1); //on unlock le niveau 4
-            }
             
             Debug.LogWarning("Level is too high");
             SceneManager.LoadScene(0);

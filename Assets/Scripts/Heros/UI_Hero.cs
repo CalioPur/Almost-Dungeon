@@ -113,7 +113,7 @@ public class UI_Hero : MonoBehaviour
 
         if (win)
         {
-            endGameText.text = heroName.text + " s'est fait rotir par Dargon le dragon !";
+            endGameText.text = "Vous avez roti "+ heroName.text + " !";
             endGameText.color = Color.green;
             if (DungeonManager._instance.currentLevel < 9)
             {
@@ -128,7 +128,7 @@ public class UI_Hero : MonoBehaviour
         }
         else
         {
-            endGameText.text = heroName.text + "a vaincu Dargon le dragon !";
+            endGameText.text = heroName.text + " vous a vaincu !";
             endGameText.color = Color.red;
             endGameButton.GetComponentInChildren<TMP_Text>().text = "Main Menu";
             DungeonManager._instance.ResetLevelIndex();
