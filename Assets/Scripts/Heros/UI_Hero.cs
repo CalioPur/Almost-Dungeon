@@ -110,7 +110,6 @@ public class UI_Hero : MonoBehaviour
 
     void EndGame(bool win)
     {
-
         if (win)
         {
             endGameText.text = "Vous avez roti "+ heroName.text + " !";
@@ -143,6 +142,7 @@ public class UI_Hero : MonoBehaviour
     
     private IEnumerator EndGameFX()
     {
+        yield return new WaitForSeconds(2.5f);
         endGamePanel.SetActive(true);
         Time.timeScale = 0;
         yield return null;

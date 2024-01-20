@@ -195,8 +195,8 @@ public class Hero : MonoBehaviour, IFlippable
             Debug.Log("Hero is dead");
             info.CurrentHealthPoint = 0;
             FXTakeDamage();
-            TickManager.OnEndGame();
             IsDead();
+            TickManager.OnEndGame();
         }
         else
         {
