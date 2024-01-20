@@ -14,8 +14,7 @@ using Random = UnityEngine.Random;
 
 public class DialogueManager : MonoBehaviour
 {
-    private DialogueVariable dialogueVariable;
-    [SerializeField] private TextAsset globalsInkFile;
+    
     
     public static DialogueManager _instance;
     public SaveSystem saveSystem;
@@ -56,6 +55,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject lightHero;
     [SerializeField] private GameObject slots;
     [SerializeField] private TMP_Text heroName;
+    
+    DialogueVariable dialogueVariable;
+    
     private static event Action OnEndDialogEvent; 
     private int dialogueIndex = -1;
     
@@ -69,8 +71,8 @@ public class DialogueManager : MonoBehaviour
         }
         _instance = this;
         
-        dialogueVariable = new DialogueVariable(globalsInkFile);
         
+        dialogueVariable = DungeonManager._instance.dialogueVariable;
         PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue, DungeonManager._instance.deckData.deckDialogue,
             DungeonManager._instance.heroData.heroDialogues, DungeonManager._instance.cardsManager);
     }
