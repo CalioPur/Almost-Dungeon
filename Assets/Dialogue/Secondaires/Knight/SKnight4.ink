@@ -14,7 +14,7 @@ Je suis désolé mon ami, mais voyez-vous, ma machoire me démange et je croquer
 Quoi ! Non pitié noble Dragon, ne me dévorez pas, je vous jure que j'ai très mauvais goût. #chara:knight
 
 * [Croquer dans le sac de l'aventurier] -> Regen
-* [Croquer dans l'aventurier] : -> Damages
+* [Croquer dans l'aventurier] -> Damages
     
 === Regen ===
 MAIS ! MON SAC ! Mes provisions ! Tu vas payer Dragon ! #chara:knight #healDragon:2
@@ -31,7 +31,7 @@ Vous m'avez croqué {Regen : MON sac } {Damages : MON bras !} et vous comptez vo
 Et bien vous allez rire mais ma machoire me dérange toujours... #chara:dragon 
 Oh non... #chara:knight
 * [Croquer dans le sac de l'aventurier] -> Regen2
-* [Croquer dans l'aventurier] : -> Damages2
+* [Croquer dans l'aventurier] -> Damages2
  -> END
  
  === Regen2 ===

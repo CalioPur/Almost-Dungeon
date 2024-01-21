@@ -12,7 +12,7 @@ Ah ! Dragon vous étiez-là ! #chara:knight
 Difficile de ne pas vous entendre arriver avec le bruit de votre armure Chevalier. #chara:dragon
 Patron ! Patron ! Celui-là n'a pas l'air bien dégourdi, je peux le mordre !? #chara:minion #minion:in
 Non, nous allons lui montrer ce qu'il en coûte de jouer aux héros ! #chara:dragon #minion:out
-Pour mon peuple, je vaincrai !#chara:dragon
+Pour mon peuple, je vaincrai !#chara:knight
     -> END
 
 === Encounter2 ===
