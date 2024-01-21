@@ -20,5 +20,5 @@ MonoBehaviour:
   aggressivity: 2
   personalities: 
   heroDialogues:
-  - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
+  - {fileID: 4900000, guid: 961f81fa8b0f54f44aa8c114c8aeaa8e, type: 3}
   keyToUnlock: 
