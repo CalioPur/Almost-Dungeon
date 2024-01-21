@@ -28,7 +28,8 @@ public class UI_Dragon : MonoBehaviour
 
     private IEnumerator TakeDamageFX(Hero hero)
     {
-        //Camera.main.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
+        SoundManagerIngame.Instance.PlayDialogueSFX("DragonBreath");
+        SoundManagerIngame.Instance.PlayDialogueSFX("DragonDamaged");
         yield return new WaitForSeconds(0.3f);
         var dragonImageColor = dragonImage.color;
         dragonImageColor.a = 0f;
@@ -36,7 +37,6 @@ public class UI_Dragon : MonoBehaviour
         Image dragImg = dragonCard.GetChild(0).GetComponent<Image>();
         dragImg.color = Color.red;
         dragonCard.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
-        
         currentHealth -= 1;
         DrawHearts();
         if (currentHealth <= 0)
@@ -50,6 +50,7 @@ public class UI_Dragon : MonoBehaviour
         GameObject fireBall = Instantiate(fireBallPrefab, dragonCard);
         fireBall.GetComponent<Animator>().Play(fireBallAnim.name);
         yield return new WaitForSeconds(fireBallAnim.length);
+        Camera.main.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
         Destroy(fireBall);
         dragImg.color = Color.white;
         hero.TakeDamage(damage, AttackType.Physical);

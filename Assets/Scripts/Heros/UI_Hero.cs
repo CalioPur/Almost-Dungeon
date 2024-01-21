@@ -10,6 +10,7 @@ public class UI_Hero : MonoBehaviour
 {
     public static event Action<bool> OnEndGameEvent;
 
+    [SerializeField] private RectTransform parentCanvas;
     [SerializeField] private GameObject healthBar;
 
     [SerializeField] private GameObject ItemBar;
@@ -96,11 +97,12 @@ public class UI_Hero : MonoBehaviour
     public IEnumerator TakeDamageFX()
     {
         heroImage.color = Color.red;
-        Vector3 originalPos = heroImage.transform.parent.transform.position;
-        heroImage.transform.parent.transform.position += new Vector3(0, 0.2f, 0);
-        heroImage.transform.parent.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
+        Vector3 originalPos = parentCanvas.position;
+        parentCanvas.position += new Vector3(0, 0.2f, 0);
+        parentCanvas.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
         yield return new WaitForSeconds(shakeDuration + 0.05f);
-        heroImage.transform.parent.transform.position = originalPos;
+        parentCanvas.position -= new Vector3(0, 0.2f, 0);
+        parentCanvas.position = new Vector3(originalPos.x, -0.2f, originalPos.z);
         heroImage.color = Color.white;
     }
     
@@ -184,6 +186,14 @@ public class UI_Hero : MonoBehaviour
         Hero.OnTakeDamageEvent += TakeDamage;
         Hero.OnTakeDamageEvent += DrawHearts;
         OnEndGameEvent += EndGame;
+    }
+    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(TakeDamageFX());
+        }
     }
 }
 
