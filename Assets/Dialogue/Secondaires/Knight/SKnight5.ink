@@ -8,12 +8,12 @@ INCLUDE ../../GlobalVariables.ink
 === Encounter1 ===
 Et bien... Un chevalier déprimé, en voilà une drôle de rencontre. #chara:dragon
 ~SKnight5Seen = true 
-Il a l'air tout raplapla patron ! Vous êtes sûr qu'il est vivant ? #chara:minion :minion:in
+Il a l'air tout raplapla patron ! Vous êtes sûr qu'il est vivant ? #chara:minion #:minion:in
 Un Dragon ?? C'est bien ma veine ça... Quelle idée de venir ici aussi...  #chara:knight
 Quel est le problème héros ? Ressaisissez vous voyons. #chara:dragon
 Je n'ai jamais demandé à venir ici moi... Je ne veux pas me battre... #chara:knight
 
-* [Le pousser dans le donjon (perd <color=lime>10 de vitesse</color> )] -> Regen
+* [Le pousser dans le donjon (perd <color=purple> 10 de vitesse</color> )] -> Regen
 * [Le motiver (devient <color=red>courageux</color> )] -> Damages
     
 === Regen ===
@@ -34,7 +34,7 @@ Allons-bon... Vous revoilà Karl. #chara:dragon
 Et revoilà le Dragon... je n'en peux plus... #chara:knight
 Bon bah pas la peine de vous faire prier cette fois alors ? #chara:dragon
 Pitié laissez moi partir... #chara:knight
-* [Le pousser dans le donjon (perd <color=lime>10 de vitesse</color> )] -> Regen2
+* [Le pousser dans le donjon (perd <color=purple>10 de vitesse</color> )] -> Regen2
 * [Le motiver (devient <color=red>courageux</color> )] -> Damages2
  -> END
  

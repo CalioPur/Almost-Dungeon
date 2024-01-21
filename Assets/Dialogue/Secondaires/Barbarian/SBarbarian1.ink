@@ -14,7 +14,7 @@ Ben ma carte ! Regardez, pendant mon voyage j'ai trouvé une carte magique de ch
 Une carte magique ! Hmm voilà qui pourrait être utile... #chara:dragon
 
 * [Voler la carte (perd <color=orange>explorateur</color> )] -> Regen
-* [Lui ajouter de fausses informations (perd <color=lime>10 de vitesse</color> )] -> Damages
+* [Lui ajouter de fausses informations (perd <color=purple>10 de vitesse</color> )] -> Damages
     
 === Regen ===
 Mais ! MA CARTE ! Rendez-la moi Dragon ! Je vous préviens, ça va mal se finir pour vous ! #chara:barbarian #changepers:none
@@ -32,7 +32,7 @@ Encore !? Ce n'est pas possible, qui lui a donné une autre carte ! #chara:drago
 Patron, c'est vous qui avez rempli les coffres la dernière fois... #chara:minion #minion:in
 Ah ! Pas la peine d'essayer de me la {Regen : voler} {Damages : salir}  cette fois-ci ! Vous ne m'aurez pas ! #chara:barbarian #minion:out
 * [Bruler la carte ! (perd <color=orange>explorateur</color> )] -> Regen2
-* [Rendre la Carte Illisible ! (perd <color=lime>10 de vitesse</color> )] -> Damages2
+* [Rendre la Carte Illisible ! (perd <color=purple>10 de vitesse</color> )] -> Damages2
  -> END
  
  === Regen2 ===
