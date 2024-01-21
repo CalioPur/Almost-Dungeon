@@ -73,8 +73,11 @@ public class DialogueManager : MonoBehaviour
         
         
         dialogueVariable = DungeonManager._instance.dialogueVariable;
-        PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue, DungeonManager._instance.deckData.deckDialogue,
-            DungeonManager._instance.heroData.heroDialogues, DungeonManager._instance.cardsManager);
+        if (DungeonManager._instance.currentLevel < 7)
+        {
+            PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue, DungeonManager._instance.deckData.deckDialogue,
+                DungeonManager._instance.heroData.heroDialogues, DungeonManager._instance.cardsManager);
+        }
     }
     
     private void GetUiElements()
