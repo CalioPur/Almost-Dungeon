@@ -1,23 +1,13 @@
 INCLUDE GlobalVariables.ink
 
-Alors c'est ça le $$Donjon$$ ? #chara:knight 
-$zzzzzz...zzzzz...zzzzz...$  #chara:dragon
-Quels sont ces ronflements ? Et pourquoi n'y a t-il pas de lumière ici ? #chara:knight
-Patron ! Patron ! #chara:minion #minion:in
-$zzzzzz...$ Quoi... Que veux-tu de si bon matin Sbire ? #chara:dragon
-Mais patron, vite réveillez-vous ! Le héros est arrivé, il est midi ! #chara:minion
-QUOI ! Déjà !? Mais rien n'est prêt ! Encore la faute de ce fichu réveil ! #chara:dragon
-Vite patron ! Construisez le Donjon avant qu'il ne puisse nous atteindre ! #chara:minion
+Hahaha, enfin dans un donjon ! L'aventure m'appelle ! #chara:barbarian 
+Soyez la bienvenue guerrier !  #chara:dragon
+Pas possible ! Un dragon, comme dans les livres ! #chara:barbarian 
+Aha ! Enfin quelqu'un m'appréciant à ma juste valeur ! #chara:dragon
+Pour sûr mon bon Dragon ! Je sens que cette aventure promet d'être excitante. #chara:barbarian 
+Ah ? Et bien vous m'en voyez ravi pour vous... #chara:dragon
+Ne vous inquiétez pas Dragon, je prendrai votre tête après avoir rapidement vu votre petit donjon ! #chara:barbarian 
 Le voilà !
-Ah te voilà Dragon ! Reste où tu es ! J'arrive pour prendre ta tête ! #chara:knight #minion:out
-
-* [Le menacer] -> ending1
-* [L'insulter] -> ending2
-
-=== ending1 ===
-N'approchez pas chevalier ! Je vais me voir dans l'obligation de vous carboniser si vous essayez de sortir ! #chara:dragon
- -> END
-
-=== ending2 ===
-Ha ! essaie donc petit héros, tu ne parviendras même pas à m'érafler avec ton petit cure-dent. #chara:dragon
- -> END
+Ha ! Vous apprendrez que mon doonjon est loin d'être rapidement visité. #chara:dragon
+Mais allons-y guerrier, montrez-moi un peu ce que vous avez dans le ventre. 
+Voyons ce que votre hâche vaut face à mes cracheurs de feu !
