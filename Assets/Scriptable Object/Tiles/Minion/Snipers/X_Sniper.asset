@@ -16,9 +16,10 @@ MonoBehaviour:
   imgOnMap: {fileID: 21300000, guid: c9dcf34500af8714c9fee513ba3792b8, type: 3}
   TypeOfTrapOrEnemyToSpawn:
   - type: 3
-    canBeRevive: 0
+    canBeRevive: 1
     indexOffsetTile: 0
-  offsetMinionPos: []
+  offsetMinionPos:
+  - {x: 0, y: 0, z: 0}
   DoorOnTop: 1
   DoorOnBottom: 1
   DoorOnLeft: 1
