@@ -28,6 +28,8 @@ public class UI_Dragon : MonoBehaviour
 
     private IEnumerator TakeDamageFX(Hero hero)
     {
+        SoundManagerIngame.Instance.PlayDialogueSFX("DragonBreath");
+        SoundManagerIngame.Instance.PlayDialogueSFX("DragonDamaged");
         yield return new WaitForSeconds(0.3f);
         var dragonImageColor = dragonImage.color;
         dragonImageColor.a = 0f;
