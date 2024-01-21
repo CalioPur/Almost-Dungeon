@@ -181,7 +181,7 @@ public class testButton : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", evt.newValue);
     }
 
-    private void CloseSettings(ClickEvent evt)
+    public void CloseSettings(ClickEvent evt)
     {
         settings.SetActive(false);
     }
@@ -206,5 +206,10 @@ public class testButton : MonoBehaviour
     {
         settings.SetActive(true);
         SetupSettingsInteractions();
+    }
+    
+    public void CloseSettings()
+    {
+        settings.SetActive(false);
     }
 }

@@ -6,8 +6,8 @@ using Random = UnityEngine.Random;
 
 public class CameraScreenShake : MonoBehaviour
 {
-    [SerializeField] float amplitude = 0.1f;
-    [SerializeField] float duration = 0.2f;
+    [SerializeField] float amplitude = 1f;
+    [SerializeField] float duration = 0.4f;
     
     void Start()
     {

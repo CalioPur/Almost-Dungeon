@@ -72,6 +72,7 @@ public class DialogueManager : MonoBehaviour
         _instance = this;
         
         
+
         dialogueVariable = DungeonManager._instance.dialogueVariable;
         if (DungeonManager._instance.currentLevel < 7)
         {
@@ -118,13 +119,13 @@ public class DialogueManager : MonoBehaviour
         
         
         OnEndDialogEvent+=PlayNextDialogue;
+        
         PlayNextDialogue();
         this.cardsManager = cardsManager;
     }
 
     private void PlayNextDialogue()
     {
-        
         dialogueIndex++;
         if(dialogueIndex >= dialogues.Count)
         {
@@ -420,6 +421,7 @@ public class DialogueManager : MonoBehaviour
 
     void CheckHeroClass()
     {
+        print("CHECK HERO CLASS");
         otherImage.sprite = GameManager._instance.currentHero.classe.Img;
     }
 
