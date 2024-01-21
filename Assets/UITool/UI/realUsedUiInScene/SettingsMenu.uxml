@@ -6,7 +6,7 @@
         <ui:Slider picking-mode="Ignore" label="Musique" value="0" high-value="20" name="MusicVolume" low-value="-80" class="slider" style="flex-direction: row; flex-wrap: nowrap; background-color: rgba(255, 255, 255, 0);" />
         <ui:Slider picking-mode="Ignore" label="Sound" value="0" high-value="20" name="SoundVolume" low-value="-80" class="slider" style="flex-direction: row; flex-wrap: nowrap;" />
         <ui:DropdownField label="Écran" index="0" choices="Fullscreen,Windowed,Borderless" name="screenMode" style="font-size: 30px; color: rgb(255, 255, 255);" />
-        <ui:Toggle label="Drag and drop mode" name="dragndroptoggle" style="height: 67px; width: 389px; align-self: center; justify-content: space-between; align-items: center; font-size: 55%; -unity-text-align: middle-center; color: rgb(255, 255, 255);" />
+        <ui:Toggle label="Drag and drop mode" name="dragndroptoggle" value="false" view-data-key="dragndroptoggle" binding-path="dragndroptoggle" tooltip="dragndroptoggle" style="height: 67px; width: 389px; align-self: center; justify-content: space-between; align-items: center; font-size: 55%; -unity-text-align: middle-center; color: rgb(255, 255, 255);" />
         <ui:VisualElement style="flex-grow: 0; height: 50%; width: 100%; flex-direction: column; flex-wrap: nowrap;" />
     </ui:VisualElement>
 </ui:UXML>

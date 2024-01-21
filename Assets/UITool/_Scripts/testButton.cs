@@ -76,25 +76,47 @@ public class testButton : MonoBehaviour
         screenModeDropdown.index = PlayerPrefs.GetInt("ScreenMode", 0);
         screenModeDropdown.RegisterCallback<ChangeEvent<string>>(ChangeScreenMode);
         
-        var languageDropdown = settings_root_element.Q<Dropdown>("Language");
-        languageDropdown.label = XMLReader.languages[XMLReader.currentLanguage]["langue"];
-        languageDropdown.index = PlayerPrefs.GetInt("Language", 0);
-        languageDropdown.RegisterCallback<ChangeEvent<string>>(ChangeLanguage);
+        // var languageDropdown = settings_root_element.Q<Dropdown>("Language");
+        // languageDropdown.label = XMLReader.languages[XMLReader.currentLanguage]["langue"];
+        // languageDropdown.index = PlayerPrefs.GetInt("Language", 0);
+        // languageDropdown.RegisterCallback<ChangeEvent<string>>(ChangeLanguage);
         
+        // var dragnDrop = settings_root_element.Q<Toggle>("dragndroptoggle");
+        // dragnDrop.value = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
+        // dragnDrop.RegisterCallback(new EventCallback<ChangeEvent<bool>>(evt =>
+        // {
+        //     if (evt.newValue)
+        //     {
+        //         Debug.Log("DragNDrop");
+        //         PlayerPrefs.SetInt("DragNDrop true", 1);
+        //     }
+        //     else
+        //     {
+        //         Debug.Log("DragNDrop false");
+        //         PlayerPrefs.SetInt("DragNDrop", 0);
+        //     }
+        //     SaveSystem.SaveAll();
+        // }));
+        // search for the toggle dragndroptoggle
         var dragnDrop = settings_root_element.Q<Toggle>("dragndroptoggle");
         dragnDrop.value = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
-        dragnDrop.RegisterCallback(new EventCallback<ChangeEvent<bool>>(evt =>
-        {
-            if (evt.newValue)
-            {
-                PlayerPrefs.SetInt("DragNDrop", 1);
-            }
-            else
-            {
-                PlayerPrefs.SetInt("DragNDrop", 0);
-            }
-        }));
+        dragnDrop.RegisterCallback<ChangeEvent<bool>>(ChangeDragNDrop);
         
+    }
+
+    private void ChangeDragNDrop(ChangeEvent<bool> evt)
+    {
+        if (evt.newValue)
+        {
+            Debug.Log("DragNDrop");
+            PlayerPrefs.SetInt("DragNDrop", 1);
+        }
+        else
+        {
+            Debug.Log("DragNDrop false");
+            PlayerPrefs.SetInt("DragNDrop", 0);
+        }
+        SaveSystem.SaveAll();
     }
 
     private void ChangeLanguage(ChangeEvent<string> evt)

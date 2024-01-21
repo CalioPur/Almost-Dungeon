@@ -33,6 +33,8 @@ public class MovementManager : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
+        isDragNDrop = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
+        Debug.Log("DragNDrop : " + isDragNDrop);
     }
 
     private void OnEnable()

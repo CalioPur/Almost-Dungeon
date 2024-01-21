@@ -33,7 +33,7 @@ public class SaveSystem
         
     }
 
-    public void SaveAll()
+    public static void SaveAll()
     {
         PlayerPrefs.SetInt("currentDungeon", DungeonManager._instance.currentLevel);
         PlayerPrefs.SetInt("currentLevel", DungeonManager.SelectedBiome);
