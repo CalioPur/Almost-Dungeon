@@ -41,9 +41,11 @@ public class Web : TrapData
 
     IEnumerator FX_Catch()
     {
+        isDead = true;
         TileData tileData = mapManager.GetTileDataAtPosition(indexX, indexY);
         tileData.transform.DOShakeScale(0.5f, 0.5f, 10, 90, false);
         yield return new WaitForSeconds(1f);
+        isDead = false;
     }
 
     protected override void OnTick()
@@ -53,7 +55,6 @@ public class Web : TrapData
         if (minions.Count > 0)
         {
             minions[0].Stunned(this);
-            isDead = true;
             StartCoroutine(FX_Catch());
         }
         else
@@ -61,7 +62,6 @@ public class Web : TrapData
             if (heroPos.x == indexX && heroPos.y == indexY)
             {
                 Stun();
-                isDead = true;
                 StartCoroutine(FX_Catch());
             }
         }
