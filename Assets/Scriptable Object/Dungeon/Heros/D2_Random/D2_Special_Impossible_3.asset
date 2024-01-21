@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D2_Special_Impossible_3
   m_EditorClassIdentifier: 
-  nameOfHero: 
+  nameOfHero: Jeanne
   health: 15
   speed: 80
   classe: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
@@ -20,5 +20,5 @@ MonoBehaviour:
   aggressivity: 2
   personalities: 00000000
   heroDialogues:
-  - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
+  - {fileID: 4900000, guid: b9439399944af9440bba758be7c448f1, type: 3}
   keyToUnlock: D2_L1

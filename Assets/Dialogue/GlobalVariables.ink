@@ -22,3 +22,9 @@ VAR SBarbarian5Seen = false
 
 //Secondary Archers !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 VAR SArcher1Seen = false
+VAR SArcher2Seen = false
+VAR SArcher3Seen = false
+VAR SArcher4Seen = false
+
+//Secondary Archers !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+VAR SMage1Seen = false
