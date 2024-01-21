@@ -229,7 +229,6 @@ MonoBehaviour:
   Sprite: {fileID: 4954612021088544096}
   bt: {fileID: 922449776285682164}
   animQueue: {fileID: 7733622732822971966}
-  attackPoint: {fileID: 0}
   <HeroBlackboard>k__BackingField: {fileID: -4683431529391840305}
   emotesManager: {fileID: 5855379603346946449}
   animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
@@ -278,6 +277,7 @@ MonoBehaviour:
   leftArrow: {fileID: 1886453690818700560}
   visionType: 0
   aggressivity: 0
+  personalities: 
 --- !u!114 &7733622732822971966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +395,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939014474319430147}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ac70de1cc751c884db8ce7f720338dd1, type: 2}
   m_CullingMode: 0
