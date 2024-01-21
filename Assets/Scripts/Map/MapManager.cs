@@ -132,7 +132,18 @@ public class MapManager : MonoBehaviour
                     if (!(card.TypeOfTrapOrEnemyToSpawnInstance[j].type == TrapType.Web ||
                           card.TypeOfTrapOrEnemyToSpawnInstance[j].type == TrapType.Pyke))
                     {
-                        offset = _tilePreset[i].cardInfo.offsetMinionPos[data.indexOffsetTile];
+                        if (_tilePreset[i].cardInfo.offsetMinionPos.Length > 0)
+                        {
+                            if (data.indexOffsetTile >= _tilePreset[i].cardInfo.offsetMinionPos.Length ||
+                                data.indexOffsetTile < 0)
+                            {
+                                offset = _tilePreset[i].cardInfo.offsetMinionPos[0];
+                            }
+                            else
+                            {
+                                offset = _tilePreset[i].cardInfo.offsetMinionPos[data.indexOffsetTile];
+                            }
+                        }
                     }
                     
 

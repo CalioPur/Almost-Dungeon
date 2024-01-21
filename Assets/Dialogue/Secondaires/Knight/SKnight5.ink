@@ -14,7 +14,7 @@ Quel est le problème héros ? Ressaisissez vous voyons. #chara:dragon
 Je n'ai jamais demandé à venir ici moi... Je ne veux pas me battre... #chara:knight
 
 * [Le pousser dans le donjon] -> Regen
-* [Le motiver] : -> Damages
+* [Le motiver] -> Damages
     
 === Regen ===
 Bon écoutez... Prenez sur vous et allez-y d'un coup... Je me fiche de vos histoires moi, j'ai faim. #chara:dragon
@@ -35,7 +35,7 @@ Et revoilà le Dragon... je n'en peux plus... #chara:knight
 Bon bah pas la peine de vous faire prier cette fois alors ? #chara:dragon
 Pitié laissez moi partir... #chara:knight
 * [Le pousser dans le donjon] -> Regen2
-* [Le motiver] : -> Damages2
+* [Le motiver] -> Damages2
  -> END
  
  === Regen2 ===
