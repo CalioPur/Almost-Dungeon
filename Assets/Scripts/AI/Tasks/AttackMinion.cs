@@ -8,16 +8,18 @@ using UnityEngine;
 public class AttackMinion : Node
 {
     private HeroBlackboard blackboard;
+    bool withAnim;
 
-    public AttackMinion(HeroBlackboard _blackboard)
+    public AttackMinion(HeroBlackboard _blackboard, bool _withAnim = true)
     {
         blackboard = _blackboard;
+        withAnim = _withAnim;
     }
 
     public override NodeState Evaluate(Node root)
     {
         // if (isHeroNextToExit()) blackboard.hero.emotesManager.PlayEmote(EmoteType.NextToExit);
-        
+
         if (blackboard.ChosenTarget == null) return NodeState.Failure;
         foreach (var target in blackboard.ChosenTarget.Where(target => target.isDead))
         {
@@ -60,13 +62,14 @@ public class AttackMinion : Node
         foreach (var target in blackboard.ChosenTarget)
         {
             target.TakeDamage(blackboard.hero.info.So.AttackPoint, blackboard.hero.attackType);
-            blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, target.transform, Vector3.zero, true,
-                delay, Ease.InBack, 2));
+            if (withAnim)
+                blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, target.transform, Vector3.zero, true,
+                    delay, Ease.InBack, 2));
         }
 
         return NodeState.Success;
     }
-    
+
     private bool isHeroNextToExit()
     {
         blackboard.hero.mapManager.GetTile(blackboard.hero.GetIndexHeroPos(), out TileData tile);
@@ -79,13 +82,16 @@ public class AttackMinion : Node
                     .mapArray[blackboard.hero.GetIndexHeroPos().x, blackboard.hero.GetIndexHeroPos().y - 1]
                     .isConnectedToPath) return true;
         }
+
         if (tile.hasDoorUp)
         {
-            if (blackboard.hero.GetIndexHeroPos().y + 1 >= blackboard.hero.mapManager.mapArray.GetLength(1)) return true;
+            if (blackboard.hero.GetIndexHeroPos().y + 1 >= blackboard.hero.mapManager.mapArray.GetLength(1))
+                return true;
             if (!blackboard.hero.mapManager
                     .mapArray[blackboard.hero.GetIndexHeroPos().x, blackboard.hero.GetIndexHeroPos().y + 1]
                     .isConnectedToPath) return true;
         }
+
         if (tile.hasDoorLeft)
         {
             if (blackboard.hero.GetIndexHeroPos().x - 1 < 0) return true;

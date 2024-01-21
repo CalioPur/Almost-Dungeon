@@ -13,8 +13,8 @@ public class BTBarbare : Tree
         origin = new Selector(
             new Sequence(
                 new FindMinionInCaC(BB),
-                new ChooseTargetToHit(BB, false, false),
-                new AttackMinion(BB),
+                new ChooseTargetToHit(BB, true, false),
+                new AttackMinion(BB, false),
                 new CheckTargetIsAlive(BB)
             ),
             new HeroMovementBehavior(BB)
