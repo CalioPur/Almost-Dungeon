@@ -2,8 +2,8 @@ INCLUDE ../../GlobalVariables.ink
 
 //<font=Witch of Thebes SDF></font>
 
-{not SMage1Seen : Patron ! Regardez celui-là, qu'est ce qu'il fait avec ses bouquins et son carnet ! #chara:minion minion:in } 
-{SMage1Seen : Patron ! Encore le type terrifiant ! #chara:minion minion:in }
+{not SMage1Seen : Patron ! Regardez celui-là, qu'est ce qu'il fait avec ses bouquins et son carnet ! #chara:minion #minion:in } 
+{SMage1Seen : Patron ! Encore le type terrifiant ! #chara:minion #minion:in }
 {not SMage1Seen : ->Encounter1} 
 {SMage1Seen : ->Encounter2} 
 
