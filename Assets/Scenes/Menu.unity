@@ -365,7 +365,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5492338122438822000, guid: 54460d5c4c2fd4d4f9d9694855ef3c75,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: f6d18c3180fc6d144b7a6de0674717a9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7d522a416e22ebe4ba56f5e5cb99b368, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.543
   m_Pitch: 1
@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credit
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b623357fac8f8bb49bfd409a631a51e7, type: 2}
   m_sharedMaterial: {fileID: -738383249372723230, guid: b623357fac8f8bb49bfd409a631a51e7,
