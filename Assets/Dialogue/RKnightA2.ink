@@ -9,4 +9,5 @@ Enfer ! C'est une Armure de Vitalité ! #chara:dragon
 En garde Dragon, avec cette armure je suis capable d'affronter n'importe quoi ! #chara:knight
 Vite mon Sbire ! Prépare moi des explosifs, beaucoup d'explosifs ! Il faut l'arrêter avant qu'il soit trop tard ! #chara:dragon
 Pas de soucis patron ! Voilà ! Avec ça, on va l'envoyer sur orbite ! #minion:in #chara:minion
+Mon <color=red>courage</color> ne sera pas affecté par quelques étincelles Dragon ! #chara:knight
 -> END

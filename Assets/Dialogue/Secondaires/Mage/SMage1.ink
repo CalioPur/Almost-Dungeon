@@ -16,8 +16,8 @@ Patron..  Qu'est ce qu'il dit ? J'ai rien compris ! #chara:minion
 Attention ! Il approche ! #chara:dragon
 <font=Witch of Thebes SDF>Vous êtes le maitre des lieux n'est ce pas, n'ayez pas peur, je voudrais simplement savoir ou sont les cabinets.</font> #chara:mage
 Patron ! J'ai peur ! Il veut nous lancer un sort ! #chara:minion
-* [L'attaquer] -> Regen
-* [Lui montrer le chemin] -> Damages
+* [ <font=Witch of Thebes SDF> L'attaquer (perd <color=blue>preureux</color> )] -> Regen
+* [ <font=Witch of Thebes SDF> Lui montrer le chemin (perd <color=yellow>clairvoyant</color> )] -> Damages
     
 === Regen ===
 AAAAAH ! Mais vous etes fou ! Je veux juste remplir mon thermos ! #chara:mage #changepers:peureux #minion:out
@@ -33,8 +33,8 @@ Pas de panique, je vais essayer de communiquer cette fois ci ! #chara:dragon
 Au secours ! Patron ! J'ai l'impression qu'il essaie d'aspirer mon âme ! #chara:minion
 Le voilà qui se rapproche à nouveau ! #chara:dragon 
 Vite patron ! Faites un truc ! #chara:minion
-* [La diriger vers les oubliettes] -> Regen2
-* [Accuser les monstres de fraude] -> Damages2
+* [ <font=Witch of Thebes SDF> L'attaquer (perd <color=blue>preureux</color> )] -> Regen2
+* [ <font=Witch of Thebes SDF> Lui montrer le chemin (perd <color=yellow>clairvoyant</color> )] -> Damages2
  -> END
  
  === Regen2 ===
