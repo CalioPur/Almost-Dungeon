@@ -325,9 +325,10 @@ public class DialogueManager : MonoBehaviour
                             }
                         }
                         break;
-                    case "dragonHeal":
+                    case "healDragon":
                         var healDragon = int.Parse(split[1]);
                         FindObjectOfType<UI_Dragon>().Heal(healDragon);
+                        Debug.LogWarning("HEALDRAGON" + split[1]);
                         break;
                     case "minion":
                         print("MINION");

@@ -1,15 +1,18 @@
 INCLUDE GlobalVariables.Ink
 
-VAR pdv = 10
-
-Tiens ! Encore en vie Sir Kay ?  #chara:dragon
-Oh non... Pas encore lui...  #chara:knight #emote:fear
-Et bien ? Que vous arrive t-il ? Votre courage aurait-il été soufflé par mes explosions ! #chara:dragon
-Pitié, arrêtez les explosions, je n'en peux plus... #chara:knight
-Dites moi que c'est fini je vous en prie... 
-Haha ! Allez-y patron, il est épuisé c'est le moment de tout faire péter ! #chara:minion #minion:in
-Allons Sir Kay, vous ne pensiez tout de même pas serieusement que j'allais vous laisser partir après que vous m'ayez volé une armure ? #chara:dragon
-Non ! Je ne vais pas mourir ici ! Je dois m'enfuir ! #chara:knight
-Regardez patron ! Le voilà qui détale comme un lapin ! #chara:minion
-Empêchons ce <color=cyan>pleutre</color> de s'enfuir ! #chara:dragon #minion:1
+Ha... haha... ha toujours là... #chara:barbarian 
+Mon cher Kuglof, toujours en vie ? #chara:dragon
+Dragon ! Tu n'as pas tenu parole !  #chara:barbarian 
+Effectivement ça tient presque du miracle à ce niveau. #chara:dragon
+Allons, allons, n'exagérons rien, je me suis bien amusé en tout cas. #chara:barbarian 
+Par contre, soyez gentil et arrêtez avec vos cracheurs de feu, je vais essayer de tout <color=orange>explorer</color> cette fois-ci !
+Etonnant, je ne crois pas avoir déjà rencontré de barbare aussi content de tout explorer. #chara:dragon
+Haha ! Je suis heureux de savoir que même un gros lézard est capable de comprendre mon caractère unique ! #chara:barbarian 
+Ceci dit, enlevez ces cracheurs de feu de votre donjon avant que je m'énerve vraiment...
+Et vos toiles d'araignées tant que nous y sommes...
+Quel dommage, ils sont pourtant si contents de travailler avec vous... #chara:dragon
+Haha, c'est bien normal ! #chara:barbarian
+Patron ! Tenez, je vous ai concocté un deck avec tout ce que ce type déteste ! #minion:in #chara:minion
+Triple dose d'archers et de toiles d'araignées hahahahahahaha ! 
+... #chara:dragon #minion:out
 -> END
