@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0c0899738f3ba47b772f3f4785c1d3, type: 3}
   m_Name: Barbare
   m_EditorClassIdentifier: 
-  <Img>k__BackingField: {fileID: 21300000, guid: 183aabf4ecefaf14c8aadd30cce0cabe,
+  <Img>k__BackingField: {fileID: 21300000, guid: 81d506a2eb23e2042947efc2b058f63a,
     type: 3}
   <HealthPoint>k__BackingField: 10
   <AttackPoint>k__BackingField: 3

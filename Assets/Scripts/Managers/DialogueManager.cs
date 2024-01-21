@@ -92,6 +92,7 @@ public class DialogueManager : MonoBehaviour
         print("HERO DIALOGUE COUNT : "+heroDialogue.Count);
         dialogueIndex = -1;
         GetUiElements();
+        CheckHeroClass();
         slots.SetActive(false);
         timer.SetActive(false);
         dialogues = new List<TextAsset>();
@@ -413,6 +414,12 @@ public class DialogueManager : MonoBehaviour
         lightHero.SetActive(false);
         lightDragon.SetActive(false);
     }
+
+    void CheckHeroClass()
+    {
+        otherImage.sprite = GameManager._instance.currentHero.classe.Img;
+    }
+
 
     /*public void SetGlobalInkFile(string json)
     {

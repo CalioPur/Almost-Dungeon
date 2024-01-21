@@ -13,6 +13,7 @@ public class FireCamp : TrapData
     
     private EnemyInstance firecampInstance;
     private Vector2Int heroPos = new Vector2Int(-9999, -9999);
+    private bool isReviving = false;
 
      public static void StockMinions(MinionData minion)
     {
@@ -32,6 +33,7 @@ public class FireCamp : TrapData
         yield return new WaitForSeconds(2f);
         foreach (var minion in MinionDatas)
         {
+            mapManager.RemoveEnemyOnTile(new Vector2Int(minion.indexX, minion.indexY), minion, minion.transform.position);
            Destroy(minion.gameObject);
         }
         MinionDatas.Clear();
@@ -69,7 +71,15 @@ public class FireCamp : TrapData
         //je check si le hero est sur ma case        
         if (heroPos.x == indexX && heroPos.y == indexY)
         {
-            Revive();
+            if (!isReviving)
+            {
+                isReviving = true;
+                Revive();
+            }
+        }
+        else if (isReviving)
+        {
+            isReviving = false;
         }
     }
 
