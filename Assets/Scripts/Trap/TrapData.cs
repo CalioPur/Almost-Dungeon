@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public abstract class TrapData : MonoBehaviour
 {
     public static event Action<int, AttackType> OnTrapAttackEvent; 
-    public static event Action OnTrapStunEvent; 
+    public static event Action<TrapData> OnTrapStunEvent; 
     public abstract void TakeDamage(int damage,  AttackType attackType);
     
     public bool isDead;
@@ -20,6 +20,7 @@ public abstract class TrapData : MonoBehaviour
     protected int entityId;
     
     protected bool isStunned;
+    protected TrapData web;
     
     protected abstract void OnTick();
     protected abstract void Init();
@@ -42,7 +43,7 @@ public abstract class TrapData : MonoBehaviour
     
     public void Stun()
     {
-        OnTrapStunEvent?.Invoke();
+        OnTrapStunEvent?.Invoke(this);
         SoundManagerIngame.Instance.PlayDialogueSFX("SpiderStun");
     }
     
@@ -91,8 +92,9 @@ public abstract class TrapData : MonoBehaviour
         OnTrapAttackEvent = null;
     }
 
-    public void Stunned()
+    public void Stunned(TrapData _web)
     {
-        
+            isStunned = true;
+            web = _web;
     }
 }

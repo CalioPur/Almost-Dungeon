@@ -38,6 +38,7 @@ public class Hero : MonoBehaviour, IFlippable
     public AudioClip[] attackClip;
     private bool isStunned;
     private GameObject attackPoint;
+    private TrapData web;
 
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
@@ -68,6 +69,7 @@ public class Hero : MonoBehaviour, IFlippable
         if (isStunned)
         {
             isStunned = false;
+            web.TakeDamage(999, AttackType.Physical);
             return;
         }
         bt.getOrigin().Evaluate(bt.getOrigin());
@@ -228,9 +230,10 @@ public class Hero : MonoBehaviour, IFlippable
         PathFinding.OnNoPathFound -= PlayEmoteStuck;
     }
 
-    private void Stun()
+    private void Stun(TrapData _web)
     {
         isStunned = true;
+        web = _web;
     }
 
     public void AddAnim(AnimToQueue animToQueue)

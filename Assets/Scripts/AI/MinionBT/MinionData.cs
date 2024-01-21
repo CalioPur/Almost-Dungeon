@@ -43,6 +43,7 @@ public class MinionData : TrapData, IFlippable
         if (isStunned)
         {
             isStunned = false;
+            web.TakeDamage(999, AttackType.Physical);
             return;
         }
         bt.getOrigin().Evaluate(bt.getOrigin());
