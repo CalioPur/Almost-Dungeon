@@ -11,7 +11,7 @@ Allez y patron réglez lui son compte !  #minion:in #chara:minion
 
 
 === Verite ===
-Mais si, vous allez continuer ! Si vous ne voulez pas finir en roti ! #chara:dragon #minion:out
+Mais si, vous allez continuer ! Si vous ne voulez pas finir en rôti ! #chara:dragon #minion:out
 Nooooooon ! #chara:knight #damages:4 #changepers:peureux
    -> Choix2
 

@@ -1,7 +1,5 @@
 INCLUDE GlobalVariables.ink
 
-{RknightSeen : WOHOOOOO}
-{not RknightSeen : MARCHE PAS}
 Haha ! Me revoilà Dragon ! J'ai survécu à tes pièges ! #chara:knight
 Ha, Sir Kay, vous appréciez votre virée dans le Donjon ? #chara:dragon
 Haha, Bien sûr, ce n'était qu'un échauffement pour moi, je suis toujours prêt à te pourfendre ! #chara:knight
