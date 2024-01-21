@@ -241,7 +241,7 @@ public class DialogueManager : MonoBehaviour
                                 ShowArrowKnight();
                                 otherImage.sprite = mageSprite;
                                 break;
-                            case "barbare":
+                            case "barbarian":
                                 ShowArrowKnight();
                                 otherImage.sprite = barbareSprite;
                                 break;
@@ -308,7 +308,7 @@ public class DialogueManager : MonoBehaviour
                             case("mage"):
                                 GameManager._instance.currentHero.classe = mageClass;
                                 break;
-                            case("barbare"):
+                            case("barbarian"):
                                 GameManager._instance.currentHero.classe = barbareClass;
                                 break;
                         }
