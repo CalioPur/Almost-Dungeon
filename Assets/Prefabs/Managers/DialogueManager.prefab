@@ -44,18 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c250cf9028da648b01b86c7375245a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalsInkFile:
-    inkAsset: {fileID: 102900000, guid: a0b64babdc4ddda4ab9508b6930db7ee, type: 3}
-    jsonAssetDirectory: {fileID: 0}
-    jsonAsset: {fileID: 0}
-    unhandledCompileErrors: []
-    recursiveIncludeErrorPaths: []
-    errors: []
-    warnings: []
-    todos: []
-    masterInkAssets: []
-    localIncludePaths: []
-    includes: []
   interludeDialogues:
   - {fileID: 4900000, guid: 86fab50253d2cc045b4c254b9c3b29ae, type: 3}
   - {fileID: 4900000, guid: 1d24240f33bf75940a1fe3a5e3cb808c, type: 3}
@@ -66,7 +54,7 @@ MonoBehaviour:
   HeroSprite: {fileID: 21300000, guid: 183aabf4ecefaf14c8aadd30cce0cabe, type: 3}
   archerSprite: {fileID: 21300000, guid: 03c60f67f624c3c4ab5fff653728ecfb, type: 3}
   mageSprite: {fileID: 0}
-  barbareSprite: {fileID: 0}
+  barbareSprite: {fileID: 21300000, guid: 81d506a2eb23e2042947efc2b058f63a, type: 3}
   MinionSprite: {fileID: 21300000, guid: 65ee64f22058c114997d49ddf6d99b08, type: 3}
   knightClass: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   archerClass: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}

@@ -818,12 +818,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
         type: 3}
-      propertyPath: barbareSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 9a575ab06f40df24686774879bb26a0e,
-        type: 3}
-    - target: {fileID: 671259875234216051, guid: 1b581116af64e2b4aa30e327e4651687,
-        type: 3}
       propertyPath: globalsInkFile
       value: 
       objectReference: {fileID: 4900000, guid: 4ed389083f8177e4c898823e3b1d858a, type: 3}
