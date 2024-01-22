@@ -11,8 +11,8 @@ Vite patron ! Construisez le Donjon avant qu'il ne puisse nous atteindre ! #char
 Le voilà !
 Ah te voilà Dragon ! Reste où tu es ! J'arrive pour prendre ta tête ! #chara:knight #minion:out
 
-* [Le menacer] -> ending1
-* [L'insulter] -> ending2
+* [Menacer le héros] -> ending1
+* [Insulter le héros] -> ending2
 
 === ending1 ===
 N'approchez pas chevalier ! Je vais me voir dans l'obligation de vous carboniser si vous essayez de sortir ! #chara:dragon

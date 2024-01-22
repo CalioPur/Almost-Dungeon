@@ -192,7 +192,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<u>Marketting:</u>\n - Esteban Grellier\n - Thomas Martel"
+  m_text: "<u>Marketing:</u>\n - Esteban Grellier\n - Thomas Martel"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fba015d1adf7ba14a80fe1348ad955e8, type: 2}
   m_sharedMaterial: {fileID: -494056700596629925, guid: fba015d1adf7ba14a80fe1348ad955e8,
@@ -715,7 +715,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Credit:'
+  m_text: 'Credits:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fba015d1adf7ba14a80fe1348ad955e8, type: 2}
   m_sharedMaterial: {fileID: -494056700596629925, guid: fba015d1adf7ba14a80fe1348ad955e8,
@@ -779,7 +779,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -97.05373, w: -35.20634}
+  m_margin: {x: 0, y: 0, z: -351.88446, w: -35.20634}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
