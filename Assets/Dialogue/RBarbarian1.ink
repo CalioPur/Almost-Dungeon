@@ -10,4 +10,4 @@ Ne vous inquiétez pas Dragon, je prendrai votre tête après avoir rapidement v
 Le voilà !
 Ha ! Vous apprendrez que mon doonjon est loin d'être rapidement visité. #chara:dragon
 Mais allons-y guerrier, montrez-moi un peu ce que vous avez dans le ventre. 
-Voyons ce que votre hâche vaut face à mes cracheurs de feu !
+Voyons ce que votre hache vaut face à mes cracheurs de feu !

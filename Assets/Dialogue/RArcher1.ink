@@ -1,13 +1,14 @@
 INCLUDE GlobalVariables.ink
 
-Hahaha, enfin dans un donjon ! L'aventure m'appelle ! #chara:barbarian 
-Soyez la bienvenue guerrier !  #chara:dragon
-Pas possible ! Un dragon, comme dans les livres ! #chara:barbarian 
-Aha ! Enfin quelqu'un m'appréciant à ma juste valeur ! #chara:dragon
-Pour sûr mon bon Dragon ! Je sens que cette aventure promet d'être excitante. #chara:barbarian 
-Ah ? Et bien vous m'en voyez ravi pour vous... #chara:dragon
-Ne vous inquiétez pas Dragon, je prendrai votre tête après avoir rapidement vu votre petit donjon ! #chara:barbarian 
-Le voilà !
-Ha ! Vous apprendrez que mon doonjon est loin d'être rapidement visité. #chara:dragon
-Mais allons-y guerrier, montrez-moi un peu ce que vous avez dans le ventre. 
-Voyons ce que votre hâche vaut face à mes cracheurs de feu !
+Enfin la Crypte, les plus grands artefacts du Donjon sont dans ces souterrains #chara:archer
+Tiens... Une archère ose troubler mon sommeil cette fois-ci... #chara:dragon
+Le Dragon ! Impossible de m'approcher discrètement du trésor ! #chara:archer
+Certainement pas, avant d'accéder aux richesses contenues dans cet étage, vous devrez en affronter les gardiens. #chara:dragon
+Hmm... Tout cela ne m'inspire rien de bon... #chara:archer 
+Attendez de voir ce qui se cache dans la brume, vous n'allez pas être déçu. #chara:dragon
+Ha ! Vous dites qu'il y'a des trésors dans la brume ? #chara:archer 
+PATRON ! PATRON ! #minion:in #chara:minion
+Patron, je vous ai ramené votre café mais après être passé dans la brume un squelette a essayé de me tuer !
+Et votre mug est tombé par terre...
+HA ! Il n'y a pas $vraiment$ de trésor dans la brume finalement ! #chara:archer #minion:out
+... #chara:dragon

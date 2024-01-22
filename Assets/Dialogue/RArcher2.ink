@@ -1,18 +1,16 @@
 INCLUDE GlobalVariables.ink
 
-Hahaha, me revoilà Dragon ! #chara:barbarian 
-Si ce n'est pas ce cher Kuglof #chara:dragon
-Haha ! C'est bien moi ! Et vous pouvez constater que je suis toujours en un seul morceau #chara:barbarian 
-Effectivement ça tient presque du miracle à ce niveau. #chara:dragon
-Allons, allons, n'exagérons rien, je me suis bien amusé en tout cas. #chara:barbarian 
-Par contre, soyez gentil et arrêtez avec vos cracheurs de feu, je vais essayer de tout <color=orange>explorer</color> cette fois-ci !
-Etonnant, je ne crois pas avoir déjà rencontré de barbare aussi content de tout explorer. #chara:dragon
-Haha ! Je suis heureux de savoir que même un gros lézard est capable de comprendre mon caractère unique ! #chara:barbarian 
-Ceci dit, enlevez ces cracheurs de feu de votre donjon avant que je m'énerve vraiment...
-Et vos toiles d'araignées tant que nous y sommes...
-Quel dommage, ils sont pourtant si contents de travailler avec vous... #chara:dragon
-Haha, c'est bien normal ! #chara:barbarian
-Patron ! Tenez, je vous ai concocté un deck avec tout ce que ce type déteste ! #minion:in #chara:minion
-Triple dose d'archers et de toiles d'araignées hahahahahahaha ! 
-... #chara:dragon #minion:out
+Ha ! Vous revoilà Dragon ! Malgré votre tentative de m'entourlouper j'ai vu clair dans votre jeu!  #chara:archer
+J'ai finalement trouvé un trésor dans la brume !
+Pardon ? Quel trésor ? #chara:dragon
+Et bien ! Vous voyez bien, cette paire de lunettes noires magiques ! #chara:archer
+Ce sont de simples lunettes de soleil... #chara:dragon
+C'est vrai que maintenant que vous le dites... C'est peut être pour ça que je ne vois plus rien dans cette pénombre. #chara:archer 
+Et bien qu'attendez vous pour les enlever ? #chara:dragon
+Elles sont bloquées...#chara:archer 
+Hahaha ! Ce sont des lunettes de soleil maudites ! #chara:dragon
+Patron ? Vous étiez là ? #minion:in #chara:minion
+Pourquoi l'archère est en train de courir dans les murs ?
+Elle est devenue complètement <color=green>bigleuse ?</color>
+Longue histoire... #chara:dragon #minion:out
 -> END
