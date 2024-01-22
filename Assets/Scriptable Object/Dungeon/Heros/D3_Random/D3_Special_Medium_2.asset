@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D3_Special_Medium_2
   m_EditorClassIdentifier: 
-  nameOfHero: 
+  nameOfHero: Thorias
   health: 20
   speed: 90
   classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
@@ -20,5 +20,5 @@ MonoBehaviour:
   aggressivity: 2
   personalities: 
   heroDialogues:
-  - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
+  - {fileID: 4900000, guid: 0ee8748d37c3bab49a1d762c1d414d35, type: 3}
   keyToUnlock: D3_L4

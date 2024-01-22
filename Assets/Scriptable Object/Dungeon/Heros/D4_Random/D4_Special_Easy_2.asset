@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D4_Special_Easy_2
   m_EditorClassIdentifier: 
-  nameOfHero: Will Navidson
+  nameOfHero: Will
   health: 10
   speed: 60
   classe: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
@@ -20,5 +20,5 @@ MonoBehaviour:
   aggressivity: 0
   personalities: 00000000
   heroDialogues:
-  - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
+  - {fileID: 4900000, guid: b52573c82a133a14292878d573740768, type: 3}
   keyToUnlock: D2_L1

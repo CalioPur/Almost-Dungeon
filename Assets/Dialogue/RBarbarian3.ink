@@ -10,6 +10,6 @@ Je vous préviens Dragon ! Je suis Kuglov le pourfendeur de Krakens ! #chara:bar
 Et quand je suis <color=yellow>impatient</color> !
 JE CASSE TOUT !
 RAAAAAAAAAAAAH !
-Euh Patron ! Je crois qu'il vient de casser le mur porteur de votre salle des trophées... #minion:in #chara:minion! 
+Euh Patron ! Je crois qu'il vient de casser le mur porteur de votre salle des trophées... #minion:in #chara:minion
 Il faut l'arrêter avant qu'il ne casse tout le Donjon ! #chara:dragon #minion:out
 -> END

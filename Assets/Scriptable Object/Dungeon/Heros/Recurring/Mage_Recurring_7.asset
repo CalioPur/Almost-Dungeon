@@ -16,8 +16,8 @@ MonoBehaviour:
   health: 15
   speed: 90
   classe: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
-  visionType: 0
-  aggressivity: 2
+  visionType: 2
+  aggressivity: 1
   personalities: 
   heroDialogues:
   - {fileID: 4900000, guid: b4facab68c21e324586ba8dc3b7fe9c2, type: 3}

@@ -1,13 +1,12 @@
 INCLUDE GlobalVariables.ink
 
-Hahaha, enfin dans un donjon ! L'aventure m'appelle ! #chara:barbarian 
-Soyez la bienvenue guerrier !  #chara:dragon
-Pas possible ! Un dragon, comme dans les livres ! #chara:barbarian 
-Aha ! Enfin quelqu'un m'appréciant à ma juste valeur ! #chara:dragon
-Pour sûr mon bon Dragon ! Je sens que cette aventure promet d'être excitante. #chara:barbarian 
-Ah ? Et bien vous m'en voyez ravi pour vous... #chara:dragon
-Ne vous inquiétez pas Dragon, je prendrai votre tête après avoir rapidement vu votre petit donjon ! #chara:barbarian 
-Le voilà !
-Ha ! Vous apprendrez que mon doonjon est loin d'être rapidement visité. #chara:dragon
-Mais allons-y guerrier, montrez-moi un peu ce que vous avez dans le ventre. 
-Voyons ce que votre hâche vaut face à mes cracheurs de feu !
+Le calme des bois... Cette forêt souterraine est toujours le meilleur endroit du Donjon où faire la sieste. #chara:dragon
+Je sais pas, patron, j'ai toujours un peu peur qu'un aventurier surgisse des buissons pour m'attaquer #chara:minion #minion:in 
+Bonjour ! #chara:mage
+Iiiiiik ! Un magicien, à l'aide Patron ! #chara:minion
+Dites-moi mon bon Dragon, je cherche à lire cet ouvrage, pourriez-vous m'aider à le déchiffrer ? #chara:mage #minion:out
+Il s'agit du livre de <font=Witch of Thebes SDF>Cthulhu</font> ...
+Je ne suis pas dragon et bibliothécaire cher mage.  #chara:dragon
+Mais prenez votre temps pour essayer de le déchiffrer, n'hésitez pas à vous reposer aux campements... et surtout...
+Surtout ? #chara:mage
+Attention aux loups ! #chara:dragon

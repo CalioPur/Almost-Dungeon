@@ -1,18 +1,13 @@
 INCLUDE GlobalVariables.ink
 
-Hahaha, me revoilà Dragon ! #chara:barbarian 
-Si ce n'est pas ce cher Kuglof #chara:dragon
-Haha ! C'est bien moi ! Et vous pouvez constater que je suis toujours en un seul morceau #chara:barbarian 
-Effectivement ça tient presque du miracle à ce niveau. #chara:dragon
-Allons, allons, n'exagérons rien, je me suis bien amusé en tout cas. #chara:barbarian 
-Par contre, soyez gentil et arrêtez avec vos cracheurs de feu, je vais essayer de tout <color=orange>explorer</color> cette fois-ci !
-Etonnant, je ne crois pas avoir déjà rencontré de barbare aussi content de tout explorer. #chara:dragon
-Haha ! Je suis heureux de savoir que même un gros lézard est capable de comprendre mon caractère unique ! #chara:barbarian 
-Ceci dit, enlevez ces cracheurs de feu de votre donjon avant que je m'énerve vraiment...
-Et vos toiles d'araignées tant que nous y sommes...
-Quel dommage, ils sont pourtant si contents de travailler avec vous... #chara:dragon
-Haha, c'est bien normal ! #chara:barbarian
-Patron ! Tenez, je vous ai concocté un deck avec tout ce que ce type déteste ! #minion:in #chara:minion
-Triple dose d'archers et de toiles d'araignées hahahahahahaha ! 
-... #chara:dragon #minion:out
+C'est bon ? Les loups sont partis ?? #chara:mage
+Alors Cicero ? Toujours à essayer de déchiffrer votre livre ? #chara:dragon
+Je n'y arrive plus, je ne vois plus rien... #chara:mage
+A force de lire dans l'ombre du donjon vous auriez dû vous douter que cela allait vous rendre <color=green>bigleux</color> #chara:dragon
+Vous êtes certain que vous ne voulez pas m'aider ? #chara:mage
+Aider un magicien en détresse, je considère plutôt cela comme une opportunité ! #chara:dragon
+Haha... Pour la science, la magie ? #chara:mage
+Pour un repas gratuit ! #chara:dragon
+Je ne compte pas mourir avant d'avoir terminé de déchiffrer ce grimoire ! #chara:mage
+Alors <color=blue>fuyez</color> ! #chara:dragon
 -> END

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D4_Special_Hard_3
   m_EditorClassIdentifier: 
-  nameOfHero: 
+  nameOfHero: Uldor
   health: 25
   speed: 80
   classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
@@ -20,5 +20,5 @@ MonoBehaviour:
   aggressivity: 2
   personalities: 
   heroDialogues:
-  - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
+  - {fileID: 4900000, guid: fda79ff1af2953f4783f247754da9b02, type: 3}
   keyToUnlock: D2_L1

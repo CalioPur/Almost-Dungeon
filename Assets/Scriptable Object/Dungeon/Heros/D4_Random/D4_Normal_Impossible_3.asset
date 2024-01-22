@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D4_Normal_Impossible_3
   m_EditorClassIdentifier: 
-  nameOfHero: 
+  nameOfHero: Sire Hubert
   health: 25
   speed: 80
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
@@ -20,5 +20,5 @@ MonoBehaviour:
   aggressivity: 2
   personalities: 
   heroDialogues:
-  - {fileID: 4900000, guid: b4fc807996b7a534b86d1dec2ff88eb1, type: 3}
+  - {fileID: 4900000, guid: aca8e50b5a40f874d97c98c09cad2511, type: 3}
   keyToUnlock: 
