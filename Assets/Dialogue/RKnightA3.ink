@@ -11,5 +11,5 @@ Haha ! Allez-y patron, il est épuisé c'est le moment de tout faire péter ! #c
 Allons Sir Kay, vous ne pensiez tout de même pas serieusement que j'allais vous laisser partir après que vous m'ayez volé une armure ? #chara:dragon
 Non ! Je ne vais pas mourir ici ! Je dois m'enfuir ! #chara:knight
 Regardez patron ! Le voilà qui détale comme un lapin ! #chara:minion
-Empêchons ce <color=cyan>pleutre</color> de s'enfuir ! #chara:dragon #minion:1
+Empêchons ce <color=blue>pleutre</color> de s'enfuir ! #chara:dragon #minion:1
 -> END

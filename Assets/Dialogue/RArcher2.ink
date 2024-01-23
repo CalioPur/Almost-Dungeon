@@ -1,6 +1,6 @@
 INCLUDE GlobalVariables.ink
 
-Ha ! Vous revoilà Dragon ! Malgré votre tentative de m'entourlouper j'ai vu clair dans votre jeu!  #chara:archer
+Ha ! Vous revoilà Dragon ! Malgré votre tentative de m'entourlouper j'ai vu clair dans votre jeu !  #chara:archer
 J'ai finalement trouvé un trésor dans la brume !
 Pardon ? Quel trésor ? #chara:dragon
 Et bien ! Vous voyez bien, cette paire de lunettes noires magiques ! #chara:archer
