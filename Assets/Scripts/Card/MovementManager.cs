@@ -99,7 +99,7 @@ public class MovementManager : MonoBehaviour
     private Color whiteA05 = new(255, 255, 255, 0.5f);
     void Update()
     {
-        if (selectedCard != null)
+        if (selectedCard != null) //si on a une carte dans la main
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -220,7 +220,9 @@ public class MovementManager : MonoBehaviour
     {
         selectedCard = cardHand;
         soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
-        cardVisualizer.transform.rotation = Quaternion.Euler(baseRotation);
+        
+        cardVisualizer.transform.rotation =
+            Quaternion.Euler(baseRotation - selectedCard.Card.Rotation * Vector3.up); //recupere la rotation de la carte quand on clique pour afficher correctement la preview
         cardVisualizer.transform.position = new Vector3(100, 100, 100);
         cardVisualizer.gameObject.SetActive(true);
         if (!selectedCard) return;
