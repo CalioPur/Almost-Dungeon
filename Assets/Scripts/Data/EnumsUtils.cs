@@ -14,7 +14,6 @@ public enum TrapType
     BasicCaC,
     Archer,
     Skeleton,
-    Slime,
     FireCamp,
     Wolf,
     Laden,
