@@ -6,7 +6,6 @@ using UnityEngine.Serialization;
 
 public class MinionData : TrapData, IFlippable
 {
-    public static event Action OnHeroPosAsked;
     public EnemyInstance minionInstance;
     [HideInInspector] public int indexOffsetTile;
 
@@ -24,17 +23,11 @@ public class MinionData : TrapData, IFlippable
 
     public void GetHeroPos()
     {
-        OnHeroPosAsked?.Invoke();
-    }
-
-    private void GetHeroPos(Vector2Int pos)
-    {
-        bt.blackboard.heroPosition = pos;
+        bt.blackboard.heroPosition = GameManager.Instance.GetHeroPos();
     }
 
     public static void ClearSubscribes()
     {
-        OnHeroPosAsked = null;
     }
 
     protected override void OnTick()
@@ -77,7 +70,6 @@ animator.SetTrigger("TakeDamage");
             StartListenTick();
         else
             GameManager.OnGameStartEvent += StartListenTick;
-        Hero.OnGivePosBackEvent += GetHeroPos;
     }
 
     public void StartListenTick()

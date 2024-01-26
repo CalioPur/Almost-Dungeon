@@ -91,7 +91,7 @@ public class DialogueManager : MonoBehaviour
     
     public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, List<TextAsset> heroDialogue, DeckManager cardsManager)
     {
-        GameManager._instance.isInDialogue = true;
+        GameManager.Instance.isInDialogue = true;
         Debug.LogWarning("PlayAllThreeDialogues");
         print("HERO DIALOGUE COUNT : "+heroDialogue.Count);
         dialogueIndex = -1;
@@ -148,7 +148,7 @@ public class DialogueManager : MonoBehaviour
 
             minionToken.SetActive(false);
             slots.SetActive(true);
-            GameManager._instance.isInDialogue = false;
+            GameManager.Instance.isInDialogue = false;
             return;
         }
         
@@ -254,34 +254,34 @@ public class DialogueManager : MonoBehaviour
                         break;
                     case "damages":
                         var damage = int.Parse(split[1]);
-                        GameManager._instance.heroCurrentHealthPoint -= damage;
+                        GameManager.Instance.heroCurrentHealthPoint -= damage;
                         break;
                     case "hpplus":
                         var heal = int.Parse(split[1]);
-                        GameManager._instance.heroHealthPoint += heal;
-                        GameManager._instance.heroCurrentHealthPoint += heal;
+                        GameManager.Instance.heroHealthPoint += heal;
+                        GameManager.Instance.heroCurrentHealthPoint += heal;
                         break;
                     case "changepers":
                         switch (split[1])
                         {
                             
                             case("bigleux"):
-                                GameManager._instance.currentHero.visionType = VisionType.BIGLEUX;
+                                GameManager.Instance.currentHero.visionType = VisionType.BIGLEUX;
                                 break;
                             case("visionBase"):
-                                GameManager._instance.currentHero.visionType = VisionType.LIGNEDROITE;
+                                GameManager.Instance.currentHero.visionType = VisionType.LIGNEDROITE;
                                 break;
                             case("clairvoyant"):
-                                GameManager._instance.currentHero.visionType = VisionType.CLAIRVOYANT;
+                                GameManager.Instance.currentHero.visionType = VisionType.CLAIRVOYANT;
                                 break;
                             case ("peureux"):
-                                GameManager._instance.currentHero.aggressivity = Aggressivity.PEUREUX;
+                                GameManager.Instance.currentHero.aggressivity = Aggressivity.PEUREUX;
                                 break;
                             case ("agroBase"):
-                                GameManager._instance.currentHero.aggressivity = Aggressivity.NONE;
+                                GameManager.Instance.currentHero.aggressivity = Aggressivity.NONE;
                                 break;
                             case ("courageux"):
-                                GameManager._instance.currentHero.aggressivity = Aggressivity.COURAGEUX;
+                                GameManager.Instance.currentHero.aggressivity = Aggressivity.COURAGEUX;
                                 break;
                         }
                         break;
@@ -300,16 +300,16 @@ public class DialogueManager : MonoBehaviour
                         switch (split[1])
                         {
                             case ("knight"):
-                                GameManager._instance.currentHero.classe = knightClass;
+                                GameManager.Instance.currentHero.classe = knightClass;
                                 break;
                             case ("archer"):
-                                GameManager._instance.currentHero.classe = archerClass;
+                                GameManager.Instance.currentHero.classe = archerClass;
                                 break;
                             case("mage"):
-                                GameManager._instance.currentHero.classe = mageClass;
+                                GameManager.Instance.currentHero.classe = mageClass;
                                 break;
                             case("barbarian"):
-                                GameManager._instance.currentHero.classe = barbareClass;
+                                GameManager.Instance.currentHero.classe = barbareClass;
                                 break;
                         }
                         break;
@@ -423,7 +423,7 @@ public class DialogueManager : MonoBehaviour
     void CheckHeroClass()
     {
         print("CHECK HERO CLASS");
-        otherImage.sprite = GameManager._instance.currentHero.classe.Img;
+        otherImage.sprite = GameManager.Instance.currentHero.classe.Img;
     }
 
 

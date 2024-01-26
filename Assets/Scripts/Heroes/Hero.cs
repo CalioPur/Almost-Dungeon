@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class Hero : MonoBehaviour, IFlippable
 {
-    public static event Action<Vector2Int> OnGivePosBackEvent;
     public static event Action<int, bool> OnTakeDamageEvent;
     public static event Action<int> OnPopUpEvent;
     public static event Action<Hero> OnMovedOnEmptyCardEvent;
@@ -44,7 +43,7 @@ public class Hero : MonoBehaviour, IFlippable
     {
         animQueue.AddAnim(new AnimToQueue(heroTr, targetTr,  offset , false, delay));
         animator.SetTrigger("Move");
-        GivePosBack();
+        GameManager.Instance.UpdateHeroPos(GetIndexHeroPos());
     }
     
     
@@ -88,7 +87,6 @@ public class Hero : MonoBehaviour, IFlippable
         TrapData.OnTrapStunEvent += Stun;
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
-        MinionData.OnHeroPosAsked+= GivePosBack;
         //PathFinding.OnNoPathFound += PlayEmoteStuck;
         PathFindingV2.OnNoPathFound += PlayEmoteStuck;
         OnDragonAttackEvent +=AttackDragon;
@@ -128,12 +126,7 @@ public class Hero : MonoBehaviour, IFlippable
     {
         emotesManager.PlayEmote(EmoteType.Stuck);
     }
-
-    private void GivePosBack()
-    {
-        OnGivePosBackEvent?.Invoke(IndexHeroPos);
-        //PathFinding.HeroPos = IndexHeroPos;
-    }
+    
     private void OnBeginToMove()
     {
         TickManager.SubscribeToMovementEvent(MovementType.Hero, OnTick, out entityId);
@@ -148,7 +141,6 @@ public class Hero : MonoBehaviour, IFlippable
     private void OnDestroy()
     {
         TickManager.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
-        OnGivePosBackEvent = null;
         OnTakeDamageEvent = null;
         OnPopUpEvent = null;
         OnMovedOnEmptyCardEvent = null;
@@ -225,7 +217,6 @@ public class Hero : MonoBehaviour, IFlippable
         TrapData.OnTrapAttackEvent -= TakeDamage;
         TrapData.OnTrapStunEvent -= Stun;
         TrapData.ClearEvent();
-        MinionData.OnHeroPosAsked -= GivePosBack;
         MinionData.ClearSubscribes();
         PathFinding.OnNoPathFound -= PlayEmoteStuck;
     }
