@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CardInfo enterDungeonInfo;
     [SerializeField] public Vector2Int normsSpawnX;
     [SerializeField] public Vector2Int normsSpawnY;
+    [field:SerializeField] public Transform AttackPoint { get; set; }
     public HeroSO currentHero;
     public int heroHealthPoint;
     public int heroCurrentHealthPoint;
@@ -28,8 +29,6 @@ public class GameManager : MonoBehaviour
     public bool isInDialogue = false;
     private Vector3 worldPos;
     private Vector2Int posHero;
-
-    //public int dragonHealthPoint = 10;
     
     
     

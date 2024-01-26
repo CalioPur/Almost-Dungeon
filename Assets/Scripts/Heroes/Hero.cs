@@ -36,7 +36,6 @@ public class Hero : MonoBehaviour, IFlippable
     private Vector2Int IndexHeroPos = new (0, 0);
     public AudioClip[] attackClip;
     private bool isStunned;
-    private GameObject attackPoint;
     private TrapData web;
 
     public void Move(Transform targetTr, Vector3 offset, float delay)
@@ -115,10 +114,10 @@ public class Hero : MonoBehaviour, IFlippable
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        attackPoint.transform.position = transform.position + dragonDir;
-        AnimToQueue animToQueue = new AnimToQueue(heroTr, attackPoint.transform , Vector3.zero, true, 0.5f, Ease.InBack, 2);
+        GameManager.Instance.AttackPoint.position = transform.position + dragonDir;
+        AnimToQueue animToQueue = new AnimToQueue(heroTr, GameManager.Instance.AttackPoint , Vector3.zero, true, 0.5f, Ease.InBack, 2);
         AddAnim(animToQueue);
-        PlayAttackFX(attackPoint.transform, 0.5f, obj);
+        PlayAttackFX(GameManager.Instance.AttackPoint, 0.5f, obj);
     }
 
 
@@ -209,7 +208,6 @@ public class Hero : MonoBehaviour, IFlippable
     private void Start()
     {
         OnBeginToMove();
-        attackPoint = GameObject.Find("AttackPoint");
     }
 
     private void OnDisable()
