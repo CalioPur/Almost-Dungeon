@@ -8,7 +8,6 @@ public class BTArcherMinion : MinionBTBase
         if (!blackboard) Debug.LogError("Blackboard is null");
 
         origin = new Sequence(
-            new GetHeroPos(blackboard),
             new HeroIsInSight(blackboard),
             new Selector(
                 new AttackMinionsIsMiddleOfTarget(blackboard, AttackType.Fire),

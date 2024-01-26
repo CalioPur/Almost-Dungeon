@@ -22,7 +22,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Transform map;
     [SerializeField] private FogPainter fogPainter;
     public CardInfo[] cards;
-    public TileData[,] mapArray;
+    public TileData[,] mapArray { get; private set; }
     private readonly MapManagerTools _mapManagerTools;
     private List<TilePresetStruct> _tilePreset = new();
 

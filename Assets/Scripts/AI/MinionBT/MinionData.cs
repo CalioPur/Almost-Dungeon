@@ -21,11 +21,6 @@ public class MinionData : TrapData, IFlippable
     
     private Vector2Int SpawnIndex;
 
-    public void GetHeroPos()
-    {
-        bt.blackboard.heroPosition = GameManager.Instance.GetHeroPos();
-    }
-
     public static void ClearSubscribes()
     {
     }

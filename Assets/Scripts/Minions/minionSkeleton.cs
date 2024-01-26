@@ -9,15 +9,9 @@ public class minionSkeleton : MinionData
     [SerializeField] private Transform model3DTr;
     [SerializeField] private Transform FXDigTr;
 
-    private void GetHeroPos(Vector2Int pos)
-    {
-        bt.blackboard.heroPosition = pos;
-    }
-
     protected override void Init()
     {
         base.Init();
-        Hero.OnGivePosBackEvent += GetHeroPos;
         var spriteColor = sprite.color;
         sprite.color = spriteColor;
         isDigger = true;

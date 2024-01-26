@@ -40,54 +40,56 @@ public class ALaid1
     
     public static DirectionToMove Line(Vector2Int startPos, TileData[,] mapData)
     {
-        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapData, Personnalities.Nothing);
-        distanceToExit = PathFinding.distToClosestExit;
-        List<TileData> tilesInLineOfSight = new List<TileData>();
-        map = mapData;
-        
-        tilesInLineOfSight = GetTilesInLineOfSight(startPos, map);
-        
-        
-        UpdateNumberOfExitsAndUnvisitedTiles(map);
-        if(numberOfExits == 0 && numberOfUnvisitedTiles == 0)
-        {
-            return PathFinding.BreakFreeFromNoExit(startPos, map);
-        }
-        
-        foreach(var personnalities in Hero.Instance.HeroBlackboard.personalities)
-        {
-            if (personnalities == PersonnalitiesV2.IMPATIENT)
-            {
-                if (PathFinding.distToClosestExit > 5)
-                {
-                    return PathFinding.BreakFreeFromNoExit(startPos, map);
-                }
-            }
-        }
-        
-        int numberOfVisibleEnemies = tilesInLineOfSight.Sum(tileData => tileData.enemies.Count);
-
-        if (aggressivity == Aggressivity.COURAGEUX && numberOfVisibleEnemies > 0)
-        {
-            return PathFinding.BFSFindPath(startPos, map, Personnalities.TheKiller);
-        }
-
-        if (aggressivity == Aggressivity.PEUREUX && numberOfVisibleEnemies > 0)
-        {
-            //run away from enemies
-            DirectionToMove dir = DirectionWithNoEnemies(startPos, map);
-            if (dir != DirectionToMove.None)
-            {
-                return dir;
-            }
-        }
-
-        return PathFinding.BFSFindPath(startPos, map, numberOfUnvisitedTiles == 0 ? Personnalities.HurryForTheExit : Personnalities.TheExplorer);
+        return DirectionToMove.Error;
+        // DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapData, Personnalities.Nothing);
+        // distanceToExit = PathFinding.distToClosestExit;
+        // List<TileData> tilesInLineOfSight = new List<TileData>();
+        // map = mapData;
+        //
+        // tilesInLineOfSight = GetTilesInLineOfSight(startPos, map);
+        //
+        //
+        // UpdateNumberOfExitsAndUnvisitedTiles(map);
+        // if(numberOfExits == 0 && numberOfUnvisitedTiles == 0)
+        // {
+        //     return PathFinding.BreakFreeFromNoExit(startPos, map);
+        // }
+        //
+        // foreach(var personnalities in Hero.Instance.HeroBlackboard.personalities)
+        // {
+        //     if (personnalities == PersonnalitiesV2.IMPATIENT)
+        //     {
+        //         if (PathFinding.distToClosestExit > 5)
+        //         {
+        //             return PathFinding.BreakFreeFromNoExit(startPos, map);
+        //         }
+        //     }
+        // }
+        //
+        // int numberOfVisibleEnemies = tilesInLineOfSight.Sum(tileData => tileData.enemies.Count);
+        //
+        // if (aggressivity == Aggressivity.COURAGEUX && numberOfVisibleEnemies > 0)
+        // {
+        //     return PathFinding.BFSFindPath(startPos, map, Personnalities.TheKiller);
+        // }
+        //
+        // if (aggressivity == Aggressivity.PEUREUX && numberOfVisibleEnemies > 0)
+        // {
+        //     //run away from enemies
+        //     DirectionToMove dir = DirectionWithNoEnemies(startPos, map);
+        //     if (dir != DirectionToMove.None)
+        //     {
+        //         return dir;
+        //     }
+        // }
+        //
+        // return PathFinding.BFSFindPath(startPos, map, numberOfUnvisitedTiles == 0 ? Personnalities.HurryForTheExit : Personnalities.TheExplorer);
     }
 
     private static DirectionToMove DirectionWithNoEnemies(Vector2Int startPos, TileData[,] tileDatas)
     {
-        return PathFinding.BFSFindPathWithLessEnemies(startPos, tileDatas, numberOfUnvisitedTiles == 0 ? Personnalities.HurryForTheExit : Personnalities.TheExplorer);
+        return DirectionToMove.Error;
+        //return PathFinding.BFSFindPathWithLessEnemies(startPos, tileDatas, numberOfUnvisitedTiles == 0 ? Personnalities.HurryForTheExit : Personnalities.TheExplorer);
     }
 
     public static List<TileData> GetTilesInLineOfSight(Vector2Int startPos, TileData[,] mapDatas)
@@ -144,33 +146,34 @@ public class ALaid1
     
     public static DirectionToMove Clairvoyant(Vector2Int startPos, TileData[,] mapDatas)
     {
-        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapDatas, Personnalities.Nothing);
-        distanceToExit = PathFinding.distToClosestExit;
-        map = mapDatas;
-        MapManager.Instance.SetAllTilesAsVisited();
-        numberOfEnemies = CheckNumberOfEnemiesOnMap(map);
-        
-        foreach(var personnalities in Hero.Instance.HeroBlackboard.personalities)
-        {
-            if (personnalities == PersonnalitiesV2.IMPATIENT)
-            {
-                if (PathFinding.distToClosestExit > 5)
-                {
-                    return PathFinding.BreakFreeFromNoExit(startPos, map);
-                }
-            }
-        }
-        
-        if (aggressivity == Aggressivity.COURAGEUX && numberOfEnemies > 0)
-        {
-            return PathFinding.BFSFindPath(startPos, map, Personnalities.TheKiller);
-        }
-
-        if (aggressivity == Aggressivity.PEUREUX && numberOfEnemies > 0)
-        {
-            //TODO JSP ALAID
-        }
-        return PathFinding.BFSFindPath(startPos, map, Personnalities.TheExplorer);
+        return DirectionToMove.Error;
+        // DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapDatas, Personnalities.Nothing);
+        // distanceToExit = PathFinding.distToClosestExit;
+        // map = mapDatas;
+        // MapManager.Instance.SetAllTilesAsVisited();
+        // numberOfEnemies = CheckNumberOfEnemiesOnMap(map);
+        //
+        // foreach(var personnalities in Hero.Instance.HeroBlackboard.personalities)
+        // {
+        //     if (personnalities == PersonnalitiesV2.IMPATIENT)
+        //     {
+        //         if (PathFinding.distToClosestExit > 5)
+        //         {
+        //             return PathFinding.BreakFreeFromNoExit(startPos, map);
+        //         }
+        //     }
+        // }
+        //
+        // if (aggressivity == Aggressivity.COURAGEUX && numberOfEnemies > 0)
+        // {
+        //     return PathFinding.BFSFindPath(startPos, map, Personnalities.TheKiller);
+        // }
+        //
+        // if (aggressivity == Aggressivity.PEUREUX && numberOfEnemies > 0)
+        // {
+        //     //TODO JSP ALAID
+        // }
+        // return PathFinding.BFSFindPath(startPos, map, Personnalities.TheExplorer);
     }
 
     private static int CheckNumberOfEnemiesOnMap(TileData[,] mapDatas)

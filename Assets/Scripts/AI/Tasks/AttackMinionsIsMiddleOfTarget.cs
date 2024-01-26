@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AttackMinionsIsMiddleOfTarget : Node
 {
-    MinionBlackboard blackboard;
-    AttackType attackType;
+    private MinionBlackboard blackboard;
+    private AttackType attackType;
 
     public AttackMinionsIsMiddleOfTarget(MinionBlackboard _blackboard, AttackType _attackType)
     {
@@ -16,12 +16,12 @@ public class AttackMinionsIsMiddleOfTarget : Node
     public override NodeState Evaluate(Node root)
     {
         Vector2Int minionPos = new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY);
-
+        Vector2Int heroPos = GameManager.Instance.GetHeroPos();
         switch (blackboard.dir)
         {
             case DirectionToMove.Up:
                 minionPos.y++;
-                while (minionPos.y < blackboard.heroPosition.y)
+                while (minionPos.y < heroPos.y)
                 {
                     if (blackboard.minionData.mapManager.GetNbMonstersOnPos(minionPos) > 0)
                     {
@@ -35,7 +35,7 @@ public class AttackMinionsIsMiddleOfTarget : Node
                 break;
             case DirectionToMove.Down:
                 minionPos.y--;
-                while (minionPos.y > blackboard.heroPosition.y)
+                while (minionPos.y > heroPos.y)
                 {
                     if (blackboard.minionData.mapManager.GetNbMonstersOnPos(minionPos) > 0)
                     {
@@ -49,7 +49,7 @@ public class AttackMinionsIsMiddleOfTarget : Node
                 break;
             case DirectionToMove.Left:
                 minionPos.x--;
-                while (minionPos.x > blackboard.heroPosition.x)
+                while (minionPos.x > heroPos.x)
                 {
                     if (blackboard.minionData.mapManager.GetNbMonstersOnPos(minionPos) > 0)
                     {
@@ -63,7 +63,7 @@ public class AttackMinionsIsMiddleOfTarget : Node
                 break;
             case DirectionToMove.Right:
                 minionPos.x++;
-                while (minionPos.x < blackboard.heroPosition.x)
+                while (minionPos.x < heroPos.x)
                 {
                     if (blackboard.minionData.mapManager.GetNbMonstersOnPos(minionPos) > 0)
                     {

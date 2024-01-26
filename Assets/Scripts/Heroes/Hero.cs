@@ -86,7 +86,6 @@ public class Hero : MonoBehaviour, IFlippable
         TrapData.OnTrapStunEvent += Stun;
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
-        //PathFinding.OnNoPathFound += PlayEmoteStuck;
         PathFindingV2.OnNoPathFound += PlayEmoteStuck;
         OnDragonAttackEvent +=AttackDragon;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
@@ -173,10 +172,6 @@ public class Hero : MonoBehaviour, IFlippable
 
     private void FXTakeDamage()
     {
-        // Sprite.DOColor(Color.red, 0.2f).SetEase(Ease.InBack).OnComplete(() =>
-        // {
-        //     Sprite.DOColor(Color.white, 0.2f).SetEase(Ease.InBack);
-        // });
         animator.SetTrigger("TakeDamage");
         OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
     }
@@ -216,7 +211,7 @@ public class Hero : MonoBehaviour, IFlippable
         TrapData.OnTrapStunEvent -= Stun;
         TrapData.ClearEvent();
         MinionData.ClearSubscribes();
-        PathFinding.OnNoPathFound -= PlayEmoteStuck;
+        PathFindingV2.OnNoPathFound -= PlayEmoteStuck;
     }
 
     private void Stun(TrapData _web)

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AttackMinionsInLine : Node
 {
-    HeroBlackboard blackboard;
+    private HeroBlackboard blackboard;
 
     public AttackMinionsInLine(HeroBlackboard _blackboard)
     {

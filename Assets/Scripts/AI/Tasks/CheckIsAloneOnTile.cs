@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CheckIsAloneOnTile : Node
 {
-    MinionBlackboard minionBlackboard;
+    private MinionBlackboard minionBlackboard;
     
     public CheckIsAloneOnTile(MinionBlackboard minionBlackboard)
     {
@@ -15,6 +15,7 @@ public class CheckIsAloneOnTile : Node
     public override NodeState Evaluate(Node root)
     {
         Vector2Int position = new Vector2Int(minionBlackboard.minionData.indexX, minionBlackboard.minionData.indexY);
+        Vector2Int heroPos = GameManager.Instance.GetHeroPos();
         if (minionBlackboard.minionData.mapManager.GetMonstersOnPos(position, out List<TrapData> traps))
         {
             if (traps.Count > 0)
@@ -23,7 +24,7 @@ public class CheckIsAloneOnTile : Node
             }
         }
         
-        if (minionBlackboard.heroPosition.x == position.x && minionBlackboard.heroPosition.y == position.y)
+        if (heroPos.x == position.x && heroPos.y == position.y)
         {
             return NodeState.Failure;
         }

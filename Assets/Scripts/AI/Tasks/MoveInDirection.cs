@@ -13,6 +13,8 @@ public class MoveInDirection : Node
 
     public override NodeState Evaluate(Node root)
     {
+        Vector2Int heroPos = GameManager.Instance.GetHeroPos();
+        
         if (blackboard.dir is DirectionToMove.Error)
             return NodeState.Failure;
         if (blackboard.dir is DirectionToMove.None)
@@ -21,23 +23,23 @@ public class MoveInDirection : Node
         switch (blackboard.dir)
         {
             case DirectionToMove.Left:
-                if (blackboard.minionData.indexX + 1 == blackboard.heroPosition.x &&
-                    blackboard.minionData.indexY == blackboard.heroPosition.y)
+                if (blackboard.minionData.indexX + 1 == heroPos.x &&
+                    blackboard.minionData.indexY == heroPos.y)
                     return NodeState.Success;
                 break;
             case DirectionToMove.Right:
-                if (blackboard.minionData.indexX - 1 == blackboard.heroPosition.x &&
-                    blackboard.minionData.indexY == blackboard.heroPosition.y)
+                if (blackboard.minionData.indexX - 1 == heroPos.x &&
+                    blackboard.minionData.indexY == heroPos.y)
                     return NodeState.Success;
                 break;
             case DirectionToMove.Up:
-                if (blackboard.minionData.indexX == blackboard.heroPosition.x &&
-                    blackboard.minionData.indexY + 1 == blackboard.heroPosition.y)
+                if (blackboard.minionData.indexX == heroPos.x &&
+                    blackboard.minionData.indexY + 1 == heroPos.y)
                     return NodeState.Success;
                 break;
             case DirectionToMove.Down:
-                if (blackboard.minionData.indexX == blackboard.heroPosition.x &&
-                    blackboard.minionData.indexY - 1 == blackboard.heroPosition.y)
+                if (blackboard.minionData.indexX == heroPos.x &&
+                    blackboard.minionData.indexY - 1 == heroPos.y)
                     return NodeState.Success;
                 break;
         }
