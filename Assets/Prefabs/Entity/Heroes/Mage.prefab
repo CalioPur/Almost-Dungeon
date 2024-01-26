@@ -144,7 +144,7 @@ MonoBehaviour:
   leftArrow: {fileID: 1336407399745273118}
   visionType: 0
   aggressivity: 0
-  personalities: 
+  personalities: 01000000
 --- !u!114 &7733622732822971966
 MonoBehaviour:
   m_ObjectHideFlags: 0
