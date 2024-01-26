@@ -2937,6 +2937,7 @@ GameObject:
   - component: {fileID: 281331310354284465}
   - component: {fileID: 3022150763503721755}
   - component: {fileID: 4928435573094370304}
+  - component: {fileID: 3314472803976247939}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -3058,6 +3059,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3314472803976247939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853942531430181744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434b8c3e592b4880970f362a0fea7d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Image>k__BackingField: {fileID: 3022150763503721755}
+  <Btn>k__BackingField: {fileID: 4928435573094370304}
+  <text>k__BackingField: {fileID: 0}
 --- !u!1 &6012529769546658312
 GameObject:
   m_ObjectHideFlags: 0
@@ -3474,7 +3490,7 @@ MonoBehaviour:
   healthBar: {fileID: 2093564348930732538}
   singleHeart: {fileID: 0}
   singleHeartImg: {fileID: 0}
-  heartPrefab: {fileID: 4618448264207241317, guid: 721f4ecc1d804a544a45b64b1ac5e591,
+  heartPrefab: {fileID: 7576900145812547238, guid: 721f4ecc1d804a544a45b64b1ac5e591,
     type: 3}
   dragonImage: {fileID: 3783514008507151101}
   dragonCard: {fileID: 0}
@@ -3482,7 +3498,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   shakeDuration: 0.5
   damage: 3
-  fireBallPrefab: {fileID: 882195290657548902, guid: 63dbf79a273f40c4ba492a9232865db6,
+  fireBallPrefab: {fileID: -5269181383212093949, guid: 63dbf79a273f40c4ba492a9232865db6,
     type: 3}
   fireBallAnim: {fileID: 7400000, guid: 332a42b4a394a3541914c8ca53d800bd, type: 2}
 --- !u!222 &3098768405250109233
@@ -5497,7 +5513,7 @@ MonoBehaviour:
   endGameText: {fileID: 8769656149661145474}
   HealthBarText: {fileID: 628627022806832757}
   imgFiller: {fileID: 4568122217191621201}
-  endGameButton: {fileID: 0}
+  endGameButton: {fileID: 3314472803976247939}
   itemNamesChoices:
   - Test1
   - Test2
@@ -5620,7 +5636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58f9c259ccaa4e47bd6e68c6905d998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img: {fileID: 0}
+  img: {fileID: 3411619320731532884}
 --- !u!1001 &1090313751207483499
 PrefabInstance:
   m_ObjectHideFlags: 0
