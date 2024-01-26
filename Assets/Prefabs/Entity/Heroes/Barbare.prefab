@@ -115,7 +115,7 @@ MonoBehaviour:
   animFX: {fileID: 7422246830028083296, guid: a8e69bcde6c4c3f4ba024f4645365c58, type: 3}
   animator: {fileID: 8969802921678826240}
   audioSource: {fileID: -880584021932348849}
-  threeDeeHero: {fileID: 5571705284579042080}
+  threeDeeHero: {fileID: 6220122132080198389}
   attackClip:
   - {fileID: 8300000, guid: adfc2fd02af23c74d80134e2f4f5665e, type: 3}
   - {fileID: 8300000, guid: 3699aa00e7f1f7c4d824c109e97d5856, type: 3}
@@ -515,9 +515,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7244193311077420327}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5571705284579042080 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3015765785584332295, guid: d511511a77092e049a6666a66da05283,
+--- !u!23 &6220122132080198389 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3664482524142784466, guid: d511511a77092e049a6666a66da05283,
     type: 3}
   m_PrefabInstance: {fileID: 7244193311077420327}
   m_PrefabAsset: {fileID: 0}
