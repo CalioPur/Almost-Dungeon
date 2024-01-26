@@ -3473,10 +3473,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 2093564348930732538}
   singleHeart: {fileID: 0}
+  singleHeartImg: {fileID: 0}
   heartPrefab: {fileID: 4618448264207241317, guid: 721f4ecc1d804a544a45b64b1ac5e591,
     type: 3}
   dragonImage: {fileID: 3783514008507151101}
   dragonCard: {fileID: 0}
+  dragImg: {fileID: 0}
+  healthText: {fileID: 0}
   shakeDuration: 0.5
   damage: 3
   fireBallPrefab: {fileID: 882195290657548902, guid: 63dbf79a273f40c4ba492a9232865db6,
@@ -5485,13 +5488,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d54c219ae3a944dbb1950013f2cc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentCanvas: {fileID: 0}
   healthBar: {fileID: 4950115969021024781}
   ItemBar: {fileID: 6651510497352859865}
-  itemsPrefab: {fileID: 7965164348803930515, guid: bb21cdebda0a6ad44aa75ec0f099425e,
+  itemsPrefab: {fileID: 4384675425678043071, guid: bb21cdebda0a6ad44aa75ec0f099425e,
     type: 3}
   endGamePanel: {fileID: 5588112277290890042}
   endGameText: {fileID: 8769656149661145474}
-  endGameButton: {fileID: 4928435573094370304}
+  HealthBarText: {fileID: 628627022806832757}
+  imgFiller: {fileID: 4568122217191621201}
+  endGameButton: {fileID: 0}
   itemNamesChoices:
   - Test1
   - Test2
@@ -5614,6 +5620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58f9c259ccaa4e47bd6e68c6905d998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  img: {fileID: 0}
 --- !u!1001 &1090313751207483499
 PrefabInstance:
   m_ObjectHideFlags: 0
