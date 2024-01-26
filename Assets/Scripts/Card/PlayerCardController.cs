@@ -218,6 +218,6 @@ public class PlayerCardController : MonoBehaviour
             Debug.Log("Sprite null");
             return;
         }
-        cardVisualizer.GetComponent<SpriteRenderer>().sprite = selectedCard.GetSprite();
+        cardVisualizer.sprite = selectedCard.GetSprite();
     }
 }

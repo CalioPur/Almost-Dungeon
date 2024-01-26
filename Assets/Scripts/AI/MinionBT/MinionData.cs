@@ -16,7 +16,7 @@ public class MinionData : TrapData, IFlippable
     [SerializeField] protected Animator animator;
     [field: SerializeField] private AttackFX animFX;
     
-    [SerializeField] private GameObject threeDeeHero;
+    [SerializeField] private MeshRenderer threeDeeHero;
 
     
     private Vector2Int SpawnIndex;
@@ -92,7 +92,7 @@ animator.SetTrigger("TakeDamage");
 
     private IEnumerator Die()
     {
-        Material[] mats = threeDeeHero.GetComponent<MeshRenderer>().materials;
+        Material[] mats = threeDeeHero.materials;
         foreach (var t in mats)
         {
             t.DOFloat(0.6f, "_Level", 1f).SetEase(Ease.InBack);

@@ -18,7 +18,7 @@ public class MapManager : MonoBehaviour
 
     private string path = "Sprites";
 
-    [SerializeField] private GameObject walls, floor;
+    [SerializeField] private TileData floor;
     [SerializeField] private Transform map;
     [SerializeField] private FogPainter fogPainter;
     public CardInfo[] cards;
@@ -122,8 +122,7 @@ public class MapManager : MonoBehaviour
                 Vector3 pos;
                 GetWorldPosFromTilePos(new Vector2Int(i, j), out pos); //pour centrer le tout
                 mapArray[i, j] =
-                    Instantiate(floor, pos, walls.transform.rotation, map)
-                        .GetComponent<TileData>(); //verifie si on est sur un bord
+                    Instantiate(floor, pos, floor.transform.rotation, map);
             }
         }
     }
