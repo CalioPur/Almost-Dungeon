@@ -156,6 +156,4 @@ public static class Bigleux
                 return possibleDirections[Random.Range(0, possibleDirections.Count)];
         }
     }
-
-    #endregion
 }

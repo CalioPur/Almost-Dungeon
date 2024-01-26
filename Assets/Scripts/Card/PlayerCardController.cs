@@ -3,7 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class MovementManager : MonoBehaviour
+public class PlayerCardController : MonoBehaviour
 {
     public static event Action<TileData> OnTileSelectedEvent;
     public static event Action<TileData, CardInfoInstance> OnTilePosedEvent;
@@ -21,7 +21,7 @@ public class MovementManager : MonoBehaviour
 
     [SerializeField] private SoundManagerIngame soundManagerIngame;
     
-    public static MovementManager Instance { get; private set; }
+    public static PlayerCardController Instance { get; private set; }
     CardHand selectedCard;
     
     public bool isDragNDrop = false;
@@ -181,8 +181,6 @@ public class MovementManager : MonoBehaviour
         if (nameOf == null || nameOf != selectedCard.name)
         {
             nameOf = selectedCard.name;
-            // selectedCard.ChangeSelection(false);
-            // CardsManager.Instance.SetSelectedCard(null);
         }
         selectedCard.GetImage().gameObject.transform.position = Input.mousePosition;
     }
@@ -192,21 +190,10 @@ public class MovementManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        
-        //if the mouse pos intersects with the zone of the discard
-        // if (RectTransformUtility.RectangleContainsScreenPoint(_rectTransform, Input.mousePosition))
-        // {
-        //     if (selectedCard == null) return;
-        //     selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
-        //     OnDiscardCardEvent?.Invoke(selectedCard);
-        //     return;
-        // }
 
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
             if (selectedCard != null) selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
-            // selectedCard = null;
-            // Debug.Log("Set selected card null");
             return;
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();

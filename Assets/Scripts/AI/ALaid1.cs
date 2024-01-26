@@ -107,7 +107,7 @@ public class ALaid1
         }
 
         simulatedPos = startPos;
-        while (simulatedPos.y <= map.GetLength(1) - 2 && map[simulatedPos.x, simulatedPos.y].hasDoorUp)
+        while (simulatedPos.y <= map.GetLength(1) && map[simulatedPos.x, simulatedPos.y].hasDoorUp)
         {
             simulatedPos.y += 1;
             visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
@@ -125,7 +125,7 @@ public class ALaid1
         }
 
         simulatedPos = startPos;
-        while (simulatedPos.x <= map.GetLength(0) - 2 && map[simulatedPos.x, simulatedPos.y].hasDoorRight)
+        while (simulatedPos.x <= map.GetLength(0) && map[simulatedPos.x, simulatedPos.y].hasDoorRight)
         {
             simulatedPos.x += 1;
             visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);

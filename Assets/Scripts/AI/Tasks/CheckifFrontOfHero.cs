@@ -17,14 +17,14 @@ public class CheckifFrontOfHero : Node
 
         if (blackboard.heroPosition.y == y && blackboard.heroPosition.x == x
             ||
-            ( y + 1 <= blackboard.minionData.mapManager.height - 2 &&
+            ( y + 1 <= blackboard.minionData.mapManager.height &&
               blackboard.heroPosition.y == y + 1 && blackboard.heroPosition.x == x &&
               blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorUp)
             ||
             (y - 1 >= 0 && blackboard.heroPosition.y == y - 1 && blackboard.heroPosition.x == x &&
              blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorDown)
             ||
-            (x + 1 <= blackboard.minionData.mapManager.width - 2 && 
+            (x + 1 <= blackboard.minionData.mapManager.width && 
              blackboard.heroPosition.y == y && blackboard.heroPosition.x == x + 1 &&
              blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorRight)
             ||

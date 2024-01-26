@@ -89,7 +89,7 @@ public class Hero : MonoBehaviour, IFlippable
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         MinionData.OnHeroPosAsked+= GivePosBack;
-        PathFinding.OnNoPathFound += PlayEmoteStuck;
+        //PathFinding.OnNoPathFound += PlayEmoteStuck;
         PathFindingV2.OnNoPathFound += PlayEmoteStuck;
         OnDragonAttackEvent +=AttackDragon;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
@@ -132,7 +132,7 @@ public class Hero : MonoBehaviour, IFlippable
     private void GivePosBack()
     {
         OnGivePosBackEvent?.Invoke(IndexHeroPos);
-        PathFinding.HeroPos = IndexHeroPos;
+        //PathFinding.HeroPos = IndexHeroPos;
     }
     private void OnBeginToMove()
     {

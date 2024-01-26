@@ -11,14 +11,14 @@ public class SpawnEnemyManager : MonoBehaviour
 
     private void OnEnable()
     {
-        MovementManager.OnTilePosedEvent += SpawnMinionOnTile;
+        PlayerCardController.OnTilePosedEvent += SpawnMinionOnTile;
         _trapsPrefab = TrapsPrefab;
         FireCamp.ClearMinions();
     }
 
     private void OnDisable()
     {
-        MovementManager.OnTilePosedEvent -= SpawnMinionOnTile;
+        PlayerCardController.OnTilePosedEvent -= SpawnMinionOnTile;
         FireCamp.ClearMinions();
     }
 
