@@ -39,7 +39,7 @@ public class minionSkeleton : MinionData
     {
         int index = 0;
         mapManager.AddMinionOnTile(
-            new Vector2Int(indexX, indexY), this, ref index);
+            new Vector2Int(indexX, indexY), this);
         model3DTr.DORotate(transform.rotation.eulerAngles, 0.1f);
         FXDigTr.gameObject.SetActive(false);
         model3DTr.gameObject.SetActive(true);

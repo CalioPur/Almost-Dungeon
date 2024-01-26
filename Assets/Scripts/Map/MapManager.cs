@@ -69,27 +69,9 @@ public class MapManager : MonoBehaviour
                 {
                     EnemiDataOnHand data = card.TypeOfTrapOrEnemyToSpawnInstance[j];
                     GetTile(_tilePreset[i].position, out var tile);
-                    Vector3 offset = Vector3.zero;
-                    if (!(card.TypeOfTrapOrEnemyToSpawnInstance[j].type == TrapType.Web ||
-                          card.TypeOfTrapOrEnemyToSpawnInstance[j].type == TrapType.Pyke))
-                    {
-                        if (_tilePreset[i].cardInfo.offsetMinionPos.Length > 0)
-                        {
-                            if (data.indexOffsetTile >= _tilePreset[i].cardInfo.offsetMinionPos.Length ||
-                                data.indexOffsetTile < 0)
-                            {
-                                offset = _tilePreset[i].cardInfo.offsetMinionPos[0];
-                            }
-                            else
-                            {
-                                offset = _tilePreset[i].cardInfo.offsetMinionPos[data.indexOffsetTile];
-                            }
-                        }
-                    }
 
 
-                    SpawnEnemyManager.SpawnEnemyWithoutPrefab(data.type, tile, true, offset, data.indexOffsetTile,
-                        this);
+                    SpawnEnemyManager.SpawnEnemyWithoutPrefab(data.type, tile, this);
                 }
             }
         }
@@ -328,7 +310,7 @@ public class MapManager : MonoBehaviour
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         data.enemies.Remove(minionData);
         if (minionData is MinionData minion)
-            data.freePosition(minion.indexOffsetTile);
+            data.freePosition();
     }
 
     public bool AvailableForSpawn(int x, int y)
@@ -336,11 +318,11 @@ public class MapManager : MonoBehaviour
         return mapArray[x, y].AvailableForSpawn();
     }
 
-    public bool AddMinionOnTile(Vector2Int vector2Int, TrapData minionData, ref int index)
+    public bool AddMinionOnTile(Vector2Int vector2Int, TrapData minionData)
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
-        if (data.GetFirstAvailabalePosition(out var offset, ref index))
+        if (data.GetFirstAvailabalePosition())
         {
             data.enemies.Add(minionData);
             return true;
@@ -390,8 +372,7 @@ public class MapManager : MonoBehaviour
                     {
                         if (enemy.canBeRevive)
                         {
-                            SpawnEnemyManager.SpawnEnemyWithType(enemy.type, tile, Vector3.zero, enemy.indexOffsetTile,
-                                this);
+                            SpawnEnemyManager.SpawnEnemyWithType(enemy.type, tile, this);
                         }
                     }
                 }

@@ -5,7 +5,6 @@ public struct EnemiDataOnHand
 {
     public TrapType type;
     public bool canBeRevive;
-    public int indexOffsetTile;
 }
 
 [Serializable]

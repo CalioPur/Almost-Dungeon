@@ -20,7 +20,7 @@ public class MinionSlime : MinionData
         {
             //invocation new slime
             SpawnEnemyManager.SpawnEnemy(slimePrefab, new Vector2Int(indexX, indexY), transform.position, mapManager,
-                true, -1);
+                true);
         }
     }
 }
