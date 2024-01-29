@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Steamworks;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class AchievmentTest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        if(!SteamManager.Initialized) return;
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        SteamUserStats.SetAchievement("TEST_SUCCES");
+        SteamUserStats.StoreStats();
         
+        SteamUserStats.GetAchievement("TEST_SUCCES", out var achieved);
+        Debug.Log("TEST_SUCCES : " + achieved);
     }
 }
