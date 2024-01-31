@@ -90,7 +90,6 @@ public class Hero : MonoBehaviour, IFlippable
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         MinionData.OnHeroPosAsked+= GivePosBack;
         PathFinding.OnNoPathFound += PlayEmoteStuck;
-        PathFindingV2.OnNoPathFound += PlayEmoteStuck;
         OnDragonAttackEvent +=AttackDragon;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
     }
@@ -154,7 +153,6 @@ public class Hero : MonoBehaviour, IFlippable
         OnMovedOnEmptyCardEvent = null;
         OnDragonAttackEvent = null;
         UI_Dragon.OnDragonTakeDamageEvent -= PlayAttackClip;
-        PathFindingV2.OnNoPathFound -= PlayEmoteStuck;
     }
     
     IEnumerator FXDeath()
