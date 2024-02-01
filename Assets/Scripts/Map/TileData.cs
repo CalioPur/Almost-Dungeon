@@ -48,8 +48,10 @@ public class TileData : MonoBehaviour
     }
 
     public bool isVisited;
-
-
+    
+    public Vector2Int IndexInMapArray { get; set; }
+   
+    
     public bool isRoom = false;
     public bool PiecePlaced => _instance != null;
 

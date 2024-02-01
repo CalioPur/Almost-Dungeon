@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using BehaviourTree;
 using Ink.Parsed;
 using UnityEngine;
@@ -16,17 +17,69 @@ public class CheckDirectionToMove : Node
     }
 
     public override NodeState Evaluate(Node root)
-    {        
-        if (blackboard.aggressivity == Aggressivity.COURAGEUX)
-            ALaid1.aggressivity = Aggressivity.COURAGEUX;
-        else if (blackboard.aggressivity == Aggressivity.PEUREUX)
-            ALaid1.aggressivity = Aggressivity.PEUREUX;
+    {
+        // blackboard.directionToMove = PathFinding.BFSFindPath(
+        //     blackboard.hero.GetIndexHeroPos(),
+        //     blackboard.hero.mapManager.getMapArray(), blackboard.personality);
+        // blackboard.directionToMove = PathFinding.BFSFindPathV2(
+        //     blackboard.hero.GetIndexHeroPos(),
+        //     blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>(), VisionType.RECTILIGNE,
+        //     Aggressivity.COURAGEUX, new[]
+        //     {
+        //         Objectives.SORTIE
+        //     });
+        
+        // if (blackboard.aggressivity == Aggressivity.COURAGEUX)
+        //     ALaid1.aggressivity = Aggressivity.COURAGEUX;
+        // else if (blackboard.aggressivity == Aggressivity.PEUREUX)
+        //     ALaid1.aggressivity = Aggressivity.PEUREUX;
+        // // Debug.Log("Vision type = " + blackboard.visionType);
         // if (blackboard.visionType == VisionType.BIGLEUX)
         //     blackboard.directionToMove = ALaid1.Bigleux(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
-        if (blackboard.visionType == VisionType.LIGNEDROITE)
-            blackboard.directionToMove = ALaid1.Line(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
-        else if (blackboard.visionType == VisionType.CLAIRVOYANT)
-            blackboard.directionToMove = ALaid1.Clairvoyant(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
+        // if (blackboard.visionType == VisionType.LIGNEDROITE)
+        //     blackboard.directionToMove = ALaid1.Line(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
+        // else if (blackboard.visionType == VisionType.CLAIRVOYANT)
+        //     blackboard.directionToMove = ALaid1.Clairvoyant(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
+
+        var visibleTiles = blackboard.visionType switch
+        {
+            VisionType.BIGLEUX => BlindScript.GetAdjacentTiles(blackboard.hero.GetIndexHeroPos()),
+            VisionType.LIGNEDROITE => VisionNormalScript.GetVisibleTiles(blackboard.hero.GetIndexHeroPos()),
+            _ => SeerScript.GetAllConnectedToPathTiles(blackboard.hero.GetIndexHeroPos())
+        };
+
+        foreach (var VARIABLE in visibleTiles)
+        {
+           Debug.DrawLine(VARIABLE.transform.position, VARIABLE.transform.position + Vector3.up * 3.0f, Color.green, 0.5f);
+        }
+        
+        List<Vector2Int> listOfEnemiesPos = new List<Vector2Int>();
+        listOfEnemiesPos.AddRange(from VARIABLE in visibleTiles where VARIABLE.enemies.Count > 0 select VARIABLE.IndexInMapArray);
+        if(blackboard.aggressivity == Aggressivity.COURAGEUX)
+        {
+            blackboard.directionToMove = BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(), listOfEnemiesPos, blackboard.hero.mapManager.getMapArray());
+        }
+        
+        // List<Vector2Int> listOfConnectedButUnvisitedTiles = new List<Vector2Int>();
+        // List<Vector2Int> listOfExits = new List<Vector2Int>();
+        // listOfConnectedButUnvisitedTiles.AddRange(from VARIABLE in visibleTiles where VARIABLE.isConnectedToPath && !VARIABLE.IsVisited select VARIABLE.IndexInMapArray);
+        // listOfExits.AddRange(from VARIABLE in visibleTiles where VARIABLE.isExit select VARIABLE.IndexInMapArray);
+        // if (listOfConnectedButUnvisitedTiles.Count > 0)
+        // {
+        //     Debug.Log("Go to unvisited");
+        //     blackboard.directionToMove = blackboard.aggressivity == Aggressivity.PEUREUX ? BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(), listOfConnectedButUnvisitedTiles, blackboard.hero.mapManager.getMapArray(),true) : BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(), listOfConnectedButUnvisitedTiles, blackboard.hero.mapManager.getMapArray());
+        // }
+        // else if(listOfExits.Count > 0)
+        // {
+        //     Debug.Log("Go to exit");
+        //     blackboard.directionToMove = blackboard.aggressivity == Aggressivity.PEUREUX ? BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(), listOfExits, blackboard.hero.mapManager.getMapArray(),true) : BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(), listOfExits, blackboard.hero.mapManager.getMapArray());
+        // }
+        // else
+        // {
+        //     Debug.Log("BreakWall");
+        //     PathFinding.BreakFreeFromNoExit(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
+        // } JE GEMIKNFGALKBENFAKJBYHAGKEJUBIULFAH AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
         if (blackboard.directionToMove == DirectionToMove.None)
         {
             Debug.Log("Random");

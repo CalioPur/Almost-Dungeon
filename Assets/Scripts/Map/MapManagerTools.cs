@@ -198,6 +198,8 @@ public class MapManagerTools
                     for (int j = 0; j < _mapManager.height; j++)
                     {
                         var currentCell = _mapManager.mapArray[i, j];
+                        
+                        currentCell.IndexInMapArray = new Vector2Int(i, j);
 
                         if (currentCell.isConnectedToPath)
                             continue;
