@@ -1,10 +1,9 @@
 using BehaviourTree;
-using UnityEngine;
 using Node = BehaviourTree.Node;
 
 public class CheckifFrontOfHero : Node
 {
-    private MinionBlackboard blackboard;
+    MinionBlackboard blackboard;
     
     public CheckifFrontOfHero(MinionBlackboard _blackboard)
     {
@@ -15,22 +14,21 @@ public class CheckifFrontOfHero : Node
     {
         int x = blackboard.minionData.indexX;
         int y = blackboard.minionData.indexY;
-        Vector2Int heroPos = GameManager.Instance.GetHeroPos();
 
-        if (heroPos.y == y && heroPos.x == x
+        if (blackboard.heroPosition.y == y && blackboard.heroPosition.x == x
             ||
-            ( y + 1 <= blackboard.minionData.mapManager.height &&
-              heroPos.y == y + 1 && heroPos.x == x &&
+            ( y + 1 <= blackboard.minionData.mapManager.height - 2 &&
+              blackboard.heroPosition.y == y + 1 && blackboard.heroPosition.x == x &&
               blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorUp)
             ||
-            (y - 1 >= 0 && heroPos.y == y - 1 && heroPos.x == x &&
+            (y - 1 >= 0 && blackboard.heroPosition.y == y - 1 && blackboard.heroPosition.x == x &&
              blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorDown)
             ||
-            (x + 1 <= blackboard.minionData.mapManager.width && 
-             heroPos.y == y && heroPos.x == x + 1 &&
+            (x + 1 <= blackboard.minionData.mapManager.width - 2 && 
+             blackboard.heroPosition.y == y && blackboard.heroPosition.x == x + 1 &&
              blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorRight)
             ||
-            (x - 1 >= 0 && heroPos.y == y && heroPos.x == x - 1 &&
+            (x - 1 >= 0 && blackboard.heroPosition.y == y && blackboard.heroPosition.x == x - 1 &&
              blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorLeft)
            )
         {

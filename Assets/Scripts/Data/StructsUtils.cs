@@ -5,6 +5,7 @@ public struct EnemiDataOnHand
 {
     public TrapType type;
     public bool canBeRevive;
+    public int indexOffsetTile;
 }
 
 [Serializable]
@@ -22,11 +23,4 @@ public struct DoorLockedData
     public bool DoorOnBottom;
     public bool DoorOnLeft;
     public bool DoorOnRight;
-}
-
-[Serializable]
-public struct CardToBuild
-{
-    public CardInfo cardToBuild;
-    public int nbToBuild;
 }

@@ -6,7 +6,9 @@ using UnityEngine.Serialization;
 
 public class MinionData : TrapData, IFlippable
 {
+    public static event Action OnHeroPosAsked;
     public EnemyInstance minionInstance;
+    [HideInInspector] public int indexOffsetTile;
 
     [SerializeField] protected Transform tr;
     [SerializeField] protected MinionBTBase bt;
@@ -15,13 +17,24 @@ public class MinionData : TrapData, IFlippable
     [SerializeField] protected Animator animator;
     [field: SerializeField] private AttackFX animFX;
     
-    [SerializeField] private MeshRenderer threeDeeHero;
+    [SerializeField] private GameObject threeDeeHero;
 
     
     private Vector2Int SpawnIndex;
 
+    public void GetHeroPos()
+    {
+        OnHeroPosAsked?.Invoke();
+    }
+
+    private void GetHeroPos(Vector2Int pos)
+    {
+        bt.blackboard.heroPosition = pos;
+    }
+
     public static void ClearSubscribes()
     {
+        OnHeroPosAsked = null;
     }
 
     protected override void OnTick()
@@ -64,6 +77,7 @@ animator.SetTrigger("TakeDamage");
             StartListenTick();
         else
             GameManager.OnGameStartEvent += StartListenTick;
+        Hero.OnGivePosBackEvent += GetHeroPos;
     }
 
     public void StartListenTick()
@@ -86,7 +100,7 @@ animator.SetTrigger("TakeDamage");
 
     private IEnumerator Die()
     {
-        Material[] mats = threeDeeHero.materials;
+        Material[] mats = threeDeeHero.GetComponent<MeshRenderer>().materials;
         foreach (var t in mats)
         {
             t.DOFloat(0.6f, "_Level", 1f).SetEase(Ease.InBack);

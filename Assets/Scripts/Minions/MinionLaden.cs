@@ -20,7 +20,7 @@ public class MinionLaden : MinionData
             }
         }
 
-        if (GameManager.Instance.GetHeroPos() == pos)
+        if (bt.blackboard.heroPosition == pos)
         {
             Attack(damageFire, AttackType.Fire);
             if (Hero.Instance is IFlippable flip)

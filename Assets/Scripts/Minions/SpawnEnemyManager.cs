@@ -11,45 +11,58 @@ public class SpawnEnemyManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerCardController.OnTilePosedEvent += SpawnMinionOnTile;
+        MovementManager.OnTilePosedEvent += SpawnMinionOnTile;
         _trapsPrefab = TrapsPrefab;
         FireCamp.ClearMinions();
     }
 
     private void OnDisable()
     {
-        PlayerCardController.OnTilePosedEvent -= SpawnMinionOnTile;
+        MovementManager.OnTilePosedEvent -= SpawnMinionOnTile;
         FireCamp.ClearMinions();
     }
 
-    public static void SpawnEnemyWithType(TrapType type, TileData tile, MapManager mapManager)
+    public static void SpawnEnemyWithType(TrapType type, TileData tile, Vector3 offset, int index,
+        MapManager mapManager)
     {
         Vector3 offsetCoin = Vector3.zero;
         switch (type)
         {
             case TrapType.BasicCaC:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.BasicCaC).prefab as MinionData, tile, true, mapManager);
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.BasicCaC).prefab as MinionData, tile, true,
+                    offsetCoin, index, mapManager);
                 break;
             case TrapType.Archer:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Archer).prefab as MinionData, tile, true, mapManager);
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Archer).prefab as MinionData, tile, true,
+                    offsetCoin, index, mapManager);
                 break;
             case TrapType.Skeleton:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Skeleton).prefab as MinionData, tile, false, mapManager);
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Skeleton).prefab as MinionData, tile, false,
+                    offsetCoin, index, mapManager);
+                break;
+            case TrapType.Slime:
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Slime).prefab as MinionData, tile, true, offsetCoin,
+                    index, mapManager);
                 break;
             case TrapType.Laden:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Laden).prefab as MinionData, tile, true, mapManager);
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Laden).prefab as MinionData, tile, true, offsetCoin,
+                    index, mapManager);
                 break;
             case TrapType.Wolf:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Wolf).prefab, tile, true, mapManager);
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Wolf).prefab, tile, true, offsetCoin, index,
+                    mapManager);
                 break;
             case TrapType.Web:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Web).prefab, tile, false, mapManager);
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Web).prefab, tile, false, offsetCoin, -1,
+                    mapManager);
                 break;
             case TrapType.Pyke:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Pyke).prefab, tile, false, mapManager);
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.Pyke).prefab, tile, false, offsetCoin, -1,
+                    mapManager);
                 break;
             case TrapType.FireCamp:
-                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.FireCamp).prefab, tile, false, mapManager);
+                SpawnTrapData(_trapsPrefab.Find(x => x.type == TrapType.FireCamp).prefab, tile, false, offsetCoin, -1,
+                    mapManager);
                 break;
 
             case TrapType.None:
@@ -64,19 +77,23 @@ public class SpawnEnemyManager : MonoBehaviour
         MapManager mapManager = MapManager.Instance;
         for (int i = 0; i < card.So.TypeOfTrapOrEnemyToSpawn.Length; i++)
         {
-            SpawnEnemyWithType(card.So.TypeOfTrapOrEnemyToSpawn[i].type, tile, mapManager);
+            int index = card.TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile;
+            SpawnEnemyWithType(card.So.TypeOfTrapOrEnemyToSpawn[i].type, tile, card.So.offsetMinionPos[0], index,
+                mapManager);
         }
     }
 
-    public static void SpawnTrapData<T>(T prefab, TileData tile, bool addEnemyOnTile, MapManager _mapManager)
+    public static void SpawnTrapData<T>(T prefab, TileData tile, bool addEnemyOnTile, Vector3 positionOffset,
+        int indexOnTile, MapManager _mapManager)
         where T : TrapData
     {
-        _mapManager.GetIndexFromTile(tile, out Vector2Int indexes);
-        SpawnEnemy(prefab, indexes, tile.transform.position, _mapManager, addEnemyOnTile);
+        Vector3 position = tile.transform.position + positionOffset;
+        _mapManager.GetTilePosFromWorldPos(position, out int indexesX, out int indexesY);
+        SpawnEnemy(prefab, new Vector2Int(indexesX, indexesY), position, _mapManager, addEnemyOnTile, indexOnTile);
     }
 
     public static void SpawnEnemy<T>(T prefab, Vector2Int indexes, Vector3 position, MapManager _mapManager,
-        bool addEnemyOnTile)
+        bool addEnemyOnTile, int indexOnTile)
         where T : TrapData
     {
         if (!_mapManager.AvailableForSpawn(indexes.x, indexes.y)) return;
@@ -84,19 +101,22 @@ public class SpawnEnemyManager : MonoBehaviour
         script.indexX = indexes.x;
         script.indexY = indexes.y;
         script.mapManager = _mapManager;
+        int index = indexOnTile;
         if (addEnemyOnTile)
-            _mapManager.AddMinionOnTile(new Vector2Int(script.indexX, script.indexY), script);
+            _mapManager.AddMinionOnTile(new Vector2Int(script.indexX, script.indexY), script, ref index);
 
         if (script is MinionData minionData)
         {
+            minionData.indexOffsetTile = index;
             FireCamp.StockMinions(minionData);
         }
     }
 
-    public static void SpawnEnemyWithoutPrefab(TrapType typeOfEnemy, TileData tile, MapManager _mapManager)
+    public static void SpawnEnemyWithoutPrefab(TrapType typeOfEnemy, TileData tile, bool addEnemyOnTile,
+        Vector3 positionOffset, int indexOnTile, MapManager _mapManager)
     {
-        Vector3 position = tile.transform.position;
+        Vector3 position = tile.transform.position + positionOffset;
         _mapManager.GetTilePosFromWorldPos(position, out int indexesX, out int indexesY);
-        SpawnEnemyWithType(typeOfEnemy, tile, _mapManager);
+        SpawnEnemyWithType(typeOfEnemy, tile, positionOffset, indexOnTile, _mapManager);
     }
 }

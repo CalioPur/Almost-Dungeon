@@ -104,7 +104,7 @@ public class CheckDirectionToMove : Node
                 
                 break;
             default:
-                return NodeState.Failure;
+                throw new ArgumentOutOfRangeException();
         }
 
         if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;

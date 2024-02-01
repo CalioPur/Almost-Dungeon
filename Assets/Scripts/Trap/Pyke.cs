@@ -55,6 +55,12 @@ public class Pyke : TrapData
     {
         pykeInstance = SO.CreateInstance();
         TickManager.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
+        Hero.OnGivePosBackEvent += GetHeroPosOnTile;
+    }
+
+    private void GetHeroPosOnTile(Vector2Int pos)
+    {
+        heroPos = pos;
     }
 
     private void OnDisable()

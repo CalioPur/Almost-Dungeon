@@ -11,6 +11,7 @@ public class FireCamp : TrapData
     
     private static List<MinionData> MinionDatas = new ();
     
+    private EnemyInstance firecampInstance;
     private Vector2Int heroPos = new Vector2Int(-9999, -9999);
     private bool isReviving = false;
 
@@ -55,8 +56,14 @@ public class FireCamp : TrapData
 
     protected override void Init()
     {
-        SO.CreateInstance();
+        firecampInstance = SO.CreateInstance();
         TickManager.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
+        Hero.OnGivePosBackEvent += GetHeroPosOnTile;
+    }
+
+    private void GetHeroPosOnTile(Vector2Int pos)
+    {
+        heroPos = pos;
     }
     
     protected override void OnTick()

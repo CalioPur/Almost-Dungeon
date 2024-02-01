@@ -13,9 +13,9 @@ public class MapManagerTools
 
     public void CheckAllTilesTypeAndRotation()
     {
-        for (int i = 0; i < _mapManager.width; i++)
+        for (int i = 0; i < _mapManager.width - 2; i++)
         {
-            for (int j = 0; j < _mapManager.height; j++)
+            for (int j = 0; j < _mapManager.height - 2; j++)
             {
                 CheckTileTypeAndRotation(_mapManager.mapArray[i, j]);
             }
@@ -163,9 +163,9 @@ public class MapManagerTools
 
     public void SetExits()
     {
-        for (int i = 0; i < _mapManager.width; i++)
+        for (int i = 0; i < _mapManager.width - 2; i++)
         {
-            for (int j = 0; j < _mapManager.height; j++)
+            for (int j = 0; j < _mapManager.height - 2; j++)
             {
                 var currentCell = _mapManager.mapArray[i, j];
             
@@ -177,9 +177,9 @@ public class MapManagerTools
                     var hasDoorRight = currentCell.hasDoorRight;
 
                     var isExitDown = (j == 0 && hasDoorDown) || (hasDoorDown && !_mapManager.mapArray[i, j - 1].PiecePlaced);
-                    var isExitUp = (j == _mapManager.height - 1 && hasDoorUp) || (hasDoorUp && !_mapManager.mapArray[i, j + 1].PiecePlaced);
+                    var isExitUp = (j == _mapManager.height - 3 && hasDoorUp) || (hasDoorUp && !_mapManager.mapArray[i, j + 1].PiecePlaced);
                     var isExitLeft = (i == 0 && hasDoorLeft) || (hasDoorLeft && !_mapManager.mapArray[i - 1, j].PiecePlaced);
-                    var isExitRight = (i == _mapManager.width - 1 && hasDoorRight) || (hasDoorRight && !_mapManager.mapArray[i + 1, j].PiecePlaced);
+                    var isExitRight = (i == _mapManager.width - 3 && hasDoorRight) || (hasDoorRight && !_mapManager.mapArray[i + 1, j].PiecePlaced);
 
                     currentCell.isExit = isExitDown || isExitUp || isExitLeft || isExitRight;
                 }
@@ -191,11 +191,11 @@ public class MapManagerTools
     {
         for (int aaa = 0; aaa < 10; aaa++)
         {
-            for (int i = 0; i < _mapManager.width; i++)
+            for (int i = 0; i < _mapManager.width - 2; i++)
             {
                 for(int bbb = 0; bbb < 10; bbb++)
                 {
-                    for (int j = 0; j < _mapManager.height; j++)
+                    for (int j = 0; j < _mapManager.height - 2; j++)
                     {
                         var currentCell = _mapManager.mapArray[i, j];
                         
@@ -206,12 +206,12 @@ public class MapManagerTools
 
                         var isConnectedLeft = i > 0 && _mapManager.mapArray[i - 1, j].isConnectedToPath &&
                                               currentCell.hasDoorLeft;
-                        var isConnectedRight = i < _mapManager.width - 1 &&
+                        var isConnectedRight = i < _mapManager.width - 3 &&
                                                _mapManager.mapArray[i + 1, j].isConnectedToPath &&
                                                currentCell.hasDoorRight;
                         var isConnectedDown = j > 0 && _mapManager.mapArray[i, j - 1].isConnectedToPath &&
                                               currentCell.hasDoorDown;
-                        var isConnectedUp = j < _mapManager.height - 1 &&
+                        var isConnectedUp = j < _mapManager.height - 3 &&
                                             _mapManager.mapArray[i, j + 1].isConnectedToPath && currentCell.hasDoorUp;
 
                         if (isConnectedLeft || isConnectedRight || isConnectedDown || isConnectedUp)
@@ -257,7 +257,7 @@ public class MapManagerTools
                     yDir = -1;
                     break;
             }
-            while (x >= 0 && x < _mapManager.width && y >= 0 && y < _mapManager.height)
+            while (x >= 0 && x < _mapManager.width - 2 && y >= 0 && y < _mapManager.height - 2)
             {
                 if (_mapManager.mapArray[x, y].isRoom)
                 {

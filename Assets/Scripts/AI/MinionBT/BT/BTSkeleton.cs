@@ -9,7 +9,9 @@ public class BTSkeleton : MinionBTBase
     {
         if (!blackboard) Debug.LogError("Blackboard is null");
 
-        origin = new Selector(
+        origin = new Sequence(
+            new GetHeroPos(blackboard),
+            new Selector(
                 new Sequence(
                     new CheckOnDig(blackboard),
                     new Selector(
@@ -37,7 +39,8 @@ public class BTSkeleton : MinionBTBase
                         new MoveInDirection(blackboard)
                     )
                 )
-            );
+            )
+        );
         return origin;
     }
 }

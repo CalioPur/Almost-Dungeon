@@ -9,6 +9,7 @@ public class CardInfo : ScriptableObject
     public Sprite imgOnMap;
 
     [Header("Minions parameters")] public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawn;
+    public Vector3[] offsetMinionPos;
 
     [Header("Doors")] public bool DoorOnTop;
     public bool DoorOnBottom;
@@ -30,6 +31,7 @@ public class CardInfo : ScriptableObject
         imgOnHand = cardSo.imgOnHand;
         imgOnMap = cardSo.imgOnMap;
         TypeOfTrapOrEnemyToSpawn = cardSo.TypeOfTrapOrEnemyToSpawn;
+        offsetMinionPos = cardSo.offsetMinionPos;
         DoorOnTop = cardSo.DoorOnTop;
         DoorOnBottom = cardSo.DoorOnBottom;
         DoorOnLeft = cardSo.DoorOnLeft;
@@ -51,7 +53,7 @@ public class CardInfoInstance
 
     public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawnInstance { get; private set; }
 
-    public bool offsetSpawnUsed;
+    public bool[] offsetSpawnUsed;
 
     public event Action OnRotationChangedEvent;
 
@@ -67,12 +69,18 @@ public class CardInfoInstance
         DoorOnBottom = info.DoorOnBottom;
         DoorOnLeft = info.DoorOnLeft;
         DoorOnRight = info.DoorOnRight;
-        offsetSpawnUsed = false;
+        offsetSpawnUsed = new bool[So.offsetMinionPos.Length];
         TypeOfTrapOrEnemyToSpawnInstance = new EnemiDataOnHand[So.TypeOfTrapOrEnemyToSpawn.Length];
         for (int i = 0; i < So.TypeOfTrapOrEnemyToSpawn.Length; i++)
         {
+            TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = So.TypeOfTrapOrEnemyToSpawn[i].indexOffsetTile;
             TypeOfTrapOrEnemyToSpawnInstance[i].type = So.TypeOfTrapOrEnemyToSpawn[i].type;
             TypeOfTrapOrEnemyToSpawnInstance[i].canBeRevive = So.TypeOfTrapOrEnemyToSpawn[i].canBeRevive;
+        }
+
+        for (int i = 0; i < So.offsetMinionPos.Length; i++)
+        {
+            offsetSpawnUsed[i] = false;
         }
 
         ItemDrops = new List<ItemDrop>();
@@ -103,6 +111,14 @@ public class CardInfoInstance
             DoorOnRight = DoorOnBottom;
             DoorOnBottom = DoorOnLeft;
             DoorOnLeft = Tmp;
+            for (int i = 0; i < TypeOfTrapOrEnemyToSpawnInstance.Length; i++)
+            {
+                TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile--;
+                if (TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile < 0)
+                {
+                    TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = So.offsetMinionPos.Length - 1;
+                }
+            }
 
             for (int i = 0; i < doorLocked.Count; i++)
             {
@@ -120,6 +136,14 @@ public class CardInfoInstance
             DoorOnLeft = DoorOnBottom;
             DoorOnBottom = DoorOnRight;
             DoorOnRight = Tmp;
+            for (int i = 0; i < TypeOfTrapOrEnemyToSpawnInstance.Length; i++)
+            {
+                TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile++;
+                if (TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile >= So.offsetMinionPos.Length)
+                {
+                    TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = 0;
+                }
+            }
 
             for (int i = 0; i < doorLocked.Count; i++)
             {
@@ -147,11 +171,17 @@ public class CardInfoInstance
         DoorOnBottom = instance.DoorOnBottom;
         DoorOnLeft = instance.DoorOnLeft;
         DoorOnRight = instance.DoorOnRight;
-        offsetSpawnUsed = instance.offsetSpawnUsed;
+        offsetSpawnUsed = new bool[So.offsetMinionPos.Length];
+        for (int i = 0; i < So.offsetMinionPos.Length; i++)
+        {
+            offsetSpawnUsed[i] = instance.offsetSpawnUsed[i];
+        }
 
         TypeOfTrapOrEnemyToSpawnInstance = new EnemiDataOnHand[So.TypeOfTrapOrEnemyToSpawn.Length];
         for (int i = 0; i < So.TypeOfTrapOrEnemyToSpawn.Length; i++)
         {
+            TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile =
+                instance.TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile;
             TypeOfTrapOrEnemyToSpawnInstance[i].type = instance.TypeOfTrapOrEnemyToSpawnInstance[i].type;
             TypeOfTrapOrEnemyToSpawnInstance[i].canBeRevive =
                 instance.TypeOfTrapOrEnemyToSpawnInstance[i].canBeRevive;

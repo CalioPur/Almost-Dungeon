@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class IsReadyToUndig : Node
 {
-    private MinionBlackboard minionBlackboard;
+    MinionBlackboard minionBlackboard;
 
     public IsReadyToUndig(MinionBlackboard minionBlackboard)
     {

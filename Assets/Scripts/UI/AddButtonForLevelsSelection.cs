@@ -8,11 +8,11 @@ using UnityEngine.Video;
 
 public class AddButtonForLevelsSelection : MonoBehaviour
 {
-    [SerializeField] private ButtonPrefab buttonPrefab;
-    [SerializeField] private DungeonManager dungeonManager;
-    [SerializeField] private RectTransform rect;
+    public GameObject buttonPrefab;
+    public DungeonManager dungeonManager;
+    [SerializeField] private Image image;
     [SerializeField] private VideoPlayer videoPlayer;
-    [SerializeField] private Image CanvasBlack;
+    [SerializeField] private GameObject CanvasBlack;
     
     private List<GameObject> buttonList = new();
     
@@ -22,12 +22,12 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     void OnEnable()
     {
         var sizeOfScreen = new Vector2(Screen.width, Screen.height);
-        rect.DOMoveY(sizeOfScreen.y / 2, 0.5f).SetEase(Ease.Linear);
+        GetComponent<RectTransform>().DOMoveY(sizeOfScreen.y / 2, 0.5f).SetEase(Ease.Linear);
     }
     
     void SeeYouNextTime()
     {
-        rect.DOMoveY(-800, 1f).SetEase(Ease.Linear);
+        GetComponent<RectTransform>().DOMoveY(-800, 1f).SetEase(Ease.Linear);
     }
     
     void Start()
@@ -36,29 +36,33 @@ public class AddButtonForLevelsSelection : MonoBehaviour
         int cpt = 0;
         foreach (var biome in dungeonManager.dungeons)
         {
-            ButtonPrefab btnPrefab = Instantiate(buttonPrefab, transform);
-            buttonList.Add(btnPrefab.gameObject);
+            GameObject theButton = Instantiate(buttonPrefab, transform);
+            buttonList.Add(theButton);
             
-            btnPrefab.Image.sprite = dungeonsSprite[cpt];
-            btnPrefab.Image.color = Color.white;
-            btnPrefab.Image.SetNativeSize();
             
+            Image btnImage = theButton.GetComponent<Image>();
+            btnImage.sprite = dungeonsSprite[cpt];
+            btnImage.color = Color.white;
+            btnImage.SetNativeSize();
+            
+            //theButton.GetComponentInChildren<TMP_Text>().text = biome.name;
             if (biome.isLocked)
             {
-                btnPrefab.Image.sprite = lockedSprite;
+                btnImage.sprite = lockedSprite;
                 cpt++;
                 continue;
             }
             
             
             int biomeIndex = cpt;
-            btnPrefab.Btn.onClick.AddListener(() =>
+            theButton.GetComponent<Button>().onClick.AddListener(() =>
             {
                 buttonList.ForEach(button => button.SetActive(false));
+                // image.color = Color.clear;
                 SeeYouNextTime();
                 videoPlayer.playbackSpeed = 1;
                 videoPlayer.Play();
-                CanvasBlack.gameObject.SetActive(true);
+                CanvasBlack.SetActive(true);
                 StartCoroutine(AlphaLerp(biomeIndex));
             });
             cpt++;
@@ -69,13 +73,14 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     public IEnumerator AlphaLerp(int biomeIndex)
     {
         
-        var alpha = CanvasBlack.color.a;
+        var alpha = CanvasBlack.GetComponent<Image>().color.a;
         while (alpha < 1)
         {
             alpha += Time.deltaTime;
-            CanvasBlack.color = new Color(0, 0, 0, alpha);
-            yield return null; // WTF why ??
+            CanvasBlack.GetComponent<Image>().color = new Color(0, 0, 0, alpha);
+            yield return null;
         }
         dungeonManager.SetSelectedBiome(biomeIndex);
+        yield break;
     }
 }

@@ -12,7 +12,7 @@ public class MoveToHero : Node
     
     public override NodeState Evaluate(Node root)
     {
-        //blackboard.dir = PathFinding.BFSFindPath(new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), MapManager.Instance.mapArray, Personnalities.MoveToHero);
+        blackboard.dir = PathFinding.BFSFindPath(new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY), MapManager.Instance.mapArray, Personnalities.MoveToHero);
         return blackboard.dir switch
         {
             DirectionToMove.Error => NodeState.Failure,

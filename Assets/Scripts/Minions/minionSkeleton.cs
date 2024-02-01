@@ -9,9 +9,15 @@ public class minionSkeleton : MinionData
     [SerializeField] private Transform model3DTr;
     [SerializeField] private Transform FXDigTr;
 
+    private void GetHeroPos(Vector2Int pos)
+    {
+        bt.blackboard.heroPosition = pos;
+    }
+
     protected override void Init()
     {
         base.Init();
+        Hero.OnGivePosBackEvent += GetHeroPos;
         var spriteColor = sprite.color;
         sprite.color = spriteColor;
         isDigger = true;
@@ -39,7 +45,7 @@ public class minionSkeleton : MinionData
     {
         int index = 0;
         mapManager.AddMinionOnTile(
-            new Vector2Int(indexX, indexY), this);
+            new Vector2Int(indexX, indexY), this, ref index);
         model3DTr.DORotate(transform.rotation.eulerAngles, 0.1f);
         FXDigTr.gameObject.SetActive(false);
         model3DTr.gameObject.SetActive(true);

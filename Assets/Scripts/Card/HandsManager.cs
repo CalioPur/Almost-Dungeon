@@ -26,16 +26,16 @@ public class HandsManager : MonoBehaviour
     
     private void OnEnable()
     {
-        PlayerCardController.OnTilePosedEvent += MoveCard;
-        PlayerCardController.OnFinishToPose += ReorganizeHand;
-        PlayerCardController.OnTileSelectedEvent += PlaceSolution;
+        MovementManager.OnTilePosedEvent += MoveCard;
+        MovementManager.OnFinishToPose += ReorganizeHand;
+        MovementManager.OnTileSelectedEvent += PlaceSolution;
     }
 
     private void OnDisable()
     {
-        PlayerCardController.OnTilePosedEvent -= MoveCard;
-        PlayerCardController.OnFinishToPose -= ReorganizeHand;
-        PlayerCardController.OnTileSelectedEvent -= PlaceSolution;
+        MovementManager.OnTilePosedEvent -= MoveCard;
+        MovementManager.OnFinishToPose -= ReorganizeHand;
+        MovementManager.OnTileSelectedEvent -= PlaceSolution;
     }
 
     private void MoveCard(TileData _, CardInfoInstance cardInfo)
@@ -100,7 +100,7 @@ public class HandsManager : MonoBehaviour
             selectedCard.removeSelection();
             selectedCard = null;
             OnCardSelectedEvent?.Invoke(null);
-            PlayerCardController.Instance.SetSelectedCard(null);
+            MovementManager.Instance.SetSelectedCard(null);
             return;
         }
         if (selectedCard != null)
@@ -110,7 +110,7 @@ public class HandsManager : MonoBehaviour
         selectedCard = card;
         selectedCard.addSelection();
         OnCardSelectedEvent?.Invoke(card);
-        PlayerCardController.Instance.SetSelectedCard(card);
+        MovementManager.Instance.SetSelectedCard(card);
     }
     public int GetMaxCard()
     {
@@ -152,7 +152,7 @@ public class HandsManager : MonoBehaviour
     {
         MoveCard(null, obj.Card);
         ReorganizeHand(obj.Card);
-        PlayerCardController.Instance.SetSelectedCard(null);
+        MovementManager.Instance.SetSelectedCard(null);
         OnCardWasDiscardedEvent?.Invoke(obj);
     }
 }

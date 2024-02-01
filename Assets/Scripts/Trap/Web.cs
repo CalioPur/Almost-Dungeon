@@ -7,11 +7,28 @@ using UnityEngine;
 public class Web : TrapData
 {
     private EnemyInstance webInstance;
+    private Vector2Int heroPos = new Vector2Int(-9999, -9999);
 
     private void Start()
     {
         Init();
     }
+
+    private void OnEnable()
+    {
+        Hero.OnGivePosBackEvent += GetHeroPosOnTile;
+    }
+
+    private void OnDisable()
+    {
+        Hero.OnGivePosBackEvent -= GetHeroPosOnTile;
+    }
+
+    private void GetHeroPosOnTile(Vector2Int pos)
+    {
+        heroPos = pos;
+    }
+
 
     public override void TakeDamage(int damage, AttackType attackType)
     {
@@ -35,7 +52,6 @@ public class Web : TrapData
     {
         if (isDead) return;
         mapManager.GetMonstersOnPos(new Vector2Int(indexX, indexY), out List<TrapData> minions);
-        Vector2Int heroPos = GameManager.Instance.GetHeroPos();
         if (minions.Count > 0)
         {
             minions[0].Stunned(this);

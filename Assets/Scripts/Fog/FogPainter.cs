@@ -27,12 +27,12 @@ public class FogPainter : MonoBehaviour
 
     public void OnEnable()
     {
-        PlayerCardController.OnTilePosedEvent += ActualizeFog;
+        MovementManager.OnTilePosedEvent += ActualizeFog;
     }
     
     public void OnDisable()
     {
-        PlayerCardController.OnTilePosedEvent -= ActualizeFog;
+        MovementManager.OnTilePosedEvent -= ActualizeFog;
     }
 
     private void ActualizeFog(TileData data, CardInfoInstance instance)
@@ -40,7 +40,7 @@ public class FogPainter : MonoBehaviour
         //get the tile position on the array
         Vector2Int tilePos = MapManager.Instance.GetPosFromData(data);
         dungeonTilesPositions.Add(tilePos);
-        FogGenerator.CreateFog(dungeonTilesPositions, this,MapManager.Instance.width,MapManager.Instance.height);
+        FogGenerator.CreateFog(dungeonTilesPositions, this,MapManager.Instance.width-2,MapManager.Instance.height-2);
     }
 
     public void PaintFog(HashSet<Vector2Int> fogPositions, int width, int height)

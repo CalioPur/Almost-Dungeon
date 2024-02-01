@@ -51,7 +51,7 @@ public class DungeonManager : MonoBehaviour
         _instance = this;
         
         DontDestroyOnLoad(this);
-        gameManager = GameManager.Instance;
+        gameManager = GameManager._instance;
 
         dialogueVariable = new DialogueVariable(globalsInkFile);
     }
@@ -139,7 +139,7 @@ public class DungeonManager : MonoBehaviour
         tickManager = FindObjectOfType<TickManager>();
         tickManager.BPM = heroData.speed;
         
-        gameManager = GameManager.Instance;
+        gameManager = GameManager._instance;
         gameManager.currentHero = heroData;
         //gameManager.currentPersonality = heroData.personnalities[0]; //a changer a l'avenir, le hero pourra avoir plusieurs personnalité
         gameManager.heroHealthPoint = heroData.health;
@@ -153,7 +153,7 @@ public class DungeonManager : MonoBehaviour
         
         mapManager.SpawnPresets(terrainData.tilePresets);
         
-        PlayerCardController.Instance.isDragNDrop = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
+        MovementManager.Instance.isDragNDrop = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
     }
     public void LoadNextLevel()
     {

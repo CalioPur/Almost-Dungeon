@@ -29,14 +29,14 @@ public class DeckManager : MonoBehaviour
     private void Awake()
     {
         GameManager.OnGameStartEvent += BeginToDraw;
-        PlayerCardController.OnFinishToPose += RemoveCard;
+        MovementManager.OnFinishToPose += RemoveCard;
         HandsManager.OnCardWasDiscardedEvent += RemoveCard;
     }
 
     private void OnDisable()
     {
         GameManager.OnGameStartEvent -= BeginToDraw;
-        PlayerCardController.OnFinishToPose -= RemoveCard;
+        MovementManager.OnFinishToPose -= RemoveCard;
         HandsManager.OnCardWasDiscardedEvent -= RemoveCard;
     }
 

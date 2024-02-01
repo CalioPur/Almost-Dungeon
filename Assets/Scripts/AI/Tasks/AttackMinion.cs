@@ -8,7 +8,7 @@ using UnityEngine;
 public class AttackMinion : Node
 {
     private HeroBlackboard blackboard;
-    private bool withAnim;
+    bool withAnim;
 
     public AttackMinion(HeroBlackboard _blackboard, bool _withAnim = true)
     {

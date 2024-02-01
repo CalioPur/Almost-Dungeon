@@ -5,6 +5,7 @@ using Tree = BehaviourTree.Tree;
 public class BTArcherHero : Tree
 {
     [SerializeField] private HeroBlackboard BB;
+    [SerializeField] private Arrow arrow;
     
     protected override Node InitTree()
     {

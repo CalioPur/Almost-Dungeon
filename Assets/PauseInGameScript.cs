@@ -32,7 +32,7 @@ public class PauseInGameScript : MonoBehaviour
     void Update()
     {
         //si la touche echapest appuyée
-        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.isInDialogue)
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager._instance.isInDialogue)
         {
             //si le menu pause est actif
             if (pauseMenu.activeSelf)
