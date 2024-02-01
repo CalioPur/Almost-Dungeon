@@ -17,15 +17,13 @@ public class GameManager : MonoBehaviour
     [Header("Data")] [SerializeField] private List<HeroesInfo> heroesInfos;
     [SerializeField] private List<Light> lightsAmbiant;
     [SerializeField] private CardInfo enterDungeonInfo;
-    [SerializeField] public Vector2Int normsSpawnX;
-    [SerializeField] public Vector2Int normsSpawnY;
     public HeroSO currentHero;
     public int heroHealthPoint;
     public int heroCurrentHealthPoint;
     public int rotationOfSpawnTile;
     public bool isInDialogue = false;
     private Vector3 worldPos;
-    private Vector2Int startPosHero;
+    internal Vector2Int startPosHero;
 
     //public int dragonHealthPoint = 10;
     
@@ -51,7 +49,7 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 1;
         mapManager.InitMap();
         mapManager.AddRandomCard();
-        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), normsSpawnX, normsSpawnY,rotationOfSpawnTile, out worldPos, out startPosHero);
+        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(),rotationOfSpawnTile, out worldPos, startPosHero);
         mapManager.CreateFog(startPosHero);
         worldPos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
         OnEndDialogEvent?.Invoke();
