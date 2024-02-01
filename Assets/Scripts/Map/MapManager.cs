@@ -134,10 +134,8 @@ public class MapManager : MonoBehaviour
         MapManagerTools.SetExits();
     }
 
-    public void InitEnterDungeon(CardInfoInstance card, Vector2Int normsX, Vector2Int normsY, int rot, out Vector3 pos,
-        out Vector2Int startPos)
+    public void InitEnterDungeon(CardInfoInstance card,int rot, out Vector3 pos, Vector2Int startPos)
     {
-        startPos = new Vector2Int(Random.Range(normsX.x, normsX.y), Random.Range(normsY.x, normsY.y));
         for (int i = 0; i < rot; i++)
         {
             card.AddRotation(false);
