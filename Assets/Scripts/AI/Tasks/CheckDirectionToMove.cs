@@ -109,10 +109,21 @@ public class CheckDirectionToMove : Node
                     target = BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(),
                         options, blackboard.hero.mapManager.getMapArray());
                 }
-                else
+                else if (options.Count > 0)
                 {
                     options = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(options);
-                    target = options[UnityEngine.Random.Range(0, options.Count)];
+                    int random = UnityEngine.Random.Range(0, options.Count);
+                    Debug.Log("Random : " + random);
+                    target = options[random];
+                }
+                else if (memory.Count > 0)
+                {
+                    var tempMemory = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(memory);
+                    target = tempMemory[UnityEngine.Random.Range(0, tempMemory.Count)];
+                }
+                else
+                {
+                    Debug.LogError("MARCHE PO👺👺👺👺👺👺");
                 }
             }
         }
@@ -159,34 +170,6 @@ public class CheckDirectionToMove : Node
             }
         }
         options.Clear();
-        
-        // List<Vector2Int> listOfConnectedButUnvisitedTiles = new List<Vector2Int>();
-        // listOfConnectedButUnvisitedTiles.AddRange(from VARIABLE in visibleTiles
-        //     where VARIABLE.isConnectedToPath && !VARIABLE.IsVisited
-        //     select VARIABLE.IndexInMapArray);
-        // if (listOfConnectedButUnvisitedTiles.Count > 0)
-        // {
-        //     Debug.Log("Go to unvisited");
-        //     blackboard.directionToMove = blackboard.aggressivity == Aggressivity.PEUREUX
-        //         ? BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(), listOfConnectedButUnvisitedTiles,
-        //             blackboard.hero.mapManager.getMapArray(), true)
-        //         : BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(), listOfConnectedButUnvisitedTiles,
-        //             blackboard.hero.mapManager.getMapArray());
-        // }
-        // else if(listOfExits.Count > 0)
-        // {
-        //     Debug.Log("Go to exit");
-        //     blackboard.directionToMove = blackboard.aggressivity == Aggressivity.PEUREUX
-        //         ? BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(), listOfExits,
-        //             blackboard.hero.mapManager.getMapArray(), true)
-        //         : BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(), listOfExits,
-        //             blackboard.hero.mapManager.getMapArray());
-        // }
-        // else
-        // {
-        //     Debug.Log("BreakWall");
-        //     PathFinding.BreakFreeFromNoExit(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
-        // }
 
         if (blackboard.directionToMove == DirectionToMove.Error)
         {
@@ -228,9 +211,17 @@ public class CheckDirectionToMove : Node
         {
             if (VARIABLE.isConnectedToPath && VARIABLE.IsVisited)
             {
-                tileDatasToReturn.Add(VARIABLE);
+                var tmp = BFSScript.GetNeighborsTiles(VARIABLE.IndexInMapArray, blackboard.hero.mapManager.getMapArray());
+                foreach (var VARIABLE1 in tmp)
+                {
+                    if (!tileDatasToReturn.Contains(VARIABLE1))
+                    {
+                        tileDatasToReturn.Add(VARIABLE1);
+                    }
+                }
             }
         }
+        tileDatasToReturn = tileDatas.Distinct().ToList();
         return tileDatasToReturn;
     }
 

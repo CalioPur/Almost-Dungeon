@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public static class BFSScript
 {
@@ -215,6 +216,33 @@ public static class BFSScript
         }
 
         return neighbors.ToArray();
+    }
+    
+    public static List<TileData> GetNeighborsTiles(Vector2Int currentPos, TileData[,] map)
+    {
+        List<TileData> neighbors = new List<TileData>();
+
+        if (currentPos.x > 0 && map[currentPos.x, currentPos.y].hasDoorLeft)
+        {
+            neighbors.Add(map[currentPos.x - 1, currentPos.y]);
+        }
+
+        if (currentPos.x < map.GetLength(0) - 1 && map[currentPos.x, currentPos.y].hasDoorRight)
+        {
+            neighbors.Add(map[currentPos.x + 1, currentPos.y]);
+        }
+
+        if (currentPos.y > 0 && map[currentPos.x, currentPos.y].hasDoorDown)
+        {
+            neighbors.Add(map[currentPos.x, currentPos.y - 1]);
+        }
+
+        if (currentPos.y < map.GetLength(1) - 1 && map[currentPos.x, currentPos.y].hasDoorUp)
+        {
+            neighbors.Add(map[currentPos.x, currentPos.y + 1]);
+        }
+
+        return neighbors;
     }
     
     private static TileData GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap,
