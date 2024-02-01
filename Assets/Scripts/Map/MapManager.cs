@@ -396,4 +396,21 @@ public class MapManager : MonoBehaviour
     {
         return MapManagerTools.GetTilesInLineOfSight(startPos);
     }
+
+    public void GetIndexFromTile(TileData tile, out Vector2Int vector2Int)
+    {
+        vector2Int = new Vector2Int(-1, -1);
+        for (int i = 0; i < width; i++)
+        {
+            if (vector2Int.x != -1) break;
+            for (int j = 0; j < height; j++)
+            {
+                if (mapArray[i, j] == tile)
+                {
+                    vector2Int = new Vector2Int(i, j);
+                    return;
+                }
+            }
+        }
+    }
 }
