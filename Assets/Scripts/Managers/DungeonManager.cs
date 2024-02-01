@@ -144,8 +144,7 @@ public class DungeonManager : MonoBehaviour
         //gameManager.currentPersonality = heroData.personnalities[0]; //a changer a l'avenir, le hero pourra avoir plusieurs personnalité
         gameManager.heroHealthPoint = heroData.health;
         gameManager.heroCurrentHealthPoint = heroData.health;
-        gameManager.normsSpawnX = terrainData.ClampSpawnPositionX;
-        gameManager.normsSpawnY = terrainData.ClampSpawnPositionY;
+        gameManager.startPosHero = terrainData.SpawnPosition;
         gameManager.rotationOfSpawnTile = terrainData.spawnRotation;
         
         mapManager = FindObjectOfType<MapManager>();
