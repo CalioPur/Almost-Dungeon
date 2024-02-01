@@ -9,9 +9,7 @@ public class GameManager : MonoBehaviour
     public static event Action OnSceneLoadedEvent;
     public static Action OnGameStartEvent;
     public static Action OnEndDialogEvent;
-    
     public static bool isGameStarted = false;
-    public static GameManager Instance;
 
     [Header("Managers")] [SerializeField] private MapManager mapManager;
     [SerializeField] private TickManager tick;
@@ -19,18 +17,17 @@ public class GameManager : MonoBehaviour
     [Header("Data")] [SerializeField] private List<HeroesInfo> heroesInfos;
     [SerializeField] private List<Light> lightsAmbiant;
     [SerializeField] private CardInfo enterDungeonInfo;
-    [SerializeField] public Vector2Int normsSpawnX;
-    [SerializeField] public Vector2Int normsSpawnY;
-    [field:SerializeField] public Transform AttackPoint { get; set; }
     public HeroSO currentHero;
     public int heroHealthPoint;
     public int heroCurrentHealthPoint;
     public int rotationOfSpawnTile;
     public bool isInDialogue = false;
     private Vector3 worldPos;
-    private Vector2Int posHero;
+    internal Vector2Int startPosHero;
+
+    //public int dragonHealthPoint = 10;
     
-    
+    public static GameManager Instance;
     
     private void Awake()
     {
@@ -52,7 +49,8 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 1;
         mapManager.InitMap();
         mapManager.AddRandomCard();
-        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), normsSpawnX, normsSpawnY,rotationOfSpawnTile, out worldPos, out posHero);
+        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(),rotationOfSpawnTile, out worldPos, startPosHero);
+        mapManager.CreateFog(startPosHero);
         worldPos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
         OnEndDialogEvent?.Invoke();
         foreach (var light in lightsAmbiant)
@@ -79,7 +77,7 @@ public class GameManager : MonoBehaviour
         current.CurrentHealthPoint = heroHealthPoint;
         
         Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
-        heroScript.Init(current, posHero.x, posHero.y, mapManager);
+        heroScript.Init(current, startPosHero.x, startPosHero.y, mapManager);
         heroScript.HeroBlackboard.visionType = currentHero.visionType;
         heroScript.HeroBlackboard.aggressivity = currentHero.aggressivity;
         heroScript.HeroBlackboard.personalities = currentHero.personalities;
@@ -106,15 +104,5 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public void UpdateHeroPos(Vector2Int getIndexHeroPos)
-    {
-        posHero = getIndexHeroPos;
-    }
-    
-    public Vector2Int GetHeroPos()
-    {
-        return posHero;
     }
 }

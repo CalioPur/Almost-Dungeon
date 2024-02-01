@@ -16,8 +16,7 @@ public struct TilePresetStruct
 public class TilePresetSO : ScriptableObject
 {
     [SerializeField] public List<TilePresetStruct> tilePresets;
-    [SerializeField] public Vector2Int ClampSpawnPositionX;
-    [SerializeField] public Vector2Int ClampSpawnPositionY;
+    [SerializeField] public Vector2Int SpawnPosition;
     [SerializeField] public int spawnRotation;
     [SerializeField] public TextAsset terrainDialogue;
 }
