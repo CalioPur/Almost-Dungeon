@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 public class ALaid1
 {
     public static Aggressivity aggressivity;
-    public static List<Objectives> objectivesList;
     private static int numberOfExits;
     private static int numberOfUnvisitedTiles;
     private static TileData[,] map;
@@ -38,7 +37,7 @@ public class ALaid1
 
     public static DirectionToMove Bigleux(Vector2Int startPos, TileData[,] mapDatas)
     {
-        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapDatas, Personnalities.Nothing);
+        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapDatas, oldPerso.Nothing);
         distanceToExit = PathFinding.distToClosestExit;
         map = mapDatas;
         UpdateNumberOfExitsAndUnvisitedTiles(map);
@@ -49,7 +48,7 @@ public class ALaid1
         
         foreach(var personnalities in Hero.Instance.HeroBlackboard.personalities)
         {
-            if (personnalities == PersonnalitiesV2.IMPATIENT)
+            if (personnalities == Personnalities.IMPATIENT)
             {
                 if (PathFinding.distToClosestExit > 5)
                 {
@@ -187,7 +186,7 @@ public class ALaid1
     
     public static DirectionToMove Line(Vector2Int startPos, TileData[,] mapData)
     {
-        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapData, Personnalities.Nothing);
+        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapData, oldPerso.Nothing);
         distanceToExit = PathFinding.distToClosestExit;
         List<TileData> tilesInLineOfSight = new List<TileData>();
         map = mapData;
@@ -203,7 +202,7 @@ public class ALaid1
         
         foreach(var personnalities in Hero.Instance.HeroBlackboard.personalities)
         {
-            if (personnalities == PersonnalitiesV2.IMPATIENT)
+            if (personnalities == Personnalities.IMPATIENT)
             {
                 if (PathFinding.distToClosestExit > 5)
                 {
@@ -216,7 +215,7 @@ public class ALaid1
 
         if (aggressivity == Aggressivity.COURAGEUX && numberOfVisibleEnemies > 0)
         {
-            return PathFinding.BFSFindPath(startPos, map, Personnalities.TheKiller);
+            return PathFinding.BFSFindPath(startPos, map, oldPerso.Nothing);
         }
 
         if (aggressivity == Aggressivity.PEUREUX && numberOfVisibleEnemies > 0)
@@ -229,12 +228,12 @@ public class ALaid1
             }
         }
 
-        return PathFinding.BFSFindPath(startPos, map, numberOfUnvisitedTiles == 0 ? Personnalities.HurryForTheExit : Personnalities.TheExplorer);
+        return PathFinding.BFSFindPath(startPos, map, numberOfUnvisitedTiles == 0 ? oldPerso.HurryForTheExit : oldPerso.TheExplorer);
     }
 
     private static DirectionToMove DirectionWithNoEnemies(Vector2Int startPos, TileData[,] tileDatas)
     {
-        return PathFinding.BFSFindPathWithLessEnemies(startPos, tileDatas, numberOfUnvisitedTiles == 0 ? Personnalities.HurryForTheExit : Personnalities.TheExplorer);
+        return PathFinding.BFSFindPathWithLessEnemies(startPos, tileDatas, numberOfUnvisitedTiles == 0 ? oldPerso.HurryForTheExit : oldPerso.TheExplorer);
     }
 
     public static List<TileData> GetTilesInLineOfSight(Vector2Int startPos, TileData[,] mapDatas)
@@ -291,7 +290,7 @@ public class ALaid1
     
     public static DirectionToMove Clairvoyant(Vector2Int startPos, TileData[,] mapDatas)
     {
-        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapDatas, Personnalities.Nothing);
+        DirectionToMove nothing = PathFinding.BFSFindPath(startPos, mapDatas, oldPerso.Nothing);
         distanceToExit = PathFinding.distToClosestExit;
         map = mapDatas;
         MapManager.Instance.SetAllTilesAsVisited();
@@ -299,7 +298,7 @@ public class ALaid1
         
         foreach(var personnalities in Hero.Instance.HeroBlackboard.personalities)
         {
-            if (personnalities == PersonnalitiesV2.IMPATIENT)
+            if (personnalities == Personnalities.IMPATIENT)
             {
                 if (PathFinding.distToClosestExit > 5)
                 {
@@ -310,14 +309,14 @@ public class ALaid1
         
         if (aggressivity == Aggressivity.COURAGEUX && numberOfEnemies > 0)
         {
-            return PathFinding.BFSFindPath(startPos, map, Personnalities.TheKiller);
+            return PathFinding.BFSFindPath(startPos, map, oldPerso.TheKiller);
         }
 
         if (aggressivity == Aggressivity.PEUREUX && numberOfEnemies > 0)
         {
             //TODO JSP ALAID
         }
-        return PathFinding.BFSFindPath(startPos, map, Personnalities.TheExplorer);
+        return PathFinding.BFSFindPath(startPos, map, oldPerso.TheExplorer);
     }
 
     private static int CheckNumberOfEnemiesOnMap(TileData[,] mapDatas)

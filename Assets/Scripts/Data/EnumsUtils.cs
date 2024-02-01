@@ -37,7 +37,7 @@ public enum AttackType
     Fire,
 }
 
-public enum Personnalities
+public enum oldPerso
 {
     HurryForTheExit,
     TheExplorer,
@@ -47,7 +47,7 @@ public enum Personnalities
     Nothing
 }
 
-public enum PersonnalitiesV2
+public enum Personnalities
 {
     EXPLORATEUR, // Lorsqu'il y a plusieurs tuiles menant à une zone inexplorée dans son champ de vision, se déplace vers la plus proche.
     IMPATIENT // Lorsqu'il se trouve à plus de 5 tuiles de la sortie, entre en RAGE.

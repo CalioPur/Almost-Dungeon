@@ -10,7 +10,7 @@ public class PathFinding
     
     public static int distToClosestExit = 9999;
 
-    public static DirectionToMove BFSFindPathWithLessEnemies(Vector2Int startPos, TileData[,] map, Personnalities personality)
+    public static DirectionToMove BFSFindPathWithLessEnemies(Vector2Int startPos, TileData[,] map, oldPerso personality)
     {
         Queue<Vector2Int> queue = new Queue<Vector2Int>();
         HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
@@ -65,7 +65,7 @@ public class PathFinding
 
         switch (personality)
         {
-            case Personnalities.HurryForTheExit when exits.Count > 0:
+            case oldPerso.HurryForTheExit when exits.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits, true);
                 if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
@@ -75,39 +75,39 @@ public class PathFinding
 
                 return GetDirectionToMove(startPos, nextPos);
             }
-            case Personnalities.HurryForTheExit when exits.Count == 0:
+            case oldPerso.HurryForTheExit when exits.Count == 0:
             {
                 if (CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
                 return BreakFreeFromNoExit(startPos, map);
             }
-            case Personnalities.TheExplorer when unvisitedTiles.Count > 0:
+            case oldPerso.TheExplorer when unvisitedTiles.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, unvisitedTiles, true);
                 return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None
                     ? GoThroughDoorWithNoTile(startPos, map)
                     : GetDirectionToMove(startPos, nextPos);
             }
-            case Personnalities.TheExplorer when exits.Count > 0:
+            case oldPerso.TheExplorer when exits.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits, true);
                 return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None
                     ? GoThroughDoorWithNoTile(startPos, map)
                     : GetDirectionToMove(startPos, nextPos);
             }
-            case Personnalities.TheExplorer when exits.Count == 0:
+            case oldPerso.TheExplorer when exits.Count == 0:
             {
                 if (CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
                 return BreakFreeFromNoExit(startPos, map);
 
             }
-            case Personnalities.TheKiller:
+            case oldPerso.TheKiller:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, tileWithEnemies, true);
                 return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None
                     ? GoThroughDoorWithNoTile(startPos, map)
                     : GetDirectionToMove(startPos, nextPos);
             }
-            case Personnalities.MoveToHero:
+            case oldPerso.MoveToHero:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, new List<Vector2Int>() { HeroPos }, true);
                 if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
@@ -117,7 +117,7 @@ public class PathFinding
 
                 return GetDirectionToMove(startPos, nextPos);
             }
-            case Personnalities.Nothing:
+            case oldPerso.Nothing:
             {
                 return DirectionToMove.None;
             }
@@ -127,7 +127,7 @@ public class PathFinding
         }
     }
 
-    public static DirectionToMove BFSFindPath(Vector2Int startPos, TileData[,] map, Personnalities personality)
+    public static DirectionToMove BFSFindPath(Vector2Int startPos, TileData[,] map, oldPerso personality)
     {
         Queue<Vector2Int> queue = new Queue<Vector2Int>();
         HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
@@ -182,7 +182,7 @@ public class PathFinding
         
         switch (personality)
         {
-            case Personnalities.HurryForTheExit when exits.Count > 0:
+            case oldPerso.HurryForTheExit when exits.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
                 if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
@@ -191,33 +191,33 @@ public class PathFinding
                 }
                 return GetDirectionToMove(startPos, nextPos);
             }
-            case Personnalities.HurryForTheExit when exits.Count == 0:
+            case oldPerso.HurryForTheExit when exits.Count == 0:
             {
                 if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
                 return BreakFreeFromNoExit(startPos, map);
             }
-            case Personnalities.TheExplorer when unvisitedTiles.Count > 0:
+            case oldPerso.TheExplorer when unvisitedTiles.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, unvisitedTiles);
                 return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
             }
-            case Personnalities.TheExplorer when exits.Count > 0:
+            case oldPerso.TheExplorer when exits.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
                 return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
             }
-            case Personnalities.TheExplorer when exits.Count == 0:
+            case oldPerso.TheExplorer when exits.Count == 0:
             {
                 if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
                 return BreakFreeFromNoExit(startPos, map);
 
             }
-            case Personnalities.TheKiller:
+            case oldPerso.TheKiller:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, tileWithEnemies);
                 return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
             }
-            case Personnalities.MoveToHero:
+            case oldPerso.MoveToHero:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, new List<Vector2Int>(){HeroPos});
                 if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
@@ -226,7 +226,7 @@ public class PathFinding
                 }
                 return GetDirectionToMove(startPos, nextPos);
             }
-            case Personnalities.Nothing:
+            case oldPerso.Nothing:
             {
                 return DirectionToMove.None;
             }

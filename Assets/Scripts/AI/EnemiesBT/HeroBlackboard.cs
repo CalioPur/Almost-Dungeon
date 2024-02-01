@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class HeroBlackboard : MonoBehaviour
 {
-    public Personnalities personality;
+    public oldPerso personality;
     [HideInInspector] public Hero hero;
     [HideInInspector] public DirectionToMove directionToMove = DirectionToMove.None;
     [HideInInspector] public List<TrapData> Targets = new();
@@ -18,5 +18,5 @@ public class HeroBlackboard : MonoBehaviour
     public GameObject leftArrow;
     public VisionType visionType;
     public Aggressivity aggressivity;
-    public List<PersonnalitiesV2> personalities;
+    public List<Personnalities> personalities;
 }

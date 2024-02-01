@@ -140,4 +140,18 @@ public class TileData : MonoBehaviour
         transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y,
             Mathf.Round(transform.position.z));
     }
+    
+    public void ResetData()
+    {
+        img.sprite = null;
+        isVisited = false;
+        isRoom = false;
+        isExit = false;
+        isConnectedToPath = false;
+        hasDoorUp = true;
+        hasDoorRight = true;
+        hasDoorDown = true;
+        hasDoorLeft = true;
+        enemies.Clear();
+    }
 }

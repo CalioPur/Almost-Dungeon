@@ -13,7 +13,7 @@ public class HeroSO : ScriptableObject
     public HeroesInfo classe;
     public VisionType visionType;
     public Aggressivity aggressivity;
-    public List<PersonnalitiesV2> personalities;
+    public List<Personnalities> personalities;
     public List<TextAsset> heroDialogues;
     public string keyToUnlock;
 }

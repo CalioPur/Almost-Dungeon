@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class BFSScript
 {
-    public static DirectionToMove BSFGoToTile(Vector2Int startPos, List<Vector2Int> tilesObjectif, TileData[,] map, bool withLessEnnemies = false)
+    public static TileData BSFGoToTile(Vector2Int startPos, List<TileData> tilesObjectif, TileData[,] map, bool withLessEnnemies = false)
     {
         Queue<Vector2Int> queue = new Queue<Vector2Int>();
         HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
@@ -43,17 +43,29 @@ public static class BFSScript
             dbgInt++;
         }
         
-        Vector2Int nextPosition = GetNextPosition(startPos, parentMap, tilesObjectif, withLessEnnemies);
+        TileData targetTile = GetNextPosition(startPos, parentMap, tilesObjectif, withLessEnnemies);
+        return targetTile;
+        // if (GoAttackDragon(startPos, map, out var bsfGoToTile)) return bsfGoToTile;
+        //
+        // if (GetDirectionToMove(startPos, nextPosition) == DirectionToMove.None)
+        //     return GoThroughDoorWithNoTile(startPos, map);
+        //
+        //
+        // return GetDirectionToMove(startPos, nextPosition);
+    }
+
+    public static DirectionToMove BFSGoInDirection(Vector2Int startPos, List<TileData> tilesObjectif, TileData[,] map,
+        bool withLessEnnemies = false)
+    {
+        TileData targetTile = BSFGoToTile(startPos, tilesObjectif, map, withLessEnnemies);
+        Vector2Int nextPosition = targetTile.IndexInMapArray;
         if (GoAttackDragon(startPos, map, out var bsfGoToTile)) return bsfGoToTile;
-        
         if (GetDirectionToMove(startPos, nextPosition) == DirectionToMove.None)
             return GoThroughDoorWithNoTile(startPos, map);
-        
-
         return GetDirectionToMove(startPos, nextPosition);
     }
 
-    private static bool GoAttackDragon(Vector2Int startPos, TileData[,] map, out DirectionToMove bsfGoToTile)
+    public static bool GoAttackDragon(Vector2Int startPos, TileData[,] map, out DirectionToMove bsfGoToTile)
     {
         if (map[startPos.x, startPos.y].hasDoorUp && !map[startPos.x, startPos.y + 1].PiecePlaced)
         {
@@ -205,9 +217,14 @@ public static class BFSScript
         return neighbors.ToArray();
     }
     
-    private static Vector2Int GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap,
-        List<Vector2Int> goalPositions, bool withLessEnemies = false)
+    private static TileData GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap,
+        List<TileData> goalTilesDatas, bool withLessEnemies = false)
     {
+        List<Vector2Int> goalPositions = new List<Vector2Int>();
+        foreach (var tileData in goalTilesDatas)
+        {
+            goalPositions.Add(tileData.IndexInMapArray);
+        }
         Vector2Int closestPos = goalPositions[0];
         int minDist = 9999;
         int minEnemies = 9999;
@@ -247,6 +264,66 @@ public static class BFSScript
             }
         }
 
-        return closestPos;
+        return MapManager.Instance.GetTileDataAtPosition(closestPos.x, closestPos.y);
+    }
+
+    public static int DistanceFromExit(Vector2Int startPos, TileData[,] exits)
+    {
+        if (exits == null)
+        {
+            return 9999;
+        }
+        int minDist = 9999;
+        foreach (var exit in exits)
+        {
+            Dictionary<Vector2Int, Vector2Int> parentMapCopy = new Dictionary<Vector2Int, Vector2Int>();
+            Vector2Int currentPos = exit.IndexInMapArray;
+            int distance = 0;
+            while (parentMapCopy.ContainsKey(currentPos) && parentMapCopy[currentPos] != startPos)
+            {
+                Vector2Int parent = parentMapCopy[currentPos];
+                parentMapCopy.Remove(currentPos);
+                currentPos = parent;
+                distance++;
+            }
+
+            if (minDist > distance)
+            {
+                minDist = distance;
+            }
+        }
+        
+        return minDist;
+    }
+    public static int GetNumberOfTilesToClosestExit(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap,
+        List<Vector2Int> exits)
+    {
+        if (exits.Count == 0)
+        {
+            return 9999;
+        }
+        Vector2Int closestPos = exits[0];
+        int minDist = 9999;
+        foreach (var position in exits)
+        {
+            Dictionary<Vector2Int, Vector2Int> parentMapCopy = new Dictionary<Vector2Int, Vector2Int>(parentMap);
+            Vector2Int currentPos = position;
+            int distance = 0;
+            while (parentMapCopy.ContainsKey(currentPos) && parentMapCopy[currentPos] != startPos)
+            {
+                Vector2Int parent = parentMapCopy[currentPos];
+                parentMapCopy.Remove(currentPos);
+                currentPos = parent;
+                distance++;
+            }
+
+            if (minDist > distance)
+            {
+                minDist = distance;
+                closestPos = currentPos;
+            }
+        }
+        
+        return minDist;
     }
 }
