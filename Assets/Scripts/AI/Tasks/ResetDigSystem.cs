@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ResetDigSystem : Node
 {
-    MinionBlackboard minionBlackboard;
+    private MinionBlackboard minionBlackboard;
     
     public ResetDigSystem(MinionBlackboard minionBlackboard)
     {

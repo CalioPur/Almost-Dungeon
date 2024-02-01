@@ -159,9 +159,9 @@ public class PathFindingV2
     {
         // PiecePlaced == null
         List<Vector2Int> emptyTiles = new List<Vector2Int>();
-        for (int i = 0; i < map.GetLength(0) - 2; i++)
+        for (int i = 0; i < map.GetLength(0); i++)
         {
-            for (int j = 0; j < map.GetLength(1) - 2; j++)
+            for (int j = 0; j < map.GetLength(1); j++)
             {
                 if (!map[i, j].PiecePlaced)
                 {
@@ -178,9 +178,9 @@ public class PathFindingV2
 
     private static DirectionToMove Clairvoyant(Vector2Int startPos, TileData[,] map, List<PersonnalitiesV2> personalities, Aggressivity aggressivity, Objectives[] objectives)
     {
-        for (int i = 0; i < MapManager.Instance.width - 2; i++)
+        for (int i = 0; i < MapManager.Instance.width; i++)
         {
-            for (int j = 0; j < MapManager.Instance.height - 2; j++)
+            for (int j = 0; j < MapManager.Instance.height; j++)
             {
                 if (MapManager.Instance.mapArray[i, j].isConnectedToPath)
                 {
@@ -522,9 +522,9 @@ public class PathFindingV2
     private static void FindTilesWithEnemies(TileData[,] map)
     {
         tilesWithEnemies.Clear();
-        for (int i = 0; i < MapManager.Instance.width - 2; i++)
+        for (int i = 0; i < MapManager.Instance.width; i++)
         {
-            for (int j = 0; j < MapManager.Instance.height - 2; j++)
+            for (int j = 0; j < MapManager.Instance.height; j++)
             {
                 if (map[i, j].enemies.Count > 0)
                 {

@@ -16,25 +16,13 @@ public class CheckDirectionToMove : Node
     }
 
     public override NodeState Evaluate(Node root)
-    {
-        // blackboard.directionToMove = PathFinding.BFSFindPath(
-        //     blackboard.hero.GetIndexHeroPos(),
-        //     blackboard.hero.mapManager.getMapArray(), blackboard.personality);
-        // blackboard.directionToMove = PathFinding.BFSFindPathV2(
-        //     blackboard.hero.GetIndexHeroPos(),
-        //     blackboard.hero.mapManager.getMapArray(), new List<PersonnalitiesV2>(), VisionType.RECTILIGNE,
-        //     Aggressivity.COURAGEUX, new[]
-        //     {
-        //         Objectives.SORTIE
-        //     });
-        
+    {        
         if (blackboard.aggressivity == Aggressivity.COURAGEUX)
             ALaid1.aggressivity = Aggressivity.COURAGEUX;
         else if (blackboard.aggressivity == Aggressivity.PEUREUX)
             ALaid1.aggressivity = Aggressivity.PEUREUX;
-        // Debug.Log("Vision type = " + blackboard.visionType);
-        if (blackboard.visionType == VisionType.BIGLEUX)
-            blackboard.directionToMove = ALaid1.Bigleux(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
+        // if (blackboard.visionType == VisionType.BIGLEUX)
+        //     blackboard.directionToMove = ALaid1.Bigleux(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
         if (blackboard.visionType == VisionType.LIGNEDROITE)
             blackboard.directionToMove = ALaid1.Line(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
         else if (blackboard.visionType == VisionType.CLAIRVOYANT)
@@ -63,7 +51,7 @@ public class CheckDirectionToMove : Node
                 
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+                return NodeState.Failure;
         }
 
         if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;

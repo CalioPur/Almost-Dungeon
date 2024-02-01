@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CheckOnDig : Node
 {
-    MinionBlackboard minionBlackboard;
+    private MinionBlackboard minionBlackboard;
     
     public CheckOnDig(MinionBlackboard minionBlackboard)
     {

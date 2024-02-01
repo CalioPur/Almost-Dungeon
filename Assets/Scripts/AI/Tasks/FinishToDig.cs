@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FinishToDig : Node
 {
-    MinionBlackboard minionBlackboard;
+    private MinionBlackboard minionBlackboard;
     
     public FinishToDig(MinionBlackboard minionBlackboard)
     {

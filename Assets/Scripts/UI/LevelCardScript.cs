@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,7 +31,7 @@ public class LevelCardScript : MonoBehaviour
         }
         else if (PlayerPrefs.GetInt("LevelBeaten" + biomeIndex,0) == 1)
         {
-            SpriteAttached.GetComponent<SpriteRenderer>().sprite = FinishedSprite;
+            SpriteAttached.sprite = FinishedSprite;
         }
         
         tryText.text = PlayerPrefs.GetInt("LevelTry" + biomeIndex, 0).ToString();

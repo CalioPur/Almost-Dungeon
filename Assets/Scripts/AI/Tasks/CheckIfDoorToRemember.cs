@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CheckIfDoorToRemember : Node
 {
-    HeroBlackboard _blackboard;
+    private HeroBlackboard _blackboard;
     
     public CheckIfDoorToRemember(HeroBlackboard blackboard)
     {

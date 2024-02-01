@@ -115,7 +115,7 @@ MonoBehaviour:
   animFX: {fileID: 7204535970360123863, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
   animator: {fileID: 2406530745532428887}
   audioSource: {fileID: -159165709143243349}
-  threeDeeHero: {fileID: 7208080533387792801}
+  threeDeeHero: {fileID: 9153781189341048948}
   attackClip:
   - {fileID: 8300000, guid: 8f41e554a2e193548a3d9b2bc67490f2, type: 3}
 --- !u!114 &-4683431529391840305
@@ -144,7 +144,7 @@ MonoBehaviour:
   leftArrow: {fileID: 1336407399745273118}
   visionType: 0
   aggressivity: 0
-  personalities: 
+  personalities: 01000000
 --- !u!114 &7733622732822971966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,15 +420,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6226e2b56265d944d9d52f4e654366be, type: 3}
---- !u!1 &7208080533387792801 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7873598759525488518, guid: 6226e2b56265d944d9d52f4e654366be,
-    type: 3}
-  m_PrefabInstance: {fileID: 670081234306975271}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8017515242899409691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7354225323271605564, guid: 6226e2b56265d944d9d52f4e654366be,
+    type: 3}
+  m_PrefabInstance: {fileID: 670081234306975271}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &9153781189341048948 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8522033337602586195, guid: 6226e2b56265d944d9d52f4e654366be,
     type: 3}
   m_PrefabInstance: {fileID: 670081234306975271}
   m_PrefabAsset: {fileID: 0}

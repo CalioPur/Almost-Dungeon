@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HeroMovementBehavior : Node
 {
-    HeroBlackboard BB;
+    private HeroBlackboard BB;
 
     public HeroMovementBehavior(HeroBlackboard blackboard)
     {

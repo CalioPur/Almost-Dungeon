@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GetDirectionOfNearestEnemyInSight : Node
 {
-    HeroBlackboard blackboard;
+    private HeroBlackboard blackboard;
 
     public GetDirectionOfNearestEnemyInSight(HeroBlackboard _blackboard)
     {

@@ -1,4 +1,5 @@
 using BehaviourTree;
+using UnityEngine;
 
 public class HeroIsInSight : Node
 {
@@ -13,21 +14,22 @@ public class HeroIsInSight : Node
     {
         int x = blackboard.minionData.indexX;
         int y = blackboard.minionData.indexY;
+        Vector2Int heroPos = GameManager.Instance.GetHeroPos();
 
-        if (blackboard.heroPosition.y == y && blackboard.heroPosition.x == x
+        if (heroPos.y == y && heroPos.x == x
             ||
-            ( y + 1 <= blackboard.minionData.mapManager.height - 2 &&
-                 blackboard.heroPosition.y == y + 1 && blackboard.heroPosition.x == x &&
+            ( y + 1 <= blackboard.minionData.mapManager.height &&
+                 heroPos.y == y + 1 && heroPos.x == x &&
                  blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorUp)
             ||
-            (y - 1 >= 0 && blackboard.heroPosition.y == y - 1 && blackboard.heroPosition.x == x &&
+            (y - 1 >= 0 && heroPos.y == y - 1 && heroPos.x == x &&
              blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorDown)
             ||
-            (x + 1 <= blackboard.minionData.mapManager.width - 2 && 
-             blackboard.heroPosition.y == y && blackboard.heroPosition.x == x + 1 &&
+            (x + 1 <= blackboard.minionData.mapManager.width && 
+             heroPos.y == y && heroPos.x == x + 1 &&
              blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorRight)
             ||
-            (x - 1 >= 0 && blackboard.heroPosition.y == y && blackboard.heroPosition.x == x - 1 &&
+            (x - 1 >= 0 && heroPos.y == y && heroPos.x == x - 1 &&
              blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorLeft)
             )
         {
@@ -40,14 +42,14 @@ public class HeroIsInSight : Node
             return NodeState.Success;
         }
 
-        if (blackboard.heroPosition.x == blackboard.minionData.indexX)
-            if (blackboard.heroPosition.y > blackboard.minionData.indexY)
-                while (y < blackboard.heroPosition.y &&
+        if (heroPos.x == blackboard.minionData.indexX)
+            if (heroPos.y > blackboard.minionData.indexY)
+                while (y < heroPos.y &&
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorUp &&
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).PiecePlaced)
                 {
                     y++;
-                    if (blackboard.heroPosition.y == y)
+                    if (heroPos.y == y)
                     {
                         if (blackboard.firstTimeSeeHero)
                         {
@@ -59,12 +61,12 @@ public class HeroIsInSight : Node
                     }
                 }
             else
-                while (y >= blackboard.heroPosition.y &&
+                while (y >= heroPos.y &&
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorDown &&
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).PiecePlaced)
                 {
                     y--;
-                    if (blackboard.heroPosition.y == y)
+                    if (heroPos.y == y)
                     {
                         if (blackboard.firstTimeSeeHero)
                         {
@@ -76,14 +78,14 @@ public class HeroIsInSight : Node
                     }
                 }
 
-        if (blackboard.heroPosition.y == blackboard.minionData.indexY)
-            if (blackboard.heroPosition.x > blackboard.minionData.indexX)
-                while (x  <= blackboard.heroPosition.x &&
+        if (heroPos.y == blackboard.minionData.indexY)
+            if (heroPos.x > blackboard.minionData.indexX)
+                while (x  <= heroPos.x &&
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorRight &&
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).PiecePlaced)
                 {
                     x++;
-                    if (blackboard.heroPosition.x == x)
+                    if (heroPos.x == x)
                     {
                         if (blackboard.firstTimeSeeHero)
                         {
@@ -95,12 +97,12 @@ public class HeroIsInSight : Node
                     }
                 }
             else
-                while (x >= blackboard.heroPosition.x &&
+                while (x >= heroPos.x &&
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).hasDoorLeft &&
                        blackboard.minionData.mapManager.GetTileDataAtPosition(x, y).PiecePlaced)
                 {
                     x--;
-                    if (blackboard.heroPosition.x == x)
+                    if (heroPos.x == x)
                     {
                         if (blackboard.firstTimeSeeHero)
                         {

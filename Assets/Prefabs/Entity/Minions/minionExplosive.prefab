@@ -118,7 +118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minionData: {fileID: 4532217106397339076}
-  heroPosition: {x: 0, y: 0}
   dir: 4
   firstTimeSeeHero: 1
 --- !u!114 &6402256854860038529
@@ -255,7 +254,7 @@ MonoBehaviour:
   emotesManager: {fileID: 3990342877312240800}
   animator: {fileID: 1809047893005811221}
   animFX: {fileID: 538926231243640432, guid: 761e2fcda17fec646952dc96294be1c2, type: 3}
-  threeDeeHero: {fileID: 2279972186391580060}
+  threeDeeHero: {fileID: 334650587185130569}
   damageFire: 5
   ExplosionFX: {fileID: 606801270142196365, guid: 6a47555f1e03e6640b6bad2688c1ebd2,
     type: 3}
@@ -432,15 +431,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 059151b18d4873e4e92e78450bb85f82, type: 3}
---- !u!4 &1508642323361453862 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4027228252828457147, guid: 059151b18d4873e4e92e78450bb85f82,
+--- !u!23 &334650587185130569 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2857738604050785236, guid: 059151b18d4873e4e92e78450bb85f82,
     type: 3}
   m_PrefabInstance: {fileID: 2525482487305834397}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2279972186391580060 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4370820879407481345, guid: 059151b18d4873e4e92e78450bb85f82,
+--- !u!4 &1508642323361453862 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4027228252828457147, guid: 059151b18d4873e4e92e78450bb85f82,
     type: 3}
   m_PrefabInstance: {fileID: 2525482487305834397}
   m_PrefabAsset: {fileID: 0}

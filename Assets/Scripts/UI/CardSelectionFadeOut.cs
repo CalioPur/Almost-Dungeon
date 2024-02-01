@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class CardSelectionFadeOut : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Image img;
     void Start()
     {
-        GetComponent<Image>().DOFade(0, 2f).SetUpdate(true);
+        img.DOFade(0, 2f).SetUpdate(true);
     }
     
     

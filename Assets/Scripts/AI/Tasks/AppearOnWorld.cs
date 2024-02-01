@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AppearOnWorld : Node
 {
-    MinionBlackboard blackboard;
+    private MinionBlackboard blackboard;
     
     public AppearOnWorld(MinionBlackboard _blackboard)
     {

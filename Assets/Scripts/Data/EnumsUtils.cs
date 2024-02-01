@@ -14,7 +14,6 @@ public enum TrapType
     BasicCaC,
     Archer,
     Skeleton,
-    Slime,
     FireCamp,
     Wolf,
     Laden,
@@ -71,4 +70,13 @@ public enum Objectives
 {
     EXPLORATION, // L'aventurier cherche à explorer le donjon
     SORTIE, // L'aventurier cherche à atteindre la sortie
+}
+
+public enum TreeType
+{
+    Node,
+    Selector,
+    Sequence,
+    EndSequence,
+    EndSelector,
 }
