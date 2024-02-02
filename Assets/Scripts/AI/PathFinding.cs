@@ -75,11 +75,11 @@ public class PathFinding
 
                 return GetDirectionToMove(startPos, nextPos);
             }
-            case oldPerso.HurryForTheExit when exits.Count == 0:
-            {
-                if (CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
-                return BreakFreeFromNoExit(startPos, map);
-            }
+            // case oldPerso.HurryForTheExit when exits.Count == 0:
+            // {
+            //     if (CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
+            //     return BreakFreeFromNoExit(startPos, map);
+            // }
             case oldPerso.TheExplorer when unvisitedTiles.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, unvisitedTiles, true);
@@ -94,12 +94,12 @@ public class PathFinding
                     ? GoThroughDoorWithNoTile(startPos, map)
                     : GetDirectionToMove(startPos, nextPos);
             }
-            case oldPerso.TheExplorer when exits.Count == 0:
-            {
-                if (CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
-                return BreakFreeFromNoExit(startPos, map);
-
-            }
+            // case oldPerso.TheExplorer when exits.Count == 0:
+            // {
+            //     if (CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
+            //     return BreakFreeFromNoExit(startPos, map);
+            //
+            // }
             case oldPerso.TheKiller:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, tileWithEnemies, true);
@@ -191,11 +191,11 @@ public class PathFinding
                 }
                 return GetDirectionToMove(startPos, nextPos);
             }
-            case oldPerso.HurryForTheExit when exits.Count == 0:
-            {
-                if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
-                return BreakFreeFromNoExit(startPos, map);
-            }
+            // case oldPerso.HurryForTheExit when exits.Count == 0:
+            // {
+            //     if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
+            //     return BreakFreeFromNoExit(startPos, map);
+            // }
             case oldPerso.TheExplorer when unvisitedTiles.Count > 0:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, unvisitedTiles);
@@ -206,12 +206,12 @@ public class PathFinding
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, exits);
                 return GetDirectionToMove(startPos, nextPos) == DirectionToMove.None ? GoThroughDoorWithNoTile(startPos, map) : GetDirectionToMove(startPos, nextPos);
             }
-            case oldPerso.TheExplorer when exits.Count == 0:
-            {
-                if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
-                return BreakFreeFromNoExit(startPos, map);
-
-            }
+            // case oldPerso.TheExplorer when exits.Count == 0:
+            // {
+            //     if(CheckIfNotSurroundedByExits(startPos, map)) return GoThroughRandomOpenDoor(startPos, map);
+            //     return BreakFreeFromNoExit(startPos, map);
+            //
+            // }
             case oldPerso.TheKiller:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, tileWithEnemies);
@@ -256,68 +256,68 @@ public class PathFinding
         return startPos.y < map.GetLength(1) - 1 && map[startPos.x, startPos.y + 1].isExit;
     }
 
-    public static DirectionToMove BreakFreeFromNoExit(Vector2Int startPos, TileData[,] map)
-    {
-        SoundManagerIngame.Instance.PlaySound(EmoteType.WallBreak);
-        OnNoPathFound?.Invoke();
-        TileData tileWallBreaker = map[startPos.x, startPos.y];
-        int[] possibleDirectionsToBreak = new int[4];
-        if (!tileWallBreaker.hasDoorDown)
-        {
-            possibleDirectionsToBreak[0] = 1;
-        }
-        if (!tileWallBreaker.hasDoorUp)
-        {
-            possibleDirectionsToBreak[1] = 1;
-        }
-        if (!tileWallBreaker.hasDoorLeft)
-        {
-            possibleDirectionsToBreak[2] = 1;
-        }
-        if (!tileWallBreaker.hasDoorRight)
-        {
-            possibleDirectionsToBreak[3] = 1;
-        }
-        
-        int randomIndex = Random.Range(0, possibleDirectionsToBreak.Length);
-        int security = 0;
-        while (possibleDirectionsToBreak[randomIndex] == 0 && security < 100)
-        {
-            randomIndex = Random.Range(0, possibleDirectionsToBreak.Length);
-            security++;
-        }
-
-        switch (randomIndex)
-        {
-            case 0:
-                //down
-                tileWallBreaker.hasDoorDown = true;
-                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,0);
-                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
-                return DirectionToMove.Down;
-            case 1:
-                //up
-                tileWallBreaker.hasDoorUp = true;
-                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,2);
-                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
-                return DirectionToMove.Up;
-            case 2:
-                //left
-                tileWallBreaker.hasDoorLeft = true;
-                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,1);
-                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
-                return DirectionToMove.Left;
-            case 3:
-                //right
-                tileWallBreaker.hasDoorRight = true;
-                MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,3);
-                MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
-                return DirectionToMove.Right;
-        }
-        
-        MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
-        return DirectionToMove.None;
-    }
+    // public static DirectionToMove BreakFreeFromNoExit(Vector2Int startPos, TileData[,] map)
+    // {
+    //     SoundManagerIngame.Instance.PlaySound(EmoteType.WallBreak);
+    //     OnNoPathFound?.Invoke();
+    //     TileData tileWallBreaker = map[startPos.x, startPos.y];
+    //     int[] possibleDirectionsToBreak = new int[4];
+    //     if (!tileWallBreaker.hasDoorDown)
+    //     {
+    //         possibleDirectionsToBreak[0] = 1;
+    //     }
+    //     if (!tileWallBreaker.hasDoorUp)
+    //     {
+    //         possibleDirectionsToBreak[1] = 1;
+    //     }
+    //     if (!tileWallBreaker.hasDoorLeft)
+    //     {
+    //         possibleDirectionsToBreak[2] = 1;
+    //     }
+    //     if (!tileWallBreaker.hasDoorRight)
+    //     {
+    //         possibleDirectionsToBreak[3] = 1;
+    //     }
+    //     
+    //     int randomIndex = Random.Range(0, possibleDirectionsToBreak.Length);
+    //     int security = 0;
+    //     while (possibleDirectionsToBreak[randomIndex] == 0 && security < 100)
+    //     {
+    //         randomIndex = Random.Range(0, possibleDirectionsToBreak.Length);
+    //         security++;
+    //     }
+    //
+    //     switch (randomIndex)
+    //     {
+    //         case 0:
+    //             //down
+    //             tileWallBreaker.hasDoorDown = true;
+    //             MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,0);
+    //             MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
+    //             return DirectionToMove.Down;
+    //         case 1:
+    //             //up
+    //             tileWallBreaker.hasDoorUp = true;
+    //             MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,2);
+    //             MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
+    //             return DirectionToMove.Up;
+    //         case 2:
+    //             //left
+    //             tileWallBreaker.hasDoorLeft = true;
+    //             MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,1);
+    //             MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
+    //             return DirectionToMove.Left;
+    //         case 3:
+    //             //right
+    //             tileWallBreaker.hasDoorRight = true;
+    //             MapManager.Instance.ChangeTileDataAtPosition(startPos.x, startPos.y, tileWallBreaker,3);
+    //             MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
+    //             return DirectionToMove.Right;
+    //     }
+    //     
+    //     MapManager.Instance.MapManagerTools.CheckAllTilesTypeAndRotation();
+    //     return DirectionToMove.None;
+    // }
 
     private static Vector2Int GetNextPosition(Vector2Int startPos, Dictionary<Vector2Int, Vector2Int> parentMap,
         List<Vector2Int> goalPositions, bool withLessEnemies = false)

@@ -222,22 +222,19 @@ public static class BFSScript
     {
         List<TileData> neighbors = new List<TileData>();
 
-        if (currentPos.x > 0 && map[currentPos.x, currentPos.y].hasDoorLeft)
+        if (currentPos.x > 0 && map[currentPos.x, currentPos.y].hasDoorLeft && map[currentPos.x - 1, currentPos.y].isConnectedToPath && !map[currentPos.x - 1, currentPos.y].IsVisited)
         {
             neighbors.Add(map[currentPos.x - 1, currentPos.y]);
         }
-
-        if (currentPos.x < map.GetLength(0) - 1 && map[currentPos.x, currentPos.y].hasDoorRight)
+        if (currentPos.x < map.GetLength(0) - 1 && map[currentPos.x, currentPos.y].hasDoorRight && map[currentPos.x + 1, currentPos.y].isConnectedToPath && !map[currentPos.x + 1, currentPos.y].IsVisited)
         {
             neighbors.Add(map[currentPos.x + 1, currentPos.y]);
         }
-
-        if (currentPos.y > 0 && map[currentPos.x, currentPos.y].hasDoorDown)
+        if (currentPos.y > 0 && map[currentPos.x, currentPos.y].hasDoorDown && map[currentPos.x, currentPos.y - 1].isConnectedToPath && !map[currentPos.x, currentPos.y - 1].IsVisited)
         {
             neighbors.Add(map[currentPos.x, currentPos.y - 1]);
         }
-
-        if (currentPos.y < map.GetLength(1) - 1 && map[currentPos.x, currentPos.y].hasDoorUp)
+        if (currentPos.y < map.GetLength(1) - 1 && map[currentPos.x, currentPos.y].hasDoorUp && map[currentPos.x, currentPos.y + 1].isConnectedToPath && !map[currentPos.x, currentPos.y + 1].IsVisited)
         {
             neighbors.Add(map[currentPos.x, currentPos.y + 1]);
         }

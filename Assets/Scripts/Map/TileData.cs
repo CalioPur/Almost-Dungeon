@@ -53,7 +53,15 @@ public class TileData : MonoBehaviour
    
     
     public bool isRoom = false;
-    public bool PiecePlaced => _instance != null;
+    public bool PiecePlaced
+    {
+        get => _instance != null;
+        set
+        {
+            isConnectedToPath = value;
+            _instance = null;
+        }
+    }
 
     [FormerlySerializedAs("minions")] [Header("Monsters")]
     public List<TrapData> enemies = new();
@@ -143,15 +151,15 @@ public class TileData : MonoBehaviour
     
     public void ResetData()
     {
-        img.sprite = null;
-        isVisited = false;
-        isRoom = false;
-        isExit = false;
-        isConnectedToPath = false;
-        hasDoorUp = true;
-        hasDoorRight = true;
-        hasDoorDown = true;
-        hasDoorLeft = true;
-        enemies.Clear();
+        this.img.sprite = null;
+        this.isVisited = false;
+        this.isRoom = false;
+        this.isExit = false;
+        this.isConnectedToPath = false;
+        this.hasDoorUp = true;
+        this.hasDoorRight = true;
+        this.hasDoorDown = true;
+        this.hasDoorLeft = true;
+        this.enemies.Clear();
     }
 }

@@ -89,7 +89,7 @@ public class Hero : MonoBehaviour, IFlippable
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         MinionData.OnHeroPosAsked+= GivePosBack;
-        PathFinding.OnNoPathFound += PlayEmoteStuck;
+        RageScript.OnNoPathFound += PlayEmoteStuck;
         OnDragonAttackEvent +=AttackDragon;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
     }
@@ -225,7 +225,7 @@ public class Hero : MonoBehaviour, IFlippable
         TrapData.ClearEvent();
         MinionData.OnHeroPosAsked -= GivePosBack;
         MinionData.ClearSubscribes();
-        PathFinding.OnNoPathFound -= PlayEmoteStuck;
+        RageScript.OnNoPathFound -= PlayEmoteStuck;
     }
 
     private void Stun(TrapData _web)

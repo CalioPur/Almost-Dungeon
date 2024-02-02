@@ -11,8 +11,6 @@ using UnityEngine.WSA;
 public class CheckDirectionToMove : Node
 {
     private HeroBlackboard blackboard;
-    List<TileData> memory = new();
-    List<TileData> options = new();
 
     public CheckDirectionToMove(HeroBlackboard _blackboard)
     {
@@ -22,16 +20,11 @@ public class CheckDirectionToMove : Node
     public override NodeState Evaluate(Node root)
     {
 
-        var visibleTiles = blackboard.visionType switch
-        {
-            VisionType.BIGLEUX => BlindScript.GetAdjacentTiles(blackboard.hero.GetIndexHeroPos()),
-            VisionType.LIGNEDROITE => VisionNormalScript.GetVisibleTiles(blackboard.hero.GetIndexHeroPos()),
-            _ => SeerScript.GetAllConnectedToPathTiles(blackboard.hero.GetIndexHeroPos())
-        };
+        SetVisibleTiles();
         
         
         List<TileData> listOfExits = new List<TileData>();
-        listOfExits.AddRange(visibleTiles.Where(VARIABLE => VARIABLE.isExit));
+        listOfExits.AddRange(blackboard.visibleTiles.Where(VARIABLE => VARIABLE.isExit));
         var currentMap = MapManager.Instance.mapArray;
         foreach (var VARIABLE in currentMap)
         {
@@ -60,76 +53,75 @@ public class CheckDirectionToMove : Node
 
         TileData target = null;
         
-        foreach (var VARIABLE in visibleTiles)
+        foreach (var VARIABLE in blackboard.visibleTiles)
         {
             if (!listOfExits.Contains(VARIABLE))
             {
-                if (memory.Contains(VARIABLE))
+                if (blackboard.memory.Contains(VARIABLE))
                 {
-                    memory.Remove(VARIABLE);
+                    blackboard.memory.Remove(VARIABLE);
                     if (target == VARIABLE)
                     {
-                        target = null;
                     }
                 }
             }
-            if (!memory.Contains(VARIABLE))
+            if (!blackboard.memory.Contains(VARIABLE))
             {
-                memory.Add(VARIABLE);
+                blackboard.memory.Add(VARIABLE);
             }
-            options.Add(VARIABLE);
+            blackboard.options.Add(VARIABLE);
         }
         
-        foreach (var VARIABLE in options)
-        {
-            Debug.DrawRay(VARIABLE.transform.position, Vector3.up * 3, Color.green, 1f);
-        }
+        blackboard.options = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(blackboard.options);
+        blackboard.memory = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(blackboard.memory);
 
         if (target == null)
         {
-            if (options.Count == 0)
+            if (blackboard.options.Count == 0)
             {
-                if (memory.Count > 0)
+                if (blackboard.memory.Count > 0)
                 {
-                    foreach (var VARIABLE in memory)
+                    foreach (var VARIABLE in blackboard.memory)
                     {
-                        options.Add(VARIABLE);
+                        blackboard.options.Add(VARIABLE);
                     }
                 }
             }
-            if (options.Count > 0 || memory.Count > 0)
+            if (blackboard.options.Count > 0 || blackboard.memory.Count > 0)
             {
                 if (blackboard.aggressivity == Aggressivity.PEUREUX)
                 {
                     target = BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(),
-                        options, blackboard.hero.mapManager.getMapArray(), true);
+                        blackboard.options, blackboard.hero.mapManager.getMapArray(), true);
                 }
-                else if (blackboard.personalities.Contains(Personnalities.EXPLORATEUR) || memory == options)
+                else if (blackboard.personalities.Contains(Personnalities.EXPLORATEUR) || blackboard.memory == blackboard.options)
                 {
                     target = BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(),
-                        options, blackboard.hero.mapManager.getMapArray());
+                        blackboard.options, blackboard.hero.mapManager.getMapArray());
                 }
-                else if (options.Count > 0)
+                else if (blackboard.options.Count > 0)
                 {
-                    options = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(options);
-                    int random = UnityEngine.Random.Range(0, options.Count);
+                    foreach (var VARIABLE in blackboard.options)
+                    {
+                        Debug.DrawRay(VARIABLE.transform.position, Vector3.up * 3, Color.blue, 1f);
+                    }
+                    int random = UnityEngine.Random.Range(0, blackboard.options.Count);
                     Debug.Log("Random : " + random);
-                    target = options[random];
+                    target = blackboard.options[random];
                 }
-                else if (memory.Count > 0)
+                else if (blackboard.memory.Count > 0)
                 {
-                    var tempMemory = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(memory);
-                    target = tempMemory[UnityEngine.Random.Range(0, tempMemory.Count)];
+                    target = blackboard.memory[UnityEngine.Random.Range(0, blackboard.memory.Count)];
                 }
                 else
                 {
-                    Debug.LogError("MARCHE PO👺👺👺👺👺👺");
+                    Debug.LogError("MARCHE PO👺👺👺👺👺👺 options count : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
                 }
             }
         }
 
         List<TileData> listOfEnemiesPos = new List<TileData>();
-        listOfEnemiesPos.AddRange(from VARIABLE1 in visibleTiles where VARIABLE1.enemies.Count > 0 select VARIABLE1);
+        listOfEnemiesPos.AddRange(from VARIABLE1 in blackboard.visibleTiles where VARIABLE1.enemies.Count > 0 select VARIABLE1);
         bool isAtExit = false;
         foreach (var VARIABLE in currentMap)
         {
@@ -151,7 +143,9 @@ public class CheckDirectionToMove : Node
             {
                 RageScript.Rage(blackboard.hero.GetIndexHeroPos());
                 blackboard.directionToMove = DirectionToMove.None;
-                Debug.Log("Rage");
+                if (blackboard.personalities.Contains(Personnalities.IMPATIENT) &&
+                    BFSScript.DistanceFromExit(blackboard.hero.GetIndexHeroPos(),blackboard.hero.mapManager.getMapArray()) > 5) Debug.Log("Raged because of distance");
+                else Debug.Log("Raged because of no target");
             }
             else if (blackboard.aggressivity == Aggressivity.COURAGEUX)
             {
@@ -169,7 +163,7 @@ public class CheckDirectionToMove : Node
                 Debug.Log("Go to target");
             }
         }
-        options.Clear();
+        blackboard.options.Clear();
 
         if (blackboard.directionToMove == DirectionToMove.Error)
         {
@@ -204,6 +198,20 @@ public class CheckDirectionToMove : Node
         return NodeState.Failure;
     }
 
+    public void SetVisibleTiles()
+    {
+        blackboard.visibleTiles = blackboard.visionType switch
+        {
+            VisionType.BIGLEUX => BlindScript.GetAdjacentTiles(blackboard.hero.GetIndexHeroPos()),
+            VisionType.LIGNEDROITE => VisionNormalScript.GetVisibleTiles(blackboard.hero.GetIndexHeroPos()),
+            _ => SeerScript.GetAllConnectedToPathTiles(blackboard.hero.GetIndexHeroPos())
+        };
+        foreach (var VARIABLE in blackboard.visibleTiles)
+        {
+            VARIABLE.IsVisited = true;
+        }
+    }
+
     private List<TileData> GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(List<TileData> tileDatas)
     {
         List<TileData> tileDatasToReturn = new List<TileData>();
@@ -214,15 +222,17 @@ public class CheckDirectionToMove : Node
                 var tmp = BFSScript.GetNeighborsTiles(VARIABLE.IndexInMapArray, blackboard.hero.mapManager.getMapArray());
                 foreach (var VARIABLE1 in tmp)
                 {
-                    if (!tileDatasToReturn.Contains(VARIABLE1))
-                    {
-                        tileDatasToReturn.Add(VARIABLE1);
-                    }
+                    tileDatasToReturn.Add(VARIABLE1);
+                    Debug.DrawRay(VARIABLE1.transform.position + new Vector3(0.1f,0,0), Vector3.up * 3, Color.yellow, 1f);
                 }
             }
         }
-        tileDatasToReturn = tileDatas.Distinct().ToList();
-        return tileDatasToReturn;
+        foreach (var VARIABLE in tileDatasToReturn)
+        {
+            Debug.DrawRay(VARIABLE.transform.position + new Vector3(0,0,0.1f), Vector3.up * 3, Color.cyan, 1f);
+
+        }
+        return tileDatasToReturn.Distinct().ToList();
     }
 
     public DirectionToMove RandomDirection()

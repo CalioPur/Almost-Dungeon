@@ -21,6 +21,7 @@ public class MapManager : MonoBehaviour
     private string path = "Sprites";
 
     [SerializeField] private GameObject walls, floor;
+    public SpriteRenderer floorSpriteForRage;
     [SerializeField] private Transform map;
     [SerializeField] private FogPainter fogPainter;
     public CardInfo[] cards;
@@ -99,6 +100,7 @@ public class MapManager : MonoBehaviour
         
         //open path
         _sprites = Resources.LoadAll<Sprite>(path);
+        floorSpriteForRage = floor.GetComponent<SpriteRenderer>();
     }
 
     public Vector2Int GetSizeDungeon()
@@ -337,35 +339,55 @@ public class MapManager : MonoBehaviour
         return new Vector2Int(-1, -1);
     }
 
-    public void ChangeTileDataAtPosition(int x, int y, TileData data, int doorChanged)
+    public void ChangeTileDataAtPosition(int x, int y, TileData data)
     {
-        if (x > width - 2 || y > height - 2 || x < 0 || y < 0) return;
-        mapArray[x, y] = data;
-        switch (doorChanged)
-        {
-            case 0:
-                if (y == 0) return;
-                if (mapArray[x, y - 1].PiecePlaced) mapArray[x, y - 1].hasDoorUp = true;
-                break;
-            case 1:
-                if (x == 0) return;
-                if (mapArray[x - 1, y].PiecePlaced) mapArray[x - 1, y].hasDoorRight = true;
-                break;
-            case 2:
-                if (y == height - 3) return;
-                if (mapArray[x, y + 1].PiecePlaced) mapArray[x, y + 1].hasDoorDown = true;
-                break;
-            case 3:
-                if (x == width - 3) return;
-                if (mapArray[x + 1, y].PiecePlaced) mapArray[x + 1, y].hasDoorLeft = true;
-                break;
-        }
+        if (y != 0) ResetMapArrayCell(x, y - 1);
+        if (x != 0) ResetMapArrayCell(x - 1, y);
+        if (y != height - 3) ResetMapArrayCell(x, y + 1);
+        if (x != width - 3) ResetMapArrayCell(x + 1, y);
+        
+        // switch (doorChanged)
+        // {
+        //     case 0:
+        //         if (y == 0) return;
+        //         if (mapArray[x, y - 1].PiecePlaced) mapArray[x, y - 1].hasDoorUp = true;
+        //         break;
+        //     case 1:
+        //         if (x == 0) return;
+        //         if (mapArray[x - 1, y].PiecePlaced) mapArray[x - 1, y].hasDoorRight = true;
+        //         break;
+        //     case 2:
+        //         if (y == height - 3) return;
+        //         if (mapArray[x, y + 1].PiecePlaced) mapArray[x, y + 1].hasDoorDown = true;
+        //         break;
+        //     case 3:
+        //         if (x == width - 3) return;
+        //         if (mapArray[x + 1, y].PiecePlaced) mapArray[x + 1, y].hasDoorLeft = true;
+        //         break;
+        // }
         
         mapArray[x, y].isRoom = mapArray[x, y].img.sprite.name.Contains("Room");
 
         MapManagerTools.CheckAllTilesTypeAndRotation();
         MapManagerTools.SetConnectedToPath();
         MapManagerTools.SetExits();
+    }
+    
+    void ResetMapArrayCell(int xCoord, int yCoord)
+    {
+        if (mapArray[xCoord, yCoord].PiecePlaced)
+        {
+            mapArray[xCoord, yCoord].hasDoorUp = true;
+            mapArray[xCoord, yCoord].hasDoorRight = true;
+            mapArray[xCoord, yCoord].hasDoorDown = true;
+            mapArray[xCoord, yCoord].hasDoorLeft = true;
+            mapArray[xCoord, yCoord].img = floorSpriteForRage;
+            mapArray[xCoord, yCoord].gameObject.GetComponent<SpriteRenderer>().sprite = floorSpriteForRage.sprite;
+            mapArray[xCoord, yCoord].isVisited = false;
+            mapArray[xCoord, yCoord].isConnectedToPath = false;
+            mapArray[xCoord, yCoord].isExit = false;
+            mapArray[xCoord, yCoord].PiecePlaced = false;
+        }
     }
 
     void SetTileAtPosition(CardInfoInstance card, int posX, int posY)

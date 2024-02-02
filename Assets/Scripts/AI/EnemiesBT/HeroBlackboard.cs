@@ -19,4 +19,7 @@ public class HeroBlackboard : MonoBehaviour
     public VisionType visionType;
     public Aggressivity aggressivity;
     public List<Personnalities> personalities;
+    public List<TileData> visibleTiles = new();
+    public List<TileData> memory = new();
+    public List<TileData> options = new();
 }

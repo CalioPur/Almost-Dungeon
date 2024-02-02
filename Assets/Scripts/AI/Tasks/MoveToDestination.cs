@@ -38,7 +38,17 @@ public class MoveToDestination : Node
         }
         
         blackboard.hero.Move(tile.transform, Vector3.zero, 0.5f);
-        List<TileData> aaa = ALaid1.GetTilesInLineOfSight(blackboard.hero.GetIndexHeroPos(), blackboard.hero.mapManager.getMapArray());
+        
+        blackboard.visibleTiles = blackboard.visionType switch
+        {
+            VisionType.BIGLEUX => BlindScript.GetAdjacentTiles(blackboard.hero.GetIndexHeroPos()),
+            VisionType.LIGNEDROITE => VisionNormalScript.GetVisibleTiles(blackboard.hero.GetIndexHeroPos()),
+            _ => SeerScript.GetAllConnectedToPathTiles(blackboard.hero.GetIndexHeroPos())
+        };
+        foreach (var VARIABLE in blackboard.visibleTiles)
+        {
+            VARIABLE.IsVisited = true;
+        }
         
         return NodeState.Success;
     }
