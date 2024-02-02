@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class VisionNormalScript
@@ -11,6 +12,8 @@ public static class VisionNormalScript
         Vector2Int simulatedPos = startPos;
         
         int debug = 0;
+        
+        visibleTiles.Add(map[simulatedPos.x, simulatedPos.y]);
 
         while (simulatedPos.y > 0 && map[simulatedPos.x, simulatedPos.y].hasDoorDown)
         {
@@ -46,6 +49,8 @@ public static class VisionNormalScript
             MapManager.Instance.mapArray[simulatedPos.x, simulatedPos.y].IsVisited = true;
             debug++;
         }
+
+        visibleTiles.AddRange(MapManager.Instance.mapArray.Cast<TileData>().Where(VARIABLE => VARIABLE.isConnectedToPath && !VARIABLE.IsVisited));
         Debug.Log("Debug : " + debug);
         return visibleTiles;
     }

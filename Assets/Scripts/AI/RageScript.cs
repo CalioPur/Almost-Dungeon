@@ -10,19 +10,21 @@ public static class RageScript
         OnNoPathFound?.Invoke();
         int radius = 3;
         TileData breakedTile = MapManager.Instance.GetTileDataAtPosition(getIndexHeroPos.x, getIndexHeroPos.y);
-        breakedTile.hasDoorDown = true;
-        breakedTile.hasDoorLeft = true;
-        breakedTile.hasDoorRight = true;
-        breakedTile.hasDoorUp = true;
-        for (int i = 0; i < MapManager.Instance.mapArray.GetLength(0); i++)
+        if(getIndexHeroPos.x != 0) breakedTile.hasDoorLeft = true;
+        if(getIndexHeroPos.x != MapManager.Instance.mapArray.GetLength(0) - 1) breakedTile.hasDoorRight = true;
+        if(getIndexHeroPos.y != 0) breakedTile.hasDoorDown = true;
+        if(getIndexHeroPos.y != MapManager.Instance.mapArray.GetLength(1) - 1) breakedTile.hasDoorUp = true;
+        int startX = getIndexHeroPos.x - radius;
+        int startY = getIndexHeroPos.y - radius;
+        int endX = getIndexHeroPos.x + radius;
+        int endY = getIndexHeroPos.y + radius;
+        for (int x = startX; x <= endX; x++)
         {
-            for (int j = 0; j < MapManager.Instance.mapArray.GetLength(1); j++)
+            for (int y = startY; y <= endY; y++)
             {
-                if (i <= getIndexHeroPos.x + radius && i >= getIndexHeroPos.x - radius &&
-                    j <= getIndexHeroPos.y + radius && j >= getIndexHeroPos.y - radius && 
-                    i != getIndexHeroPos.x && j != getIndexHeroPos.y)
+                if (x >= 0 && x < MapManager.Instance.mapArray.GetLength(0) && y >= 0 && y < MapManager.Instance.mapArray.GetLength(1))
                 {
-                    MapManager.Instance.ChangeTileDataAtPosition(getIndexHeroPos.x, getIndexHeroPos.y, breakedTile);
+                    if (x != getIndexHeroPos.x || y != getIndexHeroPos.y) MapManager.Instance.ChangeTileDataAtPosition(x, y);
                 }
             }
         }

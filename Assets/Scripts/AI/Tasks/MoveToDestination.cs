@@ -45,10 +45,6 @@ public class MoveToDestination : Node
             VisionType.LIGNEDROITE => VisionNormalScript.GetVisibleTiles(blackboard.hero.GetIndexHeroPos()),
             _ => SeerScript.GetAllConnectedToPathTiles(blackboard.hero.GetIndexHeroPos())
         };
-        foreach (var VARIABLE in blackboard.visibleTiles)
-        {
-            VARIABLE.IsVisited = true;
-        }
         
         return NodeState.Success;
     }

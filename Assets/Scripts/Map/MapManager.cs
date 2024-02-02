@@ -21,7 +21,7 @@ public class MapManager : MonoBehaviour
     private string path = "Sprites";
 
     [SerializeField] private GameObject walls, floor;
-    public SpriteRenderer floorSpriteForRage;
+    public Sprite floorSpriteForRage;
     [SerializeField] private Transform map;
     [SerializeField] private FogPainter fogPainter;
     public CardInfo[] cards;
@@ -100,7 +100,7 @@ public class MapManager : MonoBehaviour
         
         //open path
         _sprites = Resources.LoadAll<Sprite>(path);
-        floorSpriteForRage = floor.GetComponent<SpriteRenderer>();
+        floorSpriteForRage = floor.GetComponent<SpriteRenderer>().sprite;
     }
 
     public Vector2Int GetSizeDungeon()
@@ -339,12 +339,13 @@ public class MapManager : MonoBehaviour
         return new Vector2Int(-1, -1);
     }
 
-    public void ChangeTileDataAtPosition(int x, int y, TileData data)
+    public void ChangeTileDataAtPosition(int x, int y)
     {
-        if (y != 0) ResetMapArrayCell(x, y - 1);
-        if (x != 0) ResetMapArrayCell(x - 1, y);
-        if (y != height - 3) ResetMapArrayCell(x, y + 1);
-        if (x != width - 3) ResetMapArrayCell(x + 1, y);
+        ResetMapArrayCell(x, y);
+        // if (y != 0) ResetMapArrayCell(x, y - 1);
+        // if (x != 0) ResetMapArrayCell(x - 1, y);
+        // if (y != height - 3) ResetMapArrayCell(x, y + 1);
+        // if (x != width - 3) ResetMapArrayCell(x + 1, y);
         
         // switch (doorChanged)
         // {
@@ -381,8 +382,8 @@ public class MapManager : MonoBehaviour
             mapArray[xCoord, yCoord].hasDoorRight = true;
             mapArray[xCoord, yCoord].hasDoorDown = true;
             mapArray[xCoord, yCoord].hasDoorLeft = true;
-            mapArray[xCoord, yCoord].img = floorSpriteForRage;
-            mapArray[xCoord, yCoord].gameObject.GetComponent<SpriteRenderer>().sprite = floorSpriteForRage.sprite;
+            mapArray[xCoord, yCoord].gameObject.GetComponent<SpriteRenderer>().sprite = floorSpriteForRage;
+            mapArray[xCoord, yCoord].img.color = Color.white;
             mapArray[xCoord, yCoord].isVisited = false;
             mapArray[xCoord, yCoord].isConnectedToPath = false;
             mapArray[xCoord, yCoord].isExit = false;
@@ -525,10 +526,10 @@ public class MapManager : MonoBehaviour
     public void GetIndexFromTile(TileData tile, out Vector2Int vector2Int)
     {
         vector2Int = new Vector2Int(-1, -1);
-        for (int i = 0; i < width; i++)
+        for (int i = 0; i < width - 2; i++)
         {
             if (vector2Int.x != -1) break;
-            for (int j = 0; j < height; j++)
+            for (int j = 0; j < height - 2; j++)
             {
                 if (mapArray[i, j] == tile)
                 {

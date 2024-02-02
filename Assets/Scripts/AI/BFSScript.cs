@@ -222,23 +222,40 @@ public static class BFSScript
     {
         List<TileData> neighbors = new List<TileData>();
 
-        if (currentPos.x > 0 && map[currentPos.x, currentPos.y].hasDoorLeft && map[currentPos.x - 1, currentPos.y].isConnectedToPath && !map[currentPos.x - 1, currentPos.y].IsVisited)
+        for (int i = 0; i < MapManager.Instance.width - 2; i++)
         {
-            neighbors.Add(map[currentPos.x - 1, currentPos.y]);
-        }
-        if (currentPos.x < map.GetLength(0) - 1 && map[currentPos.x, currentPos.y].hasDoorRight && map[currentPos.x + 1, currentPos.y].isConnectedToPath && !map[currentPos.x + 1, currentPos.y].IsVisited)
-        {
-            neighbors.Add(map[currentPos.x + 1, currentPos.y]);
-        }
-        if (currentPos.y > 0 && map[currentPos.x, currentPos.y].hasDoorDown && map[currentPos.x, currentPos.y - 1].isConnectedToPath && !map[currentPos.x, currentPos.y - 1].IsVisited)
-        {
-            neighbors.Add(map[currentPos.x, currentPos.y - 1]);
-        }
-        if (currentPos.y < map.GetLength(1) - 1 && map[currentPos.x, currentPos.y].hasDoorUp && map[currentPos.x, currentPos.y + 1].isConnectedToPath && !map[currentPos.x, currentPos.y + 1].IsVisited)
-        {
-            neighbors.Add(map[currentPos.x, currentPos.y + 1]);
+            for (int j = 0; j < MapManager.Instance.height - 2; j++)
+            {
+                MapManager mapManager = MapManager.Instance;
+                if (!mapManager.mapArray[i, j].isExit) continue;
+                if (mapManager.mapArray[i, j].hasDoorDown && j > 0) 
+                    if (!mapManager.mapArray[i, j - 1].isConnectedToPath ||
+                        !mapManager.mapArray[i, j - 1].isVisited &&
+                        mapManager.mapArray[i, j - 1].hasDoorUp)
+                        neighbors.Add(mapManager.mapArray[i, j - 1]);
+                if (mapManager.mapArray[i, j].hasDoorUp && j < mapManager.height - 3) 
+                    if (!mapManager.mapArray[i, j + 1].isConnectedToPath ||
+                        !mapManager.mapArray[i, j + 1].isVisited &&
+                        mapManager.mapArray[i, j + 1].hasDoorDown)
+                        neighbors.Add(mapManager.mapArray[i, j + 1]);
+                if (mapManager.mapArray[i, j].hasDoorLeft && i > 0)
+                    if (!mapManager.mapArray[i - 1, j].isConnectedToPath ||
+                        !mapManager.mapArray[i - 1, j].isVisited &&
+                        mapManager.mapArray[i - 1, j].hasDoorRight) 
+                        neighbors.Add(mapManager.mapArray[i - 1, j]);
+                if (mapManager.mapArray[i, j].hasDoorRight && i < mapManager.width - 3) 
+                    if (!mapManager.mapArray[i + 1, j].isConnectedToPath ||
+                        !mapManager.mapArray[i + 1, j].isVisited &&
+                        mapManager.mapArray[i + 1, j].hasDoorLeft)
+                        neighbors.Add(mapManager.mapArray[i + 1, j]);
+            }
         }
 
+        foreach (var VARIABLE in neighbors)
+        {
+            Debug.DrawRay(VARIABLE.transform.position + new Vector3(0.1f,0,0.1f), Vector3.up * 3, Color.red, 1f);
+        }
+        
         return neighbors;
     }
     

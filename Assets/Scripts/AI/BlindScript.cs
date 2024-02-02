@@ -10,6 +10,7 @@ public static class BlindScript
         List<TileData> adjacentTiles = new List<TileData>();
 
         int[,] directions = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+        adjacentTiles.Add(MapManager.Instance.GetTileDataAtPosition(pos.x, pos.y));
 
         for (int i = 0; i < directions.GetLength(0); i++)
         {

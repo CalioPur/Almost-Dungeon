@@ -1,16 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using BehaviourTree;
-using Ink.Parsed;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.WSA;
 
 public class CheckDirectionToMove : Node
 {
     private HeroBlackboard blackboard;
+    TileData target = null;
 
     public CheckDirectionToMove(HeroBlackboard _blackboard)
     {
@@ -51,7 +48,6 @@ public class CheckDirectionToMove : Node
             }
         }
 
-        TileData target = null;
         
         foreach (var VARIABLE in blackboard.visibleTiles)
         {
@@ -62,6 +58,7 @@ public class CheckDirectionToMove : Node
                     blackboard.memory.Remove(VARIABLE);
                     if (target == VARIABLE)
                     {
+                        target = null;
                     }
                 }
             }
@@ -71,9 +68,11 @@ public class CheckDirectionToMove : Node
             }
             blackboard.options.Add(VARIABLE);
         }
-        
+        Debug.Log("Before : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
         blackboard.options = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(blackboard.options);
+        Debug.Log("After1 : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
         blackboard.memory = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(blackboard.memory);
+        Debug.Log("After : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
 
         if (target == null)
         {
@@ -145,7 +144,10 @@ public class CheckDirectionToMove : Node
                 blackboard.directionToMove = DirectionToMove.None;
                 if (blackboard.personalities.Contains(Personnalities.IMPATIENT) &&
                     BFSScript.DistanceFromExit(blackboard.hero.GetIndexHeroPos(),blackboard.hero.mapManager.getMapArray()) > 5) Debug.Log("Raged because of distance");
-                else Debug.Log("Raged because of no target");
+                else
+                {
+                    Debug.Log("Raged because of no target options count : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
+                }
             }
             else if (blackboard.aggressivity == Aggressivity.COURAGEUX)
             {
@@ -206,10 +208,6 @@ public class CheckDirectionToMove : Node
             VisionType.LIGNEDROITE => VisionNormalScript.GetVisibleTiles(blackboard.hero.GetIndexHeroPos()),
             _ => SeerScript.GetAllConnectedToPathTiles(blackboard.hero.GetIndexHeroPos())
         };
-        foreach (var VARIABLE in blackboard.visibleTiles)
-        {
-            VARIABLE.IsVisited = true;
-        }
     }
 
     private List<TileData> GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(List<TileData> tileDatas)
@@ -226,12 +224,19 @@ public class CheckDirectionToMove : Node
                     Debug.DrawRay(VARIABLE1.transform.position + new Vector3(0.1f,0,0), Vector3.up * 3, Color.yellow, 1f);
                 }
             }
+            if(VARIABLE.isConnectedToPath && !VARIABLE.IsVisited)
+            {
+                tileDatasToReturn.Add(VARIABLE);
+                Debug.DrawRay(VARIABLE.transform.position + new Vector3(0.1f, 0, 0.1f), Vector3.up * 3, Color.green,
+                    1f);
+            }
         }
         foreach (var VARIABLE in tileDatasToReturn)
         {
             Debug.DrawRay(VARIABLE.transform.position + new Vector3(0,0,0.1f), Vector3.up * 3, Color.cyan, 1f);
 
         }
+        Debug.Log("After GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles : " + tileDatasToReturn.Count + " memory count : " + blackboard.memory.Count + " options count : " + blackboard.options.Count);
         return tileDatasToReturn.Distinct().ToList();
     }
 
