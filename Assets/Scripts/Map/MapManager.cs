@@ -254,7 +254,7 @@ public class MapManager : MonoBehaviour
         MapManagerTools.SetExits();
     }
 
-    public void InitEnterDungeon(CardInfoInstance card, int rot, out Vector3 pos, Vector2Int startPos)
+    public void InitEnterDungeon(CardInfoInstance card,int rot, out Vector3 pos, Vector2Int startPos)
     {
         for (int i = 0; i < rot; i++)
         {
@@ -520,5 +520,22 @@ public class MapManager : MonoBehaviour
     public Vector2Int[] GetTilesInLineOfSight(Vector2Int startPos)
     {
         return MapManagerTools.GetTilesInLineOfSight(startPos);
+    }
+
+    public void GetIndexFromTile(TileData tile, out Vector2Int vector2Int)
+    {
+        vector2Int = new Vector2Int(-1, -1);
+        for (int i = 0; i < width; i++)
+        {
+            if (vector2Int.x != -1) break;
+            for (int j = 0; j < height; j++)
+            {
+                if (mapArray[i, j] == tile)
+                {
+                    vector2Int = new Vector2Int(i, j);
+                    return;
+                }
+            }
+        }
     }
 }

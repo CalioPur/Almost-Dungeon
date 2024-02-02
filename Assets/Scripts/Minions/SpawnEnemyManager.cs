@@ -87,9 +87,8 @@ public class SpawnEnemyManager : MonoBehaviour
         int indexOnTile, MapManager _mapManager)
         where T : TrapData
     {
-        Vector3 position = tile.transform.position + positionOffset;
-        _mapManager.GetTilePosFromWorldPos(position, out int indexesX, out int indexesY);
-        SpawnEnemy(prefab, new Vector2Int(indexesX, indexesY), position, _mapManager, addEnemyOnTile, indexOnTile);
+        _mapManager.GetIndexFromTile(tile, out Vector2Int indexes);
+        SpawnEnemy(prefab, indexes, tile.transform.position, _mapManager, addEnemyOnTile);
     }
 
     public static void SpawnEnemy<T>(T prefab, Vector2Int indexes, Vector3 position, MapManager _mapManager,

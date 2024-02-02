@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public bool isInDialogue = false;
     private Vector3 worldPos;
     internal Vector2Int startPosHero;
+    public Transform AttackPoint { get; set; }
 
     //public int dragonHealthPoint = 10;
     
@@ -50,7 +51,6 @@ public class GameManager : MonoBehaviour
         mapManager.InitMap();
         mapManager.AddRandomCard();
         mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(),rotationOfSpawnTile, out worldPos, startPosHero);
-        mapManager.CreateFog(startPosHero);
         worldPos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
         OnEndDialogEvent?.Invoke();
         foreach (var light in lightsAmbiant)
@@ -104,5 +104,15 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void UpdateHeroPos(Vector2Int getIndexHeroPos)
+    {
+        startPosHero = getIndexHeroPos;
+    }
+    
+    public Vector2Int GetHeroPos()
+    {
+        return startPosHero;
     }
 }
