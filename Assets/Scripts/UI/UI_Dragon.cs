@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.iOS;
 using UnityEngine.UI;
 
 public class UI_Dragon : MonoBehaviour
@@ -40,6 +41,7 @@ public class UI_Dragon : MonoBehaviour
         dragImg.color = Color.red;
         dragonCard.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
         currentHealth -= 1;
+        Debug.Log("Dragon took damage");
         DrawHearts();
         if (currentHealth <= 0)
         {
