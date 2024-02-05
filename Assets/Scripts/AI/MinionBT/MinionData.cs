@@ -7,7 +7,6 @@ using UnityEngine.Serialization;
 public class MinionData : TrapData, IFlippable
 {
     public EnemyInstance minionInstance;
-    [HideInInspector] public int indexOffsetTile;
 
     [SerializeField] protected Transform tr;
     [SerializeField] protected MinionBTBase bt;

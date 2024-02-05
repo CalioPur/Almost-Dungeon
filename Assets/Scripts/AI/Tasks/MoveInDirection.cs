@@ -58,9 +58,7 @@ public class MoveInDirection : Node
             blackboard.minionData.gameObject.transform.position);
         blackboard.minionData.indexX = temporaryIndex.x;
         blackboard.minionData.indexY = temporaryIndex.y;
-        blackboard.minionData.indexOffsetTile = index;
         TileData tileData = MapManager.Instance.GetTileDataAtPosition(temporaryIndex.x, temporaryIndex.y);
-        blackboard.minionData.Move(tileData.transform, tileData._instance.So.offsetMinionPos[index], 0.3f);
         return NodeState.Success;
     }
 }

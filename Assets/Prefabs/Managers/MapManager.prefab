@@ -47,9 +47,9 @@ MonoBehaviour:
   <width>k__BackingField: 9
   <height>k__BackingField: 7
   _sprites: []
-  walls: {fileID: 1939014474319430147, guid: ee719a99b03afff4f9514a6ef204cf63, type: 3}
-  floor: {fileID: 8744462414812450706, guid: 7299b39184eadc94eafb4cf0320a193c, type: 3}
+  floor: {fileID: 7142599336517423327, guid: 7299b39184eadc94eafb4cf0320a193c, type: 3}
+  floorSpriteForRage: {fileID: 21300000, guid: 75388491cb8b8374682989a697f1e57c, type: 3}
   map: {fileID: 8817438707714538889}
   fogPainter: {fileID: 0}
-  cards: []
   ATTENTION: {fileID: 21300000, guid: c6b209dfad4f2a0429a245940456cf22, type: 3}
+  ATTENTIONROUUUGE: {fileID: 0}

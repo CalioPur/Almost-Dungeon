@@ -133,25 +133,6 @@ public class MapManager : MonoBehaviour
                 {
                     EnemiDataOnHand data = card.TypeOfTrapOrEnemyToSpawnInstance[j];
                     GetTile(_tilePreset[i].position, out var tile);
-                    Vector3 offset = Vector3.zero;
-                    if (!(card.TypeOfTrapOrEnemyToSpawnInstance[j].type == TrapType.Web ||
-                          card.TypeOfTrapOrEnemyToSpawnInstance[j].type == TrapType.Pyke))
-                    {
-                        if (_tilePreset[i].cardInfo.offsetMinionPos.Length > 0)
-                        {
-                            if (data.indexOffsetTile >= _tilePreset[i].cardInfo.offsetMinionPos.Length ||
-                                data.indexOffsetTile < 0)
-                            {
-                                offset = _tilePreset[i].cardInfo.offsetMinionPos[0];
-                            }
-                            else
-                            {
-                                offset = _tilePreset[i].cardInfo.offsetMinionPos[data.indexOffsetTile];
-                            }
-                        }
-                    }
-
-
                     SpawnEnemyManager.SpawnEnemyWithoutPrefab(data.type, tile, this);
                 }
             }
@@ -184,9 +165,8 @@ public class MapManager : MonoBehaviour
             {
                 Vector3 pos;
                 GetWorldPosFromTilePos(new Vector2Int(i, j), out pos); //pour centrer le tout
-                mapArray[i - 1, j - 1] =
-                    Instantiate(floor, pos, floor.transform.rotation, map)
-                        .GetComponent<TileData>(); //verifie si on est sur un bord
+                mapArray[i, j] =
+                    Instantiate(floor, pos, floor.transform.rotation, map); //verifie si on est sur un bord
             }
         }
     }
