@@ -148,6 +148,7 @@ public class MapManager : MonoBehaviour
         MapManagerTools.SetConnectedToPath();
         MapManagerTools.SetExits();
         GetWorldPosFromTilePos(startPos, out pos);
+        Debug.Log("pos : " + pos);
     }
 
     private bool CheckPosWithData(TileData data, CardHand card)
