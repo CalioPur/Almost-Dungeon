@@ -1,7 +1,7 @@
 INCLUDE ../../GlobalVariables.ink
 
 {not SArcher1Seen: Patron, attention à la flèche ! #chara:minion #minion:in } 
-{SArcher1Seen : AIE ! PATRON ON ME TIRE DESSUS ! #chara:minion #minion:in}
+{SArcher1Seen : AIE ! PATRON ON ME TIRE DESSUS ! #chara:minion #minion:in }
 {not SArcher1Seen : ->Encounter1} 
 {SArcher1Seen : ->Encounter2} 
 
