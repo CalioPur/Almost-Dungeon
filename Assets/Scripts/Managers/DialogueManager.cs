@@ -78,8 +78,10 @@ public class DialogueManager : MonoBehaviour
         dialogueVariable = DungeonManager._instance.dialogueVariable;
         if (DungeonManager._instance.currentLevel < 7)
         {
-            PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue, DungeonManager._instance.deckData.deckDialogue,
-                DungeonManager._instance.heroData.heroDialogues, DungeonManager._instance.cardsManager);
+            PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue[PlayerPrefs.GetInt("langue",0)], //selectionne la langue en fonction de la langue choisie
+                DungeonManager._instance.deckData.deckDialogue[PlayerPrefs.GetInt("langue",0)],
+                DungeonManager._instance.heroData.langues[PlayerPrefs.GetInt("langue",0)].heroDialogues, 
+                DungeonManager._instance.cardsManager);
         }
     }
     

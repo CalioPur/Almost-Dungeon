@@ -18,5 +18,5 @@ public class TilePresetSO : ScriptableObject
     [SerializeField] public List<TilePresetStruct> tilePresets;
     [SerializeField] public Vector2Int SpawnPosition;
     [SerializeField] public int spawnRotation;
-    [SerializeField] public TextAsset terrainDialogue;
+    [SerializeField] public TextAsset[] terrainDialogue;
 }
