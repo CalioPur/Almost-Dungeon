@@ -17,27 +17,27 @@ public class MoveInDirection : Node
             return NodeState.Failure;
         if (blackboard.dir is DirectionToMove.None)
             return NodeState.Failure;
-
+        Vector2Int heroPos = GameManager.Instance.GetHeroPos();
         switch (blackboard.dir)
         {
             case DirectionToMove.Left:
-                if (blackboard.minionData.indexX + 1 == blackboard.heroPosition.x &&
-                    blackboard.minionData.indexY == blackboard.heroPosition.y)
+                if (blackboard.minionData.indexX + 1 == heroPos.x &&
+                    blackboard.minionData.indexY == heroPos.y)
                     return NodeState.Success;
                 break;
             case DirectionToMove.Right:
-                if (blackboard.minionData.indexX - 1 == blackboard.heroPosition.x &&
-                    blackboard.minionData.indexY == blackboard.heroPosition.y)
+                if (blackboard.minionData.indexX - 1 == heroPos.x &&
+                    blackboard.minionData.indexY == heroPos.y)
                     return NodeState.Success;
                 break;
             case DirectionToMove.Up:
-                if (blackboard.minionData.indexX == blackboard.heroPosition.x &&
-                    blackboard.minionData.indexY + 1 == blackboard.heroPosition.y)
+                if (blackboard.minionData.indexX == heroPos.x &&
+                    blackboard.minionData.indexY + 1 == heroPos.y)
                     return NodeState.Success;
                 break;
             case DirectionToMove.Down:
-                if (blackboard.minionData.indexX == blackboard.heroPosition.x &&
-                    blackboard.minionData.indexY - 1 == blackboard.heroPosition.y)
+                if (blackboard.minionData.indexX == heroPos.x &&
+                    blackboard.minionData.indexY - 1 == heroPos.y)
                     return NodeState.Success;
                 break;
         }
@@ -49,7 +49,7 @@ public class MoveInDirection : Node
             (blackboard.dir == DirectionToMove.Down) ? -1 : 0;
         int index = -1;
         bool isValidPos = blackboard.minionData.mapManager.AddMinionOnTile(
-            new Vector2Int(temporaryIndex.x, temporaryIndex.y), blackboard.minionData, ref index);
+            new Vector2Int(temporaryIndex.x, temporaryIndex.y), blackboard.minionData);
         
         if (!isValidPos) return NodeState.Failure;
         

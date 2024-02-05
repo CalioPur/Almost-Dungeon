@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class Hero : MonoBehaviour, IFlippable
 {
-    public static event Action<Vector2Int> OnGivePosBackEvent;
     public static event Action<int, bool> OnTakeDamageEvent;
     public static event Action<int> OnPopUpEvent;
     public static event Action<Hero> OnMovedOnEmptyCardEvent;
@@ -37,14 +36,13 @@ public class Hero : MonoBehaviour, IFlippable
     private Vector2Int IndexHeroPos = new (0, 0);
     public AudioClip[] attackClip;
     private bool isStunned;
-    private GameObject attackPoint;
     private TrapData web;
 
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
         animQueue.AddAnim(new AnimToQueue(heroTr, targetTr,  offset , false, delay));
         animator.SetTrigger("Move");
-        GivePosBack();
+        GameManager.Instance.UpdateHeroPos(GetIndexHeroPos());
     }
     
     
@@ -88,7 +86,6 @@ public class Hero : MonoBehaviour, IFlippable
         TrapData.OnTrapStunEvent += Stun;
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
-        MinionData.OnHeroPosAsked+= GivePosBack;
         RageScript.OnNoPathFound += PlayEmoteStuck;
         OnDragonAttackEvent +=AttackDragon;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
@@ -116,10 +113,10 @@ public class Hero : MonoBehaviour, IFlippable
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        attackPoint.transform.position = transform.position + dragonDir;
-        AnimToQueue animToQueue = new AnimToQueue(heroTr, attackPoint.transform , Vector3.zero, true, 0.5f, Ease.InBack, 2);
+        GameManager.Instance.AttackPoint.position = transform.position + dragonDir;
+        AnimToQueue animToQueue = new AnimToQueue(heroTr, GameManager.Instance.AttackPoint , Vector3.zero, true, 0.5f, Ease.InBack, 2);
         AddAnim(animToQueue);
-        PlayAttackFX(attackPoint.transform, 0.5f, obj);
+        PlayAttackFX(GameManager.Instance.AttackPoint, 0.5f, obj);
     }
 
 
@@ -127,12 +124,7 @@ public class Hero : MonoBehaviour, IFlippable
     {
         emotesManager.PlayEmote(EmoteType.Stuck);
     }
-
-    private void GivePosBack()
-    {
-        OnGivePosBackEvent?.Invoke(IndexHeroPos);
-        PathFinding.HeroPos = IndexHeroPos;
-    }
+    
     private void OnBeginToMove()
     {
         TickManager.SubscribeToMovementEvent(MovementType.Hero, OnTick, out entityId);
@@ -147,7 +139,6 @@ public class Hero : MonoBehaviour, IFlippable
     private void OnDestroy()
     {
         TickManager.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
-        OnGivePosBackEvent = null;
         OnTakeDamageEvent = null;
         OnPopUpEvent = null;
         OnMovedOnEmptyCardEvent = null;
@@ -215,7 +206,6 @@ public class Hero : MonoBehaviour, IFlippable
     private void Start()
     {
         OnBeginToMove();
-        attackPoint = GameObject.Find("AttackPoint");
     }
 
     private void OnDisable()
@@ -223,7 +213,6 @@ public class Hero : MonoBehaviour, IFlippable
         TrapData.OnTrapAttackEvent -= TakeDamage;
         TrapData.OnTrapStunEvent -= Stun;
         TrapData.ClearEvent();
-        MinionData.OnHeroPosAsked -= GivePosBack;
         MinionData.ClearSubscribes();
         RageScript.OnNoPathFound -= PlayEmoteStuck;
     }

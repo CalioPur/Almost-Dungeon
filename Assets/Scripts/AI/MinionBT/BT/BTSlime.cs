@@ -8,7 +8,6 @@ public class BTSlime : MinionBTBase
         if (!blackboard) Debug.LogError("Blackboard is null");
 
         origin = new Sequence(
-            new GetHeroPos(blackboard),
             new HeroIsInSight(blackboard),
             new MoveInDirection(blackboard),
             new CheckifFrontOfHero(blackboard),

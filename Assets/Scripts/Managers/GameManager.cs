@@ -23,23 +23,20 @@ public class GameManager : MonoBehaviour
     public int rotationOfSpawnTile;
     public bool isInDialogue = false;
     private Vector3 worldPos;
-    internal Vector2Int startPosHero;
+    private Vector2Int posHero;
     public Transform AttackPoint { get; set; }
-
-    //public int dragonHealthPoint = 10;
-    
-    public static GameManager _instance;
+    public static GameManager Instance;
     
     private void Awake()
     {
         
         
-        if (_instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-        _instance = this;
+        Instance = this;
         OnSceneLoadedEvent?.Invoke();
     }
     
@@ -49,7 +46,7 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 1;
         mapManager.InitMap();
         mapManager.AddRandomCard();
-        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(),rotationOfSpawnTile, out worldPos, startPosHero);
+        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(),rotationOfSpawnTile, out worldPos, posHero);
         worldPos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
         OnEndDialogEvent?.Invoke();
         foreach (var light in lightsAmbiant)
@@ -76,7 +73,7 @@ public class GameManager : MonoBehaviour
         current.CurrentHealthPoint = heroHealthPoint;
         
         Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
-        heroScript.Init(current, startPosHero.x, startPosHero.y, mapManager);
+        heroScript.Init(current, posHero.x, posHero.y, mapManager);
         heroScript.HeroBlackboard.visionType = currentHero.visionType;
         heroScript.HeroBlackboard.aggressivity = currentHero.aggressivity;
         heroScript.HeroBlackboard.personalities = currentHero.personalities;
@@ -107,11 +104,11 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHeroPos(Vector2Int getIndexHeroPos)
     {
-        startPosHero = getIndexHeroPos;
+        posHero = getIndexHeroPos;
     }
     
     public Vector2Int GetHeroPos()
     {
-        return startPosHero;
+        return posHero;
     }
 }

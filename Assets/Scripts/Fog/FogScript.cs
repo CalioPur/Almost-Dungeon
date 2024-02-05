@@ -19,13 +19,11 @@ public class FogScript : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        MapManager.MakeFogEvent += ActualizeFog;
         PlayerCardController.OnTilePosedEvent += ActualizeFog;
     }
 
     private void OnDisable()
     {
-        MapManager.MakeFogEvent -= ActualizeFog;
         PlayerCardController.OnTilePosedEvent -= ActualizeFog;
     }
 

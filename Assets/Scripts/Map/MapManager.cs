@@ -152,8 +152,7 @@ public class MapManager : MonoBehaviour
                     }
 
 
-                    SpawnEnemyManager.SpawnEnemyWithoutPrefab(data.type, tile, true, offset, data.indexOffsetTile,
-                        this);
+                    SpawnEnemyManager.SpawnEnemyWithoutPrefab(data.type, tile, this);
                 }
             }
         }
@@ -186,7 +185,7 @@ public class MapManager : MonoBehaviour
                 Vector3 pos;
                 GetWorldPosFromTilePos(new Vector2Int(i, j), out pos); //pour centrer le tout
                 mapArray[i - 1, j - 1] =
-                    Instantiate(floor, pos, walls.transform.rotation, map)
+                    Instantiate(floor, pos, floor.transform.rotation, map)
                         .GetComponent<TileData>(); //verifie si on est sur un bord
             }
         }
@@ -403,7 +402,7 @@ public class MapManager : MonoBehaviour
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         data.enemies.Remove(minionData);
         if (minionData is MinionData minion)
-            data.freePosition(minion.indexOffsetTile);
+            data.freePosition();
     }
 
     public bool AvailableForSpawn(int x, int y)
@@ -415,7 +414,7 @@ public class MapManager : MonoBehaviour
     {
         TileData data = GetTileDataAtPosition(vector2Int.x, vector2Int.y);
         GetWorldPosFromTilePos(vector2Int, out Vector3 posToGo);
-        if (data.GetFirstAvailabalePosition(out var offset))
+        if (data.GetFirstAvailabalePosition())
         {
             data.enemies.Add(minionData);
             return true;
@@ -465,8 +464,7 @@ public class MapManager : MonoBehaviour
                     {
                         if (enemy.canBeRevive)
                         {
-                            SpawnEnemyManager.SpawnEnemyWithType(enemy.type, tile, Vector3.zero, enemy.indexOffsetTile,
-                                this);
+                            SpawnEnemyManager.SpawnEnemyWithType(enemy.type, tile, this);
                         }
                     }
                 }

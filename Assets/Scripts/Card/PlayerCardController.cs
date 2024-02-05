@@ -192,21 +192,10 @@ public class PlayerCardController : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        
-        //if the mouse pos intersects with the zone of the discard
-        // if (RectTransformUtility.RectangleContainsScreenPoint(_rectTransform, Input.mousePosition))
-        // {
-        //     if (selectedCard == null) return;
-        //     selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
-        //     OnDiscardCardEvent?.Invoke(selectedCard);
-        //     return;
-        // }
 
         if (!Physics.Raycast(ray, out hit) || !hit.collider.gameObject.CompareTag("Floor"))
         {
             if (selectedCard != null) selectedCard.GetImage().gameObject.transform.position = selectedCard.transform.position;
-            // selectedCard = null;
-            // Debug.Log("Set selected card null");
             return;
         }
         TileData tile = hit.collider.gameObject.GetComponent<TileData>();
@@ -231,6 +220,6 @@ public class PlayerCardController : MonoBehaviour
             Debug.Log("Sprite null");
             return;
         }
-        cardVisualizer.GetComponent<SpriteRenderer>().sprite = selectedCard.GetSprite();
+        cardVisualizer.sprite = selectedCard.GetSprite();
     }
 }

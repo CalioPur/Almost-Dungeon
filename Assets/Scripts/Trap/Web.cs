@@ -14,22 +14,6 @@ public class Web : TrapData
         Init();
     }
 
-    private void OnEnable()
-    {
-        Hero.OnGivePosBackEvent += GetHeroPosOnTile;
-    }
-
-    private void OnDisable()
-    {
-        Hero.OnGivePosBackEvent -= GetHeroPosOnTile;
-    }
-
-    private void GetHeroPosOnTile(Vector2Int pos)
-    {
-        heroPos = pos;
-    }
-
-
     public override void TakeDamage(int damage, AttackType attackType)
     {
         webInstance.CurrentHealthPoint -= damage;

@@ -58,12 +58,6 @@ public class FireCamp : TrapData
     {
         firecampInstance = SO.CreateInstance();
         TickManager.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
-        Hero.OnGivePosBackEvent += GetHeroPosOnTile;
-    }
-
-    private void GetHeroPosOnTile(Vector2Int pos)
-    {
-        heroPos = pos;
     }
     
     protected override void OnTick()

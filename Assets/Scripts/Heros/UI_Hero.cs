@@ -14,10 +14,12 @@ public class UI_Hero : MonoBehaviour
     [SerializeField] private GameObject healthBar;
 
     [SerializeField] private GameObject ItemBar;
-    [SerializeField] private GameObject itemsPrefab;
+    [SerializeField] private UI_HeroItem itemsPrefab;
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private TMP_Text endGameText;
-    [SerializeField] private Button endGameButton;
+    [SerializeField] private TMP_Text HealthBarText;
+    [SerializeField] private Image imgFiller;
+    [SerializeField] private ButtonPrefab endGameButton;
     [SerializeField] private string[] itemNamesChoices;
 
     public TMP_Text heroPersonality;
@@ -46,8 +48,8 @@ public class UI_Hero : MonoBehaviour
             OnEndGameEvent?.Invoke(true);
         }
         healthBar.transform.DOScale(0.0065f, 0.1f).OnComplete(() => { healthBar.transform.DOScale(0.006f, 0.1f); });
-        healthBar.GetComponentInChildren<TMP_Text>().text = _currentHealth.ToString();
-        healthBar.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)_currentHealth / maxHealth;
+        HealthBarText.text = _currentHealth.ToString();
+        imgFiller.fillAmount = (float)_currentHealth / maxHealth;
         
     }
 
@@ -71,8 +73,7 @@ public class UI_Hero : MonoBehaviour
 
     private void CreateEmptyItem()
     {
-        GameObject item = Instantiate(itemsPrefab, ItemBar.transform);
-        UI_HeroItem itemScript = item.GetComponent<UI_HeroItem>();
+        UI_HeroItem itemScript = Instantiate(itemsPrefab, ItemBar.transform);
         items.Add(itemScript);
     }
 
@@ -119,24 +120,24 @@ public class UI_Hero : MonoBehaviour
             endGameText.color = Color.green;
             if (DungeonManager._instance.currentLevel < 6)
             {
-                endGameButton.GetComponentInChildren<TMP_Text>().text = "Passer au niveau " + (DungeonManager._instance.currentLevel+2);
+                endGameButton.text.text = "Passer au niveau " + (DungeonManager._instance.currentLevel+2);
             }
             else
             {
-                endGameButton.GetComponentInChildren<TMP_Text>().text = "Main Menu";
+                endGameButton.text.text = "Main Menu";
             }
-            endGameButton.onClick.RemoveAllListeners();
-            endGameButton.onClick.AddListener((() => { UIManager._instance.NextLevel(); }));
+            endGameButton.Btn.onClick.RemoveAllListeners();
+            endGameButton.Btn.onClick.AddListener((() => { UIManager._instance.NextLevel(); }));
         }
         else
         {
             endGameText.text = heroName.text + " vous a vaincu !";
             endGameText.color = Color.red;
-            endGameButton.GetComponentInChildren<TMP_Text>().text = "Main Menu";
+            endGameButton.text.text = "Main Menu";
             DungeonManager._instance.ResetLevelIndex();
-            endGameButton.onClick.RemoveAllListeners();
+            endGameButton.Btn.onClick.RemoveAllListeners();
             //make button go back to scene 0
-            endGameButton.onClick.AddListener(() => { UnityEngine.SceneManagement.SceneManager.LoadScene(0); });
+            endGameButton.Btn.onClick.AddListener(() => { UnityEngine.SceneManagement.SceneManager.LoadScene(0); });
         }
         
         //endGamePanel.SetActive(true);

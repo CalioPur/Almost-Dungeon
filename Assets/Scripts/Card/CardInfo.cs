@@ -53,7 +53,7 @@ public class CardInfoInstance
 
     public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawnInstance { get; private set; }
 
-    public bool[] offsetSpawnUsed;
+    public bool offsetSpawnUsed;
 
     public event Action OnRotationChangedEvent;
 
@@ -69,18 +69,13 @@ public class CardInfoInstance
         DoorOnBottom = info.DoorOnBottom;
         DoorOnLeft = info.DoorOnLeft;
         DoorOnRight = info.DoorOnRight;
-        offsetSpawnUsed = new bool[So.offsetMinionPos.Length];
+        offsetSpawnUsed = false;
         TypeOfTrapOrEnemyToSpawnInstance = new EnemiDataOnHand[So.TypeOfTrapOrEnemyToSpawn.Length];
         for (int i = 0; i < So.TypeOfTrapOrEnemyToSpawn.Length; i++)
         {
             TypeOfTrapOrEnemyToSpawnInstance[i].indexOffsetTile = So.TypeOfTrapOrEnemyToSpawn[i].indexOffsetTile;
             TypeOfTrapOrEnemyToSpawnInstance[i].type = So.TypeOfTrapOrEnemyToSpawn[i].type;
             TypeOfTrapOrEnemyToSpawnInstance[i].canBeRevive = So.TypeOfTrapOrEnemyToSpawn[i].canBeRevive;
-        }
-
-        for (int i = 0; i < So.offsetMinionPos.Length; i++)
-        {
-            offsetSpawnUsed[i] = false;
         }
 
         ItemDrops = new List<ItemDrop>();
@@ -171,11 +166,7 @@ public class CardInfoInstance
         DoorOnBottom = instance.DoorOnBottom;
         DoorOnLeft = instance.DoorOnLeft;
         DoorOnRight = instance.DoorOnRight;
-        offsetSpawnUsed = new bool[So.offsetMinionPos.Length];
-        for (int i = 0; i < So.offsetMinionPos.Length; i++)
-        {
-            offsetSpawnUsed[i] = instance.offsetSpawnUsed[i];
-        }
+        offsetSpawnUsed = instance.offsetSpawnUsed;
 
         TypeOfTrapOrEnemyToSpawnInstance = new EnemiDataOnHand[So.TypeOfTrapOrEnemyToSpawn.Length];
         for (int i = 0; i < So.TypeOfTrapOrEnemyToSpawn.Length; i++)

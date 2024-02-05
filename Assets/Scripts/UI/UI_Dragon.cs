@@ -11,11 +11,14 @@ public class UI_Dragon : MonoBehaviour
     public static event Action OnDragonDeathEvent;
     public static event Action OnDragonTakeDamageEvent;
     
-    public GameObject healthBar;
-    public GameObject singleHeart;
-    public GameObject heartPrefab;
-    public Image dragonImage;
-    public Transform dragonCard;
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject singleHeart;
+    [SerializeField] private Image singleHeartImg;
+    [SerializeField] private UI_Heart heartPrefab;
+    [SerializeField] private Image dragonImage;
+    [SerializeField] private Transform dragonCard;
+    [SerializeField] private Image dragImg;
+    [SerializeField] private TMP_Text healthText;
     List<UI_Heart> hearts = new();
     public float shakeDuration = 0.5f;
 
@@ -91,24 +94,22 @@ public class UI_Dragon : MonoBehaviour
 
     public void CreateFullHeart()
     {
-        GameObject heart = Instantiate(heartPrefab, healthBar.transform);
+        UI_Heart heart = Instantiate(heartPrefab, healthBar.transform);
         heart.transform.rotation = Quaternion.Euler(0, 0, 45);
         heart.transform.DORotate(new Vector3(0, 0, 0), 0.5f).SetEase(Ease.OutBounce);
         heart.transform.DOScale(1.2f, 0.5f).SetEase(Ease.OutBounce).OnComplete(() =>
         {
             heart.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBounce);
         });
-        UI_Heart heartScript = heart.GetComponent<UI_Heart>();
-        heartScript.SetHeartState(HeartState.Full);
-        hearts.Add(heartScript);
+        heart.SetHeartState(HeartState.Full);
+        hearts.Add(heart);
     }
 
     public void CreateEmptyHeart()
     {
-        GameObject heart = Instantiate(heartPrefab, healthBar.transform);
-        UI_Heart heartScript = heart.GetComponent<UI_Heart>();
-        heartScript.SetHeartState(HeartState.Empty);
-        hearts.Add(heartScript);
+        UI_Heart heart = Instantiate(heartPrefab, healthBar.transform);
+        heart.SetHeartState(HeartState.Empty);
+        hearts.Add(heart);
     }
 
     public void DestroyAllHearts()

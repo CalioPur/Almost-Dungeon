@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Dialogue;
 using UnityEngine;
 using Ink.Runtime;
 using LogicUI.FancyTextRendering;
@@ -42,9 +43,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject arrowKnight;
     [SerializeField] private GameObject arrowDragon;
     [SerializeField] private GameObject arrowMinion;
-    [SerializeField] private GameObject choice1;
-    [SerializeField] private GameObject choice2;
+    [SerializeField] private DialogueChoice choice1;
+    [SerializeField] private DialogueChoice choice2;
     [SerializeField] private MarkdownRenderer dialogueText;
+    [SerializeField] private MarkdownRenderer markdownRenderer;
     [SerializeField] private Button nextButton;
     [SerializeField] private Image otherImage;
     [SerializeField] private GameObject canvaDragon;
@@ -83,7 +85,7 @@ public class DialogueManager : MonoBehaviour
     
     private void GetUiElements()
     {
-        dialogueText = dialogueBox.GetComponentInChildren<MarkdownRenderer>();
+        dialogueText = markdownRenderer;
         
         nextButton.onClick.AddListener(NextDialogue);
     }
@@ -91,7 +93,7 @@ public class DialogueManager : MonoBehaviour
     
     public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, List<TextAsset> heroDialogue, DeckManager cardsManager)
     {
-        GameManager._instance.isInDialogue = true;
+        GameManager.Instance.isInDialogue = true;
         Debug.LogWarning("PlayAllThreeDialogues");
         print("HERO DIALOGUE COUNT : "+heroDialogue.Count);
         dialogueIndex = -1;
@@ -148,7 +150,7 @@ public class DialogueManager : MonoBehaviour
 
             minionToken.SetActive(false);
             slots.SetActive(true);
-            GameManager._instance.isInDialogue = false;
+            GameManager.Instance.isInDialogue = false;
             return;
         }
         
@@ -180,8 +182,8 @@ public class DialogueManager : MonoBehaviour
         
         
         dialogueBox.SetActive(true);
-        choice1.SetActive(false);
-        choice2.SetActive(false);
+        choice1.gameObject.SetActive(false);
+        choice2.gameObject.SetActive(false);
         RefreshView();
         Time.timeScale = 0;
     }
@@ -254,34 +256,34 @@ public class DialogueManager : MonoBehaviour
                         break;
                     case "damages":
                         var damage = int.Parse(split[1]);
-                        GameManager._instance.heroCurrentHealthPoint -= damage;
+                        GameManager.Instance.heroCurrentHealthPoint -= damage;
                         break;
                     case "hpplus":
                         var heal = int.Parse(split[1]);
-                        GameManager._instance.heroHealthPoint += heal;
-                        GameManager._instance.heroCurrentHealthPoint += heal;
+                        GameManager.Instance.heroHealthPoint += heal;
+                        GameManager.Instance.heroCurrentHealthPoint += heal;
                         break;
                     case "changepers":
                         switch (split[1])
                         {
                             
                             case("bigleux"):
-                                GameManager._instance.currentHero.visionType = VisionType.BIGLEUX;
+                                GameManager.Instance.currentHero.visionType = VisionType.BIGLEUX;
                                 break;
                             case("visionBase"):
-                                GameManager._instance.currentHero.visionType = VisionType.LIGNEDROITE;
+                                GameManager.Instance.currentHero.visionType = VisionType.LIGNEDROITE;
                                 break;
                             case("clairvoyant"):
-                                GameManager._instance.currentHero.visionType = VisionType.CLAIRVOYANT;
+                                GameManager.Instance.currentHero.visionType = VisionType.CLAIRVOYANT;
                                 break;
                             case ("peureux"):
-                                GameManager._instance.currentHero.aggressivity = Aggressivity.PEUREUX;
+                                GameManager.Instance.currentHero.aggressivity = Aggressivity.PEUREUX;
                                 break;
                             case ("agroBase"):
-                                GameManager._instance.currentHero.aggressivity = Aggressivity.NONE;
+                                GameManager.Instance.currentHero.aggressivity = Aggressivity.NONE;
                                 break;
                             case ("courageux"):
-                                GameManager._instance.currentHero.aggressivity = Aggressivity.COURAGEUX;
+                                GameManager.Instance.currentHero.aggressivity = Aggressivity.COURAGEUX;
                                 break;
                         }
                         break;
@@ -300,16 +302,16 @@ public class DialogueManager : MonoBehaviour
                         switch (split[1])
                         {
                             case ("knight"):
-                                GameManager._instance.currentHero.classe = knightClass;
+                                GameManager.Instance.currentHero.classe = knightClass;
                                 break;
                             case ("archer"):
-                                GameManager._instance.currentHero.classe = archerClass;
+                                GameManager.Instance.currentHero.classe = archerClass;
                                 break;
                             case("mage"):
-                                GameManager._instance.currentHero.classe = mageClass;
+                                GameManager.Instance.currentHero.classe = mageClass;
                                 break;
                             case("barbarian"):
-                                GameManager._instance.currentHero.classe = barbareClass;
+                                GameManager.Instance.currentHero.classe = barbareClass;
                                 break;
                         }
                         break;
@@ -371,21 +373,21 @@ public class DialogueManager : MonoBehaviour
 
     private void DisplayChoices(List<Choice> storyCurrentChoices)
     {
-        choice1.SetActive(true);
-        choice2.SetActive(true);
+        choice1.gameObject.SetActive(true);
+        choice2.gameObject.SetActive(true);
         nextButton.gameObject.SetActive(false);
-        choice1.GetComponentInChildren<MarkdownRenderer>().Source = storyCurrentChoices[0].text;
-        choice2.GetComponentInChildren<MarkdownRenderer>().Source = storyCurrentChoices[1].text;
-        choice1.GetComponentInChildren<Button>().onClick.AddListener(delegate { OnClickChoiceButton(storyCurrentChoices[0]); });
-        choice2.GetComponentInChildren<Button>().onClick.AddListener(delegate { OnClickChoiceButton(storyCurrentChoices[1]); });
+        choice1.markdownManager.Source = storyCurrentChoices[0].text;
+        choice2.markdownManager.Source = storyCurrentChoices[1].text;
+        choice1.Btn.onClick.AddListener(delegate { OnClickChoiceButton(storyCurrentChoices[0]); });
+        choice2.Btn.onClick.AddListener(delegate { OnClickChoiceButton(storyCurrentChoices[1]); });
     }
     
     void OnClickChoiceButton (Choice choice) {
         story.ChooseChoiceIndex (choice.index);
-        choice1.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
-        choice2.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
-        choice1.SetActive(false);
-        choice2.SetActive(false);
+        choice1.Btn.onClick.RemoveAllListeners();
+        choice2.Btn.onClick.RemoveAllListeners();
+        choice1.gameObject.SetActive(false);
+        choice2.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(true);
         RefreshView();
     }
@@ -423,7 +425,7 @@ public class DialogueManager : MonoBehaviour
     void CheckHeroClass()
     {
         print("CHECK HERO CLASS");
-        otherImage.sprite = GameManager._instance.currentHero.classe.Img;
+        otherImage.sprite = GameManager.Instance.currentHero.classe.Img;
     }
 
 

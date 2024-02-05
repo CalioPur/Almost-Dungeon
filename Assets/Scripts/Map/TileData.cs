@@ -14,7 +14,7 @@ public class TileData : MonoBehaviour
         set => _instance.DoorOnTop = value;
     }
 
-    
+
     public bool hasDoorRight
     {
         get => _instance?.DoorOnRight ?? false;
@@ -36,8 +36,10 @@ public class TileData : MonoBehaviour
     public bool isConnectedToPath = false;
 
     public bool isExit = false;
-    
-    public bool IsVisited 
+
+    public Vector2Int IndexInMapArray { get; set; }
+
+    public bool IsVisited
     {
         get { return isVisited; }
         set
@@ -48,9 +50,6 @@ public class TileData : MonoBehaviour
     }
 
     public bool isVisited;
-    
-    public Vector2Int IndexInMapArray { get; set; }
-   
     
     public bool isRoom = false;
     public bool PiecePlaced
@@ -96,50 +95,22 @@ public class TileData : MonoBehaviour
         transform.rotation = Quaternion.Euler(90, 0, _instance.Rotation);
         img.color = new Color(0.35f, 0.35f, 0.35f);
     }
-    
+
     public bool AvailableForSpawn()
     {
-        for (int i = 0; i < _instance.So.offsetMinionPos.Length; i++)
-        {
-            if (!_instance.offsetSpawnUsed[i]) return true;
-        }
-        return false;
+        return (!_instance.offsetSpawnUsed);
     }
-    
-    public bool GetFirstAvailabalePosition(out Vector3 pos)
+
+    public bool GetFirstAvailabalePosition()
     {
-        if (_instance == null)
-        {
-            pos = Vector3.zero;
-            return false;
-        }
-        if (index == -1)
-        {
-            for (int i = 0; i < _instance.So.offsetMinionPos.Length; i++)
-            {
-                if (!_instance.offsetSpawnUsed[i])
-                {
-                    pos = _instance.So.offsetMinionPos[i];
-                    _instance.offsetSpawnUsed[i] = true;
-                    index = i;
-                    return true;
-                }
-            }
-        }
-        else if (!_instance.offsetSpawnUsed[index])
-        {
-            pos = _instance.So.offsetMinionPos[index];
-            _instance.offsetSpawnUsed[index] = true;
-            return true;
-        }
-        pos = Vector3.zero;
-        index = -1;
-        return false;
+        if (_instance == null || _instance.offsetSpawnUsed) return false;
+        _instance.offsetSpawnUsed = true;
+        return true;
     }
-    
-    public void freePosition(int index)
+
+    public void freePosition()
     {
-        _instance.offsetSpawnUsed[index] = false;
+        _instance.offsetSpawnUsed = false;
     }
 
     public void SnapToGrid()
@@ -147,18 +118,18 @@ public class TileData : MonoBehaviour
         transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y,
             Mathf.Round(transform.position.z));
     }
-    
+
     public void ResetData()
     {
-        this.img.sprite = null;
-        this.isVisited = false;
-        this.isRoom = false;
-        this.isExit = false;
-        this.isConnectedToPath = false;
-        this.hasDoorUp = true;
-        this.hasDoorRight = true;
-        this.hasDoorDown = true;
-        this.hasDoorLeft = true;
-        this.enemies.Clear();
+        img.sprite = null;
+        isVisited = false;
+        isConnectedToPath = false;
+        isRoom = false;
+        isExit = false;
+        enemies.Clear();
+        hasDoorUp = true;
+        hasDoorRight = true;
+        hasDoorDown = true;
+        hasDoorLeft = true;
     }
 }
