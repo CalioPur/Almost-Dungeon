@@ -30,7 +30,7 @@ public class Hero : MonoBehaviour, IFlippable
     [SerializeField] private Animator animator;
     [SerializeField] private AudioSource audioSource;
     
-    [SerializeField] private GameObject threeDeeHero;
+    [SerializeField] private MeshRenderer threeDeeHero;
 
     private int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
@@ -149,7 +149,7 @@ public class Hero : MonoBehaviour, IFlippable
     IEnumerator FXDeath()
     {
         Debug.Log("FX Death");
-        Material[] mats = threeDeeHero.GetComponent<MeshRenderer>().materials;
+        Material[] mats = threeDeeHero.materials;
         foreach (var t in mats)
         {
             t.DOFloat(0.6f, "_Level", 2f).SetEase(Ease.InBack);
