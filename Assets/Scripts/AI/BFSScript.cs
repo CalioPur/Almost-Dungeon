@@ -222,9 +222,9 @@ public static class BFSScript
     {
         List<TileData> neighbors = new List<TileData>();
 
-        for (int i = 0; i < MapManager.Instance.width - 2; i++)
+        for (int i = 0; i < MapManager.Instance.width; i++)
         {
-            for (int j = 0; j < MapManager.Instance.height - 2; j++)
+            for (int j = 0; j < MapManager.Instance.height ; j++)
             {
                 MapManager mapManager = MapManager.Instance;
                 if (!mapManager.mapArray[i, j].isExit) continue;
@@ -233,7 +233,7 @@ public static class BFSScript
                         !mapManager.mapArray[i, j - 1].isVisited &&
                         mapManager.mapArray[i, j - 1].hasDoorUp)
                         neighbors.Add(mapManager.mapArray[i, j - 1]);
-                if (mapManager.mapArray[i, j].hasDoorUp && j < mapManager.height - 3) 
+                if (mapManager.mapArray[i, j].hasDoorUp && j < mapManager.height - 1) 
                     if (!mapManager.mapArray[i, j + 1].isConnectedToPath ||
                         !mapManager.mapArray[i, j + 1].isVisited &&
                         mapManager.mapArray[i, j + 1].hasDoorDown)
@@ -243,7 +243,7 @@ public static class BFSScript
                         !mapManager.mapArray[i - 1, j].isVisited &&
                         mapManager.mapArray[i - 1, j].hasDoorRight) 
                         neighbors.Add(mapManager.mapArray[i - 1, j]);
-                if (mapManager.mapArray[i, j].hasDoorRight && i < mapManager.width - 3) 
+                if (mapManager.mapArray[i, j].hasDoorRight && i < mapManager.width - 1) 
                     if (!mapManager.mapArray[i + 1, j].isConnectedToPath ||
                         !mapManager.mapArray[i + 1, j].isVisited &&
                         mapManager.mapArray[i + 1, j].hasDoorLeft)

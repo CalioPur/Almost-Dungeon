@@ -39,9 +39,9 @@ public class MapManager : MonoBehaviour
     private void Update()
     {
         if (!Hero.Instance) return;
-        for (int i = 0; i < Instance.width - 2; i++)
+        for (int i = 0; i < Instance.width; i++)
         {
-            for (int j = 0; j < Instance.height - 2; j++)
+            for (int j = 0; j < Instance.height; j++)
             {
                 if (!mapArray[i, j].isExit) continue;
                 if (mapArray[i, j].hasDoorDown && j > 0 && !mapArray[i, j - 1].isConnectedToPath)
@@ -56,7 +56,7 @@ public class MapManager : MonoBehaviour
                     }
                 }
 
-                if (mapArray[i, j].hasDoorUp && j < height - 3 && !mapArray[i, j + 1].isConnectedToPath)
+                if (mapArray[i, j].hasDoorUp && j < height - 1 && !mapArray[i, j + 1].isConnectedToPath)
                 {
                     if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
                     {
@@ -80,7 +80,7 @@ public class MapManager : MonoBehaviour
                     }
                 }
 
-                if (mapArray[i, j].hasDoorRight && i < width - 3 && !mapArray[i + 1, j].isConnectedToPath)
+                if (mapArray[i, j].hasDoorRight && i < width - 1 && !mapArray[i + 1, j].isConnectedToPath)
                 {
                     if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
                     {
@@ -107,7 +107,7 @@ public class MapManager : MonoBehaviour
 
     public Vector2Int GetSizeDungeon()
     {
-        return new Vector2Int(width - 2, height - 2);
+        return new Vector2Int(width, height);
     }
 
     private void InitCards(CardInfo[] _cards)
@@ -146,9 +146,9 @@ public class MapManager : MonoBehaviour
 
     public void SetAllTilesAsVisited()
     {
-        for (int i = 0; i < width - 2; i++)
+        for (int i = 0; i < width; i++)
         {
-            for (int j = 0; j < height - 2; j++)
+            for (int j = 0; j < height; j++)
             {
                 if (mapArray[i, j].isConnectedToPath)
                     mapArray[i, j].IsVisited = true;
@@ -188,8 +188,8 @@ public class MapManager : MonoBehaviour
 
     private void CheckTileToManipulateRandomPosition(CardInfoInstance cardInstance)
     {
-        int x = Random.Range(1, width - 3);
-        int y = Random.Range(1, height - 3);
+        int x = Random.Range(1, width - 1);
+        int y = Random.Range(1, height - 1);
 
         if (!CheckPosWithPosition(x, y, cardInstance)) CheckTileToManipulateRandomPosition(cardInstance);
         else SetTileAtPosition(cardInstance, x, y);
@@ -229,9 +229,9 @@ public class MapManager : MonoBehaviour
 
     private bool CheckPosWithData(TileData data, CardHand card)
     {
-        for (int i = 0; i < width - 2; i++)
+        for (int i = 0; i < width; i++)
         {
-            for (int j = 0; j < height - 2; j++)
+            for (int j = 0; j < height; j++)
             {
                 if (mapArray[i, j] != data) continue;
                 return CheckPosWithPosition(i, j, card.Card);
@@ -341,13 +341,13 @@ public class MapManager : MonoBehaviour
 
     public void GetTilePosFromWorldPos(Vector3 pos, out int x, out int y)
     {
-        x = Mathf.RoundToInt(pos.x + ((float)(width - 1) / 2)) - 1;
-        y = Mathf.RoundToInt(pos.z + ((float)(height - 1) / 2)) - 1;
+        x = Mathf.RoundToInt(pos.x + ((float)(width - 1) / 2));
+        y = Mathf.RoundToInt(pos.z + ((float)(height - 1) / 2));
     }
 
     public bool CheckIfTileIsFree(Vector2Int pos)
     {
-        if (pos.x >= width - 2 || pos.y >= height - 2 || pos.x < 0 || pos.y < 0) return false;
+        if (pos.x >= width || pos.y >= height || pos.x < 0 || pos.y < 0) return false;
         return mapArray[pos.x, pos.y].PiecePlaced;
     }
 

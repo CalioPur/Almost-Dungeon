@@ -238,8 +238,8 @@ public class FogScript : MonoBehaviour
         bool[] directions = new bool[4];
         if (i != 0) if (mapArray[i - 1, j].hasDoorRight) directions[0] = true;
         if (j != 0) if (mapArray[i, j - 1].hasDoorUp) directions[1] = true;
-        if (i != MapManager.Instance.width - 3) if (mapArray[i + 1, j].hasDoorLeft) directions[2] = true;
-        if (j != MapManager.Instance.height - 3) if (mapArray[i, j + 1].hasDoorDown) directions[3] = true;
+        if (i != MapManager.Instance.width - 1) if (mapArray[i + 1, j].hasDoorLeft) directions[2] = true;
+        if (j != MapManager.Instance.height - 1) if (mapArray[i, j + 1].hasDoorDown) directions[3] = true;
         return directions;
     }
     private void CreateFogParentIfNone()
