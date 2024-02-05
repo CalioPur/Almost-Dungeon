@@ -73,7 +73,6 @@ MonoBehaviour:
   - position: {x: 8, y: 3}
     cardInfo: {fileID: 11400000, guid: a3f8dc17fd4308347be0deb783fd5b21, type: 2}
     rotation: 4
-  ClampSpawnPositionX: {x: 0, y: 0}
-  ClampSpawnPositionY: {x: 6, y: 6}
+  SpawnPosition: {x: 0, y: 6}
   spawnRotation: 0
   terrainDialogue: {fileID: 0}
