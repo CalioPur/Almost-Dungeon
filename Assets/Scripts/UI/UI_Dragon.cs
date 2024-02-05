@@ -23,7 +23,7 @@ public class UI_Dragon : MonoBehaviour
     public static int maxHealth = 10;
     public int damage = 3;
     
-    [SerializeField] private GameObject fireBallPrefab;
+    [SerializeField] private Animator fireBallPrefab;
     [SerializeField] private AnimationClip fireBallAnim;
 
     private IEnumerator TakeDamageFX(Hero hero)
@@ -47,11 +47,11 @@ public class UI_Dragon : MonoBehaviour
             yield break;
         }
         yield return new WaitForSeconds(shakeDuration);
-        GameObject fireBall = Instantiate(fireBallPrefab, dragonCard);
-        fireBall.GetComponent<Animator>().Play(fireBallAnim.name);
+        Animator fireBall = Instantiate(fireBallPrefab, dragonCard);
+        fireBall.Play(fireBallAnim.name);
         yield return new WaitForSeconds(fireBallAnim.length);
         Camera.main.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
-        Destroy(fireBall);
+        Destroy(fireBall.gameObject);
         dragImg.color = Color.white;
         hero.TakeDamage(damage, AttackType.Physical);
         dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(false);

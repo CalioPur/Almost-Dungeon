@@ -106,12 +106,11 @@ public class TileData : MonoBehaviour
         return false;
     }
     
-    public bool GetFirstAvailabalePosition(out Vector3 pos, ref int index)
+    public bool GetFirstAvailabalePosition(out Vector3 pos)
     {
         if (_instance == null)
         {
             pos = Vector3.zero;
-            index = -1;
             return false;
         }
         if (index == -1)

@@ -20,13 +20,13 @@ public class FogScript : MonoBehaviour
     void OnEnable()
     {
         MapManager.MakeFogEvent += ActualizeFog;
-        MovementManager.OnTilePosedEvent += ActualizeFog;
+        PlayerCardController.OnTilePosedEvent += ActualizeFog;
     }
 
     private void OnDisable()
     {
         MapManager.MakeFogEvent -= ActualizeFog;
-        MovementManager.OnTilePosedEvent -= ActualizeFog;
+        PlayerCardController.OnTilePosedEvent -= ActualizeFog;
     }
 
      private void ActualizeFog(TileData arg1, CardInfoInstance arg2)

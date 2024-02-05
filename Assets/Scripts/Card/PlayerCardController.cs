@@ -3,7 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class MovementManager : MonoBehaviour
+public class PlayerCardController : MonoBehaviour
 {
     public static event Action<TileData> OnTileSelectedEvent;
     public static event Action<TileData, CardInfoInstance> OnTilePosedEvent;
@@ -21,7 +21,7 @@ public class MovementManager : MonoBehaviour
 
     [SerializeField] private SoundManagerIngame soundManagerIngame;
     
-    public static MovementManager Instance { get; private set; }
+    public static PlayerCardController Instance { get; private set; }
     CardHand selectedCard;
     
     public bool isDragNDrop = false;
