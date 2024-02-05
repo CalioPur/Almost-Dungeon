@@ -6,7 +6,7 @@ Haha ! C'est bien moi ! Et vous pouvez constater que je suis toujours en un seul
 Effectivement ça tient presque du miracle à ce niveau. #chara:dragon
 Allons, allons, n'exagérons rien, je me suis bien amusé en tout cas. #chara:barbarian 
 Par contre, soyez gentil et arrêtez avec vos cracheurs de feu, je vais essayer de tout <color=orange>explorer</color> cette fois-ci !
-Etonnant, je ne crois pas avoir déjà rencontré de barbare aussi curieux. #chara:dragon
+Etonnant, je ne crois pas avoir déjà rencontré de barbare aussi curieux que vous. #chara:dragon
 Haha ! Je suis heureux de savoir que même un gros lézard est capable de comprendre mon caractère unique ! #chara:barbarian 
 Ceci dit, enlevez ces cracheurs de feu de votre donjon avant que je m'énerve vraiment...
 Et vos toiles d'araignées tant que nous y sommes...
