@@ -256,6 +256,10 @@ public class MapManager : MonoBehaviour
         if (South && mapArray[x, y - 1].hasDoorUp != card.DoorOnBottom) return false;
         if (North && mapArray[x, y + 1].hasDoorDown != card.DoorOnTop) return false;
 
+        if (x == 0 && card.DoorOnLeft) return false;
+        if (x == width - 1 && card.DoorOnRight) return false;
+        if (y == 0 && card.DoorOnBottom) return false;
+        if (y == height - 1 && card.DoorOnTop) return false;
 
         return true;
     }

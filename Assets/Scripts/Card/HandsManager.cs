@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class HandsManager : MonoBehaviour
 {
-    public static event Action<CardHand> OnCardSelectedEvent;
     public static event Action<TileData, CardHand> OnCardTryToPlaceEvent;
     public static event Action<CardHand> OnCardWasDiscardedEvent;
     
@@ -99,7 +98,6 @@ public class HandsManager : MonoBehaviour
         {
             selectedCard.removeSelection();
             selectedCard = null;
-            OnCardSelectedEvent?.Invoke(null);
             PlayerCardController.Instance.SetSelectedCard(null);
             return;
         }
@@ -109,7 +107,6 @@ public class HandsManager : MonoBehaviour
         }
         selectedCard = card;
         selectedCard.addSelection();
-        OnCardSelectedEvent?.Invoke(card);
         PlayerCardController.Instance.SetSelectedCard(card);
     }
     public int GetMaxCard()
