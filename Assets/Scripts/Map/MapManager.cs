@@ -322,6 +322,7 @@ public class MapManager : MonoBehaviour
             mapArray[xCoord, yCoord].isConnectedToPath = false;
             mapArray[xCoord, yCoord].isExit = false;
             mapArray[xCoord, yCoord].PiecePlaced = false;
+            mapArray[xCoord, yCoord]._instance.Rotation = 0;
         }
     }
 

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("Data")] [SerializeField] private List<HeroesInfo> heroesInfos;
     [SerializeField] private List<Light> lightsAmbiant;
     [SerializeField] private CardInfo enterDungeonInfo;
+    public Transform AttackPoint;
     public HeroSO currentHero;
     public int heroHealthPoint;
     public int heroCurrentHealthPoint;
@@ -24,7 +25,6 @@ public class GameManager : MonoBehaviour
     public bool isInDialogue = false;
     private Vector3 worldPos;
     private Vector2Int posHero;
-    public Transform AttackPoint { get; set; }
     public static GameManager Instance;
     
     private void Awake()

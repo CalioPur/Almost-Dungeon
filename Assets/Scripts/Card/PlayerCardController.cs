@@ -209,12 +209,12 @@ public class PlayerCardController : MonoBehaviour
     {
         selectedCard = cardHand;
         soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
-        
+        if (!selectedCard) return;
         cardVisualizer.transform.rotation =
             Quaternion.Euler(baseRotation - selectedCard.Card.Rotation * Vector3.up); //recupere la rotation de la carte quand on clique pour afficher correctement la preview
         cardVisualizer.transform.position = new Vector3(100, 100, 100);
         cardVisualizer.gameObject.SetActive(true);
-        if (!selectedCard) return;
+        
         if (selectedCard.GetSprite() == null)
         {
             Debug.Log("Sprite null");
