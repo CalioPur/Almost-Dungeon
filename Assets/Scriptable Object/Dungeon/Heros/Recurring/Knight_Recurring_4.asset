@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfHero: Sire Kay
   health: 30
-  speed: 75
+  speed: 2.4
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 1
   personalities: 
-  heroDialogues:
-  - {fileID: 4900000, guid: e0af87366687c75469b5e9b80dc404d2, type: 3}
+  languages: []
   keyToUnlock: 

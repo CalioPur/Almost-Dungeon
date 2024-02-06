@@ -23,9 +23,9 @@ public class TickManager : MonoBehaviour
     private static Dictionary<MovementType, int> entityIds = new();
     public static event Action OnTick;
 
-    [Range(0f, 1000f)] public int BPM = 120;
+    [HideInInspector][Range(0f, 1000f)] public int BPM = 120;
 
-    [Range(0.1f, 5f)] public float actionsTime; //this is the time for all of the actions to be completed
+    [HideInInspector][Range(0.1f, 5f)] public float actionsTime; //this is the time for all of the actions to be completed
 
     [SerializeField] private AnimationCurve BPMBoostCurve;
 

@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfHero: Cicero
   health: 5
-  speed: 60
+  speed: 2
   classe: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   visionType: 0
   aggressivity: 2
   personalities: 
-  heroDialogues:
-  - {fileID: 4900000, guid: d6eac17d41b1a2f48bd8464c8be7b10a, type: 3}
+  languages: []
   keyToUnlock: 

@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfHero: Kuglof
   health: 10
-  speed: 60
+  speed: 2
   classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
   visionType: 0
   aggressivity: 2
   personalities: 
-  heroDialogues:
-  - {fileID: 4900000, guid: 0bd9d1221a4316249bf90fd9a0d69dae, type: 3}
+  languages: []
   keyToUnlock: 
