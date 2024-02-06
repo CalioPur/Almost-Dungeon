@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+[Serializable]
+public struct Language
+{
+    public List<TextAsset> heroDialogues;
+}
+
 [CreateAssetMenu(fileName = "HeroSO", menuName = "ScriptableObjects/CreationDungeonTool/LevelComponents/HeroSO", order = 9)]
 public class HeroSO : ScriptableObject
 {
@@ -14,6 +20,6 @@ public class HeroSO : ScriptableObject
     public VisionType visionType;
     public Aggressivity aggressivity;
     public List<Personnalities> personalities;
-    public List<TextAsset> heroDialogues;
+    public Language[] languages;
     public string keyToUnlock;
 }
