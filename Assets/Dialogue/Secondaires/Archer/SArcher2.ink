@@ -6,11 +6,11 @@ INCLUDE ../../GlobalVariables.ink
 {SArcher2Seen : ->Encounter2} 
 
 === Encounter1 ===
-Patron ! J'ai trouvé un archer à moitié crevé ici ! #chara:minion #minion:in
+Patron ! J'ai trouvé un archerère à moitié crevée ici ! #chara:minion #minion:in
 ~SArcher2Seen = true 
-Alors archer ? Les temps sont durs ? Dommage que vous n'ayez pas cette fabuleuse potion de vie. #chara:dragon
-Pitié Dragon, je vous en prie, laissez moi la potion, je vous jure que j'irai me battre de toutes mes forces. #chara:archer #minion:out
-* [Lui donner la potion (devient <color=red>courageux</color> )] -> Regen
+Alors archère ? Les temps sont durs ? Dommage que vous n'ayez pas cette fabuleuse potion de vie. #chara:dragon
+Pitié Dragon, je vous en prie, laissez-moi la potion, je vous jure que j'irai me battre de toutes mes forces. #chara:archer #minion:out
+* [Lui donner la potion (l'héroine devient <color=red>courageux</color> )] -> Regen
 * [Boire la potion ($$vous$$ soigne <color=red>1 pdv</color> )] -> Damages
     
 === Regen ===
@@ -22,9 +22,9 @@ Tsss... Créature sans coeur, je vais t'abattre. #chara:archer #dragonHeal:1
 -> END
 
 === Encounter2 ===
-Patron ! Encore l'archer crevé #chara:minion #minion:in
-Haha... Alors archer, toujours en rade de potions de soin ?  #chara:dragon #minion:out
-Pitié Dragon, je vous en prie, laissez moi la potion cette fois ci, je vous jure que vous aurez le droit à de vrai combats. #chara:archer 
-* [Lui donner la potion (devient <color=red>courageux</color> )] -> Regen
+Patron ! Encore l'archère crevée #chara:minion #minion:in
+Haha... Alors archère, toujours en rade de potions de soin ?  #chara:dragon #minion:out
+Pitié Dragon, je vous en prie, laissez moi la potion cette fois ci, je vous jure que vous aurez le droit à un vrai combat. #chara:archer 
+* [Lui donner la potion (l'héroine devient <color=red>courageux</color> )] -> Regen
 * [Boire la potion (vous soigne <color=red>1 pdv</color> )] -> Damages
  -> END

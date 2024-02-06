@@ -21,7 +21,7 @@ Mais ! MA CARTE ! Rendez-la moi Dragon ! Je vous préviens, ça va mal se finir 
 -> END
 
 === Damages ===
-Comment ? Vous dites que vous avez dees pièces secretes ? #chara:barbarian
+Comment ? Vous dites que vous avez des pièces secretes dans le donjon ? #chara:barbarian
 Je dois prendre mon temps alors !
 Exactement, prenez votre temps... Avancez à votre rythme. #chara:dragon #time:-10
 -> END
@@ -30,9 +30,9 @@ Exactement, prenez votre temps... Avancez à votre rythme. #chara:dragon #time:-
 Ah vous revoilà Dragon ! Quelle chance, je viens de mettre la main sur une deuxième carte #chara:barbarian
 Encore !? Ce n'est pas possible, qui lui a donné une autre carte ! #chara:dragon 
 Patron, c'est vous qui avez rempli les coffres la dernière fois... #chara:minion #minion:in
-Ah ! Pas la peine d'essayer de me la {Regen : voler} {Damages : salir}  cette fois-ci ! Vous ne m'aurez pas ! #chara:barbarian #minion:out
-* [Bruler la carte ! (perd <color=orange>explorateur</color> )] -> Regen2
-* [Rendre la Carte Illisible ! (perd <color=purple>10 de vitesse</color> )] -> Damages2
+Ah ! Pas la peine d'essayer de me la {Regen : voler,} {Damages : salir,} cette fois-ci ! Vous ne m'aurez pas ! #chara:barbarian #minion:out
+* [Bruler la carte ! (le héros perd <color=orange>explorateur</color> )] -> Regen2
+* [Rendre la Carte Illisible ! (le héros perd <color=purple>10 de vitesse</color> )] -> Damages2
  -> END
  
  === Regen2 ===

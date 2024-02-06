@@ -14,7 +14,7 @@ Je suis désolé mon ami, mais voyez-vous, ma machoire me démange et je croquer
 Quoi ! Non pitié noble Dragon, ne me dévorez pas, je vous jure que j'ai très mauvais goût. #chara:knight
 
 * [Croquer dans le sac de l'aventurier ($$vous$$ soigne <color=red>2 pdv</color> )] -> Regen
-* [Croquer dans l'aventurier (perd <color=red>10 pdv</color> )] -> Damages
+* [Croquer dans l'aventurier ($$le héros$$ perd <color=red>10 pdv</color> )] -> Damages
     
 === Regen ===
 MAIS ! MON SAC ! Mes provisions ! Tu vas payer Dragon ! #chara:knight #healDragon:2
@@ -28,10 +28,10 @@ AÏE ! Je vais me venger Dragon ! Tu vas payer ! Mon pauvre bras... #chara:knigh
 Attendez Sire Louis... Je suis désolé pour la dernière fois... #chara:dragon
 Non mais ça va pas !? #chara:knight
 Vous m'avez croqué {Regen : MON sac } {Damages : MON bras !} et vous comptez vous en sortir avec des excuses ? 
-Et bien vous allez rire mais ma machoire me dérange toujours... #chara:dragon 
+Et bien vous allez rire, mais ma machoire me démange toujours... #chara:dragon 
 Oh non... #chara:knight
 * [Croquer dans le sac de l'aventurier ($$vous$$ soigne <color=red>2 pdv</color> )] -> Regen2
-* [Croquer dans l'aventurier (perd <color=red>10 pdv</color> )] -> Damages2
+* [Croquer dans l'aventurier ($$le héros$$ perd <color=red>10 pdv</color> )] -> Damages2
  -> END
  
  === Regen2 ===

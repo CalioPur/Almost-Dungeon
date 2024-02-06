@@ -1,7 +1,7 @@
 INCLUDE ../../GlobalVariables.ink
 
 {not SKnight2Seen : Juste une écaille du Dragon, juste une pour soigner les villageois. #chara:knight } 
-{SKnight2Seen : Tiens, sire Artorius, toujours décidé à voler mes écailles ? #chara:dragon}
+{SKnight2Seen : Tiens, sire Artorius, toujours décidé à voler mes écailles ? #chara:dragon }
 {not SKnight2Seen : ->Encounter1} 
 {SKnight2Seen : ->Encounter2} 
 

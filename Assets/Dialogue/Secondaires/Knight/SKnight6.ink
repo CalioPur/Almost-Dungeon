@@ -1,7 +1,7 @@
 INCLUDE ../../GlobalVariables.ink
 
 {not SKnight6Seen : Grands Dieux... Enfin dans le Donjon, après toutes ces années de recherche ! #chara:knight } 
-{SKnight6Seen : Tiens... Gabriel, toujours en quête de mon amitié ? #chara:dragon}
+{SKnight6Seen : Tiens... Gabriel, toujours en quête de mon amitié ? #chara:dragon }
 {not SKnight6Seen : ->Encounter1} 
 {SKnight6Seen : ->Encounter2} 
 

@@ -13,8 +13,8 @@ Un Dragon ?? C'est bien ma veine ça... Quelle idée de venir ici aussi...  #cha
 Quel est le problème héros ? Ressaisissez vous voyons. #chara:dragon
 Je n'ai jamais demandé à venir ici moi... Je ne veux pas me battre... #chara:knight
 
-* [Le pousser dans le donjon (perd <color=purple> 10 de vitesse</color> )] -> Regen
-* [Le motiver (devient <color=red>courageux</color> )] -> Damages
+* [Le pousser dans le donjon ($$le héros$$ perd <color=purple> 10 de vitesse</color> )] -> Regen
+* [Le motiver ($$le héros$$ devient <color=red>courageux</color> )] -> Damages
     
 === Regen ===
 Bon écoutez... Prenez sur vous et allez-y d'un coup... Je me fiche de vos histoires moi, j'ai faim. #chara:dragon
@@ -34,8 +34,8 @@ Allons-bon... Vous revoilà Karl. #chara:dragon
 Et revoilà le Dragon... je n'en peux plus... #chara:knight
 Bon bah pas la peine de vous faire prier cette fois alors ? #chara:dragon
 Pitié laissez moi partir... #chara:knight
-* [Le pousser dans le donjon (perd <color=purple>10 de vitesse</color> )] -> Regen2
-* [Le motiver (devient <color=red>courageux</color> )] -> Damages2
+* [Le pousser dans le donjon ($$le héros$$ perd <color=purple>10 de vitesse</color> )] -> Regen2
+* [Le motiver ($$le héros$$ devient <color=red>courageux</color> )] -> Damages2
  -> END
  
  === Regen2 ===
@@ -43,7 +43,7 @@ Attendez qu'est ce que vous faites laaaaaaaaaaaaaaaaaaaaaaaaa... #chara:knight #
 -> END
 
 === Damages2 ===
-Bon écoutez mon gars... Respirez un bon coup... vous pouvez le faire... 
+Bon écoutez mon gars... Respirez un bon coup... vous pouvez le faire... #chara:dragon
 On va se faire une autre bonne bataille et tout va bien se passer...
 Ayez un peu confiance en vous, vous pouvez le faire.
 Vraiment ? bon.... Si vous le dites... Je vais essayer... #chara:knight #changepers:courageux
