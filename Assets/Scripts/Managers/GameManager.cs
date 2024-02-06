@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         mapManager.InitMap();
         mapManager.AddRandomCard();
         mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(),rotationOfSpawnTile, out worldPos, posHero);
-        worldPos += new Vector3(1, 0.1f, 1); //pour que le hero soit au dessus du sol
+        worldPos += new Vector3(0, 0.1f, 0);
         OnEndDialogEvent?.Invoke();
         foreach (var light in lightsAmbiant)
         {

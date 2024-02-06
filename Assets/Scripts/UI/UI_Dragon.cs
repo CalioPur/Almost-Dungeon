@@ -57,7 +57,7 @@ public class UI_Dragon : MonoBehaviour
         Destroy(fireBall.gameObject);
         dragImg.color = Color.white;
         hero.TakeDamage(damage, AttackType.Physical);
-        dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        //dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         dragonImageColor.a = 1f;
     }
 
