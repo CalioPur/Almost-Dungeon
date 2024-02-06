@@ -78,9 +78,9 @@ public class DialogueManager : MonoBehaviour
         dialogueVariable = DungeonManager._instance.dialogueVariable;
         if (DungeonManager._instance.currentLevel < 7)
         {
-            PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue[PlayerPrefs.GetInt("langue",0)], 
-                DungeonManager._instance.deckData.deckDialogue[PlayerPrefs.GetInt("langue",0)],
-                DungeonManager._instance.heroData.languages[PlayerPrefs.GetInt("langue",0)].heroDialogues, 
+            PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue, 
+                DungeonManager._instance.deckData.deckDialogue,
+                DungeonManager._instance.heroData.languages, 
                 DungeonManager._instance.cardsManager);
         }
     }
@@ -93,32 +93,31 @@ public class DialogueManager : MonoBehaviour
     }
     
     
-    public void PlayAllThreeDialogues(TextAsset terrainDialogue, TextAsset deckDialogue, List<TextAsset> heroDialogue, DeckManager cardsManager)
+    public void PlayAllThreeDialogues(TextAsset[] terrainDialogues, TextAsset[] deckDialogues,  Language[] languesHero, DeckManager cardsManager)
     {
         GameManager.Instance.isInDialogue = true;
         Debug.LogWarning("PlayAllThreeDialogues");
-        print("HERO DIALOGUE COUNT : "+heroDialogue.Count);
         dialogueIndex = -1;
         GetUiElements();
         CheckHeroClass();
         slots.SetActive(false);
         timer.SetActive(false);
         dialogues = new List<TextAsset>();
-        if(terrainDialogue != null)
-            dialogues.Add(terrainDialogue);
-        if (heroDialogue != null)
+        if(terrainDialogues.Length>PlayerPrefs.GetInt("langue",0) && terrainDialogues[PlayerPrefs.GetInt("langue",0)] != null)
+            dialogues.Add(terrainDialogues[PlayerPrefs.GetInt("langue",0)] );
+        if (languesHero.Length>PlayerPrefs.GetInt("langue",0) && languesHero[PlayerPrefs.GetInt("langue",0)].heroDialogues != null)
         {
-            
+            var heroDialogue = languesHero[PlayerPrefs.GetInt("langue",0)].heroDialogues;
             if (dialogues.Count > 0)
                 dialogues.Add(interludeDialogues[Random.Range(0, interludeDialogues.Count)]);
             if(heroDialogue.Count > 0)
                 dialogues.Add(heroDialogue[Random.Range(0, heroDialogue.Count)]);
         }
-        if (deckDialogue != null)
+        if (deckDialogues.Length>PlayerPrefs.GetInt("langue",0) && deckDialogues[PlayerPrefs.GetInt("langue",0)] != null)
         {
             if (dialogues.Count > 0)
                 dialogues.Add(interludeDialogues[Random.Range(0, interludeDialogues.Count)]);
-            dialogues.Add(deckDialogue);
+            dialogues.Add(deckDialogues[PlayerPrefs.GetInt("langue",0)]);
         }
         
         

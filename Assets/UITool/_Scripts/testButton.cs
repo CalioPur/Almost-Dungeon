@@ -27,7 +27,7 @@ public class testButton : MonoBehaviour
         Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
         SFXMixer.audioMixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("SFXVolume", 0));
         musicMixer.audioMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("MusicVolume", 0));
-        XMLReader.currentLanguage = PlayerPrefs.GetInt("Language", 0);
+        XMLReader.currentLanguage = PlayerPrefs.GetInt("langue", 0);
         SetupMainMenuInteractions();
         
         
@@ -76,10 +76,10 @@ public class testButton : MonoBehaviour
         screenModeDropdown.index = PlayerPrefs.GetInt("ScreenMode", 0);
         screenModeDropdown.RegisterCallback<ChangeEvent<string>>(ChangeScreenMode);
         
-        // var languageDropdown = settings_root_element.Q<Dropdown>("Language");
-        // languageDropdown.label = XMLReader.languages[XMLReader.currentLanguage]["langue"];
-        // languageDropdown.index = PlayerPrefs.GetInt("Language", 0);
-        // languageDropdown.RegisterCallback<ChangeEvent<string>>(ChangeLanguage);
+        var languageDropdown = settings_root_element.Q<Dropdown>("Language");
+        languageDropdown.label = XMLReader.languages[XMLReader.currentLanguage]["langue"];
+        languageDropdown.index = PlayerPrefs.GetInt("langue", 0);
+        languageDropdown.RegisterCallback<ChangeEvent<string>>(ChangeLanguage);
         
         // var dragnDrop = settings_root_element.Q<Toggle>("dragndroptoggle");
         // dragnDrop.value = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
@@ -124,17 +124,19 @@ public class testButton : MonoBehaviour
         if (evt.newValue == "Français")
         {
             XMLReader.currentLanguage = 1;
-            PlayerPrefs.SetInt("Language", 1);
+            PlayerPrefs.SetInt("langue", 1);
+            print("LANGUE FR");
         }
         else if (evt.newValue == "English")
         {
             XMLReader.currentLanguage = 0;
-            PlayerPrefs.SetInt("Language", 0);
+            PlayerPrefs.SetInt("langue", 0);
+            print("LANGUE EN");
         }
         else if (evt.newValue == "Miaou")
         {
             XMLReader.currentLanguage = 2;
-            PlayerPrefs.SetInt("Language", 2);
+            PlayerPrefs.SetInt("langue", 2);
         }
         SetupMainMenuInteractions();
         SetupSettingsInteractions();

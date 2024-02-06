@@ -2694,7 +2694,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 7584750669712211513, guid: 6f6e4eca7513047438f648313211688b,
     type: 3}
   dungeonManager: {fileID: 1917677}
-  image: {fileID: 1713900634}
+  rect: {fileID: 0}
   videoPlayer: {fileID: 689731033}
   CanvasBlack: {fileID: 901229528}
   dungeonsSprite:
