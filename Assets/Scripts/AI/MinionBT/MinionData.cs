@@ -111,7 +111,6 @@ animator.SetTrigger("TakeDamage");
         fx.Init(targetTr, transform, delay, direction);
         fx.Launch();
         SoundManagerIngame.Instance.PlayDialogueSFX(SO.attackSound);
-        Debug.Log("played sound" + SO.attackSound);
     }
 
     public void Flip()

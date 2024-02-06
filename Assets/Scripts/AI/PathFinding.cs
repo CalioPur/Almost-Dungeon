@@ -122,7 +122,6 @@ public class PathFinding
                 return DirectionToMove.None;
             }
             default:
-                Debug.Log("No valid path found because no exit or unvisited tiles found");
                 return GoThroughDoorWithNoTile(startPos, map);
         }
     }
@@ -231,7 +230,6 @@ public class PathFinding
                 return DirectionToMove.None;
             }
             default:
-                Debug.Log("No valid path found because no exit or unvisited tiles found");
                 return GoThroughDoorWithNoTile(startPos, map);
         }
     }
@@ -470,53 +468,45 @@ public class PathFinding
         // Check if there is a door on the upper border and no tile on the other side
         if (startPos.y == map.GetLength(1) - 1 && map[startPos.x, startPos.y].hasDoorUp)
         {
-            Debug.Log("Go through door up");
             return DirectionToMove.Up;
         }
 
         // Check if there is a door on the lower border and no tile on the other side
         if (startPos.y == 0 && map[startPos.x, startPos.y].hasDoorDown)
         {
-            Debug.Log("Go through door down");
             return DirectionToMove.Down;
         }
 
         // Check if there is a door on the left border and no tile on the other side
         if (startPos.x == 0 && map[startPos.x, startPos.y].hasDoorLeft)
         {
-            Debug.Log("Go through door left");
             return DirectionToMove.Left;
         }
 
         // Check if there is a door on the right border and no tile on the other side
         if (startPos.x == map.GetLength(0) - 1 && map[startPos.x, startPos.y].hasDoorRight)
         {
-            Debug.Log("Go through door right");
             return DirectionToMove.Right;
         }
         
         //go through the door that has no tile on the other side
         if (map[startPos.x, startPos.y].hasDoorUp && !map[startPos.x, startPos.y + 1].PiecePlaced)
         {
-            Debug.Log("Go through door up");
             return DirectionToMove.Up;
         }
 
         if (map[startPos.x, startPos.y].hasDoorDown && !map[startPos.x, startPos.y - 1].PiecePlaced)
         {
-            Debug.Log("Go through door down");
             return DirectionToMove.Down;
         }
 
         if (map[startPos.x, startPos.y].hasDoorLeft && !map[startPos.x - 1, startPos.y].PiecePlaced)
         {
-            Debug.Log("Go through door left");
             return DirectionToMove.Left;
         }
 
         if (map[startPos.x, startPos.y].hasDoorRight && !map[startPos.x + 1, startPos.y].PiecePlaced)
         {
-            Debug.Log("Go through door right");
             return DirectionToMove.Right;
         }
 
@@ -535,11 +525,9 @@ public class PathFinding
         if (directions.Count > 0)
         {
             int randomIndex = Random.Range(0, directions.Count);
-            Debug.Log("Go through random door : " + directions[randomIndex] + " because no tile on the other side");
             return directions[randomIndex];
         }
 
-        Debug.Log("Something went wrong, no door found");
         return DirectionToMove.None;
     }
 }

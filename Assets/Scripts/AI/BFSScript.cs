@@ -158,11 +158,9 @@ public static class BFSScript
         if (directions.Count > 0)
         {
             int randomIndex = Random.Range(0, directions.Count);
-            Debug.Log("Go through random door : " + directions[randomIndex] + " because no tile on the other side");
             return directions[randomIndex];
         }
 
-        Debug.Log("Something went wrong, no door found");
         return DirectionToMove.None;
     }
     

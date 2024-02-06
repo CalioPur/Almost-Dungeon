@@ -148,7 +148,6 @@ public class Hero : MonoBehaviour, IFlippable
     
     IEnumerator FXDeath()
     {
-        Debug.Log("FX Death");
         Material[] mats = threeDeeHero.materials;
         foreach (var t in mats)
         {
@@ -183,7 +182,6 @@ public class Hero : MonoBehaviour, IFlippable
     {
         if (info.CurrentHealthPoint - soAttackPoint <= 0)
         {
-            Debug.Log("Hero is dead");
             info.CurrentHealthPoint = 0;
             FXTakeDamage();
             IsDead();
@@ -192,7 +190,6 @@ public class Hero : MonoBehaviour, IFlippable
         else
         {
             info.CurrentHealthPoint -= soAttackPoint;
-            Debug.Log("Hero take damage and now have " + info.CurrentHealthPoint + " hp");
             FXTakeDamage();
         }
         
