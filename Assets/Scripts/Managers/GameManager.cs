@@ -111,4 +111,10 @@ public class GameManager : MonoBehaviour
     {
         return posHero;
     }
+
+    public float GetHeroSpeed()
+    {
+        if (!currentHero) return -1;
+        return currentHero.speed;
+    }
 }

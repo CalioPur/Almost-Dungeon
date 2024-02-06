@@ -137,7 +137,6 @@ public class DungeonManager : MonoBehaviour
         
         
         tickManager = FindObjectOfType<TickManager>();
-        tickManager.BPM = heroData.speed;
         
         gameManager = GameManager.Instance;
         gameManager.currentHero = heroData;

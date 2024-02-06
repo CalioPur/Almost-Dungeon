@@ -15,7 +15,7 @@ public class HeroSO : ScriptableObject
 {
     public string nameOfHero;
     public int health;
-    public int speed;//vitesse ?
+    public float speed;//vitesse ?
     public HeroesInfo classe;
     public VisionType visionType;
     public Aggressivity aggressivity;

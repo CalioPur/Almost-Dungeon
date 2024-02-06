@@ -1056,6 +1056,21 @@ PrefabInstance:
       propertyPath: actionsTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4872236103658310982, guid: 3215027bb1e09cd4289a68bcc8c61f3b,
+        type: 3}
+      propertyPath: BPMBoostCurve.m_Curve.Array.data[1].time
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872236103658310982, guid: 3215027bb1e09cd4289a68bcc8c61f3b,
+        type: 3}
+      propertyPath: BPMBoostCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872236103658310982, guid: 3215027bb1e09cd4289a68bcc8c61f3b,
+        type: 3}
+      propertyPath: BPMBoostCurve.m_Curve.Array.data[1].value
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

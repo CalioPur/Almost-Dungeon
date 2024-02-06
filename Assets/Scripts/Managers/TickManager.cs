@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,7 +26,7 @@ public class TickManager : MonoBehaviour
     [Range(0f, 1000f)] public int BPM = 120;
 
     [Range(0.1f, 5f)] public float actionsTime; //this is the time for all of the actions to be completed
-    
+
     [SerializeField] private AnimationCurve BPMBoostCurve;
 
     private float beatInterval;
@@ -33,6 +34,8 @@ public class TickManager : MonoBehaviour
     private static bool TickOnPaused = false;
     private static int index = 0;
     private static bool EndGame = false;
+    private float elapsedTime = 0f;
+    private Coroutine bpmCoroutine;
 
     void Awake()
     {
@@ -47,6 +50,7 @@ public class TickManager : MonoBehaviour
         movementEvents = new();
         entityIds = new();
         EndGame = false;
+        StopCoroutine(bpmCoroutine);
     }
 
     void LaunchBPM()
@@ -54,15 +58,47 @@ public class TickManager : MonoBehaviour
         Initialize(BPM);
     }
 
-    void Initialize(int bpm)
+    private float calculateBPM()
     {
-        beatInterval = 60f / bpm;
-        if (IsInvoking("Tick"))
+        float bpm = beatInterval;
+        float speed = GameManager.Instance.GetHeroSpeed();
+        if (speed > 0)
         {
-            CancelInvoke("Tick");
+            if (elapsedTime > BPMBoostCurve[BPMBoostCurve.length - 1].time)
+                speed += BPMBoostCurve[BPMBoostCurve.length - 1].value;
+            else
+                speed += BPMBoostCurve.Evaluate(elapsedTime);
+            bpm = 1.0f / speed;
+            Debug.Log("bpm wait: " + bpm);
         }
 
-        InvokeRepeating("Tick", 0f, beatInterval);
+        return bpm;
+    }
+
+    IEnumerator BPMLauncher()
+    {
+        float time = 0;
+        yield return new WaitForSeconds(3);
+        while (true)
+        {
+            Tick();
+            time = calculateBPM();
+            yield return new WaitForSeconds(calculateBPM());
+            elapsedTime += time  / 60.0f;
+        }
+    }
+
+    void Initialize(int bpm)
+    {
+        beatInterval = 1.0f;
+        elapsedTime = 0f;
+        // if (IsInvoking("Tick"))
+        // {
+        //     CancelInvoke("Tick");
+        // }
+        //
+        // InvokeRepeating("Tick", 0f, beatInterval);
+        bpmCoroutine = StartCoroutine(BPMLauncher());
     }
 
     public static void SubscribeToMovementEvent(MovementType movementType, Action movementAction, out int entityId)
@@ -101,13 +137,13 @@ public class TickManager : MonoBehaviour
     void Tick()
     {
         if (TickOnPaused || EndGame) return;
-        
+
         nextTickTime = Time.time;
         OnTick?.Invoke();
-        
+
         // beatInterval += BPMBoostCurve.Evaluate(DistanceFromClosestExit());
         // Debug.Log("aAaeijojio" + DistanceFromClosestExit());
-        
+
         MovementType currentMovementType = GetMovementTypeFromDivision();
 
         // Check if the key exists in the dictionary before accessing it
