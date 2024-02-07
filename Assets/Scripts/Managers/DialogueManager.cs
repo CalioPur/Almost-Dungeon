@@ -96,7 +96,6 @@ public class DialogueManager : MonoBehaviour
     public void PlayAllThreeDialogues(TextAsset[] terrainDialogues, TextAsset[] deckDialogues,  Language[] languesHero, DeckManager cardsManager)
     {
         GameManager.Instance.isInDialogue = true;
-        Debug.LogWarning("PlayAllThreeDialogues");
         dialogueIndex = -1;
         GetUiElements();
         CheckHeroClass();
@@ -295,7 +294,6 @@ public class DialogueManager : MonoBehaviour
                                 SoundManagerIngame.Instance.PlayDialogueSFX(split[1]);
                                 break;
                             case (null) :
-                                Debug.Log("sound not assigned");
                                 break;
                         }
                         break;

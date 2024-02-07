@@ -217,15 +217,6 @@ public class MapManagerTools
                         if (isConnectedLeft || isConnectedRight || isConnectedDown || isConnectedUp)
                         {
                             currentCell.isConnectedToPath = true;
-
-                            if (isConnectedLeft)
-                                Debug.Log("Left");
-                            if (isConnectedRight)
-                                Debug.Log("Right");
-                            if (isConnectedDown)
-                                Debug.Log("Down");
-                            if (isConnectedUp)
-                                Debug.Log("Up");
                         }
                     }
                 }

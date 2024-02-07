@@ -60,7 +60,6 @@ public class LevelCardScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !isLocked)
         {
-            Debug.Log("Clicked");
             soundManagerIngame.PlayDialogueSFX("UiClick");
             //DungeonManager._instance.SetSelectedBiome(biomeIndex);
             StartCoroutine(StartLevel());

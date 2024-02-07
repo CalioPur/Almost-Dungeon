@@ -34,7 +34,6 @@ public class PlayerCardController : MonoBehaviour
         }
         Instance = this;
         isDragNDrop = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
-        Debug.Log("DragNDrop : " + isDragNDrop);
     }
 
     private void OnEnable()
@@ -60,7 +59,6 @@ public class PlayerCardController : MonoBehaviour
         cardVisualizer.gameObject.SetActive(false);
         selectedCard = null;
         soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
-        Debug.Log("Set selected card null");
     }
 
     IEnumerator RotateB(float time, float desiredAngle, float direction)
@@ -217,7 +215,6 @@ public class PlayerCardController : MonoBehaviour
         
         if (selectedCard.GetSprite() == null)
         {
-            Debug.Log("Sprite null");
             return;
         }
         cardVisualizer.sprite = selectedCard.GetSprite();

@@ -66,7 +66,6 @@ public class LDCreator : MonoBehaviour
                             data.nbRotation = cartesViewer.currentInstance.Rotation;
                             data.cardInfo = cartesViewer.currentInstance.So;
                             data.isUsed = true;
-                            Debug.Log("Rotation : " + data.nbRotation);
                             tile.transform.rotation = Quaternion.Euler(90, 0, 360- data.nbRotation);
                         }
                         

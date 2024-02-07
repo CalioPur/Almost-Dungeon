@@ -82,10 +82,8 @@ public class DungeonManager : MonoBehaviour
         
         if (currentLevel == 0)
             UI_Dragon.currentHealth = UI_Dragon.maxHealth;
-        print(UI_Dragon.currentHealth);
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
-        print("nb of level : "+dungeons[SelectedBiome].dungeonSO.levels.Count);
         if (currentLevel == 5)//si on a battu le niveau milestonne
         {
             PlayerPrefs.SetInt("LevelUnlock"+ (SelectedBiome+1), 1); //on unlock le biome suivant;
