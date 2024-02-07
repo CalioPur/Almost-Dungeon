@@ -231,22 +231,27 @@ public class DialogueManager : MonoBehaviour
                         {
                             case "dragon":
                                 ShowArrowDragon();
+                                WiggleCard(canvaDragon.transform, -1);
                                 break;
                             case "knight":
                                 ShowArrowKnight();
                                 otherImage.sprite = HeroSprite;
+                                WiggleCard(canvaHero.transform, 1);
                                 break;
                             case "archer":
                                 ShowArrowKnight();
                                 otherImage.sprite = archerSprite;
+                                WiggleCard(canvaHero.transform, 1);
                                 break;
                             case "mage":
                                 ShowArrowKnight();
                                 otherImage.sprite = mageSprite;
+                                WiggleCard(canvaHero.transform, 1);
                                 break;
                             case "barbarian":
                                 ShowArrowKnight();
                                 otherImage.sprite = barbareSprite;
+                                WiggleCard(canvaHero.transform, 1);
                                 break;
                             case "minion":
                                 ShowArrowMinion();
@@ -430,8 +435,9 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-    /*public void SetGlobalInkFile(string json)
+    public void WiggleCard(Transform card, int mult = 1)
     {
-        globalsInkFile = new TextAsset(json);
-    }*/
+        print("test WIGGLE");
+        card.transform.DOLocalRotate(card.transform.localRotation.eulerAngles + new Vector3(0, mult*10, 0), 0.1f).SetEase(Ease.Linear).SetLoops(5, LoopType.Yoyo).SetUpdate(true);
+    }
 }
