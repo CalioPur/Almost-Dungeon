@@ -26,20 +26,20 @@ public class CardInfo : ScriptableObject
         return new CardInfoInstance(this);
     }
 
-    public void CopyValues(CardInfo cardSo)
-    {
-        imgOnHand = cardSo.imgOnHand;
-        imgOnMap = cardSo.imgOnMap;
-        prefabOnMap = cardSo.prefabOnMap;
-        TypeOfTrapOrEnemyToSpawn = cardSo.TypeOfTrapOrEnemyToSpawn;
-        DoorOnTop = cardSo.DoorOnTop;
-        DoorOnBottom = cardSo.DoorOnBottom;
-        DoorOnLeft = cardSo.DoorOnLeft;
-        DoorOnRight = cardSo.DoorOnRight;
-        description = cardSo.description;
-        Rotation = cardSo.Rotation;
-        ItemDrops = cardSo.ItemDrops;
-    }
+    // public void CopyValues(CardInfo cardSo)
+    // {
+    //     imgOnHand = cardSo.imgOnHand;
+    //     imgOnMap = cardSo.imgOnMap;
+    //     prefabOnMap = cardSo.prefabOnMap;
+    //     TypeOfTrapOrEnemyToSpawn = cardSo.TypeOfTrapOrEnemyToSpawn;
+    //     DoorOnTop = cardSo.DoorOnTop;
+    //     DoorOnBottom = cardSo.DoorOnBottom;
+    //     DoorOnLeft = cardSo.DoorOnLeft;
+    //     DoorOnRight = cardSo.DoorOnRight;
+    //     description = cardSo.description;
+    //     Rotation = cardSo.Rotation;
+    //     ItemDrops = cardSo.ItemDrops;
+    // }
 }
 
 public class CardInfoInstance
