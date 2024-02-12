@@ -105,12 +105,12 @@ public class AttackMinionsInLine : Node
             return NodeState.Failure;
         }
 
-        float delay = 0.5f;
+        float delay = 1.0f;
         blackboard.hero.PlayAttackClip();
-        blackboard.hero.PlayAttackFX(blackboard.Targets[^1].transform, 0.5f, blackboard.directionToMove);
+        blackboard.hero.PlayAttackFX(blackboard.Targets[^1].transform, 1.0f, blackboard.directionToMove);
         blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, blackboard.Targets[^1].transform,
             Vector3.zero, true,
-            0.5f, Ease.InBack, 2));
+            1.0f, Ease.InBack, 2));
         foreach (var enemy in blackboard.Targets)
         {
             if (enemy)

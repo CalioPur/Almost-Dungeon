@@ -114,9 +114,9 @@ public class Hero : MonoBehaviour, IFlippable
                 throw new ArgumentOutOfRangeException();
         }
         GameManager.Instance.AttackPoint.position = transform.position + dragonDir;
-        AnimToQueue animToQueue = new AnimToQueue(heroTr, GameManager.Instance.AttackPoint , Vector3.zero, true, 0.5f, Ease.InBack, 2);
+        AnimToQueue animToQueue = new AnimToQueue(heroTr, GameManager.Instance.AttackPoint , Vector3.zero, true, 1.0f, Ease.InBack, 2);
         AddAnim(animToQueue);
-        PlayAttackFX(GameManager.Instance.AttackPoint, 0.5f, obj);
+        PlayAttackFX(GameManager.Instance.AttackPoint, 1.0f, obj);
     }
 
 
@@ -230,7 +230,7 @@ public class Hero : MonoBehaviour, IFlippable
     {
         if (animFX == null) return;
         AttackFX fx = Instantiate(animFX, targetTr.position, animFX.transform.rotation);
-        fx.Init(targetTr, transform, delay, direction);
+        fx.Init(targetTr, transform, delay * TickManager.Instance.calculateBPM(), direction);
         fx.Launch();
     }
 

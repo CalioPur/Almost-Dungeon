@@ -24,12 +24,12 @@ public class AttackHero : Node
         TileData tileWhereHeroIs =  blackboard.minionData.mapManager.GetTileDataAtPosition(heroPos.x,
             heroPos.y );
         
-        blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform,tileWhereHeroIs.transform ,Vector3.zero, true, 0.3f,
+        blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform,tileWhereHeroIs.transform ,Vector3.zero, true, 0.6f,
             Ease.InBack, 2));
         blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage, attackType);
         DirectionToMove dirTarget = FunctionUtils.GetDirectionToMoveWithTilePos(heroPos,
             new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY));
-        blackboard.minionData.PlayAttackFX(tileWhereHeroIs.transform, 0.5f, dirTarget);
+        blackboard.minionData.PlayAttackFX(tileWhereHeroIs.transform, TickManager.Instance.calculateBPM(), dirTarget);
         return NodeState.Success;
     }
 }

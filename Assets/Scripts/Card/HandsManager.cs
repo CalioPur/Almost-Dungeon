@@ -66,7 +66,7 @@ public class HandsManager : MonoBehaviour
             
             
             slotsHand[i].GetImage().gameObject.transform.position = slotsHand[i+1].transform.position;
-            slotsHand[i].GetImage().gameObject.transform.DOMove(slotsHand[i].transform.position, 0.5f);
+            slotsHand[i].GetImage().gameObject.transform.DOMove(slotsHand[i].transform.position, TickManager.Instance.calculateBPM());
         }
         UpdateHand();
     }

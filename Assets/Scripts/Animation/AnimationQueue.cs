@@ -29,8 +29,8 @@ public class AnimationQueue : MonoBehaviour
             Vector3 dir = (anim.targetTransform.position - anim.obj.position).normalized;
             Vector3 targetPos =
                 (anim.isDir) ?  anim.obj.position + dir * 0.5f : anim.targetTransform.position + anim.offset;
-            anim.obj.DOMove(targetPos, anim.time).SetEase(anim.ease).SetLoops(anim.loop, LoopType.Yoyo);
-            yield return new WaitForSeconds(anim.time + .1f);
+            anim.obj.DOMove(targetPos, anim.time * TickManager.Instance.calculateBPM()).SetEase(anim.ease).SetLoops(anim.loop, LoopType.Yoyo);
+            yield return new WaitForSeconds(anim.time * TickManager.Instance.calculateBPM() + .1f);
             if (!gameObject.activeSelf) yield break;
         }
 

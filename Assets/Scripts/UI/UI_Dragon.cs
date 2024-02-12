@@ -18,7 +18,7 @@ public class UI_Dragon : MonoBehaviour
     [SerializeField] private Transform dragonCard;
     [SerializeField] private TMP_Text healthText;
     List<UI_Heart> hearts = new();
-    public float shakeDuration = 0.5f;
+    public float shakeDuration = 1.0f;
 
     public static int currentHealth = 10;
     public static int maxHealth = 10;
@@ -31,7 +31,7 @@ public class UI_Dragon : MonoBehaviour
     {
         SoundManagerIngame.Instance.PlayDialogueSFX("DragonBreath");
         SoundManagerIngame.Instance.PlayDialogueSFX("DragonDamaged");
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.3f * TickManager.Instance.calculateBPM());
         var dragonImageColor = dragonImage.color;
         dragonImageColor.a = 0f;
         //dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(true);
@@ -136,7 +136,7 @@ public class UI_Dragon : MonoBehaviour
     
     public void CheckDragonHP(Hero hero)
     {
-        StartCoroutine(AttackByHero(0.5f, hero));
+        StartCoroutine(AttackByHero(TickManager.Instance.calculateBPM() * 0.5f, hero));
     }
     public void Heal(int healAmount)
     {

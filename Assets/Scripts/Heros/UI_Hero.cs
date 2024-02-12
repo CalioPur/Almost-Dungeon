@@ -25,7 +25,7 @@ public class UI_Hero : MonoBehaviour
     public TMP_Text heroPersonality;
     public TMP_Text heroName;
 
-    [SerializeField] private float shakeDuration = 0.5f;
+    [SerializeField] private float shakeDuration = 1.0f;
     [SerializeField] private Image heroImage;
 
     [SerializeField] private int itemSlotsCount = 3;

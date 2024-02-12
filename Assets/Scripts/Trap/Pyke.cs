@@ -21,8 +21,8 @@ public class Pyke : TrapData
         Vector3 pos = fireParticles.transform.position;
         fireParticles.transform.position = new Vector3(pos.x, pos.y - 0.15f, pos.z);
         fireParticles.gameObject.SetActive(true);
-        fireParticles.gameObject.transform.DOMoveY(pos.y, 0.5f).SetEase(Ease.OutBack);
-        yield return new WaitForSeconds(0.5f);
+        fireParticles.gameObject.transform.DOMoveY(pos.y, TickManager.Instance.calculateBPM()).SetEase(Ease.OutBack);
+        yield return new WaitForSeconds(TickManager.Instance.calculateBPM());
         fireParticles.gameObject.SetActive(false);
     }
 

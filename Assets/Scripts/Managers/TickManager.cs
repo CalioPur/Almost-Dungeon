@@ -22,6 +22,7 @@ public class TickManager : MonoBehaviour
     private static Dictionary<MovementType, List<TickData>> movementEvents = new();
     private static Dictionary<MovementType, int> entityIds = new();
     public static event Action OnTick;
+    public static TickManager Instance;
 
     [HideInInspector][Range(0f, 1000f)] public int BPM = 120;
 
@@ -41,6 +42,8 @@ public class TickManager : MonoBehaviour
     {
         GameManager.OnEndDialogEvent += LaunchBPM;
         EndGame = false;
+        Instance = this;
+        
     }
 
     private void OnDisable()
@@ -58,7 +61,7 @@ public class TickManager : MonoBehaviour
         Initialize(BPM);
     }
 
-    private float calculateBPM()
+    public float calculateBPM()
     {
         float bpm = beatInterval;
         float speed = GameManager.Instance.GetHeroSpeed();

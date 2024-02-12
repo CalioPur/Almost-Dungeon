@@ -28,22 +28,22 @@ public class AttackRandomTargetInTile : Node
             TileData tileWhereHeroIs = blackboard.minionData.mapManager.GetTileDataAtPosition(heroPos.x,
                 heroPos.y);
             blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform, tileWhereHeroIs.transform,
-                Vector3.zero, true, 0.3f, Ease.InBack, 2));
+                Vector3.zero, true, 0.6f, Ease.InBack, 2));
             blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage, attackType);
             dirTarget = FunctionUtils.GetDirectionToMoveWithTilePos(heroPos,
                 new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY));
-            blackboard.minionData.PlayAttackFX(tileWhereHeroIs.transform, 0.5f, dirTarget);
+            blackboard.minionData.PlayAttackFX(tileWhereHeroIs.transform, 1.0f, dirTarget);
         }
         else
         {
             Transform target = minions[random - 1].transform;
             blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform, target,
-                Vector3.zero, true, 0.3f,
+                Vector3.zero, true, 0.6f,
                 Ease.InBack, 2));
             minions[random - 1].TakeDamage(blackboard.minionData.minionInstance.So.damage, attackType);
             dirTarget = FunctionUtils.GetDirectionToMoveWithTilePos(heroPos,
                 new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY));
-            blackboard.minionData.PlayAttackFX(target, 0.5f, dirTarget);
+            blackboard.minionData.PlayAttackFX(target, 1.0f, dirTarget);
         }
 
         return NodeState.Success;

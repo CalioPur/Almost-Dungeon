@@ -37,7 +37,7 @@ public class MoveToDestination : Node
             tile.IsVisited = true;
         }
         
-        blackboard.hero.Move(tile.transform, Vector3.up * 0.1f, 0.5f);
+        blackboard.hero.Move(tile.transform, Vector3.up * 0.1f, 1.0f);
         
         blackboard.visibleTiles = blackboard.visionType switch
         {

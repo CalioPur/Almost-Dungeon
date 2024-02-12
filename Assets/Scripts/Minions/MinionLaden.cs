@@ -40,7 +40,7 @@ public class MinionLaden : MinionData
         DeadAttackType = attackType;
         if (attackType == AttackType.Fire)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(TickManager.Instance.calculateBPM());
             mapManager.RemoveEnemyOnTile(new Vector2Int(indexX, indexY), this, transform.position);
             if (mapManager.HasDoorOpen(new Vector2Int(indexX, indexY), new Vector2Int(indexX, indexY + 1)))
             {

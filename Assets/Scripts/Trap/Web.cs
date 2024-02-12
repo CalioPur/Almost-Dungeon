@@ -16,6 +16,7 @@ public class Web : TrapData
 
     public override void TakeDamage(int damage, AttackType attackType)
     {
+        return;
         webInstance.CurrentHealthPoint -= damage;
         if (webInstance.CurrentHealthPoint <= 0)
         {

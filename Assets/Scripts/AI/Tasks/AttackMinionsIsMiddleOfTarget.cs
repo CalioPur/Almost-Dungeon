@@ -27,7 +27,7 @@ public class AttackMinionsIsMiddleOfTarget : Node
                     {
                         blackboard.minionData.mapManager.GetMonstersOnPos(minionPos, out var monsters);
                         monsters[0].TakeDamage(blackboard.minionData.minionInstance.So.damage, attackType);
-                        blackboard.minionData.PlayAttackFX(monsters[0].transform, 0.5f, blackboard.dir);
+                        blackboard.minionData.PlayAttackFX(monsters[0].transform, 1.0f, blackboard.dir);
                         return NodeState.Success;
                     }
                     minionPos.y++;
@@ -41,7 +41,7 @@ public class AttackMinionsIsMiddleOfTarget : Node
                     {
                         blackboard.minionData.mapManager.GetMonstersOnPos(minionPos, out var monsters);
                         monsters[0].TakeDamage(blackboard.minionData.minionInstance.So.damage, attackType);
-                        blackboard.minionData.PlayAttackFX(monsters[0].transform, 0.5f, blackboard.dir);
+                        blackboard.minionData.PlayAttackFX(monsters[0].transform, 1.0f, blackboard.dir);
                         return NodeState.Success;
                     }
                     minionPos.y--;
@@ -55,7 +55,7 @@ public class AttackMinionsIsMiddleOfTarget : Node
                     {
                         blackboard.minionData.mapManager.GetMonstersOnPos(minionPos, out var monsters);
                         monsters[0].TakeDamage(blackboard.minionData.minionInstance.So.damage, attackType);
-                        blackboard.minionData.PlayAttackFX(monsters[0].transform, 0.5f, blackboard.dir);
+                        blackboard.minionData.PlayAttackFX(monsters[0].transform, 1.0f, blackboard.dir);
                         return NodeState.Success;
                     }
                     minionPos.x--;
@@ -69,7 +69,7 @@ public class AttackMinionsIsMiddleOfTarget : Node
                     {
                         blackboard.minionData.mapManager.GetMonstersOnPos(minionPos, out var monsters);
                         monsters[0].TakeDamage(blackboard.minionData.minionInstance.So.damage, attackType);
-                        blackboard.minionData.PlayAttackFX(monsters[0].transform, 0.5f, blackboard.dir);
+                        blackboard.minionData.PlayAttackFX(monsters[0].transform, 1.0f, blackboard.dir);
                         return NodeState.Success;
                     }
                     minionPos.x++;

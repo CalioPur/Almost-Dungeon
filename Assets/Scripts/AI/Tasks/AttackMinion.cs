@@ -29,8 +29,6 @@ public class AttackMinion : Node
 
         if (blackboard.ChosenTarget.Count <= 0) return NodeState.Failure;
 
-        float delay = 0.3f / blackboard.ChosenTarget.Count;
-
         DirectionToMove directionWithTarget = DirectionToMove.None;
         if (blackboard.ChosenTarget.Count > 0)
         {
@@ -55,7 +53,7 @@ public class AttackMinion : Node
 
             blackboard.hero.PlayAttackClip();
             if (blackboard.Targets[0] != null)
-                blackboard.hero.PlayAttackFX(blackboard.Targets[0].transform, delay, directionWithTarget);
+                blackboard.hero.PlayAttackFX(blackboard.Targets[0].transform, 0.6f, directionWithTarget);
         }
 
 
@@ -64,7 +62,7 @@ public class AttackMinion : Node
             target.TakeDamage(blackboard.hero.info.So.AttackPoint, blackboard.hero.attackType);
             if (withAnim)
                 blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, target.transform, Vector3.zero, true,
-                    delay, Ease.InBack, 2));
+                    0.3f, Ease.InBack, 2));
         }
 
         return NodeState.Success;

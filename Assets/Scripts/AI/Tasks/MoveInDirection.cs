@@ -59,7 +59,7 @@ public class MoveInDirection : Node
         blackboard.minionData.indexX = temporaryIndex.x;
         blackboard.minionData.indexY = temporaryIndex.y;
         TileData tileData = MapManager.Instance.GetTileDataAtPosition(temporaryIndex.x, temporaryIndex.y);
-        blackboard.minionData.Move(tileData.transform, Vector3.up * 0.1f, 0.3f);
+        blackboard.minionData.Move(tileData.transform, Vector3.up * 0.1f, 0.6f);
         return NodeState.Success;
     }
 }
