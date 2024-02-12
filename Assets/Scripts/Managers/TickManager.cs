@@ -69,7 +69,6 @@ public class TickManager : MonoBehaviour
             else
                 speed += BPMBoostCurve.Evaluate(elapsedTime);
             bpm = 1.0f / speed;
-            Debug.Log("bpm wait: " + bpm);
         }
 
         return bpm;
@@ -127,10 +126,6 @@ public class TickManager : MonoBehaviour
                     .Remove(movementEvents[movementType].Find(tickData => tickData.ID == entityId));
             }
         }
-        else
-        {
-            //Debug.LogWarning($"No subscribers found for movement type: {movementType}");
-        }
     }
 
 
@@ -140,9 +135,6 @@ public class TickManager : MonoBehaviour
 
         nextTickTime = Time.time;
         OnTick?.Invoke();
-
-        // beatInterval += BPMBoostCurve.Evaluate(DistanceFromClosestExit());
-        // Debug.Log("aAaeijojio" + DistanceFromClosestExit());
 
         MovementType currentMovementType = GetMovementTypeFromDivision();
 

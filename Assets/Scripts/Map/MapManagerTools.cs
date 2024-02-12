@@ -36,7 +36,9 @@ public class MapManagerTools
                 tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_L_Fire");
             else
                 tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_L_Empty");
+            tileData.model = _mapManager._models.First(x => x.name == "L_Empty");
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromLTile(tileData), 0);
+            tileData.model.transform.localRotation = new Quaternion(0, 0, -GetRotationFromLTile(tileData), 0);
         }
         else if (isStraightTile(tileData))
         {
@@ -52,7 +54,9 @@ public class MapManagerTools
             {
                 tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_I_Empty");
             }
+            tileData.model = _mapManager._models.First(x => x.name == "I_Empty");
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromStraightTile(tileData), 0);
+            tileData.model.transform.localRotation = new Quaternion(0, 0, -GetRotationFromStraightTile(tileData), 0);
         }
         else if (isTTile(tileData))
         {
@@ -62,7 +66,9 @@ public class MapManagerTools
                 tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_T_Fire");
             else
                 tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_T_Empty");
+            tileData.model = _mapManager._models.First(x => x.name == "T_Empty");
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromTTile(tileData), 0);
+            tileData.model.transform.localRotation = new Quaternion(0, 0, -GetRotationFromTTile(tileData), 0);
         }
         else if (isCrossTile(tileData))
         {
@@ -72,11 +78,14 @@ public class MapManagerTools
                 tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_X_Fire");
             else
                 tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_X_Empty");
+            tileData.model = _mapManager._models.First(x => x.name == "X_Empty");
         }
         else if (isDeadEndTile(tileData))
         {
             tileData.img.sprite = _mapManager._sprites.First(x => x.name == "Tile_U_Room");
+            tileData.model = _mapManager._models.First(x => x.name == "U_Empty");
             tileData.transform.rotation = Quaternion.Euler(90, GetRotationFromDeadEndTile(tileData), 0);
+            tileData.model.transform.localRotation = new Quaternion(0, 0, -GetRotationFromDeadEndTile(tileData), 0);
         }
     }
 
@@ -217,15 +226,6 @@ public class MapManagerTools
                         if (isConnectedLeft || isConnectedRight || isConnectedDown || isConnectedUp)
                         {
                             currentCell.isConnectedToPath = true;
-
-                            if (isConnectedLeft)
-                                Debug.Log("Left");
-                            if (isConnectedRight)
-                                Debug.Log("Right");
-                            if (isConnectedDown)
-                                Debug.Log("Down");
-                            if (isConnectedUp)
-                                Debug.Log("Up");
                         }
                     }
                 }

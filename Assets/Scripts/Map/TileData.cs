@@ -66,6 +66,8 @@ public class TileData : MonoBehaviour
     public List<TrapData> enemies = new();
 
     [Header("Image")] public SpriteRenderer img;
+    
+    [Header("3D Model")] public GameObject model;
 
     public void SetInstance(CardInfoInstance instance)
     {
@@ -73,6 +75,7 @@ public class TileData : MonoBehaviour
         {
             _instance = null;
             img.sprite = null;
+            model = null;
             return;
         }
         _instance = new CardInfoInstance(instance.So);
@@ -92,8 +95,11 @@ public class TileData : MonoBehaviour
     {
         if (_instance == null) return;
         img.sprite = _instance.So.imgOnMap;
-        transform.rotation = Quaternion.Euler(90, 0, _instance.Rotation);
+        model = Instantiate(_instance.So.prefabOnMap, transform);
+        model.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = isVisited ? new Color(1f, 1f, 1f) : new Color(0.35f, 0.35f, 0.35f);
         img.color = new Color(0.35f, 0.35f, 0.35f);
+        int rotation = _instance.Rotation;
+        transform.rotation = Quaternion.Euler(90, 0, rotation);
     }
 
     public bool AvailableForSpawn()
@@ -117,19 +123,5 @@ public class TileData : MonoBehaviour
     {
         transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y,
             Mathf.Round(transform.position.z));
-    }
-
-    public void ResetData()
-    {
-        img.sprite = null;
-        isVisited = false;
-        isConnectedToPath = false;
-        isRoom = false;
-        isExit = false;
-        enemies.Clear();
-        hasDoorUp = true;
-        hasDoorRight = true;
-        hasDoorDown = true;
-        hasDoorLeft = true;
     }
 }

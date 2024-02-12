@@ -32,7 +32,6 @@ public class Menu : MonoBehaviour
         }
         else
         {
-            Debug.Log("Current dungeon: " + SaveSystem.currentDungeon + " Current level: " + SaveSystem.currentLevel);
             continueButton.onClick.AddListener(Continue);
         }
     }

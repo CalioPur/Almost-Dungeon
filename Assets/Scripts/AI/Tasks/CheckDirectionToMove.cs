@@ -68,11 +68,8 @@ public class CheckDirectionToMove : Node
             }
             blackboard.options.Add(VARIABLE);
         }
-        Debug.Log("Before : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
         blackboard.options = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(blackboard.options);
-        Debug.Log("After1 : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
         blackboard.memory = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(blackboard.memory);
-        Debug.Log("After : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
 
         if (target == null)
         {
@@ -105,7 +102,6 @@ public class CheckDirectionToMove : Node
                         Debug.DrawRay(VARIABLE.transform.position, Vector3.up * 3, Color.blue, 1f);
                     }
                     int random = UnityEngine.Random.Range(0, blackboard.options.Count);
-                    Debug.Log("Random : " + random);
                     target = blackboard.options[random];
                 }
                 else if (blackboard.memory.Count > 0)
@@ -129,7 +125,6 @@ public class CheckDirectionToMove : Node
                     out var bsfGoToTile))
             {
                 blackboard.directionToMove = bsfGoToTile;
-                Debug.Log("Attack dragon");
                 isAtExit = true;
             }
         }
@@ -146,7 +141,6 @@ public class CheckDirectionToMove : Node
                     BFSScript.DistanceFromExit(blackboard.hero.GetIndexHeroPos(),blackboard.hero.mapManager.getMapArray()) > 5) Debug.Log("Raged because of distance");
                 else
                 {
-                    Debug.Log("Raged because of no target options count : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
                 }
             }
             else if (blackboard.aggressivity == Aggressivity.COURAGEUX)
@@ -154,7 +148,6 @@ public class CheckDirectionToMove : Node
                 blackboard.directionToMove = BFSScript.BFSGoInDirection(blackboard.hero.GetIndexHeroPos(),
                     listOfEnemiesPos,
                     blackboard.hero.mapManager.getMapArray());
-                Debug.Log("Go to enemy");
             }
             else if (target != null)
             {
@@ -162,7 +155,6 @@ public class CheckDirectionToMove : Node
                 blackboard.directionToMove = BFSScript.BFSGoInDirection(blackboard.hero.GetIndexHeroPos(),
                     new List<TileData> {target},
                     blackboard.hero.mapManager.getMapArray(), true);
-                Debug.Log("Go to target");
             }
         }
         blackboard.options.Clear();
@@ -196,7 +188,6 @@ public class CheckDirectionToMove : Node
 
         if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;
         blackboard.hero.OutOfMap(blackboard.directionToMove);
-        // Debug.Log("Direction to move : " + blackboard.directionToMove);
         return NodeState.Failure;
     }
 
@@ -236,7 +227,6 @@ public class CheckDirectionToMove : Node
             Debug.DrawRay(VARIABLE.transform.position + new Vector3(0,0,0.1f), Vector3.up * 3, Color.cyan, 1f);
 
         }
-        Debug.Log("After GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles : " + tileDatasToReturn.Count + " memory count : " + blackboard.memory.Count + " options count : " + blackboard.options.Count);
         return tileDatasToReturn.Distinct().ToList();
     }
 

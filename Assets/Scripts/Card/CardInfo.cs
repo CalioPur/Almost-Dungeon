@@ -7,6 +7,7 @@ public class CardInfo : ScriptableObject
 {
     [Header("Visual")] public Sprite imgOnHand;
     public Sprite imgOnMap;
+    public GameObject prefabOnMap;
 
     [Header("Minions parameters")] public EnemiDataOnHand[] TypeOfTrapOrEnemyToSpawn;
 
@@ -29,6 +30,7 @@ public class CardInfo : ScriptableObject
     {
         imgOnHand = cardSo.imgOnHand;
         imgOnMap = cardSo.imgOnMap;
+        prefabOnMap = cardSo.prefabOnMap;
         TypeOfTrapOrEnemyToSpawn = cardSo.TypeOfTrapOrEnemyToSpawn;
         DoorOnTop = cardSo.DoorOnTop;
         DoorOnBottom = cardSo.DoorOnBottom;

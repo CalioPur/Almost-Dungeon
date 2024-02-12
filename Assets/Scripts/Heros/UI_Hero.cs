@@ -180,6 +180,7 @@ public class UI_Hero : MonoBehaviour
         OnEndGameEvent -= EndGame;
         Hero.OnTakeDamageEvent -= TakeDamage;
         OnEndGameEvent = null;
+        TickManager.OnTick -= HeartBeat;
     }
 
     private void Start()
@@ -187,15 +188,13 @@ public class UI_Hero : MonoBehaviour
         Hero.OnTakeDamageEvent += TakeDamage;
         Hero.OnTakeDamageEvent += DrawHearts;
         OnEndGameEvent += EndGame;
+        TickManager.OnTick += HeartBeat;
     }
     
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        private void HeartBeat()
         {
-            StartCoroutine(TakeDamageFX());
+            healthBar.transform.DOScale(0.0065f, 0.1f).OnComplete(() => { healthBar.transform.DOScale(0.006f, 0.1f); });
         }
-    }
 }
 
 public class HeroData

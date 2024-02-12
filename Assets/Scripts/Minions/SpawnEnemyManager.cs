@@ -81,7 +81,7 @@ public class SpawnEnemyManager : MonoBehaviour
         where T : TrapData
     {
         if (!_mapManager.AvailableForSpawn(indexes.x, indexes.y)) return;
-        T script = Instantiate(prefab, position, prefab.transform.rotation);
+        T script = Instantiate(prefab, position + Vector3.up * 0.1f, prefab.transform.rotation);
         script.indexX = indexes.x;
         script.indexY = indexes.y;
         script.mapManager = _mapManager;

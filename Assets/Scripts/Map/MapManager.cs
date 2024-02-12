@@ -15,8 +15,10 @@ public class MapManager : MonoBehaviour
     public MapManagerTools MapManagerTools => _mapManagerTools;
 
     public Sprite[] _sprites;
+    public GameObject[] _models;
 
     private string path = "Sprites";
+    private string path2 = "Models";
 
     [SerializeField] private TileData floor;
     public Sprite floorSpriteForRage;
@@ -102,6 +104,7 @@ public class MapManager : MonoBehaviour
 
         //open path
         _sprites = Resources.LoadAll<Sprite>(path);
+        _models = Resources.LoadAll<GameObject>(path2);
         floorSpriteForRage = floor.GetComponent<SpriteRenderer>().sprite;
     }
 
@@ -138,8 +141,10 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        MapManagerTools.SetConnectedToPath();
-        MapManagerTools.SetExits();
+        _mapManagerTools.SetConnectedToPath();
+        _mapManagerTools.SetExits();
+        _mapManagerTools.CheckAllTilesTypeAndRotation();
+
 
         // SetAllTilesAsVisited();
     }
@@ -175,15 +180,15 @@ public class MapManager : MonoBehaviour
     {
         SpawnMap();
         SpawnTilePresets();
-        MapManagerTools.SetConnectedToPath();
-        MapManagerTools.SetExits();
+        _mapManagerTools.SetConnectedToPath();
+        _mapManagerTools.SetExits();
         HandsManager.OnCardTryToPlaceEvent += CheckCardPos;
     }
 
     public void AddRandomCard()
     {
-        MapManagerTools.SetConnectedToPath();
-        MapManagerTools.SetExits();
+        _mapManagerTools.SetConnectedToPath();
+        _mapManagerTools.SetExits();
     }
 
     private void CheckTileToManipulateRandomPosition(CardInfoInstance cardInstance)
@@ -207,8 +212,8 @@ public class MapManager : MonoBehaviour
         }
 
         OnCardTryToPlaceEvent?.Invoke(data, card, canBePlaced);
-        MapManagerTools.SetConnectedToPath();
-        MapManagerTools.SetExits();
+        _mapManagerTools.SetConnectedToPath();
+        _mapManagerTools.SetExits();
     }
 
     public void InitEnterDungeon(CardInfoInstance card, int rot, out Vector3 pos, Vector2Int startPos)
@@ -222,8 +227,8 @@ public class MapManager : MonoBehaviour
 
         mapArray[startPos.x, startPos.y].isConnectedToPath = true;
         mapArray[startPos.x, startPos.y].IsVisited = true;
-        MapManagerTools.SetConnectedToPath();
-        MapManagerTools.SetExits();
+        _mapManagerTools.SetConnectedToPath();
+        _mapManagerTools.SetExits();
         GetWorldPosFromTilePos(startPos, out pos);
     }
 
@@ -307,9 +312,9 @@ public class MapManager : MonoBehaviour
 
         mapArray[x, y].isRoom = mapArray[x, y].img.sprite.name.Contains("Room");
 
-        MapManagerTools.CheckAllTilesTypeAndRotation();
-        MapManagerTools.SetConnectedToPath();
-        MapManagerTools.SetExits();
+        _mapManagerTools.CheckAllTilesTypeAndRotation();
+        _mapManagerTools.SetConnectedToPath();
+        _mapManagerTools.SetExits();
     }
 
     void ResetMapArrayCell(int xCoord, int yCoord)

@@ -15,9 +15,6 @@ public class DisplayNewDirection : Node
 
     public override NodeState Evaluate(Node root)
     {
-        Debug.Log("Display new direction");
-        
-        
         //erase all arrows
         BB.downArrow.SetActive(false);
         BB.leftArrow.SetActive(false);
