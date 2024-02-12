@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfHero: Sire Artorius
   health: 15
-  speed: 70
+  speed: 2.3333333
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2
   personalities: 
-  heroDialogues:
-  - {fileID: 4900000, guid: 5040596196bf7ca42a5f12c6a919c646, type: 3}
+  languages: []
   keyToUnlock: D1_L2

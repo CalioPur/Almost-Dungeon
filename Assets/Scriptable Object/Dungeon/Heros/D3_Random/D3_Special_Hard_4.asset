@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfHero: Balthazar
   health: 10
-  speed: 70
+  speed: 2.3333333
   classe: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   visionType: 0
   aggressivity: 0
   personalities: 01000000
-  heroDialogues:
-  - {fileID: 4900000, guid: f28d33b258046b74095abdfcab33cd62, type: 3}
+  languages: []
   keyToUnlock: D3_L4

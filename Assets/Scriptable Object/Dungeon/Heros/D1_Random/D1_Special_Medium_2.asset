@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfHero: Karl
   health: 15
-  speed: 65
+  speed: 2.1666667
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2
   personalities: 
-  heroDialogues:
-  - {fileID: 4900000, guid: 398b8b566e2b4ca489a68c0bb7a5c995, type: 3}
+  languages: []
   keyToUnlock: D1_L4

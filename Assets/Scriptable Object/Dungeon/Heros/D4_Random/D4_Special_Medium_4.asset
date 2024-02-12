@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfHero: Therim
   health: 15
-  speed: 70
+  speed: 2.3333333
   classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
   visionType: 0
   aggressivity: 1
   personalities: 
-  heroDialogues:
-  - {fileID: 4900000, guid: fc8984a0b284e554d96b5cf2950aecc1, type: 3}
+  languages: []
   keyToUnlock: D3_L4
