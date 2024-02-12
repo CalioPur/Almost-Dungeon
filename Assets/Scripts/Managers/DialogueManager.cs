@@ -430,14 +430,14 @@ public class DialogueManager : MonoBehaviour
 
     void CheckHeroClass()
     {
-        print("CHECK HERO CLASS");
+        //print("CHECK HERO CLASS");
         otherImage.sprite = GameManager.Instance.currentHero.classe.Img;
     }
 
 
     public void WiggleCard(Transform card, int mult = 1)
     {
-        print("test WIGGLE");
+        //print("test WIGGLE");
         card.transform.DOLocalRotate(card.transform.localRotation.eulerAngles + new Vector3(0, mult*10, 0), 0.1f).SetEase(Ease.Linear).SetLoops(5, LoopType.Yoyo).SetUpdate(true);
     }
 }
