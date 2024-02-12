@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfHero: Thorias
   health: 30
-  speed: 100
+  speed: 3.3333333
   classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
   visionType: 1
   aggressivity: 2
   personalities: 
-  heroDialogues:
-  - {fileID: 4900000, guid: 0ee8748d37c3bab49a1d762c1d414d35, type: 3}
+  languages: []
   keyToUnlock: D3_L4
