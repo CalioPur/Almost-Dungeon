@@ -57,18 +57,26 @@ public class DeckManager : MonoBehaviour
         centerDeck = DeckTr.position + new Vector3(-1 * DeckTr.rect.width * 0.5f, DeckTr.rect.height * 0.5f, 0);
         InitDeck();
         ShuffleDeck();
-        InitHand();
+        StartCoroutine(InitHand());
     }
 
-    private void InitHand()
+    private IEnumerator InitHand()
     {
+        yield return new WaitForSeconds(0.2f);
         if (handToBuild.Count > 0)
         {
             foreach (var card in handToBuild)
             {
-                CardInfoInstance instance = card.cardToBuild.CreateInstance();
-                handsManager.AddCard(instance, out _);
+                if (deckCreate.Count == 0 || cptCardsObtained >= handsManager.GetMaxCard()) yield break;
+        
                 cptCardsObtained++;
+                CardInfoInstance newCard = null;
+                
+                handsManager.AddCard(card.cardToBuild.CreateInstance(), out newCard);
+                CardHand availableSlot = handsManager.getAvailableSlot();
+                availableSlot.GetImage().enabled = true;
+                StartCoroutine(AnimationDrawCard(availableSlot, newCard));
+
             }
         }
         else
