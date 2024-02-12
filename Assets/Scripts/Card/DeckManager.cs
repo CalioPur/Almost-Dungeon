@@ -11,6 +11,7 @@ public class DeckManager : MonoBehaviour
 
     [Header("Deck builder")] [SerializeField]
     public List<CardToBuild> deckToBuild = new();
+    public List<CardToBuild> handToBuild = new();
 
     [Header("Values initializer")] [SerializeField]
     public int nbCardOnStartToDraw = 3;
@@ -56,7 +57,24 @@ public class DeckManager : MonoBehaviour
         centerDeck = DeckTr.position + new Vector3(-1 * DeckTr.rect.width * 0.5f, DeckTr.rect.height * 0.5f, 0);
         InitDeck();
         ShuffleDeck();
-        StartCoroutine(DrawStartedCard());
+        InitHand();
+    }
+
+    private void InitHand()
+    {
+        if (handToBuild.Count > 0)
+        {
+            foreach (var card in handToBuild)
+            {
+                CardInfoInstance instance = card.cardToBuild.CreateInstance();
+                handsManager.AddCard(instance, out _);
+                cptCardsObtained++;
+            }
+        }
+        else
+        {
+            StartCoroutine(DrawStartedCard());
+        }
     }
 
     private void BeginToDraw()

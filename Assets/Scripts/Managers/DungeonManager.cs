@@ -130,6 +130,7 @@ public class DungeonManager : MonoBehaviour
         heroCard.heroPersonality.text = personality;
         cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = deckData.deck;
+        cardsManager.handToBuild = levelData.PrebuildHand;
         cardsManager.nbCardOnStartToDraw = levelData.nbCardToDraw;
         
         
