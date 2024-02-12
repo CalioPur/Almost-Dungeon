@@ -180,7 +180,8 @@ public class UI_Hero : MonoBehaviour
         OnEndGameEvent -= EndGame;
         Hero.OnTakeDamageEvent -= TakeDamage;
         OnEndGameEvent = null;
-        TickManager.OnTick -= HeartBeat;
+        TickManager.OnHeroTick -= HeartBeat;
+        TickManager.OnMinionTick -= HeartBeat;
     }
 
     private void Start()
@@ -188,12 +189,13 @@ public class UI_Hero : MonoBehaviour
         Hero.OnTakeDamageEvent += TakeDamage;
         Hero.OnTakeDamageEvent += DrawHearts;
         OnEndGameEvent += EndGame;
-        TickManager.OnTick += HeartBeat;
+        TickManager.OnHeroTick += HeartBeat;
+        TickManager.OnMinionTick += HeartBeat;
     }
     
         private void HeartBeat()
         {
-            healthBar.transform.DOScale(0.0065f, 0.1f).OnComplete(() => { healthBar.transform.DOScale(0.006f, 0.1f); });
+            healthBar.transform.DOScale(0.0065f, 0.2f * TickManager.Instance.calculateBPM()).OnComplete(() => { healthBar.transform.DOScale(0.006f, 0.2f * TickManager.Instance.calculateBPM()); });
         }
 }
 

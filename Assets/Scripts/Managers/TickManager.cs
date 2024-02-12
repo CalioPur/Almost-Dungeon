@@ -22,6 +22,9 @@ public class TickManager : MonoBehaviour
     private static Dictionary<MovementType, List<TickData>> movementEvents = new();
     private static Dictionary<MovementType, int> entityIds = new();
     public static event Action OnTick;
+    public static event Action OnHeroTick;
+    public static event Action OnMinionTick;
+    public static event Action OnTrapTick;
     public static TickManager Instance;
 
     [HideInInspector][Range(0f, 1000f)] public int BPM = 120;
@@ -178,10 +181,13 @@ public class TickManager : MonoBehaviour
         switch (tickCount)
         {
             case 0:
+                OnMinionTick?.Invoke();
                 return MovementType.Monster;
             case 1:
+                OnTrapTick?.Invoke();
                 return MovementType.Trap;
             case 2:
+                OnHeroTick?.Invoke();
                 return MovementType.Hero;
             case 3:
                 return MovementType.Trap;
