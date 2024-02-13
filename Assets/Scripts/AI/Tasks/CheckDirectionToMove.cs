@@ -7,7 +7,7 @@ using UnityEngine;
 public class CheckDirectionToMove : Node
 {
     private HeroBlackboard blackboard;
-    TileData target = null;
+    static TileData target = null;
 
     public CheckDirectionToMove(HeroBlackboard _blackboard)
     {
@@ -59,6 +59,7 @@ public class CheckDirectionToMove : Node
                     if (target == VARIABLE)
                     {
                         target = null;
+                        Debug.Log("Target has been removed");
                     }
                 }
             }
@@ -73,6 +74,7 @@ public class CheckDirectionToMove : Node
 
         if (target == null)
         {
+            Debug.Log("Target is null");
             if (blackboard.options.Count == 0)
             {
                 if (blackboard.memory.Count > 0)
@@ -97,10 +99,6 @@ public class CheckDirectionToMove : Node
                 }
                 else if (blackboard.options.Count > 0)
                 {
-                    foreach (var VARIABLE in blackboard.options)
-                    {
-                        Debug.DrawRay(VARIABLE.transform.position, Vector3.up * 3, Color.blue, 1f);
-                    }
                     int random = UnityEngine.Random.Range(0, blackboard.options.Count);
                     target = blackboard.options[random];
                 }
@@ -151,7 +149,6 @@ public class CheckDirectionToMove : Node
             }
             else if (target != null)
             {
-                Debug.DrawRay(target.transform.position, Vector3.up * 3, Color.red, 1f);
                 blackboard.directionToMove = BFSScript.BFSGoInDirection(blackboard.hero.GetIndexHeroPos(),
                     new List<TileData> {target},
                     blackboard.hero.mapManager.getMapArray(), true);
@@ -161,8 +158,8 @@ public class CheckDirectionToMove : Node
 
         if (blackboard.directionToMove == DirectionToMove.Error)
         {
-            Debug.LogError("MARCHE PO👺👺👺👺👺👺");
-            blackboard.directionToMove = RandomDirection();
+            Debug.LogError("MARCHE PO");
+            // blackboard.directionToMove = RandomDirection();
         }
         Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();
         switch (blackboard.directionToMove)
@@ -212,20 +209,12 @@ public class CheckDirectionToMove : Node
                 foreach (var VARIABLE1 in tmp)
                 {
                     tileDatasToReturn.Add(VARIABLE1);
-                    Debug.DrawRay(VARIABLE1.transform.position + new Vector3(0.1f,0,0), Vector3.up * 3, Color.yellow, 1f);
                 }
             }
             if(VARIABLE.isConnectedToPath && !VARIABLE.IsVisited)
             {
                 tileDatasToReturn.Add(VARIABLE);
-                Debug.DrawRay(VARIABLE.transform.position + new Vector3(0.1f, 0, 0.1f), Vector3.up * 3, Color.green,
-                    1f);
             }
-        }
-        foreach (var VARIABLE in tileDatasToReturn)
-        {
-            Debug.DrawRay(VARIABLE.transform.position + new Vector3(0,0,0.1f), Vector3.up * 3, Color.cyan, 1f);
-
         }
         return tileDatasToReturn.Distinct().ToList();
     }

@@ -248,12 +248,6 @@ public static class BFSScript
                         neighbors.Add(mapManager.mapArray[i + 1, j]);
             }
         }
-
-        foreach (var VARIABLE in neighbors)
-        {
-            Debug.DrawRay(VARIABLE.transform.position + new Vector3(0.1f,0,0.1f), Vector3.up * 3, Color.red, 1f);
-        }
-        
         return neighbors;
     }
     
