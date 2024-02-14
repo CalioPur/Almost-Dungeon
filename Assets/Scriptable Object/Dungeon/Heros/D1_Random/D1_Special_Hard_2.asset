@@ -19,5 +19,8 @@ MonoBehaviour:
   visionType: 0
   aggressivity: 2
   personalities: 
-  languages: []
+  languages:
+  - heroDialogues:
+    - {fileID: 4900000, guid: 398b8b566e2b4ca489a68c0bb7a5c995, type: 3}
+    - {fileID: 0}
   keyToUnlock: D1_L4
