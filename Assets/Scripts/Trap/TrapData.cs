@@ -54,7 +54,7 @@ public abstract class TrapData : MonoBehaviour
     
     public void StartListenTick(MovementType movementType)
     {
-        TickManager.SubscribeToMovementEvent(movementType, OnTick, out entityId);
+        TickManager.Instance.SubscribeToMovementEvent(movementType, OnTick, out entityId);
     }
     
     public void ShowSprite()

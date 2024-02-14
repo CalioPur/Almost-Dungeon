@@ -20,12 +20,12 @@ public class CountdownManager : MonoBehaviour
    private void OnEnable()
    {
       currentTick = maxTick;
-      TickManager.OnTick += UpdateCountdown;
+      TickManager.Instance.OnTick += UpdateCountdown;
    }
 
    private void OnDisable()
    {
-      TickManager.OnTick -= UpdateCountdown;
+      TickManager.Instance.OnTick -= UpdateCountdown;
    }
    
    IEnumerator AnimCountdown()

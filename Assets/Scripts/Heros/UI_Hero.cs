@@ -180,8 +180,8 @@ public class UI_Hero : MonoBehaviour
         OnEndGameEvent -= EndGame;
         Hero.OnTakeDamageEvent -= TakeDamage;
         OnEndGameEvent = null;
-        TickManager.OnHeroTick -= HeartBeat;
-        TickManager.OnMinionTick -= HeartBeat;
+        TickManager.Instance.OnHeroTick -= HeartBeat;
+        TickManager.Instance.OnMinionTick -= HeartBeat;
     }
 
     private void Start()
@@ -189,8 +189,8 @@ public class UI_Hero : MonoBehaviour
         Hero.OnTakeDamageEvent += TakeDamage;
         Hero.OnTakeDamageEvent += DrawHearts;
         OnEndGameEvent += EndGame;
-        TickManager.OnHeroTick += HeartBeat;
-        TickManager.OnMinionTick += HeartBeat;
+        TickManager.Instance.OnHeroTick += HeartBeat;
+        TickManager.Instance.OnMinionTick += HeartBeat;
     }
     
         private void HeartBeat()

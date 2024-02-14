@@ -21,10 +21,10 @@ public class TickManager : MonoBehaviour
 {
     private static Dictionary<MovementType, List<TickData>> movementEvents = new();
     private static Dictionary<MovementType, int> entityIds = new();
-    public static event Action OnTick;
-    public static event Action OnHeroTick;
-    public static event Action OnMinionTick;
-    public static event Action OnTrapTick;
+    public event Action OnTick;
+    public event Action OnHeroTick;
+    public event Action OnMinionTick;
+    public event Action OnTrapTick;
     public static TickManager Instance;
 
     [HideInInspector][Range(0f, 1000f)] public int BPM = 120;
@@ -35,18 +35,18 @@ public class TickManager : MonoBehaviour
 
     private float beatInterval;
     private float nextTickTime;
-    private static bool TickOnPaused = false;
-    private static int index = 0;
-    private static bool EndGame = false;
+    private bool TickOnPaused = false;
+    private int index = 0;
+    private bool EndGame = false;
     private float elapsedTime = 0f;
     private Coroutine bpmCoroutine;
-
+    
     void Awake()
     {
         GameManager.OnEndDialogEvent += LaunchBPM;
         EndGame = false;
+        if (Instance != null && Instance.gameObject) Destroy(Instance.gameObject);
         Instance = this;
-        
     }
 
     private void OnDisable()
@@ -86,10 +86,15 @@ public class TickManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         while (true)
         {
-            Tick();
-            time = calculateBPM();
-            yield return new WaitForSeconds(calculateBPM());
-            elapsedTime += time  / 60.0f;
+            if (TickOnPaused || EndGame) yield return new WaitForEndOfFrame();
+            else
+            {
+                Tick();
+                time = calculateBPM();
+                yield return new WaitForSeconds(calculateBPM());
+                elapsedTime += time / 60.0f;
+            }
+
         }
     }
 
@@ -106,7 +111,7 @@ public class TickManager : MonoBehaviour
         bpmCoroutine = StartCoroutine(BPMLauncher());
     }
 
-    public static void SubscribeToMovementEvent(MovementType movementType, Action movementAction, out int entityId)
+    public void SubscribeToMovementEvent(MovementType movementType, Action movementAction, out int entityId)
     {
         if (!movementEvents.ContainsKey(movementType))
         {
@@ -121,7 +126,7 @@ public class TickManager : MonoBehaviour
         entityIds[movementType] = entityId;
     }
 
-    public static void UnsubscribeFromMovementEvent(MovementType movementType, int entityId)
+    public void UnsubscribeFromMovementEvent(MovementType movementType, int entityId)
     {
         if (movementEvents.ContainsKey(movementType))
         {
@@ -165,7 +170,7 @@ public class TickManager : MonoBehaviour
     //     return ALaid1.distanceToExit;
     // }
 
-    public static void PauseTick(bool pause)
+    public void PauseTick(bool pause)
     {
         TickOnPaused = pause;
     }
@@ -203,8 +208,16 @@ public class TickManager : MonoBehaviour
         BPM = Mathf.RoundToInt(90 / actionsTime);
     }
 
-    public static void OnEndGame()
+    public void OnEndGame()
     {
         EndGame = true;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PauseTick(!TickOnPaused);
+        }
     }
 }

@@ -55,6 +55,6 @@ public class Web : TrapData
     protected override void Init()
     {
         webInstance = SO.CreateInstance();
-        TickManager.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
+        TickManager.Instance.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
     }
 }

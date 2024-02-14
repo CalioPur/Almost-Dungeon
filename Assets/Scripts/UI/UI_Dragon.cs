@@ -152,15 +152,15 @@ public class UI_Dragon : MonoBehaviour
     {
         DrawHearts();
         Hero.OnMovedOnEmptyCardEvent += CheckDragonHP;
-        TickManager.OnHeroTick += HeartBeat;
-        TickManager.OnMinionTick += HeartBeat;
+        TickManager.Instance.OnHeroTick += HeartBeat;
+        TickManager.Instance.OnMinionTick += HeartBeat;
     }
 
     private void OnDisable()
     {
         Hero.OnMovedOnEmptyCardEvent -= CheckDragonHP;
-        TickManager.OnHeroTick -= HeartBeat;
-        TickManager.OnMinionTick -= HeartBeat;
+        TickManager.Instance.OnHeroTick -= HeartBeat;
+        TickManager.Instance.OnMinionTick -= HeartBeat;
     }
 
     private void HeartBeat()

@@ -27,7 +27,7 @@ public class FireCamp : TrapData
 
     IEnumerator ReviveAnimation()
     {
-        TickManager.PauseTick(true);
+        TickManager.Instance.PauseTick(true);
         OnBeginNightFireCamp?.Invoke(1f);
         yield return new WaitForSeconds(2f);
         foreach (var minion in MinionDatas)
@@ -40,7 +40,7 @@ public class FireCamp : TrapData
         mapManager.Revive();
         OnEndNightFireCamp?.Invoke(1);
         yield return new WaitForSeconds(2.0f);
-        TickManager.PauseTick(false);
+        TickManager.Instance.PauseTick(false);
     }
     
     public void Revive()
@@ -57,7 +57,7 @@ public class FireCamp : TrapData
     protected override void Init()
     {
         firecampInstance = SO.CreateInstance();
-        TickManager.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
+        TickManager.Instance.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
     }
     
     protected override void OnTick()
