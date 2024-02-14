@@ -68,7 +68,7 @@ animator.SetTrigger("TakeDamage");
 
     public void StartListenTick()
     {
-        TickManager.SubscribeToMovementEvent(MovementType.Monster, OnTick, out entityId);
+        TickManager.Instance.SubscribeToMovementEvent(MovementType.Monster, OnTick, out entityId);
     }
 
     public void addAnim(AnimToQueue animToQueue)
@@ -81,7 +81,7 @@ animator.SetTrigger("TakeDamage");
         StartCoroutine(Die());
         base.OnDead();
         isDead = true;
-        TickManager.UnsubscribeFromMovementEvent(MovementType.Monster, entityId);
+        TickManager.Instance.UnsubscribeFromMovementEvent(MovementType.Monster, entityId);
     }
 
     private IEnumerator Die()

@@ -54,7 +54,7 @@ public class Pyke : TrapData
     protected override void Init()
     {
         pykeInstance = SO.CreateInstance();
-        TickManager.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
+        TickManager.Instance.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
     }
 
     private void GetHeroPosOnTile(Vector2Int pos)
@@ -64,7 +64,7 @@ public class Pyke : TrapData
 
     private void OnDisable()
     {
-        TickManager.UnsubscribeFromMovementEvent(MovementType.Trap, entityId);
+        TickManager.Instance.UnsubscribeFromMovementEvent(MovementType.Trap, entityId);
     }
 
     protected override void OnDead()

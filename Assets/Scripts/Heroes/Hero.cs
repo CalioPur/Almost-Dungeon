@@ -127,7 +127,7 @@ public class Hero : MonoBehaviour, IFlippable
     
     private void OnBeginToMove()
     {
-        TickManager.SubscribeToMovementEvent(MovementType.Hero, OnTick, out entityId);
+        TickManager.Instance.SubscribeToMovementEvent(MovementType.Hero, OnTick, out entityId);
     }
 
     public void OutOfMap(DirectionToMove blackboardDirectionToMove)
@@ -138,7 +138,7 @@ public class Hero : MonoBehaviour, IFlippable
 
     private void OnDestroy()
     {
-        TickManager.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
+        TickManager.Instance.UnsubscribeFromMovementEvent(MovementType.Hero, gameObject.GetInstanceID());
         OnTakeDamageEvent = null;
         OnPopUpEvent = null;
         OnMovedOnEmptyCardEvent = null;
@@ -185,7 +185,7 @@ public class Hero : MonoBehaviour, IFlippable
             info.CurrentHealthPoint = 0;
             FXTakeDamage();
             IsDead();
-            TickManager.OnEndGame();
+            TickManager.Instance.OnEndGame();
         }
         else
         {
