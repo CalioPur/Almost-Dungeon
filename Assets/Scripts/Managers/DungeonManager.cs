@@ -21,6 +21,7 @@ public struct Dungeon
 public class DungeonManager : MonoBehaviour
 {
    
+    [SerializeField] public DungeonSO TutorialDungeon;
     [SerializeField] public List<Dungeon> dungeons;
    
     public int currentLevel = 0;
@@ -40,6 +41,7 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private TextAsset globalsInkFile;
 
     public static DungeonManager _instance;
+    public bool TutorialDone = true;
     
     private void Awake()
     {
@@ -54,6 +56,11 @@ public class DungeonManager : MonoBehaviour
         gameManager = GameManager.Instance;
 
         dialogueVariable = new DialogueVariable(globalsInkFile);
+    }
+
+    private void Start()
+    {
+        TutorialDone = PlayerPrefs.HasKey("FinishedTutorial");
     }
 
     public void SetSelectedBiome(int index)
@@ -84,15 +91,31 @@ public class DungeonManager : MonoBehaviour
             UI_Dragon.currentHealth = UI_Dragon.maxHealth;
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadLevel;
+
+        DungeonSO dungeonSo;
+        
+        if (TutorialDone)
+            dungeonSo = dungeons[SelectedBiome].dungeonSO;
+        else
+            dungeonSo = TutorialDungeon;
+        
         if (currentLevel == 5)//si on a battu le niveau milestonne
         {
             PlayerPrefs.SetInt("LevelUnlock"+ (SelectedBiome+1), 1); //on unlock le biome suivant;
         }
-        if (currentLevel >= dungeons[SelectedBiome].dungeonSO.levels.Count) //le donjon a été parcouru en entier
+        if (currentLevel >= dungeonSo.levels.Count) //le donjon a été parcouru en entier
         {
-            PlayerPrefs.SetInt("LevelBeaten" + SelectedBiome, 1); //on sauvegarde le donjon comme battu
-            PlayerPrefs.SetInt("LevelVictory" + SelectedBiome, PlayerPrefs.GetInt("LevelVictory" + SelectedBiome, 0) + 1); //on incremente la valeur de victoire du donjon
-            
+            if (TutorialDone)
+            {
+                PlayerPrefs.SetInt("LevelBeaten" + SelectedBiome, 1); //on sauvegarde le donjon comme battu
+                PlayerPrefs.SetInt("LevelVictory" + SelectedBiome, PlayerPrefs.GetInt("LevelVictory" + SelectedBiome, 0) + 1); //on incremente la valeur de victoire du donjon
+            }
+            else
+            {
+                PlayerPrefs.SetInt("FinishedTutorial", 1);
+                TutorialDone = true;
+            }
+
             Debug.LogWarning("Level is too high");
             SceneManager.LoadScene(0);
             ResetLevelIndex();
@@ -101,7 +124,7 @@ public class DungeonManager : MonoBehaviour
 
         
 
-        var levelData = dungeons[SelectedBiome].dungeonSO.levels[level];
+        var levelData = dungeonSo.levels[level];
         
         terrainData = levelData.terrains[Random.Range(0, levelData.terrains.Count)];
         List<HeroSO> heroUnlock = new List<HeroSO>();
@@ -152,13 +175,18 @@ public class DungeonManager : MonoBehaviour
         
         PlayerCardController.Instance.isDragNDrop = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
     }
+    
     public void LoadNextLevel()
     {
-        foreach (var key in dungeons[SelectedBiome].dungeonSO.levels[currentLevel].keysElementsToUnlock)
+        if (TutorialDone)
         {
-            PlayerPrefs.SetInt(key, 1);
+            foreach (var key in dungeons[SelectedBiome].dungeonSO.levels[currentLevel].keysElementsToUnlock)
+            {
+                PlayerPrefs.SetInt(key, 1);
+            }
         }
-        currentLevel++;
+        currentLevel++;  
+
         GameManager.OnSceneLoadedEvent += LoadLevel;
     }
 

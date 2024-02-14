@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgOnHand: {fileID: 21300000, guid: e4c7f3f48ad86d34f9da02089a616b2c, type: 3}
   imgOnMap: {fileID: 21300000, guid: e4c7f3f48ad86d34f9da02089a616b2c, type: 3}
-  prefabOnMap: {fileID: 8451606179490152360, guid: a7fb942897bc65d4c9385ba0d4be3714,
+  prefabOnMap: {fileID: 8451606179490152360, guid: 346e55c20d48fcb40a7bb3ac8b9ae8a6,
     type: 3}
   TypeOfTrapOrEnemyToSpawn: []
   DoorOnTop: 0

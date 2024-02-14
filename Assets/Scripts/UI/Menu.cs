@@ -25,7 +25,7 @@ public class Menu : MonoBehaviour
         SaveSystem.LoadSave();
         playButton.onClick.AddListener(Play);
         quitButton.onClick.AddListener(Quit);
-        
+
         if (SaveSystem.currentDungeon == -1)
         {
             continueButton.interactable = false;
@@ -44,9 +44,9 @@ public class Menu : MonoBehaviour
     private void Play()
     {
         //levelSelection.SetActive(true);
-        StartCoroutine(SwitchToLevelSelection());
+        StartCoroutine(SwitchToLevelSelection(PlayerPrefs.HasKey("FinishedTutorial")));
     }
-    
+
     private void Continue()
     {
         //levelSelection.SetActive(true);
@@ -59,16 +59,24 @@ public class Menu : MonoBehaviour
         videoPlayer.Play();
         fadeImage.DOFade(1, 1f);
         yield return new WaitForSeconds(1f);
-        DungeonManager._instance.SetSelectedBiomeAndLevelFromSave(SaveSystem.currentLevel,SaveSystem.currentDungeon);
+        DungeonManager._instance.SetSelectedBiomeAndLevelFromSave(SaveSystem.currentLevel, SaveSystem.currentDungeon);
     }
 
-    IEnumerator SwitchToLevelSelection()
+    IEnumerator SwitchToLevelSelection(bool hasFinishedTutorial)
     {
-        
         videoPlayer.playbackSpeed = 1;
         videoPlayer.Play();
         fadeImage.DOFade(1, 1f);
         yield return new WaitForSeconds(1f);
+        // if (hasFinishedTutorial)
+        // {
+        //     SceneManager.LoadScene("LevelSelection");
+        // }
+        // else
+        // {
+        //     DungeonManager._instance.SetSelectedBiome(0);
+        // }
+        PlayerPrefs.SetInt("FinishedTutorial", 1);
         SceneManager.LoadScene("LevelSelection");
     }
 }
