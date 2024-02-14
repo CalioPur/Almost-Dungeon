@@ -17,10 +17,16 @@ public class CountdownManager : MonoBehaviour
    private int currentTick = 0;
    private Coroutine countdownCoroutine;
 
+   IEnumerator CD()
+   {
+      yield return new WaitForEndOfFrame();
+      TickManager.Instance.OnTick += UpdateCountdown;
+   }
+   
    private void OnEnable()
    {
       currentTick = maxTick;
-      TickManager.Instance.OnTick += UpdateCountdown;
+      StartCoroutine(CD());
    }
 
    private void OnDisable()

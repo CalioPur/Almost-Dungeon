@@ -56,7 +56,10 @@ public class TickManager : MonoBehaviour
         movementEvents = new();
         entityIds = new();
         EndGame = false;
-        StopCoroutine(bpmCoroutine);
+        if (bpmCoroutine != null)
+        {
+            StopCoroutine(bpmCoroutine);
+        }
     }
 
     void LaunchBPM()
