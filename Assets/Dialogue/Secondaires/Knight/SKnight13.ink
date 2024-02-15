@@ -10,7 +10,7 @@ Et bien chevalier... Pourquoi courez-vous ainsi dans les couloirs ! #chara:drago
 ~SKnight13Seen = true 
 En retard ! Je suis en retard Dragon !  #chara:knight
 Et bien, quelle <color=yellow>impatience</color>, vous ne pensiez tout de même pas pouvoir me fausser compagnie chevalier. #chara:dragon
-Je n'ai pas le temps Dragon, n'essayez pas de m'empêcher de sortir, où je devrai détruire votre donjon. #chara:dragon
+Je n'ai pas le temps Dragon, n'essayez pas de m'empêcher de sortir, où je devrai détruire votre donjon. #chara:knight
 Patron, j'ai trouvé cet arc par terre, vous voulez que je tente de l'arrêter ? #minion:in #chara:minion
 
 * [Viser ses jambes ($$le héros$$ perd <color=purple>10 de vitesse</color> )] -> Regen
