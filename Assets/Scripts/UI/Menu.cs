@@ -15,11 +15,6 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject levelSelection;
     [SerializeField] private Image fadeImage;
 
-    private void Awake()
-    {
-        Time.timeScale = 1;
-    }
-
     void Start()
     {
         SaveSystem.LoadSave();
@@ -68,15 +63,16 @@ public class Menu : MonoBehaviour
         videoPlayer.Play();
         fadeImage.DOFade(1, 1f);
         yield return new WaitForSeconds(1f);
-        // if (hasFinishedTutorial)
-        // {
-        //     SceneManager.LoadScene("LevelSelection");
-        // }
-        // else
-        // {
-        //     DungeonManager._instance.SetSelectedBiome(0);
-        // }
-        PlayerPrefs.SetInt("FinishedTutorial", 1);
-        SceneManager.LoadScene("LevelSelection");
+        
+        if (hasFinishedTutorial)
+        {
+            SceneManager.LoadScene("LevelSelection");
+        }
+        else
+        {
+            DungeonManager._instance.SetSelectedBiome(0);
+        }
+        // PlayerPrefs.SetInt("FinishedTutorial", 1);
+        // SceneManager.LoadScene("LevelSelection");
     }
 }

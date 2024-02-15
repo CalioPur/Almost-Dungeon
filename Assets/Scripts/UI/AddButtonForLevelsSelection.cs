@@ -31,7 +31,6 @@ public class AddButtonForLevelsSelection : MonoBehaviour
     
     void Start()
     {
-        Time.timeScale = 1;
         int cpt = 0;
         foreach (var biome in dungeonManager.dungeons)
         {
