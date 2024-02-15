@@ -77,6 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapManager: {fileID: 0}
+  tutorialManagerPrefab: {fileID: 2320280064546849586, guid: 583a75b62c43b2148bad84b240e4328e,
+    type: 3}
   tick: {fileID: 0}
   heroesInfos:
   - {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}

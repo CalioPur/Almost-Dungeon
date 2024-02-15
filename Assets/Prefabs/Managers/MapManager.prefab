@@ -47,9 +47,10 @@ MonoBehaviour:
   <width>k__BackingField: 9
   <height>k__BackingField: 7
   _sprites: []
+  _models: []
   floor: {fileID: 7142599336517423327, guid: 7299b39184eadc94eafb4cf0320a193c, type: 3}
   floorSpriteForRage: {fileID: 21300000, guid: 75388491cb8b8374682989a697f1e57c, type: 3}
   map: {fileID: 8817438707714538889}
   fogPainter: {fileID: 0}
-  ATTENTION: {fileID: 21300000, guid: c6b209dfad4f2a0429a245940456cf22, type: 3}
-  ATTENTIONROUUUGE: {fileID: 0}
+  ATTENTION: {fileID: 21300000, guid: 5e7475c3c9c81e24cab1798311b6cb12, type: 3}
+  ATTENTIONROUUUGE: {fileID: 21300000, guid: c6b209dfad4f2a0429a245940456cf22, type: 3}
