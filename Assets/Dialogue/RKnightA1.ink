@@ -15,7 +15,7 @@ Ah tu es là Dragon ! Ne bouge pas ! J'arrive pour prendre ta tête ! #chara:kni
 * [Insulter le héros] -> ending2
 
 === ending1 ===
-N'approchez pas chevalier ! Je vais me voir dans l'obligation de vous carboniser si vous essayez de sortir ! #chara:dragon
+N'approchez pas chevalier ! Je vais me voir dans l'obligation de vous carboniser si vous essayez de sortir ! #chara:dragon #damages:2
  -> END
 
 === ending2 ===

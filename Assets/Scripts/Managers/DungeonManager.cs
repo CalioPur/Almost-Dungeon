@@ -146,6 +146,7 @@ public class DungeonManager : MonoBehaviour
         
         UI_Hero heroCard = FindObjectOfType<UI_Hero>();
         heroCard.heroName.text = heroData.nameOfHero;
+        heroCard.HealthBarText.text = heroData.health.ToString();
         string personality = "";
         if (heroData.visionType != VisionType.LIGNEDROITE) personality += ToTitleCase(heroData.visionType.ToString()) + " ";
         if (heroData.aggressivity != Aggressivity.NONE) personality += ToTitleCase(heroData.aggressivity.ToString());

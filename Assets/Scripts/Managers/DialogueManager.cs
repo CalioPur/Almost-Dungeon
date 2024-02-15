@@ -380,7 +380,9 @@ public class DialogueManager : MonoBehaviour
                         break;
                     case "damages":
                         var damage = int.Parse(split[1]);
-                        GameManager.Instance.heroCurrentHealthPoint -= damage;
+                        //GameManager.Instance.heroCurrentHealthPoint -= damage;
+                        Hero.Instance.TakeDamage(damage, AttackType.Fire);
+                        print("test Damage" + split[1]);
                         break;
                     case "hpplus":
                         var heal = int.Parse(split[1]);
