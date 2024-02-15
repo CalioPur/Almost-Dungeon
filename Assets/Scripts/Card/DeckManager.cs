@@ -105,10 +105,11 @@ public class DeckManager : MonoBehaviour
             InitDeck();
             ShuffleDeck();
         }
+        while (TickManager.Instance.TickOnPaused)
+            yield return new WaitForEndOfFrame();
 
         if (cptCardsObtained < handsManager.GetMaxCard())
             DrawCard();
-
         if (currentlyDrawing != null)
             StopCoroutine(currentlyDrawing);
         currentlyDrawing = StartCoroutine(CheckDrawCard());

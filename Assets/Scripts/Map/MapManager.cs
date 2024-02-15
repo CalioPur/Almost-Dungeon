@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Ink.Parsed;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -30,7 +32,9 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] private Sprite ATTENTION;
     [SerializeField] private Sprite ATTENTIONROUUUGE;
-    
+
+    private bool UpScale = false;
+
     private CardInfo[] cards;
 
     public MapManager()
@@ -38,63 +42,90 @@ public class MapManager : MonoBehaviour
         _mapManagerTools = new MapManagerTools(this);
     }
 
-    private void Update()
+    private IEnumerator UpdateBoard()
     {
-        if (!Hero.Instance) return;
-        for (int i = 0; i < Instance.width; i++)
+        List<TileData> tiles = new List<TileData>();
+        foreach (var tile in tiles)
         {
-            for (int j = 0; j < Instance.height; j++)
+            tile.img.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+
+        if (Hero.Instance)
+        {
+            for (int i = 0; i < Instance.width; i++)
             {
-                if (!mapArray[i, j].isExit) continue;
-                if (mapArray[i, j].hasDoorDown && j > 0 && !mapArray[i, j - 1].isConnectedToPath)
+                for (int j = 0; j < Instance.height; j++)
                 {
-                    if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                    if (!mapArray[i, j].isExit) continue;
+                    if (mapArray[i, j].hasDoorDown && j > 0 && !mapArray[i, j - 1].isConnectedToPath)
                     {
-                        mapArray[i, j - 1].img.sprite = ATTENTIONROUUUGE;
+                        if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                        {
+                            mapArray[i, j - 1].img.sprite = ATTENTIONROUUUGE;
+                            tiles.Add(mapArray[i, j - 1]);
+                        }
+                        else
+                        {
+                            mapArray[i, j - 1].img.sprite = ATTENTION;
+                            tiles.Add(mapArray[i, j - 1]);
+                        }
                     }
-                    else
-                    {
-                        mapArray[i, j - 1].img.sprite = ATTENTION;
-                    }
-                }
 
-                if (mapArray[i, j].hasDoorUp && j < height - 1 && !mapArray[i, j + 1].isConnectedToPath)
-                {
-                    if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                    if (mapArray[i, j].hasDoorUp && j < height - 1 && !mapArray[i, j + 1].isConnectedToPath)
                     {
-                        mapArray[i, j + 1].img.sprite = ATTENTIONROUUUGE;
+                        if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                        {
+                            mapArray[i, j + 1].img.sprite = ATTENTIONROUUUGE;
+                            tiles.Add(mapArray[i, j + 1]);
+                        }
+                        else
+                        {
+                            mapArray[i, j + 1].img.sprite = ATTENTION;
+                            tiles.Add(mapArray[i, j + 1]);
+                        }
                     }
-                    else
-                    {
-                        mapArray[i, j + 1].img.sprite = ATTENTION;
-                    }
-                }
 
-                if (mapArray[i, j].hasDoorLeft && i > 0 && !mapArray[i - 1, j].isConnectedToPath)
-                {
-                    if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                    if (mapArray[i, j].hasDoorLeft && i > 0 && !mapArray[i - 1, j].isConnectedToPath)
                     {
-                        mapArray[i - 1, j].img.sprite = ATTENTIONROUUUGE;
+                        if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                        {
+                            mapArray[i - 1, j].img.sprite = ATTENTIONROUUUGE;
+                            tiles.Add(mapArray[i - 1, j]);
+                        }
+                        else
+                        {
+                            mapArray[i - 1, j].img.sprite = ATTENTION;
+                            tiles.Add(mapArray[i - 1, j]);
+                        }
                     }
-                    else
-                    {
-                        mapArray[i - 1, j].img.sprite = ATTENTION;
-                    }
-                }
 
-                if (mapArray[i, j].hasDoorRight && i < width - 1 && !mapArray[i + 1, j].isConnectedToPath)
-                {
-                    if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                    if (mapArray[i, j].hasDoorRight && i < width - 1 && !mapArray[i + 1, j].isConnectedToPath)
                     {
-                        mapArray[i + 1, j].img.sprite = ATTENTIONROUUUGE;
-                    }
-                    else
-                    {
-                        mapArray[i + 1, j].img.sprite = ATTENTION;
+                        if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
+                        {
+                            mapArray[i + 1, j].img.sprite = ATTENTIONROUUUGE;
+                            tiles.Add(mapArray[i + 1, j]);
+                        }
+                        else
+                        {
+                            mapArray[i + 1, j].img.sprite = ATTENTION;
+                            tiles.Add(mapArray[i + 1, j]);
+                        }
                     }
                 }
             }
+
+            yield return new WaitForSeconds(0.2f);
+            UpScale = !UpScale;
+            for (var index = 0; index < tiles.Count; index++)
+            {
+                var tile = tiles[index];
+                if (UpScale)
+                    tile.img.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            }
         }
+
+        StartCoroutine(UpdateBoard());
     }
 
     private void Awake()
@@ -183,6 +214,7 @@ public class MapManager : MonoBehaviour
         _mapManagerTools.SetConnectedToPath();
         _mapManagerTools.SetExits();
         HandsManager.OnCardTryToPlaceEvent += CheckCardPos;
+        StartCoroutine(UpdateBoard());
     }
 
     public void AddRandomCard()

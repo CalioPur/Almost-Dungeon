@@ -30,12 +30,13 @@ public class TickManager : MonoBehaviour
     [HideInInspector][Range(0f, 1000f)] public int BPM = 120;
 
     [HideInInspector][Range(0.1f, 5f)] public float actionsTime; //this is the time for all of the actions to be completed
+    public bool TickOnPaused { get; private set; }
 
     [SerializeField] private AnimationCurve BPMBoostCurve;
 
     private float beatInterval;
     private float nextTickTime;
-    private bool TickOnPaused = false;
+    
     private int index = 0;
     private bool EndGame = false;
     private float elapsedTime = 0f;
@@ -47,6 +48,7 @@ public class TickManager : MonoBehaviour
         EndGame = false;
         if (Instance != null && Instance.gameObject) Destroy(Instance.gameObject);
         Instance = this;
+        TickOnPaused = false;
     }
 
     private void OnDisable()
