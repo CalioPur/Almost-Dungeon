@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public struct EnemiDataOnHand
@@ -22,4 +23,11 @@ public struct DoorLockedData
     public bool DoorOnBottom;
     public bool DoorOnLeft;
     public bool DoorOnRight;
+}
+
+[Serializable]
+public struct TutorialDialogData
+{
+    public Vector2Int tilePostion;
+    public string Dialog;
 }

@@ -84,11 +84,6 @@ public class LDCreator : MonoBehaviour
 
             EditorGUILayout.LabelField("", EditorStyles.boldLabel);
             
-            // if (EditorGUILayout.Toggle("Delete Mode", cartesViewer.DeleteMode))
-            // {
-            //     cartesViewer.DeleteMode = !cartesViewer.DeleteMode;
-            // }
-            
             cartesViewer.DeleteMode = EditorGUILayout.Toggle("Delete Mode", cartesViewer.DeleteMode);
 
             EditorGUILayout.BeginHorizontal();
