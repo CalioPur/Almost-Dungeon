@@ -18,6 +18,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e1540dc7008ee9479a1c8238f2674cb, type: 2}
   decks:
   - {fileID: 11400000, guid: 9d9bd96ffc865314eb7a579d7e474fc4, type: 2}
+  PrebuildHand:
+  - cardToBuild: {fileID: 11400000, guid: 1db26f8ca750521449a53d839380a11b, type: 2}
+    nbToBuild: 0
+  - cardToBuild: {fileID: 11400000, guid: 1db26f8ca750521449a53d839380a11b, type: 2}
+    nbToBuild: 0
+  - cardToBuild: {fileID: 11400000, guid: 17e3604c13d5d714ab024c975530accb, type: 2}
+    nbToBuild: 0
   nbCardToDraw: 5
   keysElementsToUnlock:
   - D4_L4

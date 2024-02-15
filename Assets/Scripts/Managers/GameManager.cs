@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     public static Action OnGameStartEvent;
     public static Action OnEndDialogEvent;
     public static bool isGameStarted = false;
+    public event Action<Vector2Int> HeroPosUpdatedEvent;
 
     [Header("Managers")] [SerializeField] private MapManager mapManager;
+    [SerializeField] private TutorialManager tutorialManagerPrefab;
     [SerializeField] private TickManager tick;
 
     [Header("Data")] [SerializeField] private List<HeroesInfo> heroesInfos;
@@ -26,33 +28,36 @@ public class GameManager : MonoBehaviour
     private Vector3 worldPos;
     private Vector2Int posHero;
     public static GameManager Instance;
-    
+
     private void Awake()
     {
-        
-        
         if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
         OnSceneLoadedEvent?.Invoke();
     }
-    
+
     void Start()
     {
-        OnGameStartEvent += SpawnHero;
+        //OnGameStartEvent += SpawnHero();
         //Time.timeScale = 1;
         mapManager.InitMap();
         mapManager.AddRandomCard();
-        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(),rotationOfSpawnTile, out worldPos, posHero);
+        mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), rotationOfSpawnTile, out worldPos, posHero);
         worldPos += new Vector3(0, 0.1f, 0);
-        OnEndDialogEvent?.Invoke();
+
         foreach (var light in lightsAmbiant)
         {
             light.color = DungeonManager._instance.dungeons[DungeonManager.SelectedBiome].dungeonSO.color;
         }
+
+        if (!DungeonManager._instance.TutorialDone)
+            Instantiate(tutorialManagerPrefab);
+        SpawnHero();
     }
 
     private void OnDisable()
@@ -61,7 +66,7 @@ public class GameManager : MonoBehaviour
         OnGameStartEvent = null;
     }
 
-    private void SpawnHero()
+    public void SpawnHero()
     {
         //int randomHero = Random.Range(0, heroesInfos.Count);
         if (currentHero == null)
@@ -69,44 +74,39 @@ public class GameManager : MonoBehaviour
             Debug.LogError("No hero selected");
             return;
         }
+
         HeroInstance current = currentHero.classe.CreateInstance();
         current.CurrentHealthPoint = heroHealthPoint;
-        
+
         Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
         heroScript.Init(current, posHero.x, posHero.y, mapManager);
         heroScript.HeroBlackboard.visionType = currentHero.visionType;
         heroScript.HeroBlackboard.aggressivity = currentHero.aggressivity;
         heroScript.HeroBlackboard.personalities = currentHero.personalities;
-        
+
         if (heroCurrentHealthPoint < heroHealthPoint) //Degats pris pendant le dialogue
         {
             heroScript.TakeDamage((heroHealthPoint - heroCurrentHealthPoint), AttackType.Fire);
         }
-        
+
         UIManager._instance.heroBlackboard = heroScript.HeroBlackboard;
+        OnEndDialogEvent?.Invoke();
     }
 
     public static void StartGame()
     {
         OnGameStartEvent?.Invoke();
+        TickManager.Instance.PauseTick(false);
         isGameStarted = true;
     }
-    public void RestartGame()
-    {
-        
-        FindObjectOfType<DungeonManager>().LoadNextLevel();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+    
 
     public void UpdateHeroPos(Vector2Int getIndexHeroPos)
     {
         posHero = getIndexHeroPos;
+        HeroPosUpdatedEvent?.Invoke(posHero);
     }
-    
+
     public Vector2Int GetHeroPos()
     {
         return posHero;

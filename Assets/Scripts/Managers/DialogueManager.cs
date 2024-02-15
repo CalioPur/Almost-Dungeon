@@ -57,6 +57,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text heroName;
 
     DialogueVariable dialogueVariable;
+    
+    public static event Action OnConversationEndedEvent;
+    private static event Action OnEndDialogEvent;
 
     [Header("TextCoroutine")] [SerializeField]
     private float typingSpeed = 0.04f;
@@ -69,7 +72,6 @@ public class DialogueManager : MonoBehaviour
     private string sourceText;
     private string completeText;
 
-    private static event Action OnEndDialogEvent;
     private int dialogueIndex = -1;
 
 
@@ -159,6 +161,7 @@ public class DialogueManager : MonoBehaviour
             dialogueBox.SetActive(false);
             nextButton.onClick.RemoveAllListeners();
             timer.SetActive(true);
+            OnConversationEndedEvent?.Invoke();
             Transform camTransform = Camera.main.transform;
             camTransform.DOMove(new Vector3(0, 6.71f, -4f), 1f);
             camTransform.DORotate(new Vector3(65.5f, 0, 0), 1f);
@@ -187,6 +190,7 @@ public class DialogueManager : MonoBehaviour
             dialogueBox.SetActive(false);
             dialogueIndex++;
             OnEndDialogEvent?.Invoke();
+            OnConversationEndedEvent?.Invoke();
             return;
         }
 
@@ -198,8 +202,7 @@ public class DialogueManager : MonoBehaviour
         catch
         {
             dialogueBox.SetActive(false);
-            Time.timeScale = 1;
-            return;
+            return; 
         }
 
 
@@ -207,7 +210,7 @@ public class DialogueManager : MonoBehaviour
         choice1.gameObject.SetActive(false);
         choice2.gameObject.SetActive(false);
         RefreshView();
-        Time.timeScale = 0;
+        TickManager.Instance.PauseTick(true);
     }
 
     public void NextDialogue()
@@ -380,7 +383,9 @@ public class DialogueManager : MonoBehaviour
                         break;
                     case "damages":
                         var damage = int.Parse(split[1]);
-                        GameManager.Instance.heroCurrentHealthPoint -= damage;
+                        //GameManager.Instance.heroCurrentHealthPoint -= damage;
+                        Hero.Instance.TakeDamage(damage, AttackType.Fire);
+                        print("test Damage" + split[1]);
                         break;
                     case "hpplus":
                         var heal = int.Parse(split[1]);

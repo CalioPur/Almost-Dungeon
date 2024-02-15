@@ -17,13 +17,14 @@ public class UI_Hero : MonoBehaviour
     [SerializeField] private UI_HeroItem itemsPrefab;
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private TMP_Text endGameText;
-    [SerializeField] private TMP_Text HealthBarText;
+    
     [SerializeField] private Image imgFiller;
     [SerializeField] private ButtonPrefab endGameButton;
     [SerializeField] private string[] itemNamesChoices;
 
     public TMP_Text heroPersonality;
     public TMP_Text heroName;
+    public TMP_Text HealthBarText;
 
     [SerializeField] private float shakeDuration = 1.0f;
     [SerializeField] private Image heroImage;
@@ -148,7 +149,7 @@ public class UI_Hero : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         endGamePanel.SetActive(true);
-        Time.timeScale = 0;
+        TickManager.Instance.PauseTick(true);
         yield return null;
     }
     
