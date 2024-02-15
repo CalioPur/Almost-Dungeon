@@ -30,4 +30,5 @@ public struct TutorialDialogData
 {
     public Vector2Int tilePostion;
     public string Dialog;
+    public DirectionToMove direction;
 }
