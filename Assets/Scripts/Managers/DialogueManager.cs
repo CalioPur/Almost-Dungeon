@@ -72,7 +72,6 @@ public class DialogueManager : MonoBehaviour
     private string sourceText;
     private string completeText;
 
-    private static event Action OnEndDialogEvent;
     private int dialogueIndex = -1;
 
 
