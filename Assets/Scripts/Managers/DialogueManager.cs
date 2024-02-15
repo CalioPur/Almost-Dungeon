@@ -15,12 +15,10 @@ using Random = UnityEngine.Random;
 
 public class DialogueManager : MonoBehaviour
 {
-    
-    
     public static DialogueManager _instance;
     public SaveSystem saveSystem;
     public List<TextAsset> interludeDialogues;
-    
+
     public Sprite HeroSprite;
     public Sprite archerSprite;
     public Sprite mageSprite;
@@ -31,11 +29,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private HeroesInfo archerClass;
     [SerializeField] private HeroesInfo mageClass;
     [SerializeField] private HeroesInfo barbareClass;
-    
+
     [SerializeField] private List<DeckSO> decks;
-    
+
     [SerializeField] private List<Sprite> customSprites;
-    
+
     public List<TextAsset> dialogues;
     private Story story;
     [SerializeField] private DeckManager cardsManager;
@@ -57,13 +55,24 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject lightHero;
     [SerializeField] private GameObject slots;
     [SerializeField] private TMP_Text heroName;
-    
+
     DialogueVariable dialogueVariable;
-    
-    private static event Action OnEndDialogEvent; 
+
+    [Header("TextCoroutine")] [SerializeField]
+    private float typingSpeed = 0.04f;
+
+    private Coroutine displayLineCoroutine;
+    [SerializeField] private bool canContinueToNextLine = false;
+
+    private List<string> openTags = new();
+    private List<string> closeTags = new();
+    private string sourceText;
+    private string completeText;
+
+    private static event Action OnEndDialogEvent;
     private int dialogueIndex = -1;
-    
-    
+
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -71,33 +80,40 @@ public class DialogueManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        _instance = this;
-        
-        
 
+        _instance = this;
+    }
+
+    private void Start()
+    {
         dialogueVariable = DungeonManager._instance.dialogueVariable;
+        if (displayLineCoroutine != null)
+            StopCoroutine(displayLineCoroutine);
+        displayLineCoroutine = null;
+        dialogueText.Source = completeText;
         if (DungeonManager._instance.currentLevel < 7 &&
             DungeonManager._instance.terrainData &&
             DungeonManager._instance.deckData &&
             DungeonManager._instance.heroData &&
             DungeonManager._instance.cardsManager)
         {
-            PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue, 
+            PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue,
                 DungeonManager._instance.deckData.deckDialogue,
-                DungeonManager._instance.heroData.languages, 
+                DungeonManager._instance.heroData.languages,
                 DungeonManager._instance.cardsManager);
         }
     }
-    
+
     private void GetUiElements()
     {
         dialogueText = markdownRenderer;
-        
+
         nextButton.onClick.AddListener(NextDialogue);
     }
-    
-    
-    public void PlayAllThreeDialogues(TextAsset[] terrainDialogues, TextAsset[] deckDialogues,  Language[] languesHero, DeckManager cardsManager)
+
+
+    public void PlayAllThreeDialogues(TextAsset[] terrainDialogues, TextAsset[] deckDialogues, Language[] languesHero,
+        DeckManager cardsManager)
     {
         GameManager.Instance.isInDialogue = true;
         dialogueIndex = -1;
@@ -106,26 +122,30 @@ public class DialogueManager : MonoBehaviour
         slots.SetActive(false);
         timer.SetActive(false);
         dialogues = new List<TextAsset>();
-        if(terrainDialogues.Length>PlayerPrefs.GetInt("langue",0) && terrainDialogues[PlayerPrefs.GetInt("langue",0)] != null)
-            dialogues.Add(terrainDialogues[PlayerPrefs.GetInt("langue",0)] );
-        if (languesHero.Length>PlayerPrefs.GetInt("langue",0) && languesHero[PlayerPrefs.GetInt("langue",0)].heroDialogues != null)
+        if (terrainDialogues.Length > PlayerPrefs.GetInt("langue", 0) &&
+            terrainDialogues[PlayerPrefs.GetInt("langue", 0)] != null)
+            dialogues.Add(terrainDialogues[PlayerPrefs.GetInt("langue", 0)]);
+        if (languesHero.Length > PlayerPrefs.GetInt("langue", 0) &&
+            languesHero[PlayerPrefs.GetInt("langue", 0)].heroDialogues != null)
         {
-            var heroDialogue = languesHero[PlayerPrefs.GetInt("langue",0)].heroDialogues;
+            var heroDialogue = languesHero[PlayerPrefs.GetInt("langue", 0)].heroDialogues;
             if (dialogues.Count > 0)
                 dialogues.Add(interludeDialogues[Random.Range(0, interludeDialogues.Count)]);
-            if(heroDialogue.Count > 0)
+            if (heroDialogue.Count > 0)
                 dialogues.Add(heroDialogue[Random.Range(0, heroDialogue.Count)]);
         }
-        if (deckDialogues.Length>PlayerPrefs.GetInt("langue",0) && deckDialogues[PlayerPrefs.GetInt("langue",0)] != null)
+
+        if (deckDialogues.Length > PlayerPrefs.GetInt("langue", 0) &&
+            deckDialogues[PlayerPrefs.GetInt("langue", 0)] != null)
         {
             if (dialogues.Count > 0)
                 dialogues.Add(interludeDialogues[Random.Range(0, interludeDialogues.Count)]);
-            dialogues.Add(deckDialogues[PlayerPrefs.GetInt("langue",0)]);
+            dialogues.Add(deckDialogues[PlayerPrefs.GetInt("langue", 0)]);
         }
-        
-        
-        OnEndDialogEvent+=PlayNextDialogue;
-        
+
+
+        OnEndDialogEvent += PlayNextDialogue;
+
         PlayNextDialogue();
         this.cardsManager = cardsManager;
     }
@@ -133,13 +153,12 @@ public class DialogueManager : MonoBehaviour
     private void PlayNextDialogue()
     {
         dialogueIndex++;
-        if(dialogueIndex >= dialogues.Count)
+        if (dialogueIndex >= dialogues.Count)
         {
             OnEndDialogEvent = null;
             dialogueBox.SetActive(false);
             nextButton.onClick.RemoveAllListeners();
             timer.SetActive(true);
-            Time.timeScale = 1;
             Transform camTransform = Camera.main.transform;
             camTransform.DOMove(new Vector3(0, 6.71f, -4f), 1f);
             camTransform.DORotate(new Vector3(65.5f, 0, 0), 1f);
@@ -147,9 +166,9 @@ public class DialogueManager : MonoBehaviour
             canvaDragon.transform.DOMove(new Vector3(-6.9f, -0.2f, 1f), 1.5f);
             canvaDragon.transform.DORotate(new Vector3(90, 0, 0), 1.5f);
             canvaDragon.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.5f);
-            
+
             canvaHero.transform.DOMove(new Vector3(6.9f, -0.2f, 1.1f), 1.5f);
-            canvaHero.transform.DORotate(new Vector3(90,0,0), 1.5f);
+            canvaHero.transform.DORotate(new Vector3(90, 0, 0), 1.5f);
             canvaHero.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.5f);
 
             minionToken.SetActive(false);
@@ -157,14 +176,12 @@ public class DialogueManager : MonoBehaviour
             GameManager.Instance.isInDialogue = false;
             return;
         }
-        
+
         StartDialogue(dialogues[dialogueIndex]);
-        
     }
 
     private void StartDialogue(TextAsset currentDialogue)
     {
-
         if (currentDialogue == null)
         {
             dialogueBox.SetActive(false);
@@ -178,13 +195,14 @@ public class DialogueManager : MonoBehaviour
             story = new Story(currentDialogue.text);
             dialogueVariable.StartListening(story);
         }
-        catch{
+        catch
+        {
             dialogueBox.SetActive(false);
             Time.timeScale = 1;
-            return; 
+            return;
         }
-        
-        
+
+
         dialogueBox.SetActive(true);
         choice1.gameObject.SetActive(false);
         choice2.gameObject.SetActive(false);
@@ -197,26 +215,122 @@ public class DialogueManager : MonoBehaviour
         RefreshView();
     }
 
-    void RefreshView()
+    private void RefreshView()
     {
         var choices = story.currentChoices.Count;
+
+        if (displayLineCoroutine != null)
+        {
+            StopCoroutine(displayLineCoroutine);
+            displayLineCoroutine = null;
+            dialogueText.Source = completeText;
+            return;
+        }
+
         if (story.canContinue)
         {
-            dialogueText.Source = story.Continue();
+            displayLineCoroutine = StartCoroutine(DisplayLineRoutine(story.Continue()));
+            //dialogueText.Source = story.Continue();
             EvaluateTags();
         }
+
         else
         {
-            if(choices > 0)
+            if (choices > 0)
             {
                 DisplayChoices();
                 return;
             }
+
             dialogueVariable.StopListening(story);
             dialogueBox.SetActive(false);
             story = null;
             OnEndDialogEvent?.Invoke();
         }
+    }
+
+    private IEnumerator DisplayLineRoutine(string line)
+    {
+        yield return null;
+        openTags.Clear();
+        sourceText = string.Empty;
+        closeTags.Clear();
+        dialogueText.Source = string.Empty;
+        var settings = dialogueText.RenderSettings;
+        completeText = line;
+        Time.timeScale = 1;
+        for (var index = 0; index < line.Length; index++)
+        {
+            sourceText += CharacterToAppend();
+
+            var suffixesText = closeTags.Aggregate(string.Empty, (current, s) => current + s);
+
+            dialogueText.Source = $"{sourceText}{suffixesText}";
+            
+            yield return new WaitForSeconds(typingSpeed);
+            
+            continue;
+            
+            string CharacterToAppend()
+            {
+                var letter = line[index];
+                var characterToAppend = letter.ToString();
+                var tempTag = characterToAppend;
+
+                if (letter == ' ')
+                {
+                    index++;
+                    characterToAppend += CharacterToAppend();
+                    return characterToAppend;
+                }
+
+                if (characterToAppend.IsInTag(settings))
+                {
+                    if (CheckForMultiCharTag(out characterToAppend))
+                    {
+                        index += characterToAppend.Length - 1;
+                    }
+                }
+
+                if (characterToAppend.IsOpenTag(settings, out var closeTag) && !openTags.Contains(characterToAppend))
+                {
+                    index++;
+                    openTags.Add(characterToAppend);
+                    closeTags.Add(closeTag);
+                    characterToAppend += CharacterToAppend();
+                    return characterToAppend;
+                }
+
+                if (characterToAppend.IsCloseTag(settings, out var openTag))
+                {
+                    openTags.Remove(openTag);
+                    closeTags.Remove(characterToAppend);
+                    return characterToAppend;
+                }
+
+                return characterToAppend;
+
+                bool CheckForMultiCharTag(out string markdownTag)
+                {
+                    markdownTag = string.Empty;
+                    while (tempTag.IsInTag(settings))
+                    {
+                        if (index + tempTag.Length >= line.Length)
+                        {
+                            return false;
+                        }
+
+                        tempTag += line[index + tempTag.Length];
+                    }
+
+                    markdownTag = tempTag.Remove(tempTag.Length - 1, 1);
+                    return markdownTag.IsInTag(settings);
+                }
+            }
+        }
+
+        displayLineCoroutine = null;
+        dialogueText.Source = completeText;
     }
 
     private void EvaluateTags()
@@ -262,6 +376,7 @@ public class DialogueManager : MonoBehaviour
                                 //action a faire pour voir un minion a l'ecran
                                 break;
                         }
+
                         break;
                     case "damages":
                         var damage = int.Parse(split[1]);
@@ -275,14 +390,13 @@ public class DialogueManager : MonoBehaviour
                     case "changepers":
                         switch (split[1])
                         {
-                            
-                            case("bigleux"):
+                            case ("bigleux"):
                                 GameManager.Instance.currentHero.visionType = VisionType.BIGLEUX;
                                 break;
-                            case("visionBase"):
+                            case ("visionBase"):
                                 GameManager.Instance.currentHero.visionType = VisionType.LIGNEDROITE;
                                 break;
-                            case("clairvoyant"):
+                            case ("clairvoyant"):
                                 GameManager.Instance.currentHero.visionType = VisionType.CLAIRVOYANT;
                                 break;
                             case ("peureux"):
@@ -295,16 +409,18 @@ public class DialogueManager : MonoBehaviour
                                 GameManager.Instance.currentHero.aggressivity = Aggressivity.COURAGEUX;
                                 break;
                         }
+
                         break;
                     case "playSFX":
                         switch (split[1])
                         {
-                            case (not null) :
+                            case (not null):
                                 SoundManagerIngame.Instance.PlayDialogueSFX(split[1]);
                                 break;
-                            case (null) :
+                            case (null):
                                 break;
                         }
+
                         break;
                     case "changeclass":
                         switch (split[1])
@@ -315,13 +431,14 @@ public class DialogueManager : MonoBehaviour
                             case ("archer"):
                                 GameManager.Instance.currentHero.classe = archerClass;
                                 break;
-                            case("mage"):
+                            case ("mage"):
                                 GameManager.Instance.currentHero.classe = mageClass;
                                 break;
-                            case("barbarian"):
+                            case ("barbarian"):
                                 GameManager.Instance.currentHero.classe = barbareClass;
                                 break;
                         }
+
                         break;
                     case "changedeck":
                         //recuperer les nom des decks et les comprarer avec le split[1]
@@ -334,6 +451,7 @@ public class DialogueManager : MonoBehaviour
                                 break;
                             }
                         }
+
                         break;
                     case "healDragon":
                         var healDragon = int.Parse(split[1]);
@@ -346,12 +464,17 @@ public class DialogueManager : MonoBehaviour
                         {
                             case "in":
                                 print("IN");
-                                minionToken.transform.DOMove(new Vector3(-4.5f, 0.8f, 8), TickManager.Instance.calculateBPM()).SetUpdate(true);
+                                minionToken.transform
+                                    .DOMove(new Vector3(-4.5f, 0.8f, 8), TickManager.Instance.calculateBPM())
+                                    .SetUpdate(true);
                                 break;
                             case "out":
-                                minionToken.transform.DOMove(new Vector3(-10f, 0.8f, 8), TickManager.Instance.calculateBPM()).SetUpdate(true);
+                                minionToken.transform
+                                    .DOMove(new Vector3(-10f, 0.8f, 8), TickManager.Instance.calculateBPM())
+                                    .SetUpdate(true);
                                 break;
                         }
+
                         break;
                     case "name":
                         heroName.text = split[1];
@@ -368,6 +491,7 @@ public class DialogueManager : MonoBehaviour
                                 break;
                             }
                         }
+
                         break;
                 }
             }
@@ -389,9 +513,10 @@ public class DialogueManager : MonoBehaviour
         choice1.Btn.onClick.AddListener(delegate { OnClickChoiceButton(storyCurrentChoices[0]); });
         choice2.Btn.onClick.AddListener(delegate { OnClickChoiceButton(storyCurrentChoices[1]); });
     }
-    
-    void OnClickChoiceButton (Choice choice) {
-        story.ChooseChoiceIndex (choice.index);
+
+    void OnClickChoiceButton(Choice choice)
+    {
+        story.ChooseChoiceIndex(choice.index);
         choice1.Btn.onClick.RemoveAllListeners();
         choice2.Btn.onClick.RemoveAllListeners();
         choice1.gameObject.SetActive(false);
@@ -399,13 +524,13 @@ public class DialogueManager : MonoBehaviour
         nextButton.gameObject.SetActive(true);
         RefreshView();
     }
-    
+
     void ShowArrowKnight()
     {
         arrowDragon.SetActive(false);
         arrowKnight.SetActive(true);
         arrowMinion.SetActive(false);
-        
+
         lightHero.SetActive(true);
         lightDragon.SetActive(false);
     }
@@ -415,17 +540,17 @@ public class DialogueManager : MonoBehaviour
         arrowDragon.SetActive(true);
         arrowKnight.SetActive(false);
         arrowMinion.SetActive(false);
-        
+
         lightHero.SetActive(false);
         lightDragon.SetActive(true);
     }
-    
+
     void ShowArrowMinion()
     {
         arrowDragon.SetActive(false);
         arrowKnight.SetActive(false);
         arrowMinion.SetActive(true);
-        
+
         lightHero.SetActive(false);
         lightDragon.SetActive(false);
     }
@@ -440,6 +565,7 @@ public class DialogueManager : MonoBehaviour
     public void WiggleCard(Transform card, int mult = 1)
     {
         //print("test WIGGLE");
-        card.transform.DOLocalRotate(card.transform.localRotation.eulerAngles + new Vector3(0, mult*10, 0), 0.1f).SetEase(Ease.Linear).SetLoops(5, LoopType.Yoyo).SetUpdate(true);
+        card.transform.DOLocalRotate(card.transform.localRotation.eulerAngles + new Vector3(0, mult * 10, 0), 0.1f)
+            .SetEase(Ease.Linear).SetLoops(5, LoopType.Yoyo).SetUpdate(true);
     }
 }

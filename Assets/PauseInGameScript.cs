@@ -29,7 +29,7 @@ public class PauseInGameScript : MonoBehaviour
         soundSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0);
     }
 
-    void Update()
+    private void Update()
     {
         //si la touche echapest appuyée
         if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.isInDialogue)
@@ -60,14 +60,7 @@ public class PauseInGameScript : MonoBehaviour
     
     private void GameModeToggle(bool isOn)
     {
-        if (isOn)
-        {
-            PlayerPrefs.SetInt("DragNDrop", 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("DragNDrop", 0);
-        }
+        PlayerPrefs.SetInt("DragNDrop", isOn ? 1 : 0);
     }
     
     private void MusicSlider(float value)

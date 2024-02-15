@@ -8,7 +8,7 @@ public class DialogueBoxScript : MonoBehaviour
 {
     public static event Action OnDialogueNext;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Time.timeScale = 0;
     }
