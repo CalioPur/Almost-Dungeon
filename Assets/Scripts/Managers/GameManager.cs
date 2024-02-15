@@ -43,8 +43,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        /*OnGameStartEvent += */
-        SpawnHero();
+        //OnGameStartEvent += SpawnHero();
         //Time.timeScale = 1;
         mapManager.InitMap();
         mapManager.AddRandomCard();
@@ -58,6 +57,7 @@ public class GameManager : MonoBehaviour
 
         if (!DungeonManager._instance.TutorialDone)
             Instantiate(tutorialManagerPrefab);
+        SpawnHero();
     }
 
     private void OnDisable()
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         OnGameStartEvent = null;
     }
 
-    private void SpawnHero()
+    public void SpawnHero()
     {
         //int randomHero = Random.Range(0, heroesInfos.Count);
         if (currentHero == null)
@@ -96,19 +96,10 @@ public class GameManager : MonoBehaviour
     public static void StartGame()
     {
         OnGameStartEvent?.Invoke();
+        TickManager.Instance.PauseTick(false);
         isGameStarted = true;
     }
-
-    public void RestartGame()
-    {
-        FindObjectOfType<DungeonManager>().LoadNextLevel();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+    
 
     public void UpdateHeroPos(Vector2Int getIndexHeroPos)
     {
