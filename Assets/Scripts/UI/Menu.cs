@@ -15,11 +15,6 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject levelSelection;
     [SerializeField] private Image fadeImage;
 
-    private void Awake()
-    {
-        Time.timeScale = 1;
-    }
-
     void Start()
     {
         SaveSystem.LoadSave();

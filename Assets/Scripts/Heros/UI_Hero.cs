@@ -148,7 +148,7 @@ public class UI_Hero : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         endGamePanel.SetActive(true);
-        Time.timeScale = 0;
+        TickManager.Instance.PauseTick(true);
         yield return null;
     }
     

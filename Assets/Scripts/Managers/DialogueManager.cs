@@ -60,7 +60,8 @@ public class DialogueManager : MonoBehaviour
     
     DialogueVariable dialogueVariable;
     
-    private static event Action OnEndDialogEvent; 
+    public static event Action OnConversationEndedEvent;
+    private static event Action OnEndDialogEvent;
     private int dialogueIndex = -1;
     
     
@@ -139,7 +140,7 @@ public class DialogueManager : MonoBehaviour
             dialogueBox.SetActive(false);
             nextButton.onClick.RemoveAllListeners();
             timer.SetActive(true);
-            Time.timeScale = 1;
+            OnConversationEndedEvent?.Invoke();
             Transform camTransform = Camera.main.transform;
             camTransform.DOMove(new Vector3(0, 6.71f, -4f), 1f);
             camTransform.DORotate(new Vector3(65.5f, 0, 0), 1f);
@@ -170,6 +171,7 @@ public class DialogueManager : MonoBehaviour
             dialogueBox.SetActive(false);
             dialogueIndex++;
             OnEndDialogEvent?.Invoke();
+            OnConversationEndedEvent?.Invoke();
             return;
         }
 
@@ -180,7 +182,6 @@ public class DialogueManager : MonoBehaviour
         }
         catch{
             dialogueBox.SetActive(false);
-            Time.timeScale = 1;
             return; 
         }
         
@@ -189,7 +190,7 @@ public class DialogueManager : MonoBehaviour
         choice1.gameObject.SetActive(false);
         choice2.gameObject.SetActive(false);
         RefreshView();
-        Time.timeScale = 0;
+        TickManager.Instance.PauseTick(true);
     }
 
     public void NextDialogue()

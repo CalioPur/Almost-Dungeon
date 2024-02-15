@@ -46,37 +46,6 @@ public class UIManager : MonoBehaviour
         }
         yield break;
     }
-
-    /*private void Start()
-    {
-        AIType.options.Clear();
-        foreach (var personality in Enum.GetValues(typeof(Personnalities)))
-        {
-            AIType.options.Add(new TMP_Dropdown.OptionData(personality.ToString()));
-        }
-    }
-
-    private void Update()
-    {
-        AIType.onValueChanged.AddListener(delegate { ChangeAIType(); });
-    }
-
-    private void ChangeAIType()
-    {
-        heroBlackboard.personality = (Personnalities) AIType.value;
-    }
-
-    public void Pause()
-    {
-        PauseMenu.SetActive(true);
-        Time.timeScale = 0;
-    }
-    
-    public void Resume()
-    {
-        PauseMenu.SetActive(false);
-        Time.timeScale = 1;
-    }*/
     
     public void Quit()
     {

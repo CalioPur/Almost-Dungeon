@@ -43,12 +43,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         OnGameStartEvent += SpawnHero;
-        //Time.timeScale = 1;
         mapManager.InitMap();
         mapManager.AddRandomCard();
         mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(),rotationOfSpawnTile, out worldPos, posHero);
         worldPos += new Vector3(0, 0.1f, 0);
-        OnEndDialogEvent?.Invoke();
+        
         foreach (var light in lightsAmbiant)
         {
             light.color = DungeonManager._instance.dungeons[DungeonManager.SelectedBiome].dungeonSO.color;
@@ -84,6 +83,7 @@ public class GameManager : MonoBehaviour
         }
         
         UIManager._instance.heroBlackboard = heroScript.HeroBlackboard;
+        OnEndDialogEvent?.Invoke();
     }
 
     public static void StartGame()
