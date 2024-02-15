@@ -125,6 +125,7 @@ public class MapManager : MonoBehaviour
             }
         }
 
+        yield return null;
         StartCoroutine(UpdateBoard());
     }
 
