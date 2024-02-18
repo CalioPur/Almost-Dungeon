@@ -108,11 +108,12 @@ public class CheckDirectionToMove : Node
                 }
                 else
                 {
-                    Debug.LogError("MARCHE PO👺👺👺👺👺👺 options count : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
+                    Debug.LogError("MARCHE PO options count : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
                 }
             }
         }
-
+        
+        Debug.DrawRay(target.gameObject.transform.position + new Vector3(0.2f,0f,0f), Vector3.up, Color.yellow, 1);
         List<TileData> listOfEnemiesPos = new List<TileData>();
         listOfEnemiesPos.AddRange(from VARIABLE1 in blackboard.visibleTiles where VARIABLE1.enemies.Count > 0 select VARIABLE1);
         bool isAtExit = false;
@@ -154,7 +155,20 @@ public class CheckDirectionToMove : Node
                     blackboard.hero.mapManager.getMapArray(), true);
             }
         }
+        foreach (var VARIABLE in blackboard.memory)
+        {
+            Debug.DrawRay(VARIABLE.gameObject.transform.position, Vector3.up, Color.red, 1);
+        }
+
+        foreach (var VARIABLE in blackboard.options)
+        {
+            Debug.DrawRay(VARIABLE.gameObject.transform.position, Vector3.up, Color.green, 1);
+        }
         blackboard.options.Clear();
+        if (target.isVisited)
+        {
+            target = null;
+        }
 
         if (blackboard.directionToMove == DirectionToMove.Error)
         {
@@ -182,7 +196,6 @@ public class CheckDirectionToMove : Node
             default:
                 return NodeState.Failure;
         }
-
         if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;
         blackboard.hero.OutOfMap(blackboard.directionToMove);
         return NodeState.Failure;
