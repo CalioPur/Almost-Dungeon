@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f0686ad6da41e04095ff2a86b67d424, type: 3}
-  m_Name: 0_Tutorial
+  m_Name: 0_Tutorial 1
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: 39e25dfb505012f43bf877ed23840c23, type: 2}
+  - {fileID: 11400000, guid: dc22c1e5fafdcac409553885f05f8c45, type: 2}
   color: {r: 1, g: 1, b: 1, a: 1}

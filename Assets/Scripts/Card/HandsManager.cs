@@ -20,7 +20,6 @@ public class HandsManager : MonoBehaviour
     private void Start()
     {
         InitSlots();
-       
     }
     
     private void OnEnable()
@@ -42,7 +41,17 @@ public class HandsManager : MonoBehaviour
         indexCardToDraw = slotsHand.FindIndex(t => t.Card == cardInfo);
     }
 
-    private void InitSlots()
+    public void ClearHand()
+    {
+        for (int i = 0; i < slotsHand.Count; i++)
+        {
+            slotsHand[i].EmptyCard();
+            
+        }
+        Hand.Clear();
+    }
+    
+    public void InitSlots()
     {
         for (int i = 0; i < slotsHand.Count; i++)
         {

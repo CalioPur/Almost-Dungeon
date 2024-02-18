@@ -228,11 +228,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialDialogs:
   - tilePostion: {x: 1, y: 1}
-    Dialog: pomme peche poire
+    Dialog: "clic sur une tuile et clic sur l'endroit o\xF9 tu veux le placer. Attention,
+      un mur ne doit jamais boucher une sortie."
     direction: 2
+    isExploding: 0
   - tilePostion: {x: 2, y: 1}
-    Dialog: abricot non ?
-    direction: 3
+    Dialog: "Bravo ! j'ai supprim\xE9 une salle pour que tu puisse mettre un de tes
+      serviteur afin qu'il s'occupe de ce h\xE9ro"
+    direction: 2
+    isExploding: 1
   Positons:
   - {fileID: 8404466445917986063}
   - {fileID: 6932894682967474529}
@@ -242,6 +246,19 @@ MonoBehaviour:
     type: 3}
   SpawnPos: {fileID: 7293681729493343634}
   EndPos: {fileID: 4819502022596924858}
+  EnemiesToSpawn:
+  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
+    nbToBuild: 0
+  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
+    nbToBuild: 0
+  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
+    nbToBuild: 0
+  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
+    nbToBuild: 0
+  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
+    nbToBuild: 0
+  - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
+    nbToBuild: 0
 --- !u!1 &2627368051218432746
 GameObject:
   m_ObjectHideFlags: 0

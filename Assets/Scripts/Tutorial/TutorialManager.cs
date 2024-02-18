@@ -15,6 +15,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Transform MinionToken;
     [SerializeField] private Transform SpawnPos;
     [SerializeField] private Transform EndPos;
+    [SerializeField] private CardToBuild[] EnemiesToSpawn;
 
     private GameObject MinionTokenInstance;
 
@@ -42,6 +43,12 @@ public class TutorialManager : MonoBehaviour
             TickManager.Instance.PauseTick(false);
         });
     }
+    
+    private void Explose(Vector2Int posHero)
+    {
+        MapManager.Instance.ChangeTileDataAtPosition(posHero.x, posHero.y);
+        DeckManager.Instance.RefreshHand(EnemiesToSpawn);
+    }
 
     private void CheckTutorial(Vector2Int posHero)
     {
@@ -54,6 +61,10 @@ public class TutorialManager : MonoBehaviour
                 MinionTokenInstance.transform.position = SpawnPos.position;
                 MinionTokenInstance.SetActive(true);
                 TickManager.Instance.PauseTick(true);
+                if (tutorialDialog.isExploding)
+                {
+                    Explose(posHero + new Vector2Int(1, 0));
+                }
                 MinionTokenInstance.transform.DOMove(EndPos.position, 0.5f)
                     .SetEase(Ease.InBack).OnComplete(() =>
                     {

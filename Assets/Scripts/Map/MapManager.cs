@@ -44,11 +44,11 @@ public class MapManager : MonoBehaviour
 
     private IEnumerator UpdateBoard()
     {
-        List<TileData> tiles = new List<TileData>();
-        foreach (var tile in tiles)
-        {
-            tile.img.transform.localScale = new Vector3(1f, 1f, 1f);
-        }
+        // List<TileData> tiles = new List<TileData>();
+        // foreach (var tile in tiles)
+        // {
+        //     tile.img.transform.localScale = new Vector3(1f, 1f, 1f);
+        // }
 
         if (Hero.Instance)
         {
@@ -62,12 +62,12 @@ public class MapManager : MonoBehaviour
                         if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
                         {
                             mapArray[i, j - 1].img.sprite = ATTENTIONROUUUGE;
-                            tiles.Add(mapArray[i, j - 1]);
+                            //tiles.Add(mapArray[i, j - 1]);
                         }
                         else
                         {
                             mapArray[i, j - 1].img.sprite = ATTENTION;
-                            tiles.Add(mapArray[i, j - 1]);
+                            //tiles.Add(mapArray[i, j - 1]);
                         }
                     }
 
@@ -76,12 +76,12 @@ public class MapManager : MonoBehaviour
                         if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
                         {
                             mapArray[i, j + 1].img.sprite = ATTENTIONROUUUGE;
-                            tiles.Add(mapArray[i, j + 1]);
+                            //tiles.Add(mapArray[i, j + 1]);
                         }
                         else
                         {
                             mapArray[i, j + 1].img.sprite = ATTENTION;
-                            tiles.Add(mapArray[i, j + 1]);
+                            //tiles.Add(mapArray[i, j + 1]);
                         }
                     }
 
@@ -90,12 +90,12 @@ public class MapManager : MonoBehaviour
                         if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
                         {
                             mapArray[i - 1, j].img.sprite = ATTENTIONROUUUGE;
-                            tiles.Add(mapArray[i - 1, j]);
+                            //tiles.Add(mapArray[i - 1, j]);
                         }
                         else
                         {
                             mapArray[i - 1, j].img.sprite = ATTENTION;
-                            tiles.Add(mapArray[i - 1, j]);
+                            //tiles.Add(mapArray[i - 1, j]);
                         }
                     }
 
@@ -104,25 +104,25 @@ public class MapManager : MonoBehaviour
                         if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
                         {
                             mapArray[i + 1, j].img.sprite = ATTENTIONROUUUGE;
-                            tiles.Add(mapArray[i + 1, j]);
+                            //tiles.Add(mapArray[i + 1, j]);
                         }
                         else
                         {
                             mapArray[i + 1, j].img.sprite = ATTENTION;
-                            tiles.Add(mapArray[i + 1, j]);
+                            //tiles.Add(mapArray[i + 1, j]);
                         }
                     }
                 }
             }
 
-            yield return new WaitForSeconds(0.2f);
-            UpScale = !UpScale;
-            for (var index = 0; index < tiles.Count; index++)
-            {
-                var tile = tiles[index];
-                if (UpScale)
-                    tile.img.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-            }
+            // yield return new WaitForSeconds(0.2f);
+            // UpScale = !UpScale;
+            // for (var index = 0; index < tiles.Count; index++)
+            // {
+            //     var tile = tiles[index];
+            //     if (UpScale)
+            //         tile.img.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            // }
         }
 
         yield return null;
@@ -364,7 +364,22 @@ public class MapManager : MonoBehaviour
             mapArray[xCoord, yCoord].isConnectedToPath = false;
             mapArray[xCoord, yCoord].isExit = false;
             mapArray[xCoord, yCoord].PiecePlaced = false;
-            mapArray[xCoord, yCoord]._instance.Rotation = 0;
+            int childCount = mapArray[xCoord, yCoord].transform.childCount;
+            List<GameObject> children = new List<GameObject>();
+            for (int i = 0; i < childCount; i++)
+            {
+                children.Add(mapArray[xCoord, yCoord].transform.GetChild(i).gameObject);
+            }
+
+            mapArray[xCoord, yCoord].transform.DetachChildren();
+            
+            foreach (var child in children)
+            {
+                Destroy(child);
+            }
+
+            if (mapArray[xCoord, yCoord]._instance != null)
+                mapArray[xCoord, yCoord]._instance.Rotation = 0;
         }
     }
 
