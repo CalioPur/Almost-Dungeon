@@ -3451,12 +3451,6 @@ PrefabInstance:
       objectReference: {fileID: 4900000, guid: 4ed389083f8177e4c898823e3b1d858a, type: 3}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
-      propertyPath: TutorialDungeon
-      value: 
-      objectReference: {fileID: 11400000, guid: 969d4aa98198a684b9d459b1e7bac9b6,
-        type: 2}
-    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
-        type: 3}
       propertyPath: dungeons.Array.size
       value: 4
       objectReference: {fileID: 0}

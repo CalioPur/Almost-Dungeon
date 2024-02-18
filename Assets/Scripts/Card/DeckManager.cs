@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -26,12 +27,14 @@ public class DeckManager : MonoBehaviour
     private int cptCardsObtained = 0;
     private Coroutine currentlyDrawing;
     private Vector3 centerDeck;
+    public static DeckManager Instance { get; set; }
 
     private void Awake()
     {
         GameManager.OnGameStartEvent += BeginToDraw;
         PlayerCardController.OnFinishToPose += RemoveCard;
         HandsManager.OnCardWasDiscardedEvent += RemoveCard;
+        Instance = this;
     }
 
     private void OnDisable()
@@ -58,6 +61,24 @@ public class DeckManager : MonoBehaviour
         InitDeck();
         ShuffleDeck();
         StartCoroutine(InitHand());
+    }
+
+    public void RefreshHand(CardToBuild[] newHand)
+    {
+        handsManager.ClearHand();
+        cptCardsObtained = 0;
+        foreach (var card in newHand)
+        {
+            if (deckCreate.Count == 0 || cptCardsObtained >= handsManager.GetMaxCard()) return;
+        
+            cptCardsObtained++;
+            CardInfoInstance newCard = null;
+                
+            handsManager.AddCard(card.cardToBuild.CreateInstance(), out newCard);
+            CardHand availableSlot = handsManager.getAvailableSlot();
+            availableSlot.GetImage().enabled = true;
+            StartCoroutine(AnimationDrawCard(availableSlot, newCard));
+        }
     }
 
     private IEnumerator InitHand()
@@ -105,10 +126,11 @@ public class DeckManager : MonoBehaviour
             InitDeck();
             ShuffleDeck();
         }
+        while (TickManager.Instance.TickOnPaused)
+            yield return new WaitForEndOfFrame();
 
         if (cptCardsObtained < handsManager.GetMaxCard())
             DrawCard();
-
         if (currentlyDrawing != null)
             StopCoroutine(currentlyDrawing);
         currentlyDrawing = StartCoroutine(CheckDrawCard());
@@ -154,12 +176,17 @@ public class DeckManager : MonoBehaviour
     private void DrawCard()
     {
         if (deckCreate.Count == 0 || cptCardsObtained >= handsManager.GetMaxCard()) return;
-        
+        CardHand availableSlot = handsManager.getAvailableSlot();
+        if (availableSlot == null)
+        {
+            return;
+        }
         cptCardsObtained++;
         CardInfoInstance newCard = null;
         if (deckCreate.Count <= 0) return;
         handsManager.AddCard(deckCreate[0], out newCard);
-        CardHand availableSlot = handsManager.getAvailableSlot();
+       
+
         availableSlot.GetImage().enabled = true;
         StartCoroutine(AnimationDrawCard(availableSlot, newCard));
         deckCreate.RemoveAt(0);
