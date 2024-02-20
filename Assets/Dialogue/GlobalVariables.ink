@@ -18,6 +18,8 @@ VAR SKnight12Seen = false
 VAR SKnight13Seen = false
 VAR SKnight14Seen = false
 VAR SKnight15Seen = false
+VAR SKnight16Seen = false
+VAR SKnight17Seen = false
 
 //Secondary Barbarians !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 VAR SBarbarian1Seen = false

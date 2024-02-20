@@ -1,13 +1,13 @@
 INCLUDE ../../GlobalVariables.ink
 
-{not SKnight15Seen : Enfin, un dragon ! Je vais enfin obtenir ce qui me revient de droit ! #chara:knight} 
-{SKnight15Seen : Père Enoch ! Quel plaisir de vous recroiser ici. #chara:dragon}
-{not SKnight15Seen : ->Encounter1} 
-{SKnight15Seen : ->Encounter2} 
+{not SKnight16Seen : Enfin, un dragon ! Je vais enfin obtenir ce qui me revient de droit ! #chara:knight} 
+{SKnight16Seen : Ha... haaaaaa... Dragon, cette fois-ci j'aurai l'un de tes os ! #chara:dragon}
+{not SKnight16Seen : ->Encounter1} 
+{SKnight16Seen : ->Encounter2} 
 
 === Encounter1 ===
 Hmm... Pour une fois qu'un héros semble heureux de me voir... #chara:dragon
-~SKnight14Seen = true 
+~SKnight16Seen = true 
 Tu ne crois pas si bien dire Dragon ! #chara:knight
 Tes os me permettront de lever une armée et de prendre le Val.
 Je ne pense pas que les chevaliers seront très heureux d'apprendre ça... #chara:dragon

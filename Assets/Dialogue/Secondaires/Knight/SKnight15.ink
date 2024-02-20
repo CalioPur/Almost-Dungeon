@@ -1,13 +1,13 @@
 INCLUDE ../../GlobalVariables.ink
 
 {not SKnight15Seen : Enfin la forêt souterraine, si les légendes disent vrai, je ne suis qu'à quelques pas de l'artefact ! #chara:knight} 
-{SKnight15Seen : Père Enoch ! Quel plaisir de vous recroiser ici. #chara:dragon}
+{SKnight15Seen : Je... Je dois obtenir cet artefact à tout prix ! #chara:dragon}
 {not SKnight15Seen : ->Encounter1} 
 {SKnight15Seen : ->Encounter2} 
 
 === Encounter1 ===
 Et bien chevalier... On tente de piller mon Donjon ? #chara:dragon
-~SKnight14Seen = true 
+~SKnight15Seen = true 
 Mais bien-sûr Dragon, c'est mon objectif et tu n'y pourra rien. #chara:knight
 Et qu'est ce qui vaut un tel intérêt pour mes trésors ? #chara:dragon
 Il y'a dans vos trésors un livre magique connu pour renfermer un savoir divin... Je veux m'en emparer... #chara:knight
