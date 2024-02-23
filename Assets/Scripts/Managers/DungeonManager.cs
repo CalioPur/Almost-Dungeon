@@ -85,7 +85,8 @@ public class DungeonManager : MonoBehaviour
     
     private void LoadLevel()
     {
-        PlayerPrefs.SetInt("LevelUnlock" + 1, 1); //on unlock le niveau 2 au lancement d'un donjon, qui sera forcement le niveau 1
+        if(TutorialDone)
+            PlayerPrefs.SetInt("LevelUnlock" + 1, 1); //on unlock le niveau 2 au lancement d'un donjon, qui sera forcement le niveau 1, sauf si c'est le tutoriel
         
         if (currentLevel == 0)
             UI_Dragon.currentHealth = UI_Dragon.maxHealth;
