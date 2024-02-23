@@ -31,6 +31,7 @@ public class Pyke : TrapData
         bool isOnFire = false;
         //je check si le hero ou les minions sont sur ma case
         mapManager.GetMonstersOnPos(new Vector2Int(indexX, indexY), out List<TrapData> minions);
+        GetHeroPosOnTile(Hero.Instance.GetIndexHeroPos());
         if (minions.Count > 0)
         {
             foreach (var minion in minions)
@@ -44,7 +45,9 @@ public class Pyke : TrapData
             Attack(pykeInstance.So.damage, AttackType.Fire);
             isOnFire = true;
         }
-        
+
+        print("HeroPos : " + heroPos);
+        print("MyPos : " + indexX + " " + indexY);
         if (isOnFire)
         {
             StartCoroutine(AttackFX());
@@ -55,6 +58,7 @@ public class Pyke : TrapData
     {
         pykeInstance = SO.CreateInstance();
         TickManager.Instance.SubscribeToMovementEvent(MovementType.Trap, OnTick, out entityId);
+        
     }
 
     private void GetHeroPosOnTile(Vector2Int pos)
