@@ -113,7 +113,6 @@ public class CheckDirectionToMove : Node
             }
         }
         
-        Debug.DrawRay(target.gameObject.transform.position + new Vector3(0.2f,0f,0f), Vector3.up, Color.yellow, 1);
         List<TileData> listOfEnemiesPos = new List<TileData>();
         listOfEnemiesPos.AddRange(from VARIABLE1 in blackboard.visibleTiles where VARIABLE1.enemies.Count > 0 select VARIABLE1);
         bool isAtExit = false;
