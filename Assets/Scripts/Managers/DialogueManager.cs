@@ -571,6 +571,6 @@ public class DialogueManager : MonoBehaviour
     {
         //print("test WIGGLE");
         card.transform.DOLocalRotate(card.transform.localRotation.eulerAngles + new Vector3(0, mult * 10, 0), 0.1f)
-            .SetEase(Ease.Linear).SetLoops(5, LoopType.Yoyo).SetUpdate(true);
+            .SetEase(Ease.Linear).SetLoops(4, LoopType.Yoyo).SetUpdate(true);
     }
 }
