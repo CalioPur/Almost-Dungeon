@@ -41,6 +41,7 @@ public class Hero : MonoBehaviour, IFlippable
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
         animQueue.AddAnim(new AnimToQueue(heroTr, targetTr,  offset , false, delay));
+        animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("Move");
         GameManager.Instance.UpdateHeroPos(GetIndexHeroPos());
     }
@@ -174,6 +175,7 @@ public class Hero : MonoBehaviour, IFlippable
         // {
         //     Sprite.DOColor(Color.white, 0.2f).SetEase(Ease.InBack);
         // });
+        animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("TakeDamage");
         OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
     }
@@ -242,6 +244,7 @@ public class Hero : MonoBehaviour, IFlippable
 
     public void Flip()
     {
+        animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("Flip");
     }
 }

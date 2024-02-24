@@ -69,6 +69,20 @@ public class TickManager : MonoBehaviour
         Initialize(BPM);
     }
 
+    public float calculateIncreaseSpeed()
+    {
+        float speed = GameManager.Instance.GetHeroSpeed() * 0.5f;
+        if (speed > 0)
+        {
+            if (elapsedTime > BPMBoostCurve[BPMBoostCurve.length - 1].time)
+                speed += BPMBoostCurve[BPMBoostCurve.length - 1].value;
+            else
+                speed += BPMBoostCurve.Evaluate(elapsedTime);
+        }
+
+        return speed;
+    }
+    
     public float calculateBPM()
     {
         float bpm = beatInterval;

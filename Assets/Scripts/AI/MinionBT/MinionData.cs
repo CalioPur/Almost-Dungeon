@@ -39,12 +39,14 @@ public class MinionData : TrapData, IFlippable
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
         animQueue.AddAnim(new AnimToQueue(tr, targetTr, offset, false, delay));
+        animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("Move");
     }
 
     public override void TakeDamage(int damage, AttackType attackType)
     {
         if (isDead) return;
+        animator.speed = TickManager.Instance.calculateIncreaseSpeed();
 animator.SetTrigger("TakeDamage");
         minionInstance.CurrentHealthPoint -= damage;
         if (minionInstance.CurrentHealthPoint <= 0)
@@ -115,6 +117,7 @@ animator.SetTrigger("TakeDamage");
 
     public void Flip()
     {
+        animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("Flip");
     }
 }
