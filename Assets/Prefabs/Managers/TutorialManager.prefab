@@ -227,16 +227,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialDialogs:
-  - tilePostion: {x: 1, y: 1}
-    Dialog: "clic sur une tuile et clic sur l'endroit o\xF9 tu veux le placer. Attention,
-      un mur ne doit jamais boucher une sortie."
+  - tilePostionToTrigger: {x: 0, y: 3}
+    tilePostionGoalPos: {x: 0, y: 4}
+    Dialog: "\"Devant une sortie, le h\xE9ros t'inflige des degats directement, place
+      plus de tuiles pour \xE9viter qu'il ne t'ateigne !"
     direction: 2
     isExploding: 0
-  - tilePostion: {x: 2, y: 1}
-    Dialog: "Bravo ! j'ai supprim\xE9 une salle pour que tu puisse mettre un de tes
-      serviteur afin qu'il s'occupe de ce h\xE9ro"
+  - tilePostionToTrigger: {x: 2, y: 2}
+    tilePostionGoalPos: {x: 2, y: 1}
+    Dialog: "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place
+      des tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
     direction: 2
-    isExploding: 1
+    isExploding: 0
+  - tilePostionToTrigger: {x: 2, y: 0}
+    tilePostionGoalPos: {x: 2, y: 1}
+    Dialog: "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place
+      des tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
+    direction: 2
+    isExploding: 0
+  - tilePostionToTrigger: {x: 4, y: 2}
+    tilePostionGoalPos: {x: 4, y: 1}
+    Dialog: "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place
+      des tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
+    direction: 2
+    isExploding: 0
+  - tilePostionToTrigger: {x: 4, y: 0}
+    tilePostionGoalPos: {x: 4, y: 1}
+    Dialog: "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place
+      des tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
+    direction: 2
+    isExploding: 0
+  - tilePostionToTrigger: {x: 6, y: 1}
+    tilePostionGoalPos: {x: 6, y: 2}
+    Dialog: Clique gauche sur une tuile de ta main pour la selectionner. clique droit
+      sur le terrain pour la faire tourner
+    direction: 2
+    isExploding: 0
   Positons:
   - {fileID: 8404466445917986063}
   - {fileID: 6932894682967474529}
@@ -259,6 +285,8 @@ MonoBehaviour:
     nbToBuild: 0
   - cardToBuild: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
     nbToBuild: 0
+  canNotPlaceHere: "Euh ... pour l'instant, tu devrais placer tes tuiles \xE0 cot\xE9
+    de celles d\xE9ja sur le terrain"
 --- !u!1 &2627368051218432746
 GameObject:
   m_ObjectHideFlags: 0

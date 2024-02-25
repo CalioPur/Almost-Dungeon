@@ -49,6 +49,11 @@ public class PlayerCardController : MonoBehaviour
 
     private void PlaceCard(TileData data, CardHand card, bool canBePlaced)
     {
+        
+        if (canBePlaced && TutorialManager.Instance != null)
+        {
+            canBePlaced = TutorialManager.Instance.CanBePlaced(data);
+        }
         if (!canBePlaced) return;
         
         cardVisualizer.gameObject.SetActive(false);

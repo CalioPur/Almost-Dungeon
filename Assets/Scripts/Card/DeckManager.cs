@@ -102,7 +102,7 @@ public class DeckManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(DrawStartedCard());
+            StartCoroutine(DrawStartedCard(nbCardOnStartToDraw));
         }
     }
 
@@ -162,11 +162,16 @@ public class DeckManager : MonoBehaviour
             }
         }
     }
+    
+    public void RedrawHand(int nb)
+    {
+        StartCoroutine(DrawStartedCard(nb));
+    }
 
-    IEnumerator DrawStartedCard()
+    private IEnumerator DrawStartedCard(int nb)
     {
         yield return new WaitForSeconds(TimerAnimationDrawCard);
-        for (int i = 0; i < nbCardOnStartToDraw; i++)
+        for (int i = 0; i < nb; i++)
         {
             DrawCard();
             yield return new WaitForSeconds(TimerAnimationDrawCard);
@@ -175,6 +180,7 @@ public class DeckManager : MonoBehaviour
 
     private void DrawCard()
     {
+        if (TutorialManager.Instance != null) return;
         if (deckCreate.Count == 0 || cptCardsObtained >= handsManager.GetMaxCard()) return;
         CardHand availableSlot = handsManager.getAvailableSlot();
         if (availableSlot == null)

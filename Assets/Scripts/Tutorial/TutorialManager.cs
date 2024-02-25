@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
+    public static TutorialManager Instance { get; private set; }
+
     [SerializeField] private List<TutorialDialogData> tutorialDialogs;
     [SerializeField] private List<RectTransform> Positons;
     [SerializeField] private RectTransform TextBox;
@@ -16,13 +18,25 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Transform SpawnPos;
     [SerializeField] private Transform EndPos;
     [SerializeField] private CardToBuild[] EnemiesToSpawn;
+    [SerializeField] private string canNotPlaceHere;
 
     private GameObject MinionTokenInstance;
+    private bool tutorialIsRunning = false;
+    private Vector2Int GoalPos;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+
+        Instance = this;
+    }
 
     private void Start()
     {
         GameManager.Instance.HeroPosUpdatedEvent += CheckTutorial;
-        PlayerCardController.OnFinishToPose += CloseTutorial;
         MinionTokenInstance = Instantiate(MinionToken.gameObject, transform);
         MinionTokenInstance.SetActive(false);
         MinionTokenInstance.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // TODO: Remove this line
@@ -31,19 +45,113 @@ public class TutorialManager : MonoBehaviour
     private void OnDisable()
     {
         GameManager.Instance.HeroPosUpdatedEvent -= CheckTutorial;
-        PlayerCardController.OnFinishToPose -= CloseTutorial;
     }
 
-    private void CloseTutorial(CardInfoInstance _)
+    public bool CanBePlaced(TileData data)
+    {
+        MapManager.Instance.GetIndexFromTile(data, out Vector2Int TilePos);
+        bool canBePlaced = tutorialDialogs.Exists(x => x.tilePostionGoalPos == TilePos);
+        if (!canBePlaced) OpenTutorial(DirectionToMove.Up, canNotPlaceHere, false, new Vector2Int(-1, -1));
+        else
+        {
+            CloseTutorial(GoalPos == TilePos);
+            if (GoalPos == TilePos)
+            {
+                GoalPos = new Vector2Int(-1, -1);
+            }
+
+
+            for (int i = 0; i < tutorialDialogs.Count; i++)
+            {
+                if (tutorialDialogs[i].tilePostionGoalPos == TilePos)
+                {
+                    tutorialDialogs.RemoveAt(i);
+                    --i;
+                }
+            }
+            if (tutorialDialogs.Count == 0)
+            {
+                DeckManager.Instance.RedrawHand(4);
+                Destroy(gameObject);
+            }
+        }
+
+        return canBePlaced;
+    }
+
+    private void CloseTutorial(bool UnPause)
     {
         TextBox.gameObject.SetActive(false);
+        tutorialIsRunning = false;
         MinionTokenInstance.transform.DOMove(SpawnPos.position, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
         {
             MinionTokenInstance.SetActive(false);
-            TickManager.Instance.PauseTick(false);
+            if (UnPause)
+                TickManager.Instance.PauseTick(false);
         });
     }
-    
+
+    private void OpenTutorial(DirectionToMove anchor, string text, bool stopped, Vector2Int GoalposToHit)
+    {
+        Text.text = text;
+        if (GoalposToHit != new Vector2Int(-1, -1))
+        {
+            GoalPos = GoalposToHit;
+        }
+
+        if (!tutorialIsRunning)
+        {
+            MinionTokenInstance.transform.position = SpawnPos.position;
+            MinionTokenInstance.SetActive(true);
+            if (stopped)
+                TickManager.Instance.PauseTick(true);
+            TextBox.gameObject.SetActive(true);
+            tutorialIsRunning = true;
+            MinionTokenInstance.transform.DOMove(EndPos.position, 0.5f)
+                .SetEase(Ease.InBack).OnComplete(() =>
+                {
+                    TextBox.gameObject.SetActive(true);
+
+                    switch (anchor)
+                    {
+                        case DirectionToMove.Up:
+                            TextBox.position = Positons[0].position;
+                            break;
+                        case DirectionToMove.Down:
+                            TextBox.position = Positons[1].position;
+                            break;
+                        case DirectionToMove.Left:
+                            TextBox.position = Positons[0].position; //NOT implemented
+                            break;
+                        case DirectionToMove.Right:
+                            TextBox.position = Positons[0].position; //NOT implemented
+                            break;
+                    }
+                });
+        }
+        else
+        {
+            switch (anchor)
+            {
+                case DirectionToMove.Up:
+                    TextBox.position = Positons[0].position;
+                    break;
+                case DirectionToMove.Down:
+                    TextBox.position = Positons[1].position;
+                    break;
+                case DirectionToMove.Left:
+                    TextBox.position = Positons[0].position; //NOT implemented
+                    break;
+                case DirectionToMove.Right:
+                    TextBox.position = Positons[0].position; //NOT implemented
+                    break;
+            }
+
+            if (stopped)
+                TickManager.Instance.PauseTick(true);
+        }
+    }
+
     private void Explose(Vector2Int posHero)
     {
         MapManager.Instance.ChangeTileDataAtPosition(posHero.x, posHero.y);
@@ -56,39 +164,13 @@ public class TutorialManager : MonoBehaviour
 
         foreach (var tutorialDialog in tutorialDialogs)
         {
-            if (posHero == tutorialDialog.tilePostion)
+            if (posHero == tutorialDialog.tilePostionToTrigger)
             {
-                MinionTokenInstance.transform.position = SpawnPos.position;
-                MinionTokenInstance.SetActive(true);
-                TickManager.Instance.PauseTick(true);
+                OpenTutorial(tutorialDialog.direction, tutorialDialog.Dialog, true, tutorialDialog.tilePostionGoalPos);
                 if (tutorialDialog.isExploding)
                 {
                     Explose(posHero + new Vector2Int(1, 0));
                 }
-                MinionTokenInstance.transform.DOMove(EndPos.position, 0.5f)
-                    .SetEase(Ease.InBack).OnComplete(() =>
-                    {
-                        TextBox.gameObject.SetActive(true);
-
-                        switch (tutorialDialog.direction)
-                        {
-                            case DirectionToMove.Up:
-                                TextBox.position = Positons[0].position;
-                                break;
-                            case DirectionToMove.Down:
-                                TextBox.position = Positons[1].position;
-                                break;
-                            case DirectionToMove.Left:
-                                TextBox.position = Positons[0].position; //NOT implemented
-                                break;
-                            case DirectionToMove.Right:
-                                TextBox.position = Positons[0].position; //NOT implemented
-                                break;
-                        }
-
-                        Text.text = tutorialDialog.Dialog;
-                        tutorialDialogs.Remove(tutorialDialog);
-                    });
 
                 return;
             }

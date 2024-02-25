@@ -231,12 +231,4 @@ public class TickManager : MonoBehaviour
     {
         EndGame = true;
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            PauseTick(!TickOnPaused);
-        }
-    }
 }
