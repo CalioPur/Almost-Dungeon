@@ -141,7 +141,7 @@ public class CheckDirectionToMove : Node
                 {
                 }
             }
-            else if (blackboard.aggressivity == Aggressivity.COURAGEUX)
+            else if (blackboard.aggressivity == Aggressivity.COURAGEUX && listOfEnemiesPos.Count > 0)
             {
                 blackboard.directionToMove = BFSScript.BFSGoInDirection(blackboard.hero.GetIndexHeroPos(),
                     listOfEnemiesPos,
@@ -164,7 +164,7 @@ public class CheckDirectionToMove : Node
             Debug.DrawRay(VARIABLE.gameObject.transform.position, Vector3.up, Color.green, 1);
         }
         blackboard.options.Clear();
-        if (target.isVisited)
+        if (target != null && target.isVisited)
         {
             target = null;
         }
