@@ -22,5 +22,6 @@ MonoBehaviour:
   languages:
   - heroDialogues:
     - {fileID: 0}
+  - heroDialogues:
     - {fileID: 4900000, guid: 209f34e84f345c145aff60ce44cd3f7c, type: 3}
   keyToUnlock: D1_L3
