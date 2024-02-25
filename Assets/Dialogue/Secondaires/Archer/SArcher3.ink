@@ -6,7 +6,7 @@ INCLUDE ../../GlobalVariables.ink
 {SArcher3Seen : ->Encounter2} 
 
 === Encounter1 ===
-Malédiction ! L'IDG, vite mon sbire ! Ils ne doivent pas trouver nos fiches de paie ! #chara:dragon
+Malédiction ! L'IGD, vite mon sbire ! Ils ne doivent pas trouver nos fiches de paie ! #chara:dragon
 ~SArcher3Seen = true 
 Pas de soucis Patron ! Trouvez un moyen de la retarder !  #chara:minion #minion:in
 Ah monsieur le Dragon, nous allons pouvoir commencer l'inspection. #chara:archer #minion:out
@@ -24,7 +24,7 @@ Ils n'en sortirons pas vivants ! #chara:archer #changepers:courageux
 -> END
 
 === Encounter2 ===
-Enfer ! Encore l'IDG, vite mon sbire ! Il  faut recacher nos fiches de paie ! #chara:dragon
+Enfer ! Encore l'IGD, vite mon sbire ! Il  faut recacher nos fiches de paie ! #chara:dragon
 J'y vais patron ! #chara:minion
 Ah monsieur le Dragon, cette fois ci je vais avoir besoin de vos fiches de paie. #minion:out
 Et bien vous allez rire mais ma machoire me dérange toujours... #chara:dragon 
