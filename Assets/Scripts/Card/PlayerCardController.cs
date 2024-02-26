@@ -66,34 +66,34 @@ public class PlayerCardController : MonoBehaviour
         soundManagerIngame.PlayDialogueSFX("UiNegativeClick");
     }
 
-    IEnumerator RotateB(float time, float desiredAngle, float direction)
+    public IEnumerator RotateB(CardHand cardRot, float time, float desiredAngle, float direction)
     {
         float ratio = direction * 90.0f / time;
         
         while (time > 0)
         {
-            if (selectedCard == null) yield break;
+            if (cardRot == null) yield break;
             time -= Time.deltaTime;
-            Vector3 rot = selectedCard.GetImage().transform.rotation.eulerAngles;
+            Vector3 rot = cardRot.GetImage().transform.rotation.eulerAngles;
             rot += new Vector3(0, 0, ratio * Time.deltaTime);
             Vector3 rot2 = cardVisualizer.transform.rotation.eulerAngles;
             rot2 += new Vector3(0, 0, ratio * Time.deltaTime);
-            selectedCard.GetImage().transform.rotation = Quaternion.Euler(rot);
+            cardRot.GetImage().transform.rotation = Quaternion.Euler(rot);
             cardVisualizer.transform.rotation = Quaternion.Euler(rot2);
             yield return null;
         }
 
-        if (selectedCard == null) yield break;
-        selectedCard.GetImage().transform.rotation = Quaternion.Euler(new Vector3(0, 0, desiredAngle));
+        if (cardRot == null) yield break;
+        cardRot.GetImage().transform.rotation = Quaternion.Euler(new Vector3(0, 0, desiredAngle));
         cardVisualizer.transform.rotation = Quaternion.Euler(new Vector3(90, 0, desiredAngle));
     }
 
-    private void RotateSelection(bool direction)
+    public void RotateSelection(bool direction)
     {
         if (selectedCard != null)
         {
             selectedCard.Card.AddRotation(direction);
-            StartCoroutine(RotateB(0.2f, selectedCard.Card.Rotation, direction ? 1 : -1));
+            StartCoroutine(RotateB(selectedCard, 0.2f, selectedCard.Card.Rotation, direction ? 1 : -1));
         }
     }
     

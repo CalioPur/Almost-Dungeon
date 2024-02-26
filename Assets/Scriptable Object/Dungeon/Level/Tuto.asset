@@ -20,13 +20,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9d9bd96ffc865314eb7a579d7e474fc4, type: 2}
   PrebuildHand:
   - cardToBuild: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
+    nbToBuild: 2
+  - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+    nbToBuild: 1
+  - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     nbToBuild: 0
   - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    nbToBuild: 1
-  - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    nbToBuild: 1
-  - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    nbToBuild: 1
+    nbToBuild: 0
   nbCardToDraw: 5
   keysElementsToUnlock:
   - D4_L4

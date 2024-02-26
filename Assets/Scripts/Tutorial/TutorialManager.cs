@@ -38,10 +38,12 @@ public class TutorialManager : MonoBehaviour
     public void MinionMove()
     {
         if (minionMoved > 0) return;
-        OpenTutorial(DirectionToMove.Up, "Ce monstre errant dans le donjon vous appartient. Lorsqu'il voit le héros, il vient lui infliger des dégats.", true, new Vector2Int(-1, -1));
+        OpenTutorial(DirectionToMove.Up,
+            "Ce monstre errant dans le donjon vous appartient. Lorsqu'il voit le héros, il vient lui infliger des dégats.",
+            true, new Vector2Int(-1, -1));
         minionMoved = 1;
     }
-    
+
     private void Start()
     {
         GameManager.Instance.HeroPosUpdatedEvent += CheckTutorial;
@@ -64,7 +66,6 @@ public class TutorialManager : MonoBehaviour
         if (!canBePlaced) OpenTutorial(DirectionToMove.Up, canNotPlaceHere, false, new Vector2Int(-1, -1));
         else
         {
-            
             if (GoalPos == TilePos)
             {
                 CloseTutorial(true);
@@ -80,15 +81,21 @@ public class TutorialManager : MonoBehaviour
                     --i;
                 }
             }
-            if (tutorialDialogs.Count == 0)
+
+            if (tutorialDialogs.Count == 0 && minionMoved == 2)
             {
-                DeckManager.Instance.RedrawHand(4);
-                TickManager.Instance.PauseTick(false);
-                Destroy(gameObject);
+                EndOfTutorial();
             }
         }
 
         return canBePlaced;
+    }
+
+    private void EndOfTutorial()
+    {
+        DeckManager.Instance.RedrawHand(4);
+        TickManager.Instance.PauseTick(false);
+        Destroy(gameObject, 0.4f);
     }
 
     private void CloseTutorial(bool UnPause)
@@ -117,29 +124,26 @@ public class TutorialManager : MonoBehaviour
             MinionTokenInstance.SetActive(true);
             if (stopped)
                 TickManager.Instance.PauseTick(true);
-            TextBox.gameObject.SetActive(true);
             tutorialIsRunning = true;
-            MinionTokenInstance.transform.DOMove(EndPos.position, 0.5f)
-                .SetEase(Ease.InBack).OnComplete(() =>
-                {
-                    TextBox.gameObject.SetActive(true);
+            TextBox.gameObject.SetActive(true);
+            switch (anchor)
+            {
+                case DirectionToMove.Up:
+                    TextBox.position = Positons[0].position;
+                    break;
+                case DirectionToMove.Down:
+                    TextBox.position = Positons[1].position;
+                    break;
+                case DirectionToMove.Left:
+                    TextBox.position = Positons[0].position; //NOT implemented
+                    break;
+                case DirectionToMove.Right:
+                    TextBox.position = Positons[0].position; //NOT implemented
+                    break;
+            }
 
-                    switch (anchor)
-                    {
-                        case DirectionToMove.Up:
-                            TextBox.position = Positons[0].position;
-                            break;
-                        case DirectionToMove.Down:
-                            TextBox.position = Positons[1].position;
-                            break;
-                        case DirectionToMove.Left:
-                            TextBox.position = Positons[0].position; //NOT implemented
-                            break;
-                        case DirectionToMove.Right:
-                            TextBox.position = Positons[0].position; //NOT implemented
-                            break;
-                    }
-                });
+            MinionTokenInstance.transform.DOMove(EndPos.position, 0.5f)
+                .SetEase(Ease.InBack);
         }
         else
         {
@@ -172,7 +176,7 @@ public class TutorialManager : MonoBehaviour
 
     private void CheckTutorial(Vector2Int posHero)
     {
-        if (tutorialDialogs.Count == 0) Destroy(gameObject);
+        if (tutorialDialogs.Count == 0 && minionMoved == 2) Destroy(gameObject);
 
         foreach (var tutorialDialog in tutorialDialogs)
         {
@@ -191,10 +195,11 @@ public class TutorialManager : MonoBehaviour
 
     private void Update()
     {
-            if (Input.GetMouseButtonDown(0) && minionMoved == 1)
-            {
-                CloseTutorial(true);
-                minionMoved = 2;
-            }
+        if (Input.GetMouseButtonDown(0) && minionMoved == 1)
+        {
+            CloseTutorial(true);
+            minionMoved = 2;
+            if (tutorialDialogs.Count == 0) EndOfTutorial();
+        }
     }
 }

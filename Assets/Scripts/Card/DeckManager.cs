@@ -74,9 +74,10 @@ public class DeckManager : MonoBehaviour
             cptCardsObtained++;
             CardInfoInstance newCard = null;
                 
-            handsManager.AddCard(card.cardToBuild.CreateInstance(), out newCard);
             CardHand availableSlot = handsManager.getAvailableSlot();
+            handsManager.AddCard(card.cardToBuild.CreateInstance(), out newCard);
             availableSlot.GetImage().enabled = true;
+            availableSlot.GetImage().GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 0);
             StartCoroutine(AnimationDrawCard(availableSlot, newCard));
         }
     }
@@ -94,7 +95,13 @@ public class DeckManager : MonoBehaviour
                 CardInfoInstance newCard = null;
                 
                 handsManager.AddCard(card.cardToBuild.CreateInstance(), out newCard);
+
                 CardHand availableSlot = handsManager.getAvailableSlot();
+                for (int i = 0; i < card.nbToBuild; i++)
+                {
+                    newCard.AddRotation(true);
+                    StartCoroutine(PlayerCardController.Instance.RotateB(availableSlot, 0.2f, newCard.Rotation, 1));
+                }
                 availableSlot.GetImage().enabled = true;
                 StartCoroutine(AnimationDrawCard(availableSlot, newCard));
 
