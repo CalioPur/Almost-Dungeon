@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D4_Normal_Hard_3
   m_EditorClassIdentifier: 
-  nameOfHero: Sire Hubert
+  nameOfHero: Duncan
   health: 25
   speed: 2.6666667
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2
   personalities: 
-  languages: []
+  languages:
+  - heroDialogues:
+    - {fileID: 0}
+  - heroDialogues:
+    - {fileID: 4900000, guid: f11f77c746fa8bf4c8cf1987e280d987, type: 3}
   keyToUnlock: 

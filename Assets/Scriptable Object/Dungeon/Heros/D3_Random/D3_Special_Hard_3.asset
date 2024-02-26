@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D3_Special_Hard_3
   m_EditorClassIdentifier: 
-  nameOfHero: Malcazar
+  nameOfHero: Mephis
   health: 15
   speed: 2.6666667
   classe: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   visionType: 0
   aggressivity: 2
   personalities: 
-  languages: []
+  languages:
+  - heroDialogues:
+    - {fileID: 0}
+  - heroDialogues:
+    - {fileID: 4900000, guid: 0ee8748d37c3bab49a1d762c1d414d35, type: 3}
   keyToUnlock: D3_L4

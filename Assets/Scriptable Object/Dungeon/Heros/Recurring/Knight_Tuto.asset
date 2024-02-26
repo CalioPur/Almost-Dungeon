@@ -19,5 +19,7 @@ MonoBehaviour:
   visionType: 0
   aggressivity: 2
   personalities: 
-  languages: []
+  languages:
+  - heroDialogues: []
+  - heroDialogues: []
   keyToUnlock: 

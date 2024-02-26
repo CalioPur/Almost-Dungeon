@@ -1,7 +1,7 @@
 INCLUDE ../../GlobalVariables.ink
 
-{not SBarbarian4Seen : Dragon ! Ma rage fait ma force et tu vas comprendre pourquoi ! #chara:barbarian } 
-{SBarbarian4Seen : Ah ! Revoilà le léz... #chara:barbarian}
+{not SBarbarian4Seen : Hahaha, un Dragon, notre combat sera légendaire ! #chara:barbarian } 
+{SBarbarian4Seen : Ha Dragon ! Je n'ai pas oublié cette vilaine balle que tu as osé me lancé la dernière fois ! #chara:barbarian}
 {not SBarbarian4Seen : ->Encounter1} 
 {SBarbarian4Seen : ->Encounter2} 
 
@@ -10,34 +10,35 @@ Ne t'enflamme pas trop vite héros, c'est à moi de m'en charger normalement. #c
 ~SBarbarian4Seen = true 
 Ha ! Tes flammes ne peuvent surpasser celles qui brulent dans le coeur d'un vrai guerrier !  #chara:barbarian
 Il rigole pas patron ! Regardez, on dirait presque qu'il dégage des flammes ! #chara:minion #minion:in
-Je suis désolé mon ami, mais voyez-vous, ma machoire me démange et je croquerai bien dans quelque chose pour me soulager... #chara:dragon
-Quoi ! Non pitié noble Dragon, ne me dévorez pas, je vous jure que j'ai très mauvais goût. #chara:knight
-
-* [Croquer dans le sac de l'aventurier ($$vous$$ soigne <color=red>2 pdv</color> )] -> Regen
-* [Croquer dans l'aventurier ($$le héros$$ perd <color=red>10 pdv</color> )] -> Damages
+Enfer, il faut l'arrêter avant qu'il ne risque de mettre le feu à toute la forêt ! #chara:dragon
+J'ai exactement ce qu'il nous faut patron, j'ai trouvé ces sacs de poudres, on peut les lui jeter dessus ! #chara:minion minion:in
+* [Utiliser la grenade ($$le héros$$ perd <color=red>5 pdv</color> )] -> Regen
+* [Utiliser le fumigène ($$le héros$$ gagne <color=blue>bigleux</color> )] -> Damages
     
 === Regen ===
-MAIS ! MON SAC ! Mes provisions ! Tu vas payer Dragon ! #chara:knight #healDragon:2
+Haha petite balle, pas la peine de rouler vers moi, tu ne pourras pas non plus atténuer ma rage ! #chara:barbarian
+Aaaaaaaaaaaaah ! 
+Méchante balle ! 
+Dragon, je vais me venger !
 -> END
 
 === Damages ===
-AÏE ! Je vais me venger Dragon ! Tu vas payer ! Mon pauvre bras... #chara:knight #damages:10
+Haha petite balle, pas la peine de rouler vers moi, tu ne pourras pas non plus atténuer ma rage ! #chara:barbarian
+Qu'est ce que ! Quelle est cette fumée je ne vois plus rien !
 -> END
 
 === Encounter2 ===
-Attendez Sire Louis... Je suis désolé pour la dernière fois... #chara:dragon
-Non mais ça va pas !? #chara:knight
-Vous m'avez croqué {Regen : MON sac } {Damages : MON bras !} et vous comptez vous en sortir avec des excuses ? 
-Et bien vous allez rire, mais ma machoire me démange toujours... #chara:dragon 
-Oh non... #chara:knight
-* [Croquer dans le sac de l'aventurier ($$vous$$ soigne <color=red>2 pdv</color> )] -> Regen2
-* [Croquer dans l'aventurier ($$le héros$$ perd <color=red>10 pdv</color> )] -> Damages2
+Ce cher Fenris, votre rage est-elle toujours aussi bouillonante ? #chara:dragon
+Bien évidemment, et je ne fais que m'échauffer ! J'aurai ta peau Dragon ! #chara:barbarian
+Bien... Heureusement que j'ai pris la liberté de me procurer plus de poudres... #chara:dragon 
+* [Utiliser la grenade ($$le héros$$ perd <color=red>5 pdv</color> )] -> Regen2
+* [Utiliser le fumigène ($$le héros$$ gagne <color=blue>bigleux</color> )] -> Damages2
  -> END
  
  === Regen2 ===
-MAIS ! MON SAC ! {Regen : ENCORE !} Mes provisions ! Tu vas payer Dragon ! #chara:knight #healDragon:2
+Aaaah ! Pas encore une de ces balles ! Tu vas le payer Dragon ! #chara:barbarian
 -> END
 
 === Damages2 ===
-AÏE ! Je vais me venger Dragon ! Tu vas payer ! {Damages : Encore mon bras !} Mon pauvre bras... #chara:knight #damages:10
+Aaaah ! Pas encore une de ces balles ! Tu vas le payer Dragon ! #chara:barbarian
 -> END

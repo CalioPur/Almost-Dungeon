@@ -36,3 +36,5 @@ VAR SArcher4Seen = false
 
 //Secondary Archers !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 VAR SMage1Seen = false
+VAR SMage2Seen = false
+VAR SMage3Seen = false
