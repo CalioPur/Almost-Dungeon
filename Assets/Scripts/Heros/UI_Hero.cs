@@ -119,7 +119,7 @@ public class UI_Hero : MonoBehaviour
         {
             endGameText.text = "Vous avez roti "+ heroName.text + " !";
             endGameText.color = Color.green;
-            if (DungeonManager._instance.currentLevel < 6)
+            if (DungeonManager._instance.currentLevel < 6 && DungeonManager._instance.TutorialDone)
             {
                 endGameButton.text.text = "Passer au niveau " + (DungeonManager._instance.currentLevel+2);
             }

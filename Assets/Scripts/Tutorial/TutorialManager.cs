@@ -23,6 +23,7 @@ public class TutorialManager : MonoBehaviour
     private GameObject MinionTokenInstance;
     private bool tutorialIsRunning = false;
     private Vector2Int GoalPos;
+    private byte minionMoved = 0;
 
     private void Awake()
     {
@@ -34,9 +35,17 @@ public class TutorialManager : MonoBehaviour
         Instance = this;
     }
 
+    public void MinionMove()
+    {
+        if (minionMoved > 0) return;
+        OpenTutorial(DirectionToMove.Up, "Ce monstre errant dans le donjon vous appartient. Lorsqu'il voit le héros, il vient lui infliger des dégats.", true, new Vector2Int(-1, -1));
+        minionMoved = 1;
+    }
+    
     private void Start()
     {
         GameManager.Instance.HeroPosUpdatedEvent += CheckTutorial;
+        MinionData.OnOneMinionMoveEvent += MinionMove;
         MinionTokenInstance = Instantiate(MinionToken.gameObject, transform);
         MinionTokenInstance.SetActive(false);
         MinionTokenInstance.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // TODO: Remove this line
@@ -45,6 +54,7 @@ public class TutorialManager : MonoBehaviour
     private void OnDisable()
     {
         GameManager.Instance.HeroPosUpdatedEvent -= CheckTutorial;
+        MinionData.OnOneMinionMoveEvent -= MinionMove;
     }
 
     public bool CanBePlaced(TileData data)
@@ -54,9 +64,10 @@ public class TutorialManager : MonoBehaviour
         if (!canBePlaced) OpenTutorial(DirectionToMove.Up, canNotPlaceHere, false, new Vector2Int(-1, -1));
         else
         {
-            CloseTutorial(GoalPos == TilePos);
+            
             if (GoalPos == TilePos)
             {
+                CloseTutorial(true);
                 GoalPos = new Vector2Int(-1, -1);
             }
 
@@ -72,6 +83,7 @@ public class TutorialManager : MonoBehaviour
             if (tutorialDialogs.Count == 0)
             {
                 DeckManager.Instance.RedrawHand(4);
+                TickManager.Instance.PauseTick(false);
                 Destroy(gameObject);
             }
         }
@@ -175,5 +187,14 @@ public class TutorialManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    private void Update()
+    {
+            if (Input.GetMouseButtonDown(0) && minionMoved == 1)
+            {
+                CloseTutorial(true);
+                minionMoved = 2;
+            }
     }
 }

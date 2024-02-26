@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 public class MinionData : TrapData, IFlippable
 {
     public EnemyInstance minionInstance;
+    public static event Action OnOneMinionMoveEvent;
 
     [SerializeField] protected Transform tr;
     [SerializeField] protected MinionBTBase bt;
@@ -41,6 +42,7 @@ public class MinionData : TrapData, IFlippable
         animQueue.AddAnim(new AnimToQueue(tr, targetTr, offset, false, delay));
         animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("Move");
+        OnOneMinionMoveEvent?.Invoke();
     }
 
     public override void TakeDamage(int damage, AttackType attackType)
