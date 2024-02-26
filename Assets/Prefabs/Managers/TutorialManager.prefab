@@ -227,12 +227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialDialogs:
-  - tilePostionToTrigger: {x: 0, y: 3}
-    tilePostionGoalPos: {x: 0, y: 4}
-    Dialog: "\"Devant une sortie, le h\xE9ros t'inflige des degats directement, place
-      plus de tuiles pour \xE9viter qu'il ne t'ateigne !"
-    direction: 2
-    isExploding: 0
   - tilePostionToTrigger: {x: 2, y: 2}
     tilePostionGoalPos: {x: 2, y: 1}
     Dialog: "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place
@@ -287,6 +281,7 @@ MonoBehaviour:
     nbToBuild: 0
   canNotPlaceHere: "Euh ... pour l'instant, tu devrais placer tes tuiles \xE0 cot\xE9
     de celles d\xE9ja sur le terrain"
+  damagePos: {x: 0, y: 4}
 --- !u!1 &2627368051218432746
 GameObject:
   m_ObjectHideFlags: 0

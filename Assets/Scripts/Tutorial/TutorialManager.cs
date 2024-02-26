@@ -19,11 +19,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Transform EndPos;
     [SerializeField] private CardToBuild[] EnemiesToSpawn;
     [SerializeField] private string canNotPlaceHere;
+    [SerializeField] private Vector2Int damagePos;
 
     private GameObject MinionTokenInstance;
     private bool tutorialIsRunning = false;
     private Vector2Int GoalPos;
     private byte minionMoved = 0;
+    private bool ResolveDamage = false;
 
     private void Awake()
     {
@@ -48,6 +50,7 @@ public class TutorialManager : MonoBehaviour
     {
         GameManager.Instance.HeroPosUpdatedEvent += CheckTutorial;
         MinionData.OnOneMinionMoveEvent += MinionMove;
+        UI_Dragon.OnDragonTakeDamageEvent += TakeDamageEvent;
         MinionTokenInstance = Instantiate(MinionToken.gameObject, transform);
         MinionTokenInstance.SetActive(false);
         MinionTokenInstance.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // TODO: Remove this line
@@ -57,13 +60,20 @@ public class TutorialManager : MonoBehaviour
     {
         GameManager.Instance.HeroPosUpdatedEvent -= CheckTutorial;
         MinionData.OnOneMinionMoveEvent -= MinionMove;
+        UI_Dragon. OnDragonTakeDamageEvent -= TakeDamageEvent;
     }
 
     public bool CanBePlaced(TileData data)
     {
         MapManager.Instance.GetIndexFromTile(data, out Vector2Int TilePos);
         bool canBePlaced = tutorialDialogs.Exists(x => x.tilePostionGoalPos == TilePos);
-        if (!canBePlaced) OpenTutorial(DirectionToMove.Up, canNotPlaceHere, false, new Vector2Int(-1, -1));
+        if (ResolveDamage && TilePos == damagePos)
+        {
+            EndOfTutorial();
+            canBePlaced = true;
+        }
+
+        else if (!canBePlaced) OpenTutorial(DirectionToMove.Up, canNotPlaceHere, false, new Vector2Int(-1, -1));
         else
         {
             if (GoalPos == TilePos)
@@ -81,19 +91,21 @@ public class TutorialManager : MonoBehaviour
                     --i;
                 }
             }
-
-            if (tutorialDialogs.Count == 0 && minionMoved == 2)
-            {
-                EndOfTutorial();
-            }
         }
 
         return canBePlaced;
     }
 
-    private void EndOfTutorial()
+    private void TakeDamageEvent()
     {
         DeckManager.Instance.RedrawHand(4);
+        ResolveDamage = true;
+        OpenTutorial(DirectionToMove.Up, "\"Devant une sortie, le héros t'inflige des degats directement, place plus de tuiles pour éviter qu'il ne t'ateigne !",
+            true, new Vector2Int(-1, -1));
+    }
+
+    private void EndOfTutorial()
+    {
         TickManager.Instance.PauseTick(false);
         Destroy(gameObject, 0.4f);
     }
@@ -176,8 +188,6 @@ public class TutorialManager : MonoBehaviour
 
     private void CheckTutorial(Vector2Int posHero)
     {
-        if (tutorialDialogs.Count == 0 && minionMoved == 2) Destroy(gameObject);
-
         foreach (var tutorialDialog in tutorialDialogs)
         {
             if (posHero == tutorialDialog.tilePostionToTrigger)
@@ -199,7 +209,6 @@ public class TutorialManager : MonoBehaviour
         {
             CloseTutorial(true);
             minionMoved = 2;
-            if (tutorialDialogs.Count == 0) EndOfTutorial();
         }
     }
 }

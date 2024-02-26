@@ -180,14 +180,14 @@ public class DeckManager : MonoBehaviour
         yield return new WaitForSeconds(TimerAnimationDrawCard);
         for (int i = 0; i < nb; i++)
         {
-            DrawCard();
+            DrawCard(true);
             yield return new WaitForSeconds(TimerAnimationDrawCard);
         }
     }
 
-    private void DrawCard()
+    private void DrawCard(bool force = false)
     {
-        if (TutorialManager.Instance != null) return;
+        if (!force && TutorialManager.Instance != null) return;
         if (deckCreate.Count == 0 || cptCardsObtained >= handsManager.GetMaxCard()) return;
         CardHand availableSlot = handsManager.getAvailableSlot();
         if (availableSlot == null)
