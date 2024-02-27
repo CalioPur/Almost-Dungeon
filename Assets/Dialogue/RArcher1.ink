@@ -1,6 +1,6 @@
 INCLUDE GlobalVariables.ink
 
-Enfin, la Crypte, les plus puissants artefacts du Donjon sommeillent dans ces souterrains. #chara:archer
+Enfin, la Crypte. Les plus puissants artefacts du Donjon sommeillent dans ces souterrains. #chara:archer
 Tiens... Une archère ose troubler mon sommeil cette fois-ci... #chara:dragon
 Le Dragon ! Impossible de m'approcher discrètement du trésor ! #chara:archer
 Certainement pas, avant d'accéder aux richesses de cet étage, vous devrez en affronter les gardiens. #chara:dragon

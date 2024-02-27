@@ -6,7 +6,7 @@ INCLUDE ../../GlobalVariables.ink
 {SKnight12Seen : ->Encounter2} 
 
 === Encounter1 ===
-Bonjour monsieur de chevalier ! Vous êtes là pour la bagarre ? #chara:minion minion:in
+Bonjour monsieur le chevalier ! Vous êtes là pour la bagarre ? #chara:minion minion:in
 ~SKnight12Seen = true 
 Ha ! Bien sûr petite créature ! Appelle ton maître pour que nous puissions nous affronter ! #chara:knight
 Haha ! Le patron est parti faire des courses, aujourd'hui c'est moi le patron ! #chara:minion

@@ -8,7 +8,7 @@ INCLUDE ../../GlobalVariables.ink
 === Encounter1 ===
 Encore un aventurier fou à lier patron ! #chara:minion minion:in
 ~SKnight11Seen = true 
-Fuhuhu... Je comprends bien que ma beauté tienne presque de l'iréel mais de là à me traiter de fou... #chara:knight
+Fuhuhu... Je comprends bien que ma beauté relève presque de l'iréel mais de là à me traiter de fou... #chara:knight
 Je ne m'intéresse pas à ce genre de choses héros, mais j'ose espérer que vous aurez plus que quelques paillettes pour m'imperssioner au combat. #chara:dragon
 Mais cela va de soi Dragon, vous allez comprendre que ma beauté ne s'arrête pas à la décoration ! #chara:knight
 Parfait, battons-nous dans ce cas ! #chara:dragon #minion:out

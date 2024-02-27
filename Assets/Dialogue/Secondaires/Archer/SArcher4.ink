@@ -12,21 +12,21 @@ Un... un... UN DRAGON ! #chara:archer
 Impossible, comment ce labyrinthe peut-il mener à un Dragon !  
 Allons, quoi de plus normal pour un dragon que de protéger son Donjon ? #chara:dragon
 Un Donjon ? Alors la <color=blue>maison</color> menait à un Donjon ? Est ce là la fin de cette énigme ? #chara:archer
-Votre <color=blue>maison</color> mènerait à chez moi ? Haha ! Vous rêvez debout archer. #chara:dragon
+Votre <color=blue>maison</color> mènerait à chez moi ? Haha ! Vous rêvez, archer. #chara:dragon
 Alors comment ? Comment une porte de la <color=blue>maison</color> peut elle mener ici ? #chara:archer
 Je dois comprendre !
 * [Lui donner des réponses (perd <color=orange>explorateure</color> )] -> Regen
 * [Le calmer (perd <color=blue>peureux</color> )] -> Damages
     
 === Regen ===
-Vous avez surement été victime d'un objet magique, si votre <color=blue>maison</color> peut mener à des endroits que vous ne connaissez pas, alors peut être vous a-t-elle menée jusque dans ce monde ? #chara:dragon 
+Vous avez surement été victime d'un objet magique... Si votre <color=blue>maison</color> peut mener à des endroits que vous ne connaissez pas, alors peut être vous a-t-elle mené jusque dans ce monde ? #chara:dragon 
 Mais je crains que dans ce cas vous ne puissiez revenir en arrière. 
 Mais alors je suis bloqué dans ce Donjon ? Que vais-je devenir... Je dois m'enfuir, survivre, vite ! #chara:archer
 -> END
 
 === Damages ===
-Calmez vous mon ami, pensez de manière rationelle, explorez ce donjon, vous trouverez bien un moyen de rentrer chez vous... #chara:dragon
-ous êtes certain ? Vous avez raison, si une porte de la <color=blue>maison</color> peut mener ici, alors une autre peut bien me faire revenir en arrière ! #chara:archer #changepers:none
+Calmez vous, mon ami. Pensez de manière rationelle, explorez ce donjon, vous trouverez bien un moyen de rentrer chez vous... #chara:dragon
+Vous êtes certain ? Vous avez raison, si une porte de la <color=blue>maison</color> peut mener ici, alors une autre peut bien me faire revenir en arrière ! #chara:archer #changepers:none
 Je dois en avoir le coeur net ! 
 -> END
 
@@ -40,7 +40,7 @@ Mais je n'ai jamais demandé à être enfermé ici ! Je ne veux même pas votre 
  -> END
  
  === Regen2 ===
-Ecoutez Navidson... Quelle que soit la manière dont vous avez été transporté ici, il y'a forcément un moyen de revenir chez vous. #chara:dragon 
+Ecoutez Navidson... Quelle que soit la manière dont vous avez été transporté ici, il y a forcément un moyen de revenir chez vous. #chara:dragon 
 Votre étrange <color=blue>maison</color> doit être magique. Il n'y a peut être aucun moyen de revenir en arrière s'il s'agissait de magie.
 Mais alors je suis bloqué dans ce Donjon ? Que vais-je devenir... Je dois m'enfuir, survivre, vite ! #chara:archer
 -> END

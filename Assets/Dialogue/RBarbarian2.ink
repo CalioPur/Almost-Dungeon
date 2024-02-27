@@ -13,6 +13,6 @@ Et vos toiles d'araignées tant que nous y sommes...
 Quel dommage, ils sont pourtant si contents de travailler avec vous... #chara:dragon
 Haha, c'est bien normal ! #chara:barbarian
 Patron ! Tenez, je vous ai concocté un deck avec tout ce que ce type déteste ! #minion:in #chara:minion
-Triple dose d'archers et de toiles d'araignées hahahahahahaha ! 
+Triple dose d'archers et de toiles d'araignées, hahahahahahaha ! 
 ... #chara:dragon #minion:out
 -> END

@@ -8,36 +8,36 @@ INCLUDE ../../GlobalVariables.ink
 === Encounter1 ===
 Oh ? Un explorateur du Nord, dans ma Caserne. Voilà une rencontre inattendue. #chara:dragon
 ~SBarbarian1Seen = true 
-Un Dragon, comme dans les légendes ! Vite ma carte ! #chara:barbarian
+Un Dragon, comme dans les légendes ! Vite, ma carte ! #chara:barbarian
 Je vous demande pardon ? Une carte ? Quelle carte ? #chara:dragon
 Ben ma carte ! Regardez, pendant mon voyage j'ai trouvé une carte magique de chez vous ! #chara:barbarian
-Une carte magique ! Hmm voilà qui pourrait être utile... #chara:dragon
+Une carte magique ! Hmm, voilà qui pourrait être utile... #chara:dragon
 
 * [Voler la carte (perd <color=orange>explorateur</color> )] -> Regen
 * [Lui ajouter de fausses informations (perd <color=purple>10 de vitesse</color> )] -> Damages
     
 === Regen ===
-Mais ! MA CARTE ! Rendez-la moi Dragon ! Je vous préviens, ça va mal se finir pour vous ! #chara:barbarian #changepers:none
+Mais ! MA CARTE ! Rendez-la moi, Dragon ! Je vous préviens, ça va mal se finir pour vous ! #chara:barbarian #changepers:none
 -> END
 
 === Damages ===
-Comment ? Vous dites que vous avez des pièces secretes dans le donjon ? #chara:barbarian
+Comment ? Vous dites que vous avez des pièces secrètes dans le donjon ? #chara:barbarian
 Je dois prendre mon temps alors !
 Exactement, prenez votre temps... Avancez à votre rythme. #chara:dragon #time:-10
 -> END
 
 === Encounter2 ===
-Ah vous revoilà Dragon ! Quelle chance, je viens de mettre la main sur une deuxième carte #chara:barbarian
-Encore !? Ce n'est pas possible, qui lui a donné une autre carte ! #chara:dragon 
+Ah vous revoilà Dragon ! Quelle chance, je viens de mettre la main sur une deuxième carte... #chara:barbarian
+Encore !? Ce n'est pas possible... Qui lui a donné une autre carte ? #chara:dragon 
 Patron, c'est vous qui avez rempli les coffres la dernière fois... #chara:minion #minion:in
 Ah ! Pas la peine d'essayer de me la {Regen : voler,} {Damages : salir,} cette fois-ci ! Vous ne m'aurez pas ! #chara:barbarian #minion:out
 * [Bruler la carte ! (le héros perd <color=orange>explorateur</color> )] -> Regen2
-* [Rendre la Carte Illisible ! (le héros perd <color=purple>10 de vitesse</color> )] -> Damages2
+* [Rendre la carte illisible ! (le héros perd <color=purple>10 de vitesse</color> )] -> Damages2
  -> END
  
  === Regen2 ===
 Mais ! MA CARTE ! VOUS L'AVEZ BRULEE ! #chara:barbarian 
-Cette fois-ci s'en est trop ! J'aurai ta tête Dragon ! #changepers:none
+Cette fois-ci c'en est trop ! J'aurai ta tête, Dragon ! #changepers:none
 -> END
 
 === Damages2 ===

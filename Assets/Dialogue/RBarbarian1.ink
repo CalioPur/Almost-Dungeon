@@ -1,7 +1,7 @@
 INCLUDE GlobalVariables.ink
 
 Hahaha, enfin dans un donjon ! L'aventure m'appelle ! #chara:barbarian 
-Soyez le bienvenu guerrier !  #chara:dragon
+Soyez le bienvenu, guerrier !  #chara:dragon
 Pas possible ! Un dragon, comme dans les livres ! #chara:barbarian 
 Aha ! Enfin quelqu'un m'appréciant à ma juste valeur ! #chara:dragon
 Pour sûr mon bon Dragon ! Je sens que cette aventure promet d'être excitante. #chara:barbarian 
