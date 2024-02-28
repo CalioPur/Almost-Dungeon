@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Light> lightsAmbiant;
     [SerializeField] private CardInfo enterDungeonInfo;
     public Transform AttackPoint;
+    public bool EndOfGame = false;
     public HeroSO currentHero;
     public int heroHealthPoint;
     public int heroCurrentHealthPoint;

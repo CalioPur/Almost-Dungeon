@@ -160,7 +160,7 @@ public class Hero : MonoBehaviour, IFlippable
     
     private void IsDead()
     {
-        //TODO: t'as gagne bg :*
+        GameManager.Instance.EndOfGame = true;
         Vector3 pos = transform.position;
         pos.y += 3f;
         Camera.main.transform.DOMove(pos, 1f).SetEase(Ease.InBack);

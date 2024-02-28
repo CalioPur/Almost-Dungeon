@@ -358,7 +358,9 @@ public class MapManager : MonoBehaviour
             mapArray[xCoord, yCoord].hasDoorRight = true;
             mapArray[xCoord, yCoord].hasDoorDown = true;
             mapArray[xCoord, yCoord].hasDoorLeft = true;
-            mapArray[xCoord, yCoord].gameObject.GetComponent<SpriteRenderer>().sprite = floorSpriteForRage;
+            SpriteRenderer renderer = mapArray[xCoord, yCoord].gameObject.GetComponent<SpriteRenderer>();
+            renderer.sprite = floorSpriteForRage;
+            renderer.enabled = false;
             mapArray[xCoord, yCoord].img.color = Color.white;
             mapArray[xCoord, yCoord].isVisited = false;
             mapArray[xCoord, yCoord].isConnectedToPath = false;

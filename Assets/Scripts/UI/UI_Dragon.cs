@@ -42,6 +42,7 @@ public class UI_Dragon : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            GameManager.Instance.EndOfGame = true;
             OnDragonDeathEvent?.Invoke();
             SoundManagerIngame.Instance.PlaySound(EmoteType.DragonDeath);
             yield break;
@@ -136,6 +137,7 @@ public class UI_Dragon : MonoBehaviour
     
     public void CheckDragonHP(Hero hero)
     {
+        if (currentHealth <= 0) return;
         StartCoroutine(AttackByHero(TickManager.Instance.calculateBPM() * 0.5f, hero));
     }
     public void Heal(int healAmount)

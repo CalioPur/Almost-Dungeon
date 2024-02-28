@@ -102,6 +102,7 @@ public class PlayerCardController : MonoBehaviour
     private Color whiteA05 = new(255, 255, 255, 0.5f);
     void Update()
     {
+        if (GameManager.Instance.EndOfGame) return;
         if (selectedCard != null) //si on a une carte dans la main
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
