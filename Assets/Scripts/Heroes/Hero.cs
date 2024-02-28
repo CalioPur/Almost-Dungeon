@@ -68,7 +68,7 @@ public class Hero : MonoBehaviour, IFlippable
         if (isStunned)
         {
             isStunned = false;
-            web.TakeDamage(999, AttackType.Physical);
+            //web.TakeDamage(999, AttackType.Physical);
             return;
         }
         bt.getOrigin().Evaluate(bt.getOrigin());
