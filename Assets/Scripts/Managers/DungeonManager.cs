@@ -108,6 +108,7 @@ public class DungeonManager : MonoBehaviour
         {
             if (TutorialDone)
             {
+                AchievmentSteamChecker._instance.UnlockEndLevelAchievment(SelectedBiome);
                 PlayerPrefs.SetInt("LevelBeaten" + SelectedBiome, 1); //on sauvegarde le donjon comme battu
                 PlayerPrefs.SetInt("LevelVictory" + SelectedBiome, PlayerPrefs.GetInt("LevelVictory" + SelectedBiome, 0) + 1); //on incremente la valeur de victoire du donjon
             }
