@@ -22,7 +22,7 @@ public class MinionLaden : MinionData
 
         if (GameManager.Instance.GetHeroPos() == pos)
         {
-            Attack(damageFire, AttackType.Fire);
+            Attack(damageFire, AttackType.Fire, 0.0f);
             if (Hero.Instance is IFlippable flip)
             {
                 flip.Flip();

@@ -42,7 +42,7 @@ public class Pyke : TrapData
         }
         if (heroPos.x == indexX && heroPos.y == indexY)
         {
-            Attack(pykeInstance.So.damage, AttackType.Fire);
+            Attack(pykeInstance.So.damage, AttackType.Fire, 0.0f);
             isOnFire = true;
         }
 
