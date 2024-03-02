@@ -461,14 +461,12 @@ public class DialogueManager : MonoBehaviour
                     case "healDragon":
                         var healDragon = int.Parse(split[1]);
                         FindObjectOfType<UI_Dragon>().Heal(healDragon);
-                        Debug.LogWarning("HEALDRAGON" + split[1]);
                         break;
                     case "minion":
-                        print("MINION");
+                        
                         switch (split[1])
                         {
                             case "in":
-                                print("IN");
                                 minionToken.transform
                                     .DOMove(new Vector3(-4.5f, 0.8f, 8), TickManager.Instance.calculateBPM())
                                     .SetUpdate(true);

@@ -20,7 +20,8 @@ public struct Dungeon
 
 public class DungeonManager : MonoBehaviour
 {
-   
+    public static event Action OnLevelLoaded;
+    
     [SerializeField] public DungeonSO TutorialDungeon;
     [SerializeField] public List<Dungeon> dungeons;
    
@@ -177,6 +178,8 @@ public class DungeonManager : MonoBehaviour
         mapManager.SpawnPresets(terrainData.tilePresets);
         
         PlayerCardController.Instance.isDragNDrop = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
+        
+        OnLevelLoaded?.Invoke();
     }
     
     public void LoadNextLevel()

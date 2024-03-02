@@ -30,6 +30,6 @@ public static class RageScript
             }
         }
         
-        MapManager.Instance.MapManagerTools.ResetConnectedToPath(new Vector2Int(getIndexHeroPos.x, getIndexHeroPos.y));
+        //MapManager.Instance.MapManagerTools.ResetConnectedToPath(new Vector2Int(getIndexHeroPos.x, getIndexHeroPos.y));
     }
 }

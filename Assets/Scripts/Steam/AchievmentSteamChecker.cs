@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Steamworks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -10,6 +11,7 @@ public class AchievmentSteamChecker : MonoBehaviour
     public static AchievmentSteamChecker _instance;
     
     private bool damaged = false;
+    private bool heroDamagedByMinion = false;
     private int damageInflictedThisTurn = 0;
     
     private void Start()
@@ -24,11 +26,13 @@ public class AchievmentSteamChecker : MonoBehaviour
         _instance = this;
         if (!SteamManager.Initialized) return;
         UI_Dragon.OnDragonTakeDamageEvent += DragonTakeDamage;
+        UI_Hero.OnEndGameEvent += UnlockComeFightMeAchievement;
         AttackMinion.HeroTurnStartEvent += ResetDamageInflictedThisTurn;
         AttackHero.DealDamageEvent += AddDamageInflictedThisTurn;
         Pyke.DealDamageEvent += AddDamageInflictedThisTurn;
         AttackHero.UnlockSniperAchievementEvent += UnlockSniperAchievement;
         minionSkeleton.OnResurectEvent += UnlockResurectAchievement;
+        DungeonManager.OnLevelLoaded += NewLevel;
         
     }
 
@@ -40,8 +44,11 @@ public class AchievmentSteamChecker : MonoBehaviour
         SteamUserStats.SetAchievement("DUNGEON_" + biomeIndex);
         SteamUserStats.StoreStats();
         UnlockNoDamageAchievment();
+        
     }
+
     
+
     private void UnlockNoDamageAchievment()
     {
         if (!damaged)
@@ -76,6 +83,22 @@ public class AchievmentSteamChecker : MonoBehaviour
         SteamUserStats.StoreStats();
     }
     
+    private void UnlockComeFightMeAchievement(bool won)
+    {
+        print("heroDamagedByMinion : " + heroDamagedByMinion);
+        if (!heroDamagedByMinion && won)
+        {
+            if (!SteamManager.Initialized) return;
+            SteamUserStats.SetAchievement("COME_FIGHT");
+            SteamUserStats.StoreStats();
+        }
+    }
+
+    private void NewLevel()
+    {
+        heroDamagedByMinion = false;
+    }
+    
     private void DragonTakeDamage()
     {
         damaged = true;
@@ -83,6 +106,8 @@ public class AchievmentSteamChecker : MonoBehaviour
     
     public void AddDamageInflictedThisTurn(int dmg)
     {
+        Debug.LogWarning("HERO IS HITTED");
+        heroDamagedByMinion = true;
         damageInflictedThisTurn += dmg;
         if (damageInflictedThisTurn >= 7)
         {
@@ -100,11 +125,13 @@ public class AchievmentSteamChecker : MonoBehaviour
     private void OnDestroy()
     {
         UI_Dragon.OnDragonTakeDamageEvent -= DragonTakeDamage;
+        UI_Hero.OnEndGameEvent -= UnlockComeFightMeAchievement;
         AttackMinion.HeroTurnStartEvent -= ResetDamageInflictedThisTurn;
         AttackHero.DealDamageEvent -= AddDamageInflictedThisTurn;
         Pyke.DealDamageEvent -= AddDamageInflictedThisTurn;
         AttackHero.UnlockSniperAchievementEvent -= UnlockSniperAchievement;
         minionSkeleton.OnResurectEvent -= UnlockResurectAchievement;
+        DungeonManager.OnLevelLoaded -= NewLevel;
     }
 
     
