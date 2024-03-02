@@ -26,6 +26,7 @@ public class AchievmentSteamChecker : MonoBehaviour
         UI_Dragon.OnDragonTakeDamageEvent += DragonTakeDamage;
         AttackMinion.HeroTurnStartEvent += ResetDamageInflictedThisTurn;
         AttackHero.DealDamageEvent += AddDamageInflictedThisTurn;
+        Pyke.DealDamageEvent += AddDamageInflictedThisTurn;
         AttackHero.UnlockSniperAchievementEvent += UnlockSniperAchievement;
         minionSkeleton.OnResurectEvent += UnlockResurectAchievement;
         
@@ -94,6 +95,7 @@ public class AchievmentSteamChecker : MonoBehaviour
         UI_Dragon.OnDragonTakeDamageEvent -= DragonTakeDamage;
         AttackMinion.HeroTurnStartEvent -= ResetDamageInflictedThisTurn;
         AttackHero.DealDamageEvent -= AddDamageInflictedThisTurn;
+        Pyke.DealDamageEvent -= AddDamageInflictedThisTurn;
         AttackHero.UnlockSniperAchievementEvent -= UnlockSniperAchievement;
         minionSkeleton.OnResurectEvent -= UnlockResurectAchievement;
     }
