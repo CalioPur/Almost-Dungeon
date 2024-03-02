@@ -41,7 +41,75 @@ public class MapManager : MonoBehaviour
     {
         _mapManagerTools = new MapManagerTools(this);
     }
+    
+    // private void AssignWarning(Vector2Int pos)
+    // {
+    //     mapArray[pos.x, pos.y].transform.rotation = Quaternion.Euler(90, 0, 0);
+    //     if (Hero.Instance.GetIndexHeroPos().x == pos.x && Hero.Instance.GetIndexHeroPos().y == pos.y)
+    //     {
+    //         mapArray[i, j - 1].img.sprite = ATTENTIONROUUUGE;
+    //         //tiles.Add(mapArray[i, j - 1]);
+    //     }
+    //     else
+    //     {
+    //         mapArray[i, j - 1].img.sprite = ATTENTION;
+    //         //tiles.Add(mapArray[i, j - 1]);
+    //     }
+    //     
+    //     
+    //     if (isRed)
+    //     {
+    //         mapArray[pos.x, pos.y].img.sprite = ATTENTIONROUUUGE;
+    //     }
+    //     else
+    //     {
+    //         mapArray[pos.x, pos.y].img.sprite = ATTENTION;
+    //     }
+    // }
 
+    
+    private void UpdateMapTiles()
+    {
+        if (Hero.Instance)
+        {
+            for (int i = 0; i < Instance.width; i++)
+            {
+                for (int j = 0; j < Instance.height; j++)
+                {
+                    UpdateTile(mapArray[i, j], i, j);
+                }
+            }
+        }
+    }
+
+    private void UpdateTile(TileData tile, int x, int y)
+    {
+        if (!tile.isExit)
+            return;
+
+        if (tile.hasDoorDown && y > 0 && !mapArray[x, y - 1].isConnectedToPath)
+            UpdateAdjacentTile(mapArray[x, y - 1], x, y);
+
+        if (tile.hasDoorUp && y < height - 1 && !mapArray[x, y + 1].isConnectedToPath)
+            UpdateAdjacentTile(mapArray[x, y + 1], x, y);
+
+        if (tile.hasDoorLeft && x > 0 && !mapArray[x - 1, y].isConnectedToPath)
+            UpdateAdjacentTile(mapArray[x - 1, y], x, y);
+
+        if (tile.hasDoorRight && x < width - 1 && !mapArray[x + 1, y].isConnectedToPath)
+            UpdateAdjacentTile(mapArray[x + 1, y], x, y);
+    }
+
+    private void UpdateAdjacentTile(TileData adjacentTile, int x, int y)
+    {
+        adjacentTile.transform.rotation = Quaternion.Euler(90, 0, 0);
+
+        if (Hero.Instance.GetIndexHeroPos().x == x && Hero.Instance.GetIndexHeroPos().y == y)
+            adjacentTile.img.sprite = ATTENTIONROUUUGE;
+        else
+            adjacentTile.img.sprite = ATTENTION;
+    }
+    
     private IEnumerator UpdateBoard()
     {
         // List<TileData> tiles = new List<TileData>();
@@ -49,8 +117,10 @@ public class MapManager : MonoBehaviour
         // {
         //     tile.img.transform.localScale = new Vector3(1f, 1f, 1f);
         // }
+        
+        UpdateMapTiles();
 
-        if (Hero.Instance)
+        /*if (Hero.Instance)
         {
             for (int i = 0; i < Instance.width; i++)
             {
@@ -59,6 +129,7 @@ public class MapManager : MonoBehaviour
                     if (!mapArray[i, j].isExit) continue;
                     if (mapArray[i, j].hasDoorDown && j > 0 && !mapArray[i, j - 1].isConnectedToPath)
                     {
+                        mapArray[i, j - 1].transform.rotation = Quaternion.Euler(90, 0, 0);
                         if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
                         {
                             mapArray[i, j - 1].img.sprite = ATTENTIONROUUUGE;
@@ -73,6 +144,7 @@ public class MapManager : MonoBehaviour
 
                     if (mapArray[i, j].hasDoorUp && j < height - 1 && !mapArray[i, j + 1].isConnectedToPath)
                     {
+                        mapArray[i, j + 1].transform.rotation = Quaternion.Euler(90, 0, 0);
                         if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
                         {
                             mapArray[i, j + 1].img.sprite = ATTENTIONROUUUGE;
@@ -87,6 +159,7 @@ public class MapManager : MonoBehaviour
 
                     if (mapArray[i, j].hasDoorLeft && i > 0 && !mapArray[i - 1, j].isConnectedToPath)
                     {
+                        mapArray[i - 1, j].transform.rotation = Quaternion.Euler(90, 0, 0);
                         if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
                         {
                             mapArray[i - 1, j].img.sprite = ATTENTIONROUUUGE;
@@ -101,6 +174,7 @@ public class MapManager : MonoBehaviour
 
                     if (mapArray[i, j].hasDoorRight && i < width - 1 && !mapArray[i + 1, j].isConnectedToPath)
                     {
+                        mapArray[i + 1, j].transform.rotation = Quaternion.Euler(90, 0, 0);
                         if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
                         {
                             mapArray[i + 1, j].img.sprite = ATTENTIONROUUUGE;
@@ -123,7 +197,7 @@ public class MapManager : MonoBehaviour
             //     if (UpScale)
             //         tile.img.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
             // }
-        }
+        }*/
 
         yield return null;
         StartCoroutine(UpdateBoard());

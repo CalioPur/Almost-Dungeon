@@ -29,6 +29,7 @@ public class UI_Dragon : MonoBehaviour
 
     private IEnumerator TakeDamageFX(Hero hero)
     {
+        if (hero.info.CurrentHealthPoint - damage <= 0) TickManager.Instance.OnEndGame();
         SoundManagerIngame.Instance.PlayDialogueSFX("DragonBreath");
         SoundManagerIngame.Instance.PlayDialogueSFX("DragonDamaged");
         yield return new WaitForSeconds(0.3f * TickManager.Instance.calculateBPM());
