@@ -94,5 +94,7 @@ public class AchievmentSteamChecker : MonoBehaviour
         UI_Dragon.OnDragonTakeDamageEvent -= DragonTakeDamage;
         AttackMinion.HeroTurnStartEvent -= ResetDamageInflictedThisTurn;
         AttackHero.DealDamageEvent -= AddDamageInflictedThisTurn;
+        AttackHero.UnlockSniperAchievementEvent -= UnlockSniperAchievement;
+        minionSkeleton.OnResurectEvent -= UnlockResurectAchievement;
     }
 }
