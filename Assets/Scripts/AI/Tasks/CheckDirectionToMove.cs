@@ -23,16 +23,16 @@ public class CheckDirectionToMove : Node
         List<TileData> listOfExits = new List<TileData>();
         listOfExits.AddRange(blackboard.visibleTiles.Where(VARIABLE => VARIABLE.isExit));
         var currentMap = MapManager.Instance.mapArray;
-        foreach (var VARIABLE in currentMap)
+        foreach (var tile in currentMap)
         {
-            if (VARIABLE.isConnectedToPath && !VARIABLE.IsVisited)
+            if (tile.isConnectedToPath && !tile.IsVisited)
             {
                 int[,] directions = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
 
                 for (int i = 0; i < directions.GetLength(0); i++)
                 {
-                    var i1 = VARIABLE.IndexInMapArray.x;
-                    var i2 = VARIABLE.IndexInMapArray.y;
+                    var i1 = tile.IndexInMapArray.x;
+                    var i2 = tile.IndexInMapArray.y;
                     int newX = i1 + directions[i, 0];
                     int newY = i2 + directions[i, 1];
 
@@ -42,7 +42,45 @@ public class CheckDirectionToMove : Node
                             (i == 1 && !MapManager.Instance.GetTileDataAtPosition(i1, i2).hasDoorDown) ||
                             (i == 2 && !MapManager.Instance.GetTileDataAtPosition(i1, i2).hasDoorRight) ||
                             (i == 3 && !MapManager.Instance.GetTileDataAtPosition(i1, i2).hasDoorLeft))
-                            listOfExits.Add(VARIABLE);
+                        {
+                            listOfExits.Add(tile);
+                            if (tile.isExit)
+                            {
+                                for (int j = 0; j < 4; j++)
+                                {
+                                    //check witch direction is the exit
+                                    if (j==0 && tile.hasDoorUp &&!MapManager.Instance
+                                            .GetTileDataAtPosition(i1 + directions[j, 0], i2 + directions[j, 1])
+                                            .isConnectedToPath)
+                                    {
+                                        listOfExits.Add(MapManager.Instance
+                                            .GetTileDataAtPosition(i1 + directions[j, 0], i2 + directions[j, 1]));
+                                    }
+                                    if (j==1 && tile.hasDoorDown &&!MapManager.Instance
+                                            .GetTileDataAtPosition(i1 + directions[j, 0], i2 + directions[j, 1])
+                                            .isConnectedToPath)
+                                    {
+                                        listOfExits.Add(MapManager.Instance
+                                            .GetTileDataAtPosition(i1 + directions[j, 0], i2 + directions[j, 1]));
+                                    }
+                                    if (j==2 && tile.hasDoorRight &&!MapManager.Instance
+                                            .GetTileDataAtPosition(i1 + directions[j, 0], i2 + directions[j, 1])
+                                            .isConnectedToPath)
+                                    {
+                                        listOfExits.Add(MapManager.Instance
+                                            .GetTileDataAtPosition(i1 + directions[j, 0], i2 + directions[j, 1]));
+                                    }
+                                    if (j==3 && tile.hasDoorLeft &&!MapManager.Instance
+                                            .GetTileDataAtPosition(i1 + directions[j, 0], i2 + directions[j, 1])
+                                            .isConnectedToPath)
+                                    {
+                                        listOfExits.Add(MapManager.Instance
+                                            .GetTileDataAtPosition(i1 + directions[j, 0], i2 + directions[j, 1]));
+                                    }
+                                    
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -110,6 +148,12 @@ public class CheckDirectionToMove : Node
                     Debug.LogError("MARCHE PO options count : " + blackboard.options.Count + " memory count : " + blackboard.memory.Count);
                 }
             }
+        }
+
+        foreach (var exit in listOfExits)
+        {
+            Debug.Log(exit.IndexInMapArray);
+            Debug.DrawRay(exit.transform.position, Vector3.up*2, Color.blue, 1);
         }
         
         List<TileData> listOfEnemiesPos = new List<TileData>();
