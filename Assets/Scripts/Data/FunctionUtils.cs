@@ -23,4 +23,9 @@ public static class FunctionUtils
     }
     return DirectionToMove.None;
   }
+  
+  public static float GetDistanceBetweenTwoPos(Vector2Int pos1, Vector2Int pos2)
+  {
+    return Mathf.Abs(pos1.x - pos2.x) + Mathf.Abs(pos1.y - pos2.y);
+  }
 }

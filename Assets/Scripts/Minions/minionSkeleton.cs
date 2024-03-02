@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,9 @@ public class minionSkeleton : MinionData
     [HideInInspector] public bool isReadyToUndig;
     [SerializeField] private Transform model3DTr;
     [SerializeField] private Transform FXDigTr;
-
+    private int resurectCount = 0;
+    public static event Action<int> OnResurectEvent;
+    
     protected override void Init()
     {
         base.Init();
@@ -47,5 +50,7 @@ public class minionSkeleton : MinionData
         {
             model3DTr.DOMoveY(0, 0.1f);
         };
+        resurectCount++;
+        OnResurectEvent?.Invoke(resurectCount);
     }
 }

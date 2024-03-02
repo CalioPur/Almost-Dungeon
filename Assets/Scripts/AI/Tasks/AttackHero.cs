@@ -11,7 +11,8 @@ public class AttackHero : Node
 {
     MinionBlackboard blackboard;
     AttackType attackType;
-
+    public static event Action<int> DealDamageEvent;
+    public static event Action UnlockSniperAchievementEvent;
     public AttackHero(MinionBlackboard blackboard, AttackType _attackType)
     {
         this.blackboard = blackboard;
@@ -21,6 +22,8 @@ public class AttackHero : Node
     public override NodeState Evaluate(Node root)
     {
         Vector2Int heroPos = GameManager.Instance.GetHeroPos();
+        Vector2Int myPos = new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY);
+        
         TileData tileWhereHeroIs =  blackboard.minionData.mapManager.GetTileDataAtPosition(heroPos.x,
             heroPos.y );
         
@@ -30,6 +33,15 @@ public class AttackHero : Node
         DirectionToMove dirTarget = FunctionUtils.GetDirectionToMoveWithTilePos(heroPos,
             new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY));
         blackboard.minionData.PlayAttackFX(tileWhereHeroIs.transform, TickManager.Instance.calculateBPM(), dirTarget);
+        
+        //check for achievements
+        if (FunctionUtils.GetDistanceBetweenTwoPos(heroPos, myPos) >= 5)
+        {
+            UnlockSniperAchievementEvent?.Invoke();
+        }
+        DealDamageEvent?.Invoke(blackboard.minionData.minionInstance.So.damage);
+        //end check for achievements
+        
         return NodeState.Success;
     }
 }

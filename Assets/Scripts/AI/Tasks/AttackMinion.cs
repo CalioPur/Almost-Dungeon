@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ public class AttackMinion : Node
 {
     private HeroBlackboard blackboard;
     bool withAnim;
-
+    
+    public static event Action HeroTurnStartEvent;
+    
     public AttackMinion(HeroBlackboard _blackboard, bool _withAnim = true)
     {
         blackboard = _blackboard;
@@ -19,7 +22,8 @@ public class AttackMinion : Node
     public override NodeState Evaluate(Node root)
     {
         // if (isHeroNextToExit()) blackboard.hero.emotesManager.PlayEmote(EmoteType.NextToExit);
-
+        HeroTurnStartEvent?.Invoke();
+        
         if (blackboard.ChosenTarget == null) return NodeState.Failure;
         foreach (var target in blackboard.ChosenTarget.Where(target => target.isDead))
         {
