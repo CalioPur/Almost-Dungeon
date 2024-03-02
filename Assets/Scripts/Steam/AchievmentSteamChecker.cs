@@ -9,7 +9,7 @@ public class AchievmentSteamChecker : MonoBehaviour
 {
     public static AchievmentSteamChecker _instance;
     
-    private bool damage = false;
+    private bool damaged = false;
     private int damageInflictedThisTurn = 0;
     
     private void Start()
@@ -44,13 +44,13 @@ public class AchievmentSteamChecker : MonoBehaviour
     
     private void UnlockNoDamageAchievment()
     {
-        if (!damage)
+        if (!damaged)
         {
             if (!SteamManager.Initialized) return;
             SteamUserStats.SetAchievement("UNTOUCHABLE");
             SteamUserStats.StoreStats();
         }
-        damage = false; //cette fonction est appelée à chaque fin de niveau, donc on reset le damage
+        damaged = false; //cette fonction est appelée à chaque fin de niveau, donc on reset le damage
     }
     
     private void UnlockSniperAchievement()
@@ -78,7 +78,7 @@ public class AchievmentSteamChecker : MonoBehaviour
     
     private void DragonTakeDamage()
     {
-        damage = true;
+        damaged = true;
     }
     
     public void AddDamageInflictedThisTurn(int dmg)
