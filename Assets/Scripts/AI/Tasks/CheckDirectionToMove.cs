@@ -59,7 +59,7 @@ public class CheckDirectionToMove : Node
                     if (target == VARIABLE)
                     {
                         target = null;
-                        Debug.Log("Target has been removed");
+                        
                     }
                 }
             }
@@ -74,7 +74,6 @@ public class CheckDirectionToMove : Node
 
         if (target == null)
         {
-            Debug.Log("Target is null");
             if (blackboard.options.Count == 0)
             {
                 if (blackboard.memory.Count > 0)
@@ -136,7 +135,7 @@ public class CheckDirectionToMove : Node
                 RageScript.Rage(blackboard.hero.GetIndexHeroPos());
                 blackboard.directionToMove = DirectionToMove.None;
                 if (blackboard.personalities.Contains(Personnalities.IMPATIENT) &&
-                    BFSScript.DistanceFromExit(blackboard.hero.GetIndexHeroPos(),blackboard.hero.mapManager.getMapArray()) > 5) Debug.Log("Raged because of distance");
+                    BFSScript.DistanceFromExit(blackboard.hero.GetIndexHeroPos(),blackboard.hero.mapManager.getMapArray()) > 5) ;
                 else
                 {
                 }

@@ -112,93 +112,7 @@ public class MapManager : MonoBehaviour
     
     private IEnumerator UpdateBoard()
     {
-        // List<TileData> tiles = new List<TileData>();
-        // foreach (var tile in tiles)
-        // {
-        //     tile.img.transform.localScale = new Vector3(1f, 1f, 1f);
-        // }
-        
         UpdateMapTiles();
-
-        /*if (Hero.Instance)
-        {
-            for (int i = 0; i < Instance.width; i++)
-            {
-                for (int j = 0; j < Instance.height; j++)
-                {
-                    if (!mapArray[i, j].isExit) continue;
-                    if (mapArray[i, j].hasDoorDown && j > 0 && !mapArray[i, j - 1].isConnectedToPath)
-                    {
-                        mapArray[i, j - 1].transform.rotation = Quaternion.Euler(90, 0, 0);
-                        if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
-                        {
-                            mapArray[i, j - 1].img.sprite = ATTENTIONROUUUGE;
-                            //tiles.Add(mapArray[i, j - 1]);
-                        }
-                        else
-                        {
-                            mapArray[i, j - 1].img.sprite = ATTENTION;
-                            //tiles.Add(mapArray[i, j - 1]);
-                        }
-                    }
-
-                    if (mapArray[i, j].hasDoorUp && j < height - 1 && !mapArray[i, j + 1].isConnectedToPath)
-                    {
-                        mapArray[i, j + 1].transform.rotation = Quaternion.Euler(90, 0, 0);
-                        if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
-                        {
-                            mapArray[i, j + 1].img.sprite = ATTENTIONROUUUGE;
-                            //tiles.Add(mapArray[i, j + 1]);
-                        }
-                        else
-                        {
-                            mapArray[i, j + 1].img.sprite = ATTENTION;
-                            //tiles.Add(mapArray[i, j + 1]);
-                        }
-                    }
-
-                    if (mapArray[i, j].hasDoorLeft && i > 0 && !mapArray[i - 1, j].isConnectedToPath)
-                    {
-                        mapArray[i - 1, j].transform.rotation = Quaternion.Euler(90, 0, 0);
-                        if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
-                        {
-                            mapArray[i - 1, j].img.sprite = ATTENTIONROUUUGE;
-                            //tiles.Add(mapArray[i - 1, j]);
-                        }
-                        else
-                        {
-                            mapArray[i - 1, j].img.sprite = ATTENTION;
-                            //tiles.Add(mapArray[i - 1, j]);
-                        }
-                    }
-
-                    if (mapArray[i, j].hasDoorRight && i < width - 1 && !mapArray[i + 1, j].isConnectedToPath)
-                    {
-                        mapArray[i + 1, j].transform.rotation = Quaternion.Euler(90, 0, 0);
-                        if (Hero.Instance.GetIndexHeroPos().x == i && Hero.Instance.GetIndexHeroPos().y == j)
-                        {
-                            mapArray[i + 1, j].img.sprite = ATTENTIONROUUUGE;
-                            //tiles.Add(mapArray[i + 1, j]);
-                        }
-                        else
-                        {
-                            mapArray[i + 1, j].img.sprite = ATTENTION;
-                            //tiles.Add(mapArray[i + 1, j]);
-                        }
-                    }
-                }
-            }
-
-            // yield return new WaitForSeconds(0.2f);
-            // UpScale = !UpScale;
-            // for (var index = 0; index < tiles.Count; index++)
-            // {
-            //     var tile = tiles[index];
-            //     if (UpScale)
-            //         tile.img.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-            // }
-        }*/
-
         yield return null;
         StartCoroutine(UpdateBoard());
     }
@@ -434,12 +348,17 @@ public class MapManager : MonoBehaviour
             mapArray[xCoord, yCoord].hasDoorLeft = true;
             SpriteRenderer renderer = mapArray[xCoord, yCoord].gameObject.GetComponent<SpriteRenderer>();
             renderer.sprite = floorSpriteForRage;
-            renderer.enabled = false;
+            renderer.enabled = true;
             mapArray[xCoord, yCoord].img.color = Color.white;
             mapArray[xCoord, yCoord].isVisited = false;
             mapArray[xCoord, yCoord].isConnectedToPath = false;
             mapArray[xCoord, yCoord].isExit = false;
             mapArray[xCoord, yCoord].PiecePlaced = false;
+            foreach (var enemy in mapArray[xCoord, yCoord].enemies)
+            {
+                Destroy(enemy.gameObject);
+            }
+
             int childCount = mapArray[xCoord, yCoord].transform.childCount;
             List<GameObject> children = new List<GameObject>();
             for (int i = 0; i < childCount; i++)
@@ -614,4 +533,6 @@ public class MapManager : MonoBehaviour
             }
         }
     }
+    
+    
 }

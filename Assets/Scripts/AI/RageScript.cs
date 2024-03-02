@@ -18,6 +18,7 @@ public static class RageScript
         int startY = getIndexHeroPos.y - radius;
         int endX = getIndexHeroPos.x + radius;
         int endY = getIndexHeroPos.y + radius;
+        
         for (int x = startX; x <= endX; x++)
         {
             for (int y = startY; y <= endY; y++)
@@ -29,5 +30,6 @@ public static class RageScript
             }
         }
         
+        MapManager.Instance.MapManagerTools.ResetConnectedToPath(new Vector2Int(getIndexHeroPos.x, getIndexHeroPos.y));
     }
 }
