@@ -498,6 +498,9 @@ public class DialogueManager : MonoBehaviour
                         }
 
                         break;
+                    case "unlockAchievement":
+                        AchievmentSteamChecker._instance.UnlockAchievementFromDialogue(split[1]);
+                        break;
                 }
             }
         }

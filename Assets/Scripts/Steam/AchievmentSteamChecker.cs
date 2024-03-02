@@ -69,6 +69,13 @@ public class AchievmentSteamChecker : MonoBehaviour
         }
     }
     
+    public void UnlockAchievementFromDialogue(string s)
+    {
+        if (!SteamManager.Initialized) return;
+        SteamUserStats.SetAchievement(s);
+        SteamUserStats.StoreStats();
+    }
+    
     private void DragonTakeDamage()
     {
         damage = true;
@@ -99,4 +106,6 @@ public class AchievmentSteamChecker : MonoBehaviour
         AttackHero.UnlockSniperAchievementEvent -= UnlockSniperAchievement;
         minionSkeleton.OnResurectEvent -= UnlockResurectAchievement;
     }
+
+    
 }
