@@ -17,7 +17,7 @@ MonoBehaviour:
   heros:
   - {fileID: 11400000, guid: a442be900f4a239498325e1cf53334c1, type: 2}
   decks:
-  - {fileID: 11400000, guid: 9d9bd96ffc865314eb7a579d7e474fc4, type: 2}
+  - {fileID: 11400000, guid: 89b1603d5dc48c849b3a4bd47ab4d43b, type: 2}
   PrebuildHand:
   - cardToBuild: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     nbToBuild: 2
