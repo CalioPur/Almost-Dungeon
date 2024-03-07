@@ -20,6 +20,7 @@ public class CheckDirectionToMove : Node
 
         SetVisibleTiles();
         
+        //observe ???
         
         List<TileData> listOfExits = new List<TileData>();
         //listOfExits.AddRange(blackboard.visibleTiles.Where(VARIABLE => VARIABLE.isExit));
@@ -94,6 +95,8 @@ public class CheckDirectionToMove : Node
         blackboard.options = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(blackboard.options);
         blackboard.memory = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(blackboard.memory);
 
+        
+        // CHOOSE
         if (target == null)
         {
             if (blackboard.options.Count == 0)
