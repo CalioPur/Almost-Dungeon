@@ -46,13 +46,6 @@ public static class BFSScript
         
         TileData targetTile = GetNextPosition(startPos, parentMap, tilesObjectif, withLessEnnemies);
         return targetTile;
-        // if (GoAttackDragon(startPos, map, out var bsfGoToTile)) return bsfGoToTile;
-        //
-        // if (GetDirectionToMove(startPos, nextPosition) == DirectionToMove.None)
-        //     return GoThroughDoorWithNoTile(startPos, map);
-        //
-        //
-        // return GetDirectionToMove(startPos, nextPosition);
     }
 
     public static DirectionToMove BFSGoInDirection(Vector2Int startPos, List<TileData> tilesObjectif, TileData[,] map,
