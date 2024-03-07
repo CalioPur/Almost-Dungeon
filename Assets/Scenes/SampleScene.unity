@@ -123,6 +123,45 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!21 &38051183
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/RoundedCorners
+  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _WidthHeightRadius: {r: 320, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &145307073
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,45 +444,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!21 &212738943
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/RoundedCorners
-  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _WidthHeightRadius: {r: 320, g: 0, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &319605604
 GameObject:
   m_ObjectHideFlags: 0
@@ -4344,7 +4344,7 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!21 &1997049619
+--- !u!21 &2102664572
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -4663,6 +4663,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7187578067712815662, guid: e84556db53c90214ab54584ec4b88a71,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7604611932395190464, guid: e84556db53c90214ab54584ec4b88a71,
         type: 3}
       propertyPath: m_Name
@@ -4784,37 +4789,42 @@ PrefabInstance:
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[1].time
-      value: 13.195361
+      value: 5.0062275
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[2].time
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[1].value
-      value: 4.741659
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[2].value
-      value: 20
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
+        type: 3}
+      propertyPath: BPMBoostCurve.m_Curve.Array.data[0].inSlope
+      value: 0.045283925
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[1].inSlope
-      value: 1.0659324
+      value: 26.241096
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[2].inSlope
-      value: 4.6106095
+      value: 132.72684
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
@@ -4823,33 +4833,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
+      propertyPath: BPMBoostCurve.m_Curve.Array.data[0].outSlope
+      value: 0.045283925
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
+        type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
+      value: 0.017878294
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[1].outSlope
-      value: 1.0659324
+      value: 26.241096
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[2].inWeight
-      value: 0.039904803
+      value: 0.043176755
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[2].outSlope
-      value: 4.6106095
+      value: 132.72684
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[0].outWeight
-      value: 0
+      value: 0.0010897918
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
       propertyPath: BPMBoostCurve.m_Curve.Array.data[1].outWeight
-      value: 0.08879895
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4068650182596537190, guid: 12ff17c0dd4ece349b85926f11787a6a,
         type: 3}
