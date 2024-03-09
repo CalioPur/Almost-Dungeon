@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D2_Special_Impossible_3
   m_EditorClassIdentifier: 
   nameOfHero: Jeanne
-  health: 15
-  speed: 2.6666667
+  health: 21
+  speed: 2.1
   classe: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
   visionType: 0
   aggressivity: 2

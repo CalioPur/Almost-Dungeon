@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D2_Special_Medium_4
   m_EditorClassIdentifier: 
   nameOfHero: ???
-  health: 5
-  speed: 2
+  health: 7
+  speed: 1.1
   classe: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   visionType: 2
   aggressivity: 0
