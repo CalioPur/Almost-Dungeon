@@ -107,7 +107,7 @@ public class CheckDirectionToMove : Node
                     target = BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(),
                         blackboard.options, blackboard.hero.mapManager.getMapArray(), true);
                 }
-                else if (blackboard.personalities.Contains(Personnalities.EXPLORATEUR) || blackboard.memory == blackboard.options)
+                else if (!blackboard.personalities.Contains(Personnalities.INDECIS) && !blackboard.personalities.Contains(Personnalities.IMPATIENT) || blackboard.memory == blackboard.options)
                 {
                     target = BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(),
                         blackboard.options, blackboard.hero.mapManager.getMapArray());
