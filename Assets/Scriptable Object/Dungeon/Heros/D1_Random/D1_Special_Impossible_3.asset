@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D1_Special_Impossible_3
   m_EditorClassIdentifier: 
   nameOfHero: Arash
-  health: 15
-  speed: 2.6666667
+  health: 20
+  speed: 1.9
   classe: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
   visionType: 0
   aggressivity: 2
