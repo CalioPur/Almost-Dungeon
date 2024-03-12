@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfHero: Mephis
   health: 10
-  speed: 2.3333333
+  speed: 1.5
   classe: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   visionType: 0
   aggressivity: 2

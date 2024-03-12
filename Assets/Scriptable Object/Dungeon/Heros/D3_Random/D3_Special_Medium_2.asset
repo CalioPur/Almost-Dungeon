@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D3_Special_Medium_2
   m_EditorClassIdentifier: 
   nameOfHero: Ulrik
-  health: 20
-  speed: 3
+  health: 17
+  speed: 1.8
   classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
   visionType: 1
   aggressivity: 2
