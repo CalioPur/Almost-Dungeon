@@ -19,10 +19,10 @@ public static class BlindScript
 
             if (newX >= 0 && newX < currentMap.GetLength(0) && newY >= 0 && newY < currentMap.GetLength(1))
             {
-                if ((i == 0 && !MapManager.Instance.GetTileDataAtPosition(pos.x, pos.y).hasDoorUp) ||
-                    (i == 1 && !MapManager.Instance.GetTileDataAtPosition(pos.x, pos.y).hasDoorDown) ||
-                    (i == 2 && !MapManager.Instance.GetTileDataAtPosition(pos.x, pos.y).hasDoorRight) ||
-                    (i == 3 && !MapManager.Instance.GetTileDataAtPosition(pos.x, pos.y).hasDoorLeft))
+                if ((i == 0 && MapManager.Instance.GetTileDataAtPosition(pos.x, pos.y).hasDoorUp) ||
+                    (i == 1 && MapManager.Instance.GetTileDataAtPosition(pos.x, pos.y).hasDoorDown) ||
+                    (i == 2 && MapManager.Instance.GetTileDataAtPosition(pos.x, pos.y).hasDoorRight) ||
+                    (i == 3 && MapManager.Instance.GetTileDataAtPosition(pos.x, pos.y).hasDoorLeft))
                     adjacentTiles.Add(MapManager.Instance.GetTileDataAtPosition(newX, newY));
             }
         }

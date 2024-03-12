@@ -153,7 +153,12 @@ public class DungeonManager : MonoBehaviour
         string personality = "";
         if (heroData.visionType != VisionType.LIGNEDROITE) personality += ToTitleCase(heroData.visionType.ToString()) + " ";
         if (heroData.aggressivity != Aggressivity.NONE) personality += ToTitleCase(heroData.aggressivity.ToString());
-        // heroCard.heroPersonality.text = ToTitleCase(heroData.visionType.ToString() + " " + heroData.aggressivity);
+        foreach (var perso in heroData.personalities)
+        {
+            personality += " " + ToTitleCase(perso.ToString());
+        }
+        
+        //heroCard.heroPersonality.text = ToTitleCase(heroData.visionType.ToString() + " " + heroData.aggressivity);
         heroCard.heroPersonality.text = personality;
         cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = deckData.deck;
@@ -196,6 +201,20 @@ public class DungeonManager : MonoBehaviour
         GameManager.OnSceneLoadedEvent += LoadLevel;
     }
 
+    public void RefreshCard()
+    {
+        UI_Hero heroCard = FindObjectOfType<UI_Hero>();
+        heroCard.heroName.text = heroData.nameOfHero;
+        heroCard.HealthBarText.text = heroData.health.ToString();
+        string personality = "";
+        if (heroData.visionType != VisionType.LIGNEDROITE) personality += ToTitleCase(heroData.visionType.ToString()) + " ";
+        if (heroData.aggressivity != Aggressivity.NONE) personality += ToTitleCase(heroData.aggressivity.ToString());
+        foreach (var perso in heroData.personalities)
+        {
+            personality += " " + ToTitleCase(perso.ToString());
+        }
+    }
+    
     public void ResetLevelIndex()
     {
         print("reset!");

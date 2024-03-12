@@ -414,7 +414,7 @@ public class DialogueManager : MonoBehaviour
                                 GameManager.Instance.currentHero.aggressivity = Aggressivity.COURAGEUX;
                                 break;
                         }
-
+                        DungeonManager._instance.RefreshCard();
                         break;
                     case "playSFX":
                         switch (split[1])

@@ -48,32 +48,7 @@ public class CheckDirectionToMove : Node
         }
 
         
-        // foreach (var VARIABLE in blackboard.visibleTiles)
-        // {
-        //     // if (!listOfExits.Contains(VARIABLE))
-        //     // {
-        //     //     if (blackboard.memory.Contains(VARIABLE))
-        //     //     {
-        //     //         blackboard.memory.Remove(VARIABLE);
-        //     //         if (target == VARIABLE)
-        //     //         {
-        //     //             target = null;
-        //     //             
-        //     //         }
-        //     //     }
-        //     // }
-        //     if (blackboard.hero.GetIndexHeroPos() == target?.IndexInMapArray)
-        //     {
-        //         target = null;
-        //     }
-        //     if (!blackboard.memory.Contains(VARIABLE))
-        //     {
-        //         blackboard.memory.Add(VARIABLE);
-        //     }
-        //     blackboard.options.Add(VARIABLE);
-        // }
-        // blackboard.options = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(blackboard.options);
-        // blackboard.memory = GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(blackboard.memory);
+        
         if (blackboard.hero.GetIndexHeroPos() == target?.IndexInMapArray)
         {
             target = null;
@@ -107,7 +82,7 @@ public class CheckDirectionToMove : Node
                     target = BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(),
                         blackboard.options, blackboard.hero.mapManager.getMapArray(), true);
                 }
-                else if (!blackboard.personalities.Contains(Personnalities.INDECIS) && !blackboard.personalities.Contains(Personnalities.IMPATIENT) || blackboard.memory == blackboard.options)
+                else if (!blackboard.personalities.Contains(Personnalities.INDECIS))
                 {
                     target = BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(),
                         blackboard.options, blackboard.hero.mapManager.getMapArray());
@@ -182,7 +157,7 @@ public class CheckDirectionToMove : Node
             }
         }
         blackboard.options.Clear();
-        return NodeState.Success;
+        //return NodeState.Success;
         // foreach (var VARIABLE in blackboard.memory)
         // {
         //     Debug.DrawRay(VARIABLE.gameObject.transform.position, Vector3.up, Color.red, 1);
@@ -203,30 +178,31 @@ public class CheckDirectionToMove : Node
         //     Debug.LogError("MARCHE PO");
         //     // blackboard.directionToMove = RandomDirection();
         // }
-        // Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();
-        // switch (blackboard.directionToMove)
-        // {
-        //     case DirectionToMove.Up:
-        //         simulatedPos.y += 1;
-        //         break;
-        //     case DirectionToMove.Down:
-        //         simulatedPos.y -= 1;
-        //         break;
-        //     case DirectionToMove.Left:
-        //         simulatedPos.x -= 1;
-        //         break;
-        //     case DirectionToMove.Right:
-        //         simulatedPos.x += 1;
-        //         break;
-        //     case DirectionToMove.None:
-        //         
-        //         break;
-        //     default:
-        //         return NodeState.Failure;
-        // }
-        // if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;
-        // blackboard.hero.OutOfMap(blackboard.directionToMove);
-        // return NodeState.Failure;
+        Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();
+        switch (blackboard.directionToMove)
+        {
+            case DirectionToMove.Up:
+                simulatedPos.y += 1;
+                break;
+            case DirectionToMove.Down:
+                simulatedPos.y -= 1;
+                break;
+            case DirectionToMove.Left:
+                simulatedPos.x -= 1;
+                break;
+            case DirectionToMove.Right:
+                simulatedPos.x += 1;
+                break;
+            case DirectionToMove.None:
+                
+                break;
+            default:
+                return NodeState.Failure;
+        }
+        if (blackboard.hero.mapManager.CheckIfTileIsFree(simulatedPos)) return NodeState.Success;
+        blackboard.hero.OutOfMap(blackboard.directionToMove);
+        blackboard.directionToMove = DirectionToMove.None;
+        return NodeState.Failure;
     }
     
     private bool EnemiesOnRange(List<TileData> listOfEnemiesPos)
@@ -298,6 +274,10 @@ public class CheckDirectionToMove : Node
             VisionType.LIGNEDROITE => VisionNormalScript.GetVisibleTiles(blackboard.hero.GetIndexHeroPos()),
             _ => SeerScript.GetAllConnectedToPathTiles(blackboard.hero.GetIndexHeroPos())
         };
+        foreach (var tileData in blackboard.visibleTiles)
+        {
+            tileData.IsVisited = true;
+        }
     }
 
     private List<TileData> GetRidOfOptionsThatHaveNoDoorsToUnvisitedTiles(List<TileData> tileDatas)
