@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D4_Special_Medium_1
   m_EditorClassIdentifier: 
   nameOfHero: Sire Pierre
-  health: 15
-  speed: 2.3333333
+  health: 14
+  speed: 1.3
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 2
   aggressivity: 2
