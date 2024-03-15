@@ -130,7 +130,7 @@ public class CheckDirectionToMove : Node
         {
             if ((blackboard.personalities.Contains(Personnalities.IMPATIENT) &&
                 BFSScript.DistanceFromExit(blackboard.hero.GetIndexHeroPos(),
-                    blackboard.hero.mapManager.getMapArray()) >
+                    listOfExits) >=
                 5) || target == null)
             {
                 RageScript.Rage(blackboard.hero.GetIndexHeroPos());

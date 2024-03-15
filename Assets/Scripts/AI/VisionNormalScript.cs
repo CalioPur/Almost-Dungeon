@@ -50,7 +50,7 @@ public static class VisionNormalScript
             debug++;
         }
 
-        visibleTiles.AddRange(MapManager.Instance.mapArray.Cast<TileData>().Where(VARIABLE => VARIABLE.isConnectedToPath && !VARIABLE.IsVisited));
+        
         return visibleTiles;
     }
 }

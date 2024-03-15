@@ -49,8 +49,6 @@ public class Pyke : TrapData
             isOnFire = true;
         }
 
-        print("HeroPos : " + heroPos);
-        print("MyPos : " + indexX + " " + indexY);
         if (isOnFire)
         {
             StartCoroutine(AttackFX());
