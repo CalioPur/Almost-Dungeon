@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D4_Special_Easy_4
   m_EditorClassIdentifier: 
   nameOfHero: Therim
-  health: 15
-  speed: 2.3333333
+  health: 14
+  speed: 1.5
   classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
   visionType: 0
   aggressivity: 1

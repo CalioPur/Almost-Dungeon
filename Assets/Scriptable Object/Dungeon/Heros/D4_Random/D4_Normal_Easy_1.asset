@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D4_Normal_Easy_1
   m_EditorClassIdentifier: 
   nameOfHero: Enoch Hall
-  health: 15
-  speed: 2.3333333
+  health: 13
+  speed: 1.5
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2
