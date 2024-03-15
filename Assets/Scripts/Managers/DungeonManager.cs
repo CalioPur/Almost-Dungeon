@@ -33,7 +33,7 @@ public class DungeonManager : MonoBehaviour
     public static int SelectedBiome;
     
     public TilePresetSO terrainData;
-    public HeroSO heroData;
+    public HeroSOInstance heroData;
     public DeckSO deckData;
     
     
@@ -144,22 +144,15 @@ public class DungeonManager : MonoBehaviour
                 heroUnlock.Add(hero);
             }
         }
-        heroData = heroUnlock[Random.Range(0, heroUnlock.Count)];
+
+        var heroSo = heroUnlock[Random.Range(0, heroUnlock.Count)];
+        heroData = new HeroSOInstance(heroSo);
         deckData = levelData.decks[Random.Range(0, levelData.decks.Count)];
         
         UI_Hero heroCard = FindObjectOfType<UI_Hero>();
         heroCard.heroName.text = heroData.nameOfHero;
         heroCard.HealthBarText.text = heroData.health.ToString();
-        string personality = "";
-        if (heroData.visionType != VisionType.LIGNEDROITE) personality += ToTitleCase(heroData.visionType.ToString()) + " ";
-        if (heroData.aggressivity != Aggressivity.NONE) personality += ToTitleCase(heroData.aggressivity.ToString());
-        foreach (var perso in heroData.personalities)
-        {
-            personality += " " + ToTitleCase(perso.ToString());
-        }
-        
-        //heroCard.heroPersonality.text = ToTitleCase(heroData.visionType.ToString() + " " + heroData.aggressivity);
-        heroCard.heroPersonality.text = personality;
+        RefreshCard(heroData);
         cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = deckData.deck;
         cardsManager.handToBuild = levelData.PrebuildHand;
@@ -201,7 +194,7 @@ public class DungeonManager : MonoBehaviour
         GameManager.OnSceneLoadedEvent += LoadLevel;
     }
 
-    public void RefreshCard()
+    public void RefreshCard(HeroSOInstance heroData)
     {
         UI_Hero heroCard = FindObjectOfType<UI_Hero>();
         heroCard.heroName.text = heroData.nameOfHero;
@@ -213,6 +206,8 @@ public class DungeonManager : MonoBehaviour
         {
             personality += " " + ToTitleCase(perso.ToString());
         }
+        heroCard.heroPersonality.text = personality;
+        Debug.LogWarning(personality);
     }
     
     public void ResetLevelIndex()

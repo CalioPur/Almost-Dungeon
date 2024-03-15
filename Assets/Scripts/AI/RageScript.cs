@@ -26,6 +26,7 @@ public static class RageScript
                 if (x >= 0 && x < MapManager.Instance.mapArray.GetLength(0) && y >= 0 && y < MapManager.Instance.mapArray.GetLength(1))
                 {
                     if (x != getIndexHeroPos.x || y != getIndexHeroPos.y) MapManager.Instance.ChangeTileDataAtPosition(x, y);
+                    MapManager.Instance.mapArray[x, y].IsVisited = false;
                 }
             }
         }

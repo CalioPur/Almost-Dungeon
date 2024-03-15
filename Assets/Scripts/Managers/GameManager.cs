@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CardInfo enterDungeonInfo;
     public Transform AttackPoint;
     public bool EndOfGame = false;
-    public HeroSO currentHero;
+    public HeroSOInstance currentHero;
     public int heroHealthPoint;
     public int heroCurrentHealthPoint;
     public int rotationOfSpawnTile;
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
 
     public float GetHeroSpeed()
     {
-        if (!currentHero) return -1;
+        if (currentHero==null) return -1;
         return currentHero.speed;
     }
 }
