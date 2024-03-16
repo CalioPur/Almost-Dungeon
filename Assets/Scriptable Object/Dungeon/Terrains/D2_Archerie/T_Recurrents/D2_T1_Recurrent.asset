@@ -13,33 +13,28 @@ MonoBehaviour:
   m_Name: D2_T1_Recurrent
   m_EditorClassIdentifier: 
   tilePresets:
-  - position: {x: 2, y: 5}
-    cardInfo: {fileID: 11400000, guid: 1db26f8ca750521449a53d839380a11b, type: 2}
+  - position: {x: 4, y: 0}
+    cardInfo: {fileID: 11400000, guid: 6f8a8a78388799049aeb20abcda62770, type: 2}
+    rotation: 1
+  - position: {x: 3, y: 0}
+    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 0
-  - position: {x: 2, y: 6}
+  - position: {x: 5, y: 0}
+    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+    rotation: 0
+  - position: {x: 6, y: 0}
+    cardInfo: {fileID: 11400000, guid: a0f4cce5fc6ed0a44bfe42b12a955251, type: 2}
+    rotation: 1
+  - position: {x: 2, y: 0}
+    cardInfo: {fileID: 11400000, guid: a0f4cce5fc6ed0a44bfe42b12a955251, type: 2}
+    rotation: 2
+  - position: {x: 4, y: 2}
     cardInfo: {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
-    rotation: 0
-  - position: {x: 3, y: 5}
-    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 1
-  - position: {x: 3, y: 6}
-    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-    rotation: 0
-  - position: {x: 4, y: 5}
-    cardInfo: {fileID: 11400000, guid: 04d799a52176ab249a17e82201cee279, type: 2}
+  - position: {x: 4, y: 1}
+    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 1
-  - position: {x: 5, y: 5}
-    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
-    rotation: 1
-  - position: {x: 5, y: 6}
-    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-    rotation: 3
-  - position: {x: 6, y: 5}
-    cardInfo: {fileID: 11400000, guid: 1db26f8ca750521449a53d839380a11b, type: 2}
-    rotation: 0
-  - position: {x: 6, y: 6}
-    cardInfo: {fileID: 11400000, guid: e93e73c07159a15409159e272af3144c, type: 2}
-    rotation: 0
-  SpawnPosition: {x: 4, y: 6}
+  SpawnPosition: {x: 4, y: 3}
   spawnRotation: 1
-  terrainDialogue: {fileID: 0}
+  terrainDialogue:
+  - {fileID: 0}

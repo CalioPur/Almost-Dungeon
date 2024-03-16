@@ -18,6 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 50465a8e4d200a14e90af46638b00ef6, type: 2}
   decks:
   - {fileID: 11400000, guid: a034496265c33e24998551a642dd4203, type: 2}
+  PrebuildHand: []
   nbCardToDraw: 5
   keysElementsToUnlock:
   - D2_L1
