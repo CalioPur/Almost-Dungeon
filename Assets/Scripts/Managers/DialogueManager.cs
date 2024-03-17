@@ -46,6 +46,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private MarkdownRenderer dialogueText;
     [SerializeField] private MarkdownRenderer markdownRenderer;
     [SerializeField] private Button nextButton;
+    [SerializeField] private TMP_Text nextButtonText;
     [SerializeField] private Image otherImage;
     [SerializeField] private GameObject canvaDragon;
     [SerializeField] private GameObject canvaHero;
@@ -244,7 +245,10 @@ public class DialogueManager : MonoBehaviour
                 DisplayChoices();
                 return;
             }
-
+            else
+            {
+                nextButtonText.text = "C'est parti !";
+            }
             dialogueVariable.StopListening(story);
             dialogueBox.SetActive(false);
             story = null;
