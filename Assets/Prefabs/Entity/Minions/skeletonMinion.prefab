@@ -110,7 +110,6 @@ MonoBehaviour:
   mapManager: {fileID: 0}
   sprite: {fileID: 3666571859102276325}
   SO: {fileID: 11400000, guid: 358f3e656c861034fa2364e734d98189, type: 2}
-  indexOffsetTile: 0
   tr: {fileID: 5242026796885018233}
   bt: {fileID: 8669962021866816037}
   animQueue: {fileID: 6402256854860038529}
@@ -347,7 +346,7 @@ PrefabInstance:
     - target: {fileID: 2748451925449615530, guid: afa0f2b1286196e44b2ec96e8cbc9603,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2748451925449615530, guid: afa0f2b1286196e44b2ec96e8cbc9603,
         type: 3}
@@ -382,7 +381,7 @@ PrefabInstance:
     - target: {fileID: 4300528332594857753, guid: afa0f2b1286196e44b2ec96e8cbc9603,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
