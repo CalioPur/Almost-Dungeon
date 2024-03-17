@@ -27,7 +27,6 @@ Ils n'en sortiront pas vivants ! #chara:archer #changepers:courageux
 Enfer ! Encore l'IGD. Vite mon sbire ! Il  faut à nouveau cacher nos fiches de paie ! #chara:dragon
 J'y vais patron ! #chara:minion
 Ah monsieur le Dragon, cette fois ci je vais avoir besoin de vos fiches de paie. #minion:out
-Eh bien vous allez rire mais ma machoire me dérange toujours... #chara:dragon 
 * [La diriger vers les oubliettes (perd <color=orange>exploratrice</color> )] -> Regen2
 * [Accuser les monstres de fraude (devient <color=red>courageuse</color> )] -> Damages2
  -> END
