@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8210886176878060215}
+  - component: {fileID: 1708333435904231758}
   m_Layer: 5
-  m_Name: DagonPawn
+  m_Name: DragonPawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,6 +33,26 @@ Transform:
   - {fileID: 5174023379486541185}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1708333435904231758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6644354150763648047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d27373f47f7e6e4885a86179efa146e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragonMatTrans: {fileID: 2100000, guid: a6e7c5853c41dc7438003f86d4a16358, type: 2}
+  dragonMatOpaque: {fileID: 2100000, guid: 621cf557c1c54b94f9e8d69fb44c216f, type: 2}
+  dragonMesh: {fileID: 4060163877820492955}
+  dragonMatEyeTrans: {fileID: 2100000, guid: 077cc9ea6ee49a740942fdedc97feef1, type: 2}
+  dragonMatEyeOpaque: {fileID: 2100000, guid: 0eb9aaedef9bb1b48a398bedc27fa07f, type: 2}
+  dragonEyeMesh:
+  - {fileID: 2919591922484537732}
+  - {fileID: 4629304728607920675}
 --- !u!1001 &4631789097237733994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,6 +191,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4631789097237733994}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &4060163877820492955 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8655903287209168625, guid: a77670cda8c068f418ab4f853bccf922,
+    type: 3}
+  m_PrefabInstance: {fileID: 4631789097237733994}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5174023379486541185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a77670cda8c068f418ab4f853bccf922,
@@ -269,6 +296,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8a49d97f501b94f994d700db0ac04e, type: 3}
+--- !u!23 &2919591922484537732 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1101237433401556072, guid: 7f8a49d97f501b94f994d700db0ac04e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6355677490974206492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4629304728607920675 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7490190835372214209, guid: 7f8a49d97f501b94f994d700db0ac04e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6355677490974206492}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6897648192755322359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7f8a49d97f501b94f994d700db0ac04e,
