@@ -216,10 +216,10 @@ public class Hero : MonoBehaviour, IFlippable
         RageScript.OnNoPathFound -= PlayEmoteStuck;
     }
 
-    private void Stun(TrapData _web)
+    public void Stun(TrapData _web)
     {
         isStunned = true;
-        web = _web;
+        if(web) web = _web;
     }
 
     public void AddAnim(AnimToQueue animToQueue)

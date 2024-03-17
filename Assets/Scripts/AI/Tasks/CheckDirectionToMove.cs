@@ -20,6 +20,7 @@ public class CheckDirectionToMove : Node
 
         SetVisibleTiles();
         
+        
         //observe ???
         
         HashSet<TileData> listOfExits = new HashSet<TileData>();
@@ -134,6 +135,7 @@ public class CheckDirectionToMove : Node
                 5) || target == null)
             {
                 RageScript.Rage(blackboard.hero.GetIndexHeroPos());
+                blackboard.hero.Stun(null);
                 blackboard.directionToMove = DirectionToMove.None;
             }
             else if (!EnemiesOnRange(listOfEnemiesPos) && blackboard.aggressivity == Aggressivity.COURAGEUX && listOfEnemiesPos.Count > 0)
