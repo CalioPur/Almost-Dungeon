@@ -14,7 +14,6 @@ public class Hero : MonoBehaviour, IFlippable
     
     public static Hero Instance;
     
-    
     public MapManager mapManager { get; private set; }
     public HeroInstance info { get; private set; }
     
@@ -32,7 +31,7 @@ public class Hero : MonoBehaviour, IFlippable
     
     [SerializeField] private MeshRenderer threeDeeHero;
 
-    private int entityId;
+    protected int entityId;
     private Vector2Int IndexHeroPos = new (0, 0);
     public AudioClip[] attackClip;
     private bool isStunned;
@@ -63,6 +62,7 @@ public class Hero : MonoBehaviour, IFlippable
 
     void OnTick()
     {
+        if (!gameObject.activeSelf) return;
         if (!bt) return;
         if (isStunned)
         {
@@ -73,7 +73,7 @@ public class Hero : MonoBehaviour, IFlippable
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
     
-    public void Init(HeroInstance instance, int _indexHeroX, int _indexHeroY, MapManager manager)
+    public virtual void Init(HeroInstance instance, int _indexHeroX, int _indexHeroY, MapManager manager)
     {
         IndexHeroPos = new Vector2Int(_indexHeroX, _indexHeroY);
         mapManager = manager;
@@ -89,6 +89,8 @@ public class Hero : MonoBehaviour, IFlippable
         RageScript.OnNoPathFound += PlayEmoteStuck;
         OnDragonAttackEvent +=AttackDragon;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
+        Instance = this;
+        OnBeginToMove();
     }
 
     private void AttackDragon(DirectionToMove obj)
@@ -195,15 +197,7 @@ public class Hero : MonoBehaviour, IFlippable
         
     }
 
-    private void Awake()
-    {
-        Instance = this;
-    }
 
-    private void Start()
-    {
-        OnBeginToMove();
-    }
 
     private void OnDisable()
     {

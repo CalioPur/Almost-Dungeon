@@ -77,19 +77,19 @@ public class GameManager : MonoBehaviour
 
         HeroInstance current = currentHero.classe.CreateInstance();
         current.CurrentHealthPoint = heroHealthPoint;
-
-        Hero heroScript = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
-        heroScript.Init(current, posHero.x, posHero.y, mapManager);
-        heroScript.HeroBlackboard.visionType = currentHero.visionType;
-        heroScript.HeroBlackboard.aggressivity = currentHero.aggressivity;
-        heroScript.HeroBlackboard.personalities = currentHero.personalities;
+        
+        Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation).Init(current, posHero.x, posHero.y, mapManager);
+        
+        Hero.Instance.HeroBlackboard.visionType = currentHero.visionType;
+        Hero.Instance.HeroBlackboard.aggressivity = currentHero.aggressivity;
+        Hero.Instance.HeroBlackboard.personalities = currentHero.personalities;
 
         if (heroCurrentHealthPoint < heroHealthPoint) //Degats pris pendant le dialogue
         {
-            heroScript.TakeDamage((heroHealthPoint - heroCurrentHealthPoint), AttackType.Fire);
+            Hero.Instance.TakeDamage((heroHealthPoint - heroCurrentHealthPoint), AttackType.Fire);
         }
 
-        UIManager._instance.heroBlackboard = heroScript.HeroBlackboard;
+        UIManager._instance.heroBlackboard = Hero.Instance.HeroBlackboard;
         OnEndDialogEvent?.Invoke();
     }
 
