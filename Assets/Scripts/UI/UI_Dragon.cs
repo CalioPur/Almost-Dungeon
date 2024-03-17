@@ -26,9 +26,9 @@ public class UI_Dragon : MonoBehaviour
     
     // [SerializeField] private Animator fireBallPrefab;
     // [SerializeField] private AnimationClip fireBallAnim;
-    [SerializeField] private GameObject dragonPawn;
+    [SerializeField] private ChangeMatDragon dragonPawn;
     
-    private Transform dragonTransform = null;
+    private ChangeMatDragon dragonPawnMat = null;
 
     private IEnumerator TakeDamageFX(Hero hero, float delay)
     {
@@ -51,15 +51,15 @@ public class UI_Dragon : MonoBehaviour
             yield break;
         }
         yield return new WaitForSeconds(shakeDuration);
-        dragonTransform.DOKill();
-        dragonTransform.gameObject.SetActive(false);
+        dragonPawnMat.RenderTransparent();
         
         // Animator fireBall = Instantiate(fireBallPrefab, dragonCard);
         // fireBall.Play(fireBallAnim.name);
         // Destroy(fireBall.gameObject, fireBallAnim.length);
         yield return new WaitForSeconds(delay);
         
-        
+        dragonPawnMat.DOKill();
+        dragonPawnMat.gameObject.SetActive(false);
         Camera.main.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
         
         hero.TakeDamage(damage, AttackType.Physical);
@@ -103,10 +103,11 @@ public class UI_Dragon : MonoBehaviour
     
     IEnumerator AttackByHero(float delay, Hero hero, DirectionToMove attackDirection)
     {
-        if (!dragonTransform)
-            dragonTransform = Instantiate(dragonPawn).transform;
-        dragonTransform.gameObject.SetActive(true);
-        dragonTransform.position = GameManager.Instance.AttackPoint.position;
+        if (!dragonPawnMat)
+            dragonPawnMat = Instantiate(dragonPawn);
+        dragonPawnMat.gameObject.SetActive(true);
+        dragonPawnMat.transform.position = GameManager.Instance.AttackPoint.position;
+        dragonPawnMat.RenderTransparent();
         Vector3 rotation = Vector3.zero;
         switch (attackDirection)
         {
@@ -123,9 +124,10 @@ public class UI_Dragon : MonoBehaviour
                 rotation = new Vector3(0, 90, 0);
                 break;
         }
-        dragonTransform.rotation = Quaternion.Euler(rotation);
-        dragonTransform.DOShakePosition(10, 0.1f, 5, 90, false, true);
+        dragonPawnMat.transform.rotation = Quaternion.Euler(rotation);
+        dragonPawnMat.transform.DOShakePosition(10, 0.1f, 5, 90, false, true);
         yield return new WaitForSeconds(delay);
+        dragonPawnMat.RenderOpaque();
         StartCoroutine(TakeDamageFX(hero, delay));
         OnDragonTakeDamageEvent?.Invoke();
         DrawHearts();

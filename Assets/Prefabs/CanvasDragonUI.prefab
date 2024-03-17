@@ -566,7 +566,7 @@ MonoBehaviour:
   healthText: {fileID: 707835566741074225}
   shakeDuration: 0.5
   damage: 3
-  dragonPawn: {fileID: 6644354150763648047, guid: 987dcbc4e1d993349af653ba88bfad97,
+  dragonPawn: {fileID: 1708333435904231758, guid: 987dcbc4e1d993349af653ba88bfad97,
     type: 3}
 --- !u!1 &7801215214942179611
 GameObject:
