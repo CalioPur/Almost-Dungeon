@@ -342,6 +342,14 @@ public class MapManager : MonoBehaviour
     {
         if (mapArray[xCoord, yCoord].PiecePlaced)
         {
+            GameObject go = Instantiate(mapArray[xCoord, yCoord].gameObject, mapArray[xCoord, yCoord].transform.position, mapArray[xCoord, yCoord].transform.rotation);
+            GameObject parent = Instantiate(new GameObject(), mapArray[xCoord, yCoord].transform.position, mapArray[xCoord, yCoord].transform.rotation);
+            go.transform.SetParent(parent.transform);
+            parent.AddComponent<MeshCollider>();
+            parent.GetComponent<MeshCollider>().convex = true;
+            parent.AddComponent<Rigidbody>();
+            parent.GetComponent<Rigidbody>().AddForce(Vector3.up * 10, ForceMode.Impulse);
+            Destroy(parent, 1);
             mapArray[xCoord, yCoord].hasDoorUp = true;
             mapArray[xCoord, yCoord].hasDoorRight = true;
             mapArray[xCoord, yCoord].hasDoorDown = true;
