@@ -54,27 +54,17 @@ public class CheckDirectionToMove : Node
         {
             target = null;
         }
-        //
+        
         blackboard.options.Clear();
         foreach (var VARIABLE in listOfExits)
         {
             blackboard.options.Add(VARIABLE);
         }
-        //
+        
         
         // CHOOSE
         if (target == null)
         {
-            // if (blackboard.options.Count == 0)
-            // {
-            //     if (blackboard.memory.Count > 0)
-            //     {
-            //         foreach (var VARIABLE in blackboard.memory)
-            //         {
-            //             blackboard.options.Add(VARIABLE);
-            //         }
-            //     }
-            // }
             
             if (blackboard.options.Count > 0 || blackboard.memory.Count > 0)
             {
@@ -159,27 +149,6 @@ public class CheckDirectionToMove : Node
             }
         }
         blackboard.options.Clear();
-        //return NodeState.Success;
-        // foreach (var VARIABLE in blackboard.memory)
-        // {
-        //     Debug.DrawRay(VARIABLE.gameObject.transform.position, Vector3.up, Color.red, 1);
-        // }
-        //
-        // foreach (var VARIABLE in blackboard.options)
-        // {
-        //     Debug.DrawRay(VARIABLE.gameObject.transform.position, Vector3.up, Color.green, 1);
-        // }
-        // blackboard.options.Clear();
-        // if (target != null && target.isVisited)
-        // {
-        //     target = null;
-        // }
-        //
-        // if (blackboard.directionToMove == DirectionToMove.Error)
-        // {
-        //     Debug.LogError("MARCHE PO");
-        //     // blackboard.directionToMove = RandomDirection();
-        // }
         Vector2Int simulatedPos = blackboard.hero.GetIndexHeroPos();
         switch (blackboard.directionToMove)
         {
