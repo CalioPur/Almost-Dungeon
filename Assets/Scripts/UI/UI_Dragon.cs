@@ -24,10 +24,13 @@ public class UI_Dragon : MonoBehaviour
     public static int maxHealth = 10;
     public int damage = 3;
     
-    [SerializeField] private Animator fireBallPrefab;
-    [SerializeField] private AnimationClip fireBallAnim;
+    // [SerializeField] private Animator fireBallPrefab;
+    // [SerializeField] private AnimationClip fireBallAnim;
+    [SerializeField] private GameObject dragonPawn;
+    
+    private Transform dragonTransform = null;
 
-    private IEnumerator TakeDamageFX(Hero hero)
+    private IEnumerator TakeDamageFX(Hero hero, float delay)
     {
         if (hero.info.CurrentHealthPoint - damage <= 0) TickManager.Instance.OnEndGame();
         SoundManagerIngame.Instance.PlayDialogueSFX("DragonBreath");
@@ -35,7 +38,6 @@ public class UI_Dragon : MonoBehaviour
         yield return new WaitForSeconds(0.3f * TickManager.Instance.calculateBPM());
         var dragonImageColor = dragonImage.color;
         dragonImageColor.a = 0f;
-        //dragonImage.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         dragonImage.color = Color.red;
         dragonCard.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
         currentHealth -= 1;
@@ -49,13 +51,20 @@ public class UI_Dragon : MonoBehaviour
             yield break;
         }
         yield return new WaitForSeconds(shakeDuration);
-        Animator fireBall = Instantiate(fireBallPrefab, dragonCard);
-        fireBall.Play(fireBallAnim.name);
-        yield return new WaitForSeconds(fireBallAnim.length);
+        dragonTransform.DOKill();
+        dragonTransform.gameObject.SetActive(false);
+        
+        // Animator fireBall = Instantiate(fireBallPrefab, dragonCard);
+        // fireBall.Play(fireBallAnim.name);
+        // Destroy(fireBall.gameObject, fireBallAnim.length);
+        yield return new WaitForSeconds(delay);
+        
+        
         Camera.main.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
-        Destroy(fireBall.gameObject);
-        dragonImage.color = Color.white;
+        
         hero.TakeDamage(damage, AttackType.Physical);
+        
+        dragonImage.color = Color.white;
         dragonImageColor.a = 1f;
     }
 
@@ -65,17 +74,6 @@ public class UI_Dragon : MonoBehaviour
     {
         DestroyAllHearts();
         int a = 0;
-        //draw full hearts and empty hearts full heart = currentHealth empty heart = maxHealth - currentHealth
-        // for (int i = 0; i < currentHealth; i++)
-        // {
-        //     CreateFullHeart();
-        //     a++;
-        // }
-        
-        // for (int i = 0; i < maxHealth - currentHealth; i++)
-        // {
-        //     CreateEmptyHeart();
-        // }
         
         //draw hearts
         if (currentHealth > maxHealth)
@@ -91,26 +89,6 @@ public class UI_Dragon : MonoBehaviour
         
     }
 
-    // public void CreateFullHeart()
-    // {
-    //     UI_Heart heart = Instantiate(heartPrefab, singleHeart.transform);
-    //     heart.transform.rotation = Quaternion.Euler(0, 0, 45);
-    //     heart.transform.DORotate(new Vector3(0, 0, 0), 0.5f).SetEase(Ease.OutBounce);
-    //     heart.transform.DOScale(1.2f, 0.5f).SetEase(Ease.OutBounce).OnComplete(() =>
-    //     {
-    //         heart.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBounce);
-    //     });
-    //     heart.SetHeartState(HeartState.Full);
-    //     hearts.Add(heart);
-    // }
-
-    // public void CreateEmptyHeart()
-    // {
-    //     //UI_Heart heart = Instantiate(heartPrefab, singleHeart.transform);
-    //     heart.SetHeartState(HeartState.Empty);
-    //     hearts.Add(heart);
-    // }
-
     public void DestroyAllHearts()
     {
         foreach (UI_Heart heart in hearts)
@@ -122,24 +100,41 @@ public class UI_Dragon : MonoBehaviour
     }
 
     #endregion
-
-    public void TakeDamage(int damage, Hero hero)
-    {
-        StartCoroutine(TakeDamageFX(hero));
-    }
     
-    IEnumerator AttackByHero(float delay, Hero hero)
+    IEnumerator AttackByHero(float delay, Hero hero, DirectionToMove attackDirection)
     {
+        if (!dragonTransform)
+            dragonTransform = Instantiate(dragonPawn).transform;
+        dragonTransform.gameObject.SetActive(true);
+        dragonTransform.position = GameManager.Instance.AttackPoint.position;
+        Vector3 rotation = Vector3.zero;
+        switch (attackDirection)
+        {
+            case DirectionToMove.Down:
+                rotation = new Vector3(0, 0, 0);
+                break;
+            case DirectionToMove.Up:
+                rotation = new Vector3(0, 180, 0);
+                break;
+            case DirectionToMove.Right:
+                rotation = new Vector3(0, 270, 0);
+                break;
+            case DirectionToMove.Left:
+                rotation = new Vector3(0, 90, 0);
+                break;
+        }
+        dragonTransform.rotation = Quaternion.Euler(rotation);
+        dragonTransform.DOShakePosition(10, 0.1f, 5, 90, false, true);
         yield return new WaitForSeconds(delay);
-        TakeDamage(hero.info.So.AttackPoint, hero);
+        StartCoroutine(TakeDamageFX(hero, delay));
         OnDragonTakeDamageEvent?.Invoke();
         DrawHearts();
     }
     
-    public void CheckDragonHP(Hero hero)
+    public void CheckDragonHP(Hero hero, DirectionToMove attackDirection)
     {
         if (currentHealth <= 0) return;
-        StartCoroutine(AttackByHero(TickManager.Instance.calculateBPM() * 0.5f, hero));
+        StartCoroutine(AttackByHero(TickManager.Instance.calculateBPM() * 0.5f, hero, attackDirection));
     }
     public void Heal(int healAmount)
     {
