@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePresets:
   - position: {x: 0, y: 0}
-    cardInfo: {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936, type: 2}
+    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     rotation: 2
   - position: {x: 0, y: 1}
-    cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 2
   - position: {x: 0, y: 2}
-    cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 2
   - position: {x: 0, y: 3}
-    cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 2
   - position: {x: 0, y: 4}
-    cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 2
   - position: {x: 0, y: 5}
-    cardInfo: {fileID: 11400000, guid: a9c2d9190cb78e34ea5ea0e78b97c72f, type: 2}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 2
   - position: {x: 0, y: 6}
-    cardInfo: {fileID: 11400000, guid: 900f462c9f2c81943bf59341cbe76936, type: 2}
+    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
     rotation: 3
   - position: {x: 1, y: 0}
     cardInfo: {fileID: 11400000, guid: afbc9deea00c17d439841b08a2f642a4, type: 2}
@@ -75,4 +75,5 @@ MonoBehaviour:
     rotation: 0
   SpawnPosition: {x: 8, y: 4}
   spawnRotation: 1
-  terrainDialogue: {fileID: 0}
+  terrainDialogue:
+  - {fileID: 0}
