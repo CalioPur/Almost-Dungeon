@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
+using Ink.Parsed;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +14,8 @@ public class minionSkeleton : MinionData
     private int resurectCount = 0;
     public static event Action<int> OnResurectEvent;
     
+    private static List<MinionData> minions = new ();
+    
     protected override void Init()
     {
         base.Init();
@@ -19,6 +23,7 @@ public class minionSkeleton : MinionData
         sprite.color = spriteColor;
         isDigger = true;
         isReadyToUndig = false;
+        minions.Add(this);
     }
 
     protected override void OnDead()
@@ -28,6 +33,17 @@ public class minionSkeleton : MinionData
         mapManager.GetWorldPosFromTilePos(new Vector2Int(indexX, indexY), out Vector3 worldPos);
         mapManager.RemoveEnemyOnTile(
             new Vector2Int(indexX, indexY), this, worldPos);
+        
+        foreach (var skeleton in minions)
+        {
+            if (skeleton == this) continue;
+            if (skeleton.indexX == indexX && skeleton.indexY == indexY)
+            {
+                Destroy(gameObject);
+                return;
+            }
+        }
+        
         isDigger = true;
         isReadyToUndig = false;
         model3DTr.DOMoveY(-0.3f, 0.1f).onComplete += () =>

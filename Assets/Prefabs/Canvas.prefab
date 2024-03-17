@@ -3518,6 +3518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deckToBuild: []
+  handToBuild: []
   nbCardOnStartToDraw: 3
   TimerBeforeDrawCard: 3
   TimerAnimationDrawCard: 0.2
@@ -4969,7 +4970,6 @@ MonoBehaviour:
     type: 3}
   endGamePanel: {fileID: 5588112277290890042}
   endGameText: {fileID: 8769656149661145474}
-  HealthBarText: {fileID: 0}
   imgFiller: {fileID: 0}
   endGameButton: {fileID: 0}
   itemNamesChoices:
@@ -4977,6 +4977,7 @@ MonoBehaviour:
   - Test2
   heroPersonality: {fileID: 8868584943725064982}
   heroName: {fileID: 99862511467698714}
+  HealthBarText: {fileID: 0}
   shakeDuration: 0.5
   heroImage: {fileID: 4984830118940490699}
   itemSlotsCount: 2
@@ -5094,7 +5095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58f9c259ccaa4e47bd6e68c6905d998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img: {fileID: 0}
+  img: {fileID: 3411619320731532884}
 --- !u!1001 &1090313751207483499
 PrefabInstance:
   m_ObjectHideFlags: 0

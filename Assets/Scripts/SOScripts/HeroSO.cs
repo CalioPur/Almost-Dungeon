@@ -40,6 +40,7 @@ public class HeroSOInstance
     public HeroSOInstance(HeroSO so)
     {
         this.so = so;
+        this.nameOfHero = so.nameOfHero;
         this.health = so.health;
         this.speed = so.speed;
         this.classe = so.classe;

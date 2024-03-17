@@ -561,16 +561,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   singleHeart: {fileID: 2518400513785666778}
   singleHeartImg: {fileID: 636562205194265530}
-  heartPrefab: {fileID: 7576900145812547238, guid: 721f4ecc1d804a544a45b64b1ac5e591,
-    type: 3}
   dragonImage: {fileID: 5085711253294384899}
   dragonCard: {fileID: 4996325214690353872}
   healthText: {fileID: 707835566741074225}
   shakeDuration: 0.5
   damage: 3
-  fireBallPrefab: {fileID: -5269181383212093949, guid: 63dbf79a273f40c4ba492a9232865db6,
+  dragonPawn: {fileID: 6644354150763648047, guid: 987dcbc4e1d993349af653ba88bfad97,
     type: 3}
-  fireBallAnim: {fileID: 7400000, guid: 332a42b4a394a3541914c8ca53d800bd, type: 2}
 --- !u!1 &7801215214942179611
 GameObject:
   m_ObjectHideFlags: 0

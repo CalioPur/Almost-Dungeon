@@ -11,7 +11,7 @@ public class SpawnRockOnDragon : MonoBehaviour
     private Material theRockMat;
     void Start()
     {
-        UI_Dragon.OnDragonTakeDamageEvent += SpawnRock;
+        //UI_Dragon.OnDragonTakeDamageEvent += SpawnRock;
         theRock = Instantiate(rockPrefab, transform.position, Quaternion.identity);
         theRockRb = theRock.GetComponent<Rigidbody>();
         theRockMat = theRock.GetComponent<Material>();
@@ -19,7 +19,7 @@ public class SpawnRockOnDragon : MonoBehaviour
     
     private void OnDisable()
     {
-        UI_Dragon.OnDragonTakeDamageEvent -= SpawnRock;
+        //UI_Dragon.OnDragonTakeDamageEvent -= SpawnRock;
     }
     
     private void SpawnRock()

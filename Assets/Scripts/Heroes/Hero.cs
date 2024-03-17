@@ -9,8 +9,7 @@ public class Hero : MonoBehaviour, IFlippable
 {
     public static event Action<int, bool> OnTakeDamageEvent;
     public static event Action<int> OnPopUpEvent;
-    public static event Action<Hero> OnMovedOnEmptyCardEvent;
-    public static event Action<DirectionToMove> OnDragonAttackEvent;
+    public static event Action<Hero, DirectionToMove> OnMovedOnEmptyCardEvent;
     
     public static Hero Instance;
     
@@ -88,7 +87,6 @@ public class Hero : MonoBehaviour, IFlippable
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         RageScript.OnNoPathFound += PlayEmoteStuck;
-        OnDragonAttackEvent +=AttackDragon;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
     }
 
@@ -118,6 +116,7 @@ public class Hero : MonoBehaviour, IFlippable
         AnimToQueue animToQueue = new AnimToQueue(heroTr, GameManager.Instance.AttackPoint , Vector3.zero, true, 1.0f, Ease.InBack, 2);
         AddAnim(animToQueue);
         PlayAttackFX(GameManager.Instance.AttackPoint, 1.0f, obj);
+        OnMovedOnEmptyCardEvent?.Invoke(this, obj);
     }
 
 
@@ -133,8 +132,7 @@ public class Hero : MonoBehaviour, IFlippable
 
     public void OutOfMap(DirectionToMove blackboardDirectionToMove)
     {
-        OnMovedOnEmptyCardEvent?.Invoke(this);
-        OnDragonAttackEvent?.Invoke(blackboardDirectionToMove);
+        AttackDragon(blackboardDirectionToMove);
     }
 
     private void OnDestroy()
@@ -143,7 +141,6 @@ public class Hero : MonoBehaviour, IFlippable
         OnTakeDamageEvent = null;
         OnPopUpEvent = null;
         OnMovedOnEmptyCardEvent = null;
-        OnDragonAttackEvent = null;
         UI_Dragon.OnDragonTakeDamageEvent -= PlayAttackClip;
     }
     
@@ -216,10 +213,10 @@ public class Hero : MonoBehaviour, IFlippable
         RageScript.OnNoPathFound -= PlayEmoteStuck;
     }
 
-    private void Stun(TrapData _web)
+    public void Stun(TrapData _web)
     {
         isStunned = true;
-        web = _web;
+        if(web) web = _web;
     }
 
     public void AddAnim(AnimToQueue animToQueue)
