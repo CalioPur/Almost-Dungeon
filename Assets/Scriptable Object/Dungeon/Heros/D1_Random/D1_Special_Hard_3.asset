@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D1_Special_Hard_3
   m_EditorClassIdentifier: 
   nameOfHero: Arash
-  health: 15
-  speed: 2.6666667
+  health: 18
+  speed: 1.8
   classe: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
   visionType: 0
   aggressivity: 2
@@ -22,5 +22,6 @@ MonoBehaviour:
   languages:
   - heroDialogues:
     - {fileID: 0}
+  - heroDialogues:
     - {fileID: 4900000, guid: e50ef992a411c7b4daafe7558e712106, type: 3}
   keyToUnlock: D1_L3

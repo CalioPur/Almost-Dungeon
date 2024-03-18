@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public struct EnemiDataOnHand
@@ -28,7 +29,8 @@ public struct DoorLockedData
 [Serializable]
 public struct TutorialDialogData
 {
-    public Vector2Int tilePostion;
+    [FormerlySerializedAs("tilePostion")] public Vector2Int tilePostionToTrigger;
+    public Vector2Int tilePostionGoalPos;
     public string Dialog;
     public DirectionToMove direction;
     public bool isExploding;

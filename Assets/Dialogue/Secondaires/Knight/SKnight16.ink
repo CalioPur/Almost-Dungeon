@@ -8,7 +8,7 @@ INCLUDE ../../GlobalVariables.ink
 === Encounter1 ===
 Hmm... Pour une fois qu'un héros semble heureux de me voir... #chara:dragon
 ~SKnight16Seen = true 
-Tu ne crois pas si bien dire Dragon ! #chara:knight
+Tu ne crois pas si bien dire, Dragon ! #chara:knight
 Tes os me permettront de lever une armée et de prendre le Val.
 Je ne pense pas que les chevaliers seront très heureux d'apprendre ça... #chara:dragon
 Oh mais je ne compte pas demander leur avis, ces imbéciles seront bientôt de l'histoire ancienne ! #chara:knight
@@ -16,7 +16,7 @@ Voilà qui ne m'arrange pas vraiment ! #chara:dragon
 Vraiment ? Les dragons ne sont-ils pas les ennemis jurés des Chevaliers ? #chara:knight
 Vous n'y êtes pas, ce sont mes proies... #chara:dragon
 Ils viennent en quête d'or et je les dépouille sans sortir de chez moi ! 
-Et vous allez vous-aussi en faire les frais !
+Et vous allez vous aussi en faire les frais !
 
     -> END
 

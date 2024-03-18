@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D4_Special_Hard_1
   m_EditorClassIdentifier: 
-  nameOfHero: Sire Artorius
-  health: 25
-  speed: 2.6666667
+  nameOfHero: Sire Pierre
+  health: 19
+  speed: 1.5
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 2
   aggressivity: 2
   personalities: 
-  languages: []
+  languages:
+  - heroDialogues:
+    - {fileID: 0}
+  - heroDialogues:
+    - {fileID: 4900000, guid: a4acb75d6e3fcdc49b553b0a1d91d74a, type: 3}
   keyToUnlock: D3_L4

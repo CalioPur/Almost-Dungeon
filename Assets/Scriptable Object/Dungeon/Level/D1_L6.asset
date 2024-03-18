@@ -23,7 +23,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bbf4bf7b23a75dc45a9b0ded82115917, type: 2}
   - {fileID: 11400000, guid: c858284abb5971c42bf978eaf3affa38, type: 2}
   - {fileID: 11400000, guid: 4ea7fc5475a00ef418514c49abe3b5be, type: 2}
-  - {fileID: 11400000, guid: ffa9debbfcc954a47bc01e8430d84283, type: 2}
   heros:
   - {fileID: 11400000, guid: 8073ae5349bfe424c82c1d3d8ede5b29, type: 2}
   - {fileID: 11400000, guid: 9bb23cc170495d749af58178fd40b17a, type: 2}
@@ -34,6 +33,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c101e55a3019c1d40bfd677291bd1f88, type: 2}
   decks:
   - {fileID: 11400000, guid: 0a74fdfd373a41e4c8b37dca4a842137, type: 2}
+  PrebuildHand: []
   nbCardToDraw: 5
   keysElementsToUnlock:
   - D1_L6

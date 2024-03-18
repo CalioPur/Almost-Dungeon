@@ -7,7 +7,7 @@ using UnityEngine;
 public class Web : TrapData
 {
     private EnemyInstance webInstance;
-    private Vector2Int heroPos = new Vector2Int(-9999, -9999);
+    private bool stunned = false;
 
     private void Start()
     {
@@ -17,11 +17,6 @@ public class Web : TrapData
     public override void TakeDamage(int damage, AttackType attackType)
     {
         return;
-        webInstance.CurrentHealthPoint -= damage;
-        if (webInstance.CurrentHealthPoint <= 0)
-        {
-            OnDead();
-        }
     }
 
     IEnumerator FX_Catch()
@@ -39,17 +34,24 @@ public class Web : TrapData
         mapManager.GetMonstersOnPos(new Vector2Int(indexX, indexY), out List<TrapData> minions);
         if (minions.Count > 0)
         {
+            if (stunned) return;
+            stunned = true;
             minions[0].Stunned(this);
             StartCoroutine(FX_Catch());
+            return;
         }
-        else
+
+        Vector2Int heroPos = GameManager.Instance.GetHeroPos();
+        if (heroPos.x == indexX && heroPos.y == indexY)
         {
-            if (heroPos.x == indexX && heroPos.y == indexY)
-            {
-                Stun();
-                StartCoroutine(FX_Catch());
-            }
+            if (stunned) return;
+            stunned = true;
+            Stun();
+            StartCoroutine(FX_Catch());
+            return;
         }
+
+        stunned = false;
     }
 
     protected override void Init()

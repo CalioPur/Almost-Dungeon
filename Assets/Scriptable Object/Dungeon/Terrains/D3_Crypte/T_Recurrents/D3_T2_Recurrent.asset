@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c147cf146376604d94d126242f5ce99, type: 3}
+  m_Name: D3_T2_Recurrent
+  m_EditorClassIdentifier: 
+  tilePresets:
+  - position: {x: 4, y: 1}
+    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+    rotation: 1
+  - position: {x: 4, y: 2}
+    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+    rotation: 1
+  - position: {x: 4, y: 3}
+    cardInfo: {fileID: 11400000, guid: c0b669f7d8a413746a98365819d2084a, type: 2}
+    rotation: 1
+  - position: {x: 0, y: 1}
+    cardInfo: {fileID: 11400000, guid: afbc9deea00c17d439841b08a2f642a4, type: 2}
+    rotation: 1
+  - position: {x: 0, y: 2}
+    cardInfo: {fileID: 11400000, guid: afbc9deea00c17d439841b08a2f642a4, type: 2}
+    rotation: 1
+  - position: {x: 0, y: 3}
+    cardInfo: {fileID: 11400000, guid: f966b0e1e6fdf1c4f8c66ba7393f1a8c, type: 2}
+    rotation: 3
+  - position: {x: 8, y: 1}
+    cardInfo: {fileID: 11400000, guid: afbc9deea00c17d439841b08a2f642a4, type: 2}
+    rotation: 1
+  - position: {x: 8, y: 2}
+    cardInfo: {fileID: 11400000, guid: afbc9deea00c17d439841b08a2f642a4, type: 2}
+    rotation: 1
+  - position: {x: 8, y: 3}
+    cardInfo: {fileID: 11400000, guid: f966b0e1e6fdf1c4f8c66ba7393f1a8c, type: 2}
+    rotation: 3
+  SpawnPosition: {x: 4, y: 0}
+  spawnRotation: 3
+  terrainDialogue:
+  - {fileID: 0}

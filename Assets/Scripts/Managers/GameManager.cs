@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Light> lightsAmbiant;
     [SerializeField] private CardInfo enterDungeonInfo;
     public Transform AttackPoint;
-    public HeroSO currentHero;
+    public bool EndOfGame = false;
+    public HeroSOInstance currentHero;
     public int heroHealthPoint;
     public int heroCurrentHealthPoint;
     public int rotationOfSpawnTile;
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
         //OnGameStartEvent += SpawnHero();
         //Time.timeScale = 1;
         mapManager.InitMap();
-        mapManager.AddRandomCard();
+        //mapManager.AddRandomCard();
         mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), rotationOfSpawnTile, out worldPos, posHero);
         worldPos += new Vector3(0, 0.1f, 0);
 
@@ -114,7 +115,7 @@ public class GameManager : MonoBehaviour
 
     public float GetHeroSpeed()
     {
-        if (!currentHero) return -1;
+        if (currentHero==null) return -1;
         return currentHero.speed;
     }
 }

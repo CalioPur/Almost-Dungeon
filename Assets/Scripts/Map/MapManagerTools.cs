@@ -196,6 +196,18 @@ public class MapManagerTools
         }
     }
 
+    public void ResetConnectedToPath(Vector2Int heroPos)
+    {
+        for (int i = 0; i < _mapManager.width ; i++)
+        {
+            for (int j = 0; j < _mapManager.height ; j++)
+            {
+                _mapManager.mapArray[i, j].isConnectedToPath = false;
+            }
+        }
+        _mapManager.mapArray[heroPos.x, heroPos.y].isConnectedToPath = true;
+    }
+    
     public void SetConnectedToPath()
     {
         for (int aaa = 0; aaa < 10; aaa++)
@@ -227,12 +239,15 @@ public class MapManagerTools
                         {
                             currentCell.isConnectedToPath = true;
                         }
+                        
                     }
                 }
             }
         }
     }
-
+    
+    
+    
     public Vector2Int[] GetTilesInLineOfSight(Vector2Int startPos)
     {
         List<Vector2Int> tiles = new List<Vector2Int>();

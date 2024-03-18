@@ -46,6 +46,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private MarkdownRenderer dialogueText;
     [SerializeField] private MarkdownRenderer markdownRenderer;
     [SerializeField] private Button nextButton;
+    [SerializeField] private TMP_Text nextButtonText;
     [SerializeField] private Image otherImage;
     [SerializeField] private GameObject canvaDragon;
     [SerializeField] private GameObject canvaHero;
@@ -96,7 +97,7 @@ public class DialogueManager : MonoBehaviour
         if (DungeonManager._instance.currentLevel < 7 &&
             DungeonManager._instance.terrainData &&
             DungeonManager._instance.deckData &&
-            DungeonManager._instance.heroData &&
+            DungeonManager._instance.heroData!=null &&
             DungeonManager._instance.cardsManager)
         {
             PlayAllThreeDialogues(DungeonManager._instance.terrainData.terrainDialogue,
@@ -244,7 +245,10 @@ public class DialogueManager : MonoBehaviour
                 DisplayChoices();
                 return;
             }
-
+            else
+            {
+                nextButtonText.text = "C'est parti !";
+            }
             dialogueVariable.StopListening(story);
             dialogueBox.SetActive(false);
             story = null;
@@ -396,25 +400,25 @@ public class DialogueManager : MonoBehaviour
                         switch (split[1])
                         {
                             case ("bigleux"):
-                                GameManager.Instance.currentHero.visionType = VisionType.BIGLEUX;
+                                DungeonManager._instance.heroData.visionType = VisionType.BIGLEUX;
                                 break;
                             case ("visionBase"):
-                                GameManager.Instance.currentHero.visionType = VisionType.LIGNEDROITE;
+                                DungeonManager._instance.heroData.visionType = VisionType.LIGNEDROITE;
                                 break;
                             case ("clairvoyant"):
-                                GameManager.Instance.currentHero.visionType = VisionType.CLAIRVOYANT;
+                                DungeonManager._instance.heroData.visionType = VisionType.CLAIRVOYANT;
                                 break;
                             case ("peureux"):
-                                GameManager.Instance.currentHero.aggressivity = Aggressivity.PEUREUX;
+                                DungeonManager._instance.heroData.aggressivity = Aggressivity.PEUREUX;
                                 break;
                             case ("agroBase"):
-                                GameManager.Instance.currentHero.aggressivity = Aggressivity.NONE;
+                                DungeonManager._instance.heroData.aggressivity = Aggressivity.NONE;
                                 break;
                             case ("courageux"):
-                                GameManager.Instance.currentHero.aggressivity = Aggressivity.COURAGEUX;
+                                DungeonManager._instance.heroData.aggressivity = Aggressivity.COURAGEUX;
                                 break;
                         }
-
+                        DungeonManager._instance.RefreshCard(DungeonManager._instance.heroData);
                         break;
                     case "playSFX":
                         switch (split[1])
@@ -461,14 +465,12 @@ public class DialogueManager : MonoBehaviour
                     case "healDragon":
                         var healDragon = int.Parse(split[1]);
                         FindObjectOfType<UI_Dragon>().Heal(healDragon);
-                        Debug.LogWarning("HEALDRAGON" + split[1]);
                         break;
                     case "minion":
-                        print("MINION");
+                        
                         switch (split[1])
                         {
                             case "in":
-                                print("IN");
                                 minionToken.transform
                                     .DOMove(new Vector3(-4.5f, 0.8f, 8), TickManager.Instance.calculateBPM())
                                     .SetUpdate(true);
@@ -497,6 +499,9 @@ public class DialogueManager : MonoBehaviour
                             }
                         }
 
+                        break;
+                    case "unlockAchievement":
+                        AchievmentSteamChecker._instance.UnlockAchievementFromDialogue(split[1]);
                         break;
                 }
             }

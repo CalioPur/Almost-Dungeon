@@ -18,6 +18,7 @@ public static class RageScript
         int startY = getIndexHeroPos.y - radius;
         int endX = getIndexHeroPos.x + radius;
         int endY = getIndexHeroPos.y + radius;
+        
         for (int x = startX; x <= endX; x++)
         {
             for (int y = startY; y <= endY; y++)
@@ -25,9 +26,11 @@ public static class RageScript
                 if (x >= 0 && x < MapManager.Instance.mapArray.GetLength(0) && y >= 0 && y < MapManager.Instance.mapArray.GetLength(1))
                 {
                     if (x != getIndexHeroPos.x || y != getIndexHeroPos.y) MapManager.Instance.ChangeTileDataAtPosition(x, y);
+                    MapManager.Instance.mapArray[x, y].IsVisited = false;
                 }
             }
         }
         
+        //MapManager.Instance.MapManagerTools.ResetConnectedToPath(new Vector2Int(getIndexHeroPos.x, getIndexHeroPos.y));
     }
 }

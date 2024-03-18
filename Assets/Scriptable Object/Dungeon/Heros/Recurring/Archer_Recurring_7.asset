@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Archer_Recurring_7
   m_EditorClassIdentifier: 
   nameOfHero: Robin
-  health: 20
-  speed: 2.5
+  health: 24
+  speed: 2.4
   classe: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
   visionType: 2
   aggressivity: 2
@@ -22,5 +22,6 @@ MonoBehaviour:
   languages:
   - heroDialogues:
     - {fileID: 0}
-    - {fileID: 4900000, guid: 44294e36469ab9040b27a8e5aa035bba, type: 3}
+  - heroDialogues:
+    - {fileID: 4900000, guid: 7e107d7501fbde14bb76f4fa5bdf2668, type: 3}
   keyToUnlock: 

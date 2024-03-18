@@ -9,8 +9,7 @@ public class Hero : MonoBehaviour, IFlippable
 {
     public static event Action<int, bool> OnTakeDamageEvent;
     public static event Action<int> OnPopUpEvent;
-    public static event Action<Hero> OnMovedOnEmptyCardEvent;
-    public static event Action<DirectionToMove> OnDragonAttackEvent;
+    public static event Action<Hero, DirectionToMove> OnMovedOnEmptyCardEvent;
     
     public static Hero Instance;
     
@@ -40,6 +39,7 @@ public class Hero : MonoBehaviour, IFlippable
     public void Move(Transform targetTr, Vector3 offset, float delay)
     {
         animQueue.AddAnim(new AnimToQueue(heroTr, targetTr,  offset , false, delay));
+        animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("Move");
         GameManager.Instance.UpdateHeroPos(GetIndexHeroPos());
     }
@@ -67,7 +67,7 @@ public class Hero : MonoBehaviour, IFlippable
         if (isStunned)
         {
             isStunned = false;
-            web.TakeDamage(999, AttackType.Physical);
+            //web.TakeDamage(999, AttackType.Physical);
             return;
         }
         bt.getOrigin().Evaluate(bt.getOrigin());
@@ -87,7 +87,6 @@ public class Hero : MonoBehaviour, IFlippable
         Sprite.sprite = info.So.Img;
         OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
         RageScript.OnNoPathFound += PlayEmoteStuck;
-        OnDragonAttackEvent +=AttackDragon;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
         Instance = this;
         OnBeginToMove();
@@ -119,6 +118,7 @@ public class Hero : MonoBehaviour, IFlippable
         AnimToQueue animToQueue = new AnimToQueue(heroTr, GameManager.Instance.AttackPoint , Vector3.zero, true, 1.0f, Ease.InBack, 2);
         AddAnim(animToQueue);
         PlayAttackFX(GameManager.Instance.AttackPoint, 1.0f, obj);
+        OnMovedOnEmptyCardEvent?.Invoke(this, obj);
     }
 
 
@@ -134,8 +134,7 @@ public class Hero : MonoBehaviour, IFlippable
 
     public void OutOfMap(DirectionToMove blackboardDirectionToMove)
     {
-        OnMovedOnEmptyCardEvent?.Invoke(this);
-        OnDragonAttackEvent?.Invoke(blackboardDirectionToMove);
+        AttackDragon(blackboardDirectionToMove);
     }
 
     private void OnDestroy()
@@ -144,7 +143,6 @@ public class Hero : MonoBehaviour, IFlippable
         OnTakeDamageEvent = null;
         OnPopUpEvent = null;
         OnMovedOnEmptyCardEvent = null;
-        OnDragonAttackEvent = null;
         UI_Dragon.OnDragonTakeDamageEvent -= PlayAttackClip;
     }
     
@@ -161,7 +159,7 @@ public class Hero : MonoBehaviour, IFlippable
     
     private void IsDead()
     {
-        //TODO: t'as gagne bg :*
+        GameManager.Instance.EndOfGame = true;
         Vector3 pos = transform.position;
         pos.y += 3f;
         Camera.main.transform.DOMove(pos, 1f).SetEase(Ease.InBack);
@@ -176,6 +174,7 @@ public class Hero : MonoBehaviour, IFlippable
         // {
         //     Sprite.DOColor(Color.white, 0.2f).SetEase(Ease.InBack);
         // });
+        animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("TakeDamage");
         OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
     }
@@ -208,10 +207,10 @@ public class Hero : MonoBehaviour, IFlippable
         RageScript.OnNoPathFound -= PlayEmoteStuck;
     }
 
-    private void Stun(TrapData _web)
+    public void Stun(TrapData _web)
     {
         isStunned = true;
-        web = _web;
+        if(web) web = _web;
     }
 
     public void AddAnim(AnimToQueue animToQueue)
@@ -236,6 +235,7 @@ public class Hero : MonoBehaviour, IFlippable
 
     public void Flip()
     {
+        animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("Flip");
     }
 }

@@ -74,9 +74,10 @@ public class DeckManager : MonoBehaviour
             cptCardsObtained++;
             CardInfoInstance newCard = null;
                 
-            handsManager.AddCard(card.cardToBuild.CreateInstance(), out newCard);
             CardHand availableSlot = handsManager.getAvailableSlot();
+            handsManager.AddCard(card.cardToBuild.CreateInstance(), out newCard);
             availableSlot.GetImage().enabled = true;
+            availableSlot.GetImage().GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 0);
             StartCoroutine(AnimationDrawCard(availableSlot, newCard));
         }
     }
@@ -94,7 +95,13 @@ public class DeckManager : MonoBehaviour
                 CardInfoInstance newCard = null;
                 
                 handsManager.AddCard(card.cardToBuild.CreateInstance(), out newCard);
+
                 CardHand availableSlot = handsManager.getAvailableSlot();
+                for (int i = 0; i < card.nbToBuild; i++)
+                {
+                    newCard.AddRotation(true);
+                    StartCoroutine(PlayerCardController.Instance.RotateB(availableSlot, 0.2f, newCard.Rotation, 1));
+                }
                 availableSlot.GetImage().enabled = true;
                 StartCoroutine(AnimationDrawCard(availableSlot, newCard));
 
@@ -102,7 +109,7 @@ public class DeckManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(DrawStartedCard());
+            StartCoroutine(DrawStartedCard(nbCardOnStartToDraw));
         }
     }
 
@@ -162,19 +169,25 @@ public class DeckManager : MonoBehaviour
             }
         }
     }
+    
+    public void RedrawHand(int nb)
+    {
+        StartCoroutine(DrawStartedCard(nb));
+    }
 
-    IEnumerator DrawStartedCard()
+    private IEnumerator DrawStartedCard(int nb)
     {
         yield return new WaitForSeconds(TimerAnimationDrawCard);
-        for (int i = 0; i < nbCardOnStartToDraw; i++)
+        for (int i = 0; i < nb; i++)
         {
-            DrawCard();
+            DrawCard(true);
             yield return new WaitForSeconds(TimerAnimationDrawCard);
         }
     }
 
-    private void DrawCard()
+    private void DrawCard(bool force = false)
     {
+        if (!force && TutorialManager.Instance != null) return;
         if (deckCreate.Count == 0 || cptCardsObtained >= handsManager.GetMaxCard()) return;
         CardHand availableSlot = handsManager.getAvailableSlot();
         if (availableSlot == null)

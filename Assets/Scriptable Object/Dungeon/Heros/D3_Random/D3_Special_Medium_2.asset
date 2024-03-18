@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D3_Special_Medium_2
   m_EditorClassIdentifier: 
-  nameOfHero: Thorias
-  health: 20
-  speed: 3
+  nameOfHero: Ulrik
+  health: 17
+  speed: 1.8
   classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
   visionType: 1
   aggressivity: 2
   personalities: 
-  languages: []
+  languages:
+  - heroDialogues:
+    - {fileID: 0}
+  - heroDialogues:
+    - {fileID: 4900000, guid: f28d33b258046b74095abdfcab33cd62, type: 3}
   keyToUnlock: D3_L4

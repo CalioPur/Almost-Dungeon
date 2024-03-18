@@ -95,6 +95,7 @@ public class TileData : MonoBehaviour
     {
         if (_instance == null) return;
         img.sprite = _instance.So.imgOnMap;
+        img.enabled = false;
         model = Instantiate(_instance.So.prefabOnMap, transform);
         model.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = isVisited ? new Color(1f, 1f, 1f) : new Color(0.35f, 0.35f, 0.35f);
         img.color = new Color(0.35f, 0.35f, 0.35f);

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D1_Special_Easy_4
   m_EditorClassIdentifier: 
   nameOfHero: Olaf
-  health: 15
-  speed: 2.1666667
+  health: 12
+  speed: 1.4
   classe: {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
   visionType: 0
   aggressivity: 2
@@ -22,5 +22,6 @@ MonoBehaviour:
   languages:
   - heroDialogues:
     - {fileID: 0}
+  - heroDialogues:
     - {fileID: 4900000, guid: 914441b5f25b51d4faf4596447defc53, type: 3}
   keyToUnlock: D2_L1

@@ -194,9 +194,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "<u>Marketing:</u>\n - Esteban Grellier\n - Thomas Martel"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fba015d1adf7ba14a80fe1348ad955e8, type: 2}
-  m_sharedMaterial: {fileID: -494056700596629925, guid: fba015d1adf7ba14a80fe1348ad955e8,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -717,9 +716,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Credits:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fba015d1adf7ba14a80fe1348ad955e8, type: 2}
-  m_sharedMaterial: {fileID: -494056700596629925, guid: fba015d1adf7ba14a80fe1348ad955e8,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1019,9 +1017,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "<u>Design:</u>\n - Zachay Mcintyre\n - Marin Redor\n - Baptiste Bohez"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fba015d1adf7ba14a80fe1348ad955e8, type: 2}
-  m_sharedMaterial: {fileID: -494056700596629925, guid: fba015d1adf7ba14a80fe1348ad955e8,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2389,9 +2386,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "<u>Programation:</u>\n - Damien Harle\n - Baudoin Lapeze\n - Armand Marcelli"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fba015d1adf7ba14a80fe1348ad955e8, type: 2}
-  m_sharedMaterial: {fileID: -494056700596629925, guid: fba015d1adf7ba14a80fe1348ad955e8,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3221,9 +3217,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "<u>Publisher:</u>\n - Rubika Supinfo Games"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fba015d1adf7ba14a80fe1348ad955e8, type: 2}
-  m_sharedMaterial: {fileID: -494056700596629925, guid: fba015d1adf7ba14a80fe1348ad955e8,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

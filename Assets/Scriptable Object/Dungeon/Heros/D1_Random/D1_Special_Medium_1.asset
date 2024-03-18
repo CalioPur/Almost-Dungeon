@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D1_Special_Medium_1
   m_EditorClassIdentifier: 
   nameOfHero: Louis
-  health: 20
-  speed: 2.3333333
+  health: 17
+  speed: 1.6
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2
@@ -22,5 +22,6 @@ MonoBehaviour:
   languages:
   - heroDialogues:
     - {fileID: 0}
+  - heroDialogues:
     - {fileID: 4900000, guid: 209f34e84f345c145aff60ce44cd3f7c, type: 3}
   keyToUnlock: D1_L3

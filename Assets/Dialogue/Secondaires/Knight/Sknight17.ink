@@ -10,12 +10,12 @@ Bien, rassure-toi sbire, je vais prendre l'affaire en main. #chara:dragon
 ~SKnight17Seen = true 
 Ah ! Enfin le plat de résistance, je commençais justement à m'ennuyer ! #chara:knight
 Vous m'ôtez les mots de la bouche chevalier, enfin un adversaire digne de ce nom. #chara:dragon
-Moi, Sire Pierre, bénie par la vision suprême, te défie en duel Dragon. Tu n'as aucune chance. #chara:knight #minion:out
+Moi, Sire Pierre, béni par la vision suprême, te provoque en duel Dragon. Tu n'as aucune chance. #chara:knight #minion:out
 * [Gonfler son ego ($$le héros$$ gagne <color=red>courageux</color> )] -> Regen
 * [Profiter de sa vantardise ($$vous$$ gagnez <color=red>1 point de vie</color> )] -> Damages
     
 === Regen ===
-HA ! Je vous parie que vous n'arriverez même pas à abattre mon armée de m'atteindre ! #chara:dragon
+HA ! Je vous parie que vous n'arriverez même pas à abattre mon armée pour m'atteindre ! #chara:dragon
 Vous me mettez au défi ? #chara:knight 
 Très bien, vous allez voir, vos monstres ne suffiront pas à m'arrêter. 
 Je vais me faire un plaisir de vous en débarrasser. #changepers:courageux
@@ -23,13 +23,13 @@ Je vais me faire un plaisir de vous en débarrasser. #changepers:courageux
 
 === Damages ===
 Bien...  #chara:dragon
-Alors j'imagine que vous me permettrez de me soigner un instant, vous ne refuseriez pas un duel à la loyale n'est ce pas ?
-Mais bien sûr Dragon, je vous en prie, cela ne suffira de toute façon pas contre moi. #chara:knight #healDragon:1
+Alors j'imagine que vous me permettrez de me soigner un instant... Vous ne refuseriez pas un duel à la loyale, n'est ce pas ?
+Mais bien sûr, Dragon. Je vous en prie, cela ne suffira de toute façon pas contre moi. #chara:knight #healDragon:1
 -> END
 
 === Encounter2 ===
 Sire Pierre, pour une fois, je suis heureux de voir un aventurier survivre à mes pièges ! #chara:dragon
-Notre dernier combat était magnifique Dragon, je me réjois à l'idée d'avoir l'occasion de nous affronter à nouveau. #chara:knight
+Notre dernier combat était magnifique, Dragon, je me réjouis à l'idée vous affronter à nouveau. #chara:knight
 Haha ! Plaisir partagé chevalier, mais vous ne gagnerez pas ! #chara:dragon
 Nous verrons bien... Quelles sont les règles cette fois ci ? #chara:knight
 * [Lui faire affronter vos sbires ($$le héros$$ gagne <color=red>courageux</color> )] -> Regen2

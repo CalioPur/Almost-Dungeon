@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: D2_Special_Medium_3
   m_EditorClassIdentifier: 
   nameOfHero: Jeanne
-  health: 10
-  speed: 2.3333333
+  health: 13
+  speed: 1.8
   classe: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
   visionType: 0
-  aggressivity: 2
+  aggressivity: 1
   personalities: 00000000
   languages:
   - heroDialogues:
     - {fileID: 0}
+  - heroDialogues:
     - {fileID: 4900000, guid: b9439399944af9440bba758be7c448f1, type: 3}
   keyToUnlock: D2_L1

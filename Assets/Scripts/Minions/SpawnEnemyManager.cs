@@ -68,7 +68,7 @@ public class SpawnEnemyManager : MonoBehaviour
         }
     }
 
-    public static void SpawnTrapData<T>(T prefab, TileData tile, bool addEnemyOnTile, MapManager _mapManager)
+    private static void SpawnTrapData<T>(T prefab, TileData tile, bool addEnemyOnTile, MapManager _mapManager)
         where T : TrapData
     {
         Vector3 position = tile.transform.position;
@@ -76,7 +76,7 @@ public class SpawnEnemyManager : MonoBehaviour
         SpawnEnemy(prefab, new Vector2Int(indexesX, indexesY), position, _mapManager, addEnemyOnTile);
     }
 
-    public static void SpawnEnemy<T>(T prefab, Vector2Int indexes, Vector3 position, MapManager _mapManager,
+    private static void SpawnEnemy<T>(T prefab, Vector2Int indexes, Vector3 position, MapManager _mapManager,
         bool addEnemyOnTile)
         where T : TrapData
     {
@@ -85,12 +85,17 @@ public class SpawnEnemyManager : MonoBehaviour
         script.indexX = indexes.x;
         script.indexY = indexes.y;
         script.mapManager = _mapManager;
+        
         if (addEnemyOnTile)
             _mapManager.AddMinionOnTile(new Vector2Int(script.indexX, script.indexY), script);
 
         if (script is MinionData minionData)
         {
             FireCamp.StockMinions(minionData);
+        }
+        else
+        {
+            script.transform.parent = _mapManager.mapArray[indexes.x, indexes.y].transform;
         }
     }
 

@@ -9,7 +9,7 @@ Mais patron, vite réveillez-vous ! Le héros est arrivé, il est midi ! #chara:
 QUOI ! Déjà !? Mais rien n'est prêt ! Encore la faute de ce fichu réveil ! #chara:dragon
 Vite patron ! Construisez le Donjon avant qu'il ne puisse nous atteindre ! #chara:minion
 Le voilà !
-Ah tu es là Dragon ! Ne bouge pas ! J'arrive pour prendre ta tête ! #chara:knight #minion:out
+Ah tu es là Dragon ! Ne bouge pas ! J'arrive pour prendre ta tête ! #chara:knight #minion:out 
 
 * [Menacer le héros] -> ending1
 * [Insulter le héros] -> ending2
@@ -19,5 +19,5 @@ N'approchez pas chevalier ! Je vais me voir dans l'obligation de vous carboniser
  -> END
 
 === ending2 ===
-Ha ! essaie donc petit héros, tu ne parviendras même pas à m'érafler avec ton petit cure-dent. #chara:dragon
+Ha ! Essaie donc petit héros, tu ne parviendras même pas à m'érafler avec ton petit cure-dents. #chara:dragon
  -> END

@@ -31,9 +31,6 @@ MonoBehaviour:
   - position: {x: 3, y: 6}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 0
-  - position: {x: 4, y: 3}
-    cardInfo: {fileID: 11400000, guid: ffe134f9575c5fa45877c768e75b570a, type: 2}
-    rotation: 0
   - position: {x: 8, y: 0}
     cardInfo: {fileID: 11400000, guid: c8947bc12fc3b1646a4dad70707a1551, type: 2}
     rotation: 1
@@ -45,4 +42,5 @@ MonoBehaviour:
     rotation: 3
   SpawnPosition: {x: 0, y: 6}
   spawnRotation: 0
-  terrainDialogue: {fileID: 0}
+  terrainDialogue:
+  - {fileID: 0}

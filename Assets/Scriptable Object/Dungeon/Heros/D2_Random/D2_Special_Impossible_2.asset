@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D2_Special_Impossible_2
   m_EditorClassIdentifier: 
   nameOfHero: Marthe
-  health: 20
-  speed: 2.6666667
+  health: 19
+  speed: 1.9
   classe: {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
   visionType: 0
   aggressivity: 2
@@ -22,5 +22,6 @@ MonoBehaviour:
   languages:
   - heroDialogues:
     - {fileID: 0}
+  - heroDialogues:
     - {fileID: 4900000, guid: 25b48c79cbba45a4596d9fbba2c525c3, type: 3}
   keyToUnlock: D1_L4

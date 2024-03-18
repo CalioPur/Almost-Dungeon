@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D2_Normal_Medium_2
   m_EditorClassIdentifier: 
   nameOfHero: Sire Dantes
-  health: 15
-  speed: 2.3333333
+  health: 17
+  speed: 1.6
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2
@@ -22,5 +22,6 @@ MonoBehaviour:
   languages:
   - heroDialogues:
     - {fileID: 0}
+  - heroDialogues:
     - {fileID: 4900000, guid: 4e73fd41c3f0b944b8d9f67e6d3333d0, type: 3}
   keyToUnlock: 

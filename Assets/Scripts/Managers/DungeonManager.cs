@@ -20,7 +20,8 @@ public struct Dungeon
 
 public class DungeonManager : MonoBehaviour
 {
-   
+    public static event Action OnLevelLoaded;
+    
     [SerializeField] public DungeonSO TutorialDungeon;
     [SerializeField] public List<Dungeon> dungeons;
    
@@ -32,7 +33,7 @@ public class DungeonManager : MonoBehaviour
     public static int SelectedBiome;
     
     public TilePresetSO terrainData;
-    public HeroSO heroData;
+    public HeroSOInstance heroData;
     public DeckSO deckData;
     
     
@@ -85,8 +86,8 @@ public class DungeonManager : MonoBehaviour
     
     private void LoadLevel()
     {
-        if(TutorialDone)
-            PlayerPrefs.SetInt("LevelUnlock" + 1, 1); //on unlock le niveau 2 au lancement d'un donjon, qui sera forcement le niveau 1, sauf si c'est le tutoriel
+        /*if(TutorialDone)
+            PlayerPrefs.SetInt("LevelUnlock" + 1, 1); //on unlock le niveau 2 au lancement d'un donjon, qui sera forcement le niveau 1, sauf si c'est le tutoriel*/
         
         if (currentLevel == 0)
             UI_Dragon.currentHealth = UI_Dragon.maxHealth;
@@ -108,6 +109,7 @@ public class DungeonManager : MonoBehaviour
         {
             if (TutorialDone)
             {
+                AchievmentSteamChecker._instance.UnlockEndLevelAchievment(SelectedBiome);
                 PlayerPrefs.SetInt("LevelBeaten" + SelectedBiome, 1); //on sauvegarde le donjon comme battu
                 PlayerPrefs.SetInt("LevelVictory" + SelectedBiome, PlayerPrefs.GetInt("LevelVictory" + SelectedBiome, 0) + 1); //on incremente la valeur de victoire du donjon
             }
@@ -142,17 +144,15 @@ public class DungeonManager : MonoBehaviour
                 heroUnlock.Add(hero);
             }
         }
-        heroData = heroUnlock[Random.Range(0, heroUnlock.Count)];
+
+        var heroSo = heroUnlock[Random.Range(0, heroUnlock.Count)];
+        heroData = new HeroSOInstance(heroSo);
         deckData = levelData.decks[Random.Range(0, levelData.decks.Count)];
         
         UI_Hero heroCard = FindObjectOfType<UI_Hero>();
         heroCard.heroName.text = heroData.nameOfHero;
         heroCard.HealthBarText.text = heroData.health.ToString();
-        string personality = "";
-        if (heroData.visionType != VisionType.LIGNEDROITE) personality += ToTitleCase(heroData.visionType.ToString()) + " ";
-        if (heroData.aggressivity != Aggressivity.NONE) personality += ToTitleCase(heroData.aggressivity.ToString());
-        // heroCard.heroPersonality.text = ToTitleCase(heroData.visionType.ToString() + " " + heroData.aggressivity);
-        heroCard.heroPersonality.text = personality;
+        RefreshCard(heroData);
         cardsManager = FindObjectOfType<DeckManager>();
         cardsManager.deckToBuild = deckData.deck;
         cardsManager.handToBuild = levelData.PrebuildHand;
@@ -176,6 +176,8 @@ public class DungeonManager : MonoBehaviour
         mapManager.SpawnPresets(terrainData.tilePresets);
         
         PlayerCardController.Instance.isDragNDrop = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
+        
+        OnLevelLoaded?.Invoke();
     }
     
     public void LoadNextLevel()
@@ -192,6 +194,22 @@ public class DungeonManager : MonoBehaviour
         GameManager.OnSceneLoadedEvent += LoadLevel;
     }
 
+    public void RefreshCard(HeroSOInstance heroData)
+    {
+        UI_Hero heroCard = FindObjectOfType<UI_Hero>();
+        heroCard.heroName.text = heroData.nameOfHero;
+        heroCard.HealthBarText.text = heroData.health.ToString();
+        string personality = "";
+        if (heroData.visionType != VisionType.LIGNEDROITE) personality += ToTitleCase(heroData.visionType.ToString()) + " ";
+        if (heroData.aggressivity != Aggressivity.NONE) personality += ToTitleCase(heroData.aggressivity.ToString());
+        foreach (var perso in heroData.personalities)
+        {
+            personality += " " + ToTitleCase(perso.ToString());
+        }
+        heroCard.heroPersonality.text = personality;
+        Debug.LogWarning(personality);
+    }
+    
     public void ResetLevelIndex()
     {
         print("reset!");

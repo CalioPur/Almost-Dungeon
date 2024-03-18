@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501b1487fd044e148bed5932aaa992b1, type: 3}
   m_Name: D3_Normal_Easy_1
   m_EditorClassIdentifier: 
-  nameOfHero: Sire Artorius
-  health: 15
-  speed: 2.3333333
+  nameOfHero: Sire Lume
+  health: 13
+  speed: 1.5
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2
   personalities: 
-  languages: []
+  languages:
+  - heroDialogues:
+    - {fileID: 0}
+  - heroDialogues:
+    - {fileID: 4900000, guid: 493781e22aca8c245a70d68571759b36, type: 3}
   keyToUnlock: 

@@ -29,7 +29,7 @@ public class AttackRandomTargetInTile : Node
                 heroPos.y);
             blackboard.minionData.addAnim(new AnimToQueue(blackboard.minionData.transform, tileWhereHeroIs.transform,
                 Vector3.zero, true, 0.6f, Ease.InBack, 2));
-            blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage, attackType);
+            blackboard.minionData.Attack(blackboard.minionData.minionInstance.So.damage, attackType, 1.0f);
             dirTarget = FunctionUtils.GetDirectionToMoveWithTilePos(heroPos,
                 new Vector2Int(blackboard.minionData.indexX, blackboard.minionData.indexY));
             blackboard.minionData.PlayAttackFX(tileWhereHeroIs.transform, 1.0f, dirTarget);

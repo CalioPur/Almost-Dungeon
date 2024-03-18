@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D2_Normal_Easy_1
   m_EditorClassIdentifier: 
   nameOfHero: Sire Gabriel
-  health: 15
-  speed: 2.3333333
+  health: 13
+  speed: 1.5
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 2
@@ -22,5 +22,6 @@ MonoBehaviour:
   languages:
   - heroDialogues:
     - {fileID: 0}
+  - heroDialogues:
     - {fileID: 4900000, guid: 8ec16841054bd7b4f90cb7e0bc1f0268, type: 3}
   keyToUnlock: 

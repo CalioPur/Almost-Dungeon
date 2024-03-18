@@ -11,6 +11,8 @@ public class Pyke : TrapData
     private EnemyInstance pykeInstance;
     private Vector2Int heroPos = new Vector2Int(-9999, -9999);
     
+    public static event Action<int> DealDamageEvent;
+    
     public override void TakeDamage(int damage, AttackType attackType)
     {
         Debug.LogError("Pyke TakeDamage ! is not normal");
@@ -42,12 +44,11 @@ public class Pyke : TrapData
         }
         if (heroPos.x == indexX && heroPos.y == indexY)
         {
-            Attack(pykeInstance.So.damage, AttackType.Fire);
+            Attack(pykeInstance.So.damage, AttackType.Fire, 0.0f);
+            DealDamageEvent?.Invoke(pykeInstance.So.damage);
             isOnFire = true;
         }
 
-        print("HeroPos : " + heroPos);
-        print("MyPos : " + indexX + " " + indexY);
         if (isOnFire)
         {
             StartCoroutine(AttackFX());

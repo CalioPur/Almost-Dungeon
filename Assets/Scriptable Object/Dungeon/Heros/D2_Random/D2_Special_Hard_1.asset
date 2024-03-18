@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D2_Special_Hard_1
   m_EditorClassIdentifier: 
   nameOfHero: Sire Quentin
-  health: 25
-  speed: 2.6666667
+  health: 19
+  speed: 1.7
   classe: {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
   visionType: 0
   aggressivity: 0
@@ -22,5 +22,6 @@ MonoBehaviour:
   languages:
   - heroDialogues:
     - {fileID: 0}
+  - heroDialogues:
     - {fileID: 4900000, guid: 27c6a51d9e3173746a0e69166eb5f06d, type: 3}
   keyToUnlock: D1_L7

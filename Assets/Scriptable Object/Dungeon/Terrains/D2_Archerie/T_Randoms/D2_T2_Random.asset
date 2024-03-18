@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePresets:
   - position: {x: 0, y: 0}
-    cardInfo: {fileID: 11400000, guid: 14d44198267cf304aaff6397f06c1a95, type: 2}
-    rotation: 1
+    cardInfo: {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
+    rotation: 2
   - position: {x: 0, y: 1}
-    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+    cardInfo: {fileID: 11400000, guid: 1db26f8ca750521449a53d839380a11b, type: 2}
     rotation: 1
   - position: {x: 0, y: 2}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
@@ -48,4 +48,5 @@ MonoBehaviour:
     rotation: 0
   SpawnPosition: {x: 7, y: 6}
   spawnRotation: 0
-  terrainDialogue: {fileID: 0}
+  terrainDialogue:
+  - {fileID: 0}

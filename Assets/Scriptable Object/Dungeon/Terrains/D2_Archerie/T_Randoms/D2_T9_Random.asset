@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePresets:
   - position: {x: 0, y: 0}
-    cardInfo: {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
+    cardInfo: {fileID: 11400000, guid: c8947bc12fc3b1646a4dad70707a1551, type: 2}
     rotation: 2
   - position: {x: 0, y: 1}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
@@ -23,7 +23,7 @@ MonoBehaviour:
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 3
   - position: {x: 0, y: 3}
-    cardInfo: {fileID: 11400000, guid: 6f8a8a78388799049aeb20abcda62770, type: 2}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 2
   - position: {x: 0, y: 4}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
@@ -32,7 +32,7 @@ MonoBehaviour:
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 3
   - position: {x: 0, y: 6}
-    cardInfo: {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
+    cardInfo: {fileID: 11400000, guid: c8947bc12fc3b1646a4dad70707a1551, type: 2}
     rotation: 3
   - position: {x: 1, y: 0}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
@@ -50,25 +50,25 @@ MonoBehaviour:
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 0
   - position: {x: 3, y: 3}
-    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-    rotation: 2
+    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+    rotation: 0
   - position: {x: 3, y: 6}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 2
   - position: {x: 4, y: 0}
-    cardInfo: {fileID: 11400000, guid: 807a936e75b831244a6910ce19b67ed9, type: 2}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 1
   - position: {x: 4, y: 3}
     cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 1
   - position: {x: 4, y: 6}
-    cardInfo: {fileID: 11400000, guid: 807a936e75b831244a6910ce19b67ed9, type: 2}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 3
   - position: {x: 5, y: 0}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 0
   - position: {x: 5, y: 3}
-    cardInfo: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
+    cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 0
   - position: {x: 5, y: 6}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
@@ -86,7 +86,7 @@ MonoBehaviour:
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 2
   - position: {x: 8, y: 0}
-    cardInfo: {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
+    cardInfo: {fileID: 11400000, guid: c8947bc12fc3b1646a4dad70707a1551, type: 2}
     rotation: 1
   - position: {x: 8, y: 1}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
@@ -95,7 +95,7 @@ MonoBehaviour:
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 3
   - position: {x: 8, y: 3}
-    cardInfo: {fileID: 11400000, guid: 6f8a8a78388799049aeb20abcda62770, type: 2}
+    cardInfo: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
     rotation: 0
   - position: {x: 8, y: 4}
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
@@ -104,8 +104,9 @@ MonoBehaviour:
     cardInfo: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
     rotation: 3
   - position: {x: 8, y: 6}
-    cardInfo: {fileID: 11400000, guid: f4c6a48050675c14aac6b77968b63aee, type: 2}
+    cardInfo: {fileID: 11400000, guid: c8947bc12fc3b1646a4dad70707a1551, type: 2}
     rotation: 0
   SpawnPosition: {x: 4, y: 4}
   spawnRotation: 1
-  terrainDialogue: {fileID: 0}
+  terrainDialogue:
+  - {fileID: 0}

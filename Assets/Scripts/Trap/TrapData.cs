@@ -35,10 +35,16 @@ public abstract class TrapData : MonoBehaviour
         Destroy(gameObject, 0.3f);
     }
 
-    public void Attack(int damage, AttackType attackType)
+    private IEnumerator AttackDelayed(int damage, AttackType attackType, float delay)
     {
+        yield return new WaitForSeconds(delay * TickManager.Instance.calculateBPM());
         SoundManagerIngame.Instance.PlayDialogueSFX(SO.attackSound);
         InvokeTrapAttackEvent(damage, attackType);
+    }
+    
+    public void Attack(int damage, AttackType attackType, float delay)
+    {
+        StartCoroutine(AttackDelayed(damage, attackType, delay));
     }
     
     public void Stun()

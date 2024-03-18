@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Mage_Recurring_7
   m_EditorClassIdentifier: 
   nameOfHero: Cicero
-  health: 15
-  speed: 3
+  health: 16
+  speed: 1.6
   classe: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   visionType: 2
   aggressivity: 1
@@ -22,5 +22,6 @@ MonoBehaviour:
   languages:
   - heroDialogues:
     - {fileID: 0}
+  - heroDialogues:
     - {fileID: 4900000, guid: b4facab68c21e324586ba8dc3b7fe9c2, type: 3}
   keyToUnlock: 
