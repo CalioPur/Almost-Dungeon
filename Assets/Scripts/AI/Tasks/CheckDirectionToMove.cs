@@ -100,7 +100,6 @@ public class CheckDirectionToMove : Node
 
         foreach (var exit in listOfExits)
         {
-            Debug.Log(exit.IndexInMapArray);
             Debug.DrawRay(exit.transform.position, Vector3.up*2, Color.blue, 1);
         }
         

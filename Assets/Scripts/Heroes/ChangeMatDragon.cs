@@ -7,6 +7,7 @@ public class ChangeMatDragon : MonoBehaviour
 {
        [SerializeField] private Material dragonMatTrans;
        [SerializeField] private Material dragonMatOpaque;
+       [SerializeField] private Material dragonMatHit;
        [SerializeField] private MeshRenderer dragonMesh;
        
        [SerializeField] private Material dragonMatEyeTrans;
@@ -15,15 +16,28 @@ public class ChangeMatDragon : MonoBehaviour
 
 
        
-       public void RenderTransparent()
+       private void RenderTransparent()
        {
               dragonEyeMesh.ForEach(x => x.material = dragonMatEyeTrans);
               dragonMesh.material = dragonMatTrans;
        }
        
-       public void RenderOpaque()
+       private void RenderOpaque()
        {
               dragonEyeMesh.ForEach(x => x.material = dragonMatEyeOpaque);
               dragonMesh.material = dragonMatOpaque;
+       }
+
+       private IEnumerator RenderTransAfterDelay(float delay)
+       {
+              yield return new WaitForSeconds(delay);
+              RenderTransparent();
+       }
+       
+       public void TakeHit()
+       {
+              dragonEyeMesh.ForEach(x => x.material = dragonMatEyeOpaque);
+              dragonMesh.material = dragonMatHit;
+              StartCoroutine(RenderTransAfterDelay(0.05f));
        }
 }

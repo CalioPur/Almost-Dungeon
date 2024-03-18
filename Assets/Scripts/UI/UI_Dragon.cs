@@ -24,8 +24,8 @@ public class UI_Dragon : MonoBehaviour
     public static int maxHealth = 10;
     public int damage = 3;
     
-    // [SerializeField] private Animator fireBallPrefab;
-    // [SerializeField] private AnimationClip fireBallAnim;
+    [SerializeField] private GameObject fireBallPrefab;
+    [SerializeField] private AnimationClip fireBallAnim;
     [SerializeField] private ChangeMatDragon dragonPawn;
     
     private ChangeMatDragon dragonPawnMat = null;
@@ -50,22 +50,27 @@ public class UI_Dragon : MonoBehaviour
             SoundManagerIngame.Instance.PlaySound(EmoteType.DragonDeath);
             yield break;
         }
-        yield return new WaitForSeconds(shakeDuration);
-        dragonPawnMat.RenderTransparent();
-        
-        // Animator fireBall = Instantiate(fireBallPrefab, dragonCard);
-        // fireBall.Play(fireBallAnim.name);
-        // Destroy(fireBall.gameObject, fireBallAnim.length);
-        yield return new WaitForSeconds(delay);
-        
+
+        yield return new WaitForSeconds(shakeDuration * 0.5f);
+        dragonPawnMat.gameObject.SetActive(true);
+        dragonPawnMat.TakeHit();
+        yield return new WaitForSeconds(shakeDuration * 0.5f);
         dragonPawnMat.DOKill();
-        dragonPawnMat.gameObject.SetActive(false);
+        //attack here the hero
+        FireBall(hero.transform.position);
+        //dragonPawnMat.transform.DOMove(hero.transform.position, delay).SetLoops(2, LoopType.Yoyo);
+        yield return new WaitForSeconds(delay);
+
+        
         Camera.main.transform.DOShakePosition(shakeDuration, 0.4f, 10, 90, false, true);
         
         hero.TakeDamage(damage, AttackType.Physical);
         
         dragonImage.color = Color.white;
         dragonImageColor.a = 1f;
+        yield return new WaitForSeconds(shakeDuration);
+        dragonPawnMat.gameObject.SetActive(false);
+        
     }
 
     #region Health
@@ -105,9 +110,7 @@ public class UI_Dragon : MonoBehaviour
     {
         if (!dragonPawnMat)
             dragonPawnMat = Instantiate(dragonPawn);
-        dragonPawnMat.gameObject.SetActive(true);
         dragonPawnMat.transform.position = GameManager.Instance.AttackPoint.position;
-        dragonPawnMat.RenderTransparent();
         Vector3 rotation = Vector3.zero;
         switch (attackDirection)
         {
@@ -127,10 +130,17 @@ public class UI_Dragon : MonoBehaviour
         dragonPawnMat.transform.rotation = Quaternion.Euler(rotation);
         dragonPawnMat.transform.DOShakePosition(10, 0.1f, 5, 90, false, true);
         yield return new WaitForSeconds(delay);
-        dragonPawnMat.RenderOpaque();
         StartCoroutine(TakeDamageFX(hero, delay));
         OnDragonTakeDamageEvent?.Invoke();
         DrawHearts();
+    }
+
+    private void FireBall(Vector3 dest)
+    {
+        GameObject fireBall = Instantiate(fireBallPrefab, dragonPawnMat.transform.position, Quaternion.identity, dragonPawnMat.transform);
+        fireBall.transform.localScale = Vector3.one * 0.5f;
+        fireBall.transform.DOMove(dest, fireBallAnim.length * 0.2f);
+        Destroy(fireBall.gameObject, fireBallAnim.length);
     }
     
     public void CheckDragonHP(Hero hero, DirectionToMove attackDirection)

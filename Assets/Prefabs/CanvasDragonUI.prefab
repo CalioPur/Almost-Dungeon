@@ -566,6 +566,9 @@ MonoBehaviour:
   healthText: {fileID: 707835566741074225}
   shakeDuration: 0.5
   damage: 3
+  fireBallPrefab: {fileID: 882195290657548902, guid: 63dbf79a273f40c4ba492a9232865db6,
+    type: 3}
+  fireBallAnim: {fileID: 7400000, guid: 332a42b4a394a3541914c8ca53d800bd, type: 2}
   dragonPawn: {fileID: 1708333435904231758, guid: 987dcbc4e1d993349af653ba88bfad97,
     type: 3}
 --- !u!1 &7801215214942179611

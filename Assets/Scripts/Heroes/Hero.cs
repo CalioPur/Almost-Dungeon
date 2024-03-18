@@ -31,7 +31,7 @@ public class Hero : MonoBehaviour, IFlippable
     [SerializeField] private MeshRenderer threeDeeHero;
 
     protected int entityId;
-    private Vector2Int IndexHeroPos = new (0, 0);
+    private static Vector2Int IndexHeroPos = new (0, 0);
     public AudioClip[] attackClip;
     private bool isStunned;
     private TrapData web;
