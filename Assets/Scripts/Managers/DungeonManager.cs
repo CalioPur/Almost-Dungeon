@@ -103,7 +103,7 @@ public class DungeonManager : MonoBehaviour
         
         if (currentLevel == 5)//si on a battu le niveau milestonne
         {
-            PlayerPrefs.SetInt("LevelUnlock"+ (SelectedBiome+1), 1); //on unlock le biome suivant;
+            PlayerPrefs.SetInt("LevelJustUnlock"+ (SelectedBiome+1), 1); //on unlock le biome suivant;
         }
         if (currentLevel >= dungeonSo.levels.Count) //le donjon a été parcouru en entier
         {
