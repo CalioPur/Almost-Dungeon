@@ -53,12 +53,10 @@ public class UI_Dragon : MonoBehaviour
 
         yield return new WaitForSeconds(shakeDuration * 0.5f);
         dragonPawnMat.gameObject.SetActive(true);
-        dragonPawnMat.TakeHit();
+        dragonPawnMat.TakeHit(shakeDuration * 1.5f + delay);
+        
         yield return new WaitForSeconds(shakeDuration * 0.5f);
-        dragonPawnMat.DOKill();
-        //attack here the hero
         FireBall(hero.transform.position);
-        //dragonPawnMat.transform.DOMove(hero.transform.position, delay).SetLoops(2, LoopType.Yoyo);
         yield return new WaitForSeconds(delay);
 
         
@@ -69,8 +67,6 @@ public class UI_Dragon : MonoBehaviour
         dragonImage.color = Color.white;
         dragonImageColor.a = 1f;
         yield return new WaitForSeconds(shakeDuration);
-        dragonPawnMat.gameObject.SetActive(false);
-        
     }
 
     #region Health
