@@ -11,8 +11,6 @@ public class Hero : MonoBehaviour, IFlippable
     public static event Action<int> OnPopUpEvent;
     public static event Action<Hero, DirectionToMove> OnMovedOnEmptyCardEvent;
     
-    public static Hero Instance;
-    
     public MapManager mapManager { get; private set; }
     public HeroInstance info { get; private set; }
     
@@ -80,15 +78,12 @@ public class Hero : MonoBehaviour, IFlippable
         entityId = GetHashCode();
         info = instance;
         isStunned = false;
-
-        TrapData.ClearEvent();
-        TrapData.OnTrapAttackEvent += TakeDamage;
+        
         TrapData.OnTrapStunEvent += Stun;
         Sprite.sprite = info.So.Img;
-        OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
+        OnPopUpEvent?.Invoke(GameManager.Instance.current.CurrentHealthPoint);
         RageScript.OnNoPathFound += PlayEmoteStuck;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
-        Instance = this;
         OnBeginToMove();
     }
 
@@ -176,21 +171,21 @@ public class Hero : MonoBehaviour, IFlippable
         // });
         animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("TakeDamage");
-        OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
+        OnTakeDamageEvent?.Invoke(GameManager.Instance.current.CurrentHealthPoint, true);
     }
 
     public void TakeDamage(int soAttackPoint, AttackType attackType)
     {
-        if (info.CurrentHealthPoint - soAttackPoint <= 0)
+        if (GameManager.Instance.current.CurrentHealthPoint - soAttackPoint <= 0)
         {
-            info.CurrentHealthPoint = 0;
+            GameManager.Instance.current.CurrentHealthPoint = 0;
             FXTakeDamage();
             IsDead();
             TickManager.Instance.OnEndGame();
         }
         else
         {
-            info.CurrentHealthPoint -= soAttackPoint;
+            GameManager.Instance.current.CurrentHealthPoint -= soAttackPoint;
             FXTakeDamage();
         }
         
@@ -200,9 +195,7 @@ public class Hero : MonoBehaviour, IFlippable
 
     private void OnDisable()
     {
-        TrapData.OnTrapAttackEvent -= TakeDamage;
         TrapData.OnTrapStunEvent -= Stun;
-        TrapData.ClearEvent();
         MinionData.ClearSubscribes();
         RageScript.OnNoPathFound -= PlayEmoteStuck;
     }

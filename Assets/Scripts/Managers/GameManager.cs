@@ -26,9 +26,12 @@ public class GameManager : MonoBehaviour
     public int heroCurrentHealthPoint;
     public int rotationOfSpawnTile;
     public bool isInDialogue = false;
+    public static GameManager Instance;
+    public HeroInstance current { get; private set; }
+    public Hero HeroInstance { get; set; }
+
     private Vector3 worldPos;
     private Vector2Int posHero;
-    public static GameManager Instance;
 
     private void Awake()
     {
@@ -42,19 +45,23 @@ public class GameManager : MonoBehaviour
         OnSceneLoadedEvent?.Invoke();
     }
 
+    public void SwitchLightColor(Color color)
+    {
+        foreach (var light in lightsAmbiant)
+        {
+            light.color = color;
+        }
+    }
+
     void Start()
     {
         //OnGameStartEvent += SpawnHero();
         //Time.timeScale = 1;
         mapManager.InitMap();
-        //mapManager.AddRandomCard();
         mapManager.InitEnterDungeon(enterDungeonInfo.CreateInstance(), rotationOfSpawnTile, out worldPos, posHero);
         worldPos += new Vector3(0, 0.1f, 0);
 
-        foreach (var light in lightsAmbiant)
-        {
-            light.color = DungeonManager._instance.dungeons[DungeonManager.SelectedBiome].dungeonSO.color;
-        }
+        SwitchLightColor(DungeonManager._instance.dungeons[DungeonManager.SelectedBiome].dungeonSO.color[0]);
 
         if (!DungeonManager._instance.TutorialDone)
             Instantiate(tutorialManagerPrefab);
@@ -76,21 +83,23 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        HeroInstance current = currentHero.classe.CreateInstance();
+        current = currentHero.classe.CreateInstance();
         current.CurrentHealthPoint = heroHealthPoint;
-        
-        Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation).Init(current, posHero.x, posHero.y, mapManager);
-        
-        Hero.Instance.HeroBlackboard.visionType = currentHero.visionType;
-        Hero.Instance.HeroBlackboard.aggressivity = currentHero.aggressivity;
-        Hero.Instance.HeroBlackboard.personalities = currentHero.personalities;
+
+        HeroInstance = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
+        HeroInstance.Init(current, posHero.x, posHero.y, mapManager);
+
+
+        HeroInstance.HeroBlackboard.visionType = currentHero.visionType;
+        HeroInstance.HeroBlackboard.aggressivity = currentHero.aggressivity;
+        HeroInstance.HeroBlackboard.personalities = currentHero.personalities;
 
         if (heroCurrentHealthPoint < heroHealthPoint) //Degats pris pendant le dialogue
         {
-            Hero.Instance.TakeDamage((heroHealthPoint - heroCurrentHealthPoint), AttackType.Fire);
+            HeroInstance.TakeDamage((heroHealthPoint - heroCurrentHealthPoint), AttackType.Fire);
         }
 
-        UIManager._instance.heroBlackboard = Hero.Instance.HeroBlackboard;
+        UIManager._instance.heroBlackboard = HeroInstance.HeroBlackboard;
         OnEndDialogEvent?.Invoke();
     }
 
@@ -100,7 +109,7 @@ public class GameManager : MonoBehaviour
         TickManager.Instance.PauseTick(false);
         isGameStarted = true;
     }
-    
+
 
     public void UpdateHeroPos(Vector2Int getIndexHeroPos)
     {
@@ -115,7 +124,7 @@ public class GameManager : MonoBehaviour
 
     public float GetHeroSpeed()
     {
-        if (currentHero==null) return -1;
+        if (currentHero == null) return -1;
         return currentHero.speed;
     }
 }

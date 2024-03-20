@@ -20,4 +20,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd78e0f73aedaf244a55be9d43b2d809, type: 2}
   - {fileID: 11400000, guid: f7e2041a2dd18f249bdd60f66a38daa9, type: 2}
   - {fileID: 11400000, guid: a8b89e9d32766f7448cf79fa2a1d43e0, type: 2}
-  color: {r: 0, g: 0.71642184, b: 1, a: 1}
+  color:
+  - {r: 0, g: 0.7176471, b: 1, a: 1}

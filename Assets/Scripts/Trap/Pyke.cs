@@ -33,7 +33,7 @@ public class Pyke : TrapData
         bool isOnFire = false;
         //je check si le hero ou les minions sont sur ma case
         mapManager.GetMonstersOnPos(new Vector2Int(indexX, indexY), out List<TrapData> minions);
-        GetHeroPosOnTile(Hero.Instance.GetIndexHeroPos());
+        GetHeroPosOnTile(GameManager.Instance.HeroInstance.GetIndexHeroPos());
         if (minions.Count > 0)
         {
             foreach (var minion in minions)
