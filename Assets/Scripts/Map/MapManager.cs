@@ -70,7 +70,7 @@ public class MapManager : MonoBehaviour
     
     private void UpdateMapTiles()
     {
-        if (Hero.Instance)
+        if (GameManager.Instance.HeroInstance)
         {
             for (int i = 0; i < Instance.width; i++)
             {
@@ -104,7 +104,7 @@ public class MapManager : MonoBehaviour
     {
         adjacentTile.transform.rotation = Quaternion.Euler(90, 0, 0);
 
-        if (Hero.Instance.GetIndexHeroPos().x == x && Hero.Instance.GetIndexHeroPos().y == y)
+        if (GameManager.Instance.HeroInstance.GetIndexHeroPos().x == x && GameManager.Instance.HeroInstance.GetIndexHeroPos().y == y)
             adjacentTile.img.sprite = ATTENTIONROUUUGE;
         else
             adjacentTile.img.sprite = ATTENTION;

@@ -11,9 +11,6 @@ public class Hero : MonoBehaviour, IFlippable
     public static event Action<int> OnPopUpEvent;
     public static event Action<Hero, DirectionToMove> OnMovedOnEmptyCardEvent;
     
-    public static Hero Instance;
-    
-    
     public MapManager mapManager { get; private set; }
     public HeroInstance info { get; private set; }
     
@@ -31,8 +28,8 @@ public class Hero : MonoBehaviour, IFlippable
     
     [SerializeField] private MeshRenderer threeDeeHero;
 
-    private int entityId;
-    private Vector2Int IndexHeroPos = new (0, 0);
+    protected int entityId;
+    private static Vector2Int IndexHeroPos = new (0, 0);
     public AudioClip[] attackClip;
     private bool isStunned;
     private TrapData web;
@@ -63,6 +60,7 @@ public class Hero : MonoBehaviour, IFlippable
 
     void OnTick()
     {
+        if (!gameObject.activeSelf) return;
         if (!bt) return;
         if (isStunned)
         {
@@ -73,21 +71,20 @@ public class Hero : MonoBehaviour, IFlippable
         bt.getOrigin().Evaluate(bt.getOrigin());
     }
     
-    public void Init(HeroInstance instance, int _indexHeroX, int _indexHeroY, MapManager manager)
+    public virtual void Init(HeroInstance instance, int _indexHeroX, int _indexHeroY, MapManager manager)
     {
         IndexHeroPos = new Vector2Int(_indexHeroX, _indexHeroY);
         mapManager = manager;
         entityId = GetHashCode();
         info = instance;
         isStunned = false;
-
-        TrapData.ClearEvent();
-        TrapData.OnTrapAttackEvent += TakeDamage;
+        
         TrapData.OnTrapStunEvent += Stun;
         Sprite.sprite = info.So.Img;
-        OnPopUpEvent?.Invoke(info.CurrentHealthPoint);
+        OnPopUpEvent?.Invoke(GameManager.Instance.current.CurrentHealthPoint);
         RageScript.OnNoPathFound += PlayEmoteStuck;
         UI_Dragon.OnDragonTakeDamageEvent+= PlayAttackClip;
+        OnBeginToMove();
     }
 
     private void AttackDragon(DirectionToMove obj)
@@ -174,41 +171,31 @@ public class Hero : MonoBehaviour, IFlippable
         // });
         animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("TakeDamage");
-        OnTakeDamageEvent?.Invoke(info.CurrentHealthPoint, true);
+        OnTakeDamageEvent?.Invoke(GameManager.Instance.current.CurrentHealthPoint, true);
     }
 
     public void TakeDamage(int soAttackPoint, AttackType attackType)
     {
-        if (info.CurrentHealthPoint - soAttackPoint <= 0)
+        if (GameManager.Instance.current.CurrentHealthPoint - soAttackPoint <= 0)
         {
-            info.CurrentHealthPoint = 0;
+            GameManager.Instance.current.CurrentHealthPoint = 0;
             FXTakeDamage();
             IsDead();
             TickManager.Instance.OnEndGame();
         }
         else
         {
-            info.CurrentHealthPoint -= soAttackPoint;
+            GameManager.Instance.current.CurrentHealthPoint -= soAttackPoint;
             FXTakeDamage();
         }
         
     }
 
-    private void Awake()
-    {
-        Instance = this;
-    }
 
-    private void Start()
-    {
-        OnBeginToMove();
-    }
 
     private void OnDisable()
     {
-        TrapData.OnTrapAttackEvent -= TakeDamage;
         TrapData.OnTrapStunEvent -= Stun;
-        TrapData.ClearEvent();
         MinionData.ClearSubscribes();
         RageScript.OnNoPathFound -= PlayEmoteStuck;
     }

@@ -106,7 +106,6 @@ public class AchievmentSteamChecker : MonoBehaviour
     
     public void AddDamageInflictedThisTurn(int dmg)
     {
-        Debug.LogWarning("HERO IS HITTED");
         heroDamagedByMinion = true;
         damageInflictedThisTurn += dmg;
         if (damageInflictedThisTurn >= 7)

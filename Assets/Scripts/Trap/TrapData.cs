@@ -6,7 +6,6 @@ using UnityEngine.Serialization;
 
 public abstract class TrapData : MonoBehaviour
 {
-    public static event Action<int, AttackType> OnTrapAttackEvent; 
     public static event Action<TrapData> OnTrapStunEvent; 
     public abstract void TakeDamage(int damage,  AttackType attackType);
     
@@ -90,12 +89,7 @@ public abstract class TrapData : MonoBehaviour
 
     protected void InvokeTrapAttackEvent(int damage, AttackType attackType)
     {
-        OnTrapAttackEvent?.Invoke(damage, attackType);
-    }
-
-    public static void ClearEvent()
-    {
-        OnTrapAttackEvent = null;
+        GameManager.Instance.HeroInstance.TakeDamage(damage, attackType);
     }
 
     public void Stunned(TrapData _web)

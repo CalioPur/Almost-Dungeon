@@ -8,6 +8,7 @@ public enum MovementType
 {
     Trap,
     Hero,
+    switchHero,
     Monster
 }
 
@@ -27,21 +28,23 @@ public class TickManager : MonoBehaviour
     public event Action OnTrapTick;
     public static TickManager Instance;
 
-    [HideInInspector][Range(0f, 1000f)] public int BPM = 120;
+    [HideInInspector] [Range(0f, 1000f)] public int BPM = 120;
 
-    [HideInInspector][Range(0.1f, 5f)] public float actionsTime; //this is the time for all of the actions to be completed
+    [HideInInspector] [Range(0.1f, 5f)]
+    public float actionsTime; //this is the time for all of the actions to be completed
+
     public bool TickOnPaused { get; private set; }
 
     [SerializeField] private AnimationCurve BPMBoostCurve;
 
     private float beatInterval;
     private float nextTickTime;
-    
+
     private int index = 0;
     private bool EndGame = false;
     private float elapsedTime = 0f;
     private Coroutine bpmCoroutine;
-    
+
     void Awake()
     {
         GameManager.OnEndDialogEvent += LaunchBPM;
@@ -82,7 +85,7 @@ public class TickManager : MonoBehaviour
 
         return speed;
     }
-    
+
     public float calculateBPM()
     {
         float bpm = beatInterval;
@@ -113,7 +116,6 @@ public class TickManager : MonoBehaviour
                 yield return new WaitForSeconds(calculateBPM());
                 elapsedTime += time / 60.0f;
             }
-
         }
     }
 
@@ -212,6 +214,8 @@ public class TickManager : MonoBehaviour
                 return MovementType.Trap;
             case 2:
                 OnHeroTick?.Invoke();
+                if (movementEvents.ContainsKey(MovementType.switchHero))
+                    movementEvents[MovementType.switchHero]?.ForEach(tickData => tickData._action?.Invoke());
                 return MovementType.Hero;
             case 3:
                 return MovementType.Trap;

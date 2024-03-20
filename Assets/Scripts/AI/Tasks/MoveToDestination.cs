@@ -39,7 +39,7 @@ public class MoveToDestination : Node
         
         blackboard.hero.Move(tile.transform, Vector3.up * 0.1f, 1.0f);
         
-        blackboard.visibleTiles = blackboard.visionType switch
+        blackboard.visibleTiles = GameManager.Instance.currentHero.visionType switch
         {
             VisionType.BIGLEUX => BlindScript.GetAdjacentTiles(blackboard.hero.GetIndexHeroPos()),
             VisionType.LIGNEDROITE => VisionNormalScript.GetVisibleTiles(blackboard.hero.GetIndexHeroPos()),
