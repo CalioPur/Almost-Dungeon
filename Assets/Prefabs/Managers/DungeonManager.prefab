@@ -58,11 +58,17 @@ MonoBehaviour:
   - dungeonSO: {fileID: 11400000, guid: 5e1e93a855dd4234086eb0c72eb1c0b8, type: 2}
     name: Le Bois
     isLocked: 1
+  endlessLevel: {fileID: 11400000, guid: 4b3ac0951bdee0d4c8a7e69cd769d73a, type: 2}
+  classes:
+  - {fileID: 11400000, guid: b5c0528809ed073478a6ed4169362d32, type: 2}
+  - {fileID: 11400000, guid: bbf8152e51c1fde4f8b05093a35bd36b, type: 2}
+  - {fileID: 11400000, guid: ec89d431fb088be4580c734414c28823, type: 2}
+  - {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   currentLevel: 0
   cardsManager: {fileID: 0}
   tickManager: {fileID: 0}
   terrainData: {fileID: 0}
-  heroData: {fileID: 0}
   deckData: {fileID: 0}
   globalsInkFile: {fileID: 4900000, guid: 4ed389083f8177e4c898823e3b1d858a, type: 3}
   TutorialDone: 1
+  machValue: 0
