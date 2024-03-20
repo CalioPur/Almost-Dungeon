@@ -18,5 +18,5 @@ MonoBehaviour:
   <AttackPoint>k__BackingField: 3
   <IsAOE>k__BackingField: 0
   <Range>k__BackingField: 0
-  <prefab>k__BackingField: {fileID: 2382212582554433649, guid: e2de5e62e34e56d44a8e820e57cdfbdf,
+  <prefab>k__BackingField: {fileID: 8728781264375613758, guid: 6866fff51a64920498bad36912594dad,
     type: 3}

@@ -9,12 +9,12 @@ namespace BehaviourTree
         protected Node origin = null;
 
 
-        private void Start()
+        private void Awake()
         {
             OnStart();
         }
 
-        public void OnStart()
+        private void OnStart()
         {
             origin = InitTree();
         }

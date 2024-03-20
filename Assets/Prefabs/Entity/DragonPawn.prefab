@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8210886176878060215
 Transform:
   m_ObjectHideFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragonMatTrans: {fileID: 2100000, guid: a6e7c5853c41dc7438003f86d4a16358, type: 2}
   dragonMatOpaque: {fileID: 2100000, guid: 621cf557c1c54b94f9e8d69fb44c216f, type: 2}
+  dragonMatHit: {fileID: 2100000, guid: a7d23de3c70c8ab439bced733999fea3, type: 2}
   dragonMesh: {fileID: 4060163877820492955}
   dragonMatEyeTrans: {fileID: 2100000, guid: 077cc9ea6ee49a740942fdedc97feef1, type: 2}
   dragonMatEyeOpaque: {fileID: 2100000, guid: 0eb9aaedef9bb1b48a398bedc27fa07f, type: 2}
