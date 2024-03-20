@@ -89,11 +89,6 @@ public class GameManager : MonoBehaviour
         HeroInstance = Instantiate(current.So.prefab, worldPos, current.So.prefab.transform.rotation);
         HeroInstance.Init(current, posHero.x, posHero.y, mapManager);
 
-
-        HeroInstance.HeroBlackboard.visionType = currentHero.visionType;
-        HeroInstance.HeroBlackboard.aggressivity = currentHero.aggressivity;
-        HeroInstance.HeroBlackboard.personalities = currentHero.personalities;
-
         if (heroCurrentHealthPoint < heroHealthPoint) //Degats pris pendant le dialogue
         {
             HeroInstance.TakeDamage((heroHealthPoint - heroCurrentHealthPoint), AttackType.Fire);
@@ -109,7 +104,6 @@ public class GameManager : MonoBehaviour
         TickManager.Instance.PauseTick(false);
         isGameStarted = true;
     }
-
 
     public void UpdateHeroPos(Vector2Int getIndexHeroPos)
     {

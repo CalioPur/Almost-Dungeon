@@ -68,12 +68,12 @@ public class CheckDirectionToMove : Node
             
             if (blackboard.options.Count > 0 || blackboard.memory.Count > 0)
             {
-                if (blackboard.aggressivity == Aggressivity.PEUREUX)
+                if (GameManager.Instance.currentHero.aggressivity == Aggressivity.PEUREUX)
                 {
                     target = BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(),
                         blackboard.options, blackboard.hero.mapManager.getMapArray(), true);
                 }
-                else if (!blackboard.personalities.Contains(Personnalities.INDECIS))
+                else if (!GameManager.Instance.currentHero.personalities.Contains(Personnalities.INDECIS))
                 {
                     target = BFSScript.BSFGoToTile(blackboard.hero.GetIndexHeroPos(),
                         blackboard.options, blackboard.hero.mapManager.getMapArray());
@@ -118,23 +118,23 @@ public class CheckDirectionToMove : Node
         }
         if (!isAtExit)
         {
-            if ((blackboard.personalities.Contains(Personnalities.IMPATIENT) &&
-                BFSScript.DistanceFromExit(blackboard.hero.GetIndexHeroPos(),
-                    listOfExits) >=
-                5) || target == null)
+            if ((GameManager.Instance.currentHero.personalities.Contains(Personnalities.IMPATIENT) &&
+                 BFSScript.DistanceFromExit(blackboard.hero.GetIndexHeroPos(),
+                     listOfExits) >=
+                 5) || target == null)
             {
                 RageScript.Rage(blackboard.hero.GetIndexHeroPos());
                 blackboard.hero.Stun(null);
                 blackboard.directionToMove = DirectionToMove.None;
             }
-            else if (!EnemiesOnRange(listOfEnemiesPos) && blackboard.aggressivity == Aggressivity.COURAGEUX && listOfEnemiesPos.Count > 0)
+            else if (!EnemiesOnRange(listOfEnemiesPos) && GameManager.Instance.currentHero.aggressivity == Aggressivity.COURAGEUX && listOfEnemiesPos.Count > 0)
             {
                 blackboard.directionToMove = BFSScript.BFSGoInDirection(blackboard.hero.GetIndexHeroPos(),
                     listOfEnemiesPos,
                     blackboard.hero.mapManager.getMapArray());
             }
             else if (EnemiesOnRange(listOfEnemiesPos) && listOfEnemiesPos.Count > 0 &&
-                                               (blackboard.aggressivity ==
+                                               (GameManager.Instance.currentHero.aggressivity ==
                                                   Aggressivity.COURAGEUX || MonsterOnPathToTarget(listOfEnemiesPos)))
             {
                //ca sert a rien pour l'instant mais la il faut attaquer l'ennemi le plus proche #refacto le BT
@@ -238,7 +238,7 @@ public class CheckDirectionToMove : Node
 
     public void SetVisibleTiles()
     {
-        blackboard.visibleTiles = blackboard.visionType switch
+        blackboard.visibleTiles = GameManager.Instance.currentHero.visionType switch
         {
             VisionType.BIGLEUX => BlindScript.GetAdjacentTiles(blackboard.hero.GetIndexHeroPos()),
             VisionType.LIGNEDROITE => VisionNormalScript.GetVisibleTiles(blackboard.hero.GetIndexHeroPos()),
