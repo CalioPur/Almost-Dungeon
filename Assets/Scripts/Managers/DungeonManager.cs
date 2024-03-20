@@ -243,6 +243,7 @@ public class DungeonManager : MonoBehaviour
             UI_Dragon.currentHealth = UI_Dragon.maxHealth;
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadEndlessLevel;
+        print(endlessLevel.terrains.Count);
         terrainData = endlessLevel.terrains[Random.Range(0, endlessLevel.terrains.Count)];
         deckData = endlessLevel.decks[Random.Range(0, endlessLevel.decks.Count)];
         
@@ -279,24 +280,27 @@ public class DungeonManager : MonoBehaviour
         //curiosité du hero
         float curiosityRandom = Random.Range(0, 1f);
         int curiosityIndex;
+        heroData.personalities = new List<Personnalities>();
         if (curiosityRandom<0.8f) curiosityIndex = 0;
         else if (curiosityRandom<0.9f) curiosityIndex = 1;
         else curiosityIndex = 2;
         if(curiosityIndex>0) heroData.personalities.Add((Personnalities) curiosityIndex);
         
         //pv du hero
-        heroData.health =(int) (mostPV + (mostPV - leastPV)*Mathf.Exp(-expFactor*-1)*modePVRelatif[machValue]
+        heroData.health =(int) (mostPV + (mostPV - leastPV)*Mathf.Exp(-expFactor*-1)*modePVRelatif[machValue-1] //-1 car on commence a 0
             *ClassePVRelatif[classIndex]
             *VisionPVRelatif[visionIndex]
             *AggressivityPVRelatif[agressivityIndex]
             *PersonalityPVRelatif[curiosityIndex]);
         
         //vitesse du hero
-        heroData.speed = (int) (fastest- (fastest - slowest)*Mathf.Exp(-expFactor*level-1)*modeSpeedRelatif[machValue]
+        heroData.speed = (int) (fastest- (fastest - slowest)*Mathf.Exp(-expFactor*level-1)*modeSpeedRelatif[machValue-1] //-1 car on commence a 0
             *ClasseSpeedRelatif[classIndex]
             *VisionSpeedRelatif[visionIndex]
             *AggressivitySpeedRelatif[agressivityIndex]
             *PersonalitySpeedRelatif[curiosityIndex]);
+        //langues du hero
+        heroData.languages = Array.Empty<Language>();
         
         UI_Hero heroCard = FindObjectOfType<UI_Hero>();
         heroCard.heroName.text = heroData.nameOfHero;
