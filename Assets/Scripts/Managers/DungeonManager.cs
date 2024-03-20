@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Ink.Parsed;
 using JimmysUnityUtilities;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -71,7 +72,6 @@ public class DungeonManager : MonoBehaviour
     private float[] PersonalityPVRelatif = {1f, 1.1f, 0.7f};
     private float[] PersonalitySpeedRelatif = {1f, 1.1f, 0.8f};
     
-    
     [Header("Infos")]
     public int currentLevel = 0;
     public DeckManager cardsManager;
@@ -125,6 +125,7 @@ public class DungeonManager : MonoBehaviour
     public void SetSelectedMach(int index)
     {
         machValue = index;
+        PlayerPrefs.SetInt("MachTry" + index, PlayerPrefs.GetInt("MachTry" + index, 0) + 1);
         GameManager.OnSceneLoadedEvent += LoadEndlessLevel;
         SceneManager.LoadScene(2);
     }
@@ -286,14 +287,14 @@ public class DungeonManager : MonoBehaviour
         if(curiosityIndex>0) heroData.personalities.Add((Personnalities) curiosityIndex);
         
         //pv du hero
-        heroData.health =(int) (mostPV + (mostPV - leastPV)*Mathf.Exp(-expFactor*-1)*modePVRelatif[machValue-1] //-1 car on commence a 0
+        heroData.health =(int) (mostPV - (mostPV - leastPV)*Mathf.Exp(-expFactor*(level))*modePVRelatif[machValue-1] //-1 car on commence a 0
             *ClassePVRelatif[classIndex]
             *VisionPVRelatif[visionIndex]
             *AggressivityPVRelatif[agressivityIndex]
             *PersonalityPVRelatif[curiosityIndex]);
         
         //vitesse du hero
-        heroData.speed = (int) (fastest- (fastest - slowest)*Mathf.Exp(-expFactor*level-1)*modeSpeedRelatif[machValue-1] //-1 car on commence a 0
+        heroData.speed = (fastest- (fastest - slowest)*Mathf.Exp(-expFactor*(level))*modeSpeedRelatif[machValue-1] //-1 car on commence a 0
             *ClasseSpeedRelatif[classIndex]
             *VisionSpeedRelatif[visionIndex]
             *AggressivitySpeedRelatif[agressivityIndex]
@@ -337,7 +338,12 @@ public class DungeonManager : MonoBehaviour
         currentLevel++;  
 
         if(machValue==0) GameManager.OnSceneLoadedEvent += LoadLevel;
-        else GameManager.OnSceneLoadedEvent += LoadEndlessLevel;
+        else
+        {
+            GameManager.OnSceneLoadedEvent += LoadEndlessLevel;
+            if (currentLevel>10) AchievmentSteamChecker._instance.UnlockMachAchievment(machValue);
+            PlayerPrefs.SetInt("MachHigh" + machValue, Mathf.Max(PlayerPrefs.GetInt("MachHigh" + machValue, 0), currentLevel));
+        }
     }
 
     public void RefreshCard(HeroSOInstance heroData)

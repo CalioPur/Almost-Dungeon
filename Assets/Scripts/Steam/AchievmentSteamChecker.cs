@@ -46,7 +46,13 @@ public class AchievmentSteamChecker : MonoBehaviour
         UnlockNoDamageAchievment();
         
     }
-
+    
+    public void UnlockMachAchievment(int machIndex)
+    {
+        if (!SteamManager.Initialized) return;
+        SteamUserStats.SetAchievement("MACH_" + machIndex);
+        SteamUserStats.StoreStats();
+    }
     
 
     private void UnlockNoDamageAchievment()

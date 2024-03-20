@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,9 +16,12 @@ public class Menu : MonoBehaviour
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private GameObject levelSelection;
     [SerializeField] private Image fadeImage;
+    [SerializeField] private List<TMP_Text> tryText;
+    [SerializeField] private List<TMP_Text> highText;
 
     void Start()
     {
+        LoadArcadeStats();
         SaveSystem.LoadSave();
         playButton.onClick.AddListener(Play);
         quitButton.onClick.AddListener(Quit);
@@ -74,5 +79,14 @@ public class Menu : MonoBehaviour
         }
         // PlayerPrefs.SetInt("FinishedTutorial", 1);
         // SceneManager.LoadScene("LevelSelection");
+    }
+    
+    private void LoadArcadeStats()
+    {
+        for(int i = 0; i<3; i++)
+        {
+            tryText[i].text ="Try : " + PlayerPrefs.GetInt("MachTry" + (i+1), 0);
+            highText[i].text = "High Score : " + PlayerPrefs.GetInt("MachHigh" + (i + 1), 0);
+        }
     }
 }
