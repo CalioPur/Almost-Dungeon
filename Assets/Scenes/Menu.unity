@@ -4180,6 +4180,14 @@ MonoBehaviour:
   videoPlayer: {fileID: 689731033}
   levelSelection: {fileID: 1713900632}
   fadeImage: {fileID: 901229529}
+  tryText:
+  - {fileID: 91403710}
+  - {fileID: 1685209437}
+  - {fileID: 414058401}
+  highText:
+  - {fileID: 1937529363}
+  - {fileID: 201862588}
+  - {fileID: 1390903146}
 --- !u!114 &1461340014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5698,9 +5706,49 @@ PrefabInstance:
       objectReference: {fileID: 4900000, guid: 4ed389083f8177e4c898823e3b1d858a, type: 3}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
+      propertyPath: tryText.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
       propertyPath: dungeons.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: highText.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: tryText.Array.data[0]
+      value: 
+      objectReference: {fileID: 91403710}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: tryText.Array.data[1]
+      value: 
+      objectReference: {fileID: 1685209437}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: tryText.Array.data[2]
+      value: 
+      objectReference: {fileID: 414058401}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: highText.Array.data[0]
+      value: 
+      objectReference: {fileID: 1937529363}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: highText.Array.data[1]
+      value: 
+      objectReference: {fileID: 201862588}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: highText.Array.data[2]
+      value: 
+      objectReference: {fileID: 1390903146}
     - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: dungeons.Array.data[2].name
