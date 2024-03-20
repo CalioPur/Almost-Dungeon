@@ -243,7 +243,6 @@ public class DungeonManager : MonoBehaviour
             UI_Dragon.currentHealth = UI_Dragon.maxHealth;
         int level = currentLevel;
         GameManager.OnSceneLoadedEvent -= LoadEndlessLevel;
-        print(endlessLevel.terrains.Count);
         terrainData = endlessLevel.terrains[Random.Range(0, endlessLevel.terrains.Count)];
         deckData = endlessLevel.decks[Random.Range(0, endlessLevel.decks.Count)];
         

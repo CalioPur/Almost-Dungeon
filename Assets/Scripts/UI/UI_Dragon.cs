@@ -25,7 +25,7 @@ public class UI_Dragon : MonoBehaviour
     public static int currentHealth = 10;
     public static int maxHealth = 10;
     public int damage = 3;
-    private bool test = true;
+    private bool test = false;
 
     [SerializeField] private GameObject fireBallPrefab;
     [SerializeField] private AnimationClip fireBallAnim;
