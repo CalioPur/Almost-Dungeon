@@ -62,9 +62,10 @@ public enum VisionType
 
 public enum Aggressivity
 {
-    PEUREUX, // L'aventurier n'attaque pas et s'éloigne des minions s'il peut poursuivre l'exploration du donjon (c'est-à-dire s'il peut encore découvrir une zone inexplorée)
-    COURAGEUX, // L'aventurier va attaquer coute que coute l'ennemi le plus proche dans son champ de vision, meme s'il n'entrave pas son exploration du donjon.
     NONE, // L'aventurier n'attaque pas
+    COURAGEUX, // L'aventurier va attaquer coute que coute l'ennemi le plus proche dans son champ de vision, meme s'il n'entrave pas son exploration du donjon.
+    PEUREUX // L'aventurier n'attaque pas et s'éloigne des minions s'il peut poursuivre l'exploration du donjon (c'est-à-dire s'il peut encore découvrir une zone inexplorée)
+    
 }
 
 public enum Objectives

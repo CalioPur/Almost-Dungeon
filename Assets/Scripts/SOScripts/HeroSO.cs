@@ -50,4 +50,9 @@ public class HeroSOInstance
         this.languages = so.languages;
         this.keyToUnlock = so.keyToUnlock;
     }
+    
+    public HeroSOInstance()
+    {
+        
+    }
 }

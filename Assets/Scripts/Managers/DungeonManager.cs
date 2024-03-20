@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using Ink.Parsed;
+using JimmysUnityUtilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -24,7 +25,54 @@ public class DungeonManager : MonoBehaviour
     
     [SerializeField] public DungeonSO TutorialDungeon;
     [SerializeField] public List<Dungeon> dungeons;
-   
+    [Header("Endless LevelSo")]
+    public LevelSO endlessLevel;
+    public List<HeroesInfo> classes;
+    private int leastPV = 10;
+    private int mostPV = 50;
+    private float slowest = 1.5f;
+    private float fastest = 3f;
+    private float expFactor = 0.1f;
+    // genere une liste de nom de hero
+    private List<string> names = new List<string>() { "Roger", 
+        "Alice",
+        "Bob",
+        "Claire",
+        "David",
+        "Emma",
+        "Fabrice",
+        "Gabrielle",
+        "Hugo",
+        "Isabelle",
+        "Julien",
+        "Kelly",
+        "Lucas",
+        "Marie",
+        "Nathan",
+        "Olivia",
+        "Pierre",
+        "Quentin",
+        "Rachel",
+        "Simon",
+        "Tiffany"};
+    
+    private float[] modePVRelatif = {1f, 1.1f, 1.2f};
+    private float[] modeSpeedRelatif = {1f, 1.5f, 2f};
+    
+    private float[] ClassePVRelatif = {1f, 0.7f, 0.9f,0.6f};
+    private float[] ClasseSpeedRelatif = {1f, 1f, 0.9f, 0.9f};
+    
+    private float[] VisionPVRelatif = {1f, 1.1f, 0.8f};
+    private float[] VisionSpeedRelatif = {1f, 1.2f, 0.8f};
+    
+    private float[] AggressivityPVRelatif = {1f, 1.1f, 0.8f};
+    private float[] AggressivitySpeedRelatif = {1f, 1.1f, 0.9f};
+    
+    private float[] PersonalityPVRelatif = {1f, 1.1f, 0.7f};
+    private float[] PersonalitySpeedRelatif = {1f, 1.1f, 0.8f};
+    
+    
+    [Header("Infos")]
     public int currentLevel = 0;
     public DeckManager cardsManager;
     public TickManager tickManager;
@@ -43,6 +91,8 @@ public class DungeonManager : MonoBehaviour
 
     public static DungeonManager _instance;
     public bool TutorialDone = true;
+
+    [HideInInspector] public int machValue;
     
     private void Awake()
     {
@@ -66,8 +116,16 @@ public class DungeonManager : MonoBehaviour
 
     public void SetSelectedBiome(int index)
     {
+        machValue = 0;
         SelectedBiome = index;
         GameManager.OnSceneLoadedEvent += LoadLevel;
+        SceneManager.LoadScene(2);
+    }
+    
+    public void SetSelectedMach(int index)
+    {
+        machValue = index;
+        GameManager.OnSceneLoadedEvent += LoadEndlessLevel;
         SceneManager.LoadScene(2);
     }
     
@@ -124,7 +182,6 @@ public class DungeonManager : MonoBehaviour
             ResetLevelIndex();
             return;
         }
-
         
 
         var levelData = dungeonSo.levels[level];
@@ -180,6 +237,91 @@ public class DungeonManager : MonoBehaviour
         OnLevelLoaded?.Invoke();
     }
     
+    private void LoadEndlessLevel()
+    {
+        if (currentLevel == 0)
+            UI_Dragon.currentHealth = UI_Dragon.maxHealth;
+        int level = currentLevel;
+        GameManager.OnSceneLoadedEvent -= LoadEndlessLevel;
+        terrainData = endlessLevel.terrains[Random.Range(0, endlessLevel.terrains.Count)];
+        deckData = endlessLevel.decks[Random.Range(0, endlessLevel.decks.Count)];
+        
+        
+        
+        heroData = new HeroSOInstance();
+        //nom du hero
+        heroData.nameOfHero = names[Random.Range(0, names.Count)];
+        //classe du hero
+        float classRandom = Random.Range(0, 1f);
+        int classIndex;
+        if (classRandom<0.7f) classIndex = 0;
+        else if (classRandom<0.8f) classIndex = 1;
+        else if (classRandom < 0.9f) classIndex = 2;
+        else classIndex = 3;
+        heroData.classe = classes[classIndex];
+        
+        //vision du hero
+        float visionRandom = Random.Range(0, 1f);
+        int visionIndex;
+        if (visionRandom<0.8f) visionIndex = 0;
+        else if (visionRandom<0.9f) visionIndex = 1;
+        else visionIndex = 2;
+        heroData.visionType = (VisionType) visionIndex;
+        
+        //agressivité du hero
+        float agressivityRandom = Random.Range(0, 1f);
+        int agressivityIndex;
+        if (agressivityRandom<0.8f) agressivityIndex = 0;
+        else if (agressivityRandom<0.9f) agressivityIndex = 1;
+        else agressivityIndex = 2;
+        heroData.aggressivity = (Aggressivity) agressivityIndex;
+        
+        //curiosité du hero
+        float curiosityRandom = Random.Range(0, 1f);
+        int curiosityIndex;
+        if (curiosityRandom<0.8f) curiosityIndex = 0;
+        else if (curiosityRandom<0.9f) curiosityIndex = 1;
+        else curiosityIndex = 2;
+        if(curiosityIndex>0) heroData.personalities.Add((Personnalities) curiosityIndex);
+        
+        //pv du hero
+        heroData.health =(int) (mostPV + (mostPV - leastPV)*Mathf.Exp(-expFactor*-1)*modePVRelatif[machValue]
+            *ClassePVRelatif[classIndex]
+            *VisionPVRelatif[visionIndex]
+            *AggressivityPVRelatif[agressivityIndex]
+            *PersonalityPVRelatif[curiosityIndex]);
+        
+        //vitesse du hero
+        heroData.speed = (int) (fastest- (fastest - slowest)*Mathf.Exp(-expFactor*level-1)*modeSpeedRelatif[machValue]
+            *ClasseSpeedRelatif[classIndex]
+            *VisionSpeedRelatif[visionIndex]
+            *AggressivitySpeedRelatif[agressivityIndex]
+            *PersonalitySpeedRelatif[curiosityIndex]);
+        
+        UI_Hero heroCard = FindObjectOfType<UI_Hero>();
+        heroCard.heroName.text = heroData.nameOfHero;
+        heroCard.HealthBarText.text = heroData.health.ToString();
+        RefreshCard(heroData);
+        cardsManager = FindObjectOfType<DeckManager>();
+        cardsManager.deckToBuild = deckData.deck;
+        cardsManager.handToBuild = endlessLevel.PrebuildHand;
+        cardsManager.nbCardOnStartToDraw = endlessLevel.nbCardToDraw;
+        tickManager = FindObjectOfType<TickManager>();
+        gameManager = GameManager.Instance;
+        gameManager.currentHero = heroData;
+        //gameManager.currentPersonality = heroData.personnalities[0]; //a changer a l'avenir, le hero pourra avoir plusieurs personnalité
+        gameManager.heroHealthPoint = heroData.health;
+        gameManager.heroCurrentHealthPoint = heroData.health;
+        gameManager.UpdateHeroPos(terrainData.SpawnPosition);
+        gameManager.rotationOfSpawnTile = terrainData.spawnRotation;
+        
+        mapManager = FindObjectOfType<MapManager>();
+        mapManager.SpawnPresets(terrainData.tilePresets);
+        PlayerCardController.Instance.isDragNDrop = PlayerPrefs.GetInt("DragNDrop", 0) == 1;
+        OnLevelLoaded?.Invoke();
+        
+    }
+    
     public void LoadNextLevel()
     {
         if (TutorialDone)
@@ -191,7 +333,8 @@ public class DungeonManager : MonoBehaviour
         }
         currentLevel++;  
 
-        GameManager.OnSceneLoadedEvent += LoadLevel;
+        if(machValue==0) GameManager.OnSceneLoadedEvent += LoadLevel;
+        else GameManager.OnSceneLoadedEvent += LoadEndlessLevel;
     }
 
     public void RefreshCard(HeroSOInstance heroData)
