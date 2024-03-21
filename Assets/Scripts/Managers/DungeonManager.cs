@@ -287,14 +287,14 @@ public class DungeonManager : MonoBehaviour
         if(curiosityIndex>0) heroData.personalities.Add((Personnalities) curiosityIndex);
         
         //pv du hero
-        heroData.health =(int) (mostPV - (mostPV - leastPV)*Mathf.Exp(-expFactor*(level))*modePVRelatif[machValue-1] //-1 car on commence a 0
+        heroData.health =(int) ((mostPV - (mostPV - leastPV))*Mathf.Exp(-expFactor*(level))*modePVRelatif[machValue-1] //-1 car on commence a 0
             *ClassePVRelatif[classIndex]
             *VisionPVRelatif[visionIndex]
             *AggressivityPVRelatif[agressivityIndex]
             *PersonalityPVRelatif[curiosityIndex]);
         
         //vitesse du hero
-        heroData.speed = (fastest- (fastest - slowest)*Mathf.Exp(-expFactor*(level))*modeSpeedRelatif[machValue-1] //-1 car on commence a 0
+        heroData.speed = ((fastest- (fastest - slowest))*Mathf.Exp(-expFactor*(level))*modeSpeedRelatif[machValue-1] //-1 car on commence a 0
             *ClasseSpeedRelatif[classIndex]
             *VisionSpeedRelatif[visionIndex]
             *AggressivitySpeedRelatif[agressivityIndex]
