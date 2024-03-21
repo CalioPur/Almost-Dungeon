@@ -236,6 +236,10 @@ public class DialogueManager : MonoBehaviour
             displayLineCoroutine = StartCoroutine(DisplayLineRoutine(story.Continue()));
             //dialogueText.Source = story.Continue();
             EvaluateTags();
+            if (!story.canContinue && choices == 0)
+                nextButtonText.text = "C'est parti !";
+            else
+                nextButtonText.text = "Suivant";
         }
 
         else
@@ -244,10 +248,6 @@ public class DialogueManager : MonoBehaviour
             {
                 DisplayChoices();
                 return;
-            }
-            else
-            {
-                nextButtonText.text = "C'est parti !";
             }
             dialogueVariable.StopListening(story);
             dialogueBox.SetActive(false);
