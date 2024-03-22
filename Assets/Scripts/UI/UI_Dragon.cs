@@ -78,7 +78,6 @@ public class UI_Dragon : MonoBehaviour
     private void DrawHearts()
     {
         DestroyAllHearts();
-        int a = 0;
 
         //draw hearts
         if (currentHealth > maxHealth)

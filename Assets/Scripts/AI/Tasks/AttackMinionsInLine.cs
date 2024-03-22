@@ -105,7 +105,6 @@ public class AttackMinionsInLine : Node
             return NodeState.Failure;
         }
 
-        float delay = 1.0f;
         blackboard.hero.PlayAttackClip();
         blackboard.hero.PlayAttackFX(blackboard.Targets[^1].transform, 1.0f, blackboard.directionToMove);
         blackboard.hero.AddAnim(new AnimToQueue(blackboard.hero.transform, blackboard.Targets[^1].transform,

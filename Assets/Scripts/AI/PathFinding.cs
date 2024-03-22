@@ -5,11 +5,7 @@ using Random = UnityEngine.Random;
 
 public class PathFinding
 {
-    public static event Action OnNoPathFound;
     public static Vector2Int HeroPos { get; set; }
-    
-    public static int distToClosestExit = 9999;
-
     public static DirectionToMove BFSFindPathWithLessEnemies(Vector2Int startPos, TileData[,] map, oldPerso personality)
     {
         Queue<Vector2Int> queue = new Queue<Vector2Int>();
@@ -61,7 +57,6 @@ public class PathFinding
             dbgInt++;
         }
 
-        distToClosestExit = GetNumberOfTilesToClosestExit(startPos, parentMap, exits);
 
         switch (personality)
         {
@@ -177,7 +172,6 @@ public class PathFinding
             dbgInt++;
         }
         
-        distToClosestExit = GetNumberOfTilesToClosestExit(startPos, parentMap, exits);
         
         switch (personality)
         {

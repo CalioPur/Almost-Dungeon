@@ -47,7 +47,6 @@ public class MoveInDirection : Node
             (blackboard.dir == DirectionToMove.Left) ? -1 : 0;
         temporaryIndex.y += (blackboard.dir == DirectionToMove.Up) ? 1 :
             (blackboard.dir == DirectionToMove.Down) ? -1 : 0;
-        int index = -1;
         bool isValidPos = blackboard.minionData.mapManager.AddMinionOnTile(
             new Vector2Int(temporaryIndex.x, temporaryIndex.y), blackboard.minionData);
         

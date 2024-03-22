@@ -231,4 +231,20 @@ public class Hero : MonoBehaviour, IFlippable
         animator.speed = TickManager.Instance.calculateIncreaseSpeed();
         animator.SetTrigger("Flip");
     }
+
+    private IEnumerator RageS()
+    {
+        float delay = 0.2f;
+        transform.DOMove(transform.position + Vector3.up * 2.0f, delay).SetEase(Ease.InOutSine).OnComplete(() =>
+        {
+            transform.DOMove(transform.position + Vector3.down * 2.0f, delay * 0.9f).SetEase(Ease.InOutSine);
+        });
+        yield return new WaitForSeconds(delay * 2);
+        RageScript.Rage(GetIndexHeroPos());
+    }
+
+    public void Rage()
+    {
+        StartCoroutine(RageS());
+    }
 }

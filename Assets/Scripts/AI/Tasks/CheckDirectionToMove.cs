@@ -123,7 +123,7 @@ public class CheckDirectionToMove : Node
                      listOfExits) >=
                  5) || target == null)
             {
-                RageScript.Rage(blackboard.hero.GetIndexHeroPos());
+                GameManager.Instance.HeroInstance.Rage();
                 blackboard.hero.Stun(null);
                 blackboard.directionToMove = DirectionToMove.None;
             }
