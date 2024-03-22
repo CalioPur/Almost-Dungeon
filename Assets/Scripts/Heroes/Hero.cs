@@ -234,11 +234,12 @@ public class Hero : MonoBehaviour, IFlippable
 
     private IEnumerator RageS()
     {
-        transform.DOMove(transform.position + Vector3.up * 2.0f, 0.1f).SetEase(Ease.InOutSine).OnComplete(() =>
+        float delay = 0.2f;
+        transform.DOMove(transform.position + Vector3.up * 2.0f, delay).SetEase(Ease.InOutSine).OnComplete(() =>
         {
-            transform.DOMove(transform.position + Vector3.down * 2.0f, 0.1f).SetEase(Ease.InOutSine);
+            transform.DOMove(transform.position + Vector3.down * 2.0f, delay * 0.9f).SetEase(Ease.InOutSine);
         });
-        yield return new WaitForSeconds(0.21f);
+        yield return new WaitForSeconds(delay * 2);
         RageScript.Rage(GetIndexHeroPos());
     }
 

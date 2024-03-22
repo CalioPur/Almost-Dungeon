@@ -306,31 +306,6 @@ public static class BFSScript
         {
             return 9999;
         }
-
-        int minDist = 9999;
-        
-        
-
-        // foreach (var position in exits)
-        // {
-        //     Dictionary<Vector2Int, Vector2Int> parentMapCopy = new Dictionary<Vector2Int, Vector2Int>(parentMap);
-        //     Vector2Int currentPos = position;
-        //     int distance = 0;
-        //     while (parentMapCopy.ContainsKey(currentPos) && parentMapCopy[currentPos] != startPos)
-        //     {
-        //         Vector2Int parent = parentMapCopy[currentPos];
-        //         parentMapCopy.Remove(currentPos);
-        //         currentPos = parent;
-        //         distance++;
-        //     }
-        //
-        //     if (minDist > distance)
-        //     {
-        //         minDist = distance;
-        //     }
-        // }
-        //
-        // return minDist;
         List<TileData> allExits = exits.ToList();
         Vector2Int posSearch = startPos;
         TileData step = MapManager.Instance.GetTileDataAtPosition(posSearch.x, posSearch.y);

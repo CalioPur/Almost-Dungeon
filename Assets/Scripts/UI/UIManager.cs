@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
     public void NextLevel()
     {
         print("next level, maybe done twice, this is a bug");
+        print("lead GP, qu'est ce que tu racontes, tu as bu ???");
         dungeonManager.LoadNextLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

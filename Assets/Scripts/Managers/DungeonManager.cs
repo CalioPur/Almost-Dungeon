@@ -359,7 +359,6 @@ public class DungeonManager : MonoBehaviour
             personality += " " + ToTitleCase(perso.ToString());
         }
         heroCard.heroPersonality.text = personality;
-        Debug.LogWarning(personality);
     }
     
     public void ResetLevelIndex()

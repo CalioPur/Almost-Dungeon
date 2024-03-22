@@ -66,7 +66,6 @@ public class DialogueManager : MonoBehaviour
     private float typingSpeed = 0.04f;
 
     private Coroutine displayLineCoroutine;
-    [SerializeField] private bool canContinueToNextLine = false;
 
     private List<string> openTags = new();
     private List<string> closeTags = new();

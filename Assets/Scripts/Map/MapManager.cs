@@ -25,47 +25,17 @@ public class MapManager : MonoBehaviour
     [SerializeField] private TileData floor;
     public Sprite floorSpriteForRage;
     [SerializeField] private Transform map;
-    [SerializeField] private FogPainter fogPainter;
     public TileData[,] mapArray;
     private readonly MapManagerTools _mapManagerTools;
     private List<TilePresetStruct> _tilePreset = new();
 
     [SerializeField] private Sprite ATTENTION;
     [SerializeField] private Sprite ATTENTIONROUUUGE;
-
-    private bool UpScale = false;
-
-    private CardInfo[] cards;
-
+    
     public MapManager()
     {
         _mapManagerTools = new MapManagerTools(this);
     }
-    
-    // private void AssignWarning(Vector2Int pos)
-    // {
-    //     mapArray[pos.x, pos.y].transform.rotation = Quaternion.Euler(90, 0, 0);
-    //     if (Hero.Instance.GetIndexHeroPos().x == pos.x && Hero.Instance.GetIndexHeroPos().y == pos.y)
-    //     {
-    //         mapArray[i, j - 1].img.sprite = ATTENTIONROUUUGE;
-    //         //tiles.Add(mapArray[i, j - 1]);
-    //     }
-    //     else
-    //     {
-    //         mapArray[i, j - 1].img.sprite = ATTENTION;
-    //         //tiles.Add(mapArray[i, j - 1]);
-    //     }
-    //     
-    //     
-    //     if (isRed)
-    //     {
-    //         mapArray[pos.x, pos.y].img.sprite = ATTENTIONROUUUGE;
-    //     }
-    //     else
-    //     {
-    //         mapArray[pos.x, pos.y].img.sprite = ATTENTION;
-    //     }
-    // }
 
     
     private void UpdateMapTiles()
@@ -120,8 +90,6 @@ public class MapManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        DeckManager.DistributeCardEvent += InitCards;
-
         //open path
         _sprites = Resources.LoadAll<Sprite>(path);
         _models = Resources.LoadAll<GameObject>(path2);
@@ -133,17 +101,11 @@ public class MapManager : MonoBehaviour
         return new Vector2Int(width, height);
     }
 
-    private void InitCards(CardInfo[] _cards)
-    {
-        cards = _cards;
-    }
-
     public void SpawnTilePresets()
     {
         for (int i = 0; i < _tilePreset.Count; i++)
         {
             CardInfoInstance card = _tilePreset[i].cardInfo.CreateInstance();
-            fogPainter.dungeonTilesPositions.Add(new Vector2Int(_tilePreset[i].position.x, _tilePreset[i].position.y));
             for (int j = 0; j < _tilePreset[i].rotation; j++)
             {
                 card.AddRotation(false);
@@ -477,7 +439,6 @@ public class MapManager : MonoBehaviour
 
     private void OnDisable()
     {
-        DeckManager.DistributeCardEvent -= InitCards;
         HandsManager.OnCardTryToPlaceEvent -= CheckCardPos;
         OnCardTryToPlaceEvent = null;
     }

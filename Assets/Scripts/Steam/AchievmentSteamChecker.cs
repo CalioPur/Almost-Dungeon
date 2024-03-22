@@ -91,7 +91,6 @@ public class AchievmentSteamChecker : MonoBehaviour
     
     private void UnlockComeFightMeAchievement(bool won)
     {
-        print("heroDamagedByMinion : " + heroDamagedByMinion);
         if (!heroDamagedByMinion && won)
         {
             if (!SteamManager.Initialized) return;

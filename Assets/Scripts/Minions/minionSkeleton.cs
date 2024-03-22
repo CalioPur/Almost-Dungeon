@@ -56,7 +56,6 @@ public class minionSkeleton : MinionData
 
     public void FinishToDig()
     {
-        int index = 0;
         mapManager.AddMinionOnTile(
             new Vector2Int(indexX, indexY), this);
         model3DTr.DORotate(transform.rotation.eulerAngles, 0.1f);
