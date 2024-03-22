@@ -10,10 +10,6 @@ public static class RageScript
         OnNoPathFound?.Invoke();
         int radius = 3;
         TileData breakedTile = MapManager.Instance.GetTileDataAtPosition(getIndexHeroPos.x, getIndexHeroPos.y);
-        // if(getIndexHeroPos.x != 0) breakedTile.hasDoorLeft = true;
-        // if(getIndexHeroPos.x != MapManager.Instance.mapArray.GetLength(0) - 1) breakedTile.hasDoorRight = true;
-        // if(getIndexHeroPos.y != 0) breakedTile.hasDoorDown = true;
-        // if(getIndexHeroPos.y != MapManager.Instance.mapArray.GetLength(1) - 1) breakedTile.hasDoorUp = true;
         int startX = getIndexHeroPos.x - radius;
         int startY = getIndexHeroPos.y - radius;
         int endX = getIndexHeroPos.x + radius;
@@ -30,7 +26,5 @@ public static class RageScript
                 }
             }
         }
-        
-        //MapManager.Instance.MapManagerTools.ResetConnectedToPath(new Vector2Int(getIndexHeroPos.x, getIndexHeroPos.y));
     }
 }
