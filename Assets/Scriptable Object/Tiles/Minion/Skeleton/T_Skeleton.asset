@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
   m_Name: T_Skeleton
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: 2b3b9e42d0e0ad34f8130971e5ba69c1, type: 3}
-  imgOnMap: {fileID: 21300000, guid: 2337a13351058a84faf1327c5c5e9f73, type: 3}
+  imgOnHand: {fileID: 21300000, guid: 1ad1df12c0d754448a04df996083ad62, type: 3}
+  imgOnMap: {fileID: 21300000, guid: 81a7d0fcaddc26040b48751ce7ec4578, type: 3}
   prefabOnMap: {fileID: 8988704931660484056, guid: c55ba140f85fd0142b4173fb3a6d7022,
     type: 3}
   TypeOfTrapOrEnemyToSpawn:

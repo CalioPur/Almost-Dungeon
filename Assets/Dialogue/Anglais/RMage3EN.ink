@@ -8,8 +8,8 @@ You wouldn't dare! Not for a mere book! #chara:dragon
 But of course, Dragon! This work represents my entire life! #chara:mage
 Boss! Boss! #minion:in #chara:minion
 Boss, it's terrible!
-Oh come on, what do you want now, Minion! #chara:dragon
-Boss, it's terrible, it's the last level of the game! #chara:minion
+Oh come on, what do you want now, Minion? #chara:dragon
+Boss, it's terrible, it's the last story of the dungeon! #chara:minion
 WHAT! I can't let this level end with a depressed mage! #chara:dragon
 Listen, mage! Here's a spell that will allow you to continue reading this book!
 Ooooh... The writings have turned white and the page has turned black... #chara:mage
