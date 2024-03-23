@@ -13,24 +13,21 @@ MonoBehaviour:
   m_Name: D4_Default
   m_EditorClassIdentifier: 
   deck:
-  - cardToBuild: {fileID: 11400000, guid: c8947bc12fc3b1646a4dad70707a1551, type: 2}
-    nbToBuild: 1
-  - cardToBuild: {fileID: 11400000, guid: 6f8a8a78388799049aeb20abcda62770, type: 2}
-    nbToBuild: 1
-  - cardToBuild: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
-    nbToBuild: 3
-  - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
-    nbToBuild: 5
-  - cardToBuild: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
-    nbToBuild: 3
-  - cardToBuild: {fileID: 11400000, guid: f00db9a11b8ecfd4c9e5f8153003712d, type: 2}
-    nbToBuild: 2
-  - cardToBuild: {fileID: 11400000, guid: a3f8dc17fd4308347be0deb783fd5b21, type: 2}
-    nbToBuild: 1
-  - cardToBuild: {fileID: 11400000, guid: 71cef8cf2fb84d547b1764f62e532017, type: 2}
-    nbToBuild: 1
   - cardToBuild: {fileID: 11400000, guid: dd923b090d7a44a4fb5ea19c9135c2dd, type: 2}
     nbToBuild: 1
   - cardToBuild: {fileID: 11400000, guid: 040046e57757bef49b1463898459ce7f, type: 2}
+    nbToBuild: 3
+  - cardToBuild: {fileID: 11400000, guid: c8947bc12fc3b1646a4dad70707a1551, type: 2}
     nbToBuild: 1
-  deckDialogue: {fileID: 0}
+  - cardToBuild: {fileID: 11400000, guid: cb78bb127bcc5c0449deeffea185781b, type: 2}
+    nbToBuild: 2
+  - cardToBuild: {fileID: 11400000, guid: 71cef8cf2fb84d547b1764f62e532017, type: 2}
+    nbToBuild: 1
+  - cardToBuild: {fileID: 11400000, guid: c2dddc21d95a0dd469a3c42854102e1d, type: 2}
+    nbToBuild: 2
+  - cardToBuild: {fileID: 11400000, guid: a3f8dc17fd4308347be0deb783fd5b21, type: 2}
+    nbToBuild: 2
+  - cardToBuild: {fileID: 11400000, guid: f00db9a11b8ecfd4c9e5f8153003712d, type: 2}
+    nbToBuild: 1
+  deckDialogue:
+  - {fileID: 0}
