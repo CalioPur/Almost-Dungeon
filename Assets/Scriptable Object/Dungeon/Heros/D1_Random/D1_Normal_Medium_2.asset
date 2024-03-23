@@ -24,4 +24,4 @@ MonoBehaviour:
     - {fileID: 4900000, guid: 4ae491081cb2f824c8cd0ba0f1eb270c, type: 3}
   - heroDialogues:
     - {fileID: 4900000, guid: 5040596196bf7ca42a5f12c6a919c646, type: 3}
-  keyToUnlock: D1_L2
+  keyToUnlock: 
