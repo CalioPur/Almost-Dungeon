@@ -6,8 +6,8 @@ Hello! #chara:mage
 Eeeek! A mage, help me boss! #chara:minion
 Tell me, good Dragon, I'm trying to read this book, could you help me decipher it? #chara:mage #minion:out
 It's the book of <font=Witch of Thebes SDF>Cthulhu</font>...
-I can't be Dragon, master of the Dungeon and librarian, dear mage. #chara:dragon
+I can't be the master of the Dungeon and the librarian, dear mage. #chara:dragon
 But take your time to try to decipher it, feel free to rest at the camps... and most importantly...
-Most importantly? #chara:mage
+Most importantly what? #chara:mage
 Beware of the wolves! #chara:dragon
 ->END
