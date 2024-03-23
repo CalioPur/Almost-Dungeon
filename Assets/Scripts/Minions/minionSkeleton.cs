@@ -28,7 +28,8 @@ public class minionSkeleton : MinionData
 
     protected override void OnDead()
     {
-        model3DTr.rotation = Quaternion.Euler(180 + transform.rotation.eulerAngles.x, 0, 0);
+        model3DTr.rotation = Quaternion.Euler(180 + transform.rotation.eulerAngles.x, model3DTr.rotation.y,
+            model3DTr.rotation.z);
         minionInstance.CurrentHealthPoint = minionInstance.So.health;
         mapManager.GetWorldPosFromTilePos(new Vector2Int(indexX, indexY), out Vector3 worldPos);
         mapManager.RemoveEnemyOnTile(
@@ -46,7 +47,7 @@ public class minionSkeleton : MinionData
         
         isDigger = true;
         isReadyToUndig = false;
-        model3DTr.DOMoveY(-0.3f, 0.1f).onComplete += () =>
+        model3DTr.DOMoveY(-0.9f, 0.1f).onComplete += () =>
         {
             FXDigTr.gameObject.SetActive(true);
             model3DTr.gameObject.SetActive(false);
@@ -58,12 +59,12 @@ public class minionSkeleton : MinionData
     {
         mapManager.AddMinionOnTile(
             new Vector2Int(indexX, indexY), this);
-        model3DTr.DORotate(transform.rotation.eulerAngles, 0.1f);
+        //emodel3DTr.DORotate(transform.rotation.eulerAngles, 0.1f);
         FXDigTr.gameObject.SetActive(false);
         model3DTr.gameObject.SetActive(true);
         model3DTr.DOMoveY(1, 0.1f).SetEase(Ease.OutElastic).onComplete += () =>
         {
-            model3DTr.DOMoveY(0, 0.1f);
+            model3DTr.DOMoveY(0.1f, 0.1f);
         };
         resurectCount++;
         OnResurectEvent?.Invoke(resurectCount);
