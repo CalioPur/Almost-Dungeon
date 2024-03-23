@@ -1,22 +1,22 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight6Seen : Grands Dieux... Enfin dans le Donjon, après toutes ces années de recherche ! #chara:knight } 
-{SKnight6Seen : Tiens... Gabriel, toujours en quête de mon amitié ? #chara:dragon }
+{not SKnight6Seen : Great Gods... Finally in the Dungeon, after all these years of searching! #chara:knight } 
+{SKnight6Seen : Well... Gabriel, still seeking my friendship? #chara:dragon }
 {not SKnight6Seen : ->Encounter1} 
 {SKnight6Seen : ->Encounter2} 
 
 === Encounter1 ===
-Laissez-moi deviner la suite, ces années de recherche vont enfin aboutir en gloire et montagnes d'or ? #chara:dragon
+Let me guess the next part, these years of searching will finally lead to glory and mountains of gold? #chara:dragon
 ~SKnight6Seen = true 
-Oh, mais non mon bon Dragon. Je ne cherche pas votre argent mais votre amitié ! #chara:knight
-Je vous demande pardon ? #chara:dragon
-Ecoutez, un slime érudit m'a un jour raconté s'être lié d'amitié avec un dragon, je souhaite faire comme lui. #chara:dragon
-Balivernes ! Vous n'échapperez pas au combat avec ces belles paroles. #chara:dragon
+Oh, but no, my dear Dragon. I'm not after your money but your friendship! #chara:knight
+I beg your pardon? #chara:dragon
+Listen, an erudite slime once told me he befriended a dragon, I wish to do the same. #chara:dragon
+Nonsense! You won't escape a battle with such sweet words. #chara:dragon
     -> END
 
 === Encounter2 ===
-Patron ! C'est quoi l'amitié ? Est-ce que ça se mange ? #chara:minion #minion:in
-Ne l'écoute pas mon sbire, tout ce qui sort de sa bouche n'est qu'idiotie. #chara:dragon #minion:out
-Vous avez peut être raison Dragon... Mais je n'abandonne pas... #chara:knight
-Alors en garde ! #chara:dragon
+Boss! What's friendship? Can you eat it? #chara:minion #minion:in
+Don't listen to him, my minion, everything that comes out of his mouth is nonsense. #chara:dragon #minion:out
+You may be right, Dragon... But I won't give up... #chara:knight
+So be it then! #chara:dragon
  -> END

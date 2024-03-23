@@ -2,44 +2,44 @@ INCLUDE ../../../GlobalVariables.ink
 
 //<font=Witch of Thebes SDF></font>
 
-{not SMage3Seen : Une petite décharge d'énergie et... Mais... Je ne suis plus dans le vaisseau ! C'est impossible ! #chara:mage } 
-{SMage3Seen : Ah ! Docteure Seltis ! Je constate que vous n'avez pas trouvé de moyen de retourner chez vous ! #chara:dragon }
+{not SMage3Seen : A small surge of energy and... But... I'm no longer on the ship! This is impossible! #chara:mage } 
+{SMage3Seen : Ah! Doctor Seltis! I see you haven't found a way back home yet! #chara:dragon }
 {not SMage3Seen : ->Encounter1} 
 {SMage3Seen : ->Encounter2} 
 
 === Encounter1 ===
-Téléportée dans mon donjon ? En voilà une magie rare ! #chara:dragon
+Teleported into my dungeon? Now that's rare magic! #chara:dragon
 ~SMage3Seen = true 
-Un dragon ! Mais où ce maudit artefact m'a-t-il envoyé !  #chara:mage
-Je crois que des présentations s'imposent. Bienvenue dans le Donjon, magicienne. J'en suis à la fois le maître et le gardien. #chara:dragon
-Comment vais-je faire pour retourner en arrière... Je n'ai pas le temps de m'éterniser ici, Dragon, renvoie-moi d'où je viens ! #chara:mage
-Quelle impatience ! Je n'ai aucun moyen de vous renvoyer chez vous, magicienne, par contre... #chara:dragon
-* [ Lui offrir votre savoir (perd <color=orange>impatient</color> )] -> Regen
-* [ Lui voler ses lunettes (gagne <color=yellow>bigleux</color> )] -> Damages
+A dragon! But where has this cursed artifact sent me! #chara:mage
+I believe introductions are in order. Welcome to the Dungeon, sorceress. I am both its master and guardian. #chara:dragon
+How am I supposed to go back... I don't have time to linger here, Dragon, send me back from where I came! #chara:mage
+Such impatience! I have no means to send you back home, sorceress, however... #chara:dragon
+* [ Offer her your knowledge (loses <color=orange>impatient</color> )] -> Regen
+* [ Steal her glasses (gains <color=yellow>shortsighted</color> )] -> Damages
     
 === Regen ===
-Je vous invite à explorer le Donjon, ses artefacts et parchemins magiques pourraient peut être vous aider à retourner chez vous... #chara:dragon
-Vraiment ? Vous disposez de tels objets ici... En tant que scientifique, je me dois de faire la lumière sur ce savoir. #chara:mage #changepers:clairvoyant
+I invite you to explore the Dungeon, its artifacts and magical scrolls might help you find your way back home... #chara:dragon
+Really? You have such objects here... As a scientist, it's my duty to shed light on this knowledge. #chara:mage #changepers:clairvoyant
 -> END
 
 === Damages ===
-Vous êtes ici chez moi et je pose les règles. Si vous souhaitez retourner chez vous, essayez au moins de survivre ici... #chara:mage #changepers:bigleux
-MAIS ! Mes lunettes ! Dragon ! Rendez-moi mes lunettes ! #chara:mage
+You're here in my domain and I set the rules. If you wish to return home, try at least to survive here... #chara:mage #changepers:shortsighted
+WHAT! My glasses! Dragon! Give me back my glasses! #chara:mage
 -> END
 
 === Encounter2 ===
-C'est toujours mon objectif, mais l'artefact réagit étrangment à cet endroit. Il en va de mon devoir de chercher à élucider ce mystère. #chara:mage
-Et quelle est la suite de vos études ? Vous pensez pouvoir réussir à comprendre cet objet ? #chara:dragon
-Réjoussez-vous Dragon, vous allez pouvoir participer au progrès scientifique. J'ai compris que pour activer un nouveau pan de ses pouvoirs j'allais avoir besoin de votre or ! #chara:mage
-Je vous demande pardon ?! Vous n'aurez jamais mon or ! #chara:dragon 
-* [ Lui donner une fausse piste (perd <color=orange>impatient</color> )]  -> Regen2
-* [ Lui voler ses lunettes (gagne <color=yellow>bigleux</color> )] -> Damages2
+That's still my goal, but the artifact is reacting strangely in this place. It's my duty to try to unravel this mystery. #chara:mage
+And what's the next step in your studies? Do you think you'll manage to understand this object? #chara:dragon
+Rejoice, Dragon, you'll be able to participate in scientific progress. I've realized that to activate a new aspect of its powers I'll need your gold! #chara:mage
+I beg your pardon?! You'll never have my gold! #chara:dragon 
+* [ Give her a false lead (loses <color=orange>impatient</color> )]  -> Regen2
+* [ Steal her glasses (gains <color=yellow>shortsighted</color> )] -> Damages2
  -> END
  
  === Regen2 ===
-Mais... avancez à la fin de cet étage, vous trouverez peut être mon trésor. Si vous survivez... #chara:dragon #changepers:clairvoyant
+But... proceed to the end of this floor, you might find my treasure there. If you survive... #chara:dragon #changepers:clairvoyant
 -> END
 
 === Damages2 ===
-Ha ! Essayez déjà de survivre à cet étage, vous n'êtes en aucun cas digne de mettre la main sur une seule pièce d'or. #chara:dragon #changepers:bigleux
+Ha! Try to survive this floor first, you're in no way worthy to lay your hands on even a single coin. #chara:dragon #changepers:shortsighted
 -> END

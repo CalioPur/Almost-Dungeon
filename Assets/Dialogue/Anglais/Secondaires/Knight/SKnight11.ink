@@ -1,23 +1,23 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight11Seen : Fuhuhu... Enfin, ma beauté rayonne jusqu'aux yeux d'un dragon ! #chara:knight } 
-{SKnight11Seen : Fuhuhu... Alors Dragon, que penses-tu de la beauté de sire Edouard Le Magnifique ? #chara:knight }
+{not SKnight11Seen : Fuhuhu... At last, my beauty shines even in the eyes of a dragon! #chara:knight } 
+{SKnight11Seen : Fuhuhu... So, Dragon, what do you think of the beauty of Sir Edward the Magnificent? #chara:knight }
 {not SKnight11Seen : ->Encounter1} 
 {SKnight11Seen : ->Encounter2} 
 
 === Encounter1 ===
-Encore un aventurier fou à lier patron ! #chara:minion minion:in
+Another mad adventurer, boss! #chara:minion minion:in
 ~SKnight11Seen = true 
-Fuhuhu... Je comprends bien que ma beauté relève presque de l'iréel mais de là à me traiter de fou... #chara:knight
-Je ne m'intéresse pas à ce genre de choses héros, mais j'ose espérer que vous aurez plus que quelques paillettes pour m'imperssioner au combat. #chara:dragon
-Mais cela va de soi Dragon, vous allez comprendre que ma beauté ne s'arrête pas à la décoration ! #chara:knight
-Parfait, battons-nous dans ce cas ! #chara:dragon #minion:out
+Fuhuhu... I understand that my beauty is almost unreal, but to call me mad... #chara:knight
+I'm not interested in such things, hero, but I hope you have more than just looks to impress me in battle. #chara:dragon
+But of course, Dragon, you'll soon realize that my beauty goes beyond mere decoration! #chara:knight
+Perfect, let's fight then! #chara:dragon #minion:out
     -> END
 
 === Encounter2 ===
-J'avoue être surpris chevalier, nous avons mené une bien belle bataille ! #chara:dragon
-Fuhuhu... Bien évidemment ! Après tout, je suis exceptionnel. #chara:knight
-Cette fois-ci, évitez simplement de vous mettre à chanter au beau milieu du combat ! #chara:dragon
-Comment ? Mais... #chara:knight
-Nous ne sommes pas dans une comédie musicale Edouard. Cessez de danser et chanter dans mon donjon ! #chara:dragon
+I must admit, knight, I'm surprised; we've had quite a good battle! #chara:dragon
+Fuhuhu... Naturally! After all, I am exceptional. #chara:knight
+Just this time, avoid bursting into song in the middle of the fight! #chara:dragon
+What? But... #chara:knight
+We're not in a musical, Edward. Stop dancing and singing in my dungeon! #chara:dragon
  -> END

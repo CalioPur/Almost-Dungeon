@@ -1,22 +1,22 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight7Seen : Ah, Dragon ! Enfin je te retrouve ! Je vais pouvoir accomplir ma vengeance. #chara:knight } 
-{SKnight7Seen : Ah, Dragon ! Te revoilà, tu n'échapperas pas à ma vengeance une fois de plus ! #chara:knight}
+{not SKnight7Seen : Dragon! Finally, I find you! I can fulfill my vengeance. #chara:knight } 
+{SKnight7Seen : Dragon! There you are, you won't escape my vengeance once again! #chara:knight}
 {not SKnight7Seen : ->Encounter1} 
 {SKnight7Seen : ->Encounter2} 
 
 === Encounter1 ===
-Hmm... Vous ne me dites pourtant rien... #chara:dragon
+Hmm... You don't seem familiar to me... #chara:dragon
 ~SKnight7Seen = true 
-La perfide créature nie son crime !  #chara:knight
-Mais enfin ! Dites-moi au moins ce que vous me reprochez ! #chara:dragon
-L'affront est trop grand Dragon, battons-nous sur le champ ! #chara:knight
-Mais ! Vous allez me dire ce que vous me voulez oui !? #chara:dragon
+The treacherous creature denies its crime! #chara:knight
+But come on! At least tell me what you accuse me of! #chara:dragon
+The offense is too great, Dragon, let's fight here and now! #chara:knight
+But! Will you finally tell me what you want from me!? #chara:dragon
     -> END
 
 === Encounter2 ===
-Encore vous Dantes ! Je vous assure que je ne vois pas de quoi vous parlez ! #chara:knight
-Notre dernier combat ne t'a pas suffi, monstre ?! #chara:dragon
-Mais allez-vous enfin me dire ce que vous me reprochez !? #chara:dragon
-C'est moi qui pose les questions, Dragon ! #chara:knight
+You again, Dantes! I assure you, I have no idea what you're talking about! #chara:knight
+Wasn't our last battle enough for you, monster?! #chara:dragon
+Will you finally tell me what you accuse me of!? #chara:dragon
+I'm the one asking questions, Dragon! #chara:knight
  -> END

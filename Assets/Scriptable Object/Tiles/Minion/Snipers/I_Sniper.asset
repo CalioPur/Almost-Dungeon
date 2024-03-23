@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fadeaa757492c4ea096d61de64bb79, type: 3}
   m_Name: I_Sniper
   m_EditorClassIdentifier: 
-  imgOnHand: {fileID: 21300000, guid: db4793b42d3ee8c469e3a87bda02ce92, type: 3}
-  imgOnMap: {fileID: 21300000, guid: 7c9d9576f4587184297d3e448279e8dd, type: 3}
+  imgOnHand: {fileID: 21300000, guid: db91f933da5668a418c6a60541456802, type: 3}
+  imgOnMap: {fileID: 21300000, guid: f47c94e04ff3bd4488ffa7e997b137e8, type: 3}
   prefabOnMap: {fileID: 7250998904323300419, guid: c2d2ea390d4eecb419214aae9b752d86,
     type: 3}
   TypeOfTrapOrEnemyToSpawn:

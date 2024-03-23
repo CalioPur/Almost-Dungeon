@@ -9,7 +9,7 @@ True, now that you mention it... Maybe that's why I can't see anything in this g
 Well, why don't you take them off then? #chara:dragon
 They're stuck... #chara:archer
 Hahaha! They're cursed sunglasses! #chara:dragon
-Boss? Where you here? #minion:in #chara:minion
+Boss? There you are... #minion:in #chara:minion
 Why is the archer running against the walls?
 Did she become completely <color=green>blind</color>?
 Long story... #chara:dragon #minion:out

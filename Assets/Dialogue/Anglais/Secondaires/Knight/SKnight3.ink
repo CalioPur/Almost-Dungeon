@@ -1,24 +1,24 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight3Seen : Un Dragon ! Prendre sa tête m'assurera une gloire éternelle ! #chara:knight } 
-{SKnight3Seen : Et revoici Sire Godric. Toujours en quête d'une tête de Dragon ? #chara:dragon }
+{not SKnight3Seen : A Dragon! Taking its head will ensure me eternal glory! #chara:knight } 
+{SKnight3Seen : And here comes Sir Godric again. Still in search of a Dragon's head? #chara:dragon }
 {not SKnight3Seen : ->Encounter1} 
 {SKnight3Seen : ->Encounter2} 
 
 === Encounter1 ===
-Si seulement l'inverse était aussi vrai... #chara:dragon
+If only I could do this too... #chara:dragon
 ~SKnight3Seen = true 
-Que veux-tu dire, perfide créature ?  #chara:knight
-Et bien... S'il me suffisait d'amener votre tête en ville pour revenir couvert d'argent, je pourrais arrêter d'entretenir ce donjon. #chara:dragon
-J'aurai la tienne avant Dragon, Sire Godric l'invincible ne peut perdre contre toi ! #chara:knight
-Vous êtes certain que je ne peux pas essayer ? Je pourrais faire la grasse matinée tous les jours ! #chara:dragon
-Tu vas retourner dans l'enfer où tu es né, Dragon ! #chara:dragon
+What do you mean, foul creature?  #chara:knight
+Well... If all it took was bringing your head to town to come back covered in gold, I could stop maintaining this dungeon. #chara:dragon
+I'll have yours before, Dragon, Sir Godric the invincible cannot lose against you! #chara:knight
+Are you sure I can't give it a try? I could sleep in every day! #chara:dragon
+You will return to the hell where you belong! #chara:knight
     -> END
 
 === Encounter2 ===
-Toujours ! Tout pour la gloire cher Dragon ! #chara:knight
-Vous êtes certain que vous ne voulez pas vous contenter d'un dessin ? #chara:dragon 
-Ou d'une tête en papier ? 
-Une tentative futile de m'amadouer Dragon, personne ne détourne sire Godric de ses objectifs #chara:knight
-Bon... Eh bien voyons si vous changerez d'avis une fois dans mon assiette... #chara:dragon
+Always! All for glory, dear Dragon! #chara:knight
+Are you sure you wouldn't settle for a drawing? #chara:dragon 
+Or a paper head?
+A futile attempt to sway me, Dragon, nothing steers Sir Godric away from his objectives #chara:knight
+Well... Let's see if you change your mind once you're on my plate... #chara:dragon
  -> END

@@ -17,11 +17,11 @@ MonoBehaviour:
   speed: 1.7
   classe: {fileID: 11400000, guid: b6c37e3d44b81e54ea480d90ccbae7b3, type: 2}
   visionType: 1
-  aggressivity: 0
+  aggressivity: 2
   personalities: 
   languages:
   - heroDialogues:
-    - {fileID: 0}
+    - {fileID: 4900000, guid: 61f6443a21f259144aabd002dfb68562, type: 3}
   - heroDialogues:
     - {fileID: 4900000, guid: 5f2ea1eb2155dcb44bf1c004ca566aa4, type: 3}
   keyToUnlock: 

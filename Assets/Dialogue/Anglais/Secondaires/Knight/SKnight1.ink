@@ -1,24 +1,22 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight1Seen : Dragon ! Moi, Sire Grandjean exige une audience avec le maître des lieux. #chara:knight } 
-{SKnight1Seen : Tiens regardez patron, revoilà messire Grosjean ! #chara:minion #minion:in }
+{not SKnight1Seen : Dragon! I, Sir Grandjean, demand an audience with the master of this place. #chara:knight } 
+{SKnight1Seen : Look, boss, here comes Sir Grandjean again! #chara:minion #minion:in }
 {not SKnight1Seen : ->Encounter1} 
 {SKnight1Seen : ->Encounter2} 
 
 === Encounter1 ===
-Eh bien, héros, est-ce vous qui provoquez ce raffut à ma porte ? #chara:dragon
+Well, hero, is it you causing this commotion at my door? #chara:dragon
 ~SKnight1Seen = true
-C'est bien moi Dragon ! Je suis Sire Grandjean, le plus grand chevalier du Val et paladin de... #chara:knight
-Vous n'êtes pas venu m'énoncer vos titres avant de repartir n'est-ce pas ? #chara:dragon
-Euh... #chara:knight
-Alors battons-nous ! #chara:dragon
-Bon... Eh bien en garde, Dragon ! #chara:knight
+It is I, Dragon! I am Sir Grandjean, the greatest knight of the Vale and paladin of... #chara:knight
+Didn't you come just to recite your titles? #chara:dragon
+Uh... #chara:knight
+Then let's fight! #chara:dragon
+Alright... En garde, Dragon! #chara:knight
     -> END
 
 === Encounter2 ===
-Perfide créature, je suis Messire Grandjean ! #chara:knight
-C'est presque pareil... #chara:minion #minion:out
-Silence ! Puisque vous êtes encore là Grandjean, j'imagine que vous savez ce que je vais vous dire. #chara:dragon
-Tss... J'aurai votre peau, Dragon ! #chara:knight
-Je vous attends, Chevalier ! #chara:dragon
+Since you're still here, Grandjean, I imagine you know what I'm going to tell you. #chara:dragon
+Tsk... I'll have your head, Dragon! #chara:knight
+Aha, I look forward to it! #chara:dragon
  -> END

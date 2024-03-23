@@ -2,24 +2,25 @@ INCLUDE ../../../GlobalVariables.ink
 
 //<font=Witch of Thebes SDF></font>
 
-{not SMage2Seen : Un Dragon ? Enfin une source infinie de magie... Mes recherches arrivent à leur fin ! #chara:mage } 
-{SMage2Seen : Dragon ! Je sens ta magie, sors de ta cachette ! #chara:mage }
+{not SMage2Seen : A Dragon? Finally an infinite source of magic... My research are coming to an end! #chara:mage } 
+{SMage2Seen : Dragon! I sense your magic, come out of hiding! #chara:mage }
 {not SMage2Seen : ->Encounter1} 
 {SMage2Seen : ->Encounter2} 
 
 === Encounter1 ===
-Je crains devoir en effet y mettre un terme... N'y voyez rien de personnel. #chara:dragon
+I'm afraid I must indeed put an end to it... Don't take it personally. #chara:dragon
 ~SMage2Seen = true 
-Je ne laisserai pas toutes ces années d'études être réduites en cendres ! #chara:mage
-Quelle que soient les motivations qui vous poussent à explorer le Donjon, il faudra plus que des mots pour m'impressioner, mage. #chara:dragon
-Très bien... Laissons parler la magie dans ce cas, Dragon ! #chara:mage
-Parfait, voyons ce que peuvent faire vos petits tours de passe-passe. #chara:minion
+I won't let all these years of study be reduced to ashes! #chara:mage
+Whatever motivations drive you to explore the Dungeon, it will take more than words to impress me, mage. #chara:dragon
+Very well... Let the magic speak then, Dragon! #chara:mage
+Perfect, let's see what your little tricks can do. #chara:minion
 -> END
 
 === Encounter2 ===
-Hm... Pourquoi êtes-vous tant interessé par ma magie, Méphis ? #chara:dragon
-C'est simple, je poursuis mes recherches depuis des décennies afin d'atteindre la plus puissante des magies.  #chara:mage
-Intéressant, mais quelle magie est assez importante pour que vous ayez à vous frotter à un dragon ? #chara:dragon
-Celle permettant de faire revenir ma famille d'entre les morts ! Et je mettrai le monde à feu et à sang pour y parvenir ! #chara:dragon 
-Et bien... En voilà un but louable, dommage que je ne puisse me permettre de vous laisser gagner. En garde, mage ! #chara:dragon
+Hm... Why are you so interested in my magic, Mephisto? #chara:dragon
+It's simple, I've been pursuing my research for decades to achieve the most powerful of magics. #chara:mage
+Interesting, but what magic is important enough for you to challenge a dragon? #chara:dragon
+The one that can bring my family back from the dead! And I will set the world on fire and blood to achieve it! #chara:dragon 
+Well... That's a commendable goal, too bad I can't afford to let you win. En garde, mage! #chara:dragon
 -> END
+

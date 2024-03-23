@@ -6,8 +6,8 @@ What are these snoring sounds? And why is there no light here? #chara:knight
 Boss! Boss! #chara:minion #minion:in
 $zzzzzz...$ What... What do you want so early in the morning, Minion? #chara:dragon
 But boss, wake up now! The hero has arrived, it's noon! #chara:minion
-WHAT!? But nothing is ready! Damn alarm clock! #chara:dragon
-Quick boss! Build the Dungeon before he can reach us! #chara:minion
+WHAT!? But nothing is ready! Damned alarm clock! #chara:dragon
+Quick boss! Build the Dungeon before he reaches us! #chara:minion
 There he is!
 Ah, Dragon, you're here! Don't move! I'm coming to take your head! #chara:knight #minion:out 
 
