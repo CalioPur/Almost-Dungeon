@@ -1,43 +1,43 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight4Seen : Mais où suis-je ? Ce n'était pas du tout le chemin vers le Val... #chara:knight } 
-{SKnight4Seen : AH NON HEIN ! Pas encore vous ! #chara:knight}
+{not SKnight4Seen : But where am I? This wasn't the path to the Vale... #chara:knight } 
+{SKnight4Seen : OH NO, NOT YOU AGAIN! #chara:knight}
 {not SKnight4Seen : ->Encounter1} 
 {SKnight4Seen : ->Encounter2} 
 
 === Encounter1 ===
-Que vois-je, un Aventurier perdu dans le Donjon ? #chara:dragon
+What do I see, an Adventurer lost in the Dungeon? #chara:dragon
 ~SKnight4Seen = true 
-AH ! UN DRAGON !  #chara:knight
-Oui, oui, je sais... ça fait de l'effet la première fois. #chara:dragon
-Je suis désolé mon ami, mais voyez-vous, ma machoire me démange et je croquerais bien dans quelque chose pour me soulager... #chara:dragon
-Quoi ! Non, pitié noble Dragon, ne me dévorez pas, je vous jure que j'ai très mauvais goût. #chara:knight
+A DRAGON! #chara:knight
+Yes, yes, I know... it's impressive. #chara:dragon
+I'm sorry, my friend, but you see, my jaw is itching, and I would like to bite into something to relieve it... #chara:dragon
+What! No, please noble Dragon, don't devour me, I swear I taste very bad. #chara:knight
 
-* [Croquer dans le sac de l'aventurier ($$vous$$ soigne <color=red>2 pdv</color> )] -> Regen
-* [Croquer dans l'aventurier ($$le héros$$ perd <color=red>10 pdv</color> )] -> Damages
+* [Bite into the adventurer's bag (heals $$you$$ <color=red>2 hp</color> )] -> Regen
+* [Bite into the adventurer ($$the hero$$ loses <color=red>10 hp</color> )] -> Damages
     
 === Regen ===
-MAIS ! MON SAC ! Mes provisions ! Tu vas payer Dragon ! #chara:knight #healDragon:2
+BUT! MY BAG! My food! You'll pay for this, Dragon! #chara:knight #healDragon:2
 -> END
 
 === Damages ===
-AÏE ! Je vais me venger Dragon ! Tu vas payer ! Mon pauvre bras... #chara:knight #damages:10
+OUCH! I'll get revenge, Dragon! You'll pay! My poor arm... #chara:knight #damages:10
 -> END
 
 === Encounter2 ===
-Attendez Sire Louis... Je suis désolé pour la dernière fois... #chara:dragon
-Non mais ça va pas !? #chara:knight
-Vous m'avez croqué {Regen : MON sac } {Damages : MON bras !} et vous comptez vous en sortir avec des excuses ? 
-Eh bien vous allez rire, mais ma machoire me démange toujours... #chara:dragon 
-Oh non... #chara:knight
-* [Croquer dans le sac de l'aventurier ($$vous$$ soigne <color=red>2 pdv</color> )] -> Regen2
-* [Croquer dans l'aventurier ($$le héros$$ perd <color=red>10 pdv</color> )] -> Damages2
+Wait, Sir Louis... I'm sorry for last time... #chara:dragon
+Are you out of your mind!? #chara:knight
+You bit {Regen: MY bag} {Damages: MY arm!} last time and you think you can get away with apologies? 
+Well, you'll laugh, but my jaw is still itching... #chara:dragon 
+Oh no... #chara:knight
+* [Bite into the adventurer's bag ($$you$$ heal <color=red>2 hp</color> )] -> Regen2
+* [Bite into the adventurer ($$the hero$$ loses <color=red>10 hp</color> )] -> Damages2
  -> END
  
  === Regen2 ===
-MAIS ! MON SAC ! {Regen : ENCORE !} Mes provisions ! Tu vas payer Dragon ! #chara:knight #healDragon:2
+BUT! MY BAG! {Regen: AGAIN!} My food! You'll pay for this, Dragon! #chara:knight #healDragon:2
 -> END
 
 === Damages2 ===
-AÏE ! Je vais me venger, Dragon ! Tu vas payer ! {Damages : Encore mon bras !} Mon pauvre bras... #chara:knight #damages:10
+OUCH! I'll get revenge, Dragon! You'll pay! {Damages: Again, my arm!} My poor arm... #chara:knight #damages:10
 -> END

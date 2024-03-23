@@ -1,27 +1,26 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight12Seen : Enfin dans la crypte, prépare-toi Dragon ! Sire Jacques et sa lance divine vont ajouter un nouveau trophée à leur collection. #chara:knight } 
-{SKnight12Seen : Graou, graou ! Je suis le patr... Dragon ! Héros, je vais te vaincre ! #chara:minion minion:in }
+{not SKnight12Seen : Finally in the crypt, prepare yourself, Dragon! Sir Jacques and his divine lance will add a new trophy to their collection. #chara:knight } 
+{SKnight12Seen : Gawr, gawr! I am the bos... Dragon! Hero, I will defeat you! #chara:minion minion:in }
 {not SKnight12Seen : ->Encounter1} 
 {SKnight12Seen : ->Encounter2} 
 
 === Encounter1 ===
-Bonjour monsieur le chevalier ! Vous êtes là pour la bagarre ? #chara:minion minion:in
+Hello, Mr. Knight! Are you here for a fight? #chara:minion minion:in
 ~SKnight12Seen = true 
-Ha ! Bien sûr petite créature ! Appelle ton maître pour que nous puissions nous affronter ! #chara:knight
-Haha ! Le patron est parti faire des courses, aujourd'hui c'est moi le patron ! #chara:minion
-Comment ? Le dragon est absent ? Je ne vais tout de même pas affronter un vulgaire diablotin ! #chara:knight
-Sbire ! Pourquoi ne m'as-tu pas réveillé, pourquoi es-tu avec le héros ?!  #chara:dragon
-Euh... héhé, désolé patron... Je voulais me battre avec ce héros... #chara:minion
-Tss... Contente-toi de tenir ton rôle petit sbire, regarde plutôt comment je vais me débarasser de ce chevalier ! #chara:dragon #minion:out
+Ha! Of course, little creature! Call your master so we can face off! #chara:knight
+Haha! The boss went shopping, today I'm the boss! #chara:minion
+What? The dragon is absent? I refuse to face a mere imp! #chara:knight
+Minion! Why didn't you wake me up, why are you with the hero?! #chara:dragon
+Uh... hehe, sorry boss... I wanted to fight this hero... #chara:minion
+Tss... Stick to your role, little minion, and watch how I get rid of this knight! #chara:dragon #minion:out
     -> END
 
 === Encounter2 ===
-Perfide sbire ! Je sais très bien que c'est toi derrière ce masque ! #chara:knight
-Tu as recommencé sbire ? Tu sais très bien que c'est à moi d'affronter les héros ! #chara:dragon
-Mais patron ! Moi aussi je veux me battre contre les héros ! #chara:minion
-Allons-bon, et qu'est ce qu'il me resterait à faire dans ce cas ? #chara:dragon
-Vous avez raison patron... #chara:minion
-Bon... Vous avez fini ? On peut se battre Dragon ? #chara:knight #minion:out
-
+Deceitful minion! I know it's you behind that mask! #chara:knight
+You've done it again, minion? You know very well that it's my job to face the heroes! #chara:dragon
+But boss! I want to fight heroes too! #chara:minion
+Well, then, what would be left for me to do? #chara:dragon
+You're right, boss... #chara:minion
+Alright... Are you done? Can we fight now, Dragon? #chara:knight #minion:out
  -> END

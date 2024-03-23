@@ -1,23 +1,23 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight2Seen : Juste une écaille du Dragon, juste une pour soigner les villageois. #chara:knight } 
-{SKnight2Seen : Tiens, sire Artorius, toujours décidé à voler mes écailles ? #chara:dragon }
+{not SKnight2Seen : Just one scale from the Dragon, just one to heal the villagers. #chara:knight } 
+{SKnight2Seen : Sir Artorius, still determined to steal one of my scale? #chara:dragon }
 {not SKnight2Seen : ->Encounter1} 
 {SKnight2Seen : ->Encounter2} 
 
 === Encounter1 ===
-Encore faut-il parvenir à me l'arracher chevalier. #chara:dragon
+One must first manage to tear it from me, knight. #chara:dragon
 ~SKnight2Seen = true 
-Ah ! Dragon, vous étiez là ! #chara:knight
-Difficile de ne pas vous entendre arriver avec le bruit de votre armure Chevalier. #chara:dragon
-Patron ! Patron ! Celui-là n'a pas l'air bien dégourdi, je peux le mordre ? #chara:minion #minion:in
-Non, nous allons lui montrer ce qu'il en coûte de jouer aux héros ! #chara:dragon #minion:out
-Pour mon peuple, je vaincrai !#chara:knight
+Ah! Dragon, you were here! #chara:knight
+Hard not to hear you coming with the noise of your armor, Knight. #chara:dragon
+Boss! Boss! This one doesn't seem too bright, can I bite him? #chara:minion #minion:in
+No, we'll show him what it costs to play the hero! #chara:dragon #minion:out
+For my people, I shall prevail! #chara:knight
     -> END
 
 === Encounter2 ===
-Je donnerais ma vie pour sauver mon peuple Dragon ! #chara:knight
-Tant mieux, je mettrais bien la main sur votre armure ritulante, elle fera un excellent trophée. #chara:dragon
-Vous ne m'aurez pas Dragon, je vais vous vaincre. #chara:knight
-Très bien chevalier, amusez-moi suffisament et je vous donnerai peut-être ce que vous cherchez. #chara:dragon
+I would give my life to save my people, Dragon! #chara:knight
+Good, I've been wanting to get my hands on your ritual armor, it will make an excellent trophy. #chara:dragon
+You won't have me, Dragon, I'll defeat you. #chara:knight
+Very well, knight, entertain me enough and I might give you what you seek. #chara:dragon
  -> END

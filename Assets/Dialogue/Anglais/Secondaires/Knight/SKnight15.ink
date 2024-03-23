@@ -1,27 +1,27 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight15Seen : Enfin la forêt souterraine ! Si les légendes disent vrai, je ne suis qu'à quelques pas de l'artefact ! #chara:knight} 
-{SKnight15Seen : Je... Je dois obtenir cet artefact à tout prix ! #chara:dragon}
+{not SKnight15Seen : Finally, the underground forest! If the legends are true, I'm just steps away from the artifact! #chara:knight} 
+{SKnight15Seen : I... I must obtain this artifact at any cost! #chara:dragon}
 {not SKnight15Seen : ->Encounter1} 
 {SKnight15Seen : ->Encounter2} 
 
 === Encounter1 ===
-Eh bien chevalier... On tente de piller mon Donjon ? #chara:dragon
+Well, knight... Are you attempting to plunder my Dungeon? #chara:dragon
 ~SKnight15Seen = true 
-Mais bien sûr Dragon, c'est mon objectif et tu n'y pourras rien. #chara:knight
-Et qu'est ce qui vaut un tel intérêt pour mes trésors ? #chara:dragon
-Il y a dans vos trésors un livre magique connu pour renfermer un savoir divin... Je veux m'en emparer... #chara:knight
-Hmm... Intéressant. Voyons si vous en êtes digne, chevalier ! #chara:dragon
-Battons-nous et vous m'expliquerez ce que vous souhaitez en faire. 
-Je vous attends Dragon ! #chara:knight
+Of course, Dragon. It's my objective, and you can't stop me. #chara:knight
+And what makes my treasures so valuable to you? #chara:dragon
+Among your treasures, there is a magical book known to contain divine knowledge... I want to seize it... #chara:knight
+Hmm... Interesting. Let's see if you are worthy, knight! #chara:dragon
+Let's fight, and you'll explain to me what you intend to do with it.
+I'm waiting for you, Dragon! #chara:knight
     -> END
 
 === Encounter2 ===
-Je... Je dois obtenir cet artefact à tout prix !  #chara:knight
-Toujours motivé à piller mon Donjon à ce que je vois...#chara:dragon
-Je n'ai pas le droit à l'erreur Dragon, j'ai trop sacrifié pour arriver jusqu'ici, je dois récupérer ce livre ! #chara:knight
-Vous ne m'avez toujours pas dit pourquoi... #chara:dragon
-C'est le seul moyen de revoir ma famille. Les livres de dieux doivent parler d'un moyen d'échapper à la mort ! #chara:knight
-Hmm... Je vois... Mais quel que soit le contenu de ce livre, vous allez devoir me passer sur le corps avant de le savoir ! #chara:dragon
-Alors je vous tuerai, Dragon ! #chara:knight
+I... I must obtain this artifact at any cost! #chara:knight
+Always motivated to plunder my Dungeon, I see... #chara:dragon
+I can't afford to make mistakes, Dragon. I've sacrificed too much to get here; I must retrieve this book! #chara:knight
+You still haven't told me why... #chara:dragon
+It's the only way to see my family again. The gods' books must contain a way to escape death! #chara:knight
+Hmm... I see... But whatever the contents of this book, you'll have to get past me before knowing it! #chara:dragon
+Then I'll kill you, Dragon! #chara:knight
     -> END

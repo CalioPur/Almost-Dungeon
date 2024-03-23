@@ -1,50 +1,50 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight5Seen : ça y est... Le Donjon... Misère de misère... #chara:knight } 
-{SKnight5Seen : C'est pas possible ! Encore dans le Donjon... #chara:knight}
+{not SKnight5Seen : Here we are... The Dungeon... #chara:knight } 
+{SKnight5Seen : It can't be! Back in the Dungeon again... #chara:knight}
 {not SKnight5Seen : ->Encounter1} 
 {SKnight5Seen : ->Encounter2} 
 
 === Encounter1 ===
-Eh bien... Un chevalier déprimé, en voilà une drôle de rencontre. #chara:dragon
+Well... A depressed knight, what a peculiar encounter. #chara:dragon
 ~SKnight5Seen = true 
-Il a l'air tout raplapla patron ! Vous êtes sûr qu'il est vivant ? #chara:minion #:minion:in
-Un Dragon ?? C'est bien ma veine ça... Quelle idée de venir ici aussi...  #chara:knight
-Quel est le problème, héros ? Ressaisissez-vous voyons. #chara:dragon
-Je n'ai jamais demandé à venir ici moi... Je ne veux pas me battre... #chara:knight
+He looks all downcast, boss! Are you sure he's alive? #chara:minion #minion:in
+A Dragon?? This is just my luck... What a stupid idea to come here... #chara:knight
+What's the matter, hero? Pull yourself together, come on. #chara:dragon
+I never asked to come here... I don't want to fight... #chara:knight
 
-* [Le pousser dans le donjon ($$le héros$$ perd <color=purple> 10 de vitesse</color> )] -> Regen
-* [Le motiver ($$le héros$$ devient <color=red>courageux</color> )] -> Damages
+* [Push him into the dungeon ($$the hero$$ loses <color=purple>10 speed</color> )] -> Regen
+* [Motivate him ($$the hero$$ becomes <color=red>courageous</color> )] -> Damages
     
 === Regen ===
-Bon écoutez... Prenez sur vous et allez-y d'un coup... Je me fiche de vos histoires moi, j'ai faim. #chara:dragon
-Attendez, qu'est ce que vous faites laaaaaaaaaaaaaaaaaaaaaaaaa... #chara:knight #time:-10
+Listen... Just pull yourself together and go for it... I don't care about your stories, I'm hungry. #chara:dragon
+Wait, what are you doing theeeeeeeeeeeeeeeeeere... #chara:knight #time:-10
 -> END
 
 === Damages ===
-Bon, écoutez humain... Respirez un bon coup... vous pouvez le faire. #chara:dragon
-On va se faire une bonne bataille et tout va bien se passer...
-Ayez un peu confiance en vous, vous pouvez le faire.
-Vraiment ? bon.... Si vous le dites... Je vais essayer... #chara:knight #changepers:courageux
+Alright, human... Take a deep breath... you can do it. #chara:dragon
+We're going to have a nice fight and everything will be fine...
+Have a little faith in yourself, you can do it.
+Really? Okay... If you say so... I'll try... #chara:knight #changepers:courageous
 -> END
 
 === Encounter2 ===
-C'est pas possible ! Encore dans le Donjon... #chara:knight
-Allons-bon... Vous revoilà Karl. #chara:dragon 
-Et revoilà le Dragon... je n'en peux plus... #chara:knight
-Bon bah pas la peine de vous faire prier cette fois alors ? #chara:dragon
-Pitié, laissez moi partir... #chara:knight
-* [Le pousser dans le donjon ($$le héros$$ perd <color=purple>10 de vitesse</color> )] -> Regen2
-* [Le motiver ($$le héros$$ devient <color=red>courageux</color> )] -> Damages2
+It can't be! Back in the Dungeon again... #chara:knight
+Well well... Here you are again, Karl. #chara:dragon 
+And here's the Dragon again... I can't take it anymore... #chara:knight
+Well, no need to ask twice this time, right? #chara:dragon
+Please, let me go... #chara:knight
+* [Push him into the dungeon ($$the hero$$ loses <color=purple>10 speed</color> )] -> Regen2
+* [Motivate him ($$the hero$$ becomes <color=red>courageous</color> )] -> Damages2
  -> END
  
  === Regen2 ===
-Attendez qu'est ce que vous faites laaaaaaaaaaaaaaaaaaaaaaaaa... #chara:knight #time:-10
+Wait, what are you doing theeeeeeeeeeeeeeeeeere... #chara:knight #time:-10
 -> END
 
 === Damages2 ===
-Bon, écoutez mon gars... Respirez un bon coup... vous pouvez le faire... #chara:dragon
-On va se faire une autre bonne bataille et tout va bien se passer...
-Ayez un peu confiance en vous, vous pouvez le faire.
-Vraiment ? bon.... Si vous le dites... Je vais essayer... #chara:knight #changepers:courageux
+Listen here, buddy... Take a deep breath... you can do it... #chara:dragon
+We're going to have another nice fight and everything will be fine...
+Have a little faith in yourself, you can do it.
+Really? Okay... If you say so... I'll try... #chara:knight #changepers:courageous
 -> END

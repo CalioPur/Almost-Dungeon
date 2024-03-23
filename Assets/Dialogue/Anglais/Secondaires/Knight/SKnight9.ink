@@ -1,46 +1,46 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight9Seen : Patron ! J'ai envoyé des araignées effrayer le héros dans les escaliers ! #chara:minion #minion:in} 
-{SKnight9Seen : Patron ! Revoilà l'arcano... l'arphobe ! Euh... L'arachnophobe ! #chara:minion #minion:in}
+{not SKnight9Seen : Boss! I sent spiders to scare the hero on the stairs! #chara:minion #minion:in} 
+{SKnight9Seen : Boss! Here comes the arcano... the arphobe! Uh... The arachnophobe! #chara:minion #minion:in}
 {not SKnight9Seen : ->Encounter1} 
 {SKnight9Seen : ->Encounter2} 
 
 === Encounter1 ===
-Parfait, nous allons pouvoir en profiter. #chara:dragon
+Perfect, we can take advantage of this. #chara:dragon
 ~SKnight9Seen = true 
-L'embuscade est prête, que voulez-vous que les araignées fassent ? #chara:minion
+The ambush is ready, what do you want the spiders to do? #chara:minion
 
-* [Voler ses bottes ($$le héros$$ perd <color=lime>10 de vitesse</color> )] -> Regen
-* [Voler ses potions ($$vous$$ soigne <color=red>1 pdv</color> )] -> Damages
+* [Steal his boots ($$the hero$$ loses <color=lime>10 speed</color> )] -> Regen
+* [Steal his potions (heals $$you$$ <color=red>1 hp</color> )] -> Damages
     
 === Regen ===
-Noooon ! Au secours ! Des araignées géantes ! Elles ont pris mes bottes ! #chara:knight 
-Haha ! Le voilà qui détale patron ! #chara:minion 
-Tout ça pour quelques petites araignées géantes ! #time:-10
+Nooo! Help meeee! Giant spiders! They took my boots! #chara:knight 
+Haha! He's running away, boss! #chara:minion 
+All this for a few giant spiders! #time:-10
 -> END
 
 === Damages ===
-Noooon ! Au secours ! Des araignées géantes ! Elles ont pris mes potions ! #chara:knight 
-Haha ! Le voilà qui détale, patron ! #chara:minion 
-Tout ça pour quelques petites araignées géantes ! #healDragon:1
+Nooo! Help meeee! Giant spiders! They took my potions! #chara:knight 
+Haha! He's running away, boss! #chara:minion 
+All this for a few giant spiders! #healDragon:1
 -> END
 
 === Encounter2 ===
-Ne va pas me l'effrayer cette fois-ci, il risque d'être plus dur à attraper ! #chara:dragon 
-Vous inquiétez pas patron, j'ai envoyé des spécialistes cette fois-ci ! Qu'est ce qu'on lui vole ? #chara:minion
-* [Voler ses bottes ($$le héros$$ perd <color=lime>10 de vitesse</color> )] -> Regen2
-* [Voler ses potions ($$vous$$ soigne <color=red>1 pdv</color> )] -> Damages2
+Don't scare him this time, he might be harder to catch! #chara:dragon 
+Don't worry boss, I sent specialists this time! What are we stealing from him? #chara:minion
+* [Steal his boots ($$the hero$$ loses <color=lime>10 speed</color> )] -> Regen2
+* [Steal his potions (heals $$you$$ <color=red>1 hp</color> )] -> Damages2
 
 === Regen2 ===
-Noooon ! Au secours ! Des rats géants ! Ils ont pris mes bottes ! #chara:knight 
-Haha ! Le voilà qui détale patron ! #chara:minion 
-Tout ça pour quelques gros rats !  #minion:out #time:-10
+Nooo! Help meeeee! Giant rats! They took my boots! #chara:knight 
+Haha! He's running away, boss! #chara:minion 
+All this for a few big rats!  #minion:out #time:-10
 ... #chara:dragon
 -> END
 
 === Damages2 ===
-Noooon ! Au secours ! Des rats géants ! Ils ont pris mes potions ! #chara:knight 
-Haha ! Le voilà qui détale patron ! #chara:minion 
-Tout ça pour quelques gros rats !  #minion:out #healDragon:1
+Nooo! Help meeeee! Giant rats! They took my potions! #chara:knight 
+Haha! He's running away, boss! #chara:minion 
+All this for a few big rats!  #minion:out #healDragon:1
 ... #chara:dragon
 -> END
