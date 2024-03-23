@@ -17,20 +17,20 @@ Boss, I found this bow on the ground, do you want me to try to stop him? #minion
 * [Aim for his body ($$the hero$$ loses <color=red>5 hp</color>)] -> Damages
     
 === Regen ===
-HAHA! Hit! He's slowing down! #chara:minion #time:-10
+HAHA! I got him ! He's slowing down! #chara:minion #time:-10
 #minion:out
 -> END
 
 === Damages ===
-HAHA! Hit... He's not slowing down, but he won't get far injured like that... #chara:knight #damages:5
+HAHA! He's hit... He's not slowing down, but he won't get far injured like that... #chara:knight #damages:5
 #minion:out
 -> END
 
 === Encounter2 ===
 You again, Sir Vifvent... You don't seem to be stopping anytime soon... #chara:dragon
-Late! I'm even later now, Dragon! #chara:knight
-What does it matter? You won't escape this dungeon alive! #chara:dragon 
-I don't have time, Dragon. Don't try to hide the exit again or I'll destroy your walls again! #chara:knight
+Late! I'm even "later" now, Dragon! #chara:knight
+Does it even matter? You won't escape this dungeon alive! #chara:dragon 
+I don't have time, Dragon. Don't try to hide the exit or I'll destroy your walls again! #chara:knight
 Boss, where should I aim this time? #chara:minion #minion:in
 
 * [Aim for his legs ($$the hero$$ loses <color=purple>10 speed</color>)] -> Regen

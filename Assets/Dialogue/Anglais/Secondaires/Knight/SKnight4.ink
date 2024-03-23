@@ -11,7 +11,7 @@ What do I see, an Adventurer lost in the Dungeon? #chara:dragon
 A DRAGON! #chara:knight
 Yes, yes, I know... it's impressive. #chara:dragon
 I'm sorry, my friend, but you see, my jaw is itching, and I would like to bite into something to relieve it... #chara:dragon
-What! No, please noble Dragon, don't devour me, I swear I taste very bad. #chara:knight
+What? No, please noble Dragon, don't devour me, I swear I taste very bad. #chara:knight
 
 * [Bite into the adventurer's bag (heals $$you$$ <color=red>2 hp</color> )] -> Regen
 * [Bite into the adventurer ($$the hero$$ loses <color=red>10 hp</color> )] -> Damages

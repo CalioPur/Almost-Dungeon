@@ -6,11 +6,11 @@ INCLUDE ../../../GlobalVariables.ink
 {SBarbarian4Seen : ->Encounter2} 
 
 === Encounter1 ===
-Don't get too fired up too quickly, hero, it's usually my job to handle that. #chara:dragon
+Don't get fired up too quickly, hero, it's usually my job to handle that. #chara:dragon
 ~SBarbarian4Seen = true 
-Ha! Your flames cannot surpass those burning in the heart of a true warrior! #chara:barbarian
+Ha! Your flames cannot surpass the ones burning in the heart of a true warrior! #chara:barbarian
 He's not joking, boss! Look, it's almost like he's emitting flames! #chara:minion #minion:in
-Hell, we need to stop him before he risks setting the whole forest on fire! #chara:dragon
+Hell, we need to stop him before he sets the whole forest on fire! #chara:dragon
 I have just what we need, boss, I found these bags of powder, we can throw them at him! #chara:minion #minion:in
 * [Use the grenade ($$the hero$$ loses <color=red>5 hp</color> )] -> Regen
 * [Use the smoke bomb ($$the hero$$ gains <color=blue>bigleux</color> )] -> Damages

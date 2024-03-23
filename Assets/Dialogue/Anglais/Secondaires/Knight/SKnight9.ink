@@ -22,7 +22,7 @@ All this for a few giant spiders! #time:-10
 === Damages ===
 Nooo! Help meeee! Giant spiders! They took my potions! #chara:knight 
 Haha! He's running away, boss! #chara:minion 
-All this for a few giant spiders! #healDragon:1
+All of this for a few giant spiders... #healDragon:1
 -> END
 
 === Encounter2 ===
@@ -34,13 +34,13 @@ Don't worry boss, I sent specialists this time! What are we stealing from him? #
 === Regen2 ===
 Nooo! Help meeeee! Giant rats! They took my boots! #chara:knight 
 Haha! He's running away, boss! #chara:minion 
-All this for a few big rats!  #minion:out #time:-10
+All of this for a few big rats...  #minion:out #time:-10
 ... #chara:dragon
 -> END
 
 === Damages2 ===
 Nooo! Help meeeee! Giant rats! They took my potions! #chara:knight 
 Haha! He's running away, boss! #chara:minion 
-All this for a few big rats!  #minion:out #healDragon:1
+All of this for a few big rats...  #minion:out #healDragon:1
 ... #chara:dragon
 -> END

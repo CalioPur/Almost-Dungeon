@@ -6,10 +6,10 @@ INCLUDE ../../../GlobalVariables.ink
 {SKnight17Seen : ->Encounter2} 
 
 === Encounter1 ===
-Very well, reassure yourself minion, I will take care of the matter. #chara:dragon
+Very well, compose yourself minion, I will take care of the matter. #chara:dragon
 ~SKnight17Seen = true 
 Ah! Finally, the main course, I was starting to get bored! #chara:knight
-You took the words right out of my mouth, knight, finally a worthy opponent. #chara:dragon
+You took the words right out of my mouth, knight. Finally a worthy opponent. #chara:dragon
 I, Sir Pierre, blessed by the supreme vision, challenge you to a duel, Dragon. You stand no chance. #chara:knight #minion:out
 * [Boost his ego ($$the hero$$ gains <color=red>courageous</color>)] -> Regen
 * [Exploit his boasting ($$you$$ gain <color=red>1 hp</color>)] -> Damages

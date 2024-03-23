@@ -8,6 +8,6 @@ Are you sure you don't want to help me? #chara:mage
 Helping a distressed magician ? I'd rather jump on the opportunity! #chara:dragon
 Haha... An opportunity for science, for magic? #chara:mage
 For a free meal! #chara:dragon
-I won't die before I finish deciphering this grimoire! #chara:mage
+I won't die before I finish deciphering this manuscript! #chara:mage
 Then <color=blue>run away</color>! #chara:dragon
 -> END

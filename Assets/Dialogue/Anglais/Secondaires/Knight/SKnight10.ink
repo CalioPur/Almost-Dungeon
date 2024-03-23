@@ -1,7 +1,7 @@
 INCLUDE ../../../GlobalVariables.ink
 
 {not SKnight10Seen : And here comes a new knight, motivated by glory and wealth. #chara:dragon } 
-{SKnight10Seen : You know, Sir Lume, you'd have better chances of finding a princess by leaving my place at this hour than by continuing to wake me up at this time! #chara:dragon }
+{SKnight10Seen : You know, Sir Lume, you'd have better luck finding a princess by leaving this place rather than waking me up at this late hour! #chara:dragon }
 {not SKnight10Seen : ->Encounter1} 
 {SKnight10Seen : ->Encounter2} 
 
@@ -17,7 +17,7 @@ I only enjoy gold coins and sleeping in, knight... So enough chit-chat, let's fi
 
 === Encounter2 ===
 Haha, your lies don't fool me, Dragon, I know they're being held prisoner deep in your dungeon. #chara:knight
-No! I don't do that kind of thing, knight, the only time it happened, the princess gave me the only scar on my old body! #chara:dragon
+No! I don't do that kind of thing, knight, the only time it happened, the princess gave me my only scar that  never fully healed! #chara:dragon
 Wow... That must hurt indeed. #chara:knight
 See? Now stop telling your nonsense and let's fight! #chara:dragon
 Alright... Alright, I'm coming... #chara:knight

@@ -33,7 +33,7 @@ I have to be sure!
 === Encounter2 ===
 So, stranger, still looking for a way back to your <color=blue>house</color>? #chara:dragon
 This cursed forest again!? Will this dungeon finally give me a break? #chara:archer
-Come on, Mr. Navidson, you must realize that all this is not personal, I'm just doing my job. #minion:dragon
+Come on, Mr. Navidson, you must realize that all of this is not personal. I'm just doing my job. #minion:dragon
 But I never asked to be trapped here! I don't even want your treasure! I just want to go home! #chara:archer
 * [Give him answers (loses <color=orange>explorer</color>)] -> Regen2
 * [Motivate him (loses <color=blue>fearful</color>)] -> Damages2

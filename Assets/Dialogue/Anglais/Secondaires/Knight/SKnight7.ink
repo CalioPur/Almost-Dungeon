@@ -11,7 +11,7 @@ Hmm... You don't seem familiar to me... #chara:dragon
 The treacherous creature denies its crime! #chara:knight
 But come on! At least tell me what you accuse me of! #chara:dragon
 The offense is too great, Dragon, let's fight here and now! #chara:knight
-But! Will you finally tell me what you want from me!? #chara:dragon
+But... Will you just tell me what you want from me!? #chara:dragon
     -> END
 
 === Encounter2 ===

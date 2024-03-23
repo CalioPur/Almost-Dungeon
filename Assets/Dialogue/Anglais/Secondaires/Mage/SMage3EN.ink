@@ -18,7 +18,7 @@ Such impatience! I have no means to send you back home, sorceress, however... #c
 * [ Steal her glasses (gains <color=yellow>shortsighted</color> )] -> Damages
     
 === Regen ===
-I invite you to explore the Dungeon, its artifacts and magical scrolls might help you find your way back home... #chara:dragon
+I invite you to explore the Dungeon : its artifacts and magical scrolls might help you find your way back home... #chara:dragon
 Really? You have such objects here... As a scientist, it's my duty to shed light on this knowledge. #chara:mage #changepers:clairvoyant
 -> END
 
@@ -41,5 +41,5 @@ But... proceed to the end of this floor, you might find my treasure there. If yo
 -> END
 
 === Damages2 ===
-Ha! Try to survive this floor first, you're in no way worthy to lay your hands on even a single coin. #chara:dragon #changepers:shortsighted
+Ha! Try to survive this floor first, you're not worthy of laying your hands on a single coin of mine. #chara:dragon #changepers:shortsighted
 -> END

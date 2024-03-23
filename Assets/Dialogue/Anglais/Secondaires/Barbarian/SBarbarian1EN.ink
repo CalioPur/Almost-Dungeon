@@ -37,7 +37,7 @@ Ah! No need to try to {Regen : steal,} {Damages : taint,} it this time! You won'
  
  === Regen2 ===
 What? MY MAP! YOU BURNED IT! #chara:barbarian 
-This time it's too much! I'll have your head, Dragon! #changepers:none
+This time you've gone too far! I'll have your head, Dragon! #changepers:none
 -> END
 
 === Damages2 ===

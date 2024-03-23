@@ -1,6 +1,6 @@
 INCLUDE ../../../GlobalVariables.ink
 
-{not SKnight12Seen : Finally in the crypt, prepare yourself, Dragon! Sir Jacques and his divine lance will add a new trophy to their collection. #chara:knight } 
+{not SKnight12Seen : Finally in the crypt... Prepare yourself, Dragon! Sir Jacques and his divine lance will add a new trophy to their collection. #chara:knight } 
 {SKnight12Seen : Gawr, gawr! I am the bos... Dragon! Hero, I will defeat you! #chara:minion minion:in }
 {not SKnight12Seen : ->Encounter1} 
 {SKnight12Seen : ->Encounter2} 

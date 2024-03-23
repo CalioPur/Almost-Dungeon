@@ -6,7 +6,7 @@ INCLUDE ../../../GlobalVariables.ink
 {SArcher2Seen : ->Encounter2} 
 
 === Encounter1 ===
-Boss! I found an archer nearly dead here! #chara:minion #minion:in
+Boss! There's an archer on the brink of death over here! #chara:minion #minion:in
 ~SArcher2Seen = true 
 So, archer? Tough times? Too bad you don't have that fabulous life potion. #chara:dragon
 Please, Dragon, I beg you, let me have the potion, I swear I'll fight with all my might. #chara:archer #minion:out

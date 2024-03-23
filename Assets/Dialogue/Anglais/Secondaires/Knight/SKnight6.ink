@@ -6,9 +6,9 @@ INCLUDE ../../../GlobalVariables.ink
 {SKnight6Seen : ->Encounter2} 
 
 === Encounter1 ===
-Let me guess the next part, these years of searching will finally lead to glory and mountains of gold? #chara:dragon
+Let me guess the next part : these years of searching will finally lead to glory and mountains of gold? #chara:dragon
 ~SKnight6Seen = true 
-Oh, but no, my dear Dragon. I'm not after your money but your friendship! #chara:knight
+Oh but no, my dear Dragon. I'm not after your money but your friendship! #chara:knight
 I beg your pardon? #chara:dragon
 Listen, an erudite slime once told me he befriended a dragon, I wish to do the same. #chara:dragon
 Nonsense! You won't escape a battle with such sweet words. #chara:dragon

@@ -10,7 +10,7 @@ Curse! The DIO, quick, my minion! They must not find our payroll! #chara:dragon
 ~SArcher3Seen = true 
 Don't worry, Boss I'm gonna hide it! Find a way to delay her!  #chara:minion #minion:in
 Ah, Mr. Dragon, we can begin the inspection now. #chara:archer #minion:out
-* [Give her a false direction (loses <color=orange>explorer</color>)] -> Regen
+* [Give her false directions (loses <color=orange>explorer</color>)] -> Regen
 * [Accuse the monsters of fraud (becomes <color=red>courageous</color>)] -> Damages
     
 === Regen ===
@@ -20,7 +20,7 @@ Thank you, I'll meet you in your office in a few hours, we can discuss what I'll
 === Damages ===
 What? Your monsters didn't declare their taxes? That's very serious, sir! #chara:archer
 You must stop them immediately! #chara:dragon
-They won't come out alive! #chara:archer #changepers:courageous
+They won't come out of here alive! #chara:archer #changepers:courageous
 -> END
 
 === Encounter2 ===

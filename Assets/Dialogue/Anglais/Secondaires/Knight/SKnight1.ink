@@ -6,10 +6,10 @@ INCLUDE ../../../GlobalVariables.ink
 {SKnight1Seen : ->Encounter2} 
 
 === Encounter1 ===
-Well, hero, is it you causing this commotion at my door? #chara:dragon
+Well, hero, are you the one causing this commotion at my door? #chara:dragon
 ~SKnight1Seen = true
 It is I, Dragon! I am Sir Grandjean, the greatest knight of the Vale and paladin of... #chara:knight
-Didn't you come just to recite your titles? #chara:dragon
+Did you come here just to recite your titles? #chara:dragon
 Uh... #chara:knight
 Then let's fight! #chara:dragon
 Alright... En garde, Dragon! #chara:knight

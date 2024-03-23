@@ -6,7 +6,7 @@ INCLUDE ../../../GlobalVariables.ink
 {SBarbarian2Seen : ->Encounter2} 
 
 === Encounter1 ===
-Well... I think there's a misunderstanding... #chara:dragon
+Well... I think there's been a misunderstanding... #chara:dragon
 ~SBarbarian2Seen = true 
 Oh really? You're not a giant lizard? #chara:barbarian
 Of course not, little barbarian, I'm the Dragon, guardian of the Dungeon! #chara:dragon

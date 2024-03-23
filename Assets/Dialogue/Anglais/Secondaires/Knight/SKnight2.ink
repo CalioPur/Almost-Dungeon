@@ -1,7 +1,7 @@
 INCLUDE ../../../GlobalVariables.ink
 
 {not SKnight2Seen : Just one scale from the Dragon, just one to heal the villagers. #chara:knight } 
-{SKnight2Seen : Sir Artorius, still determined to steal one of my scale? #chara:dragon }
+{SKnight2Seen : Sir Artorius, still determined to steal one of my scales? #chara:dragon }
 {not SKnight2Seen : ->Encounter1} 
 {SKnight2Seen : ->Encounter2} 
 
@@ -9,7 +9,7 @@ INCLUDE ../../../GlobalVariables.ink
 One must first manage to tear it from me, knight. #chara:dragon
 ~SKnight2Seen = true 
 Ah! Dragon, you were here! #chara:knight
-Hard not to hear you coming with the noise of your armor, Knight. #chara:dragon
+Hard not to hear you coming given the noise your armor makes, Knight. #chara:dragon
 Boss! Boss! This one doesn't seem too bright, can I bite him? #chara:minion #minion:in
 No, we'll show him what it costs to play the hero! #chara:dragon #minion:out
 For my people, I shall prevail! #chara:knight
