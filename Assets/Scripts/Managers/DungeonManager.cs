@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
@@ -29,6 +30,7 @@ public class DungeonManager : MonoBehaviour
     [Header("Endless LevelSo")]
     public LevelSO endlessLevel;
     public List<HeroesInfo> classes;
+    [SerializeField] private Button arcadeButton;
     private int leastPV = 10;
     private int mostPV = 50;
     private float slowest = 1.5f;
@@ -107,11 +109,13 @@ public class DungeonManager : MonoBehaviour
         gameManager = GameManager.Instance;
 
         dialogueVariable = new DialogueVariable(globalsInkFile);
+        
     }
 
     private void Start()
     {
         TutorialDone = PlayerPrefs.HasKey("FinishedTutorial");
+        arcadeButton.interactable = TutorialDone;
     }
 
     public void SetSelectedBiome(int index)
@@ -284,7 +288,7 @@ public class DungeonManager : MonoBehaviour
         if (curiosityRandom<0.8f) curiosityIndex = 0;
         else if (curiosityRandom<0.9f) curiosityIndex = 1;
         else curiosityIndex = 2;
-        if(curiosityIndex>0) heroData.personalities.Add((Personnalities) curiosityIndex);
+        if(curiosityIndex>0) heroData.personalities.Add((Personnalities) curiosityIndex-1);
         
         //pv du hero
         heroData.health =(int) ((mostPV - (mostPV - leastPV))*Mathf.Exp(-expFactor*(level))*modePVRelatif[machValue-1] //-1 car on commence a 0
