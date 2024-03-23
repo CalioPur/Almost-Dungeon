@@ -10,7 +10,7 @@ Parfait, nous allons pouvoir en profiter. #chara:dragon
 ~SKnight9Seen = true 
 L'embuscade est prête, que voulez-vous que les araignées fassent ? #chara:minion
 
-* [Voler ses bottes ($$le héros$$ perd <color=lime>10 de vitesse</color> )] -> Regen
+* [Voler ses bottes ($$le héros$$ perd <color=purple>10 de vitesse</color> )] -> Regen
 * [Voler ses potions ($$vous$$ soigne <color=red>1 pdv</color> )] -> Damages
     
 === Regen ===
@@ -28,7 +28,7 @@ Tout ça pour quelques petites araignées géantes ! #healDragon:1
 === Encounter2 ===
 Ne va pas me l'effrayer cette fois-ci, il risque d'être plus dur à attraper ! #chara:dragon 
 Vous inquiétez pas patron, j'ai envoyé des spécialistes cette fois-ci ! Qu'est ce qu'on lui vole ? #chara:minion
-* [Voler ses bottes ($$le héros$$ perd <color=lime>10 de vitesse</color> )] -> Regen2
+* [Voler ses bottes ($$le héros$$ perd <color=purple>10 de vitesse</color> )] -> Regen2
 * [Voler ses potions ($$vous$$ soigne <color=red>1 pdv</color> )] -> Damages2
 
 === Regen2 ===

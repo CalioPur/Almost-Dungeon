@@ -21,7 +21,7 @@ MonoBehaviour:
   personalities: 
   languages:
   - heroDialogues:
-    - {fileID: 0}
+    - {fileID: 4900000, guid: 13e973ff04537dd4b8a05e38ee3216d6, type: 3}
   - heroDialogues:
     - {fileID: 4900000, guid: be48738318883a741b4be4b780e7c278, type: 3}
   keyToUnlock: 

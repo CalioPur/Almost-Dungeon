@@ -10,7 +10,7 @@ Perfect, we can take advantage of this. #chara:dragon
 ~SKnight9Seen = true 
 The ambush is ready, what do you want the spiders to do? #chara:minion
 
-* [Steal his boots ($$the hero$$ loses <color=lime>10 speed</color> )] -> Regen
+* [Steal his boots ($$the hero$$ loses <color=purple>10 speed</color> )] -> Regen
 * [Steal his potions (heals $$you$$ <color=red>1 hp</color> )] -> Damages
     
 === Regen ===
@@ -28,7 +28,7 @@ All of this for a few giant spiders... #healDragon:1
 === Encounter2 ===
 Don't scare him this time, he might be harder to catch! #chara:dragon 
 Don't worry boss, I sent specialists this time! What are we stealing from him? #chara:minion
-* [Steal his boots ($$the hero$$ loses <color=lime>10 speed</color> )] -> Regen2
+* [Steal his boots ($$the hero$$ loses <color=purple>10 speed</color> )] -> Regen2
 * [Steal his potions (heals $$you$$ <color=red>1 hp</color> )] -> Damages2
 
 === Regen2 ===
