@@ -16,7 +16,6 @@ public class Kamehameha : AttackFX
     {
         float i = 0;
         transform.LookAt(targetPos);
-        var mainModule = particle.main;
         switch (_direction)
         {
             case DirectionToMove.Left:
@@ -27,7 +26,7 @@ public class Kamehameha : AttackFX
                     lineRenderer.SetPosition(0, transform.position);
                     lineRenderer.SetPosition(1, new Vector3(dt, transform.position.y, transform.position.z));
                     float distance = Mathf.Abs(transform.position.x - dt) / particle.startSpeed;
-                    mainModule.startLifetime = distance;
+                    particle.startLifetime = distance;
                     i += Time.deltaTime;
                     yield return null;
                 }
@@ -39,7 +38,7 @@ public class Kamehameha : AttackFX
                     lineRenderer.SetPosition(0, transform.position);
                     lineRenderer.SetPosition(1, new Vector3(dt, transform.position.y, transform.position.z));
                     float distance = Mathf.Abs(transform.position.x - dt) / particle.startSpeed;
-                    mainModule.startLifetime = distance;
+                    particle.startLifetime = distance;
                     i += Time.deltaTime;
                     yield return null;
                 }
@@ -52,7 +51,7 @@ public class Kamehameha : AttackFX
                     lineRenderer.SetPosition(0, transform.position);
                     lineRenderer.SetPosition(1, new Vector3(transform.position.x, transform.position.y, dt));
                     float distance = Mathf.Abs(transform.position.z - dt) / particle.startSpeed;
-                    mainModule.startLifetime = distance;
+                    particle.startLifetime = distance;
                     i += Time.deltaTime;
                     yield return null;
                 }
@@ -65,7 +64,7 @@ public class Kamehameha : AttackFX
                     lineRenderer.SetPosition(0, transform.position);
                     lineRenderer.SetPosition(1, new Vector3(transform.position.x, transform.position.y, dt));
                     float distance = Mathf.Abs(transform.position.z - dt) / particle.startSpeed;
-                    mainModule.startLifetime = distance;
+                    particle.startLifetime = distance;
                     i += Time.deltaTime;
                     yield return null;
                 }
@@ -77,7 +76,7 @@ public class Kamehameha : AttackFX
             default:
                 yield break;
         }
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject);
     }
 
     public override void Launch()
@@ -91,7 +90,7 @@ public class Kamehameha : AttackFX
     {
         transform.position = owner.position + new Vector3(0, 0.4f, 0);
         targetPos = target.position;
-        timer = time;
+        timer = time * 0.5f;
         _direction = direction;
     }
 }
