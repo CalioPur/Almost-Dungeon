@@ -9,5 +9,5 @@ Hell! That's a Vitality Armor! #chara:dragon
 On guard, Dragon, with this armor, I can face anything! #chara:knight
 Quickly, my Minion! Prepare me some explosives, a lot of explosives! We must stop him before it's too late! #chara:dragon
 No problem, boss! Here you go! With this, we'll send him into orbit! #minion:in #chara:minion
-My <color=red>courage</color> won't be affected by a few sparks, Dragon! #chara:knight
+My @@courage@@ won't be affected by a few sparks, Dragon! #chara:knight
 -> END

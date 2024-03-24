@@ -13,8 +13,8 @@ Je vous demande pardon ? Une carte ? Quelle carte ? #chara:dragon
 Ben ma carte ! Regardez, pendant mon voyage j'ai trouvé une carte magique de chez vous ! #chara:barbarian
 Une carte magique ! Hmm, voilà qui pourrait être utile... #chara:dragon
 
-* [Voler la carte (perd <color=orange>explorateur</color> )] -> Regen
-* [Lui ajouter de fausses informations (perd <color=purple>10 de vitesse</color> )] -> Damages
+* [Voler la carte (perd @@@@@explorateur@@@@@ )] -> Regen
+* [Lui ajouter de fausses informations (perd @@@@@@10 de vitesse@@@@@@ )] -> Damages
     
 === Regen ===
 Mais ! MA CARTE ! Rendez-la moi, Dragon ! Je vous préviens, ça va mal se finir pour vous ! #chara:barbarian #changepers:none
@@ -31,8 +31,8 @@ Ah vous revoilà Dragon ! Quelle chance, je viens de mettre la main sur une deux
 Encore !? Ce n'est pas possible... Qui lui a donné une autre carte ? #chara:dragon 
 Patron, c'est vous qui avez rempli les coffres la dernière fois... #chara:minion #minion:in
 Ah ! Pas la peine d'essayer de me la {Regen : voler,} {Damages : salir,} cette fois-ci ! Vous ne m'aurez pas ! #chara:barbarian #minion:out
-* [Bruler la carte ! (le héros perd <color=orange>explorateur</color> )] -> Regen2
-* [Rendre la carte illisible ! (le héros perd <color=purple>10 de vitesse</color> )] -> Damages2
+* [Bruler la carte ! (le héros perd @@@@@explorateur@@@@@ )] -> Regen2
+* [Rendre la carte illisible ! (le héros perd @@@@@@10 de vitesse@@@@@@ )] -> Damages2
  -> END
  
  === Regen2 ===

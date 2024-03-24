@@ -2,7 +2,7 @@ INCLUDE GlobalVariables.ink
 
 Alors c'est ça le Donjon ? #chara:knight 
 $zzzzzz...zzzzz...zzzzz...$  #chara:dragon
-Quels sont ces ronflements ? Et pourquoi n'y a t-il pas de lumière ici ? #chara:knight
+ Quels sont ces ronflements ? Et pourquoi n'y a t-il pas de lumière ici ? #chara:knight
 Patron ! Patron ! #chara:minion #minion:in
 $zzzzzz...$ Quoi... Que veux-tu de si bon matin Sbire ? #chara:dragon
 Mais patron, vite réveillez-vous ! Le héros est arrivé, il est midi ! #chara:minion

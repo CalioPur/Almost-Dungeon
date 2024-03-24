@@ -12,8 +12,8 @@ Ha ! Tes flammes ne peuvent surpasser celles qui brulent dans le coeur d'un vrai
 Il rigole pas patron ! Regardez, on dirait presque qu'il dégage des flammes ! #chara:minion #minion:in
 Enfer, il faut l'arrêter avant qu'il ne risque de mettre le feu à toute la forêt ! #chara:dragon
 J'ai exactement ce qu'il nous faut patron, j'ai trouvé ces sacs de poudres, on peut les lui jeter dessus ! #chara:minion minion:in
-* [Utiliser la grenade ($$le héros$$ perd <color=red>5 pdv</color> )] -> Regen
-* [Utiliser le fumigène ($$le héros$$ gagne <color=blue>bigleux</color> )] -> Damages
+* [Utiliser la grenade ($$le héros$$ perd @5 pdv@ )] -> Regen
+* [Utiliser le fumigène ($$le héros$$ gagne @@bigleux@@ )] -> Damages
     
 === Regen ===
 Haha petite balle, pas la peine de rouler vers moi, tu ne pourras pas non plus atténuer ma rage ! #chara:barbarian
@@ -31,8 +31,8 @@ Qu'est ce que ! Quelle est cette fumée je ne vois plus rien !
 Ce cher Fenris, votre rage est-elle toujours aussi bouillonante ? #chara:dragon
 Bien évidemment, et je ne fais que m'échauffer ! J'aurai ta peau Dragon ! #chara:barbarian
 Bien... Heureusement que j'ai pris la liberté de me procurer plus de poudres... #chara:dragon 
-* [Utiliser la grenade ($$le héros$$ perd <color=red>5 pdv</color> )] -> Regen2
-* [Utiliser le fumigène ($$le héros$$ gagne <color=blue>bigleux</color> )] -> Damages2
+* [Utiliser la grenade ($$le héros$$ perd @5 pdv@ )] -> Regen2
+* [Utiliser le fumigène ($$le héros$$ gagne @@bigleux@@ )] -> Damages2
  -> END
  
  === Regen2 ===

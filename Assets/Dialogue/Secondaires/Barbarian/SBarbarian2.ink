@@ -11,7 +11,7 @@ Et bien... je crois qu'il y'a méprise... #chara:dragon
 Ah bon ? Vous n'êtes pas un lézard géant ?  #chara:barbarian
 Bien sîur que non petit barbare, je suis le Dragon, gardien du Donjon ! #chara:dragon
 Le Donjon !? Mais le panneau disait "maison" ! #chara:barbarian
-Mais ma parole, vous êtes complètement bigleux mon pauvre ami ! #chara:dragon
+Mais ma parole, vous êtes complètement @@@@bigleux@@@@ mon pauvre ami ! #chara:dragon
 -> END
 
 === Encounter2 ===

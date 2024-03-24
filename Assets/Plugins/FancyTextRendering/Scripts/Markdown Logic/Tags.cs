@@ -14,6 +14,66 @@ namespace LogicUI.FancyTextRendering.MarkdownLogic
             => settings.Bold.RenderBold;
     }
 
+    class PinkColor : SimpleMarkdownTag
+    {
+        protected override string MarkdownIndicator => "@@@@@@";
+        protected override string RichTextOpenTag => "<color=#ff00ffff>";
+        protected override string RichTextCloseTag => "</color>";
+
+        protected override char? IgnoreContents => '@';
+
+        protected override bool AllowedToProces(MarkdownRenderingSettings settings)
+            => settings.PinkColor.RenderPinkColor;
+    }
+    
+    class OrangeColor : SimpleMarkdownTag
+    {
+        protected override string MarkdownIndicator => "@@@@@";
+        protected override string RichTextOpenTag => "<color=orange>";
+        protected override string RichTextCloseTag => "</color>";
+
+        protected override char? IgnoreContents => '@';
+
+        protected override bool AllowedToProces(MarkdownRenderingSettings settings)
+            => settings.OrangeColor.RenderOrangeColor;
+    }
+
+    class LimeColor : SimpleMarkdownTag
+    {
+        protected override string MarkdownIndicator => "@@@@";
+        protected override string RichTextOpenTag => "<color=#00ff00ff>";
+        protected override string RichTextCloseTag => "</color>";
+
+        protected override char? IgnoreContents => '@';
+
+        protected override bool AllowedToProces(MarkdownRenderingSettings settings)
+            => settings.LimeColor.RenderLimeColor;
+    }
+    
+    class YellowColor : SimpleMarkdownTag
+    {
+        protected override string MarkdownIndicator => "@@@";
+        protected override string RichTextOpenTag => "<color=#ffff00ff>";
+        protected override string RichTextCloseTag => "</color>";
+
+        protected override char? IgnoreContents => '@';
+
+        protected override bool AllowedToProces(MarkdownRenderingSettings settings)
+            => settings.YellowColor.RenderYellowColor;
+    }
+    
+    class CyanColor : SimpleMarkdownTag
+    {
+        protected override string MarkdownIndicator => "@@";
+        protected override string RichTextOpenTag => "<color=#00ffffff>";
+        protected override string RichTextCloseTag => "</color>";
+
+        protected override char? IgnoreContents => '@';
+
+        protected override bool AllowedToProces(MarkdownRenderingSettings settings)
+            => settings.CyanColor.RenderCyanColor;
+    }
+    
     class Italics : SimpleMarkdownTag
     {
         protected override string MarkdownIndicator => "$";
@@ -24,6 +84,30 @@ namespace LogicUI.FancyTextRendering.MarkdownLogic
 
         protected override bool AllowedToProces(MarkdownRenderingSettings settings)
             => settings.Italics.RenderItalics;
+    }
+    
+    class RedColor : SimpleMarkdownTag
+    {
+        protected override string MarkdownIndicator => "@";
+        protected override string RichTextOpenTag => "<color=red>";
+        protected override string RichTextCloseTag => "</color>";
+
+        protected override char? IgnoreContents => '@';
+
+        protected override bool AllowedToProces(MarkdownRenderingSettings settings)
+            => settings.RedColor.RenderRedColor;
+    }
+    
+    class Witch : SimpleMarkdownTag
+    {
+        protected override string MarkdownIndicator => "°°";
+        protected override string RichTextOpenTag => "<font=Witch of Thebes SDF>";
+        protected override string RichTextCloseTag => "</font>";
+
+        protected override char? IgnoreContents => '°';
+
+        protected override bool AllowedToProces(MarkdownRenderingSettings settings)
+            => settings.Witch.RenderWitch;
     }
 
     class Strikethrough : SimpleMarkdownTag

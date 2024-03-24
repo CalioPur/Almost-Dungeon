@@ -10,8 +10,8 @@ Malédiction ! L'IGD, vite mon sbire ! Ils ne doivent pas trouver nos fiches de 
 ~SArcher3Seen = true 
 Pas de soucis Patron ! Trouvez un moyen de la retarder !  #chara:minion #minion:in
 Ah monsieur le Dragon, nous allons pouvoir commencer l'inspection. #chara:archer #minion:out
-* [Lui donner une fausse direction (perd <color=orange>exploratrice</color> )] -> Regen
-* [Accuser les monstres de fraude (devient <color=red>courageuse</color> )] -> Damages
+* [Lui donner une fausse direction (perd @@@@@exploratrice@@@@@ )] -> Regen
+* [Accuser les monstres de fraude (devient @@courageuse@@ )] -> Damages
     
 === Regen ===
 Merci bien, je vous retrouve dans quelques heures dans votre bureau, nous pourons discuter de ce que j'aurai trouvé... #chara:archer #changepers:none
@@ -27,8 +27,8 @@ Ils n'en sortiront pas vivants ! #chara:archer #changepers:courageux
 Enfer ! Encore l'IGD. Vite mon sbire ! Il  faut à nouveau cacher nos fiches de paie ! #chara:dragon
 J'y vais patron ! #chara:minion
 Ah monsieur le Dragon, cette fois ci je vais avoir besoin de vos fiches de paie. #minion:out
-* [La diriger vers les oubliettes (perd <color=orange>exploratrice</color> )] -> Regen2
-* [Accuser les monstres de fraude (devient <color=red>courageuse</color> )] -> Damages2
+* [La diriger vers les oubliettes (perd @@@@@exploratrice@@@@@ )] -> Regen2
+* [Accuser les monstres de fraude (devient @@courageuse@@ )] -> Damages2
  -> END
  
  === Regen2 ===

@@ -13,8 +13,8 @@ Oui, oui, je sais... ça fait de l'effet la première fois. #chara:dragon
 Je suis désolé mon ami, mais voyez-vous, ma machoire me démange et je croquerais bien dans quelque chose pour me soulager... #chara:dragon
 Quoi ! Non, pitié noble Dragon, ne me dévorez pas, je vous jure que j'ai très mauvais goût. #chara:knight
 
-* [Croquer dans le sac de l'aventurier ($$vous$$ soigne <color=red>2 pdv</color> )] -> Regen
-* [Croquer dans l'aventurier ($$le héros$$ perd <color=red>10 pdv</color> )] -> Damages
+* [Croquer dans le sac de l'aventurier ($$vous$$ soigne @2 pdv@ )] -> Regen
+* [Croquer dans l'aventurier ($$le héros$$ perd @10 pdv@ )] -> Damages
     
 === Regen ===
 MAIS ! MON SAC ! Mes provisions ! Tu vas payer Dragon ! #chara:knight #healDragon:2
@@ -30,8 +30,8 @@ Non mais ça va pas !? #chara:knight
 Vous m'avez croqué {Regen : MON sac } {Damages : MON bras !} et vous comptez vous en sortir avec des excuses ? 
 Eh bien vous allez rire, mais ma machoire me démange toujours... #chara:dragon 
 Oh non... #chara:knight
-* [Croquer dans le sac de l'aventurier ($$vous$$ soigne <color=red>2 pdv</color> )] -> Regen2
-* [Croquer dans l'aventurier ($$le héros$$ perd <color=red>10 pdv</color> )] -> Damages2
+* [Croquer dans le sac de l'aventurier ($$vous$$ soigne @2 pdv@ )] -> Regen2
+* [Croquer dans l'aventurier ($$le héros$$ perd @10 pdv@ )] -> Damages2
  -> END
  
  === Regen2 ===
