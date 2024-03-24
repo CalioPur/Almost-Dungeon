@@ -14,8 +14,8 @@ A dragon! But where has this cursed artifact sent me! #chara:mage
 I believe introductions are in order. Welcome to the Dungeon, sorceress. I am both its master and guardian. #chara:dragon
 How am I supposed to go back... I don't have time to linger here, Dragon, send me back from where I came! #chara:mage
 Such impatience! I have no means to send you back home, sorceress, however... #chara:dragon
-* [ Offer her your knowledge (loses <color=orange>impatient</color> )] -> Regen
-* [ Steal her glasses (gains <color=yellow>shortsighted</color> )] -> Damages
+* [ Offer her your knowledge (loses @@@@@impatient@@@@@ )] -> Regen
+* [ Steal her glasses (gains @@@shortsighted@@@ )] -> Damages
     
 === Regen ===
 I invite you to explore the Dungeon : its artifacts and magical scrolls might help you find your way back home... #chara:dragon
@@ -32,8 +32,8 @@ That's still my goal, but the artifact is reacting strangely in this place. It's
 And what's the next step in your studies? Do you think you'll manage to understand this object? #chara:dragon
 Rejoice, Dragon, you'll be able to participate in scientific progress. I've realized that to activate a new aspect of its powers I'll need your gold! #chara:mage
 I beg your pardon?! You'll never have my gold! #chara:dragon 
-* [ Give her a false lead (loses <color=orange>impatient</color> )]  -> Regen2
-* [ Steal her glasses (gains <color=yellow>shortsighted</color> )] -> Damages2
+* [ Give her a false lead (loses @@@@@impatient@@@@@ )]  -> Regen2
+* [ Steal her glasses (gains @@@shortsighted@@@ )] -> Damages2
  -> END
  
  === Regen2 ===

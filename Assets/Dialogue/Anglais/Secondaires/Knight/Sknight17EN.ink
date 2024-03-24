@@ -11,8 +11,8 @@ Very well, compose yourself minion, I will take care of the matter. #chara:drago
 Ah! Finally, the main course, I was starting to get bored! #chara:knight
 You took the words right out of my mouth, knight. Finally a worthy opponent. #chara:dragon
 I, Sir Pierre, blessed by the supreme vision, challenge you to a duel, Dragon. You stand no chance. #chara:knight #minion:out
-* [Boost his ego ($$the hero$$ gains <color=red>courageous</color>)] -> Regen
-* [Exploit his boasting ($$you$$ gain <color=red>1 hp</color>)] -> Damages
+* [Boost his ego ($$the hero$$ gains @@courageous@@)] -> Regen
+* [Exploit his boasting ($$you$$ gain @1 hp</color@] -> Damages
     
 === Regen ===
 HA! I bet you won't even be able to take down my army to reach me! #chara:dragon
@@ -32,8 +32,8 @@ Sir Pierre, for once, I'm glad to see an adventurer survive my traps! #chara:dra
 Our last battle was magnificent, Dragon, I look forward to facing you again. #chara:knight
 Haha! Pleasure shared, knight, but you won't win! #chara:dragon
 We'll see... What are the rules this time? #chara:knight
-* [Make him face your minions ($$the hero$$ gains <color=red>courageous</color>)] -> Regen2
-* [Drink a potion ($$you$$ gain <color=red>1 hp</color>)] -> Damages2
+* [Make him face your minions ($$the hero$$ gains @courageous@)] -> Regen2
+* [Drink a potion ($$you$$ gain @1 hp@)] -> Damages2
     
 === Regen2 ===
 Perfect, I'll face your army before you in that case. They won't last long! #chara:knight #changepers:courageous

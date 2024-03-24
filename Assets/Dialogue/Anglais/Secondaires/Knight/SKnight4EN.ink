@@ -13,8 +13,8 @@ Yes, yes, I know... it's impressive. #chara:dragon
 I'm sorry, my friend, but you see, my jaw is itching, and I would like to bite into something to relieve it... #chara:dragon
 What? No, please noble Dragon, don't devour me, I swear I taste very bad. #chara:knight
 
-* [Bite into the adventurer's bag (heals $$you$$ <color=red>2 hp</color> )] -> Regen
-* [Bite into the adventurer ($$the hero$$ loses <color=red>10 hp</color> )] -> Damages
+* [Bite into the adventurer's bag (heals $$you$$ @2 hp@ )] -> Regen
+* [Bite into the adventurer ($$the hero$$ loses @10 hp@ )] -> Damages
     
 === Regen ===
 BUT! MY BAG! My food! You'll pay for this, Dragon! #chara:knight #healDragon:2
@@ -30,8 +30,8 @@ Are you out of your mind!? #chara:knight
 You bit {Regen: MY bag} {Damages: MY arm!} last time and you think you can get away with apologies? 
 Well, you'll laugh, but my jaw is still itching... #chara:dragon 
 Oh no... #chara:knight
-* [Bite into the adventurer's bag ($$you$$ heal <color=red>2 hp</color> )] -> Regen2
-* [Bite into the adventurer ($$the hero$$ loses <color=red>10 hp</color> )] -> Damages2
+* [Bite into the adventurer's bag ($$you$$ heal @2 hp@ )] -> Regen2
+* [Bite into the adventurer ($$the hero$$ loses @10 hp@ )] -> Damages2
  -> END
  
  === Regen2 ===

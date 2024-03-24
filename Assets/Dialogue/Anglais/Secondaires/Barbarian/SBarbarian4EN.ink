@@ -12,8 +12,8 @@ Ha! Your flames cannot surpass the ones burning in the heart of a true warrior! 
 He's not joking, boss! Look, it's almost like he's emitting flames! #chara:minion #minion:in
 Hell, we need to stop him before he sets the whole forest on fire! #chara:dragon
 I have just what we need, boss, I found these bags of powder, we can throw them at him! #chara:minion #minion:in
-* [Use the grenade ($$the hero$$ loses <color=red>5 hp</color> )] -> Regen
-* [Use the smoke bomb ($$the hero$$ gains <color=blue>bigleux</color> )] -> Damages
+* [Use the grenade ($$the hero$$ loses @5 hp@ )] -> Regen
+* [Use the smoke bomb ($$the hero$$ gains @@@@blind@@@@ )] -> Damages
     
 === Regen ===
 Haha, little ball, no need to roll towards me, you won't be able to quench my rage either! #chara:barbarian
@@ -31,8 +31,8 @@ What! What is this smoke, I can't see anything anymore!
 Ah, dear Fenris, is your rage still as boiling as ever? #chara:dragon
 Of course, and I'm just warming up! I'll have your skin, Dragon! #chara:barbarian
 Well... Luckily, I bought more powder this morning... #chara:dragon 
-* [Use the grenade ($$the hero$$ loses <color=red>5 hp</color> )] -> Regen2
-* [Use the smoke bomb ($$the hero$$ gains <color=blue>bigleux</color> )] -> Damages2
+* [Use the grenade ($$the hero$$ loses@5 hp@ )] -> Regen2
+* [Use the smoke bomb ($$the hero$$ gains @@@@blind@@@@ )] -> Damages2
  -> END
  
  === Regen2 ===
