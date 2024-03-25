@@ -14,11 +14,11 @@ Please, Dragon, I beg you, let me have the potion, I swear I'll fight with all m
 * [Drink the potion (heals $$you$$ @1 HP@)] -> Damages
     
 === Regen ===
-Aaah... Thank you, Dragon... I'm back in action! #chara:archer #changepers:courageous
+Aaah... Thank you, Dragon... I'm back in action! #chara:archer #changepers:courageux
 -> END
 
 === Damages ===
-Tsss... Heartless creature, I'll take you down. #chara:archer #dragonHeal:1
+Tsss... Heartless creature, I'll take you down. #chara:archer #healDragon:1
 -> END
 
 === Encounter2 ===

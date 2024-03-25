@@ -18,7 +18,7 @@ Aaah... Merci Dragon... Me voilà de nouveau d'attaque ! #chara:archer #changepe
 -> END
 
 === Damages ===
-Tsss... Créature sans coeur, je vais t'abattre. #chara:archer #dragonHeal:1
+Tsss... Créature sans coeur, je vais t'abattre. #chara:archer #healDragon:1
 -> END
 
 === Encounter2 ===

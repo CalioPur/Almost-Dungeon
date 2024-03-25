@@ -17,7 +17,7 @@ public struct Dungeon
 {
     
     [SerializeField] public DungeonSO dungeonSO;
-    [SerializeField] public string name;
+    [SerializeField] public List<string> name;
     [SerializeField] public bool isLocked;
 }
 

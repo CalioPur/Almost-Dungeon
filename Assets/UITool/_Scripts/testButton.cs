@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -20,8 +21,19 @@ public class testButton : MonoBehaviour
     
     [SerializeField] private AudioSource sfxAudioSource;
     
+    [SerializeField] private List<ButtonsMenu> buttonsMenus;
+    
     private VisualElement menu_root_element;
     private VisualElement settings_root_element;
+    
+    [Serializable]
+    public struct ButtonsMenu
+    {
+    
+        [SerializeField] public TMP_Text text;
+        [SerializeField] public List<string> labels;
+    }
+    
     void Start()
     {
         Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
@@ -29,8 +41,16 @@ public class testButton : MonoBehaviour
         musicMixer.audioMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("MusicVolume", 0));
         XMLReader.currentLanguage = PlayerPrefs.GetInt("langue", 0);
         SetupMainMenuInteractions();
-        
-        
+
+        UpdateLanguageButtonMenu();
+    }
+
+    private void UpdateLanguageButtonMenu()
+    {
+        foreach (var btn in buttonsMenus)
+        {
+            btn.text.text = btn.labels[PlayerPrefs.GetInt("langue", 0)];
+        }
     }
 
     void SetupMainMenuInteractions()
@@ -140,6 +160,7 @@ public class testButton : MonoBehaviour
         }
         SetupMainMenuInteractions();
         SetupSettingsInteractions();
+        UpdateLanguageButtonMenu();
     }
 
     private void ChangeScreenMode(ChangeEvent<string> evt)

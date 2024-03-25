@@ -47,7 +47,7 @@ public class LevelCardScript : MonoBehaviour
         
         tryText.text = PlayerPrefs.GetInt("LevelTry" + biomeIndex, 0).ToString();
         victoryText.text = PlayerPrefs.GetInt("LevelVictory" + biomeIndex, 0).ToString();
-        biomeName.text = DungeonManager._instance.dungeons[biomeIndex].name;
+        biomeName.text = DungeonManager._instance.dungeons[biomeIndex].name[PlayerPrefs.GetInt("langue", 0)];
     }
     
     private void OnMouseEnter()
@@ -136,7 +136,7 @@ public class LevelCardScript : MonoBehaviour
         }
         tryText.text = PlayerPrefs.GetInt("LevelTry" + biomeIndex, 0).ToString();
         victoryText.text = PlayerPrefs.GetInt("LevelVictory" + biomeIndex, 0).ToString();
-        biomeName.text = DungeonManager._instance.dungeons[biomeIndex].name;
+        biomeName.text = DungeonManager._instance.dungeons[biomeIndex].name[PlayerPrefs.GetInt("langue", 0)];
         SpriteAttached.sprite = normalSprite;
         
         

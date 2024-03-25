@@ -4208,6 +4208,27 @@ MonoBehaviour:
   SFXMixer: {fileID: 4062451230179402305, guid: 54460d5c4c2fd4d4f9d9694855ef3c75,
     type: 2}
   sfxAudioSource: {fileID: 1983260440}
+  buttonsMenus:
+  - text: {fileID: 771655033}
+    labels:
+    - Play
+    - Jouer
+  - text: {fileID: 505751303}
+    labels:
+    - Arcade
+    - Arcade
+  - text: {fileID: 867648231}
+    labels:
+    - Settings
+    - Options
+  - text: {fileID: 1073962558}
+    labels:
+    - Credits
+    - Credits
+  - text: {fileID: 588752016}
+    labels:
+    - Quit
+    - Quitter
 --- !u!114 &1461340015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5813,6 +5834,66 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 969d4aa98198a684b9d459b1e7bac9b6,
         type: 2}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].name.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].name.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[2].name.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[3].name.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].name.Array.data[0]
+      value: The Barraks
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[0].name.Array.data[1]
+      value: La Caserne
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].name.Array.data[0]
+      value: The Archery
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[1].name.Array.data[1]
+      value: L'Archerie
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[2].name.Array.data[0]
+      value: The Crypt
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[2].name.Array.data[1]
+      value: La Crypte
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[3].name.Array.data[0]
+      value: The Woods
+      objectReference: {fileID: 0}
+    - target: {fileID: 2471141903997198016, guid: 5a4e2c97f58dfe7428bf359c207ec187,
+        type: 3}
+      propertyPath: dungeons.Array.data[3].name.Array.data[1]
+      value: Le Bois
+      objectReference: {fileID: 0}
     - target: {fileID: 6577308284193752911, guid: 5a4e2c97f58dfe7428bf359c207ec187,
         type: 3}
       propertyPath: m_LocalPosition.x
