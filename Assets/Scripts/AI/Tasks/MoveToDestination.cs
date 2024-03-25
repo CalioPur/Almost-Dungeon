@@ -46,6 +46,9 @@ public class MoveToDestination : Node
             _ => SeerScript.GetAllConnectedToPathTiles(blackboard.hero.GetIndexHeroPos())
         };
         
+        //fix for wolf
+        PathFinding.HeroPos = blackboard.hero.GetIndexHeroPos();
+        
         return NodeState.Success;
     }
 }

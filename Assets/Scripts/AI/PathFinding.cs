@@ -213,10 +213,6 @@ public class PathFinding
             case oldPerso.MoveToHero:
             {
                 Vector2Int nextPos = GetNextPosition(startPos, parentMap, new List<Vector2Int>(){HeroPos});
-                // if (GetDirectionToMove(startPos, nextPos) == DirectionToMove.None)
-                // {
-                //     return GoThroughDoorWithNoTile(startPos, map);
-                // }xx
                 return GetDirectionToMove(startPos, nextPos);
             }
             case oldPerso.Nothing:
