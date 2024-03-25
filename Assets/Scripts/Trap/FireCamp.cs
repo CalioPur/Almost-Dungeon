@@ -41,6 +41,7 @@ public class FireCamp : TrapData
         OnEndNightFireCamp?.Invoke(1);
         yield return new WaitForSeconds(2.0f);
         TickManager.Instance.PauseTick(false);
+        Destroy(gameObject);
     }
     
     public void Revive()
