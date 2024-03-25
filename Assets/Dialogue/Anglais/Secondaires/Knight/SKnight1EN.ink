@@ -18,5 +18,5 @@ Alright... En garde, Dragon! #chara:knight
 === Encounter2 ===
 Since you're still here, Grandjean, I imagine you know what I'm going to tell you. #chara:dragon
 Tsk... I'll have your head, Dragon! #chara:knight
-Aha, I look forward to it! #chara:dragon
+Aha, I look forward to it! #chara:dragon 
  -> END

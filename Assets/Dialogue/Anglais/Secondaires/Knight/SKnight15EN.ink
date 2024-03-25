@@ -23,5 +23,5 @@ I can't afford to make mistakes, Dragon. I've sacrificed too much to get here; I
 You still haven't told me why... #chara:dragon
 It's the only way to see my family again. The gods' books must contain a way to escape death! #chara:knight
 Hmm... I see... But whatever the contents of this book, you'll have to get through me before to read it! #chara:dragon
-Then I'll kill you, Dragon! #chara:knight
+Then I'll kill you, Dragon! #chara:knight 
     -> END

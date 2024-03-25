@@ -13,8 +13,8 @@ Un Dragon ?? C'est bien ma veine ça... Quelle idée de venir ici aussi...  #cha
 Quel est le problème, héros ? Ressaisissez-vous voyons. #chara:dragon
 Je n'ai jamais demandé à venir ici moi... Je ne veux pas me battre... #chara:knight
 
-* [Le pousser dans le donjon ($$le héros$$ perd <color=purple> 10 de vitesse</color> )] -> Regen
-* [Le motiver ($$le héros$$ devient <color=red>courageux</color> )] -> Damages
+* [Le pousser dans le donjon ($$le héros$$ perd @@@@@@10 de vitesse@@@@@@ )] -> Regen
+* [Le motiver ($$le héros$$ devient @courageux@ )] -> Damages
     
 === Regen ===
 Bon écoutez... Prenez sur vous et allez-y d'un coup... Je me fiche de vos histoires moi, j'ai faim. #chara:dragon
@@ -34,8 +34,8 @@ Allons-bon... Vous revoilà Karl. #chara:dragon
 Et revoilà le Dragon... je n'en peux plus... #chara:knight
 Bon bah pas la peine de vous faire prier cette fois alors ? #chara:dragon
 Pitié, laissez moi partir... #chara:knight
-* [Le pousser dans le donjon ($$le héros$$ perd <color=purple>10 de vitesse</color> )] -> Regen2
-* [Le motiver ($$le héros$$ devient <color=red>courageux</color> )] -> Damages2
+* [Le pousser dans le donjon ($$le héros$$ perd @@@@@@10 de vitesse@@@@@@ )] -> Regen2
+* [Le motiver ($$le héros$$ devient @@courageux@@ )] -> Damages2
  -> END
  
  === Regen2 ===

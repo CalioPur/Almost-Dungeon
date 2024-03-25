@@ -13,8 +13,8 @@ Well, what <color=yellow>impatience</color>, did you really think you could give
 I don't have time, Dragon. Don't try to stop me from leaving, or I'll have to destroy your dungeon. #chara:knight
 Boss, I found this bow on the ground, do you want me to try to stop him? #minion:in #chara:minion
 
-* [Aim for his legs ($$the hero$$ loses <color=purple>10 speed</color>)] -> Regen
-* [Aim for his body ($$the hero$$ loses <color=red>5 hp</color>)] -> Damages
+* [Aim for his legs ($$the hero$$ loses @@@@@@10 speed@@@@@@)] -> Regen
+* [Aim for his body ($$the hero$$ loses @5 hp@)] -> Damages
     
 === Regen ===
 HAHA! I got him ! He's slowing down! #chara:minion #time:-10
@@ -33,6 +33,6 @@ Does it even matter? You won't escape this dungeon alive! #chara:dragon
 I don't have time, Dragon. Don't try to hide the exit or I'll destroy your walls again! #chara:knight
 Boss, where should I aim this time? #chara:minion #minion:in
 
-* [Aim for his legs ($$the hero$$ loses <color=purple>10 speed</color>)] -> Regen
-* [Aim for his body ($$the hero$$ loses <color=red>5 hp</color>)] -> Damages
+* [Aim for his legs ($$the hero$$ loses @@@@@@10 speed@@@@@@)] -> Regen
+* [Aim for his body ($$the hero$$ loses @5 hp@)] -> Damages
 

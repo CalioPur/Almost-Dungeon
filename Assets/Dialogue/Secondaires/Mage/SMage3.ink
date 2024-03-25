@@ -14,8 +14,8 @@ Un dragon ! Mais où ce maudit artefact m'a-t-il envoyé !  #chara:mage
 Je crois que des présentations s'imposent. Bienvenue dans le Donjon, magicienne. J'en suis à la fois le maître et le gardien. #chara:dragon
 Comment vais-je faire pour retourner en arrière... Je n'ai pas le temps de m'éterniser ici, Dragon, renvoie-moi d'où je viens ! #chara:mage
 Quelle impatience ! Je n'ai aucun moyen de vous renvoyer chez vous, magicienne, par contre... #chara:dragon
-* [ Lui offrir votre savoir (perd <color=orange>impatient</color> )] -> Regen
-* [ Lui voler ses lunettes (gagne <color=yellow>bigleux</color> )] -> Damages
+* [ Lui offrir votre savoir (perd @@@impatient@@@ )] -> Regen
+* [ Lui voler ses lunettes (gagne @@@@bigleux@@@@ )] -> Damages
     
 === Regen ===
 Je vous invite à explorer le Donjon, ses artefacts et parchemins magiques pourraient peut être vous aider à retourner chez vous... #chara:dragon
@@ -32,8 +32,8 @@ C'est toujours mon objectif, mais l'artefact réagit étrangment à cet endroit.
 Et quelle est la suite de vos études ? Vous pensez pouvoir réussir à comprendre cet objet ? #chara:dragon
 Réjoussez-vous Dragon, vous allez pouvoir participer au progrès scientifique. J'ai compris que pour activer un nouveau pan de ses pouvoirs j'allais avoir besoin de votre or ! #chara:mage
 Je vous demande pardon ?! Vous n'aurez jamais mon or ! #chara:dragon 
-* [ Lui donner une fausse piste (perd <color=orange>impatient</color> )]  -> Regen2
-* [ Lui voler ses lunettes (gagne <color=yellow>bigleux</color> )] -> Damages2
+* [ Lui donner une fausse piste (perd @@@impatient@@@ )]  -> Regen2
+* [ Lui voler ses lunettes (gagne @@@@bigleux@@@@ )] -> Damages2
  -> END
  
  === Regen2 ===

@@ -11,6 +11,6 @@ Elles sont bloquées...#chara:archer
 Hahaha ! Ce sont des lunettes de soleil maudites ! #chara:dragon
 Patron ? Vous étiez là ? #minion:in #chara:minion
 Pourquoi l'archère est-elle en train de courir contre les murs ?
-Elle est devenue complètement <color=green>bigleuse</color> ?
+Elle est devenue complètement @@@@bigleuse@@@@ ?
 Longue histoire... #chara:dragon #minion:out
 -> END

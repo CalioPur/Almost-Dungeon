@@ -9,5 +9,5 @@ Helping a distressed magician ? I'd rather jump on the opportunity! #chara:drago
 Haha... An opportunity for science, for magic? #chara:mage
 For a free meal! #chara:dragon
 I won't die before I finish deciphering this manuscript! #chara:mage
-Then <color=blue>run away</color>! #chara:dragon
+Then @@run away@@! #chara:dragon
 -> END

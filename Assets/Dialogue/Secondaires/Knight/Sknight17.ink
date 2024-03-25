@@ -11,8 +11,8 @@ Bien, rassure-toi sbire, je vais prendre l'affaire en main. #chara:dragon
 Ah ! Enfin le plat de résistance, je commençais justement à m'ennuyer ! #chara:knight
 Vous m'ôtez les mots de la bouche chevalier, enfin un adversaire digne de ce nom. #chara:dragon
 Moi, Sire Pierre, béni par la vision suprême, te provoque en duel Dragon. Tu n'as aucune chance. #chara:knight #minion:out
-* [Gonfler son ego ($$le héros$$ gagne <color=red>courageux</color> )] -> Regen
-* [Profiter de sa vantardise ($$vous$$ gagnez <color=red>1 point de vie</color> )] -> Damages
+* [Gonfler son ego ($$le héros$$ gagne @@courageux@@ )] -> Regen
+* [Profiter de sa vantardise ($$vous$$ gagnez @1 point de vie@ )] -> Damages
     
 === Regen ===
 HA ! Je vous parie que vous n'arriverez même pas à abattre mon armée pour m'atteindre ! #chara:dragon
@@ -32,8 +32,8 @@ Sire Pierre, pour une fois, je suis heureux de voir un aventurier survivre à me
 Notre dernier combat était magnifique, Dragon, je me réjouis à l'idée vous affronter à nouveau. #chara:knight
 Haha ! Plaisir partagé chevalier, mais vous ne gagnerez pas ! #chara:dragon
 Nous verrons bien... Quelles sont les règles cette fois ci ? #chara:knight
-* [Lui faire affronter vos sbires ($$le héros$$ gagne <color=red>courageux</color> )] -> Regen2
-* [Boire une potion ($$vous$$ gagnez <color=red>1 point de vie</color> )] -> Damages2
+* [Lui faire affronter vos sbires ($$le héros$$ gagne @@courageux@@ )] -> Regen2
+* [Boire une potion ($$vous$$ gagnez @1 point de vie@ )] -> Damages2
     
 === Regen2 ===
 Parfait, je vais affronter votre armée avant vous dans ce cas. Ils ne vont pas faire long feu ! #chara:knight #changepers:courageux

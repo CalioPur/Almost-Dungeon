@@ -10,8 +10,8 @@ Boss! There's an archer on the brink of death over here! #chara:minion #minion:i
 ~SArcher2Seen = true 
 So, archer? Tough times? Too bad you don't have that fabulous life potion. #chara:dragon
 Please, Dragon, I beg you, let me have the potion, I swear I'll fight with all my might. #chara:archer #minion:out
-* [Give her the potion (the heroine becomes <color=red>courageous</color>)] -> Regen
-* [Drink the potion (heals $$you$$ <color=red>1 HP</color>)] -> Damages
+* [Give her the potion (the heroine becomes @@courageous@@)] -> Regen
+* [Drink the potion (heals $$you$$ @1 HP@)] -> Damages
     
 === Regen ===
 Aaah... Thank you, Dragon... I'm back in action! #chara:archer #changepers:courageous
@@ -25,7 +25,7 @@ Tsss... Heartless creature, I'll take you down. #chara:archer #dragonHeal:1
 Boss! Another nearly dead archer... #chara:minion #minion:in
 Haha... So, archer, still running out of potions?  #chara:dragon #minion:out
 Please, Dragon, I beg you, let me have the potion this time, I promise you'll get a real fight. #chara:archer 
-* [Give her the potion (the heroine becomes <color=red>courageous</color>)] -> Regen
-* [Drink the potion (heals $$you$$ <color=red>1 HP</color>)] -> Damages
+* [Give her the potion (the heroine becomes @@courageous@@)] -> Regen
+* [Drink the potion (heals $$you$$ @1 HP@)] -> Damages
  -> END
 

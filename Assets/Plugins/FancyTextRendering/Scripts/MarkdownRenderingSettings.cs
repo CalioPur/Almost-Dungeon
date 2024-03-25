@@ -16,10 +16,53 @@ namespace LogicUI.FancyTextRendering
             public bool RenderBold = true;
         }
 
+        public PinkColorSettings PinkColor = new PinkColorSettings();
+        [Serializable] public class PinkColorSettings
+        {
+            public bool RenderPinkColor = true;
+        }
+
+        
+        public OrangeColorSettings OrangeColor = new OrangeColorSettings();
+        [Serializable] public class OrangeColorSettings
+        {
+            public bool RenderOrangeColor = true;
+        }
+        
+        public LimeColorSettings LimeColor = new LimeColorSettings();
+        [Serializable] public class LimeColorSettings
+        {
+            public bool RenderLimeColor = true;
+        }
+        
+        public YellowColorSettings YellowColor = new YellowColorSettings();
+        [Serializable] public class YellowColorSettings
+        {
+            public bool RenderYellowColor = true;
+        }
+        
+        public CyanColorSettings CyanColor = new CyanColorSettings();
+        [Serializable] public class CyanColorSettings
+        {
+            public bool RenderCyanColor = true;
+        }
+
         public ItalicSettings Italics = new ItalicSettings();
         [Serializable] public class ItalicSettings
         {
             public bool RenderItalics = true;
+        }
+        
+        public RedColorSettings RedColor = new RedColorSettings();
+        [Serializable] public class RedColorSettings
+        {
+            public bool RenderRedColor = true;
+        }
+
+        public WitchSettings Witch = new WitchSettings();
+        [Serializable] public class WitchSettings
+        {
+            public bool RenderWitch = true;
         }
 
         public StrikethroughSettings Strikethrough = new StrikethroughSettings();

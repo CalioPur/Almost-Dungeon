@@ -13,8 +13,8 @@ Pardon me? A map? What map? #chara:dragon
 My map! Look, during my journey I found a magical map from your land! #chara:barbarian
 A magical map! Hmm, that could be useful... #chara:dragon
 
-* [Steal the map (loses <color=orange>explorer</color> )] -> Regen
-* [Add false information to it (loses <color=purple>10 speed</color> )] -> Damages
+* [Steal the map (loses @@@@@explorer@@@@@ )] -> Regen
+* [Add false information to it (loses @@@@@@10 speed@@@@@@ )] -> Damages
     
 === Regen ===
 What? MY MAP! Give it back, Dragon! I warn you, this won't end well for you! #chara:barbarian #changepers:none
@@ -31,8 +31,8 @@ Here you are again Dragon! What luck, I just got my hands on a second map... #ch
 Again!? How is that even possible... Who gave him another map? #chara:dragon 
 Boss, it was you who filled the chests last time... #chara:minion #minion:in
 Ah! No need to try to {Regen : steal,} {Damages : taint,} it this time! You won't get me! #chara:barbarian #minion:out
-* [Burn the map! (hero loses <color=orange>explorer</color> )] -> Regen2
-* [Make the map unreadable! (hero loses <color=purple>10 speed</color> )] -> Damages2
+* [Burn the map! (hero loses @@@@@explorer@@@@@ )] -> Regen2
+* [Make the map unreadable! (hero loses @@@@@@10 speed@@@@@@ )] -> Damages2
  -> END
  
  === Regen2 ===

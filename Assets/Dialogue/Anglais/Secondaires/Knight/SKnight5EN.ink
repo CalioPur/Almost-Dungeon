@@ -13,8 +13,8 @@ A Dragon?? This is just my luck... What a stupid idea to come here... #chara:kni
 What's the matter, hero? Pull yourself together, come on. #chara:dragon
 I never asked to come here... I don't want to fight... #chara:knight
 
-* [Push him into the dungeon ($$the hero$$ loses <color=purple>10 speed</color> )] -> Regen
-* [Motivate him ($$the hero$$ becomes <color=red>courageous</color> )] -> Damages
+* [Push him into the dungeon ($$the hero$$ loses @@@@@@10 speed@@@@@@ )] -> Regen
+* [Motivate him ($$the hero$$ becomes @courageous@ )] -> Damages
     
 === Regen ===
 Listen... Just pull yourself together and go for it... I don't care about your stories, I'm hungry. #chara:dragon
@@ -34,8 +34,8 @@ Well well... Here you are again, Karl. #chara:dragon
 And here's the Dragon again... I can't take it anymore... #chara:knight
 Well, no need to ask twice this time, right? #chara:dragon
 Please, let me go... #chara:knight
-* [Push him into the dungeon ($$the hero$$ loses <color=purple>10 speed</color> )] -> Regen2
-* [Motivate him ($$the hero$$ becomes <color=red>courageous</color> )] -> Damages2
+* [Push him into the dungeon ($$the hero$$ loses @@@@@@10 speed@@@@@@ )] -> Regen2
+* [Motivate him ($$the hero$$ becomes @courageous@ )] -> Damages2
  -> END
  
  === Regen2 ===

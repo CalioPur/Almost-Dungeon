@@ -11,6 +11,6 @@ They're stuck... #chara:archer
 Hahaha! They're cursed sunglasses! #chara:dragon
 Boss? There you are... #minion:in #chara:minion
 Why is the archer running against the walls?
-Did she become completely <color=green>blind</color>?
+Did she become completely @@@@blind@@@@?
 Long story... #chara:dragon #minion:out
 -> END

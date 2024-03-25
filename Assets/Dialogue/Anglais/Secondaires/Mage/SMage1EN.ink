@@ -8,38 +8,38 @@ INCLUDE ../../../GlobalVariables.ink
 === Encounter1 ===
 I believe he's a foreign student, let's see what he wants. #chara:dragon
 ~SMage1Seen = true 
-<font=Witch of Thebes SDF>Hello, I'm Melchior, a magic student from the College of the East</font>  #chara:mage
+°°Hello, I'm Melchior, a magic student from the College of the East°°  #chara:mage
 ... #chara:dragon
 Boss.. What did he say? I didn't understand anything! #chara:minion
 Watch out! He's approaching! #chara:dragon
-<font=Witch of Thebes SDF>You're the master of this place, aren't you? Don't be afraid, I just want to know where the toilets are.</font> #chara:mage
+°°You're the master of this place, aren't you? Don't be afraid, I just want to know where the toilets are.°° #chara:mage
 Boss! I'm scared! He wants to cast a spell on us! #chara:minion
-* [ <font=Witch of Thebes SDF>Attack him (loses <color=blue>fearful</color> )] -> Regen
-* [ <font=Witch of Thebes SDF>Show him the way (loses <color=yellow>clairvoyant</color> )] -> Damages
+* [ °°Attack him (loses @@fearful@@ )] -> Regen
+* [ °°Show him the way (loses @@@@clairvoyant@@@@ )] -> Damages
     
 === Regen ===
-<font=Witch of Thebes SDF>AAAAAH! Are you crazy! I just want to fill my thermos!</font> #chara:mage #changepers:fearful #minion:out
+°°AAAAAH! Are you crazy! I just want to fill my thermos!°°#chara:mage #changepers:fearful #minion:out
 -> END
 
 === Damages ===
-<font=Witch of Thebes SDF>Ah! You're very kind, thank you for the information.</font> #chara:mage #changepers:clairvoyant #minion:out
+°°Ah! You're very kind, thank you for the information.°° #chara:mage #changepers:clairvoyant #minion:out
 -> END
 
 === Encounter2 ===
 Don't panic, I'll try to communicate this time! #chara:dragon
-<font=Witch of Thebes SDF>Hello! It's me again, Melchior, I'm looking for your crypt, could you help me?</font> #chara:mage
+°°Hello! It's me again, Melchior, I'm looking for your crypt, could you help me?°° #chara:mage
 Help! Boss! I feel like he's trying to suck my soul out! #chara:minion
 Here he comes again! #chara:dragon 
 Quick, boss! Do something! #chara:minion
-* [ <font=Witch of Thebes SDF>Attack him (loses <color=blue>fearful</color> )] -> Regen2
-* [ <font=Witch of Thebes SDF>Show him the way (loses <color=yellow>clairvoyant</color> )] -> Damages2
+* [ °°Attack him (loses @@fearful@@ )] -> Regen2
+* [ °°Show him the way (loses @@@@clairvoyant@@@@ )] -> Damages2
  -> END
  
  === Regen2 ===
-<font=Witch of Thebes SDF>AAAAAH! Are you crazy! I'm just trying to finish my darn internship report, you lizard!</font> #chara:mage #changepers:fearful #minion:out
+°°AAAAAH! Are you crazy! I'm just trying to finish my darn internship report, you lizard!°° #chara:mage #changepers:fearful #minion:out
 -> END
 
 === Damages2 ===
-<font=Witch of Thebes SDF>Ah! You're very kind, thank you for the information. I'll leave you then...</font> #chara:mage #changepers:fearful #minion:out
+°°Ah! You're very kind, thank you for the information. I'll leave you then...°° #chara:mage #changepers:fearful #minion:out
 -> END
 

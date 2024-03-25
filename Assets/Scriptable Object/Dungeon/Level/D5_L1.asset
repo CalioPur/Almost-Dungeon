@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8dd4e543ca3d06498c7464e410c2f40, type: 3}
+  m_Name: D5_L1
+  m_EditorClassIdentifier: 
+  terrains:
+  - {fileID: 11400000, guid: cf37408e928a7e447aa98d2000d396e6, type: 2}
+  heros:
+  - {fileID: 11400000, guid: 3bdc0c4a63762494791d25632870a3ee, type: 2}
+  decks:
+  - {fileID: 11400000, guid: 14e9662e730c4f3469531683576fba89, type: 2}
+  PrebuildHand: []
+  nbCardToDraw: 5
+  keysElementsToUnlock:
+  - 

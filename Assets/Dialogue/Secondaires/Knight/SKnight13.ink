@@ -13,8 +13,8 @@ Eh bien, quelle <color=yellow>impatience</color>, vous ne pensiez tout de même 
 Je n'ai pas le temps, Dragon. N'essayez pas de m'empêcher de sortir, ou je devrai détruire votre donjon. #chara:knight
 Patron, j'ai trouvé cet arc par terre, vous voulez que je tente de l'arrêter ? #minion:in #chara:minion
 
-* [Viser ses jambes ($$le héros$$ perd <color=purple>10 de vitesse</color> )] -> Regen
-* [Viser son corps ($$le héros$$ perd <color=red>5 pdv</color> )] -> Damages
+* [Viser ses jambes ($$le héros$$ perd @@@@@@10 de vitesse@@@@@@ )] -> Regen
+* [Viser son corps ($$le héros$$ perd @5 pdv@ )] -> Damages
     
 === Regen ===
 HAHA ! Touché ! Le voilà qui ralentit ! #chara:minion #time:-10
@@ -33,5 +33,5 @@ Quelle importance, vous ne réchapperez pas de ce Donjon vivant ! #chara:dragon
 Je n'ai pas le temps, Dragon. N'essayez plus de cacher la sortie où je vais à nouveau détruire vos murs ! #chara:knight
 Patron, où dois-je tirer cette fois-ci ? #chara:minion #minion:in
 
-* [Viser ses jambes ($$le héros$$ perd <color=purple>10 de vitesse</color> )] -> Regen
-* [Viser son corps ($$le héros$$ perd <color=red>5 pdv</color> )] -> Damages
+* [Viser ses jambes ($$le héros$$ perd @@@@@@10 de vitesse@@@@@@ )] -> Regen
+* [Viser son corps ($$le héros$$ perd @5 pdv@ )] -> Damages
