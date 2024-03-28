@@ -1,6 +1,8 @@
 //RECCURENT HEROES
 VAR RknightSeen = false
 
+//Special Interactions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+VAR SKnight2SeenTwice = true
 
 //Secondary Knights !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 VAR SKnight1Seen = false
