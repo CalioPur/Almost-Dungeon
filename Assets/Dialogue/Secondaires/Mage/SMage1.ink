@@ -2,10 +2,12 @@ INCLUDE ../../GlobalVariables.ink
 
 //<font=Witch of Thebes SDF></font>
 
-{not SMage1Seen : Patron ! Regardez celui-là, qu'est ce qu'il fait avec ses bouquins et son carnet ! #chara:minion #minion:in } 
-{SMage1Seen : Patron ! Encore le type terrifiant ! #chara:minion #minion:in }
-{not SMage1Seen : ->Encounter1} 
-{SMage1Seen : ->Encounter2} 
+{not SMage1Seen && not SMage1SeenTwice : Patron ! Regardez celui-là, qu'est ce qu'il fait avec ses bouquins et son carnet ! #chara:minion #minion:in } 
+{SMage1Seen && not SMage1SeenTwice : Patron ! Encore le type terrifiant ! #chara:minion #minion:in }
+{SMage1SeenTwice : Patron ! Le revoilà ! #chara:minion #minion:in }
+{not SMage1Seen && not SMage1SeenTwice : ->Encounter1} 
+{SMage1Seen && not SMage1SeenTwice : ->Encounter2} 
+{SMage1SeenTwice : ->Encounter3} 
 
 === Encounter1 ===
 Je crois bien qu'il s'agit d'un étudiant étranger, allons voir ce qu'il veut. #chara:dragon
@@ -43,4 +45,24 @@ Vite patron ! Faites un truc ! #chara:minion
 
 === Damages2 ===
 °°Ah ! Vous êtes bien aimable, merci pour l'information. Je vous laisse alors...°° #chara:mage #changepers:peureux #minion:out
+-> END
+
+=== Encounter3 ===
+Utilisons le livre du mage que nous avons vaincu dans la forêt ! Il devrait contenir de quoi traduire ses dires ! #chara:dragon
+Dragon ! C'est encore moi Melchior, ne m'attaquez plus je vous en prie ! #chara:mage
+Patron ! Je comprend ce qu'il dit ! Le livre était bien sur sa langue ! #chara:minion
+Et que venez-vous faire dans mon Donjon, Melchior ? #chara:dragon 
+Eh bien, voyez-vous cher Dragon, je suis étudiant au Collège de l'Est et je travaille sur un projet de stage d'études sur les Cryptes. #chara:mage
+Je cherche donc le chemin de la votre afin de l'étudier.
+... #chara:dragon
+* [L'attaquer (perd @@preureux@@ )] -> Regen3
+* [Lui montrer le chemin (perd @@@@clairvoyant@@@@ )] -> Damages3
+ -> END
+ 
+ === Regen3 ===
+AAAAAH ! Mais vous êtes fou ! Je cherche juste à finir mon rapport de stage maudit lézard ! #chara:mage #changepers:peureux #minion:out #unlockAchievement:BILINGUAL
+-> END
+
+=== Damages3 ===
+Ah ! Vous êtes bien aimable, merci pour l'information. Je vous laisse alors... #chara:mage #changepers:peureux #minion:out #unlockAchievement:BILINGUAL
 -> END

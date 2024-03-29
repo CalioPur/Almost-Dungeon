@@ -3,6 +3,7 @@ VAR RknightSeen = false
 
 //Special Interactions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 VAR SKnight2SeenTwice = true
+VAR SMage1SeenTwice = false
 
 //Secondary Knights !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 VAR SKnight1Seen = false

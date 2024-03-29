@@ -17,6 +17,7 @@ Voilà qui est mieux pour lire dans le noir !
 Parfait ! Maintenant lisez votre grimoire et affrontons-nous ! #chara:dragon
 Hmmm.. hmmm... Oui je vois...
 @@Courage@@ ... @@@@Clairvoyance@@@@ ... 
+~SMage1SeenTwice = true
 Voilà qui est parfait ! Avec ces pouvoirs me voilà capable de te terrasser Dragon ! 
 A la bonne heure ! #chara:dragon #minion:out
 -> END
