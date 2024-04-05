@@ -2667,7 +2667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 3022150763503721755}
   <Btn>k__BackingField: {fileID: 4928435573094370304}
-  <text>k__BackingField: {fileID: 8769656149661145474}
+  <text>k__BackingField: {fileID: 7857546052239593988}
 --- !u!1 &6012529769546658312
 GameObject:
   m_ObjectHideFlags: 0

@@ -117,11 +117,11 @@ public class UI_Hero : MonoBehaviour
     {
         if (win)
         {
-            endGameText.text = "Vous avez roti "+ heroName.text + " !";
+            endGameText.text = PlayerPrefs.GetInt("langue",0)==0? "You have roasted sir " + heroName.text + " !" :"Vous avez roti "+ heroName.text + " !";
             endGameText.color = Color.green;
             if (DungeonManager._instance.currentLevel < 6 && DungeonManager._instance.TutorialDone)
             {
-                endGameButton.text.text = "Passer au niveau " + (DungeonManager._instance.currentLevel+2);
+                endGameButton.text.text = PlayerPrefs.GetInt("langue",0)==0? "Go to level " + (DungeonManager._instance.currentLevel+2):"Passer au niveau " + (DungeonManager._instance.currentLevel+2);
             }
             else
             {
@@ -132,7 +132,7 @@ public class UI_Hero : MonoBehaviour
         }
         else
         {
-            endGameText.text = heroName.text + " vous a vaincu !";
+            endGameText.text =PlayerPrefs.GetInt("langue",0)==0? heroName.text+" has slain you !" : heroName.text + " vous a vaincu !";
             endGameText.color = Color.red;
             endGameButton.text.text = "Main Menu";
             DungeonManager._instance.ResetLevelIndex();

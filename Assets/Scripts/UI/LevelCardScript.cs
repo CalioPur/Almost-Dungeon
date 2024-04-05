@@ -20,6 +20,8 @@ public class LevelCardScript : MonoBehaviour
     [SerializeField] private SoundManagerIngame soundManagerIngame;
     [SerializeField] private TMP_Text tryText;
     [SerializeField] private TMP_Text victoryText;
+    [SerializeField] private TMP_Text tryLabel;
+    [SerializeField] private TMP_Text VictoryLabel;
     [SerializeField] private TMP_Text biomeName;
     
     private bool canPlay = true;
@@ -48,6 +50,12 @@ public class LevelCardScript : MonoBehaviour
         tryText.text = PlayerPrefs.GetInt("LevelTry" + biomeIndex, 0).ToString();
         victoryText.text = PlayerPrefs.GetInt("LevelVictory" + biomeIndex, 0).ToString();
         biomeName.text = DungeonManager._instance.dungeons[biomeIndex].name[PlayerPrefs.GetInt("langue", 0)];
+
+        if (PlayerPrefs.GetInt("langue", 0) == 0)
+        {
+            tryLabel.text = "Trys :";
+            VictoryLabel.text = "Achieved :";
+        }
     }
     
     private void OnMouseEnter()

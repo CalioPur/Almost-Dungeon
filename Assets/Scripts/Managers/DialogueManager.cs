@@ -236,9 +236,10 @@ public class DialogueManager : MonoBehaviour
             //dialogueText.Source = story.Continue();
             EvaluateTags();
             if (!story.canContinue && choices == 0)
-                nextButtonText.text = "C'est parti !";
+                nextButtonText.text = PlayerPrefs.GetInt("langue", 0) == 0 ? "Let's go !" : "c'est parti !";
             else
-                nextButtonText.text = "Suivant";
+                nextButtonText.text = PlayerPrefs.GetInt("langue", 0) == 0 ? "Next" : "Suivant";
+
         }
 
         else

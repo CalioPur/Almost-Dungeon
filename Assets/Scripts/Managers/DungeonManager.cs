@@ -356,11 +356,21 @@ public class DungeonManager : MonoBehaviour
         heroCard.heroName.text = heroData.nameOfHero;
         heroCard.HealthBarText.text = heroData.health.ToString();
         string personality = "";
-        if (heroData.visionType != VisionType.LIGNEDROITE) personality += ToTitleCase(heroData.visionType.ToString()) + " ";
-        if (heroData.aggressivity != Aggressivity.NONE) personality += ToTitleCase(heroData.aggressivity.ToString());
+        if (heroData.visionType != VisionType.LIGNEDROITE)
+        {
+            if(heroData.visionType == VisionType.CLAIRVOYANT) personality += PlayerPrefs.GetInt("langue",0)==0? "Clairvoyant " :"Clairvoyant "; //enfaite c'est le meme mot
+            if(heroData.visionType == VisionType.BIGLEUX) personality += PlayerPrefs.GetInt("langue",0)==0? "Squint " :"Bigleux ";
+        }
+
+        if (heroData.aggressivity != Aggressivity.NONE)
+        {
+            if(heroData.aggressivity == Aggressivity.COURAGEUX) personality += PlayerPrefs.GetInt("langue",0)==0? "Brave " :"Courageux ";
+            if(heroData.aggressivity == Aggressivity.PEUREUX) personality += PlayerPrefs.GetInt("langue",0)==0? "Fearful " :"Peureux ";
+        }
         foreach (var perso in heroData.personalities)
         {
-            personality += " " + ToTitleCase(perso.ToString());
+            if(perso == Personnalities.INDECIS) personality += PlayerPrefs.GetInt("langue",0)==0? "Indecisive " :"Indécis ";
+            if(perso == Personnalities.IMPATIENT) personality += PlayerPrefs.GetInt("langue",0)==0? "Impatient " :"Impatient ";
         }
         heroCard.heroPersonality.text = personality;
     }
