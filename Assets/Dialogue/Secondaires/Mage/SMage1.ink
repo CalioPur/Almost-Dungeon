@@ -18,8 +18,8 @@ Patron..  Qu'est ce qu'il dit ? J'ai rien compris ! #chara:minion
 Attention ! Il approche ! #chara:dragon
 °°Vous êtes le maître des lieux, n'est ce pas ? N'ayez pas peur, je voudrais simplement savoir où sont les cabinets.°° #chara:mage
 Patron ! J'ai peur ! Il veut nous lancer un sort ! #chara:minion
-* [ °°L'attaquer (perd @@preureux@@ )] -> Regen
-* [ °°Lui montrer le chemin (perd @@@@clairvoyant@@@@ )] -> Damages
+* [ °°L'attaquer (perd @@preureux@@ )°° ] -> Regen
+* [ °°Lui montrer le chemin (perd @@@@clairvoyant@@@@ )°° ] -> Damages
     
 === Regen ===
 °°AAAAAH ! Mais vous êtes fou ! Je veux juste remplir mon thermos !°° #chara:mage #changepers:peureux #minion:out
@@ -35,8 +35,8 @@ Pas de panique, je vais essayer de communiquer cette fois ci ! #chara:dragon
 Au secours ! Patron ! J'ai l'impression qu'il essaie d'aspirer mon âme ! #chara:minion
 Le voilà qui se rapproche à nouveau ! #chara:dragon 
 Vite patron ! Faites un truc ! #chara:minion
-* [ °°L'attaquer (perd @@preureux@@ )] -> Regen2
-* [ °°Lui montrer le chemin (perd @@@@clairvoyant@@@@ )] -> Damages2
+* [ °°L'attaquer (perd @@preureux@@ )°° ] -> Regen2
+* [ °°Lui montrer le chemin (perd @@@@clairvoyant@@@@ )°° ] -> Damages2
  -> END
  
  === Regen2 ===
@@ -56,7 +56,7 @@ Eh bien, voyez-vous cher Dragon, je suis étudiant au Collège de l'Est et je tr
 Je cherche donc le chemin de la votre afin de l'étudier.
 ... #chara:dragon
 * [L'attaquer (perd @@preureux@@ )] -> Regen3
-* [Lui montrer le chemin (perd @@@@clairvoyant@@@@ )] -> Damages3
+* [Lui montrer le chemin (perd @@@@clairvoyant@@@@ ) ] -> Damages3
  -> END
  
  === Regen3 ===

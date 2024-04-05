@@ -43,3 +43,22 @@ Quick, boss! Do something! #chara:minion
 °°Ah! You're very kind, thank you for the information. I'll leave you then...°° #chara:mage #changepers:fearful #minion:out
 -> END
 
+=== Encounter3 ===
+Let's use the mage's book we defeated in the forest! It should contain something to translate his words! #chara:dragon
+Dragon! It's me again, Melchior, please don't attack me anymore, I beg you! #chara:mage
+Boss! I understand what he's saying! The book was indeed in his language! #chara:minion
+And what brings you to my Dungeon, Melchior? #chara:dragon 
+Well, you see, dear Dragon, I'm a student at the College of the East, and I'm working on a study internship project on the Crypts. #chara:mage
+So, I'm looking for the path to yours in order to study it.
+... #chara:dragon
+* [Attack him (loses @@cowardly@@)] -> Regen3
+* [Show him the way (loses @@@@clairvoyant@@@@)] -> Damages3
+ -> END
+ 
+ === Regen3 ===
+AAAAAH! Are you out of your mind! I'm just trying to finish my internship report, you cursed lizard! #chara:mage #changepers:cowardly #minion:out #unlockAchievement:BILINGUAL
+-> END
+
+=== Damages3 ===
+Ah! You're very kind, thank you for the information. I'll leave then... #chara:mage #changepers:cowardly #minion:out #unlockAchievement:BILINGUAL
+-> END

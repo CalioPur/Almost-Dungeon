@@ -21,3 +21,13 @@ Good, I've been wanting to get my hands on your ritual armor, it will make an ex
 You won't have me, Dragon, I'll defeat you. #chara:knight
 Very well, knight, entertain me enough and I might give you what you seek. #chara:dragon
  -> END
+
+=== Rencontre3 ===
+Sire Artorius... #chara:dragon
+For once, I admit defeat. You have indeed exceeded my expectations.
+So, honor your deal, Dragon! Save my village! #chara:knight
+You're not really in a position to force my hand, Artorius. #chara:dragon
+But very well!
+Here, take this scale.
+And now I'll take pleasure in escorting you out of here myself. #unlockAchievement:REDEMPTION
+ -> END
