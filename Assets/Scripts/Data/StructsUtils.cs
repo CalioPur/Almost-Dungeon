@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -32,6 +33,7 @@ public struct TutorialDialogData
     [FormerlySerializedAs("tilePostion")] public Vector2Int tilePostionToTrigger;
     public Vector2Int tilePostionGoalPos;
     public string Dialog;
+    public List<string> Dialogs;
     public DirectionToMove direction;
     public bool isExploding;
 }

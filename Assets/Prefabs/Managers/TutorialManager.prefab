@@ -231,30 +231,55 @@ MonoBehaviour:
     tilePostionGoalPos: {x: 2, y: 1}
     Dialog: "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place
       des tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
+    Dialogs:
+    - At an intersection, the hero can choose his path. Place tiles to cover all
+      eventualities !
+    - "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place des
+      tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
     direction: 2
     isExploding: 0
   - tilePostionToTrigger: {x: 2, y: 0}
     tilePostionGoalPos: {x: 2, y: 1}
     Dialog: "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place
       des tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
+    Dialogs:
+    - At an intersection, the hero can choose his path. Place tiles to cover all
+      eventualities !
+    - "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place des
+      tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
     direction: 2
     isExploding: 0
   - tilePostionToTrigger: {x: 4, y: 2}
     tilePostionGoalPos: {x: 4, y: 1}
     Dialog: "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place
       des tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
+    Dialogs:
+    - At an intersection, the hero can choose his path. Place tiles to cover all
+      eventualities !
+    - "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place des
+      tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
     direction: 2
     isExploding: 0
   - tilePostionToTrigger: {x: 4, y: 0}
     tilePostionGoalPos: {x: 4, y: 1}
     Dialog: "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place
       des tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
+    Dialogs:
+    - At an intersection, the hero can choose his path. Place tiles to cover all
+      eventualities !
+    - "Au niveau d'une intersection, le h\xE9ro peut choisir son chemin. place des
+      tuiles pour couvrir toutes les \xE9ventualit\xE9s !"
     direction: 2
     isExploding: 0
   - tilePostionToTrigger: {x: 6, y: 1}
     tilePostionGoalPos: {x: 6, y: 2}
     Dialog: Clique gauche sur une tuile de ta main pour la selectionner. clique droit
       sur le terrain pour la faire tourner
+    Dialogs:
+    - Left-click on a tile in your hand to select it. Right click on the field to
+      rotate it
+    - Clique gauche sur une tuile de ta main pour la selectionner. clique droit sur
+      le terrain pour la faire tourner
     direction: 2
     isExploding: 0
   Positons:
@@ -281,6 +306,10 @@ MonoBehaviour:
     nbToBuild: 0
   canNotPlaceHere: "Euh ... pour l'instant, tu devrais placer tes tuiles \xE0 cot\xE9
     de celles d\xE9ja sur le terrain"
+  canNotPlaceHereList:
+  - For now, you should place your tiles  next to those already placed on the field
+  - "Euh ... pour l'instant, tu devrais placer tes tuiles \xE0 cot\xE9 de celles
+    d\xE9ja sur le terrain"
   damagePos: {x: 0, y: 4}
 --- !u!1 &2627368051218432746
 GameObject:

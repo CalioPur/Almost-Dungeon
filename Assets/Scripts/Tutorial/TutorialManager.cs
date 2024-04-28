@@ -19,6 +19,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Transform EndPos;
     [SerializeField] private CardToBuild[] EnemiesToSpawn;
     [SerializeField] private string canNotPlaceHere;
+    [SerializeField] private List<string> canNotPlaceHereList;
     [SerializeField] private Vector2Int damagePos;
 
     private GameObject MinionTokenInstance;
@@ -40,8 +41,9 @@ public class TutorialManager : MonoBehaviour
     public void MinionMove()
     {
         if (minionMoved > 0) return;
+        string text = PlayerPrefs.GetInt("langue",0) == 0 ? "This wandering monster in the dungeon belongs to you. When he sees the hero, he comes to inflict damage on him." : "Ce monstre errant dans le donjon vous appartient. Lorsqu'il voit le héros, il vient lui infliger des dégats.";
         OpenTutorial(DirectionToMove.Up,
-            "Ce monstre errant dans le donjon vous appartient. Lorsqu'il voit le héros, il vient lui infliger des dégats.",
+            text,
             true, new Vector2Int(-1, -1));
         minionMoved = 1;
     }
@@ -73,7 +75,7 @@ public class TutorialManager : MonoBehaviour
             canBePlaced = true;
         }
 
-        else if (!canBePlaced) OpenTutorial(DirectionToMove.Up, canNotPlaceHere, false, new Vector2Int(-1, -1));
+        else if (!canBePlaced) OpenTutorial(DirectionToMove.Up, canNotPlaceHereList[PlayerPrefs.GetInt("langue",0)], false, new Vector2Int(-1, -1));
         else
         {
             if (GoalPos == TilePos)
@@ -100,7 +102,8 @@ public class TutorialManager : MonoBehaviour
     {
         DeckManager.Instance.RedrawHand(4);
         ResolveDamage = true;
-        OpenTutorial(DirectionToMove.Up, "\"Devant une sortie, le héros t'inflige des degats directement, place plus de tuiles pour éviter qu'il ne t'ateigne !",
+        string text = PlayerPrefs.GetInt("langue",0) == 0 ? "In front of an exit, the hero will direclty attack you. Place a tile in front of him so he can't reach you !" : "Devant une sortie, le héros t'inflige des degats directement, place plus de tuiles pour éviter qu'il ne t'ateigne !";
+        OpenTutorial(DirectionToMove.Up, text,
             true, new Vector2Int(-1, -1));
     }
 
@@ -192,7 +195,7 @@ public class TutorialManager : MonoBehaviour
         {
             if (posHero == tutorialDialog.tilePostionToTrigger)
             {
-                OpenTutorial(tutorialDialog.direction, tutorialDialog.Dialog, true, tutorialDialog.tilePostionGoalPos);
+                OpenTutorial(tutorialDialog.direction, tutorialDialog.Dialogs[PlayerPrefs.GetInt("langue",0)], true, tutorialDialog.tilePostionGoalPos);
                 if (tutorialDialog.isExploding)
                 {
                     Explose(posHero + new Vector2Int(1, 0));
